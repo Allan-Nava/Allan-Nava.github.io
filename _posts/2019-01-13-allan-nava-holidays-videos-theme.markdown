@@ -1,19 +1,20 @@
 ---
-title: ":computer: Youtube videos"
+title: ":video_camera: Holidays videos"
 layout: post
-date: 2019-01-11 13:51
-tag: youtube
-image: 
+date: 2019-01-13 12:06
+tag: 
+- youtube
+- videos
+- video editing
+image: ""
 headerImage: false
-projects: false
-hidden: true # don't count this post in blog pagination
-description: "Allan Nava youtube videos"
+description: "Allan Nava youtube videos of holidays"
 category: blog
 author: allan
 externalLink: true
 ---
 
-## My youtube videos
+## :video_camera: Holidays videos
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/lgCQ88K0DEk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

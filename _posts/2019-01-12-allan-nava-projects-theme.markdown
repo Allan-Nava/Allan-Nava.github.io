@@ -5,7 +5,7 @@ date: 2019-01-12 13:22
 tag: 
 - github
 - open-source
-image: 
+image: ""
 headerImage: false
 projects: true
 hidden: true # don't count this post in blog pagination
