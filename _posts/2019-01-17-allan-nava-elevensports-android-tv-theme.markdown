@@ -16,8 +16,6 @@ category: project
 author: allan
 ---
 
-[Playstore Project](https://play.google.com/store/apps/details?id=it.sportube.elevensportstv&hl=en)
-
 <div class="side-by-side">
     <div class="toleft">
         <img class="image" src="https://lh3.googleusercontent.com/xL4X6wjUnxmxtRWiYJl4KuS3HCAlnaRxt8XrPgORIuFEBczNZIGWFsb6YXrJoJc-5q8=s360-rw" alt="ElevenSports Android TV">
@@ -28,5 +26,6 @@ author: allan
         <p>Eleven Sports permette a tutti coloro che amano lo sport di seguire, in diretta e on demand, i propri eventi preferiti su pc, tablet, Android TV e smartphone.
 
         È sufficiente registrarsi per avere accesso ad oltre 2000 eventi live ed alla libreria di programmi on demand, dovunque ti trovi.</p>
+        <p>[Playstore Project](https://play.google.com/store/apps/details?id=it.sportube.elevensportstv&hl=en)</p>
     </div>
 </div>
