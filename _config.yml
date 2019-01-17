@@ -5,7 +5,7 @@
 # in the templates via {{ site.myvariable }}.
 title: Allan Nava
 email: 
-bio: A man who likes videogames and coding
+bio: A man who loves videogames and coding
 description: ""
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
@@ -28,7 +28,7 @@ youtube: AllanNava
 authors:
   allan:
     name: allan
-    bio: A man who likes videogames and coding 
+    bio: A man who loves videogames and coding 
     external-image: false
     picture: assets/images/profile.jpg
 #
