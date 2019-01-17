@@ -26,6 +26,6 @@ author: allan
         <p>Eleven Sports permette a tutti coloro che amano lo sport di seguire, in diretta e on demand, i propri eventi preferiti su pc, tablet, Android TV e smartphone.
 
         È sufficiente registrarsi per avere accesso ad oltre 2000 eventi live ed alla libreria di programmi on demand, dovunque ti trovi.</p>
-        <p>[Playstore Project](https://play.google.com/store/apps/details?id=it.sportube.elevensportstv&hl=en)</p>
+        <p><a href="https://play.google.com/store/apps/details?id=it.sportube.elevensportstv&hl=en" target="_blank">APP playstore</a></p>
     </div>
 </div>
