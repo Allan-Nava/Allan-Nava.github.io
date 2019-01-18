@@ -15,6 +15,7 @@ Study Interests
 - Flutter and Dart.
 - Swift 
 - Kotlin
+- Java
 - Html, Jekyll and Static Generators.
 - CSS.
 - Github and open-source.
