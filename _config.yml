@@ -17,7 +17,6 @@ picture: assets/images/profile.jpg
 # To enable google analytics, supply your token below
 analytics-google: 'UA-132362885-1'
 #
-#twitter_username: jekyllrb
 github_username: Allan-Nava
 github: Allan-Nava
 instagram: allan_nava
@@ -65,3 +64,4 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-admin
+#
