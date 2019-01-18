@@ -9,7 +9,7 @@ FullStack Web Developer and passionate about videogames, snowboarding, workout a
 Always looking for new challenges.
 
 Study Interests
-- Open Web, mostyl Javascript.
+- Open Web, mostly Javascript.
 - MYSQL and SQL languages.
 - Python addicted.
 - Flutter and Dart.
