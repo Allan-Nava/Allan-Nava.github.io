@@ -18,6 +18,14 @@ category: project
 author: allan
 ---
 
+<div>
+<video class="fullscreen fill" width="100%" height="400" autoplay loop muted>
+    <source src="/assets/video/livereporter.mp4" type="video/mp4">
+    <source src="/assets/video/livereporter.ogv" type="video/ogg">
+    <source src="/assets/video/livereporter.webm" type="video/webm">
+</video>
+</div>
+
 <div class="side-by-side">
     <div class="toleft">
         <img class="image" src="https://www.livereporter.com/public/assets/img/logo.svg" alt="Livereporter site">
@@ -32,12 +40,4 @@ Cos'è Livereporter?
 Livereporter è un'app che ti permette di trasmettere in diretta qualsiasi tipo di evento in modo semplice e da qualunque dispositivo mobile, senza la necessità di particolari attrezzature.</p>
         <p><a href="https://livereporter.com" target="_blank">Livereporter.com</a></p>
     </div>
-</div>
-
-<div>
-<video class="fullscreen fill" width="100%" height="400" autoplay loop muted>
-    <source src="/assets/video/livereporter.mp4" type="video/mp4">
-    <source src="/assets/video/livereporter.ogv" type="video/ogg">
-    <source src="/assets/video/livereporter.webm" type="video/webm">
-</video>
 </div>
