@@ -16,7 +16,6 @@ description: "Se hai dai 7 ai 17 anni, crea il tuo profilo da calciatore e condi
 category: project
 author: allan
 ---
-
 <div class="side-by-side">
     <div class="toleft">
         <img class="image" src="/assets/images/tascout_pc.png" alt="Tascout site">
@@ -33,7 +32,6 @@ Tascout consente a bambini e ragazzi di tutto il mondo di mostrare il loro talen
         <p><a href="https://www.tascout.com" target="_blank">Tascout.com</a></p>
     </div>
 </div>
-
 <div>
 <video class="fullscreen fill" width="1920" height="1080" poster="public/assets/img/poster.jpg" autoplay="" loop="" muted="muted">
 <source src="assets/video/tascout.mp4" type="video/mp4">
