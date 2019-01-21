@@ -34,6 +34,6 @@ Tascout consente a bambini e ragazzi di tutto il mondo di mostrare il loro talen
 </div>
 <div>
     <video class="fullscreen fill" width="100%" autoplay loop  muted="muted">
-    <source src="assets/video/tascout.mp4" type="video/mp4">
+    <source src="/assets/video/tascout.mp4" type="video/mp4">
     </video>
 </div>
