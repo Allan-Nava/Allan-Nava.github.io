@@ -35,7 +35,9 @@ Livereporter è un'app che ti permette di trasmettere in diretta qualsiasi tipo 
 </div>
 
 <div>
-<video class="fullscreen fill" width="100%" poster="public/assets/img/poster.jpg" autoplay="" loop="" muted="muted">
-    <source src="assets/video/livereporter.mp4" type="video/mp4">
+<video class="fullscreen fill" width="100%" height="400" autoplay loop muted>
+    <source src="/assets/video/livereporter.mp4" type="video/mp4">
+    <source src="/assets/video/livereporter.ogv" type="video/ogg">
+    <source src="/assets/video/livereporter.webm" type="video/webm">
 </video>
 </div>
