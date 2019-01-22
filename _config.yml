@@ -8,8 +8,8 @@ email:
 bio: A man who loves videogames and coding
 description: ""
 url: "https://allan-nava.github.io"
-baseurl: # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "https://allan-nava.github.io" # the subpath of your site, e.g. /blog
+url: "https://allan-nava.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 # if it's an external image, update below for true
 # better with square images
 external-image: false
