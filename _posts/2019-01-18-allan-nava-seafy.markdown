@@ -14,7 +14,9 @@ description: "Dalla partenza all'arrivo, Seafy rende più piacevole il tuo tempo
 category: project
 author: allan
 ---
-
+<div>
+<img class="img-responsive image" src="/assets/images/seafy.jpg" alt="seafy working mac">
+</div>
 <div class="side-by-side">
     <div class="toleft">
         <img class="image" src="https://seafy.me/public/assets/img/logo/logo.svg" alt="Seafy site">
