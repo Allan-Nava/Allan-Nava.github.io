@@ -16,6 +16,8 @@ externalLink: true
 
 ## :video_camera: Calisthenics & workout videos
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F0pHik5TYkM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/SzyynM9Bhgo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
