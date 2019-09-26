@@ -26,6 +26,6 @@ author: allan
         <p>Eleven Sports permette a tutti coloro che amano lo sport di seguire, in diretta e on demand, i propri eventi preferiti su pc, tablet, Android TV e smartphone.
 
         È sufficiente registrarsi per avere accesso ad oltre 2000 eventi live ed alla libreria di programmi on demand, dovunque ti trovi.</p>
-        <p><a href="https://www.amazon.it/iesitalia-srl-Elevensports/dp/B07T13DQGY/ref=cm_cr_arp_d_bdcrb_top?ie=UTF8" target="_blank">APP playstore</a></p>
+        <p><a href="https://www.amazon.it/iesitalia-srl-Elevensports/dp/B07T13DQGY/ref=cm_cr_arp_d_bdcrb_top?ie=UTF8" target="_blank">APP Amazon Store</a></p>
     </div>
 </div>
