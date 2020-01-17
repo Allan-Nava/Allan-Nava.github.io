@@ -1,5 +1,5 @@
 ---
-title: "Recipyer APP"
+title: "Sito cinema - Schegge di vetro WEB APP"
 layout: post
 date: 2020-01-17 20:30
 tag: 
@@ -11,7 +11,7 @@ image: ""
 headerImage: false
 projects: true
 hidden: true # don't count this post in blog pagination
-description: "Recipyer"
+description: "Sito cinema - Schegge di vetro"
 category: project
 author: allan
 ---
