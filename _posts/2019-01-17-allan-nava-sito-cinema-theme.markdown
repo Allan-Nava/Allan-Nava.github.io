@@ -22,6 +22,8 @@ author: allan
     </div>
 
     <div class="toright">
+
+        <p> Progetto universitario di Tomàs Avila </p>
         <p><a href="https://sito-cinema.herokuapp.com/" target="_blank"><img src="https://sito-cinema.herokuapp.com/img/logo.png"> Schegge di vetro - sito cinema</a></p>
     </div>
 </div>
