@@ -6,7 +6,7 @@ tag:
 - github
 - open-source
 - heroku
-- angular
+- react
 image: ""
 headerImage: false
 projects: true
