@@ -18,12 +18,13 @@ author: allan
 
 <div class="side-by-side">
     <div class="toleft">
+        <img src="https://sito-cinema.herokuapp.com/img/logo.png">
         <figcaption class="caption">Sito cinema - Schegge di vetro</figcaption>
     </div>
 
     <div class="toright">
 
         <p> Progetto universitario di Tomàs Avila </p>
-        <p><a href="https://sito-cinema.herokuapp.com/" target="_blank"><img src="https://sito-cinema.herokuapp.com/img/logo.png"> Schegge di vetro - sito cinema</a></p>
+        <p><a href="https://sito-cinema.herokuapp.com/" target="_blank"> Schegge di vetro - sito cinema</a></p>
     </div>
 </div>
