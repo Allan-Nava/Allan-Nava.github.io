@@ -21,7 +21,7 @@ author: allan
 
 <div class="side-by-side">
     <div class="toleft">
-        <img class="image" src="https://goldenkids.it/staticfiles/img/goldenkids/logo-goldenkids.pngg" alt="Logo Golden Kid">
+        <img class="image" src="https://goldenkids.it/staticfiles/img/goldenkids/logo-goldenkids.png" alt="Logo Golden Kid">
         <figcaption class="caption">Golden Kid 2020</figcaption>
     </div>
 
