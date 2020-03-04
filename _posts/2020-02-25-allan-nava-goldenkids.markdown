@@ -1,5 +1,5 @@
 ---
-title: "Tascoit - Golden Kid 2020"
+title: "Tascout - Golden Kid 2020"
 layout: post
 date: 2020-02-25 21:00
 tag: 
