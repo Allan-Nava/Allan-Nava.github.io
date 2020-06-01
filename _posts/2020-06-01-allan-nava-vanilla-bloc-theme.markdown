@@ -1,10 +1,13 @@
 ---
-title: ":computer: Allan Nava Projects"
+title: ":computer: Vanilla BLoC Flutter VSCode extension"
 layout: post
 date: 2019-01-12 13:22
 tag: 
 - github
 - open-source
+- vscode
+- flutter
+
 image: ""
 headerImage: false
 projects: true
