@@ -1,7 +1,7 @@
 ---
 title: ":computer: Vanilla BLoC Flutter VSCode extension"
 layout: post
-date: 2019-01-12 13:22
+date: 2020-06-01 13:22
 tag: 
 - github
 - open-source
