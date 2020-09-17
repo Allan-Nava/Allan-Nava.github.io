@@ -17,6 +17,8 @@ category: project
 author: allan
 ---
 
+# Last Activities 📃
+
 <!--START_SECTION:activity-->
 
 <!--END_SECTION:activity-->
