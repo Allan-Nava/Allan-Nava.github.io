@@ -17,5 +17,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
         with:
-          FILE: '../../_posts/2020-09-17-allan-nava-workflows.markdown'
+          FILE: '_posts/2020-09-17-allan-nava-workflows.markdown'
         #
