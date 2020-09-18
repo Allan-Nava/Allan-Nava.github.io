@@ -15,7 +15,7 @@ jobs:
       - uses: Allan-Nava/github-activity-file@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
         with:
           FILE: './_posts/2020-09-17-allan-nava-workflows.markdown'
+          COMMIT_MSG: ':zap: Update FILE with the recent activity'
         #
