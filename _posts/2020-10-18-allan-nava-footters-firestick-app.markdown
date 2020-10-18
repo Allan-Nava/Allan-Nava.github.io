@@ -1,22 +1,22 @@
 ---
-title: "Last Actvities 📃"
+title: "Footters Firestick APP"
 layout: post
-date: 2020-09-22 00:09
+date: 2020-10-18 00:09
 tag: 
 - github
-- open-source
-- vscode
 - jekyll
 - github actions
+- amazon
+- amazon developer
+- app
 image: ""
 headerImage: false
 projects: true
 hidden: true # don't count this post in blog pagination
-description: "My last activities 📃"
+description: "Fotters Firstick app 📃"
 category: project
 author: allan
 ---
-
 
 <div class="side-by-side">
     <div class="toleft">
