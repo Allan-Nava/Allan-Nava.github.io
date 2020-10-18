@@ -1,0 +1,36 @@
+---
+title: "www.lvftv.com - Live"
+layout: post
+date: 2020-10-12 11:00
+tag: 
+- site
+- html
+- web
+- lvftv.com
+- legavolleyfemminile
+- lega volley 
+- sport
+image: ""
+headerImage: false
+projects: true
+hidden: true # don't count this post in blog pagination
+description: "LVF TV - Streaming volley femminile Serie A1 e Serie A2"
+category: project
+author: allan
+---
+
+<div class="side-by-side">
+    <div class="toleft">
+        <img class="image" src="https://object-lvftv.secure2.footprint.net/staticfiles/img/logo_lvftv.svg" alt="Logo lega volley tv">
+        <figcaption class="caption">LVF TV</figcaption>
+    </div>
+
+    <div class="toright">
+        <p>La Serie A1 e la Serie A2 di Volley Femminile
+dove e quando vuoi, senza vincoli.
+Tutto il meglio della Pallavolo Femminile Italiana è su LVF TV,
+la WebTV ufficiale di Lega Pallavolo Serie A Femminile</p>
+        <p><a href="https://lvftv.com" target="_blank">https://lvftv.com</a></p>
+    </div>
+</div>
+
