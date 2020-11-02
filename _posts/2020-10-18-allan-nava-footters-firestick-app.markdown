@@ -4,8 +4,6 @@ layout: post
 date: 2020-10-18 00:09
 tag: 
 - github
-- jekyll
-- github actions
 - amazon
 - amazon developer
 - app
