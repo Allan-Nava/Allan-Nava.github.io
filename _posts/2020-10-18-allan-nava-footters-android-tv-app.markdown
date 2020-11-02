@@ -21,6 +21,7 @@ author: allan
 ---
 
 
+
 <div class="side-by-side">
     <div class="toleft">
         <img class="image" src="https://lh3.googleusercontent.com/AEWskrHQlC5Yl5pO-5ZIa1PKzxaGrrF1bP8qWXAJCLccSvekxba4XvjPs3Z_OLd0_r8=s360-rw" alt="Allan Nava picture">
