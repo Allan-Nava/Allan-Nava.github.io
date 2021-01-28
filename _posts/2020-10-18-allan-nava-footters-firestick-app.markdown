@@ -1,7 +1,7 @@
 ---
 title: "Footters Firestick APP"
 layout: post
-date: 2020-10-18 00:09
+date: 2020-10-18 00:19
 tag: 
 - github
 - amazon
@@ -15,6 +15,7 @@ description: "Fotters Firstick app 📃"
 category: project
 author: allan
 ---
+
 
 <div class="side-by-side">
     <div class="toleft">
