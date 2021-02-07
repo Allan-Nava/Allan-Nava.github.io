@@ -11,7 +11,7 @@ image: ""
 headerImage: false
 projects: true
 hidden: true # don't count this post in blog pagination
-description: "Fotters Firstick app 📃"
+description: "Fotters Firstick app"
 category: project
 author: allan
 ---
