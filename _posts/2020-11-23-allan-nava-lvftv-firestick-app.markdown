@@ -1,7 +1,7 @@
 ---
 title: "LVFTV Firestick APP"
 layout: post
-date: 2020-111-23 09:09
+date: 2020-11-23 09:09
 tag: 
 - github
 - amazon
