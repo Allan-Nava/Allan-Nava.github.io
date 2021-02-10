@@ -3,6 +3,8 @@ name: Refresh
 on:
   schedule:
     - cron:  '0 3 * * *' # Runs every day at 3am
+  push:	
+    branches: [ "master", "main" ]
 
 jobs:
   refresh:
