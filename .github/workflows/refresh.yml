@@ -7,11 +7,11 @@ on:
     branches: [ "master", "main" ]
 #
 jobs:
-  
+  #
   build:
-
+    #
     runs-on: ubuntu-latest
-
+    #
     steps:
       - name: 🛎 Check out master
         uses: actions/checkout@master
