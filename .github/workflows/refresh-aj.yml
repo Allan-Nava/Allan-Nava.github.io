@@ -1,4 +1,4 @@
-name: Build and deploy Jekyll site to GitHub Pages | Refresh AJ
+name: Refresh AJ | Build and deploy Jekyll site to GitHub Pages | 
 on:
   schedule:
     - cron:  '0 10 * * *' # Runs every day at 3am
