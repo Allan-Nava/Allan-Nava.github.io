@@ -3,7 +3,8 @@ title: "Realismo Magico"
 layout: post
 date: 2021-11-23 19:30
 tag: 
-- book
+- art
+- museum
 image: ""
 headerImage: false
 description: "Allan Nava - Realismo Magico"
