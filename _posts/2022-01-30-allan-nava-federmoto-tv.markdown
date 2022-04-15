@@ -11,7 +11,7 @@ tag:
 image: ""
 headerImage: false
 projects: true
-hidden: true # don't count this post in blog pagination
+hidden: false # don't count this post in blog pagination
 description: "FederMoto Home"
 category: project
 author: allan
