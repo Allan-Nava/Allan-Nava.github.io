@@ -4,9 +4,10 @@ layout: post
 date: 2022-06-16 17:00
 tag: 
 - fuorisalone
+- art
 image: ""
 headerImage: false
-description: "✨✨✨"
+description: ""
 category: blog
 author: allan
 externalLink: true
