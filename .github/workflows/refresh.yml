@@ -2,7 +2,7 @@ name: Build and deploy Jekyll site to GitHub Pages | Refresh
 #
 on:
   schedule:
-    - cron:  '0 10 * * *' # Runs every day at 3am
+    - cron:  '0 10 */3 * *' # Runs every day at 3am
   push:	
     branches: [ "master", "main" ]
 #
