@@ -1,7 +1,7 @@
 ---
-title: "Castello Sforzesco Museum 2022 🇫🇷✨"
+title: "Castello Sforzesco Museum 2022 ✨"
 layout: post
-date: 2022-08-08 17:00
+date: 2022-10-04 17:00
 tag: 
 - holiday
 - art
