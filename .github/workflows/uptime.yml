@@ -11,9 +11,9 @@ jobs:
     name: Uptime Check
     steps:
     - name: Ping Site
-    uses: srt32/uptime@v0.2
-    with:
-      url-to-hit: "https://allan-nava.github.io/"
-      expected-statuses: "200"
+      uses: srt32/uptime@v0.2
+      with:
+        url-to-hit: "https://allan-nava.github.io/"
+        expected-statuses: "200"
 #
 #
