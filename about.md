@@ -11,13 +11,15 @@ Always looking for new challenges.
 Study Interests
 - Open Web, mostly Javascript.
 - MYSQL and SQL languages.
+- Go Lang
 - Python addicted.
 - Flutter and Dart.
 - Swift 
 - Kotlin
 - Java
-- GO Lang
 - PHP
 - Html, Jekyll and Static Generators.
 - CSS.
+- Docker.
+- Devops
 - Github and open-source.
