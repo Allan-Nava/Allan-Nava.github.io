@@ -16,7 +16,6 @@ category: project
 author: allan
 ---
 
-
 <div class="side-by-side">
     <div class="toleft">
         <figcaption class="caption">Docker FFmpeg Nvenc</figcaption>
