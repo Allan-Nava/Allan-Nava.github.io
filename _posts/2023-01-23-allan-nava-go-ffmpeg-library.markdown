@@ -1,5 +1,5 @@
 ---
-title: "GO FFmpeg Library"
+title: "Go FFmpeg Library"
 layout: post
 date: 2023-01-23 17:00
 tag: 
@@ -10,7 +10,7 @@ tag:
 image: ""
 headerImage: false
 projects: true
-hidden: false # don't count this post in blog pagination
+hidden: false 
 description: "Go FFmpeg Library"
 category: project
 author: allan
@@ -26,6 +26,5 @@ author: allan
         <p><a href="https://github.com/Allan-Nava/go-ffmpeg" target="_blank">https://github.com/Allan-Nava/go-ffmpeg</a></p>
 
         <p><a href="https://github.com/Paxx-RnD/go-ffmpeg" target="_blank">https://github.com/Paxx-RnD/go-ffmpeg</a></p>
-
     </div>
 </div>
