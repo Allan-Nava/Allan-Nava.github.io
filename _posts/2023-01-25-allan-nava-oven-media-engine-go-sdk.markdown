@@ -21,9 +21,9 @@ author: allan
 
 <div class="side-by-side">
     <div class="toleft">
-        <figcaption class="caption">Oven Media Engine Go SDK Rest API</figcaption>
+        <figcaption class="caption">Oven Media Engine Go SDK Rest API
         What is OvenMediaEngine?
-OvenMediaEngine (OME) is a Sub-Second Latency Live Streaming Server with Large-Scale and High-Definition. With OME, you can create platforms/services/systems that transmit high-definition video to hundreds-thousand viewers with sub-second latency and be scalable, depending on the number of concurrent viewers.
+OvenMediaEngine (OME) is a Sub-Second Latency Live Streaming Server with Large-Scale and High-Definition. With OME, you can create platforms/services/systems that transmit high-definition video to hundreds-thousand viewers with sub-second latency and be scalable, depending on the number of concurrent viewers.</figcaption>
 
     </div>
 
