@@ -21,8 +21,7 @@ author: allan
 
 <div class="side-by-side">
     <div class="toleft">
-        <figcaption class="caption">HiWay Media</figcaption>
-        <p>HiWay Media is a digital boutique company making waves in the entertainment industry. We imagine, design, and develop digital ecosystems tailored to our clients' needs with the goal of building memorable experiences for everyone.</p>
+        <figcaption class="caption">HiWay Media is a digital boutique company making waves in the entertainment industry. We imagine, design, and develop digital ecosystems tailored to our clients' needs with the goal of building memorable experiences for everyone.</figcaption>
     </div>
 
     <div class="toright">
