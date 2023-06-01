@@ -25,4 +25,6 @@ externalLink: true
 
 </div>
 
-<img class="image" src="/assets/images/padel.jpeg" alt="Padel Sport Comasina" />
+<div>
+    <img class="image" src="/assets/images/padel.jpeg" alt="Padel Sport Comasina" />
+</div>
