@@ -20,7 +20,7 @@ externalLink: true
 
 <div>
     <video class="fullscreen fill" width="100%" autoplay loop  muted="muted">
-    <source src="/assets/video/padel.MOV" type="video/mp4">
+    <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/padel.MOV" type="video/mp4">
     </video>
 
 </div>
