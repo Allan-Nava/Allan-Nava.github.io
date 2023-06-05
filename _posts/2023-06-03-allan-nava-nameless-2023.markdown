@@ -20,14 +20,14 @@ externalLink: true
 
 
 <div>
-    <video class="fullscreen fill" width="100%" autoplay loop >
+    <video class="fullscreen fill" width="100%" autoplay controls >
     <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/IMG_0805.MOV" type="video/mp4">
     </video>
 
 </div>
 
 <div>
-    <video class="fullscreen fill" width="100%" autoplay loop >
+    <video class="fullscreen fill" width="100%" controls  >
     <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/IMG_0808.MOV" type="video/mp4">
     </video>
 
@@ -35,7 +35,7 @@ externalLink: true
 
 
 <div>
-    <video class="fullscreen fill" width="100%" autoplay loop >
+    <video class="fullscreen fill" width="100%" controls  >
     <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/IMG_0811.MOV" type="video/mp4">
     </video>
 
