@@ -30,3 +30,9 @@ externalLink: true
     <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bellano-gsol.jpg?raw=true" alt="GSol 2023" />
     </div>
 
+
+
+
+<div>
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bellano-opposite.jpg?raw=true" alt="GSol 2023" />
+    </div>
