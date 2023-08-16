@@ -1,7 +1,7 @@
 ---
 title: "Padel Murat4All 🎾"
 layout: post
-date: 2023-08-02 221:00
+date: 2023-08-02 21:00
 tag: 
 - padel
 - novate milanese
