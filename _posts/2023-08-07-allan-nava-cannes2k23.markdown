@@ -1,5 +1,5 @@
 ---
-title: "Cannes 2k23"
+title: "Cannes 2k23 🇫🇷"
 layout: post
 date: 2023-08-07 16:00
 tag: 
@@ -13,7 +13,7 @@ author: allan
 externalLink: true
 ---
 
-## Cannes 2k23
+## Cannes 2k23 🇫🇷
 
 La plus belle des ruses du diable est de vous persuader qu'il n'existe pas. 🇫🇷
 
