@@ -1,7 +1,7 @@
 ---
 title: "Padel Garden Tennis Club 🎾"
 layout: post
-date: 2023-09-26 21:00
+date: 2023-09-12 21:00
 tag: 
 - padel
 - novate milanese
@@ -16,7 +16,7 @@ author: allan
 externalLink: true
 ---
 
-## Padel Garden Tennis Club  🎾  
+## Padel Garden Tennis Club - 12 September 🎾  
 
 
 <div>
