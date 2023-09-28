@@ -1,7 +1,7 @@
 ---
 title: "Padel Garden Tennis Club with Parach🎾"
 layout: post
-date: 2023-09-12 21:00
+date: 2023-09-26 21:00
 tag: 
 - padel
 - novate milanese
