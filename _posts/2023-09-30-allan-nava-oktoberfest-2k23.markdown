@@ -66,3 +66,11 @@ externalLink: true
     <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/2023-09-30-oktoberfest-5.jpg?raw=true" alt="oktoberfest 2023" />
 
 </div>
+
+
+
+
+<div>
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/2023-09-30-oktoberfest-6.jpg?raw=true" alt="oktoberfest 2023" />
+
+</div>
