@@ -6,7 +6,7 @@ tag:
 - oktoberfest
 - munich
 - beer
-- 2023
+- "2023"
 image: ""
 headerImage: false
 description: ""
