@@ -7,6 +7,8 @@ tag:
 - munich
 - beer
 - "2023"
+- pretzel
+- friends
 image: ""
 headerImage: false
 description: ""
