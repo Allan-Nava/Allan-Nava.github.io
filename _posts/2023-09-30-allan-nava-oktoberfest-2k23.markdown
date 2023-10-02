@@ -1,5 +1,5 @@
 ---
-title: "Oktoberfest 2k23 "
+title: "Oktoberfest 2k23 🍻"
 layout: post
 date: 2023-09-30 17:00
 tag: 
@@ -15,7 +15,7 @@ author: allan
 externalLink: true
 ---
 
-## Padel Sport Comasina 🎾  
+## Oktoberfest 2k23 🍻
 
 
 <div>
