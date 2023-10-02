@@ -1,5 +1,5 @@
 ---
-title: "Oktoberfest 2k23 🍻"
+title: "Oktoberfest 2k23 🥨🍻🇩🇪"
 layout: post
 date: 2023-09-30 17:00
 tag: 
@@ -15,7 +15,7 @@ author: allan
 externalLink: true
 ---
 
-## Oktoberfest 2k23 🍻
+## Oktoberfest 2k23 🥨🍻🇩🇪
 
 
 <div>
@@ -43,6 +43,29 @@ externalLink: true
 
 
 <div>
-![oktoberfest](../assets/2023-09-30-oktoberfest-2.jpg) ![oktoberfest](../assets/2023-09-30-oktoberfest-3.jpg) ![oktoberfest](../assets/2023-09-30-oktoberfest-4.jpg) ![oktoberfest](../assets/2023-09-30-oktoberfest.jpg)
+
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/2023-09-30-oktoberfest-2.jpg?raw=true" alt="oktoberfest 2023" />
+
+
+</div>
+
+
+<div>
+
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/2023-09-30-oktoberfest-3.jpg?raw=true" alt="oktoberfest 2023" />
+
+</div>
+
+
+<div>
+
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/2023-09-30-oktoberfest.jpg?raw=true" alt="oktoberfest 2023" />
+
+</div>
+
+
+<div>
+
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/2023-09-30-oktoberfest-5.jpg?raw=true" alt="oktoberfest 2023" />
 
 </div>
