@@ -28,26 +28,26 @@ externalLink: true
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-8.jpg?raw=true" alt="bsr 2023" />
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-08.jpg?raw=true" alt="bsr 2023" />
 
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-8-1.jpg?raw=true" alt="bsr 2023" />
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-08-1.jpg?raw=true" alt="bsr 2023" />
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-8-2.jpg?raw=true" alt="bsr 2023" />
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-08-2.jpg?raw=true" alt="bsr 2023" />
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-8-3.jpg?raw=true" alt="bsr in the park 2023" />
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-08-3.jpg?raw=true" alt="bsr in the park 2023" />
 
 </div>
 
@@ -55,13 +55,13 @@ externalLink: true
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-8-4.jpg?raw=true" alt="bsr 2023" />
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-08-4.jpg?raw=true" alt="bsr 2023" />
 
 </div>
 
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-8-5.jpg?raw=true" alt="bsr 2023" />
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-08-5.jpg?raw=true" alt="bsr 2023" />
 
 </div>
