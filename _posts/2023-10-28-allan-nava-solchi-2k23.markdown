@@ -1,7 +1,7 @@
 ---
 title: "Solchi Milano "
 layout: post
-date: 2023-10-08 18:00
+date: 2023-10-28 21:00
 tag: 
 - solchi
 - gin tonic
