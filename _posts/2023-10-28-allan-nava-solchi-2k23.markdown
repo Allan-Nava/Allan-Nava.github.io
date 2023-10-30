@@ -1,5 +1,5 @@
 ---
-title: "Solchi Milano "
+title: "Solchi Milano 🎶 🎛️"
 layout: post
 date: 2023-10-28 21:00
 tag: 
@@ -16,7 +16,7 @@ author: allan
 externalLink: true
 ---
 
-## Solchi Milano
+## Solchi Milano 🎶 🎛️
 
 <div>
     <video class="fullscreen fill" width="100%" autoplay loop controls muted="muted">
