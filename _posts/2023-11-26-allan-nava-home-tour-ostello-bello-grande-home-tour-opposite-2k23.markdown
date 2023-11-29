@@ -30,14 +30,14 @@ externalLink: true
 
 
 <div>
-    <video class="fullscreen fill" width="100%" autoplay loop controls mute >
+    <video class="fullscreen fill" width="100%" autoplay loop controls mute autostart="false" >
     <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/opposite2.MOV" type="video/mp4" mute >
     </video>
 
 </div>
 
 <div>
-    <video class="fullscreen fill" width="100%" autoplay loop controls mute >
+    <video class="fullscreen fill" width="100%" autoplay loop controls mute autostart="false" >
     <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/opposite3.MOV" type="video/mp4" mute >
     </video>
 
