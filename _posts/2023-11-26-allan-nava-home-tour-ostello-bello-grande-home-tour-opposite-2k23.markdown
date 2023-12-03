@@ -52,4 +52,8 @@ externalLink: true
 <div>
     <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/opposite-1-2023-11-26.jpg?raw=true" alt="opposite 2023" />
 
+<div>
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/obg-2023-11-26?raw=true" alt="opposite 2023" />
+
+
 </div>
