@@ -22,7 +22,7 @@ externalLink: true
 
 <div>
     <video class="fullscreen fill" width="100%" autoplay loop controls >
-    <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/museum-acropoli.MOV" type="video/mp4">
+    <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/acropoli-museum.MOV" type="video/mp4">
     </video>
 
 </div>
