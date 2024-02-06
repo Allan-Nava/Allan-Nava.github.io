@@ -32,6 +32,12 @@ externalLink: true
     </video>
 
 </div>
+
+<div>
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/aprica-zak-2024.jpg?raw=true" alt="aprica 2024" />
+
+</div>
+
 <div>
     <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/aprica-2024.jpg?raw=true" alt="aprica 2024" />
 
