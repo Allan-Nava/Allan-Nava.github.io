@@ -65,8 +65,3 @@ externalLink: true
     <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/aprica-4-2024.jpg?raw=true" alt="aprica 2024" />
 
 </div>
-
-<div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/aprica-5-2024.jpg?raw=true" alt="aprica 2024" />
-
-</div>
