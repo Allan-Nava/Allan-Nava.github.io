@@ -16,7 +16,7 @@ author: allan
 externalLink: true
 ---
 
-## Dips 40kg 🏋🏽
+## Dips 50kg 🏋🏽
 
 <iframe width="315" height="560" 
 src="https://www.youtube.com/embed/imHrCNI7CuU" 
