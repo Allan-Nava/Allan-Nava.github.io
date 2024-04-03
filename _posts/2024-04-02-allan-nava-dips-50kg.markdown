@@ -1,7 +1,7 @@
 ---
-title: "Dips 40kg 🏋🏽"
+title: "Dips 50kg 🏋🏽"
 layout: post
-date: 2024-02-13 20:30
+date: 2024-04-02 20:30
 tag: 
 - workout
 - calisthenics
@@ -19,17 +19,10 @@ externalLink: true
 ## Dips 40kg 🏋🏽
 
 <iframe width="315" height="560" 
-src="https://www.youtube.com/embed/y7nIt9_yHAw" 
+src="https://www.youtube.com/embed/imHrCNI7CuU" 
 title="YouTube video player" frameborder="0" 
 allow="accelerometer; autoplay; clipboard-write; encrypted-media;
 gyroscope; picture-in-picture;
 web-share"
 allowfullscreen></iframe>
-
-
-<div>
-    <video class="fullscreen fill" width="100%" autoplay loop controls >
-    <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/dips-40kg-02-2024.MOV" type="video/mp4">
-    </video>
-</div>
 
