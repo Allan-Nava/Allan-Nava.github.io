@@ -18,11 +18,11 @@ externalLink: true
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/salomon-xt-pathway.jpg?raw=true" alt="" />
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/salomon-xt-pathway.jpg?raw=true" alt="salomon" />
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/salomon-xt-pathway-2.jpg?raw=true" alt="" />
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/salomon-xt-pathway-2.jpg?raw=true" alt="salomon" />
 </div>
 
 
