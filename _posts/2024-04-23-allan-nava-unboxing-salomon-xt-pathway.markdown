@@ -1,7 +1,7 @@
 ---
 title: "Unboxing Salomon XT Pathway 👟"
 layout: post
-date: 2024-04-13 20:00
+date: 2024-04-23 11:00
 tag: 
 - salomon
 - shoes
