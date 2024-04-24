@@ -27,6 +27,11 @@ externalLink: true
 
 
 <div>
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/salomon-xt-pathway-3.jpg?raw=true" alt="salomon" />
+</div>
+
+
+<div>
     <video class="fullscreen fill" width="100%" autoplay loop controls mute autostart="false" >
         <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/salomon-xt-pathway.MOV" type="video/mp4" mute >
     </video>
