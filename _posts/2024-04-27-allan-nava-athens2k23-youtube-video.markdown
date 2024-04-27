@@ -9,7 +9,7 @@ tag:
 - trip
 image: ""
 headerImage: false
-description: ""
+description: "Exploring the Ancient Marvels of Athens 🏛️ | Join me on a journey through history in the heart of Greece! #AthensAdventure #travelvlog"
 category: blog
 author: allan
 externalLink: true
