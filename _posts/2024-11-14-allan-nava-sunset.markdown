@@ -20,6 +20,6 @@ externalLink: true
 
 <div>
     <video class="fullscreen fill" width="100%" autoplay loop controls mute autostart="false" >
-        <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/nayt.MP$" type="video/mp4" mute >
+        <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/nayt.MP4" type="video/mp4" mute >
     </video>
 </div>
