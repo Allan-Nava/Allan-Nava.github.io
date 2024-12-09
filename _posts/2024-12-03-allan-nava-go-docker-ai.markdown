@@ -5,10 +5,10 @@ date: 2023-03-07 17:00
 tag: 
 - golang
 - helper
-- library
 - utility
 - ai
-
+- dockerfile
+- go
 image: ""
 headerImage: false
 projects: true
@@ -17,7 +17,6 @@ description: "Go Docker AI"
 category: project
 author: allan
 ---
-
 
 <div class="side-by-side">
     <div class="toleft">
