@@ -1,7 +1,7 @@
 ---
 title: "Go Docker AI"
 layout: post
-date: 2023-03-07 17:00
+date: 2024-12-03 17:00
 tag: 
 - golang
 - helper
