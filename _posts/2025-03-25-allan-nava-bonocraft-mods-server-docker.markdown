@@ -1,7 +1,7 @@
 ---
-title: "BonoCraft docker + mods"
+title: "BonoCraft docker and mods"
 layout: post
-date: 2023-03-31 10:00
+date: 2025-03-25 10:00
 tag: 
 - mods
 - java edition
