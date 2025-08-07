@@ -8,10 +8,9 @@ tag:
 - milan
 image: ""
 headerImage: false
-projects: true
-hidden: false 
 description: ""
-category: project
+category: blog
+author: allan
 author: allan
 ---
 ## Climbing 🏋🏽
