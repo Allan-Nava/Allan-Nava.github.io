@@ -11,7 +11,7 @@ headerImage: false
 description: ""
 category: blog
 author: allan
-author: allan
+externalLink: true
 ---
 ## Climbing 🏋🏽
 
