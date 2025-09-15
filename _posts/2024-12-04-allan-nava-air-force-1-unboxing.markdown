@@ -4,9 +4,7 @@ layout: post
 date: 2024-12-04 15:00
 tag: 
 - milan
-- nayt
-- lettera q 
-- album
+- shoes
 image: ""
 headerImage: false
 description: ""
