@@ -6,6 +6,7 @@ tag:
 - climbing
 - manga climbing
 - milan
+- video
 image: ""
 headerImage: false
 description: ""
