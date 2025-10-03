@@ -28,7 +28,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Ruby
-        uses: ruby/setup-ruby@086ffb1a2090c870a3f881cc91ea83aa4243d408
+        uses: ruby/setup-ruby@a16e0e66417df93dec15cb95cfb88981d4669d11
         #uses: ruby/setup-ruby@ee2113536afb7f793eed4ce60e8d3b26db912da4 # v1.127.0
         with:
           ruby-version: '3.0' # Not needed with a .ruby-version file
