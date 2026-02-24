@@ -1,7 +1,7 @@
 ---
 title: "Climbing 🏋🏽"
 layout: post
-date: 2025-02-12 12:00
+date: 2026-02-12 12:00
 tag: 
 - climbing
 - manga climbing
