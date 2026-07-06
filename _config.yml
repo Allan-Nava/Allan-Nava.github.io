@@ -68,3 +68,22 @@ plugins:
   - jemoji
   - jekyll-sitemap
 #
+# Keep internal docs and repo housekeeping files out of the published site.
+# Note: in Jekyll 3 setting `exclude` replaces the defaults, so Gemfile/vendor
+# and friends are listed explicitly.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
+  - docs
+  - CLAUDE.md
+  - README.md
+  - CODE_OF_CONDUCT.md
+  - CONTRIBUTING.md
+  - FAQ.md
+  - LICENSE
+  - Rakefile
+  - travis.sh
+  - renovate.json
+#

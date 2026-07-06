@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal portfolio/blog of Allan Nava (https://allan-nava.github.io), built with Jekyll on the [Indigo theme](https://github.com/sergiokopplin/indigo) and deployed to GitHub Pages. Content is mostly Italian/English blog posts and project showcases in `_posts/`.
 
+Full human-facing documentation lives in `docs/` (getting started, content authoring, architecture, deployment) — keep it in sync when changing build, content model, or workflows.
+
 ## Commands
 
 ```bash
