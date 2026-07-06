@@ -12,7 +12,7 @@ tag:
 - beers
 image: ""
 headerImage: false
-description: ""
+description: "Foto e video della giornata BSR in the park al Parco Sempione di Milano con gli amici."
 category: blog
 author: allan
 externalLink: true
@@ -28,26 +28,26 @@ externalLink: true
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-08.jpg?raw=true" alt="bsr 2023" />
+    <img class="image" src="/assets/images/bsrinthepark-2023-10-08.jpg" alt="bsr 2023" />
 
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-08-1.jpg?raw=true" alt="bsr 2023" />
+    <img class="image" src="/assets/images/bsrinthepark-2023-10-08-1.jpg" alt="bsr 2023" />
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-08-2.jpg?raw=true" alt="bsr 2023" />
+    <img class="image" src="/assets/images/bsrinthepark-2023-10-08-2.jpg" alt="bsr 2023" />
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-08-3.jpg?raw=true" alt="bsr in the park 2023" />
+    <img class="image" src="/assets/images/bsrinthepark-2023-10-08-3.jpg" alt="bsr in the park 2023" />
 
 </div>
 
@@ -55,13 +55,13 @@ externalLink: true
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-08-4.jpg?raw=true" alt="bsr 2023" />
+    <img class="image" src="/assets/images/bsrinthepark-2023-10-08-4.jpg" alt="bsr 2023" />
 
 </div>
 
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bsrinthepark-2023-10-08-5.jpg?raw=true" alt="bsr 2023" />
+    <img class="image" src="/assets/images/bsrinthepark-2023-10-08-5.jpg" alt="bsr 2023" />
 
 </div>

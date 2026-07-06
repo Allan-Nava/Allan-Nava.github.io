@@ -7,7 +7,7 @@ tag:
 - france
 image: ""
 headerImage: false
-description: ""
+description: "Foto da Cannes 2023 con una citazione francese sul diavolo."
 category: blog
 author: allan
 externalLink: true

@@ -7,7 +7,7 @@ tag:
 - art
 image: ""
 headerImage: false
-description: ""
+description: "Foto e impressioni dal Fuorisalone di Milano 2022."
 category: blog
 author: allan
 externalLink: true

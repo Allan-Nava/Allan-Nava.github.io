@@ -10,7 +10,7 @@ tag:
 - body time club
 image: ""
 headerImage: false
-description: ""
+description: "Video della panca piana da 102.5 kg alla Body Time Club."
 category: blog
 author: allan
 externalLink: true

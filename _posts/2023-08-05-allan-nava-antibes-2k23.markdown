@@ -7,7 +7,7 @@ tag:
 - france
 image: ""
 headerImage: false
-description: ""
+description: "Foto e video di un viaggio ad Antibes, in Francia, nel 2023."
 category: blog
 author: allan
 externalLink: true
@@ -26,12 +26,12 @@ externalLink: true
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/antibes1.jpg?raw=true" alt="Antibes 2023" />
+    <img class="image" src="/assets/images/antibes1.jpg" alt="Antibes 2023" />
     </div>
 
 
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/antibes2.jpg?raw=true" alt="Antibes 2023" />
+    <img class="image" src="/assets/images/antibes2.jpg" alt="Antibes 2023" />
     </div>

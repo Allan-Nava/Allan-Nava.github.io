@@ -9,7 +9,7 @@ tag:
 - photography
 image: ""
 headerImage: false
-description: ""
+description: "Foto dei lavori di ristrutturazione del bagno di casa a Bresso."
 category: blog
 author: allan
 externalLink: true

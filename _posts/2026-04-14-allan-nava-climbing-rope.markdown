@@ -8,7 +8,7 @@ tag:
 
 image: ""
 headerImage: false
-description: ""
+description: "Foto di una sessione di arrampicata con la corda."
 category: blog
 author: allan
 externalLink: true
@@ -16,10 +16,10 @@ externalLink: true
 ## Climbing rope
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/climbing-14-04.jpg?raw=true" alt="" />
+    <img class="image" src="/assets/images/climbing-14-04.jpg" alt="" />
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/climbing-140-4-2026.jpg?raw=true" alt="" />
+    <img class="image" src="/assets/images/climbing-140-4-2026.jpg" alt="" />
 </div>

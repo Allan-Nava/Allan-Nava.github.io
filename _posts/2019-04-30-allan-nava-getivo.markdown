@@ -21,7 +21,7 @@ author: allan
 
 <div class="side-by-side">
     <div class="toleft">
-        <img class="image" src="/assets/images/famiglia.png" alt="GetIVO site">
+        <img class="image" src="/assets/images/famiglia.jpg" alt="GetIVO site">
         <figcaption class="caption">IVO Site</figcaption>
     </div>
 

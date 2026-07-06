@@ -9,7 +9,7 @@ tag:
 - head
 image: ""
 headerImage: false
-description: ""
+description: "Video di una partita di padel allo Sport Comasina di Milano."
 category: blog
 author: allan
 externalLink: true
@@ -26,5 +26,5 @@ externalLink: true
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/padel.jpg?raw=true" alt="Padel Sport Comasina" />
+    <img class="image" src="/assets/images/padel.jpg" alt="Padel Sport Comasina" />
 </div>

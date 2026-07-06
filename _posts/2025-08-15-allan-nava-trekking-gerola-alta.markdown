@@ -8,7 +8,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: ""
+description: "Video di un trekking a Gerola Alta."
 category: blog
 author: allan
 externalLink: true

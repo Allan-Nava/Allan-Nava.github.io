@@ -9,7 +9,7 @@ tag:
 
 image: ""
 headerImage: false
-description: ""
+description: "Video dei concerti di TonyPitony al Rugby Sound Festival."
 category: blog
 author: allan
 externalLink: true

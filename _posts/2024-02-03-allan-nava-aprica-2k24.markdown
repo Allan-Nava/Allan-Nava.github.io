@@ -11,7 +11,7 @@ tag:
 - ski
 image: ""
 headerImage: false
-description: ""
+description: "Video e foto di un weekend sulla neve ad Aprica tra snowboard e apres-ski con gli amici."
 category: blog
 author: allan
 externalLink: true
@@ -34,34 +34,34 @@ externalLink: true
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/aprica-zak-2024.jpg?raw=true" alt="aprica 2024" />
+    <img class="image" src="/assets/images/aprica-zak-2024.jpg" alt="aprica 2024" />
 
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/aprica-2024.jpg?raw=true" alt="aprica 2024" />
+    <img class="image" src="/assets/images/aprica-2024.jpg" alt="aprica 2024" />
 
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/aprica-1-2024.jpg?raw=true" alt="aprica 2024" />
-
-</div>
-
-
-<div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/aprica-2-2024.jpg?raw=true" alt="aprica 2024" />
+    <img class="image" src="/assets/images/aprica-1-2024.jpg" alt="aprica 2024" />
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/aprica-3-2024.jpg?raw=true" alt="aprica 2024" />
+    <img class="image" src="/assets/images/aprica-2-2024.jpg" alt="aprica 2024" />
+
+</div>
+
+
+<div>
+    <img class="image" src="/assets/images/aprica-3-2024.jpg" alt="aprica 2024" />
 </div>
 
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/aprica-4-2024.jpg?raw=true" alt="aprica 2024" />
+    <img class="image" src="/assets/images/aprica-4-2024.jpg" alt="aprica 2024" />
 
 </div>

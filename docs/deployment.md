@@ -14,6 +14,17 @@ The `pages` concurrency group with `cancel-in-progress: true` ensures simultaneo
 
 The Ruby version in the workflow must stay in sync with `Gemfile.lock` — bump them together when updating the `github-pages` gem.
 
+### `checks.yml` — Checks
+
+Runs on every pull request and push to master, with two parallel jobs:
+
+- **validate** — `ruby scripts/validate_posts.rb` (front matter sanity: parseable YAML, plausible dates, non-empty titles, known category/author, referenced asset files exist, no `github.com/...blob` hotlinks) plus a YAML parse of `_config.yml` and all workflows. Runs on the system Ruby, no bundle needed — this is the fast fail.
+- **build** — full `jekyll build` followed by html-proofer restricted to internal links and images (external links are skipped: old posts point at long-dead sites).
+
+This is what makes Dependabot gem-bump PRs safe to merge: a red check means the bump breaks the build. The Ruby setup is intentionally identical to `jekyll.yml` — keep them in sync. The validator also runs as a gate inside the deploy workflow, so a broken post stops a deploy before it publishes.
+
+Run the validator locally anytime with `ruby scripts/validate_posts.rb` (stdlib only, no bundle needed).
+
 ### `uptime.yml` — Uptime Monitor
 
 Every 10 minutes, curls `https://allan-nava.github.io/` and fails the run if the site doesn't respond with a success status (3 retries). A failing run in the Actions tab means the site is down.
@@ -27,7 +38,7 @@ No build output is ever committed: `_site/` is git-ignored and exists only insid
 
 ## Known limitation: LFS videos
 
-`actions/checkout` does **not** download Git LFS objects, so any `.MOV` under `assets/video/` reaches the published site as a tiny LFS pointer text file — the video appears broken. Don't add new self-hosted videos: upload them to YouTube and embed the player instead (see [Writing Content](writing-content.md)). Enabling `lfs: true` in the checkout is not a fix — with ~700 MB of videos, the daily build would exhaust the free LFS bandwidth quota (1 GB/month) immediately.
+`actions/checkout` does **not** download Git LFS objects, so any `.MOV` under `assets/video/` reaches the published site as a tiny LFS pointer text file — a local `/assets/video/x.MOV` embed appears broken. Existing posts work around this by linking videos through `github.com/<repo>/raw/master/...`, which GitHub redirects to `media.githubusercontent.com` serving the real LFS content — those embeds work, but every view consumes the free LFS bandwidth quota (1 GB/month); if it runs out, all videos break until the quota resets. Don't add new self-hosted videos either way: upload them to YouTube and embed the player instead (see [Writing Content](writing-content.md)). Enabling `lfs: true` in the CI checkout is not a fix — with ~700 MB of videos, the daily build would exhaust the quota immediately.
 
 ## Pre-push checks
 

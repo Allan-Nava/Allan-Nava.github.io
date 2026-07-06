@@ -10,7 +10,7 @@ tag:
 - photography
 image: ""
 headerImage: false
-description: ""
+description: "Foto di una serata al Wolf Bar di Milano tra drink e cocktail."
 category: blog
 author: allan
 externalLink: true

@@ -9,7 +9,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: ""
+description: "Video di una sessione di arrampicata su placca a Milano."
 category: blog
 author: allan
 externalLink: true

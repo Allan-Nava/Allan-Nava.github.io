@@ -9,7 +9,7 @@ tag:
 - photography
 image: ""
 headerImage: false
-description: ""
+description: "Foto e ricordi di una gita al Lago di Garda."
 category: blog
 author: allan
 externalLink: true

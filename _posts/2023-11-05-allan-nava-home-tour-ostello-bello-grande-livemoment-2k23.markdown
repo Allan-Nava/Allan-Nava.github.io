@@ -12,7 +12,7 @@ tag:
 - livemoment
 image: ""
 headerImage: false
-description: ""
+description: "Video del concerto Home Tour per Livemoment all'Ostello Bello Grande di Milano."
 category: blog
 author: allan
 externalLink: true
@@ -43,7 +43,7 @@ externalLink: true
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/hometour-obg-2023.jpg?raw=true" alt="bsr 2023" />
+    <img class="image" src="/assets/images/hometour-obg-2023.jpg" alt="bsr 2023" />
 
 
 </div>

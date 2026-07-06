@@ -9,7 +9,7 @@ tag:
 - gsol
 image: ""
 headerImage: false
-description: ""
+description: "Foto e video dal Bellano Music Festival 2023 con il GSOL."
 category: blog
 author: allan
 externalLink: true
@@ -27,12 +27,12 @@ externalLink: true
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bellano-gsol.jpg?raw=true" alt="GSol 2023" />
+    <img class="image" src="/assets/images/bellano-gsol.jpg" alt="GSol 2023" />
     </div>
 
 
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bellano-opposite.jpg?raw=true" alt="GSol 2023" />
+    <img class="image" src="/assets/images/bellano-opposite.jpg" alt="GSol 2023" />
     </div>

@@ -9,7 +9,7 @@ tag:
 - head
 image: ""
 headerImage: false
-description: ""
+description: "Foto di una partita di padel dell'8 ottobre 2023 al circolo Murat4All."
 category: blog
 author: allan
 externalLink: true
@@ -18,10 +18,10 @@ externalLink: true
 ## Padel Murat4ll 8 October 2023 🎾  
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/padel-2023-10-08.jpg?raw=true" alt="Padel Murat4ll" />
+    <img class="image" src="/assets/images/padel-2023-10-08.jpg" alt="Padel Murat4ll" />
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/padel-2023-10-08-2.jpg?raw=true" alt="Padel Murat4ll" />
+    <img class="image" src="/assets/images/padel-2023-10-08-2.jpg" alt="Padel Murat4ll" />
 </div>

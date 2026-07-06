@@ -7,7 +7,7 @@ tag:
 - museum
 image: ""
 headerImage: false
-description: ""
+description: "Foto della visita alla Galleria d'Italia di Milano."
 category: blog
 author: allan
 externalLink: true

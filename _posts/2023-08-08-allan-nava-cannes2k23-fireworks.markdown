@@ -8,7 +8,7 @@ tag:
 - fireworks
 image: ""
 headerImage: false
-description: ""
+description: "Video dei fuochi d'artificio visti a Cannes nell'estate 2023."
 category: blog
 author: allan
 externalLink: true

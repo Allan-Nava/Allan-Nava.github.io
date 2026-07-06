@@ -9,7 +9,7 @@ tag:
 - peniche
 image: ""
 headerImage: false
-description: ""
+description: "Video di un viaggio on the road in Portogallo tra Lisbona, Cabo da Roca, Porto e Peniche."
 category: blog
 author: allan
 externalLink: true

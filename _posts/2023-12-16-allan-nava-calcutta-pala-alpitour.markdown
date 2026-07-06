@@ -9,7 +9,7 @@ tag:
 - calcutta
 image: ""
 headerImage: false
-description: ""
+description: "Video del concerto di Calcutta al Pala Alpitour con gli amici."
 category: blog
 author: allan
 externalLink: true

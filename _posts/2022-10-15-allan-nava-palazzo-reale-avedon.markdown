@@ -10,7 +10,7 @@ tag:
 - photography
 image: ""
 headerImage: false
-description: ""
+description: "Foto della mostra di Richard Avedon a Palazzo Reale, Milano, nel 2022."
 category: blog
 author: allan
 externalLink: true

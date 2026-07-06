@@ -10,7 +10,7 @@ tag:
 - hometour
 image: ""
 headerImage: false
-description: ""
+description: "Video e foto della serata jazz al Leoncavallo di Milano."
 category: blog
 author: allan
 externalLink: true
@@ -26,14 +26,14 @@ externalLink: true
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/leoncavallo-jazz.jpg?raw=true" alt="leoncavallo 2023" />
+    <img class="image" src="/assets/images/leoncavallo-jazz.jpg" alt="leoncavallo 2023" />
 
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/leoncavallo-mep.jpg?raw=true" alt="leoncavallo 2023" />
+    <img class="image" src="/assets/images/leoncavallo-mep.jpg" alt="leoncavallo 2023" />
 
 
 </div>

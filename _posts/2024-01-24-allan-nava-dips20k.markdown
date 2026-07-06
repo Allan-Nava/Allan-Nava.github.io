@@ -9,7 +9,7 @@ tag:
 - gym
 image: ""
 headerImage: false
-description: ""
+description: "Video di una serie di dip zavorrati con 20 kg in palestra."
 category: blog
 author: allan
 externalLink: true

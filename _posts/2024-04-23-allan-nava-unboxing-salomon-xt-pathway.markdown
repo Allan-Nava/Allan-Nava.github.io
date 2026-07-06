@@ -8,7 +8,7 @@ tag:
 - unboxing
 image: ""
 headerImage: false
-description: ""
+description: "Foto e video dell'unboxing delle scarpe da trekking Salomon XT Pathway."
 category: blog
 author: allan
 externalLink: true
@@ -18,16 +18,16 @@ externalLink: true
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/salomon-xt-pathway.jpg?raw=true" alt="salomon" />
+    <img class="image" src="/assets/images/salomon-xt-pathway.jpg" alt="salomon" />
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/salomon-xt-pathway-2.jpg?raw=true" alt="salomon" />
+    <img class="image" src="/assets/images/salomon-xt-pathway-2.jpg" alt="salomon" />
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/salomon-xt-pathway-3.jpg?raw=true" alt="salomon" />
+    <img class="image" src="/assets/images/salomon-xt-pathway-3.jpg" alt="salomon" />
 </div>
 
 

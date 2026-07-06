@@ -10,7 +10,7 @@ tag:
 - Garden Tennis Club 
 image: ""
 headerImage: false
-description: ""
+description: "Foto di una partita di padel con Parach al Garden Tennis Club di Novate Milanese il 26 settembre."
 category: blog
 author: allan
 externalLink: true
@@ -19,9 +19,9 @@ externalLink: true
 ## Padel Garden Tennis Club - 26 September 🎾  
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/padel-2023-09-26.jpg?raw=true" alt="Padel Garden Tennis Club " />
+    <img class="image" src="/assets/images/padel-2023-09-26.jpg" alt="Padel Garden Tennis Club " />
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/padel-2023-09-26-2.jpg?raw=true" alt="Padel Garden Tennis Club " />
+    <img class="image" src="/assets/images/padel-2023-09-26-2.jpg" alt="Padel Garden Tennis Club " />
 </div>

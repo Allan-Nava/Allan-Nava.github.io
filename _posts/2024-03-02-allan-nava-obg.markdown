@@ -8,7 +8,7 @@ tag:
 - smile
 image: ""
 headerImage: false
-description: ""
+description: "Foto di una serata all'Ostello Bello tra birre e sorrisi."
 category: blog
 author: allan
 externalLink: true
@@ -17,5 +17,5 @@ externalLink: true
 ## Ostello Bello 2024 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/obg-02-03-2024?raw=true" alt="Ostello Bello Grande 2024" />
+    <img class="image" src="/assets/images/obg-02-03-2024.jpg" alt="Ostello Bello Grande 2024" />
 </div>

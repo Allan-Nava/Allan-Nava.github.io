@@ -13,7 +13,7 @@ tag:
 - opposite
 image: ""
 headerImage: false
-description: ""
+description: "Video e foto del concerto Opposite per Livemoment all'Ostello Bello Grande di Milano."
 category: blog
 author: allan
 externalLink: true
@@ -44,16 +44,16 @@ externalLink: true
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/opposite-2023-11-26.jpg?raw=true" alt="opposite 2023" />
+    <img class="image" src="/assets/images/opposite-2023-11-26.jpg" alt="opposite 2023" />
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/opposite-1-2023-11-26.jpg?raw=true" alt="opposite 2023" />
+    <img class="image" src="/assets/images/opposite-1-2023-11-26.jpg" alt="opposite 2023" />
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/obg-2023-11-26.jpg?raw=true" alt="opposite 2023" />
+    <img class="image" src="/assets/images/obg-2023-11-26.jpg" alt="opposite 2023" />
 
 
 </div>

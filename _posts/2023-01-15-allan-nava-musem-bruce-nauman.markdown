@@ -11,7 +11,7 @@ tag:
 - photography
 image: ""
 headerImage: false
-description: ""
+description: "Photos from the Bruce Nauman exhibition Neons, Corridors and Rooms at Pirelli HangarBicocca."
 category: blog
 author: allan
 externalLink: true

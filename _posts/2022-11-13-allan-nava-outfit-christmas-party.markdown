@@ -9,7 +9,7 @@ tag:
 - photography
 image: ""
 headerImage: false
-description: ""
+description: "Foto dell'outfit scelto per la festa di Natale 2022."
 category: blog
 author: allan
 externalLink: true

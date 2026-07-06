@@ -9,7 +9,7 @@ tag:
 - music
 image: ""
 headerImage: false
-description: ""
+description: "Video del DJ set live di Paul Kalkbrenner a Milano Rho Fiera."
 category: blog
 author: allan
 externalLink: true

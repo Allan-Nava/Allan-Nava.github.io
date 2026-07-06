@@ -11,7 +11,7 @@ tag:
 - travis scott
 image: ""
 headerImage: false
-description: ""
+description: "Video del concerto di Travis Scott all'Ippodromo di Milano per gli I-Days 2023."
 category: blog
 author: allan
 externalLink: true

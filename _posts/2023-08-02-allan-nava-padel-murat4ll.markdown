@@ -10,7 +10,7 @@ tag:
 - Murat4All
 image: ""
 headerImage: false
-description: ""
+description: "Foto di una partita di padel al circolo Murat4All."
 category: blog
 author: allan
 externalLink: true
@@ -20,9 +20,9 @@ externalLink: true
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/padel-murat4ll.jpg?raw=true" alt="Padel Murat4All " />
+    <img class="image" src="/assets/images/padel-murat4ll.jpg" alt="Padel Murat4All " />
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/padel1-murat4ll.jpg?raw=true" alt="Padel Murat4All " />
+    <img class="image" src="/assets/images/padel1-murat4ll.jpg" alt="Padel Murat4All " />
 </div>

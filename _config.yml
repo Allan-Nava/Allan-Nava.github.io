@@ -82,4 +82,5 @@ exclude:
   - CODE_OF_CONDUCT.md
   - LICENSE
   - Rakefile
+  - scripts
 #

@@ -9,7 +9,7 @@ tag:
 - art
 image: ""
 headerImage: false
-description: ""
+description: "Foto e ricordi di un viaggio a Cannes, in Francia, nel 2022."
 category: blog
 author: allan
 externalLink: true

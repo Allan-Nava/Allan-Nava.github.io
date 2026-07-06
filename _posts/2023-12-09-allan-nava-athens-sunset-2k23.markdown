@@ -9,7 +9,7 @@ tag:
 - greecee
 image: ""
 headerImage: false
-description: ""
+description: "Foto del tramonto ad Atene durante il viaggio in Grecia del 2023."
 category: blog
 author: allan
 externalLink: true
@@ -18,17 +18,17 @@ externalLink: true
 ## Athens 🌅
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/P1100820.JPG?raw=true" alt="athens 2023" />
+    <img class="image" src="/assets/images/P1100820.JPG" alt="athens 2023" />
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/P1100821.JPG?raw=true" alt="athens 2023" />
+    <img class="image" src="/assets/images/P1100821.JPG" alt="athens 2023" />
 
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/P1100822.JPG?raw=true" alt="athens 2023" />
+    <img class="image" src="/assets/images/P1100822.JPG" alt="athens 2023" />
 
 </div>

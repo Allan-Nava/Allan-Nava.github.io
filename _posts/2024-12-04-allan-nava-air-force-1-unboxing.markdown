@@ -7,7 +7,7 @@ tag:
 - shoes
 image: ""
 headerImage: false
-description: ""
+description: "Video e foto dell'unboxing delle Nike Air Force 1 07 Fresh."
 category: blog
 author: allan
 externalLink: true
@@ -25,5 +25,5 @@ externalLink: true
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/air-force-black.jpg?raw=true" alt="PortoFino" />
+    <img class="image" src="/assets/images/air-force-black.jpg" alt="PortoFino" />
 </div>

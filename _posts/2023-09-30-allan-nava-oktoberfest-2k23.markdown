@@ -11,7 +11,7 @@ tag:
 - friends
 image: ""
 headerImage: false
-description: ""
+description: "Video e foto dell'Oktoberfest 2023 a Monaco di Baviera tra birra, pretzel e amici."
 category: blog
 author: allan
 externalLink: true
@@ -44,26 +44,26 @@ externalLink: true
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/2023-09-30-oktoberfest-2.jpg?raw=true" alt="oktoberfest 2023" />
+    <img class="image" src="/assets/images/2023-09-30-oktoberfest-2.jpg" alt="oktoberfest 2023" />
 
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/2023-09-30-oktoberfest-3.jpg?raw=true" alt="oktoberfest 2023" />
+    <img class="image" src="/assets/images/2023-09-30-oktoberfest-3.jpg" alt="oktoberfest 2023" />
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/2023-09-30-oktoberfest.jpg?raw=true" alt="oktoberfest 2023" />
+    <img class="image" src="/assets/images/2023-09-30-oktoberfest.jpg" alt="oktoberfest 2023" />
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/2023-09-30-oktoberfest-5.jpg?raw=true" alt="oktoberfest 2023" />
+    <img class="image" src="/assets/images/2023-09-30-oktoberfest-5.jpg" alt="oktoberfest 2023" />
 
 </div>
 
@@ -71,6 +71,6 @@ externalLink: true
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/2023-09-30-oktoberfest-6.jpg?raw=true" alt="oktoberfest 2023" />
+    <img class="image" src="/assets/images/2023-09-30-oktoberfest-6.jpg" alt="oktoberfest 2023" />
 
 </div>

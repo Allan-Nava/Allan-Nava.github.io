@@ -10,7 +10,7 @@ tag:
 - gmaps
 image: ""
 headerImage: false
-description: ""
+description: "Una mappa Google con i migliori posti economici dove mangiare."
 category: blog
 author: allan
 externalLink: true

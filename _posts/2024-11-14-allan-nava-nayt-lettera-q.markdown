@@ -9,7 +9,7 @@ tag:
 - album
 image: ""
 headerImage: false
-description: ""
+description: "Video dedicato all'album Lettera Q di Nayt."
 category: blog
 author: allan
 externalLink: true

@@ -10,7 +10,7 @@ tag:
 - beers
 image: ""
 headerImage: false
-description: ""
+description: "Video e foto della serata Solchi a Milano tra musica e amici."
 category: blog
 author: allan
 externalLink: true
@@ -26,7 +26,7 @@ externalLink: true
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/solchi.jpg?raw=true" alt="bsr 2023" />
+    <img class="image" src="/assets/images/solchi.jpg" alt="bsr 2023" />
 
 
 </div>

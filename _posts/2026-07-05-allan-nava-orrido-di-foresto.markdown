@@ -9,7 +9,7 @@ tag:
 
 image: ""
 headerImage: false
-description: ""
+description: "Video di un'escursione all'Orrido di Foresto."
 category: blog
 author: allan
 externalLink: true

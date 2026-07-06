@@ -38,6 +38,8 @@ jobs:
           # a `bundle update` of the github-pages gem.
           ruby-version: '3.0'
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      - name: Validate posts
+        run: ruby scripts/validate_posts.rb
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5

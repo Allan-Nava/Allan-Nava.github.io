@@ -1,0 +1,56 @@
+# Validation checks: post front matter, config sanity, Jekyll build and
+# internal links/images. Runs on every PR (gates Dependabot bumps and content
+# changes) and on push to master.
+name: Checks
+
+on:
+  pull_request:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # Fast fail: front matter + asset references + workflow/config YAML.
+  # Uses the runner's system Ruby — no bundle install needed.
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate posts front matter and asset references
+        run: ruby scripts/validate_posts.rb
+      - name: Validate YAML of config and workflows
+        run: |
+          ruby -ryaml -e '
+            files = ["_config.yml"] + Dir[".github/workflows/*.yml"] + Dir[".github/*.yml"]
+            files.each { |f| YAML.load_file(f); puts "#{f}: OK" }
+          '
+
+  # Full build + html-proofer on internal links and images.
+  # External links are skipped: old posts point at long-dead sites.
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Ruby
+        # Keep in sync with jekyll.yml (same pinned release, same Ruby).
+        uses: ruby/setup-ruby@086ffb1a2090c870a3f881cc91ea83aa4243d408
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+      - name: Build with Jekyll
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+      - name: Check internal links and images (html-proofer)
+        run: |
+          bundle exec htmlproofer ./_site \
+            --disable-external \
+            --allow-hash-href \
+            --empty-alt-ignore \
+            --assume-extension \
+            --url-ignore "/localhost/"

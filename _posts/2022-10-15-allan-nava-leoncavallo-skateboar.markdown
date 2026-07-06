@@ -11,7 +11,7 @@ tag:
 - sport
 image: ""
 headerImage: false
-description: ""
+description: "Foto di una sessione di skateboard al centro sociale Leoncavallo di Milano."
 category: blog
 author: allan
 externalLink: true

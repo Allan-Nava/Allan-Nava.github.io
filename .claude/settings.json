@@ -16,7 +16,19 @@
       "Bash(curl -s https://allan-nava.github.io/blog/)",
       "Bash(GIT_LFS_SKIP_SMUDGE=1 git fetch origin -q)",
       "Bash(curl -s \"https://api.github.com/repos/Allan-Nava/Allan-Nava.github.io/actions/runs?per_page=5\")",
-      "Bash(/usr/bin/ruby -rjson -e 'JSON.parse\\(STDIN.read\\)[\"workflow_runs\"].each { |r| puts \"#{r[\"created_at\"]} | #{r[\"name\"]} | #{r[\"status\"]}/#{r[\"conclusion\"]} | #{r[\"head_sha\"][0,7]}\" }')"
+      "Bash(/usr/bin/ruby -rjson -e 'JSON.parse\\(STDIN.read\\)[\"workflow_runs\"].each { |r| puts \"#{r[\"created_at\"]} | #{r[\"name\"]} | #{r[\"status\"]}/#{r[\"conclusion\"]} | #{r[\"head_sha\"][0,7]}\" }')",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" \"https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/famiglia.png?raw=true\")",
+      "Bash(sips -g pixelWidth assets/images/famiglia.png)",
+      "Bash(sips -s format jpeg -s formatOptions 80 assets/images/famiglia.png --out assets/images/famiglia.jpg)",
+      "Bash(sed -i '' 's|/assets/images/famiglia.png|/assets/images/famiglia.jpg|' _posts/2019-04-30-allan-nava-getivo.markdown)",
+      "Bash(/usr/bin/ruby -ryaml -e 'YAML.load_file\\(\".github/workflows/pr-check.yml\"\\); puts \"pr-check.yml: OK\"')",
+      "Bash(echo \"exit:$?\")",
+      "Bash(/usr/bin/ruby scripts/validate_posts.rb)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(git config *)",
+      "Bash(/usr/bin/ruby -ryaml -e '\\([\"_config.yml\"] + Dir[\".github/workflows/*.yml\"]\\).each { |f| YAML.load_file\\(f\\); puts \"#{f}: OK\" }')",
+      "Bash(curl -sIL -o /dev/null -w \"status finale: %{http_code}, content-type: %{content_type}, size: %{size_download}/%{content_length} bytes, url: %{url_effective}\\\\n\" --max-time 20 -r 0-1000 \"https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/acropoli-museum.MOV\")",
+      "Bash(awk '{print $1}')"
     ]
   }
 }

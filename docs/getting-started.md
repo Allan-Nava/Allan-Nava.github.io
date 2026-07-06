@@ -36,10 +36,11 @@ JEKYLL_ENV=production bundle exec jekyll build   # what CI runs
 
 ## Testing
 
-Link/HTML validation is based on [html-proofer](https://github.com/gjtorikian/html-proofer):
-
 ```bash
-rake test        # builds the site, then reports 4xx broken links/images in _site/
+ruby scripts/validate_posts.rb   # fast content check: front matter, dates, titles, asset files (stdlib only)
+rake test                        # builds the site, then reports 4xx broken links/images (html-proofer)
 ```
+
+The same checks run in CI on every pull request (see [Deployment & CI](deployment.md)).
 
 Expect some noise from long-dead external links in old posts; treat failures on *internal* links and images as real problems.

@@ -11,7 +11,7 @@ tag:
 - friends
 image: ""
 headerImage: false
-description: ""
+description: "Foto del matrimonio di Ema e Ally a Monaco di Baviera."
 category: blog
 author: allan
 externalLink: true
@@ -20,32 +20,32 @@ externalLink: true
 ## Wedding Ema and Ally
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/wedding-DSC04033.jpg?raw=true" alt="oktoberfest 2023" />
+    <img class="image" src="/assets/images/wedding-DSC04033.jpg" alt="oktoberfest 2023" />
 
 
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/wedding-DSC04034.jpg?raw=true" alt="oktoberfest 2023" />
+    <img class="image" src="/assets/images/wedding-DSC04034.jpg" alt="oktoberfest 2023" />
 
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/wedding-DSC040536.jpg?raw=true" alt="oktoberfest 2023" />
+    <img class="image" src="/assets/images/wedding-DSC04036.jpg" alt="oktoberfest 2023" />
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/wedding-DSC04052.jpg?raw=true" alt="oktoberfest 2023" />
+    <img class="image" src="/assets/images/wedding-DSC04052.jpg" alt="oktoberfest 2023" />
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/wedding-DSC04053.jpg?raw=true" alt="oktoberfest 2023" />
+    <img class="image" src="/assets/images/wedding-DSC04053.jpg" alt="oktoberfest 2023" />
 
 </div>
 
@@ -53,6 +53,6 @@ externalLink: true
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/wedding-DSC04058.jpg?raw=true" alt="oktoberfest 2023" />
+    <img class="image" src="/assets/images/wedding-DSC04058.jpg" alt="oktoberfest 2023" />
 
 </div>

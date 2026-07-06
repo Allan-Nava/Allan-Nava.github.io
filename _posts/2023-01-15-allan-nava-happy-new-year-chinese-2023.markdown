@@ -10,7 +10,7 @@ tag:
 - photography
 image: ""
 headerImage: false
-description: ""
+description: "Photos celebrating Chinese New Year 2023 in Milan Chinatown."
 category: blog
 author: allan
 externalLink: true

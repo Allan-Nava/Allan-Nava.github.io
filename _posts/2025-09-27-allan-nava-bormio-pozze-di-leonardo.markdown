@@ -8,7 +8,7 @@ tag:
 - valtellina
 image: ""
 headerImage: false
-description: ""
+description: "Foto delle Pozze di Leonardo alle terme di Bormio in Valtellina."
 category: blog
 author: allan
 externalLink: true
@@ -16,19 +16,19 @@ externalLink: true
 ## Bormio Pozze di Leonardo 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bormio-1.jpg?raw=true" alt="" />
+    <img class="image" src="/assets/images/bormio-1.jpg" alt="" />
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bormio-2.jpg?raw=true" alt="" />
+    <img class="image" src="/assets/images/bormio-2.jpg" alt="" />
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/bormio-3.jpg?raw=true" alt="" />
+    <img class="image" src="/assets/images/bormio-3.jpg" alt="" />
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/livigno-1.jpg?raw=true" alt="" />
+    <img class="image" src="/assets/images/livigno-1.jpg" alt="" />
 </div>

@@ -7,7 +7,7 @@ tag:
 - head
 image: ""
 headerImage: false
-description: ""
+description: "Foto di un weekend in Liguria tra Portofino e Santa Margherita Ligure."
 category: blog
 author: allan
 externalLink: true
@@ -17,24 +17,24 @@ externalLink: true
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/portofino_2024-04-13.jpg?raw=true" alt="PortoFino" />
+    <img class="image" src="/assets/images/portofino_2024-04-13.jpg" alt="PortoFino" />
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/portofino-1_2024-04-13.jpg?raw=true" alt="PortoFino" />
+    <img class="image" src="/assets/images/portofino-1_2024-04-13.jpg" alt="PortoFino" />
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/santa-margherita-ligure_2024-04-13.jpg?raw=true" alt="Santa Margherita Ligure" />
+    <img class="image" src="/assets/images/santa-margherita-ligure_2024-04-13.jpg" alt="Santa Margherita Ligure" />
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/santa-margherita-ligure-1_2024-04-13.jpg?raw=true" alt="Santa Margherita Ligure" />
+    <img class="image" src="/assets/images/santa-margherita-ligure-1_2024-04-13.jpg" alt="Santa Margherita Ligure" />
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/santa-margherita-ligure-2_2024-04-13.jpg?raw=true" alt="Santa Margherita Ligure" />
+    <img class="image" src="/assets/images/santa-margherita-ligure-2_2024-04-13.jpg" alt="Santa Margherita Ligure" />
 </div>
 

@@ -10,7 +10,7 @@ tag:
 - greecee
 image: ""
 headerImage: false
-description: ""
+description: "Foto e video delle luci di Atene, tra Acropoli e musei, durante il viaggio in Grecia del 2023."
 category: blog
 author: allan
 externalLink: true
@@ -29,53 +29,53 @@ Le luci della città ✨🇬🇷
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/athens-10-2023-12-8.jpg?raw=true" alt="athens 2023" />
+    <img class="image" src="/assets/images/athens-10-2023-12-8.jpg" alt="athens 2023" />
 
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/athens-2023-12-8.jpg?raw=true" alt="athens 2023" />
-
-</div>
-
-
-<div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/athens-1-2023-12-8.jpg?raw=true" alt="athens 2023" />
+    <img class="image" src="/assets/images/athens-2023-12-8.jpg" alt="athens 2023" />
 
 </div>
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/athens-2-2023-12-8.jpg?raw=true" alt="athens 2023" />
+    <img class="image" src="/assets/images/athens-1-2023-12-8.jpg" alt="athens 2023" />
+
+</div>
+
+
+<div>
+    <img class="image" src="/assets/images/athens-2-2023-12-8.jpg" alt="athens 2023" />
 
 </div>
 
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/athens-3-2023-12-8.jpg?raw=true" alt="athens 2023" />
+    <img class="image" src="/assets/images/athens-3-2023-12-8.jpg" alt="athens 2023" />
 
 </div>
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/athens-4-2023-12-8.jpg?raw=true" alt="athens 2023" />
+    <img class="image" src="/assets/images/athens-4-2023-12-8.jpg" alt="athens 2023" />
 
     
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/athens-5-2023-12-8.jpg?raw=true" alt="athens 2023" />
+    <img class="image" src="/assets/images/athens-5-2023-12-8.jpg" alt="athens 2023" />
 
     
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/athens-6-2023-12-8.jpg?raw=true" alt="athens 2023" />
+    <img class="image" src="/assets/images/athens-6-2023-12-8.jpg" alt="athens 2023" />
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/athens-7-2023-12-8.jpg?raw=true" alt="athens 2023" />
+    <img class="image" src="/assets/images/athens-7-2023-12-8.jpg" alt="athens 2023" />
 
     
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/athens-8-2023-12-8.jpg?raw=true" alt="athens 2023" />
+    <img class="image" src="/assets/images/athens-8-2023-12-8.jpg" alt="athens 2023" />
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/athens-9-2023-12-8.jpg?raw=true" alt="athens 2023" />
+    <img class="image" src="/assets/images/athens-9-2023-12-8.jpg" alt="athens 2023" />

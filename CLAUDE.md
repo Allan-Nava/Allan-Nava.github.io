@@ -15,7 +15,10 @@ bundle install                 # install dependencies (github-pages, html-proofe
 bundle exec jekyll serve       # local dev server at http://localhost:4000 (jekyll-admin UI at /admin)
 bundle exec jekyll build       # build the site into _site/
 rake test                      # build + report 4xx broken links/images with html-proofer
+ruby scripts/validate_posts.rb # fast post validation (front matter, dates, asset refs) — no bundle needed
 ```
+
+`scripts/validate_posts.rb` also gates the deploy workflow and runs on every PR (`checks.yml`): run it after touching anything in `_posts/`.
 
 There is no linter or unit test suite — validation is the html-proofer run against the built `_site/`.
 
