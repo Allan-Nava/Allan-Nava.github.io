@@ -13,7 +13,10 @@
       "Bash(curl -s \"https://api.github.com/repos/Allan-Nava/Allan-Nava.github.io/actions/runs?per_page=6\")",
       "Bash(/usr/bin/ruby -rjson -e 'JSON.parse\\(STDIN.read\\)[\"workflow_runs\"].each { |r| puts \"#{r[\"created_at\"]} | #{r[\"name\"]} | #{r[\"event\"]} | #{r[\"status\"]}/#{r[\"conclusion\"]} | #{r[\"head_sha\"][0,7]}\" }')",
       "Bash(/usr/bin/ruby -rjson -e 'JSON.parse\\(STDIN.read\\)[\"jobs\"].each { |j| puts \"JOB: #{j[\"name\"]} => #{j[\"conclusion\"]}\"; j[\"steps\"].each { |s| puts \"  - #{s[\"name\"]}: #{s[\"conclusion\"]}\" } }')",
-      "Bash(curl -s https://allan-nava.github.io/blog/)"
+      "Bash(curl -s https://allan-nava.github.io/blog/)",
+      "Bash(GIT_LFS_SKIP_SMUDGE=1 git fetch origin -q)",
+      "Bash(curl -s \"https://api.github.com/repos/Allan-Nava/Allan-Nava.github.io/actions/runs?per_page=5\")",
+      "Bash(/usr/bin/ruby -rjson -e 'JSON.parse\\(STDIN.read\\)[\"workflow_runs\"].each { |r| puts \"#{r[\"created_at\"]} | #{r[\"name\"]} | #{r[\"status\"]}/#{r[\"conclusion\"]} | #{r[\"head_sha\"][0,7]}\" }')"
     ]
   }
 }
