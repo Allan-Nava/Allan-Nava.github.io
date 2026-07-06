@@ -30,7 +30,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
+        # Pinned to the last release verified to provide Ruby 3.0 on this
+        # runner; newer releases made the "Setup Ruby" step fail (run 28809149211).
+        uses: ruby/setup-ruby@086ffb1a2090c870a3f881cc91ea83aa4243d408
         with:
           # Keep in sync with the Gemfile.lock toolchain; bump together with
           # a `bundle update` of the github-pages gem.

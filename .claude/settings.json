@@ -8,7 +8,12 @@
       "Bash(git count-objects *)",
       "Bash(git rm *)",
       "Bash(/usr/bin/ruby -ryaml -e '[\"_config.yml\", \".github/workflows/jekyll.yml\", \".github/workflows/uptime.yml\", \".github/dependabot.yml\"].each { |f| YAML.load_file\\(f\\); puts \"#{f}: OK\" }')",
-      "Bash(/usr/bin/ruby -c Rakefile)"
+      "Bash(/usr/bin/ruby -c Rakefile)",
+      "Bash(curl -s https://allan-nava.github.io/sitemap.xml)",
+      "Bash(curl -s \"https://api.github.com/repos/Allan-Nava/Allan-Nava.github.io/actions/runs?per_page=6\")",
+      "Bash(/usr/bin/ruby -rjson -e 'JSON.parse\\(STDIN.read\\)[\"workflow_runs\"].each { |r| puts \"#{r[\"created_at\"]} | #{r[\"name\"]} | #{r[\"event\"]} | #{r[\"status\"]}/#{r[\"conclusion\"]} | #{r[\"head_sha\"][0,7]}\" }')",
+      "Bash(/usr/bin/ruby -rjson -e 'JSON.parse\\(STDIN.read\\)[\"jobs\"].each { |j| puts \"JOB: #{j[\"name\"]} => #{j[\"conclusion\"]}\"; j[\"steps\"].each { |s| puts \"  - #{s[\"name\"]}: #{s[\"conclusion\"]}\" } }')",
+      "Bash(curl -s https://allan-nava.github.io/blog/)"
     ]
   }
 }

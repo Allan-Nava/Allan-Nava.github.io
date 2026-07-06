@@ -1,10 +1,10 @@
 ---
 title: "Trekking Morone "
 layout: post
-date: 22026-04-12 13:00
-tag: 
+date: 2026-04-12 13:00
+tag:
 - trekking
-- rope
+- morone
 
 image: ""
 headerImage: false
@@ -13,7 +13,7 @@ category: blog
 author: allan
 externalLink: true
 ---
-## Climbing rope
+## Trekking Morone
 
 <div>
     <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/20260412_121945_1.jpg?raw=true" alt="" />

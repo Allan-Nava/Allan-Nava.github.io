@@ -1,11 +1,11 @@
 ---
-title: " "
+title: "Orrido di Foresto"
 layout: post
-date: 22026-07-05 21:00
-tag: 
-- tonypitony
-- rugby
-- soundfestival
+date: 2026-07-05 21:00
+tag:
+- orrido
+- foresto
+- trekking
 
 image: ""
 headerImage: false

@@ -1,7 +1,7 @@
 ---
 title: "Climbing rope "
 layout: post
-date: 22026-04-14 12:00
+date: 2026-04-14 12:00
 tag: 
 - climbing
 - rope
@@ -21,5 +21,5 @@ externalLink: true
 
 
 <div>
-    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/climbing-140-4-2026?raw=true" alt="" />
+    <img class="image" src="https://github.com/Allan-Nava/Allan-Nava.github.io/blob/master/assets/images/climbing-140-4-2026.jpg?raw=true" alt="" />
 </div>
