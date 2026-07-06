@@ -74,7 +74,7 @@ Notes:
 ## Media
 
 - **Images**: put them in `assets/images/` and reference them with an absolute path (`/assets/images/foo.jpg`), or hotlink external ones.
-- **Video**: `.MOV` files in `assets/video/` go through **Git LFS** (`.gitattributes`); prefer embedding YouTube instead of committing large files:
+- **Video**: do **not** commit video files. Existing `.MOV` files in `assets/video/` go through Git LFS, and since CI doesn't fetch LFS objects they reach the live site as broken pointer files (see [Deployment & CI](deployment.md)). Upload videos to YouTube and embed the player:
 
 ```html
 <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID"

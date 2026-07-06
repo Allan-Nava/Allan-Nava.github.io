@@ -7,16 +7,17 @@ title: Allan Nava
 email: 
 bio: A man who loves videogames and coding
 description: ""
-#url: "https://allan-nava.github.io"
-baseurl: "https://Allan-Nava.github.io" # the subpath of your site, e.g. /blog
-url: "https://Allan-nava.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog (CI overrides it with --baseurl)
+url: "https://allan-nava.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 # if it's an external image, update below for true
 # better with square images
 external-image: false
 picture: assets/images/profile.jpg
 #
-# To enable google analytics, supply your token below
-analytics-google: 'UA-132362885-1'
+# To enable google analytics, supply your GA4 measurement ID below (G-XXXXXXXXXX).
+# The old Universal Analytics property (UA-132362885-1) stopped collecting data
+# in July 2023 — create a GA4 property and put its ID here to re-enable tracking.
+#analytics-google: ''
 #
 github_username: Allan-Nava
 github: Allan-Nava
@@ -64,7 +65,6 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-gist
-  - jekyll-feed
   - jemoji
   - jekyll-sitemap
 #
@@ -80,10 +80,6 @@ exclude:
   - CLAUDE.md
   - README.md
   - CODE_OF_CONDUCT.md
-  - CONTRIBUTING.md
-  - FAQ.md
   - LICENSE
   - Rakefile
-  - travis.sh
-  - renovate.json
 #

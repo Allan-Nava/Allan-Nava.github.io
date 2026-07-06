@@ -14,15 +14,18 @@ Full human-facing documentation lives in `docs/` (getting started, content autho
 bundle install                 # install dependencies (github-pages, html-proofer, jekyll-admin)
 bundle exec jekyll serve       # local dev server at http://localhost:4000 (jekyll-admin UI at /admin)
 bundle exec jekyll build       # build the site into _site/
-rake test                      # build + validate all links/HTML with html-proofer
-./travis.sh                    # build + html-proofer checking only 4xx errors
+rake test                      # build + report 4xx broken links/images with html-proofer
 ```
 
 There is no linter or unit test suite — validation is the html-proofer run against the built `_site/`.
 
 ## Deployment
 
-Pushes to `master` trigger GitHub Pages deployment via **two** workflows that both build with Jekyll and deploy the `_site/` artifact: `.github/workflows/jekyll.yml` (push only) and `.github/workflows/refresh.yml` (push + daily cron at 10:00 UTC). Both use Ruby 3.0 and `JEKYLL_ENV=production`. `uptime.yml` pings the live site every 10 minutes. There is no `main` branch — work on `master`.
+Pushes to `master` trigger GitHub Pages deployment via `.github/workflows/jekyll.yml` (push + daily cron at 10:00 UTC + manual dispatch), which builds with Ruby 3.0 / `JEKYLL_ENV=production` and deploys the `_site/` artifact. The Ruby version there must stay in sync with `Gemfile.lock`. `uptime.yml` curls the live site every 10 minutes. There is no `main` branch — work on `master`.
+
+IMPORTANT: never run `git push` — Allan pushes himself. Commit only when explicitly asked.
+
+Git LFS caveat: `.MOV` files under `assets/video/` are LFS-tracked, and CI checkout does not fetch LFS objects — self-hosted videos reach the live site as broken pointer files. New videos must be YouTube embeds, not repo files.
 
 ## Content model
 

@@ -5,7 +5,10 @@
       "Bash(curl -s -r 0-200 \"https://allan-nava.github.io/assets/video/acropoli-museum.MOV\")",
       "Bash(curl -sI \"https://allan-nava.github.io/\")",
       "Bash(GIT_LFS_SKIP_SMUDGE=1 git fetch origin)",
-      "Bash(git count-objects *)"
+      "Bash(git count-objects *)",
+      "Bash(git rm *)",
+      "Bash(/usr/bin/ruby -ryaml -e '[\"_config.yml\", \".github/workflows/jekyll.yml\", \".github/workflows/uptime.yml\", \".github/dependabot.yml\"].each { |f| YAML.load_file\\(f\\); puts \"#{f}: OK\" }')",
+      "Bash(/usr/bin/ruby -c Rakefile)"
     ]
   }
 }

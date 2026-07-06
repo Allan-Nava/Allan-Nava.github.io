@@ -36,11 +36,10 @@ JEKYLL_ENV=production bundle exec jekyll build   # what CI runs
 
 ## Testing
 
-There are two flavours of link/HTML validation, both based on [html-proofer](https://github.com/gjtorikian/html-proofer):
+Link/HTML validation is based on [html-proofer](https://github.com/gjtorikian/html-proofer):
 
 ```bash
-rake test        # full check (Rakefile) — builds then validates everything in _site/
-./travis.sh      # lighter check — builds then reports only 4xx broken links
+rake test        # builds the site, then reports 4xx broken links/images in _site/
 ```
 
 Expect some noise from long-dead external links in old posts; treat failures on *internal* links and images as real problems.

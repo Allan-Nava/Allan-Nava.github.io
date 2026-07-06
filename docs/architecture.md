@@ -69,4 +69,4 @@ Declared in `_config.yml` and provided by the `github-pages` gem (all whiteliste
 
 ## Dependency automation
 
-Both **Dependabot** (`.github/dependabot.yml` — GitHub Actions weekly) and **Renovate** (`renovate.json` — base config) are enabled and will open PRs for dependency updates.
+**Dependabot** (`.github/dependabot.yml`) opens weekly PRs for Ruby gems (`bundler`) and GitHub Actions versions.
