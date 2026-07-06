@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sI \"https://allan-nava.github.io/assets/video/acropoli-museum.MOV\")",
+      "Bash(curl -s -r 0-200 \"https://allan-nava.github.io/assets/video/acropoli-museum.MOV\")",
+      "Bash(curl -sI \"https://allan-nava.github.io/\")",
+      "Bash(GIT_LFS_SKIP_SMUDGE=1 git fetch origin)",
+      "Bash(git count-objects *)"
+    ]
+  }
+}
