@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Validate posts front matter and asset references
         run: ruby scripts/validate_posts.rb
       - name: Validate YAML of config and workflows
@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Setup Ruby
         # Keep in sync with jekyll.yml (same pinned release, same Ruby).
         uses: ruby/setup-ruby@086ffb1a2090c870a3f881cc91ea83aa4243d408

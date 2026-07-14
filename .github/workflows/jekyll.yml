@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Setup Ruby
         # Pinned to the last release verified to provide Ruby 3.0 on this
         # runner; newer releases made the "Setup Ruby" step fail (run 28809149211).
