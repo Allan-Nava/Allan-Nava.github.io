@@ -1,0 +1,17 @@
+---
+title: "Rifugio Cristina #mountains ⛰️🧗🏼‍♂️"
+layout: post
+date: 2026-07-22 12:01
+tag:
+- youtube
+- video
+image: ""
+headerImage: false
+description: "Video dal canale YouTube di Allan Nava: Rifugio Cristina #mountains ⛰️🧗🏼‍♂️"
+category: blog
+author: allan
+---
+
+## Rifugio Cristina mountains ⛰️🧗🏼‍♂️
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5h6EwBcr3_4" title="Rifugio Cristina #mountains ⛰️🧗🏼‍♂️" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

@@ -1,14 +1,16 @@
-# CLAUDE.md — allan-nava.github.io
+# AGENTS.md — allan-nava.github.io
 
 Portfolio/blog personale di Allan Nava (`https://allan-nava.github.io`), costruito con **Jekyll** sul tema [Indigo](https://github.com/sergiokopplin/indigo) e deployato su **GitHub Pages**. Contenuti in `_posts/` (blog post e progetti, ita/eng). Documentazione human-facing in `docs/`.
+
+Questo file definisce le regole operative per gli agent (Copilot, Claude, altri tool AI) quando lavorano in questo repository.
 
 ## Regole di lavoro (SEMPRE)
 
 - **MAI `git push`** — lo fa sempre Allan. **Commit solo se richiesto esplicitamente.** MAI `Co-Authored-By` nei commit.
 - **Validare dopo ogni modifica a `_posts/`**: `ruby scripts/validate_posts.rb` (front matter, date, riferimenti asset — no `bundle` richiesto). Gate del workflow `checks.yml` su ogni PR e del deploy.
 - **Verifica link/immagini**: `rake test` (build + html-proofer, segnala 4xx). Non esiste linter né unit test — la validazione è l'html-proofer contro `_site/`.
-- **Documentare SEMPRE** modifiche a build, content model o workflow: allineare i `.md` in `docs/` (getting-started, writing-content, architecture, deployment) **senza chiederlo**. Ogni cambiamento fattuale va propagato a `docs/`, `_config.yml`, template, script.
-- **Nuovi contenuti** solo come `_posts/YYYY-MM-DD-slug.markdown` con front matter corretto (vedi Content model sotto). `category: blog` → `/blog`; `category: project` + `projects: true` + `hidden: true` → `/projects`.
+- **Documentare SEMPRE** modifiche a build, content model o workflow: allineare i `.md` in `docs/` (getting-started, writing-content, architecture, deployment) senza chiederlo. Ogni cambiamento fattuale va propagato a `docs/`, `_config.yml`, template, script.
+- **Nuovi contenuti** solo come `_posts/YYYY-MM-DD-slug.markdown` con front matter corretto (vedi Content model sotto). `category: blog` -> `/blog`; `category: project` + `projects: true` + `hidden: true` -> `/projects`.
 - **Video**: MAI file `.MOV` nel repo — devono essere **embed YouTube** (vedi trappola Git LFS sotto).
 
 ## Content model
@@ -61,7 +63,7 @@ ruby scripts/validate_posts.rb # validazione veloce dei post — no bundle
 
 ## Trappole note / regole tecniche
 
-- **Git LFS**: i `.MOV` sotto `assets/video/` sono LFS-tracked e la checkout CI **non** scarica gli oggetti LFS → i video self-hosted arrivano al sito live come pointer file rotti. Nuovi video = **embed YouTube**, non file nel repo.
+- **Git LFS**: i `.MOV` sotto `assets/video/` sono LFS-tracked e la checkout CI **non** scarica gli oggetti LFS -> i video self-hosted arrivano al sito live come pointer file rotti. Nuovi video = **embed YouTube**, non file nel repo.
 - **Nessun branch `main`**: si lavora su `master`. Il deploy parte da push su `master`.
 - **Ruby version**: il workflow `jekyll.yml` builda con **Ruby 3.0** / `JEKYLL_ENV=production`. Deve restare allineata a `Gemfile.lock`.
 - **Paginazione disattivata** (commentata in `_config.yml`): `/blog` elenca tutti i post.
@@ -70,7 +72,7 @@ ruby scripts/validate_posts.rb # validazione veloce dei post — no bundle
 
 ## Deployment
 
-Push su `master` → GitHub Pages via `.github/workflows/jekyll.yml` (push + cron giornaliero 10:00 UTC + dispatch manuale): build Ruby 3.0 / production, deploy dell'artifact `_site/`. `uptime.yml` fa curl al sito live ogni 10 minuti. `checks.yml` gira `validate_posts.rb` su ogni PR.
+Push su `master` -> GitHub Pages via `.github/workflows/jekyll.yml` (push + cron giornaliero 10:00 UTC + dispatch manuale): build Ruby 3.0 / production, deploy dell'artifact `_site/`. `uptime.yml` fa curl al sito live ogni 10 minuti. `checks.yml` gira `validate_posts.rb` su ogni PR.
 
 ## Architettura
 

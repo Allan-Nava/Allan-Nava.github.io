@@ -1,0 +1,58 @@
+# Creates a blog post for every new video/short published on the YouTube
+# channel (via the channel RSS feed — no API key needed) and pushes it.
+# Videos already embedded in an existing post are skipped, so hand-written
+# posts are never duplicated.
+name: YouTube Sync
+
+on:
+  schedule:
+    # Every 6 hours; a new video becomes a post within that window.
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      max_age_days:
+        description: "Sync videos published in the last N days"
+        required: false
+        default: "7"
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: "youtube-sync"
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Generate posts from the channel feed
+        run: ruby scripts/sync_youtube.rb
+        env:
+          MAX_AGE_DAYS: ${{ github.event.inputs.max_age_days || '7' }}
+      - name: Validate generated posts
+        run: ruby scripts/validate_posts.rb
+      - name: Commit and push new posts
+        id: commit
+        run: |
+          if [ -z "$(git status --porcelain _posts)" ]; then
+            echo "No new posts."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _posts
+          git commit -m "Add posts from YouTube sync"
+          git push
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+      - name: Trigger deploy
+        # Pushes made with GITHUB_TOKEN don't fire the push-triggered deploy
+        # workflow, so dispatch it explicitly.
+        if: steps.commit.outputs.pushed == 'true'
+        run: gh workflow run jekyll.yml --ref master
+        env:
+          GH_TOKEN: ${{ github.token }}

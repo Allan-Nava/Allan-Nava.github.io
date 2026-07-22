@@ -99,3 +99,5 @@ Notes:
 ## Publishing
 
 Commit the new file to `master` and push — the GitHub Actions workflow builds and deploys automatically (see [Deployment & CI](deployment.md)). Posts dated in the future are not published until the date passes and the site rebuilds (the daily scheduled workflow takes care of that).
+
+New YouTube videos don't need a hand-written post at all: the `youtube-sync.yml` workflow creates one automatically within ~6 hours of publishing (tags `youtube` + `video`/`short`). If you prefer to write the post yourself, just embed the video — the sync skips any video whose ID already appears in `_posts/`.
