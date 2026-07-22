@@ -1,0 +1,86 @@
+# One-shot: creates the "Site 2.0" milestone and its issues from
+# docs/ROADMAP.md. Run it manually from the Actions tab; it is idempotent
+# (existing milestone/issues with the same title are not duplicated), so
+# re-running is safe. The file can be deleted afterwards.
+name: Bootstrap milestone
+
+on:
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create milestone and issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const milestoneTitle = 'Site 2.0';
+
+            const milestones = await github.paginate(github.rest.issues.listMilestones, { owner, repo, state: 'all' });
+            let milestone = milestones.find(m => m.title === milestoneTitle);
+            if (!milestone) {
+              milestone = (await github.rest.issues.createMilestone({
+                owner, repo, title: milestoneTitle,
+                description: 'Feature roadmap del sito — dettagli in docs/ROADMAP.md',
+              })).data;
+              core.info(`Milestone creata: #${milestone.number}`);
+            } else {
+              core.info(`Milestone già esistente: #${milestone.number}`);
+            }
+
+            const labels = { 'quick-win': '0e8a16', 'medium': 'fbca04', 'large': 'd93f0b' };
+            for (const [name, color] of Object.entries(labels)) {
+              try { await github.rest.issues.getLabel({ owner, repo, name }); }
+              catch { await github.rest.issues.createLabel({ owner, repo, name, color }); }
+            }
+
+            const ref = 'Dettagli: [docs/ROADMAP.md](https://github.com/' + owner + '/' + repo + '/blob/master/docs/ROADMAP.md)';
+            const issues = [
+              { label: 'quick-win', title: 'Paginazione di /blog',
+                body: 'Riabilitare `paginate: 10` + `paginate_path: "blog/:num/"` in `_config.yml` (il template `blog/index.html` supporta già il paginatore). Attenzione: `jekyll-paginate` conta anche i post `hidden` — verificare con la CI prima del merge.\n\n' + ref },
+              { label: 'quick-win', title: 'Lazy loading immagini',
+                body: 'Aggiungere `loading="lazy"` alle immagini nei post e nei template (`_includes/`, `_layouts/`).\n\n' + ref },
+              { label: 'quick-win', title: 'Badge di stato nel README',
+                body: 'Badge dei workflow Deploy e Uptime nel README.\n\n' + ref },
+              { label: 'quick-win', title: 'Thumbnail nei post auto-generati da YouTube',
+                body: 'Usare la `thumbnail_url` di oEmbed come `image:` nel front matter dei post creati da `scripts/sync_youtube.rb` (anteprima nei listing e og:image).\n\n' + ref },
+              { label: 'quick-win', title: 'Disinstallare Renovate e chiudere le PR duplicate',
+                body: 'L\'app Renovate duplica Dependabot: disinstallarla da Settings → Integrations e chiudere le sue PR. Resta solo Dependabot.\n\n' + ref },
+              { label: 'medium', title: 'Analytics GA4 o alternativa privacy-friendly',
+                body: 'Creare la property GA4 e mettere il `G-XXXX` in `_config.yml` (l\'include gtag è già pronto), oppure valutare GoatCounter/Plausible.\n\n' + ref },
+              { label: 'medium', title: 'Modernizzazione stack Ruby',
+                body: 'In sequenza: merge PR Dependabot `github-pages` 211→223→232 (Jekyll 3.10), bump `ruby-version` a 3.3 nei workflow e rimozione del pin di `setup-ruby`, poi merge `html-proofer` 5.x adattando `Rakefile` e i flag CLI in `checks.yml`.\n\n' + ref },
+              { label: 'medium', title: 'Commenti con giscus',
+                body: 'Commenti basati su GitHub Discussions: include `_includes/giscus.html` caricato in `post.html` dietro un toggle in `_config.yml`.\n\n' + ref },
+              { label: 'medium', title: 'Ricerca client-side',
+                body: 'Indice JSON generato da Liquid (`search.json`) + pagina `/search` con fuzzy match in vanilla JS o lunr.js.\n\n' + ref },
+              { label: 'medium', title: 'Pagina archivio per anno',
+                body: 'Pagina `/archive` con i post raggruppati per anno, in Liquid puro (nessun plugin).\n\n' + ref },
+              { label: 'large', title: 'Migrazione video LFS su YouTube',
+                body: 'Caricare su YouTube i ~35 video serviti via `github.com/raw` (quota banda LFS 1 GB/mese) e sostituire gli embed nei ~20 post; poi rimuovere `assets/video/` (−700 MB). Opzionale: riscrittura history con BFG (force-push, per ultima).\n\n' + ref },
+              { label: 'large', title: 'Dark mode',
+                body: 'Palette scura via `prefers-color-scheme` (+ eventuale toggle) partendo da `_sass/base/variables.sass`.\n\n' + ref },
+              { label: 'large', title: 'Ottimizzazione immagini automatica',
+                body: 'Conversione WebP/AVIF con fallback e `srcset` responsivo; valutare un job CI che comprime le immagini nuove sopra soglia.\n\n' + ref },
+              { label: 'large', title: 'Lighthouse CI con budget di performance',
+                body: 'Job in `checks.yml` che misura performance/SEO/accessibilità sulle pagine chiave e fallisce sotto un budget.\n\n' + ref },
+            ];
+
+            const existing = await github.paginate(github.rest.issues.listForRepo, { owner, repo, state: 'all', per_page: 100 });
+            const existingTitles = new Set(existing.map(i => i.title));
+            let created = 0;
+            for (const issue of issues) {
+              if (existingTitles.has(issue.title)) { core.info(`skip (esiste già): ${issue.title}`); continue; }
+              await github.rest.issues.create({
+                owner, repo, title: issue.title, body: issue.body,
+                milestone: milestone.number, labels: [issue.label],
+              });
+              created++;
+            }
+            core.info(`Create ${created} issue nella milestone "${milestoneTitle}".`);
