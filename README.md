@@ -19,4 +19,4 @@ Full documentation lives in [`docs/`](docs/README.md):
 - [Writing Content](docs/writing-content.md) — blog posts vs projects, front matter reference, media
 - [Architecture](docs/architecture.md) — layouts, includes, Sass, configuration, plugins
 - [Deployment & CI](docs/deployment.md) — GitHub Actions workflows, content sync (YouTube/Strava), publishing flow, checks
-- [Roadmap](docs/ROADMAP.md) — milestone "Site 2.0": planned features by priority
+- [Roadmap](docs/ROADMAP.md) — versioned backlog (milestones v2.0 → v3.0), planned features by priority
