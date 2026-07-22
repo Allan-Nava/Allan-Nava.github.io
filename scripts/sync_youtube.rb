@@ -33,14 +33,15 @@ def http_get(url, limit = 5)
   end
 end
 
-# Shorts and regular videos share the same feed; the oEmbed endpoint reports
-# the player dimensions, and only shorts are portrait (height > width).
+# Shorts and regular videos share the same feed; /shorts/<id> answers 200
+# only for actual shorts (regular videos redirect to /watch). The SOCS cookie
+# skips the EU consent interstitial that would otherwise mask the redirect.
 def short?(video_id)
-  res = http_get("https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D#{video_id}&format=json")
-  return false unless res.is_a?(Net::HTTPSuccess)
-  w = res.body[/"width":(\d+)/, 1].to_i
-  h = res.body[/"height":(\d+)/, 1].to_i
-  h > w && w.positive?
+  uri = URI("https://www.youtube.com/shorts/#{video_id}")
+  res = Net::HTTP.start(uri.host, uri.port, use_ssl: true, open_timeout: 10, read_timeout: 15) do |http|
+    http.head(uri.request_uri, 'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)', 'Cookie' => 'SOCS=CAI')
+  end
+  res.code == '200'
 rescue StandardError
   false
 end

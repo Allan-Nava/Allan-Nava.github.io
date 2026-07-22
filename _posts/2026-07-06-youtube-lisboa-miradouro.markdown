@@ -1,0 +1,17 @@
+---
+title: "Lisboa - Miradouro"
+layout: post
+date: 2026-07-06 15:19
+tag:
+- youtube
+- short
+image: ""
+headerImage: false
+description: "Video dal canale YouTube di Allan Nava: Lisboa - Miradouro"
+category: blog
+author: allan
+---
+
+## Lisboa - Miradouro
+
+<iframe width="660" height="1174" src="https://www.youtube.com/embed/U1JOOtDxCBg" title="Lisboa - Miradouro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

@@ -83,6 +83,6 @@ Push su `master` → GitHub Pages via `.github/workflows/jekyll.yml` (push + cro
 ## Puntatori
 
 - Documentazione: `docs/` — `getting-started.md`, `writing-content.md`, `architecture.md`, `deployment.md`, `ROADMAP.md`.
-- Script: `scripts/validate_posts.rb` (gate PR/deploy), `scripts/sync_youtube.rb`, `scripts/sync_strava.rb`.
+- Script: `scripts/validate_posts.rb` (gate PR/deploy), `scripts/sync_youtube.rb`, `scripts/sync_strava.rb`, `scripts/backfill_youtube.rb` (one-shot: backfill dell'intero canale YouTube).
 - Workflow CI: `.github/workflows/` — `jekyll.yml` (deploy), `checks.yml` (validazione PR), `youtube-sync.yml` (post automatici ogni 3h), `strava-sync.yml` (post da attività, richiede secret), `uptime.yml` (probe), `bootstrap-milestone.yml` (one-shot issue/milestone).
 - Pagine extra (toggle in `_config.yml`): `map.html` (`/map`, post con `lat`/`lng`), `fitness.html` (`/fitness`, dati in `_data/workouts.yml`), `gear.md` (`/gear`).

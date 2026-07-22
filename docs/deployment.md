@@ -29,7 +29,7 @@ Run the validator locally anytime with `ruby scripts/validate_posts.rb` (stdlib 
 
 Every 3 hours, reads the channel RSS feed (`scripts/sync_youtube.rb`, no API key needed) and creates a blog post for every video/short published in the last 7 days that isn't already embedded in an existing post — hand-written posts are never duplicated, and re-runs are idempotent. New posts are validated with `scripts/validate_posts.rb`, committed by `github-actions[bot]`, pushed, and the deploy workflow is dispatched explicitly (pushes made with `GITHUB_TOKEN` don't fire push-triggered workflows).
 
-Manual runs from the Actions tab accept a `max_age_days` input to backfill older videos. Shorts are detected via the oEmbed player orientation and get portrait embed dimensions plus a `short` tag.
+Manual runs from the Actions tab accept a `max_age_days` input to backfill recent videos. For the full channel history there is `ruby scripts/backfill_youtube.rb` (one-shot, local): it enumerates every video and short on the channel by paginating the web player's internal API, then creates the missing posts — idempotent, `DRY_RUN=1` and `SINCE=YYYY` supported. Shorts are detected via a HEAD request to `/shorts/<id>` (200 = short, redirect = regular video) and get portrait embed dimensions plus a `short` tag.
 
 ### `strava-sync.yml` — Strava Sync
 
