@@ -6,8 +6,8 @@ name: YouTube Sync
 
 on:
   schedule:
-    # Every 6 hours; a new video becomes a post within that window.
-    - cron: '17 */6 * * *'
+    # Every 3 hours; a new video becomes a post within that window.
+    - cron: '17 */3 * * *'
   workflow_dispatch:
     inputs:
       max_age_days:

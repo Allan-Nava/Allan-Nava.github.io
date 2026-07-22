@@ -8,6 +8,7 @@ Documentation for [allan-nava.github.io](https://allan-nava.github.io) — a per
 | [Writing Content](writing-content.md) | Creating blog posts and projects, front matter reference, media |
 | [Architecture](architecture.md) | How the site is put together: layouts, includes, Sass, configuration |
 | [Deployment & CI](deployment.md) | GitHub Actions workflows, testing, uptime monitoring |
+| [Roadmap](ROADMAP.md) | Milestone "Site 2.0": feature da implementare, per priorità |
 
 ## Quick reference
 
