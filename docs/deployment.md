@@ -56,6 +56,10 @@ The refresh token never expires (it rotates transparently; the script always exc
 
 Every 10 minutes, curls `https://allan-nava.github.io/` and fails the run if the site doesn't respond with a success status (3 retries). A failing run in the Actions tab means the site is down.
 
+### `bootstrap-milestone.yml` — Bootstrap milestone
+
+Run manually from the Actions tab (`workflow_dispatch` only). Using `actions/github-script`, it creates the **versioned backlog milestones** (`v2.0` Performance & Navigazione, `v2.1` Contenuti & Engagement, `v2.2` Automazioni & Platform, `v3.0` Big rocks) and one issue per item in [ROADMAP](ROADMAP.md), each assigned to its milestone. It is idempotent: existing milestones/issues with the same title are skipped, and an issue found under the wrong milestone is moved to the right one — so after adding items to ROADMAP.md (mirrored in the workflow's `BACKLOG` array), re-running creates only the new ones. It needs `issues: write` and touches nothing else in the repo.
+
 ## Publishing flow
 
 1. Commit content/changes to `master` (there is no `main` branch in practice — `master` is the default).

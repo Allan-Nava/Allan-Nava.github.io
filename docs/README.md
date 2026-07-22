@@ -7,8 +7,8 @@ Documentation for [allan-nava.github.io](https://allan-nava.github.io) — a per
 | [Getting Started](getting-started.md) | Prerequisites, installation, running the site locally |
 | [Writing Content](writing-content.md) | Creating blog posts and projects, front matter reference, media |
 | [Architecture](architecture.md) | How the site is put together: layouts, includes, Sass, configuration |
-| [Deployment & CI](deployment.md) | GitHub Actions workflows, testing, uptime monitoring |
-| [Roadmap](ROADMAP.md) | Milestone "Site 2.0": feature da implementare, per priorità |
+| [Deployment & CI](deployment.md) | GitHub Actions workflows, content sync (YouTube/Strava), testing, uptime monitoring |
+| [Roadmap](ROADMAP.md) | Backlog versionato (milestone v2.0 → v3.0), feature da implementare |
 
 ## Quick reference
 

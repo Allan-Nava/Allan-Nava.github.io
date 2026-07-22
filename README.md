@@ -18,4 +18,5 @@ Full documentation lives in [`docs/`](docs/README.md):
 - [Getting Started](docs/getting-started.md) — prerequisites (Ruby, Bundler, Git LFS), install, run, test
 - [Writing Content](docs/writing-content.md) — blog posts vs projects, front matter reference, media
 - [Architecture](docs/architecture.md) — layouts, includes, Sass, configuration, plugins
-- [Deployment & CI](docs/deployment.md) — GitHub Actions workflows, publishing flow, checks
+- [Deployment & CI](docs/deployment.md) — GitHub Actions workflows, content sync (YouTube/Strava), publishing flow, checks
+- [Roadmap](docs/ROADMAP.md) — milestone "Site 2.0": planned features by priority

@@ -1,42 +1,56 @@
-# Roadmap — Milestone "Site 2.0"
+# Roadmap — Backlog versionato
 
-Feature e miglioramenti implementabili sul sito, in ordine di rapporto valore/sforzo. Le checkbox tengono traccia dello stato; ogni voce è pensata per diventare una issue GitHub.
+Il backlog del sito, organizzato in milestone versionate: la versione è assegnata per priorità/dipendenze (v2.0 prima, v3.0 dopo). Ogni voce diventa una issue GitHub nella milestone corrispondente: le crea `bootstrap-milestone.yml` (Actions → "Bootstrap milestone" → Run workflow, idempotente — rilanciarlo dopo aver aggiunto voci qui e nel workflow crea solo le nuove).
 
-## 🟢 Quick win (mezza giornata o meno)
+## v2.0 — Performance & Navigazione
 
-- [ ] **Paginazione di `/blog`** — oggi la pagina carica tutti i ~130 post insieme. Riabilitare `paginate: 10` + `paginate_path: "blog/:num/"` in `_config.yml` (il template `blog/index.html` supporta già il paginatore). Attenzione: `jekyll-paginate` conta anche i post `hidden`, quindi verificare il risultato con la CI prima del merge.
-- [ ] **Lazy loading immagini** — aggiungere `loading="lazy"` alle immagini nei post e nei template (`_includes/`, `_layouts/`). Beneficio immediato sui post pieni di foto.
-- [ ] **Badge di stato nel README** — badge del workflow Deploy e Uptime (`https://github.com/Allan-Nava/Allan-Nava.github.io/actions/workflows/jekyll.yml/badge.svg`).
-- [ ] **Thumbnail nei post auto-generati da YouTube** — il feed/oEmbed espone `thumbnail_url`: usarla come `image:` nel front matter dei post creati da `scripts/sync_youtube.rb`, così i listing e i meta og:image hanno un'anteprima.
-- [ ] **Disinstallare Renovate** (app GitHub) e chiudere le sue PR duplicate — resta solo Dependabot.
+Urgente dopo il backfill YouTube: 218 file in `_posts/` (172 blog + 46 progetti), quasi tutti con iframe.
 
-## 🟡 Medi (1–2 giorni)
+- [ ] **Paginazione di `/blog`** — oggi la pagina carica ~170 post insieme. Riabilitare `paginate: 10` + `paginate_path: "blog/:num/"` in `_config.yml` (il template supporta già il paginatore). Attenzione: `jekyll-paginate` conta anche i post `hidden` — verificare con la CI.
+- [ ] **Facade per gli embed YouTube (lite-youtube)** — ogni iframe carica ~1 MB di JS a pagina aperta; con la facade si carica solo la thumbnail e il player parte al click. Il miglior rapporto valore/sforzo del backlog.
+- [ ] **Lazy loading immagini** — `loading="lazy"` nei post e nei template.
+- [ ] **Thumbnail nei post auto-generati da YouTube** — usare la thumbnail del video come `image:` nel front matter (listing + og:image); propedeutica alla galleria video (v2.1).
+- [ ] **Badge di stato nel README** — badge dei workflow Deploy e Uptime.
+- [ ] **Disinstallare Renovate** — l'app duplica Dependabot: disinstallarla e chiudere le sue PR/issue (#25, #43).
 
-- [ ] **Analytics GA4 o privacy-friendly** — creare la property GA4 e mettere il `G-XXXX` in `_config.yml` (l'include gtag è già pronto), oppure passare a GoatCounter/Plausible (script più leggero, niente cookie banner).
-- [ ] **Modernizzazione stack Ruby** — in sequenza: merge PR Dependabot `github-pages` 211→223→232 (Jekyll 3.10), poi bump `ruby-version` a 3.3 nei workflow e rimozione del pin vecchio di `setup-ruby`, infine merge `html-proofer` 5.x adattando `Rakefile` (API `HTMLProofer` nuova) e i flag CLI in `checks.yml`.
-- [ ] **Commenti con giscus** — commenti basati su GitHub Discussions (gratis, niente Disqus/ads): nuovo include `_includes/giscus.html` caricato in `post.html` dietro un toggle in `_config.yml`.
-- [ ] **Ricerca client-side** — indice JSON generato da Liquid (`search.json`) + una pagina `/search` con fuzzy match in vanilla JS (o lunr.js): con 130+ post inizia a servire.
-- [ ] **Pagina archivio per anno** — `/archive` con i post raggruppati per anno, generata in Liquid puro (nessun plugin richiesto).
+## v2.1 — Contenuti & Engagement
 
-## 🔴 Grandi (multi-giorno / decisioni)
+- [ ] **Pagina statistiche `/stats`** — post per anno, tag più usati, totali; tutto in Liquid a build time.
+- [ ] **Pagina archivio per anno `/archive`** — post raggruppati per anno, Liquid puro.
+- [ ] **Ricerca client-side** — indice `search.json` generato da Liquid + pagina `/search` con fuzzy match in vanilla JS; con 200+ post serve.
+- [ ] **Related posts per tag** — il box "related" mostra i post più recenti, non i più affini: sostituirlo con un match sui tag condivisi.
+- [ ] **Serie di post** — campo `series:` nel front matter + box "puntata N di M" con navigazione (es. Flutter Italia Espresso).
+- [ ] **Galleria video `/videos`** — griglia delle thumbnail di tutti i post YouTube (dipende dalle thumbnail in v2.0).
+- [ ] **404 intelligente** — link utili + ultimi post nella pagina 404.
+- [ ] **Copy-code button** — bottone "copia" sui blocchi di codice dei post tech.
+- [ ] **Reading progress + scroll-to-top** — barra di avanzamento lettura e bottone per risalire.
+- [ ] **Commenti con giscus** — GitHub Discussions come sistema di commenti, toggle in `_config.yml`.
+- [ ] **Analytics GA4 o privacy-friendly** — property GA4 (`G-XXXX` in `_config.yml`, include gtag già pronto) oppure GoatCounter/Plausible.
 
-- [ ] **Migrazione video LFS → YouTube** — caricare su YouTube i ~35 video oggi serviti via `github.com/raw` (quota banda LFS: 1 GB/mese) e sostituire gli embed nei ~20 post interessati; poi rimuovere `assets/video/` dal repo (−700 MB). Opzionale: riscrivere la history con BFG per recuperare anche il `.git` (~1 GB) — richiede force-push, da fare per ultima e con cautela.
-- [ ] **Dark mode** — il tema Indigo è solo chiaro: aggiungere palette scura via `prefers-color-scheme` (+ eventuale toggle manuale) in `_sass/base/variables.sass` e derivati.
-- [ ] **Ottimizzazione immagini automatica** — conversione WebP/AVIF con fallback e resize responsivo (`srcset`); valutare un job CI che comprime le immagini nuove sopra soglia (oggi la soglia è solo controllata a mano, il validator non guarda i pesi).
-- [ ] **Lighthouse CI** — job in `checks.yml` che misura performance/SEO/accessibilità sulle pagine chiave e fallisce sotto un budget: previene regressioni man mano che si aggiungono feature.
+## v2.2 — Automazioni & Platform
 
-## ✅ Fatte fuori milestone
+- [ ] **Modernizzazione stack Ruby** — in sequenza: merge PR `github-pages` 211→223→232 (Jekyll 3.10), bump Ruby 3.3 nei workflow e unpin di `setup-ruby`, poi `html-proofer` 5.x adattando `Rakefile` e i flag in `checks.yml`.
+- [ ] **Sync YouTube v2** — descrizione completa del video nel body; coordinate GPS dalla descrizione YouTube (formato `📍 lat, lng`) → post geolocalizzato e marker su `/map` automatico.
+- [ ] **Setup secret Strava** — creare l'app API e configurare `STRAVA_*` nei secret (guida in `deployment.md`) per attivare `strava-sync.yml`.
+- [ ] **Auto-issue sui fallimenti dei cron** — step `if: failure()` nei workflow schedulati che apre/aggiorna una issue col link al run fallito.
+- [ ] **Link checker mensile** — workflow schedulato con html-proofer sui link esterni che apre/aggiorna una issue con l'elenco dei morti (senza far fallire la CI).
+- [ ] **OG image automatica** — immagine social generata per i post senza `image:`.
+- [ ] **Newsletter RSS-to-email** — Buttondown/Mailchimp sul `/feed.xml` esistente + form di iscrizione nel footer.
+- [ ] **Webmentions** — like/repost/commenti da Mastodon/Bluesky via brid.gy + webmention.io.
 
-- [x] **Mappa delle escursioni** — `/map` con Leaflet; i post con `lat`/`lng` nel front matter diventano marker (15 post geolocalizzati al lancio).
+## v3.0 — Big rocks
+
+- [ ] **Migrazione video LFS → YouTube** — caricare su YouTube i ~39 `.MOV` (`assets/video/`, serviti via `github.com/raw` con quota banda LFS 1 GB/mese), sostituire gli embed, rimuovere `assets/video/` (−700 MB). Opzionale: BFG sulla history (force-push, per ultima).
+- [ ] **Dark mode** — palette scura via `prefers-color-scheme` (+ toggle) in `_sass/base/variables.sass` e derivati.
+- [ ] **Ottimizzazione immagini automatica** — WebP/AVIF con fallback, `srcset` responsivo, job CI che comprime le immagini nuove sopra soglia.
+- [ ] **Lighthouse CI** — job che misura performance/SEO/a11y sulle pagine chiave e fallisce sotto budget.
+- [ ] **PWA** — manifest + service worker: sito installabile e leggibile offline.
+
+## ✅ Fatte
+
+- [x] **Mappa delle escursioni** — `/map` con Leaflet; post con `lat`/`lng` → marker (15 post geolocalizzati al lancio).
 - [x] **Fitness tracker** — `/fitness` con tabelle e grafici SVG dei PR, dati in `_data/workouts.yml`.
-- [x] **Strava sync** — `strava-sync.yml` + `scripts/sync_strava.rb`: post automatici dalle attività (richiede i secret `STRAVA_*`, setup in `deployment.md`).
-- [x] **Pagina gear** — `/gear` con l'attrezzatura (voci placeholder da compilare nel sorgente).
-
-## Come usare questa roadmap
-
-Ogni voce è autoconsistente: si può aprire come issue GitHub (titolo = grassetto della voce, corpo = resto della descrizione) dentro una milestone "Site 2.0". Con `gh` autenticato:
-
-```bash
-gh api repos/Allan-Nava/Allan-Nava.github.io/milestones -f title="Site 2.0" -f description="Feature roadmap del sito"
-gh issue create --milestone "Site 2.0" --title "..." --body "..."
-```
+- [x] **Strava sync** — `strava-sync.yml` + `scripts/sync_strava.rb` (in attesa dei secret, vedi v2.2).
+- [x] **Pagina gear** — `/gear` (voci placeholder da compilare).
+- [x] **YouTube sync + backfill completo** — `youtube-sync.yml` ogni 3h + `scripts/backfill_youtube.rb` (intero canale, 95 post generati).
+- [x] **CI di validazione** — `checks.yml` (validator + build + html-proofer) su PR e push; validator come gate del deploy.
