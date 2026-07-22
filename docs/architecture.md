@@ -29,6 +29,10 @@ about.md          ─┘
 | `_sass/components/` | One file per UI component (header, nav, footer, author, pagination, side-by-side, spoiler, …). |
 | `_sass/pages/` | Page-specific styles (home/blog/projects listing, post, tags). |
 | `index.html` | Home page (thin `page`-layout shell; content comes from config + includes). |
+| `map.html` | `/map` — Leaflet map of every post with `lat`/`lng` front matter (toggle: `map` in `_config.yml`). |
+| `fitness.html` | `/fitness` — workout PR tables + SVG charts from `_data/workouts.yml` (toggle: `fitness`). |
+| `gear.md` | `/gear` — equipment list (toggle: `gear`). |
+| `_data/workouts.yml` | Data source for `/fitness`. |
 | `blog/index.html` | Blog listing; lives in its own folder to support Jekyll pagination if re-enabled. |
 | `projects.html` | Projects listing; filters `site.posts` on `projects: true`, honours `externalLink` and `star`. |
 | `tags.html` | Tag cloud + per-tag post lists, anchored by slugified tag name. |

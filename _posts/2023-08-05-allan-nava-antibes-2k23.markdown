@@ -10,6 +10,8 @@ headerImage: false
 description: "Foto e video di un viaggio ad Antibes, in Francia, nel 2023."
 category: blog
 author: allan
+lat: 43.581
+lng: 7.125
 externalLink: true
 ---
 

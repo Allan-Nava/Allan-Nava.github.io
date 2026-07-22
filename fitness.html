@@ -1,0 +1,69 @@
+---
+layout: page
+title: Fitness
+permalink: /fitness/
+---
+
+<p>I miei personal record in palestra, aggiornati a ogni PR (dati in <code>_data/workouts.yml</code>).</p>
+
+{% for group in site.data.workouts %}
+<h2>{{ group.exercise }}</h2>
+
+<div class="pr-chart" data-records='{{ group.records | jsonify }}' style="margin: 0.5em 0 1em 0;"></div>
+
+<table style="width: 100%; border-collapse: collapse; margin-bottom: 2em;">
+    <thead>
+        <tr>
+            <th style="text-align: left; border-bottom: 1px solid #ddd; padding: 6px 4px;">Data</th>
+            <th style="text-align: right; border-bottom: 1px solid #ddd; padding: 6px 4px;">Peso</th>
+            <th style="text-align: right; border-bottom: 1px solid #ddd; padding: 6px 4px;">Video</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% assign sorted = group.records | sort: "date" | reverse %}
+        {% for rec in sorted %}
+        <tr>
+            <td style="padding: 6px 4px;">{{ rec.date | date: "%d %b %Y" }}</td>
+            <td style="text-align: right; padding: 6px 4px;"><strong>{{ rec.kg }} kg</strong></td>
+            <td style="text-align: right; padding: 6px 4px;">
+                {% if rec.post %}<a href="{{ site.url }}{{ rec.post }}">▶︎</a>{% else %}—{% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endfor %}
+
+<script>
+    document.querySelectorAll('.pr-chart').forEach(function (el) {
+        var records = JSON.parse(el.getAttribute('data-records'))
+            .slice()
+            .sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+        if (records.length < 2) return; // a chart with one point says nothing
+
+        var W = 560, H = 180, PAD = 34;
+        var times = records.map(function (r) { return new Date(r.date).getTime(); });
+        var kgs = records.map(function (r) { return r.kg; });
+        var tMin = Math.min.apply(null, times), tMax = Math.max.apply(null, times);
+        var kMin = Math.min.apply(null, kgs), kMax = Math.max.apply(null, kgs);
+        var kPad = Math.max((kMax - kMin) * 0.15, 2);
+        kMin -= kPad; kMax += kPad;
+
+        function x(t) { return PAD + (t - tMin) / (tMax - tMin) * (W - PAD * 2); }
+        function y(k) { return PAD + (kMax - k) / (kMax - kMin) * (H - PAD * 2); }
+
+        var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="max-width:100%; height:auto;" role="img">';
+        var pts = records.map(function (r) {
+            return x(new Date(r.date).getTime()) + ',' + y(r.kg);
+        });
+        svg += '<polyline fill="none" stroke="#4183c4" stroke-width="2.5" points="' + pts.join(' ') + '"/>';
+        records.forEach(function (r) {
+            var cx = x(new Date(r.date).getTime()), cy = y(r.kg);
+            svg += '<circle cx="' + cx + '" cy="' + cy + '" r="4.5" fill="#4183c4"/>';
+            svg += '<text x="' + cx + '" y="' + (cy - 12) + '" text-anchor="middle" font-size="12" fill="currentColor">' + r.kg + ' kg</text>';
+            svg += '<text x="' + cx + '" y="' + (H - 8) + '" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.6">' + r.date + '</text>';
+        });
+        svg += '</svg>';
+        el.innerHTML = svg;
+    });
+</script>

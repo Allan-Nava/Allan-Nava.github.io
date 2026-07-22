@@ -10,6 +10,8 @@ headerImage: false
 description: "Foto da Cannes 2023 con una citazione francese sul diavolo."
 category: blog
 author: allan
+lat: 43.552
+lng: 7.017
 externalLink: true
 ---
 

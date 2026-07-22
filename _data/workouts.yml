@@ -1,0 +1,19 @@
+# Personal records shown on /fitness. Add a new record here (and optionally
+# a post in _posts/) every time a PR falls. Dates are YYYY-MM-DD, weights in kg.
+# `post` is optional: the URL of the post with the video.
+- exercise: "Weighted Dips"
+  records:
+    - date: 2024-01-24
+      kg: 20
+      post: /blog/2024/01/24/allan-nava-dips20k.html
+    - date: 2024-02-13
+      kg: 40
+      post: /blog/2024/02/13/allan-nava-dips-40kg.html
+    - date: 2024-04-02
+      kg: 50
+      post: /blog/2024/04/02/allan-nava-dips-50kg.html
+- exercise: "Flat Bench Press"
+  records:
+    - date: 2024-03-05
+      kg: 102.5
+      post: /blog/2024/03/05/allan-nava-flat-bench-102.5kg.html

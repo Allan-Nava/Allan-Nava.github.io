@@ -31,6 +31,27 @@ Every 3 hours, reads the channel RSS feed (`scripts/sync_youtube.rb`, no API key
 
 Manual runs from the Actions tab accept a `max_age_days` input to backfill older videos. Shorts are detected via the oEmbed player orientation and get portrait embed dimensions plus a `short` tag.
 
+### `strava-sync.yml` — Strava Sync
+
+Every 6 hours, creates a blog post for every new Strava activity of the configured types (default: Hike, RockClimbing, TrailRun, Snowboard, AlpineSki) via `scripts/sync_strava.rb`. Same pipeline as the YouTube sync: dedup by activity ID (`strava.com/activities/<id>` in any post), validation, bot commit, explicit deploy dispatch. Until the secrets below are configured, runs exit successfully doing nothing.
+
+**One-time setup:**
+
+1. Create an API application at <https://www.strava.com/settings/api> (category: anything; callback domain: `localhost`). Note the **Client ID** and **Client Secret**.
+2. Authorize your own app with read scope: open in the browser
+   `https://www.strava.com/oauth/authorize?client_id=<CLIENT_ID>&redirect_uri=http://localhost&response_type=code&scope=activity:read_all`
+   and after the approval copy the `code=...` parameter from the URL you land on.
+3. Exchange the code for tokens:
+   ```bash
+   curl -X POST https://www.strava.com/oauth/token \
+     -d client_id=<CLIENT_ID> -d client_secret=<CLIENT_SECRET> \
+     -d code=<CODE> -d grant_type=authorization_code
+   ```
+   Save the `refresh_token` from the response.
+4. In the repo: Settings → Secrets and variables → Actions → add `STRAVA_CLIENT_ID`, `STRAVA_CLIENT_SECRET`, `STRAVA_REFRESH_TOKEN`.
+
+The refresh token never expires (it rotates transparently; the script always exchanges it for a fresh access token at each run).
+
 ### `uptime.yml` — Uptime Monitor
 
 Every 10 minutes, curls `https://allan-nava.github.io/` and fails the run if the site doesn't respond with a success status (3 retries). A failing run in the Actions tab means the site is down.

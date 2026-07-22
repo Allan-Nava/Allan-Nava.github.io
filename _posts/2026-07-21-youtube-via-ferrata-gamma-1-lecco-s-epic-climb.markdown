@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Via Ferrata Gamma 1 | Lecco’s Epic Climb 🇮🇹⛰️"
 category: blog
 author: allan
+lat: 45.894
+lng: 9.425
 ---
 
 ## Via Ferrata Gamma 1 | Lecco’s Epic Climb 🇮🇹⛰️

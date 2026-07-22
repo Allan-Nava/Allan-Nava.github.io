@@ -1,0 +1,47 @@
+---
+layout: page
+title: Map
+permalink: /map/
+---
+
+<p>Le escursioni, le vie e i viaggi raccontati sul blog: ogni marker è un post. Aggiungi <code>lat</code>/<code>lng</code> al front matter di un post per farlo comparire qui.</p>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+<div id="trip-map" style="width: 100%; height: 480px; border-radius: 6px; margin: 1.5em 0;"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+<script>
+    var spots = [
+    {% for post in site.posts %}
+        {% if post.lat and post.lng %}
+        {
+            title: {{ post.title | jsonify }},
+            url: {{ post.url | prepend: site.url | jsonify }},
+            date: {{ post.date | date: "%d %b %Y" | jsonify }},
+            lat: {{ post.lat }},
+            lng: {{ post.lng }}
+        },
+        {% endif %}
+    {% endfor %}
+    ];
+
+    (function () {
+        if (!spots.length) {
+            document.getElementById('trip-map').outerHTML = '<p>Nessun post geolocalizzato (ancora).</p>';
+            return;
+        }
+        var map = L.map('trip-map', { scrollWheelZoom: false });
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 17,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        var bounds = [];
+        spots.forEach(function (s) {
+            L.marker([s.lat, s.lng]).addTo(map)
+                .bindPopup('<a href="' + s.url + '">' + s.title + '</a><br><small>' + s.date + '</small>');
+            bounds.push([s.lat, s.lng]);
+        });
+        map.fitBounds(bounds, { padding: [30, 30], maxZoom: 10 });
+    })();
+</script>

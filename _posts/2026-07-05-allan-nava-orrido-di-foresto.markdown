@@ -12,6 +12,8 @@ headerImage: false
 description: "Video di un'escursione all'Orrido di Foresto."
 category: blog
 author: allan
+lat: 45.133
+lng: 7.089
 externalLink: true
 ---
 ## Orrido di Foresto

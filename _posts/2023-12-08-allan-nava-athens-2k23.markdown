@@ -13,6 +13,8 @@ headerImage: false
 description: "Foto e video delle luci di Atene, tra Acropoli e musei, durante il viaggio in Grecia del 2023."
 category: blog
 author: allan
+lat: 37.976
+lng: 23.727
 externalLink: true
 ---
 

@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: ⛰️ Hiking the Trail to Monte Tambò | Italian Alps 🇮🇹"
 category: blog
 author: allan
+lat: 46.517
+lng: 9.317
 ---
 
 ## ⛰️ Hiking the Trail to Monte Tambò | Italian Alps 🇮🇹

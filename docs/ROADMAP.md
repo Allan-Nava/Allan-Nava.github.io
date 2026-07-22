@@ -25,6 +25,13 @@ Feature e miglioramenti implementabili sul sito, in ordine di rapporto valore/sf
 - [ ] **Ottimizzazione immagini automatica** — conversione WebP/AVIF con fallback e resize responsivo (`srcset`); valutare un job CI che comprime le immagini nuove sopra soglia (oggi la soglia è solo controllata a mano, il validator non guarda i pesi).
 - [ ] **Lighthouse CI** — job in `checks.yml` che misura performance/SEO/accessibilità sulle pagine chiave e fallisce sotto un budget: previene regressioni man mano che si aggiungono feature.
 
+## ✅ Fatte fuori milestone
+
+- [x] **Mappa delle escursioni** — `/map` con Leaflet; i post con `lat`/`lng` nel front matter diventano marker (15 post geolocalizzati al lancio).
+- [x] **Fitness tracker** — `/fitness` con tabelle e grafici SVG dei PR, dati in `_data/workouts.yml`.
+- [x] **Strava sync** — `strava-sync.yml` + `scripts/sync_strava.rb`: post automatici dalle attività (richiede i secret `STRAVA_*`, setup in `deployment.md`).
+- [x] **Pagina gear** — `/gear` con l'attrezzatura (voci placeholder da compilare nel sorgente).
+
 ## Come usare questa roadmap
 
 Ogni voce è autoconsistente: si può aprire come issue GitHub (titolo = grassetto della voce, corpo = resto della descrizione) dentro una milestone "Site 2.0". Con `gh` autenticato:

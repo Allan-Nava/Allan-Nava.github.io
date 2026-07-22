@@ -11,6 +11,8 @@ headerImage: false
 description: "Foto delle Pozze di Leonardo alle terme di Bormio in Valtellina."
 category: blog
 author: allan
+lat: 46.468
+lng: 10.37
 externalLink: true
 ---
 ## Bormio Pozze di Leonardo 

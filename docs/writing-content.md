@@ -64,12 +64,14 @@ externalLink: https://example.com   # optional, see below
 | `hidden` | bool | Excludes the post from the blog listing (`blog/index.html`). |
 | `externalLink` | URL | On `/projects`, the item links to this URL instead of the post page. |
 | `star` | bool | Adds the `star` CSS class to highlight the item in listings. |
+| `lat`, `lng` | float | Geolocates the post: it appears as a marker on `/map`. |
 
 Notes:
 
 - **Prev/next navigation** only renders for categories listed in `post-advance-links` in `_config.yml` (currently `[blog]`).
 - **Read time** and **related posts** blocks are controlled globally by `read-time` and `related` in `_config.yml`, not per post.
 - Emoji shortcodes (e.g. `:smile:`) work everywhere thanks to the `jemoji` plugin.
+- Workout PRs shown on `/fitness` live in `_data/workouts.yml` — add a record (date, kg, optional post URL) whenever a PR falls.
 
 ## Media
 

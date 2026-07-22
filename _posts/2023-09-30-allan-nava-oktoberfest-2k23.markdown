@@ -14,6 +14,8 @@ headerImage: false
 description: "Video e foto dell'Oktoberfest 2023 a Monaco di Baviera tra birra, pretzel e amici."
 category: blog
 author: allan
+lat: 48.132
+lng: 11.549
 externalLink: true
 ---
 

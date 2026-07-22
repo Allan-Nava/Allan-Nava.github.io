@@ -11,6 +11,8 @@ headerImage: false
 description: "Video di un trekking a Gerola Alta."
 category: blog
 author: allan
+lat: 46.056
+lng: 9.553
 externalLink: true
 ---
 ## Gerola Alta 🏋🏽

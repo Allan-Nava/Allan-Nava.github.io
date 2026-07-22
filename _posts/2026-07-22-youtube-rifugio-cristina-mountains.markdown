@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Rifugio Cristina #mountains ⛰️🧗🏼‍♂️"
 category: blog
 author: allan
+lat: 46.291
+lng: 9.923
 ---
 
 ## Rifugio Cristina mountains ⛰️🧗🏼‍♂️

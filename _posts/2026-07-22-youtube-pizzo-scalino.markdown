@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Pizzo Scalino ⛰️🧗🏼‍♂️"
 category: blog
 author: allan
+lat: 46.273
+lng: 9.927
 ---
 
 ## Pizzo Scalino ⛰️🧗🏼‍♂️

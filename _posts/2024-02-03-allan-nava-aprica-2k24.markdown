@@ -14,6 +14,8 @@ headerImage: false
 description: "Video e foto di un weekend sulla neve ad Aprica tra snowboard e apres-ski con gli amici."
 category: blog
 author: allan
+lat: 46.155
+lng: 10.15
 externalLink: true
 ---
 
