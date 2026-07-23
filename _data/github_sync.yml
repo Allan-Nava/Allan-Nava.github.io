@@ -1,0 +1,16 @@
+# Configuration for scripts/sync_github.rb (GitHub repos → project posts).
+# sources: GitHub users/orgs whose public repos become posts on /projects.
+# Forks are always skipped.
+sources:
+  - user: Allan-Nava
+  - org: hiway-media
+# Only repos with a description (empty-description repos are usually noise).
+require_description: true
+# Only repos with at least this many stars (0 = everything).
+min_stars: 0
+# Repos to never sync (full_name). Deleting a generated post is not enough —
+# the next cron run would recreate it; add the repo here instead.
+exclude:
+  - Allan-Nava/Allan-Nava                 # profile README repo
+  - Allan-Nava/Allan-Nava.github.io       # this site
+  - HiWay-Media/.github                   # org meta-repo

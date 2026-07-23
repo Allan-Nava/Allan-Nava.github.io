@@ -1,0 +1,53 @@
+# Creates a project post on /projects for every public GitHub repo of the
+# sources configured in _data/github_sync.yml (user Allan-Nava + org
+# hiway-media). Repos already covered by a post are skipped; to ban a repo
+# permanently, add it to the exclude list in _data/github_sync.yml.
+name: GitHub Projects Sync
+
+on:
+  schedule:
+    # Daily: new repos don't appear more often than that.
+    - cron: '29 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: "github-sync"
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Generate posts from GitHub repos
+        run: ruby scripts/sync_github.rb
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Validate generated posts
+        run: ruby scripts/validate_posts.rb
+      - name: Commit and push new posts
+        id: commit
+        run: |
+          if [ -z "$(git status --porcelain _posts)" ]; then
+            echo "No new posts."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _posts
+          git commit -m "Add project posts from GitHub sync"
+          git push
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+      - name: Trigger deploy
+        # Pushes made with GITHUB_TOKEN don't fire the push-triggered deploy
+        # workflow, so dispatch it explicitly.
+        if: steps.commit.outputs.pushed == 'true'
+        run: gh workflow run jekyll.yml --ref master
+        env:
+          GH_TOKEN: ${{ github.token }}

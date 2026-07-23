@@ -72,6 +72,7 @@ ruby scripts/validate_posts.rb # validazione veloce dei post — no bundle
 - **Paginazione `/blog` attiva** (`paginate: 10`): `jekyll-paginate` v1 conta anche i progetti `hidden`, quindi le pagine vecchie mostrano <10 item (dettaglio in `docs/architecture.md`).
 - **Immagini nei post**: usare **URL relativi** per coerenza (vedi commit recenti).
 - `_includes/style.scss` è l'entry point Sass che importa tutto da `_sass/` (`base/`, `components/`, `pages/`).
+- **Tema SCURO** (`$background: #050505` in `_sass/base/variables.sass`, testo `$alpha` chiaro): attenzione ai colori pensati per sfondo chiaro — `strong` aveva `color:#000` e `code`/`pre` testo chiaro su `background:#fff` → **invisibili**. Verificare sempre il contrasto sul fondo scuro quando si toccano gli stili.
 
 ## Deployment
 

@@ -54,6 +54,10 @@ Every 6 hours, creates a blog post for every new Strava activity of the configur
 
 The refresh token never expires (it rotates transparently; the script always exchanges it for a fresh access token at each run).
 
+### `github-sync.yml` — GitHub Projects Sync
+
+Daily, creates a project post (listed on `/projects`) for every public repo of the sources configured in `_data/github_sync.yml` — currently the `Allan-Nava` user and the `hiway-media` org — via `scripts/sync_github.rb`. Forks are always skipped; by default repos without a description are too (`require_description`), and `min_stars` can raise the bar. Dedup is threefold: repo URL already in a post, `github: <full_name>` front-matter marker, or repo name already part of an existing post filename. **To permanently ban a repo, add it to `exclude` in `_data/github_sync.yml`** — deleting the generated post alone is not enough, the next run would recreate it. Same pipeline as the other syncs: validation, bot commit, explicit deploy dispatch.
+
 ### `uptime.yml` — Uptime Monitor
 
 Every 10 minutes, curls `https://allan-nava.github.io/` and fails the run if the site doesn't respond with a success status (3 retries). A failing run in the Actions tab means the site is down.

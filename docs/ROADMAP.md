@@ -41,7 +41,7 @@ Urgente dopo il backfill YouTube: 218 file in `_posts/` (172 blog + 46 progetti)
 ## v3.0 — Big rocks
 
 - [ ] **Migrazione video LFS → YouTube** — caricare su YouTube i ~39 `.MOV` (`assets/video/`, serviti via `github.com/raw` con quota banda LFS 1 GB/mese), sostituire gli embed, rimuovere `assets/video/` (−700 MB). Opzionale: BFG sulla history (force-push, per ultima).
-- [ ] **Dark mode** — palette scura via `prefers-color-scheme` (+ toggle) in `_sass/base/variables.sass` e derivati.
+- [ ] **Light mode / toggle tema** — il tema è già **scuro** (`$background: #050505` in `_sass/base/variables.sass`); manca una palette chiara e un toggle `prefers-color-scheme`. NB: essendo scuro, ogni nuovo stile va verificato per contrasto (es. `strong`/`code` avevano colori pensati per sfondo chiaro → testo invisibile, corretto).
 - [ ] **Ottimizzazione immagini automatica** — WebP/AVIF con fallback, `srcset` responsivo, job CI che comprime le immagini nuove sopra soglia.
 - [ ] **PWA** — manifest + service worker: sito installabile e leggibile offline.
 
@@ -54,3 +54,4 @@ Urgente dopo il backfill YouTube: 218 file in `_posts/` (172 blog + 46 progetti)
 - [x] **YouTube sync + backfill completo** — `youtube-sync.yml` ogni 3h + `scripts/backfill_youtube.rb` (intero canale, 95 post generati).
 - [x] **CI di validazione** — `checks.yml` (validator + build + html-proofer) su PR e push; validator come gate del deploy.
 - [x] **Lighthouse CI** — `lighthouse.yml` + `lighthouserc.json`: build → serve locale → Lighthouse sulle pagine strutturali, su PR e push. SEO è gate hard (`error` ≥ 0.85); performance/accessibility/best-practices partono come **warning** (da promuovere a `error` in `lighthouserc.json` dopo la prima baseline verde).
+- [x] **GitHub Projects sync** — `github-sync.yml` (giornaliero) + `scripts/sync_github.rb`: i repo pubblici di Allan-Nava e hiway-media diventano post progetto su /projects; config e blocklist in `_data/github_sync.yml` (101 progetti al primo run).

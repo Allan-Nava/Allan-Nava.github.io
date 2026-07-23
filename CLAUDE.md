@@ -70,6 +70,7 @@ ruby scripts/validate_posts.rb # validazione veloce dei post — no bundle
 - **Paginazione `/blog` attiva** (`paginate: 10`): `jekyll-paginate` v1 conta anche i progetti `hidden`, quindi le pagine vecchie mostrano <10 item (dettaglio in `docs/architecture.md`).
 - **Immagini nei post**: usare **URL relativi** per coerenza (vedi commit recenti).
 - `_includes/style.scss` è l'entry point Sass che importa tutto da `_sass/` (`base/`, `components/`, `pages/`).
+- **Tema SCURO** (`$background: #050505` in `_sass/base/variables.sass`, testo `$alpha` chiaro): attenzione ai colori pensati per sfondo chiaro — `strong` aveva `color:#000` e `code`/`pre` testo chiaro su `background:#fff` → **invisibili**. Verificare sempre il contrasto sul fondo scuro quando si toccano gli stili.
 
 ## Deployment
 
@@ -86,7 +87,7 @@ Push su `master` → GitHub Pages via `.github/workflows/jekyll.yml` (push + cro
 ## Puntatori
 
 - Documentazione: `docs/` — `getting-started.md`, `writing-content.md`, `architecture.md`, `deployment.md`, `ROADMAP.md`.
-- Script: `scripts/validate_posts.rb` (gate PR/deploy), `scripts/sync_youtube.rb`, `scripts/sync_strava.rb`, `scripts/backfill_youtube.rb` (one-shot: backfill intero canale YouTube), `scripts/migrate_youtube_embeds.rb` (one-shot: iframe→facade `<lite-youtube>`).
+- Script: `scripts/validate_posts.rb` (gate PR/deploy), `scripts/sync_youtube.rb`, `scripts/sync_strava.rb`, `scripts/sync_github.rb` (repo GitHub → post progetto, config in `_data/github_sync.yml` con blocklist `exclude`), `scripts/backfill_youtube.rb` (one-shot: backfill intero canale YouTube), `scripts/migrate_youtube_embeds.rb` (one-shot: iframe→facade `<lite-youtube>`).
 - Plugin build-time: `_plugins/lazy_images.rb` (lazy loading immagini). Facade video: `_includes/youtube-facade.html`.
-- Workflow CI: `.github/workflows/` — `jekyll.yml` (deploy), `checks.yml` (validazione PR), `lighthouse.yml` (budget Lighthouse su PR/push, config in `lighthouserc.json`), `youtube-sync.yml` (post automatici ogni 3h), `strava-sync.yml` (post da attività, richiede secret), `uptime.yml` (probe), `bootstrap-milestone.yml` (one-shot issue/milestone).
+- Workflow CI: `.github/workflows/` — `jekyll.yml` (deploy), `checks.yml` (validazione PR), `lighthouse.yml` (budget Lighthouse su PR/push, config in `lighthouserc.json`), `youtube-sync.yml` (post automatici ogni 3h), `strava-sync.yml` (post da attività, richiede secret), `github-sync.yml` (repo → progetti, giornaliero), `uptime.yml` (probe), `bootstrap-milestone.yml` (one-shot issue/milestone).
 - Pagine extra (toggle in `_config.yml`): `map.html` (`/map`, post con `lat`/`lng`), `fitness.html` (`/fitness`, dati in `_data/workouts.yml`), `gear.md` (`/gear`).
