@@ -5,6 +5,9 @@ date: 2026-07-23 12:48
 updated: 2026-07-23
 tag:
 - go
+- monitor
+- monitoring
+- monitoring-automation
 image: ""
 headerImage: false
 projects: true
