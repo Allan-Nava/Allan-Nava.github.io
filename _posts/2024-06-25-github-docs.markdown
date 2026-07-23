@@ -2,6 +2,7 @@
 title: "docs"
 layout: post
 date: 2024-06-25 15:27
+updated: 2024-06-25
 tag:
 - mdx
 image: ""
@@ -21,5 +22,6 @@ Compress documentation
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: MDX
+- **Ultimo push**: 2024-06-25
 
 [Repo su GitHub →](https://github.com/HiWay-Media/docs)

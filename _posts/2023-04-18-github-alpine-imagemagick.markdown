@@ -2,6 +2,7 @@
 title: "Alpine-Imagemagick"
 layout: post
 date: 2023-04-18 12:43
+updated: 2023-04-18
 tag:
 - dockerfile
 - alpine
@@ -24,5 +25,6 @@ Docker Alpine ImageMagick
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Dockerfile
+- **Ultimo push**: 2023-04-18
 
 [Repo su GitHub →](https://github.com/HiWay-Media/Alpine-Imagemagick)

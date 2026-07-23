@@ -2,6 +2,7 @@
 title: "go-bytebase"
 layout: post
 date: 2023-08-23 14:33
+updated: 2026-07-17
 tag:
 - go
 image: ""
@@ -21,5 +22,6 @@ ByteBase go sdk
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
+- **Ultimo push**: 2026-07-17
 
 [Repo su GitHub →](https://github.com/Allan-Nava/go-bytebase)

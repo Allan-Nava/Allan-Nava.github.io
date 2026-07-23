@@ -2,6 +2,7 @@
 title: "nomad-go-sdk"
 layout: post
 date: 2023-11-17 19:35
+updated: 2023-12-15
 tag:
 - go
 image: ""
@@ -21,5 +22,6 @@ The Nomad Go SDK is a powerful toolkit designed to streamline the interaction wi
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
+- **Ultimo push**: 2023-12-15
 
 [Repo su GitHub →](https://github.com/Allan-Nava/nomad-go-sdk)

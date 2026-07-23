@@ -2,6 +2,7 @@
 title: "SOLID-Principles"
 layout: post
 date: 2020-10-31 11:19
+updated: 2026-06-20
 tag:
 - java
 image: ""
@@ -21,5 +22,6 @@ Explanation from https://www-freecodecamp-org.cdn.ampproject.org/c/s/www.freecod
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Java
+- **Ultimo push**: 2026-06-20
 
 [Repo su GitHub →](https://github.com/Allan-Nava/SOLID-Principles)

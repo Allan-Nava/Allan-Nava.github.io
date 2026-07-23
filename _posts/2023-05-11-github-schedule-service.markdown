@@ -2,6 +2,7 @@
 title: "schedule-service"
 layout: post
 date: 2023-05-11 17:35
+updated: 2023-07-14
 tag:
 - typescript
 image: ""
@@ -21,5 +22,6 @@ Service for automatic schedule creation for fastchannel engine
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: TypeScript
+- **Ultimo push**: 2023-07-14
 
 [Repo su GitHub →](https://github.com/HiWay-Media/schedule-service)

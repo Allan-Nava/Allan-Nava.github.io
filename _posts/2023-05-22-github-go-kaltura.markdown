@@ -2,6 +2,7 @@
 title: "go-kaltura"
 layout: post
 date: 2023-05-22 13:09
+updated: 2026-07-18
 tag:
 - go
 - go-kaltura
@@ -24,5 +25,6 @@ A powerful golang sdk library for interacting with the Kaltura easily
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
+- **Ultimo push**: 2026-07-18
 
 [Repo su GitHub →](https://github.com/Allan-Nava/go-kaltura)

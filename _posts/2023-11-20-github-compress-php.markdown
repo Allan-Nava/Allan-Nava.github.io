@@ -2,6 +2,7 @@
 title: "compress-php"
 layout: post
 date: 2023-11-20 08:52
+updated: 2024-06-04
 tag:
 - php
 image: ""
@@ -21,5 +22,6 @@ The Compress PHP library provides access to the Compress API for encoding videos
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: PHP
+- **Ultimo push**: 2024-06-04
 
 [Repo su GitHub →](https://github.com/HiWay-Media/compress-php)

@@ -2,6 +2,7 @@
 title: "StreamHub-go-sdk"
 layout: post
 date: 2023-07-27 07:46
+updated: 2023-11-28
 tag:
 - go
 - gateway
@@ -24,5 +25,6 @@ StreamHub Go SDK is a powerful library developed by HiWay Media that enables sea
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Go
+- **Ultimo push**: 2023-11-28
 
 [Repo su GitHub →](https://github.com/HiWay-Media/StreamHub-go-sdk)

@@ -2,6 +2,7 @@
 title: "GO-gRPC"
 layout: post
 date: 2023-02-10 14:53
+updated: 2026-07-18
 tag:
 - go
 image: ""
@@ -22,5 +23,6 @@ go gRPC example project
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
 - **Stars**: 1
+- **Ultimo push**: 2026-07-18
 
 [Repo su GitHub →](https://github.com/Allan-Nava/GO-gRPC)

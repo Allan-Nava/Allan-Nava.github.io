@@ -2,6 +2,7 @@
 title: "traefik-go-sdk"
 layout: post
 date: 2023-11-13 10:33
+updated: 2026-07-18
 tag:
 - go
 - go
@@ -24,5 +25,6 @@ The Traefik Go SDK provides a convenient way to interact with Traefik, a modern 
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
+- **Ultimo push**: 2026-07-18
 
 [Repo su GitHub →](https://github.com/Allan-Nava/traefik-go-sdk)

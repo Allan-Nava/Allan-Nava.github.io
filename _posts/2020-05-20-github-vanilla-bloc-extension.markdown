@@ -2,6 +2,7 @@
 title: "Vanilla-BLoC-Extension"
 layout: post
 date: 2020-05-20 12:27
+updated: 2026-07-23
 tag:
 - typescript
 - dart
@@ -25,5 +26,6 @@ Support for the BLoC command allows you to create a Vanilla BLoC and the Events/
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: TypeScript
 - **Stars**: 5
+- **Ultimo push**: 2026-07-23
 
 [Repo su GitHub →](https://github.com/Allan-Nava/Vanilla-BLoC-Extension)

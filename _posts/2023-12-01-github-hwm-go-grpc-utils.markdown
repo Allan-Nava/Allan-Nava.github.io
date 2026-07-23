@@ -2,6 +2,7 @@
 title: "hwm-go-grpc-utils"
 layout: post
 date: 2023-12-01 13:59
+updated: 2024-02-26
 tag:
 - go
 image: ""
@@ -21,5 +22,6 @@ HiWay Media Go gRPC lang utils
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Go
+- **Ultimo push**: 2024-02-26
 
 [Repo su GitHub →](https://github.com/HiWay-Media/hwm-go-grpc-utils)

@@ -2,6 +2,7 @@
 title: "docker-ansible"
 layout: post
 date: 2023-06-23 12:28
+updated: 2023-08-30
 tag:
 - dockerfile
 - ansible
@@ -25,5 +26,6 @@ This repository provides a Docker image with Ansible preinstalled, allowing you 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Dockerfile
 - **Stars**: 1
+- **Ultimo push**: 2023-08-30
 
 [Repo su GitHub →](https://github.com/HiWay-Media/docker-ansible)

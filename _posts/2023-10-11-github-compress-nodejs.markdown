@@ -2,6 +2,7 @@
 title: "compress-nodejs"
 layout: post
 date: 2023-10-11 15:39
+updated: 2024-12-15
 tag:
 - typescript
 image: ""
@@ -22,5 +23,6 @@ The Compress NodeJS library provides access to the Compress API for encoding vid
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: TypeScript
 - **Stars**: 1
+- **Ultimo push**: 2024-12-15
 
 [Repo su GitHub →](https://github.com/HiWay-Media/compress-nodejs)

@@ -2,6 +2,7 @@
 title: "hm-react-utils"
 layout: post
 date: 2022-11-04 13:23
+updated: 2026-07-16
 tag:
 - typescript
 - javascript
@@ -24,5 +25,6 @@ HM React utils functions
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: TypeScript
+- **Ultimo push**: 2026-07-16
 
 [Repo su GitHub →](https://github.com/Allan-Nava/hm-react-utils)

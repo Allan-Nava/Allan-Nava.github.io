@@ -2,6 +2,7 @@
 title: "Docker-FFmpeg-SRT"
 layout: post
 date: 2024-04-16 15:15
+updated: 2024-05-03
 tag:
 - shell
 image: ""
@@ -21,5 +22,6 @@ Docker image with FFmpeg and SRT
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Shell
+- **Ultimo push**: 2024-05-03
 
 [Repo su GitHub →](https://github.com/HiWay-Media/Docker-FFmpeg-SRT)

@@ -2,6 +2,7 @@
 title: "task-list"
 layout: post
 date: 2020-12-30 19:17
+updated: 2026-07-16
 tag:
 - go
 image: ""
@@ -22,5 +23,6 @@ Simple task list in Go Lang
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
 - **Stars**: 1
+- **Ultimo push**: 2026-07-16
 
 [Repo su GitHub →](https://github.com/Allan-Nava/task-list)

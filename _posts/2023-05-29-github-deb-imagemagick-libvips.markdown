@@ -2,6 +2,7 @@
 title: "Deb-ImageMagick-LibVips"
 layout: post
 date: 2023-05-29 09:57
+updated: 2023-05-30
 tag:
 - dockerfile
 image: ""
@@ -21,5 +22,6 @@ Docker debian imagemagick and libvips
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Dockerfile
+- **Ultimo push**: 2023-05-30
 
 [Repo su GitHub →](https://github.com/HiWay-Media/Deb-ImageMagick-LibVips)

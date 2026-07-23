@@ -2,6 +2,7 @@
 title: "apple-identity-provider-keycloak"
 layout: post
 date: 2024-01-03 09:54
+updated: 2026-07-10
 tag:
 - dockerfile
 image: ""
@@ -21,5 +22,6 @@ An extension for Keycloak, that enables web-based sign in with Apple and token e
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Dockerfile
+- **Ultimo push**: 2026-07-10
 
 [Repo su GitHub →](https://github.com/Allan-Nava/apple-identity-provider-keycloak)

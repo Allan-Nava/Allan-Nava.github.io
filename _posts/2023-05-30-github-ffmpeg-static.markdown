@@ -2,6 +2,7 @@
 title: "ffmpeg-static"
 layout: post
 date: 2023-05-30 12:44
+updated: 2023-06-23
 tag:
 - shell
 - ffmpeg
@@ -24,5 +25,6 @@ FFmpeg & FFprobe static
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Shell
+- **Ultimo push**: 2023-06-23
 
 [Repo su GitHub →](https://github.com/HiWay-Media/ffmpeg-static)

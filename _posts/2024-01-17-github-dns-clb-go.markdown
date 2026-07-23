@@ -2,6 +2,7 @@
 title: "dns-clb-go"
 layout: post
 date: 2024-01-17 08:35
+updated: 2024-04-19
 tag:
 - go
 image: ""
@@ -21,5 +22,6 @@ Client-Side Load-Balancer for DNS based Service Discovery written in Golang
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Go
+- **Ultimo push**: 2024-04-19
 
 [Repo su GitHub →](https://github.com/HiWay-Media/dns-clb-go)

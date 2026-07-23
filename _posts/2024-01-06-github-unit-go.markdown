@@ -2,6 +2,7 @@
 title: "unit-go"
 layout: post
 date: 2024-01-06 14:31
+updated: 2026-06-20
 tag:
 - shell
 image: ""
@@ -21,5 +22,6 @@ NGINX Unit - universal web app server - a lightweight and versatile open source 
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Shell
+- **Ultimo push**: 2026-06-20
 
 [Repo su GitHub →](https://github.com/Allan-Nava/unit-go)

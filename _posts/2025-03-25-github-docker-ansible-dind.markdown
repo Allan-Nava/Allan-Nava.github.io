@@ -2,6 +2,7 @@
 title: "docker-ansible-dind"
 layout: post
 date: 2025-03-25 16:12
+updated: 2026-06-20
 tag:
 - dockerfile
 image: ""
@@ -21,5 +22,6 @@ Docker in docker with ansible
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Dockerfile
+- **Ultimo push**: 2026-06-20
 
 [Repo su GitHub →](https://github.com/Allan-Nava/docker-ansible-dind)

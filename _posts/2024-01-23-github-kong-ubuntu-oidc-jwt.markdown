@@ -2,6 +2,7 @@
 title: "kong-ubuntu-oidc-jwt"
 layout: post
 date: 2024-01-23 14:46
+updated: 2024-03-11
 tag:
 - roff
 image: ""
@@ -21,5 +22,6 @@ github: HiWay-Media/kong-ubuntu-oidc-jwt
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Roff
+- **Ultimo push**: 2024-03-11
 
 [Repo su GitHub →](https://github.com/HiWay-Media/kong-ubuntu-oidc-jwt)

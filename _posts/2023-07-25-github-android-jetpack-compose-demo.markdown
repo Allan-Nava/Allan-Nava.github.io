@@ -2,6 +2,7 @@
 title: "android-jetpack-compose-demo"
 layout: post
 date: 2023-07-25 13:11
+updated: 2026-06-20
 tag:
 - kotlin
 - jetpack
@@ -24,5 +25,6 @@ This repository contains a demo application showcasing the power and versatility
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Kotlin
+- **Ultimo push**: 2026-06-20
 
 [Repo su GitHub →](https://github.com/Allan-Nava/android-jetpack-compose-demo)

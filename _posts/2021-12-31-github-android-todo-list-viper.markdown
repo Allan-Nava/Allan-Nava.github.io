@@ -2,6 +2,7 @@
 title: "Android-TODO-LIST-VIPER"
 layout: post
 date: 2021-12-31 08:10
+updated: 2023-12-15
 tag:
 - kotlin
 - android
@@ -25,5 +26,6 @@ Simple TODO List application with VIPER Pattern
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Kotlin
 - **Stars**: 1
+- **Ultimo push**: 2023-12-15
 
 [Repo su GitHub →](https://github.com/Allan-Nava/Android-TODO-LIST-VIPER)

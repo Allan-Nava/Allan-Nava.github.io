@@ -2,6 +2,7 @@
 title: "docker-fast"
 layout: post
 date: 2023-05-12 11:03
+updated: 2023-05-19
 tag:
 - typescript
 image: ""
@@ -22,5 +23,6 @@ Fast Channel Engine is a sustainable Fast Channel Engine base on VOD2Live techno
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: TypeScript
 - **Stars**: 1
+- **Ultimo push**: 2023-05-19
 
 [Repo su GitHub →](https://github.com/HiWay-Media/docker-fast)

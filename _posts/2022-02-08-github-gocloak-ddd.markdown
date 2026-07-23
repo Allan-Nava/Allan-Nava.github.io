@@ -2,6 +2,7 @@
 title: "gocloak-ddd"
 layout: post
 date: 2022-02-08 15:03
+updated: 2026-07-23
 tag:
 - go
 image: ""
@@ -22,5 +23,6 @@ GOCloak gateway Simple api domain drived design / service repository pattern
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
 - **Stars**: 3
+- **Ultimo push**: 2026-07-23
 
 [Repo su GitHub →](https://github.com/Allan-Nava/gocloak-ddd)

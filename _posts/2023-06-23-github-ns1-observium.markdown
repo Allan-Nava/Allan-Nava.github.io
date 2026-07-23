@@ -2,6 +2,7 @@
 title: "ns1-observium"
 layout: post
 date: 2023-06-23 08:32
+updated: 2023-07-05
 tag:
 - python
 - observium
@@ -24,5 +25,6 @@ A python library for interacting with the Observium API: http://docs.observium.o
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Python
+- **Ultimo push**: 2023-07-05
 
 [Repo su GitHub →](https://github.com/HiWay-Media/ns1-observium)

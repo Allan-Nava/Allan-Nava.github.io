@@ -2,6 +2,7 @@
 title: "mediamtx-go-sdk"
 layout: post
 date: 2023-10-03 08:11
+updated: 2023-12-11
 tag:
 - go
 image: ""
@@ -22,5 +23,6 @@ MediaMTX go sdk rest api
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Go
 - **Stars**: 2
+- **Ultimo push**: 2023-12-11
 
 [Repo su GitHub →](https://github.com/HiWay-Media/mediamtx-go-sdk)

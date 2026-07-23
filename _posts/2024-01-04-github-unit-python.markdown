@@ -2,6 +2,7 @@
 title: "unit-python"
 layout: post
 date: 2024-01-04 21:58
+updated: 2026-06-20
 tag:
 - roff
 image: ""
@@ -21,5 +22,6 @@ NGINX Unit - universal web app server - a lightweight and versatile open source 
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Roff
+- **Ultimo push**: 2026-06-20
 
 [Repo su GitHub →](https://github.com/Allan-Nava/unit-python)

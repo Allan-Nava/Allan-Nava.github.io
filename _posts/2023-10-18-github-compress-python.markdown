@@ -2,6 +2,7 @@
 title: "compress-python"
 layout: post
 date: 2023-10-18 14:07
+updated: 2024-06-26
 tag:
 - python
 image: ""
@@ -21,5 +22,6 @@ The Compress python library provides access to the Compress API for encoding vid
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Python
+- **Ultimo push**: 2024-06-26
 
 [Repo su GitHub →](https://github.com/HiWay-Media/compress-python)

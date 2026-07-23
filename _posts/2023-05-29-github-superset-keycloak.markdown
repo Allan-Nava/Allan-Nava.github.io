@@ -2,6 +2,7 @@
 title: "Superset-Keycloak"
 layout: post
 date: 2023-05-29 08:11
+updated: 2024-03-08
 tag:
 - python
 - docker
@@ -25,5 +26,6 @@ Apache Superset is a modern data exploration and visualization platform with key
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Python
 - **Stars**: 6
+- **Ultimo push**: 2024-03-08
 
 [Repo su GitHub →](https://github.com/HiWay-Media/Superset-Keycloak)

@@ -2,6 +2,7 @@
 title: "go-wire-fuego-scafffold"
 layout: post
 date: 2024-08-05 07:49
+updated: 2026-07-17
 tag:
 - go
 image: ""
@@ -22,5 +23,6 @@ Generate scaffold wire with fuego webserver project layout for Go.
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
 - **Stars**: 1
+- **Ultimo push**: 2026-07-17
 
 [Repo su GitHub →](https://github.com/Allan-Nava/go-wire-fuego-scafffold)

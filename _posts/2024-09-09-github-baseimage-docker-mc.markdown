@@ -2,6 +2,7 @@
 title: "baseimage-docker-mc"
 layout: post
 date: 2024-09-09 13:01
+updated: 2026-06-20
 tag:
 - dockerfile
 image: ""
@@ -21,5 +22,6 @@ About A minimal Ubuntu base image modified for Docker-friendliness with minio mc
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Dockerfile
+- **Ultimo push**: 2026-06-20
 
 [Repo su GitHub →](https://github.com/Allan-Nava/baseimage-docker-mc)

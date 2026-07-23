@@ -2,6 +2,7 @@
 title: "SoundWave-Go"
 layout: post
 date: 2023-05-02 08:17
+updated: 2023-05-05
 tag:
 - go
 - audio
@@ -24,5 +25,6 @@ SoundWave-go is a tool
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Go
+- **Ultimo push**: 2023-05-05
 
 [Repo su GitHub →](https://github.com/HiWay-Media/SoundWave-Go)

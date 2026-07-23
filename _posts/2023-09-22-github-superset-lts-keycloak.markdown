@@ -2,6 +2,7 @@
 title: "Superset-LTS-Keycloak"
 layout: post
 date: 2023-09-22 13:39
+updated: 2024-03-08
 tag:
 - python
 - keycloak
@@ -24,5 +25,6 @@ Apache Superset LTS is a modern data exploration and visualization platform with
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Python
+- **Ultimo push**: 2024-03-08
 
 [Repo su GitHub →](https://github.com/HiWay-Media/Superset-LTS-Keycloak)

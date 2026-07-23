@@ -2,6 +2,7 @@
 title: "AWS_SMS_LIBRARY"
 layout: post
 date: 2020-01-17 15:52
+updated: 2023-12-15
 tag:
 - python
 - aws
@@ -24,5 +25,6 @@ Simple aws sms library for python3
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Python
+- **Ultimo push**: 2023-12-15
 
 [Repo su GitHub →](https://github.com/Allan-Nava/AWS_SMS_LIBRARY)

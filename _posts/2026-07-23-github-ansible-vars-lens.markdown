@@ -2,6 +2,7 @@
 title: "ansible-vars-lens"
 layout: post
 date: 2026-07-23 08:55
+updated: 2026-07-23
 tag:
 - typescript
 image: ""
@@ -21,5 +22,6 @@ See the effective value of every Ansible variable, per host.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: TypeScript
+- **Ultimo push**: 2026-07-23
 
 [Repo su GitHub →](https://github.com/Allan-Nava/ansible-vars-lens)

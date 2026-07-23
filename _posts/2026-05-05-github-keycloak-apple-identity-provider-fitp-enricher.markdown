@@ -2,6 +2,7 @@
 title: "keycloak-apple-identity-provider-fitp-enricher"
 layout: post
 date: 2026-05-05 09:40
+updated: 2026-07-03
 tag:
 - shell
 image: ""
@@ -21,5 +22,6 @@ About Docker for Keycloak, that enables web-based sign in with Apple & FITP Enri
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Shell
+- **Ultimo push**: 2026-07-03
 
 [Repo su GitHub →](https://github.com/HiWay-Media/keycloak-apple-identity-provider-fitp-enricher)

@@ -2,6 +2,7 @@
 title: "FullStack-Recruitment-Test"
 layout: post
 date: 2022-05-29 08:27
+updated: 2023-12-01
 tag:
 - github
 image: ""
@@ -21,5 +22,6 @@ FullStack Recruitment test (frontend & backend)
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Stars**: 3
+- **Ultimo push**: 2023-12-01
 
 [Repo su GitHub →](https://github.com/Allan-Nava/FullStack-Recruitment-Test)

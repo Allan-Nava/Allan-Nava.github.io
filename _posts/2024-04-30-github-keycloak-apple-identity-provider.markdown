@@ -2,6 +2,7 @@
 title: "keycloak-apple-identity-provider"
 layout: post
 date: 2024-04-30 13:58
+updated: 2025-02-06
 tag:
 - roff
 image: ""
@@ -21,5 +22,6 @@ Docker for Keycloak, that enables web-based sign in with Apple and token exchang
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Roff
+- **Ultimo push**: 2025-02-06
 
 [Repo su GitHub →](https://github.com/HiWay-Media/keycloak-apple-identity-provider)

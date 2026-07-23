@@ -2,6 +2,7 @@
 title: "compress-go"
 layout: post
 date: 2023-10-16 14:16
+updated: 2025-04-16
 tag:
 - go
 image: ""
@@ -21,5 +22,6 @@ The Compress Go lang library provides access to the Compress API for encoding vi
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Go
+- **Ultimo push**: 2025-04-16
 
 [Repo su GitHub →](https://github.com/HiWay-Media/compress-go)

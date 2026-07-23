@@ -2,6 +2,7 @@
 title: "ai-guidelines"
 layout: post
 date: 2026-07-08 09:41
+updated: 2026-07-09
 tag:
 - github
 image: ""
@@ -20,5 +21,6 @@ github: Allan-Nava/ai-guidelines
 Reference repository for operational, technical, and organizational guidelines to manage software projects and DevOps platforms.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
+- **Ultimo push**: 2026-07-09
 
 [Repo su GitHub →](https://github.com/Allan-Nava/ai-guidelines)

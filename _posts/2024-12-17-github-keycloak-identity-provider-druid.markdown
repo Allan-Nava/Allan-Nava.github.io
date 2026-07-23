@@ -2,6 +2,7 @@
 title: "keycloak-identity-provider-druid"
 layout: post
 date: 2024-12-17 16:52
+updated: 2026-05-04
 tag:
 - java
 image: ""
@@ -21,5 +22,6 @@ Dru-ID Social Identity Provider This project is a Druid Social Identity Provider
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Java
+- **Ultimo push**: 2026-05-04
 
 [Repo su GitHub →](https://github.com/HiWay-Media/keycloak-identity-provider-druid)

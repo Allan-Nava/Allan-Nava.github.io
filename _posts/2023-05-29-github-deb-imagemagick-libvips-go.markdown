@@ -2,6 +2,7 @@
 title: "Deb-ImageMagick-LibVips-Go"
 layout: post
 date: 2023-05-29 10:17
+updated: 2024-02-13
 tag:
 - dockerfile
 image: ""
@@ -21,5 +22,6 @@ Docker debian, imagemagick, libvips and golang
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Dockerfile
+- **Ultimo push**: 2024-02-13
 
 [Repo su GitHub →](https://github.com/HiWay-Media/Deb-ImageMagick-LibVips-Go)

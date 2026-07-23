@@ -2,6 +2,7 @@
 title: "HB-Nvenc-Imagemagick"
 layout: post
 date: 2023-04-18 13:24
+updated: 2023-04-19
 tag:
 - dockerfile
 image: ""
@@ -21,5 +22,6 @@ Docker Handbrake1.6 Nvenc ImageMagick
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Dockerfile
+- **Ultimo push**: 2023-04-19
 
 [Repo su GitHub →](https://github.com/HiWay-Media/HB-Nvenc-Imagemagick)

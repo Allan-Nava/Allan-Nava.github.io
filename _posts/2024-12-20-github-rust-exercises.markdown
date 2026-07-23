@@ -2,6 +2,7 @@
 title: "rust-exercises"
 layout: post
 date: 2024-12-20 09:19
+updated: 2026-07-04
 tag:
 - rust
 image: ""
@@ -21,5 +22,6 @@ github: Allan-Nava/rust-exercises
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Rust
+- **Ultimo push**: 2026-07-04
 
 [Repo su GitHub →](https://github.com/Allan-Nava/rust-exercises)

@@ -2,6 +2,7 @@
 title: "nats-cluster-example"
 layout: post
 date: 2024-03-07 09:07
+updated: 2024-05-08
 tag:
 - github
 image: ""
@@ -20,5 +21,6 @@ github: HiWay-Media/nats-cluster-example
 NATS examples
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
+- **Ultimo push**: 2024-05-08
 
 [Repo su GitHub →](https://github.com/HiWay-Media/nats-cluster-example)
