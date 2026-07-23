@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-FullStack Web Developer and passionate about videogames, snowboarding, workout and coding.
+DevOPS Engineer and passionate about videogames, snowboarding, workout and coding.
 
 Always looking for new challenges.
 
@@ -16,6 +16,7 @@ Study Interests
 - Kotlin
 - Docker.
 - Devops.
+- Ansible & Terraform
 - Flutter and Dart.
 - Swift 
 - Java
