@@ -72,6 +72,16 @@ blockquote
   &:last-child
     border-bottom: none
 
+// Breathing room inside the row so text isn't jammed against the accent bar /
+// box edge. Padding is permanent (on the link) → no layout shift on hover.
+.home > .list > .item > .url,
+.blog > .list > .item > .url,
+.projects > .list > .item > .url,
+.tag-list > .list > .item > .url
+  box-sizing: border-box
+  padding-left: 18px
+  padding-right: 18px
+
 .home > .list > .item:hover,
 .blog > .list > .item:hover,
 .projects > .list > .item:hover,
