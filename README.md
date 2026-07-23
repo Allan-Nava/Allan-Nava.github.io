@@ -1,5 +1,8 @@
 # Allan-Nava.github.io
 
+[![Deploy](https://github.com/Allan-Nava/Allan-Nava.github.io/actions/workflows/jekyll.yml/badge.svg)](https://github.com/Allan-Nava/Allan-Nava.github.io/actions/workflows/jekyll.yml)
+[![Checks](https://github.com/Allan-Nava/Allan-Nava.github.io/actions/workflows/checks.yml/badge.svg)](https://github.com/Allan-Nava/Allan-Nava.github.io/actions/workflows/checks.yml)
+[![Uptime](https://github.com/Allan-Nava/Allan-Nava.github.io/actions/workflows/uptime.yml/badge.svg)](https://github.com/Allan-Nava/Allan-Nava.github.io/actions/workflows/uptime.yml)
 [![Discord Chat](https://img.shields.io/badge/Discord-Chat-important)](https://discord.gg/nMTKrRZ)
 
 My portfolio and blog — live at [allan-nava.github.io](https://allan-nava.github.io). Built with [Jekyll](https://jekyllrb.com/) on the [Indigo theme](https://github.com/sergiokopplin/indigo), deployed to GitHub Pages via GitHub Actions.

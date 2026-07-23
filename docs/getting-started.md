@@ -2,7 +2,8 @@
 
 ## Prerequisites
 
-- **Ruby** — CI builds with Ruby 3.0 (`.github/workflows/jekyll.yml`); any 3.x works locally.
+- **Ruby** — CI builds with Ruby 3.0 (`.github/workflows/jekyll.yml`); any 3.x works locally. To match CI exactly with a version manager: `brew install rbenv ruby-build && rbenv install 3.0.7` (Ruby 3.0 is EOL, so it compiles from source).
+- **UTF-8 locale** — the Sass pipeline reads accented characters, so a non-UTF-8 shell fails the build with `Invalid US-ASCII character`. Export `LANG=en_US.UTF-8` (and `LC_ALL=en_US.UTF-8`) before building; CI runners already do.
 - **Bundler** — `gem install bundler`.
 - **Git LFS** — `.MOV` video files in `assets/video/` are stored with [Git LFS](https://git-lfs.com/) (see `.gitattributes`). Install it and run `git lfs install` before cloning, otherwise videos come down as pointer files.
 

@@ -16,12 +16,12 @@ externalLink: true
 ---
 ## TonyPitony Rugby Sound Festival
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/yVGrzLOmcIU" title="Donne ricche - TonyPitony" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="yVGrzLOmcIU" data-short playlabel="Donne ricche - TonyPitony"></lite-youtube>
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/9PDb_gQJTVA" title="Culo - TonyPitony" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="9PDb_gQJTVA" data-short playlabel="Culo - TonyPitony"></lite-youtube>
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/40BKx4_n36g" title="TonyPitony rugby sound festival" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="40BKx4_n36g" data-short playlabel="TonyPitony rugby sound festival"></lite-youtube>
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/XKMCsOBit2I" title="TonyPitony 🎶🎹🪊" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="XKMCsOBit2I" data-short playlabel="TonyPitony 🎶🎹🪊"></lite-youtube>
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/nuGwkm-Encs" title="Polietilene - TonyPitony" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="nuGwkm-Encs" data-short playlabel="Polietilene - TonyPitony"></lite-youtube>

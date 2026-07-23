@@ -14,4 +14,4 @@ author: allan
 
 ## Esino Lario 🥾
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/UgPxLwtKAs4" title="Esino Lario 🥾" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="UgPxLwtKAs4" data-short playlabel="Esino Lario 🥾"></lite-youtube>

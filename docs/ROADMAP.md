@@ -2,16 +2,16 @@
 
 Il backlog del sito, organizzato in milestone versionate: la versione è assegnata per priorità/dipendenze (v2.0 prima, v3.0 dopo). Ogni voce diventa una issue GitHub nella milestone corrispondente: le crea `bootstrap-milestone.yml` (Actions → "Bootstrap milestone" → Run workflow, idempotente — rilanciarlo dopo aver aggiunto voci qui e nel workflow crea solo le nuove).
 
-## v2.0 — Performance & Navigazione
+## v2.0 — Performance & Navigazione ✅ (quasi completa)
 
-Urgente dopo il backfill YouTube: 218 file in `_posts/` (172 blog + 46 progetti), quasi tutti con iframe.
+Urgente dopo il backfill YouTube: 218 file in `_posts/` (172 blog + 46 progetti). Implementata e validata con `rake test` su Ruby 3.0.7.
 
-- [ ] **Paginazione di `/blog`** — oggi la pagina carica ~170 post insieme. Riabilitare `paginate: 10` + `paginate_path: "blog/:num/"` in `_config.yml` (il template supporta già il paginatore). Attenzione: `jekyll-paginate` conta anche i post `hidden` — verificare con la CI.
-- [ ] **Facade per gli embed YouTube (lite-youtube)** — ogni iframe carica ~1 MB di JS a pagina aperta; con la facade si carica solo la thumbnail e il player parte al click. Il miglior rapporto valore/sforzo del backlog.
-- [ ] **Lazy loading immagini** — `loading="lazy"` nei post e nei template.
-- [ ] **Thumbnail nei post auto-generati da YouTube** — usare la thumbnail del video come `image:` nel front matter (listing + og:image); propedeutica alla galleria video (v2.1).
-- [ ] **Badge di stato nel README** — badge dei workflow Deploy e Uptime.
-- [ ] **Disinstallare Renovate** — l'app duplica Dependabot: disinstallarla e chiudere le sue PR/issue (#25, #43).
+- [x] **Paginazione di `/blog`** — `paginate: 10` + `paginate_path: "blog/:num/"` (plugin `jekyll-paginate`), 19 pagine. Caveat noto: v1 conta anche i progetti `hidden`, quindi le pagine più vecchie (2019) mostrano <10 item — vedi `docs/architecture.md`.
+- [x] **Facade per gli embed YouTube (lite-youtube)** — `_includes/youtube-facade.html` (custom element self-contained, no CDN): thumbnail cliccabile, player `youtube-nocookie` solo al click. Generatori aggiornati + `scripts/migrate_youtube_embeds.rb` ha convertito 114 post (137 iframe).
+- [x] **Lazy loading immagini** — plugin build-time `_plugins/lazy_images.rb` (`loading="lazy"` + decoding async su tutte le img di contenuto; salta gli hero LCP `title-image`/`selfie`).
+- [x] **Thumbnail nei post auto-generati da YouTube** — `sync_youtube.rb`/`backfill_youtube.rb` impostano `image:` = `https://i.ytimg.com/vi/<id>/hqdefault.jpg` (listing + og:image).
+- [x] **Badge di stato nel README** — badge Deploy / Checks / Uptime.
+- [ ] **Disinstallare Renovate** — *manuale* (Settings → Integrations, poi chiudere le sue PR/issue #25, #43): l'app duplica Dependabot. Non automatizzabile da repo.
 
 ## v2.1 — Contenuti & Engagement
 

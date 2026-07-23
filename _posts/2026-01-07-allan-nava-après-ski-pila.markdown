@@ -18,5 +18,5 @@ externalLink: true
 ---
 ## Après ski Pila 
 
-<iframe width="674" height="1198" src="https://www.youtube.com/embed/QLryDUjf94k" title="Pila aprés ski 🏂🍹" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="QLryDUjf94k" data-short playlabel="Pila aprés ski 🏂🍹"></lite-youtube>
 

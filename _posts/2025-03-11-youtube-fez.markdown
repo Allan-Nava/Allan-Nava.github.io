@@ -14,4 +14,4 @@ author: allan
 
 ## Fez 🇲🇦
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/fr-S7FIZw0s" title="Fez 🇲🇦" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="fr-S7FIZw0s" data-short playlabel="Fez 🇲🇦"></lite-youtube>

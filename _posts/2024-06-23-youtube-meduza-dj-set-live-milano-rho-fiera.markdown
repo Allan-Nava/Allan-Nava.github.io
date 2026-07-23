@@ -14,4 +14,4 @@ author: allan
 
 ## Meduza DJ SET Live🔹Milano Rho Fiera
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/TCdzC1J8SzU" title="Meduza DJ SET Live🔹Milano Rho Fiera" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="TCdzC1J8SzU" data-short playlabel="Meduza DJ SET Live🔹Milano Rho Fiera"></lite-youtube>

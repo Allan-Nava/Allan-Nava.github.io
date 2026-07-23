@@ -14,4 +14,4 @@ author: allan
 
 ## Papà V - Mattone 💀 Secret Event
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/IRw3txiJKkA" title="Papà V - Mattone 💀 Secret Event" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="IRw3txiJKkA" data-short playlabel="Papà V - Mattone 💀 Secret Event"></lite-youtube>

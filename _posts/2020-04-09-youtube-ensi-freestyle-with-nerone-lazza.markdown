@@ -14,4 +14,4 @@ author: allan
 
 ## ENSI - Freestyle with Nerone & Lazza
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kHc9IGjSYF4" title="ENSI - Freestyle with Nerone & Lazza" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="kHc9IGjSYF4" playlabel="ENSI - Freestyle with Nerone & Lazza"></lite-youtube>

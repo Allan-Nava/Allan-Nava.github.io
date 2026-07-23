@@ -14,4 +14,4 @@ author: allan
 
 ## Cosa conta davvero - Nayt 🔹Fabrique 2025 concert live music
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/YSnhkbFGdN8" title="Cosa conta davvero - Nayt 🔹Fabrique 2025 #concert #live #music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="YSnhkbFGdN8" data-short playlabel="Cosa conta davvero - Nayt 🔹Fabrique 2025 #concert #live #music"></lite-youtube>

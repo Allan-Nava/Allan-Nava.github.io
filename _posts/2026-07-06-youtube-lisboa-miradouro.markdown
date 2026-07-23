@@ -14,4 +14,4 @@ author: allan
 
 ## Lisboa - Miradouro
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/U1JOOtDxCBg" title="Lisboa - Miradouro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="U1JOOtDxCBg" data-short playlabel="Lisboa - Miradouro"></lite-youtube>

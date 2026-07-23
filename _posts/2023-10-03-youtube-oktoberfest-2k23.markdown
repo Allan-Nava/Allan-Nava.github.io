@@ -14,4 +14,4 @@ author: allan
 
 ## Oktoberfest 2k23 🍻🥨🇩🇪
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/AEL9FdgyLLY" title="Oktoberfest 2k23 🍻🥨🇩🇪" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="AEL9FdgyLLY" data-short playlabel="Oktoberfest 2k23 🍻🥨🇩🇪"></lite-youtube>

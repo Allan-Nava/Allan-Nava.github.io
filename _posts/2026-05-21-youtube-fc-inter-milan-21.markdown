@@ -14,4 +14,4 @@ author: allan
 
 ## FC Inter Milan 🖤💙 21
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/0bxkQ8kMlTk" title="FC Inter Milan 🖤💙 21" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="0bxkQ8kMlTk" data-short playlabel="FC Inter Milan 🖤💙 21"></lite-youtube>

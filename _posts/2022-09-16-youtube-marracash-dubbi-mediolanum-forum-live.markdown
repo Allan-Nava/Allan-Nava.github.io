@@ -14,4 +14,4 @@ author: allan
 
 ## Marracash - Dubbi ( Mediolanum Forum Live )
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4H2Cgza79oU" title="Marracash - Dubbi ( Mediolanum Forum Live )" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="4H2Cgza79oU" playlabel="Marracash - Dubbi ( Mediolanum Forum Live )"></lite-youtube>

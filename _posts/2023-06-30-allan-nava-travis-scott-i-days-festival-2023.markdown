@@ -21,8 +21,7 @@ externalLink: true
 
 <div>
 
-<iframe width="420" referrerpolicy="no-referrer" height="315" src="https://youtube.com/shorts/u-msaZHuCUk?feature=share">
-</iframe>
+<lite-youtube videoid="u-msaZHuCUk" data-short></lite-youtube>
 
 </div>
 
@@ -30,7 +29,6 @@ externalLink: true
 
 <div>
 
-<iframe width="420" referrerpolicy="no-referrer" height="315" src="https://youtube.com/shorts/DqGYrcbPecg?feature=share">
-</iframe>
+<lite-youtube videoid="DqGYrcbPecg" data-short></lite-youtube>
 
 </div>

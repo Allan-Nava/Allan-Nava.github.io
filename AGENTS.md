@@ -64,10 +64,12 @@ ruby scripts/validate_posts.rb # validazione veloce dei post — no bundle
 
 ## Trappole note / regole tecniche
 
-- **Git LFS**: i `.MOV` sotto `assets/video/` sono LFS-tracked e la checkout CI **non** scarica gli oggetti LFS -> i video self-hosted arrivano al sito live come pointer file rotti. Nuovi video = **embed YouTube**, non file nel repo.
+- **Git LFS**: i `.MOV` sotto `assets/video/` sono LFS-tracked e la checkout CI **non** scarica gli oggetti LFS -> i video self-hosted arrivano al sito live come pointer file rotti. Nuovi video = **embed YouTube con la facade `<lite-youtube videoid="…">`** (non `<iframe>`, non file nel repo). Facade: `_includes/youtube-facade.html`.
+- **I `_plugins/` GIRANO**: build full `bundle exec jekyll build` in Actions (non la safe-mode di GH Pages), quindi i plugin custom in `_plugins/` vengono eseguiti (es. `lazy_images.rb`).
+- **Build locale richiede locale UTF-8**: senza `LANG=en_US.UTF-8` il Sass fallisce con `Invalid US-ASCII character`. Toolchain 3.0 via rbenv: `~/.rbenv/versions/3.0.7`.
 - **Nessun branch `main`**: si lavora su `master`. Il deploy parte da push su `master`.
 - **Ruby version**: il workflow `jekyll.yml` builda con **Ruby 3.0** / `JEKYLL_ENV=production`. Deve restare allineata a `Gemfile.lock`.
-- **Paginazione disattivata** (commentata in `_config.yml`): `/blog` elenca tutti i post.
+- **Paginazione `/blog` attiva** (`paginate: 10`): `jekyll-paginate` v1 conta anche i progetti `hidden`, quindi le pagine vecchie mostrano <10 item (dettaglio in `docs/architecture.md`).
 - **Immagini nei post**: usare **URL relativi** per coerenza (vedi commit recenti).
 - `_includes/style.scss` è l'entry point Sass che importa tutto da `_sass/` (`base/`, `components/`, `pages/`).
 
@@ -86,6 +88,7 @@ Push su `master` -> GitHub Pages via `.github/workflows/jekyll.yml` (push + cron
 ## Puntatori
 
 - Documentazione: `docs/` — `getting-started.md`, `writing-content.md`, `architecture.md`, `deployment.md`, `ROADMAP.md`.
-- Script: `scripts/validate_posts.rb` (gate PR/deploy), `scripts/sync_youtube.rb`, `scripts/sync_strava.rb`, `scripts/backfill_youtube.rb` (one-shot: backfill dell'intero canale YouTube).
+- Script: `scripts/validate_posts.rb` (gate PR/deploy), `scripts/sync_youtube.rb`, `scripts/sync_strava.rb`, `scripts/backfill_youtube.rb` (one-shot: backfill intero canale YouTube), `scripts/migrate_youtube_embeds.rb` (one-shot: iframe→facade `<lite-youtube>`).
+- Plugin build-time: `_plugins/lazy_images.rb` (lazy loading immagini). Facade video: `_includes/youtube-facade.html`.
 - Workflow CI: `.github/workflows/` — `jekyll.yml` (deploy), `checks.yml` (validazione PR), `lighthouse.yml` (budget Lighthouse su PR/push, config in `lighthouserc.json`), `youtube-sync.yml` (post automatici ogni 3h), `strava-sync.yml` (post da attività, richiede secret), `uptime.yml` (probe), `bootstrap-milestone.yml` (one-shot issue/milestone).
 - Pagine extra (toggle in `_config.yml`): `map.html` (`/map`, post con `lat`/`lng`), `fitness.html` (`/fitness`, dati in `_data/workouts.yml`), `gear.md` (`/gear`).

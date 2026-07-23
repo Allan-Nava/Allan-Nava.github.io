@@ -14,4 +14,4 @@ author: allan
 
 ## Cabo de roca 🇵🇹
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/mibIyQKna-E" title="Cabo de roca 🇵🇹" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="mibIyQKna-E" data-short playlabel="Cabo de roca 🇵🇹"></lite-youtube>

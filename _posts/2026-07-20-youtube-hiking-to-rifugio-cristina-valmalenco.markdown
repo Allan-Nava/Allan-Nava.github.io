@@ -16,4 +16,4 @@ lng: 9.924
 
 ## Hiking to Rifugio Cristina, Valmalenco 🇮🇹⛰️
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qqTGW-7asHU" title="Hiking to Rifugio Cristina, Valmalenco 🇮🇹⛰️" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="qqTGW-7asHU" playlabel="Hiking to Rifugio Cristina, Valmalenco 🇮🇹⛰️"></lite-youtube>

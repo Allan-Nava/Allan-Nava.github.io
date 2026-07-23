@@ -14,4 +14,4 @@ author: allan
 
 ## Chefchaouen 🇲🇦 travel
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/XUrS1C-WTXs" title="Chefchaouen 🇲🇦 #travel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="XUrS1C-WTXs" data-short playlabel="Chefchaouen 🇲🇦 #travel"></lite-youtube>

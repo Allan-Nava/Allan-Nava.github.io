@@ -14,4 +14,4 @@ author: allan
 
 ## Oktoberfest 2023 🍺🍻
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/-tDAVrpbA5U" title="Oktoberfest 2023 🍺🍻" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="-tDAVrpbA5U" data-short playlabel="Oktoberfest 2023 🍺🍻"></lite-youtube>

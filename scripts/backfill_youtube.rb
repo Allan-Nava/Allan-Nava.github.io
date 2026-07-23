@@ -124,7 +124,7 @@ missing.each do |id|
   filename = "#{base}.markdown"
   filename = "#{base}-#{id.downcase.gsub(/[^a-z0-9]/, '')[0, 6]}.markdown" if File.exist?(File.join(ROOT, '_posts', filename))
   path = File.join(ROOT, '_posts', filename)
-  width, height = meta[:short] ? [660, 1174] : [560, 315]
+  short_attr = meta[:short] ? ' data-short' : ''
   hour = meta[:date].hour.zero? && meta[:date].minute.zero? ? '12:00' : meta[:date].strftime('%H:%M')
 
   post = <<~POST
@@ -135,7 +135,7 @@ missing.each do |id|
     tag:
     - youtube
     - #{kind}
-    image: ""
+    image: "https://i.ytimg.com/vi/#{id}/hqdefault.jpg"
     headerImage: false
     description: "Video dal canale YouTube di Allan Nava: #{yaml_safe(meta[:title], 100)}"
     category: blog
@@ -144,7 +144,7 @@ missing.each do |id|
 
     ## #{meta[:title].delete('#')}
 
-    <iframe width="#{width}" height="#{height}" src="https://www.youtube.com/embed/#{id}" title="#{yaml_safe(meta[:title], 120)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <lite-youtube videoid="#{id}"#{short_attr} playlabel="#{yaml_safe(meta[:title], 120)}"></lite-youtube>
   POST
 
   if DRY_RUN

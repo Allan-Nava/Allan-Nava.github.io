@@ -14,4 +14,4 @@ author: allan
 
 ## Hiking to Passo degli Ometti 🇮🇹⛰️
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/G-edSSJ2ETw" title="Hiking to Passo degli Ometti 🇮🇹⛰️" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="G-edSSJ2ETw" playlabel="Hiking to Passo degli Ometti 🇮🇹⛰️"></lite-youtube>

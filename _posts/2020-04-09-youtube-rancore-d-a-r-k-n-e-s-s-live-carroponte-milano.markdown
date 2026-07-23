@@ -14,4 +14,4 @@ author: allan
 
 ## Rancore - D.A.R.K.N.E.S.S. Live 🔹 Carroponte Milano
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_pX8Mqspqbc" title="Rancore - D.A.R.K.N.E.S.S. Live 🔹 Carroponte Milano" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="_pX8Mqspqbc" playlabel="Rancore - D.A.R.K.N.E.S.S. Live 🔹 Carroponte Milano"></lite-youtube>

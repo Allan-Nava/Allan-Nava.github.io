@@ -14,4 +14,4 @@ author: allan
 
 ## Dinosaurs
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uMeomN-M8NI" title="Dinosaurs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="uMeomN-M8NI" playlabel="Dinosaurs"></lite-youtube>

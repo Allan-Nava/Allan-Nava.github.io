@@ -14,4 +14,4 @@ author: allan
 
 ## Valorant big clutch with itzuckzz and shaylala 🔫
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/w21RaP87gUU" title="Valorant big clutch with itzuckzz and shaylala 🔫" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="w21RaP87gUU" playlabel="Valorant big clutch with itzuckzz and shaylala 🔫"></lite-youtube>

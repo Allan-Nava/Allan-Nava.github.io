@@ -17,4 +17,4 @@ externalLink: true
 
 ## :video_camera: Salento - Vlog 2019
 
-<iframe width="1425" height="541" src="https://www.youtube.com/embed/aMg2fm79tVo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<lite-youtube videoid="aMg2fm79tVo"></lite-youtube>

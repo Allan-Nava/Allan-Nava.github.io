@@ -14,4 +14,4 @@ author: allan
 
 ## Christian LaPena Snowpark Pila 🏂
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cas8k91OiwY" title="Christian LaPena Snowpark Pila 🏂" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="cas8k91OiwY" playlabel="Christian LaPena Snowpark Pila 🏂"></lite-youtube>

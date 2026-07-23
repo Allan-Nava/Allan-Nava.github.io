@@ -14,4 +14,4 @@ author: allan
 
 ## Siamo noi a creare certi momenti nella vita o sono quei momenti a creare noi? sea chill
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/dPJnDkd84qM" title="Siamo noi a creare certi momenti nella vita o sono quei momenti a creare noi? #sea #chill" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="dPJnDkd84qM" data-short playlabel="Siamo noi a creare certi momenti nella vita o sono quei momenti a creare noi? #sea #chill"></lite-youtube>

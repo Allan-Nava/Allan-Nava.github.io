@@ -14,4 +14,4 @@ author: allan
 
 ## 🧗 My First Via Ferrata | Gamma 1, Lecco 🇮🇹⛰️
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/NgftlPEFHNs" title="🧗 My First Via Ferrata | Gamma 1, Lecco 🇮🇹⛰️" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="NgftlPEFHNs" data-short playlabel="🧗 My First Via Ferrata | Gamma 1, Lecco 🇮🇹⛰️"></lite-youtube>

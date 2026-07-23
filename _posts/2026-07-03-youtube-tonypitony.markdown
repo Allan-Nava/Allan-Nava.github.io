@@ -14,4 +14,4 @@ author: allan
 
 ## TonyPitony
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/F0Xe6Vk7B8Q" title="TonyPitony" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="F0Xe6Vk7B8Q" data-short playlabel="TonyPitony"></lite-youtube>

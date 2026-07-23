@@ -14,4 +14,4 @@ author: allan
 
 ## Orrido di Foresto 🏞️🦋🧗🏼‍♂️
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/bCs3z05sRp4" title="Orrido di Foresto 🏞️🦋🧗🏼‍♂️" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="bCs3z05sRp4" playlabel="Orrido di Foresto 🏞️🦋🧗🏼‍♂️"></lite-youtube>

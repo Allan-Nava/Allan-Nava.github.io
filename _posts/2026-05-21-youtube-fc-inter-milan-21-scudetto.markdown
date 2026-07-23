@@ -14,4 +14,4 @@ author: allan
 
 ## FC Inter Milan 21 scudetto 🖤💙
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/y4VbRABut-s" title="FC Inter Milan 21 scudetto 🖤💙" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="y4VbRABut-s" data-short playlabel="FC Inter Milan 21 scudetto 🖤💙"></lite-youtube>

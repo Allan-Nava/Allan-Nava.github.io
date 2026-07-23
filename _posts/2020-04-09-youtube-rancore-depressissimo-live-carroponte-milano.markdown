@@ -14,4 +14,4 @@ author: allan
 
 ## Rancore - Depressissimo Live 🔹 Carroponte Milano
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/gJpstYh8ZXY" title="Rancore - Depressissimo Live 🔹 Carroponte Milano" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="gJpstYh8ZXY" playlabel="Rancore - Depressissimo Live 🔹 Carroponte Milano"></lite-youtube>

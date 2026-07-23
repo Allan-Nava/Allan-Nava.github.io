@@ -14,4 +14,4 @@ author: allan
 
 ## Rancore - Il meglio di me feat Claver Gold Live 🔹 Carroponte Milano
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XqObRyzACVQ" title="Rancore - Il meglio di me feat Claver Gold Live 🔹 Carroponte Milano" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="XqObRyzACVQ" playlabel="Rancore - Il meglio di me feat Claver Gold Live 🔹 Carroponte Milano"></lite-youtube>

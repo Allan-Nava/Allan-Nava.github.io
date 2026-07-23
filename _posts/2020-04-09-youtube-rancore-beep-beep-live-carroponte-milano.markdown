@@ -14,4 +14,4 @@ author: allan
 
 ## Rancore - Beep Beep Live 🔹 Carroponte Milano
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5Uy_mpP1NV0" title="Rancore - Beep Beep Live 🔹 Carroponte Milano" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="5Uy_mpP1NV0" playlabel="Rancore - Beep Beep Live 🔹 Carroponte Milano"></lite-youtube>

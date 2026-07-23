@@ -14,4 +14,4 @@ author: allan
 
 ## Volubilis 🇲🇦
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/W7ZWbZy80bs" title="Volubilis 🇲🇦" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="W7ZWbZy80bs" data-short playlabel="Volubilis 🇲🇦"></lite-youtube>

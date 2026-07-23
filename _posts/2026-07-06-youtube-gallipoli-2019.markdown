@@ -14,4 +14,4 @@ author: allan
 
 ## Gallipoli 2019
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/PhzqYmizYAo" title="Gallipoli 2019" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="PhzqYmizYAo" data-short playlabel="Gallipoli 2019"></lite-youtube>

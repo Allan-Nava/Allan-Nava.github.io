@@ -14,4 +14,4 @@ author: allan
 
 ## Salmo - Perdonami 🔥 Nameless 2023
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/lcaiWXFnfTI" title="Salmo - Perdonami 🔥 Nameless 2023" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="lcaiWXFnfTI" data-short playlabel="Salmo - Perdonami 🔥 Nameless 2023"></lite-youtube>

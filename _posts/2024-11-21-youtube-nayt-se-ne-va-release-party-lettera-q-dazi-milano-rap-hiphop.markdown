@@ -14,4 +14,4 @@ author: allan
 
 ## Nayt - Se ne va 🔹 Release Party Lettera Q ~ Dazi Milano rap hiphop
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/lRHWNFRn8Aw" title="Nayt - Se ne va 🔹 Release Party Lettera Q ~ Dazi Milano #rap #hiphop" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="lRHWNFRn8Aw" data-short playlabel="Nayt - Se ne va 🔹 Release Party Lettera Q ~ Dazi Milano #rap #hiphop"></lite-youtube>

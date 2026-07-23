@@ -16,5 +16,5 @@ externalLink: true
 
 ## :video_camera: Budapest - Vlog 2019
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/lubeO-cuG6g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<lite-youtube videoid="lubeO-cuG6g"></lite-youtube>
 

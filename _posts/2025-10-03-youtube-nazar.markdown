@@ -14,4 +14,4 @@ author: allan
 
 ## Nazarè
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/quPLIhTRRy0" title="Nazarè" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="quPLIhTRRy0" data-short playlabel="Nazarè"></lite-youtube>

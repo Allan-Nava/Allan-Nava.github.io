@@ -14,4 +14,4 @@ author: allan
 
 ## Do your things and be quiet about it.  chill art
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/MomU35rllpo" title="Do your things and be quiet about it. #chill #art" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="MomU35rllpo" data-short playlabel="Do your things and be quiet about it. #chill #art"></lite-youtube>

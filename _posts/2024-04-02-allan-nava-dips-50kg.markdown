@@ -18,11 +18,5 @@ externalLink: true
 
 ## Dips 50kg 🏋🏽
 
-<iframe width="315" height="560" 
-src="https://www.youtube.com/embed/imHrCNI7CuU" 
-title="YouTube video player" frameborder="0" 
-allow="accelerometer; autoplay; clipboard-write; encrypted-media;
-gyroscope; picture-in-picture;
-web-share"
-allowfullscreen></iframe>
+<lite-youtube videoid="imHrCNI7CuU" data-short playlabel="YouTube video player"></lite-youtube>
 

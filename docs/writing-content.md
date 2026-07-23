@@ -76,12 +76,15 @@ Notes:
 ## Media
 
 - **Images**: put them in `assets/images/` and reference them with a root-relative path (`/assets/images/foo.jpg`). Don't hotlink repo files through `github.com/...?raw=true` — it adds a redirect on every load and breaks local previews. Resize photos to ~1600px width before committing; multi-MB camera originals slow the site down for nothing.
-- **Video**: do **not** commit video files. Existing `.MOV` files in `assets/video/` go through Git LFS, and since CI doesn't fetch LFS objects they reach the live site as broken pointer files (see [Deployment & CI](deployment.md)). Upload videos to YouTube and embed the player:
+- **Video**: do **not** commit video files. Existing `.MOV` files in `assets/video/` go through Git LFS, and since CI doesn't fetch LFS objects they reach the live site as broken pointer files (see [Deployment & CI](deployment.md)). Upload videos to YouTube and embed them with the **facade** element (not a raw `<iframe>`):
 
 ```html
-<iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID"
-        title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+<lite-youtube videoid="VIDEO_ID" playlabel="Optional title"></lite-youtube>
+<!-- portrait Shorts: add data-short -->
+<lite-youtube videoid="VIDEO_ID" data-short></lite-youtube>
 ```
+
+`_includes/youtube-facade.html` renders a clickable thumbnail and only loads the real (cookie-less) player on click — a big performance win, since most posts embed video. Plain `<iframe>` embeds still work, but prefer `<lite-youtube>`; the YouTube sync scripts emit it automatically, and `scripts/migrate_youtube_embeds.rb` converted all existing posts. For auto-generated posts the YouTube thumbnail is also set as `image:` (og:image / listing preview).
 
 - **Side-by-side layout** (image next to text), used by several project posts:
 
@@ -102,4 +105,4 @@ Notes:
 
 Commit the new file to `master` and push — the GitHub Actions workflow builds and deploys automatically (see [Deployment & CI](deployment.md)). Posts dated in the future are not published until the date passes and the site rebuilds (the daily scheduled workflow takes care of that).
 
-New YouTube videos don't need a hand-written post at all: the `youtube-sync.yml` workflow creates one automatically within ~3 hours of publishing (tags `youtube` + `video`/`short`). If you prefer to write the post yourself, just embed the video — the sync skips any video whose ID already appears in `_posts/`.
+New YouTube videos don't need a hand-written post at all: the `youtube-sync.yml` workflow creates one automatically within ~3 hours of publishing (tags `youtube` + `video`/`short`). If you prefer to write the post yourself, just embed the video with `<lite-youtube videoid="…">` — the sync skips any video whose ID already appears in `_posts/`.

@@ -39,9 +39,12 @@ authors:
 # options: [normal, large] | default: normal
 # normal = 560px / large = 810px
 width: normal
-# if you don't need pagination, comment the *paginate* configs below
-# paginate: 5
-# paginate_path: "blog/:num/"
+# if you don't need pagination, comment the *paginate* configs below.
+# NB: jekyll-paginate (v1) counts every post in _posts, including projects
+# (hidden: true); blog/index.html filters those out, so the oldest pages
+# (2019-era projects) render fewer than `paginate` items. Recent pages are full.
+paginate: 10
+paginate_path: "blog/:num/"
 # if you don't need projects, comment the *projects* configs below
 projects: true
 # if you don't need "about" or "blog", comment them out below
@@ -71,6 +74,7 @@ plugins:
   - jekyll-gist
   - jemoji
   - jekyll-sitemap
+  - jekyll-paginate
 #
 # Keep internal docs and repo housekeeping files out of the published site.
 # Note: in Jekyll 3 setting `exclude` replaces the defaults, so Gemfile/vendor

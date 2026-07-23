@@ -14,4 +14,4 @@ author: allan
 
 ## Sfera Ebbasta - Serpenti A Sonagli Live 🔹 Fabrique Milano
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Z1huR5jEmkI" title="Sfera Ebbasta - Serpenti A Sonagli Live 🔹 Fabrique Milano" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="Z1huR5jEmkI" playlabel="Sfera Ebbasta - Serpenti A Sonagli Live 🔹 Fabrique Milano"></lite-youtube>

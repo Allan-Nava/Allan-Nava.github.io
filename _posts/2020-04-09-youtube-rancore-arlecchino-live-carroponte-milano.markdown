@@ -14,4 +14,4 @@ author: allan
 
 ## Rancore - Arlecchino Live 🔹 Carroponte Milano
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ltszbLKYIig" title="Rancore - Arlecchino Live 🔹 Carroponte Milano" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="ltszbLKYIig" playlabel="Rancore - Arlecchino Live 🔹 Carroponte Milano"></lite-youtube>

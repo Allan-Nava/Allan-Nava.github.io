@@ -14,4 +14,4 @@ author: allan
 
 ## It’s not about strength — it’s about balance. 🧗 climbing
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/tQZb2iI9XLA" title="It’s not about strength — it’s about balance. 🧗 #climbing" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="tQZb2iI9XLA" data-short playlabel="It’s not about strength — it’s about balance. 🧗 #climbing"></lite-youtube>

@@ -14,4 +14,4 @@ author: allan
 
 ## Calcutta - 2 minuti live 📍Pala Alpitour musica music calcutta
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/B5q3RVxyREA" title="Calcutta - 2 minuti live 📍Pala Alpitour #musica #music #calcutta" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="B5q3RVxyREA" data-short playlabel="Calcutta - 2 minuti live 📍Pala Alpitour #musica #music #calcutta"></lite-youtube>

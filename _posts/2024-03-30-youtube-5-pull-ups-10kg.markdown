@@ -14,4 +14,4 @@ author: allan
 
 ## 5 Pull UPs 10kg 🏋🏽
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JjSyUAln32s" title="5 Pull UPs 10kg 🏋🏽" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="JjSyUAln32s" playlabel="5 Pull UPs 10kg 🏋🏽"></lite-youtube>

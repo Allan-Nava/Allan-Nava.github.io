@@ -16,17 +16,17 @@ externalLink: true
 
 ## :video_camera: Calisthenics & workout videos
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F0pHik5TYkM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<lite-youtube videoid="F0pHik5TYkM"></lite-youtube>
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SzyynM9Bhgo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<lite-youtube videoid="SzyynM9Bhgo"></lite-youtube>
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/0B7-iEcLG8o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<lite-youtube videoid="0B7-iEcLG8o"></lite-youtube>
 
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/O6am0_LDG10" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<lite-youtube videoid="O6am0_LDG10"></lite-youtube>
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/nRXCdRX7-MQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<lite-youtube videoid="nRXCdRX7-MQ"></lite-youtube>

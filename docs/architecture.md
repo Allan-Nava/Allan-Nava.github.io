@@ -24,7 +24,8 @@ about.md          ─┘
 | `_config.yml` | Site identity, social handles, plugins, feature toggles (see below). |
 | `_posts/` | All content — blog posts and projects (see [Writing Content](writing-content.md)). |
 | `_layouts/` | `compress` → `default` → `page` → `post` chain described above. |
-| `_includes/` | Partials: `nav`, `footer`, `author`, `related`, `pagination`, `read-time`, `social-links`, `blog-post` (listing item), analytics snippets, and `style.scss` (Sass entry point). |
+| `_includes/` | Partials: `nav`, `footer`, `author`, `related`, `pagination`, `read-time`, `social-links`, `blog-post` (listing item), `youtube-facade` (lazy YouTube player, loaded on posts), analytics snippets, and `style.scss` (Sass entry point). |
+| `_plugins/` | Custom build-time Ruby plugins (`lazy_images.rb`). These **run** — see "Custom plugins" below. |
 | `_sass/base/` | `variables.sass` (colors, fonts, breakpoints), `general`, `helpers`, `normalize`, `syntax` (code highlighting). |
 | `_sass/components/` | One file per UI component (header, nav, footer, author, pagination, side-by-side, spoiler, …). |
 | `_sass/pages/` | Page-specific styles (home/blog/projects listing, post, tags). |
@@ -69,7 +70,23 @@ Declared in `_config.yml` and provided by the `github-pages` gem (all whiteliste
 - `jemoji` — `:emoji:` shortcodes
 - `jekyll-gist` — GitHub gist embeds
 
+- `jekyll-paginate` — paginates `/blog` (`paginate: 10`); see "Pagination" below.
+
 `jekyll-admin` (local-only) adds the `/admin` UI when serving locally; it plays no role in production builds.
+
+## Custom plugins (`_plugins/`)
+
+Unlike a site built on GitHub's own Pages infrastructure (which runs Jekyll in `--safe` mode and ignores `_plugins/`), this site is built with a full `bundle exec jekyll build` inside GitHub Actions (see [Deployment & CI](deployment.md)). **Custom plugins in `_plugins/` therefore execute** at build time — both in CI and locally.
+
+- `lazy_images.rb` — a `:post_render` hook that adds `loading="lazy"` + async decoding to content `<img>` tags. kramdown can't set a global image attribute, so Markdown photos would otherwise load eagerly. It skips images that already declare a `loading` attribute and the above-the-fold hero images (`title-image`, `selfie`), which stay eager as LCP candidates.
+
+## Pagination
+
+`/blog` is paginated with `jekyll-paginate` (v1, bundled with `github-pages`): `paginate: 10` + `paginate_path: "blog/:num/"`, rendered by `_includes/pagination.html`. `blog/index.html` must stay named `index.html` in its own folder for the paginator to run. **Caveat:** v1 paginates *all* `_posts` (including `hidden: true` projects); `blog/index.html` filters those out, so the oldest pages (2019-era projects) render fewer than 10 items while recent pages are full. v2 (per-category pagination) is not whitelisted by GitHub Pages, so this is the ceiling with the stock gem.
+
+## YouTube embeds (facade)
+
+Video embeds use a lightweight facade instead of a raw `<iframe>`: posts contain `<lite-youtube videoid="…">` elements, and `_includes/youtube-facade.html` (self-contained CSS + a small custom element, no CDN) renders a clickable thumbnail, loading the real cookie-less player (`youtube-nocookie.com`) only on click. This is the biggest per-page win now that most posts embed video. The sync scripts emit this markup directly; `scripts/migrate_youtube_embeds.rb` converted the existing posts (see [Writing Content](writing-content.md)).
 
 ## Dependency automation
 

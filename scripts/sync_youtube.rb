@@ -104,7 +104,7 @@ doc.root.each_element do |entry|
 
   desc = yaml_safe(description.lines.first)
   desc = "Video dal canale YouTube di Allan Nava: #{yaml_safe(title, 100)}" if desc.empty?
-  width, height = is_short ? [660, 1174] : [560, 315]
+  short_attr = is_short ? ' data-short' : ''
 
   post = <<~POST
     ---
@@ -114,7 +114,7 @@ doc.root.each_element do |entry|
     tag:
     - youtube
     - #{kind}
-    image: ""
+    image: "https://i.ytimg.com/vi/#{video_id}/hqdefault.jpg"
     headerImage: false
     description: "#{desc}"
     category: blog
@@ -123,7 +123,7 @@ doc.root.each_element do |entry|
 
     ## #{title.delete('#')}
 
-    <iframe width="#{width}" height="#{height}" src="https://www.youtube.com/embed/#{video_id}" title="#{yaml_safe(title, 120)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <lite-youtube videoid="#{video_id}"#{short_attr} playlabel="#{yaml_safe(title, 120)}"></lite-youtube>
   POST
 
   if DRY_RUN

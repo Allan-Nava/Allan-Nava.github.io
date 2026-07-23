@@ -14,4 +14,4 @@ author: allan
 
 ## Rancore - Underman Live 🔹 Carroponte Milano
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/MEMNIuDvp3Y" title="Rancore - Underman Live 🔹 Carroponte Milano" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="MEMNIuDvp3Y" playlabel="Rancore - Underman Live 🔹 Carroponte Milano"></lite-youtube>

@@ -14,4 +14,4 @@ author: allan
 
 ## Dips 55kg 🏋🏽‍♂️
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/a4ElSKP2q5g" title="Dips 55kg 🏋🏽‍♂️" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="a4ElSKP2q5g" data-short playlabel="Dips 55kg 🏋🏽‍♂️"></lite-youtube>

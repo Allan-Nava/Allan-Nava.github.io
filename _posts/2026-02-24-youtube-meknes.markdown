@@ -14,4 +14,4 @@ author: allan
 
 ## Meknes 🇲🇦
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/aodp6Aa1Ibk" title="Meknes 🇲🇦" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="aodp6Aa1Ibk" data-short playlabel="Meknes 🇲🇦"></lite-youtube>

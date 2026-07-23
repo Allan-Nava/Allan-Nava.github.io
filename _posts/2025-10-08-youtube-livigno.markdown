@@ -14,4 +14,4 @@ author: allan
 
 ## Livigno 🌲
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/vhTPly_lyew" title="Livigno 🌲" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="vhTPly_lyew" data-short playlabel="Livigno 🌲"></lite-youtube>

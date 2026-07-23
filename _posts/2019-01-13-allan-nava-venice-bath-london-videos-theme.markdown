@@ -17,8 +17,8 @@ externalLink: true
 ## :video_camera: Holidays videos
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/UP-DspVsx0w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<lite-youtube videoid="UP-DspVsx0w"></lite-youtube>
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Yv5BMQV8-Fg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<lite-youtube videoid="Yv5BMQV8-Fg"></lite-youtube>
 

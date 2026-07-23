@@ -17,4 +17,4 @@ externalLink: true
 ## Climbing 🏋🏽
 
 
-<iframe width="674" height="1198" src="https://www.youtube.com/embed/w7O_L4glUwI" title="Slab Mode ON 🟡🧠 Focus &amp; Control" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="w7O_L4glUwI" data-short playlabel="Slab Mode ON 🟡🧠 Focus &amp; Control"></lite-youtube>

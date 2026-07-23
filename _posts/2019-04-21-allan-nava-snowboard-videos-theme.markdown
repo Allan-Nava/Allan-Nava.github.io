@@ -17,13 +17,13 @@ externalLink: true
 
 ## :video_camera: Snowboard - Vlog 2019
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Ziktpnb8p6E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<lite-youtube videoid="Ziktpnb8p6E"></lite-youtube>
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/71EcZ0ZQejo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<lite-youtube videoid="71EcZ0ZQejo"></lite-youtube>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EuYgp4Dq5LI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<lite-youtube videoid="EuYgp4Dq5LI"></lite-youtube>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/YSOOtdT4igQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<lite-youtube videoid="YSOOtdT4igQ"></lite-youtube>
 
 
 

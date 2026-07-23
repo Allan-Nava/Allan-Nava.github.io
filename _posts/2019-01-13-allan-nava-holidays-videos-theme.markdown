@@ -16,14 +16,12 @@ externalLink: true
 
 ## :video_camera: Holidays videos
 
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/Y3wg9FqQyKM">
-</iframe>
+<lite-youtube videoid="Y3wg9FqQyKM"></lite-youtube>
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/lgCQ88K0DEk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<lite-youtube videoid="lgCQ88K0DEk"></lite-youtube>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_ILi53gVKZE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<lite-youtube videoid="_ILi53gVKZE"></lite-youtube>
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/klKV-DoxQG0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<lite-youtube videoid="klKV-DoxQG0"></lite-youtube>

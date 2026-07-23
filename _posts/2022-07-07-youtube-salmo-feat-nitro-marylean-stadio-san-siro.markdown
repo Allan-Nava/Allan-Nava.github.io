@@ -14,4 +14,4 @@ author: allan
 
 ## Salmo feat Nitro - Marylean 🔹 Stadio San Siro 🏟
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-cERJ90_grA" title="Salmo feat Nitro - Marylean 🔹 Stadio San Siro 🏟" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="-cERJ90_grA" playlabel="Salmo feat Nitro - Marylean 🔹 Stadio San Siro 🏟"></lite-youtube>

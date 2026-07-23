@@ -14,4 +14,4 @@ author: allan
 
 ## Blue boulder, full focus. One move at a time. 🧗‍♂️💥 Bouldering climbinglife
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/YaXeaBhDJMc" title="Blue boulder, full focus. One move at a time. 🧗‍♂️💥 #Bouldering #climbinglife" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="YaXeaBhDJMc" data-short playlabel="Blue boulder, full focus. One move at a time. 🧗‍♂️💥 #Bouldering #climbinglife"></lite-youtube>

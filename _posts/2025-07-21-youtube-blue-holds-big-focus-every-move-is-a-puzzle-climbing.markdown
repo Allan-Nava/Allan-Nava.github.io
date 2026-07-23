@@ -14,4 +14,4 @@ author: allan
 
 ## Blue holds, big focus. Every move is a puzzle. 🔹🧩 Climbing
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/J5LhrQOuNmQ" title="Blue holds, big focus. Every move is a puzzle. 🔹🧩 #Climbing" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="J5LhrQOuNmQ" data-short playlabel="Blue holds, big focus. Every move is a puzzle. 🔹🧩 #Climbing"></lite-youtube>

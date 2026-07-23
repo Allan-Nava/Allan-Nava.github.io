@@ -14,4 +14,4 @@ author: allan
 
 ## Guerra dentro - Nayt 🔹Fabrique 2025 musica rap music concert live
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/8Gun-joH1kM" title="Guerra dentro - Nayt 🔹Fabrique 2025 #musica #rap #music #concert #live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="8Gun-joH1kM" data-short playlabel="Guerra dentro - Nayt 🔹Fabrique 2025 #musica #rap #music #concert #live"></lite-youtube>

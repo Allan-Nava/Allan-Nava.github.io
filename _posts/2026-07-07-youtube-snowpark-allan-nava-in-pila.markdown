@@ -14,4 +14,4 @@ author: allan
 
 ## Snowpark Allan Nava in Pila 🏂🏞️
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/jsPBA2y1t04" title="Snowpark Allan Nava in Pila 🏂🏞️" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="jsPBA2y1t04" playlabel="Snowpark Allan Nava in Pila 🏂🏞️"></lite-youtube>

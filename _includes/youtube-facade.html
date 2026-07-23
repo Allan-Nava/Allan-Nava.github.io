@@ -1,0 +1,48 @@
+{%- comment -%}
+Lightweight YouTube facade: renders a clickable thumbnail and only loads the
+real (cookie-less) player iframe on click. Included on post pages by
+_layouts/default.html. Self-contained (no CDN), progressively enhances any
+lite-youtube element with a videoid attribute. Add data-short for portrait shorts.
+{%- endcomment -%}
+<style>
+lite-youtube{display:block;position:relative;width:100%;max-width:720px;margin:1.5em auto;aspect-ratio:16/9;background:#000 center center/cover no-repeat;border-radius:6px;overflow:hidden;cursor:pointer}
+lite-youtube[data-short]{aspect-ratio:9/16;max-width:360px}
+lite-youtube::before{content:"";position:absolute;top:0;left:0;right:0;height:60px;background:linear-gradient(180deg,rgba(0,0,0,.45),transparent);pointer-events:none}
+lite-youtube>iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+lite-youtube>.lty-playbtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:48px;padding:0;border:0;border-radius:14%;background:rgba(23,23,23,.6);cursor:pointer;transition:background-color .15s}
+lite-youtube:hover>.lty-playbtn,lite-youtube:focus-within>.lty-playbtn{background-color:#f00}
+lite-youtube>.lty-playbtn::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-style:solid;border-width:11px 0 11px 19px;border-color:transparent transparent transparent #fff}
+lite-youtube.lyt-activated{cursor:default}
+lite-youtube.lyt-activated>.lty-playbtn{display:none}
+</style>
+<script>
+(function(){
+  if(window.customElements&&customElements.get('lite-youtube'))return;
+  class LiteYT extends HTMLElement{
+    connectedCallback(){
+      if(this._init)return;this._init=true;
+      var id=this.getAttribute('videoid');if(!id)return;
+      this.style.backgroundImage='url("https://i.ytimg.com/vi/'+id+'/hqdefault.jpg")';
+      var btn=document.createElement('button');
+      btn.type='button';btn.className='lty-playbtn';
+      btn.setAttribute('aria-label',this.getAttribute('playlabel')||'Play');
+      this.appendChild(btn);
+      this.addEventListener('click',this.activate.bind(this),{once:true});
+    }
+    activate(){
+      if(this.classList.contains('lyt-activated'))return;
+      this.classList.add('lyt-activated');
+      var id=this.getAttribute('videoid'),params=this.getAttribute('params');
+      var iframe=document.createElement('iframe');
+      iframe.setAttribute('allow','accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share');
+      iframe.setAttribute('allowfullscreen','');
+      iframe.setAttribute('title',this.getAttribute('playlabel')||'YouTube video');
+      iframe.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0'+(params?'&'+params:'');
+      this.textContent='';
+      this.appendChild(iframe);
+      iframe.focus();
+    }
+  }
+  if(window.customElements)customElements.define('lite-youtube',LiteYT);
+})();
+</script>

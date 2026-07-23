@@ -16,4 +16,4 @@ lng: 9.927
 
 ## Pizzo Scalino ⛰️🧗🏼‍♂️
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/2PDaTkSEuHs" title="Pizzo Scalino ⛰️🧗🏼‍♂️" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="2PDaTkSEuHs" data-short playlabel="Pizzo Scalino ⛰️🧗🏼‍♂️"></lite-youtube>

@@ -17,31 +17,13 @@ externalLink: true
 
 ## Paul Kalkbrenner DJSet live - Milano Rho Fiera 🔥
 
-<iframe width="315" height="560" 
-src="https://www.youtube.com/embed/b7_5cr83AQY" 
-title="YouTube video player" frameborder="0" 
-allow="accelerometer; autoplay; clipboard-write; encrypted-media;
-gyroscope; picture-in-picture;
-web-share"
-allowfullscreen></iframe>
+<lite-youtube videoid="b7_5cr83AQY" data-short playlabel="YouTube video player"></lite-youtube>
 
 
 
-<iframe width="315" height="560" 
-src="https://www.youtube.com/embed/gsRLKsqO-mw" 
-title="YouTube video player" frameborder="0" 
-allow="accelerometer; autoplay; clipboard-write; encrypted-media;
-gyroscope; picture-in-picture;
-web-share"
-allowfullscreen></iframe>
+<lite-youtube videoid="gsRLKsqO-mw" data-short playlabel="YouTube video player"></lite-youtube>
 
 
 
-<iframe width="315" height="560" 
-src="https://www.youtube.com/embed/gtjRsH_QX9U" 
-title="YouTube video player" frameborder="0" 
-allow="accelerometer; autoplay; clipboard-write; encrypted-media;
-gyroscope; picture-in-picture;
-web-share"
-allowfullscreen></iframe>
+<lite-youtube videoid="gtjRsH_QX9U" data-short playlabel="YouTube video player"></lite-youtube>
 

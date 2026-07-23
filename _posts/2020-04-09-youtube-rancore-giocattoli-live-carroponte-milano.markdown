@@ -14,4 +14,4 @@ author: allan
 
 ## Rancore - Giocattoli Live 🔹Carroponte Milano
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qA5YOvdcxA4" title="Rancore - Giocattoli Live 🔹Carroponte Milano" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="qA5YOvdcxA4" playlabel="Rancore - Giocattoli Live 🔹Carroponte Milano"></lite-youtube>

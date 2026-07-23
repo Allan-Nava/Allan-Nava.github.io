@@ -16,4 +16,4 @@ lng: 9.317
 
 ## ⛰️ Hiking the Trail to Monte Tambò | Italian Alps 🇮🇹
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6fpBDVV7VoU" title="⛰️ Hiking the Trail to Monte Tambò | Italian Alps 🇮🇹" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="6fpBDVV7VoU" playlabel="⛰️ Hiking the Trail to Monte Tambò | Italian Alps 🇮🇹"></lite-youtube>

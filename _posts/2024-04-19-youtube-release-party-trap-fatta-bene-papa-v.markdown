@@ -14,4 +14,4 @@ author: allan
 
 ## Release Party - Trap Fatta Bene 🪙Papa V
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/RiGJmT9Z0ws" title="Release Party - Trap Fatta Bene 🪙Papa V" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="RiGJmT9Z0ws" data-short playlabel="Release Party - Trap Fatta Bene 🪙Papa V"></lite-youtube>

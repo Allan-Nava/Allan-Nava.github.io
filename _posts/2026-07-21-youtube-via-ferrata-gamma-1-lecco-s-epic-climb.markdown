@@ -16,4 +16,4 @@ lng: 9.425
 
 ## Via Ferrata Gamma 1 | Lecco’s Epic Climb 🇮🇹⛰️
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/jpzlWi9d-zg" title="Via Ferrata Gamma 1 | Lecco’s Epic Climb 🇮🇹⛰️" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="jpzlWi9d-zg" playlabel="Via Ferrata Gamma 1 | Lecco’s Epic Climb 🇮🇹⛰️"></lite-youtube>

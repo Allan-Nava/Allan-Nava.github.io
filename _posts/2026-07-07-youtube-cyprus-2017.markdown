@@ -14,4 +14,4 @@ author: allan
 
 ## Cyprus 2017 🇨🇾
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QuDZWZy1sVo" title="Cyprus 2017 🇨🇾" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="QuDZWZy1sVo" playlabel="Cyprus 2017 🇨🇾"></lite-youtube>

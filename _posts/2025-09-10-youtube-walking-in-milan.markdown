@@ -14,4 +14,4 @@ author: allan
 
 ## walking in milan 🚶🏽
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/d-AeIA3LUP0" title="walking in milan 🚶🏽" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="d-AeIA3LUP0" playlabel="walking in milan 🚶🏽"></lite-youtube>

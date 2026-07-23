@@ -14,4 +14,4 @@ author: allan
 
 ## Grilling with the Boys 🍔🔥
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/1OcGPCSwiF8" title="Grilling with the Boys 🍔🔥" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="1OcGPCSwiF8" data-short playlabel="Grilling with the Boys 🍔🔥"></lite-youtube>

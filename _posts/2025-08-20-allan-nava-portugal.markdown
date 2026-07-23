@@ -19,14 +19,14 @@ externalLink: true
 ## Portugal 🇵🇹
 
 
-<iframe width="674" height="1198" src="https://www.youtube.com/embed/-K_GtPoeIOY" title="Lisboa road trip 🇵🇹" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="-K_GtPoeIOY" data-short playlabel="Lisboa road trip 🇵🇹"></lite-youtube>
 
-<iframe width="674" height="1198" src="https://www.youtube.com/embed/WFkhY1i9Rzw" title="Cabo de Roca" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="WFkhY1i9Rzw" data-short playlabel="Cabo de Roca"></lite-youtube>
 
-<iframe width="674" height="1198" src="https://www.youtube.com/embed/9T5DZ8Lf-mQ" title="Porto 🇵🇹" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="9T5DZ8Lf-mQ" data-short playlabel="Porto 🇵🇹"></lite-youtube>
 
-<iframe width="674" height="1198" src="https://www.youtube.com/embed/x43VGgEOgOM" title="Peniche 🌅" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="x43VGgEOgOM" data-short playlabel="Peniche 🌅"></lite-youtube>
 
 
-<iframe width="674" height="1198" src="https://www.youtube.com/embed/suX3NmEE6Qk" title="Oporto 🇵🇹🍷" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="suX3NmEE6Qk" data-short playlabel="Oporto 🇵🇹🍷"></lite-youtube>
 

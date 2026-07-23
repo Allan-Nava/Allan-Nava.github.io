@@ -18,6 +18,6 @@ externalLink: true
 ---
 ## Orrido di Foresto
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/OhbUGISQ6mc" title="Orrido di foresto" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="OhbUGISQ6mc" data-short playlabel="Orrido di foresto"></lite-youtube>
 
-<iframe width="660" height="1174" src="https://www.youtube.com/embed/khyhLo3tdXg" title="Orrido di Foresto 🧗🏼‍♂️⛰️🏞️" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<lite-youtube videoid="khyhLo3tdXg" data-short playlabel="Orrido di Foresto 🧗🏼‍♂️⛰️🏞️"></lite-youtube>
