@@ -82,9 +82,11 @@ exclude:
   - node_modules
   - docs
   - CLAUDE.md
+  - AGENTS.md
   - README.md
   - CODE_OF_CONDUCT.md
   - LICENSE
   - Rakefile
   - scripts
+  - lighthouserc.json
 #

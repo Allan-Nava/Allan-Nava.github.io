@@ -98,8 +98,6 @@ jobs:
                     body: 'Palette scura via `prefers-color-scheme` (+ eventuale toggle) partendo da `_sass/base/variables.sass`.' },
                   { title: 'Ottimizzazione immagini automatica',
                     body: 'WebP/AVIF con fallback, `srcset` responsivo, job CI che comprime le immagini nuove sopra soglia.' },
-                  { title: 'Lighthouse CI con budget di performance',
-                    body: 'Job che misura performance/SEO/accessibilità sulle pagine chiave e fallisce sotto un budget.' },
                   { title: 'PWA',
                     body: 'Manifest + service worker: sito installabile e leggibile offline.' },
                 ],

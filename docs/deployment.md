@@ -56,6 +56,25 @@ The refresh token never expires (it rotates transparently; the script always exc
 
 Every 10 minutes, curls `https://allan-nava.github.io/` and fails the run if the site doesn't respond with a success status (3 retries). A failing run in the Actions tab means the site is down.
 
+### `lighthouse.yml` — Lighthouse CI
+
+Runs on every pull request and push to master (also `workflow_dispatch`). It builds the site with Jekyll, serves `_site/` locally with `http-server` on port 8080, then runs Google Lighthouse (via `treosh/lighthouse-ci-action`) against the **structural pages** — `/`, `/blog/`, `/projects.html`, `/tags.html`, `/about/`, `/map/`, `/fitness/`, `/gear/`. Individual posts are deliberately excluded so the budget isn't coupled to content. Reports are uploaded to Lighthouse's temporary public storage (a link appears in the run log).
+
+The build has no `--baseurl`: this is a GitHub user page, so the production base path is empty and the site is served from the local root exactly as in production.
+
+**Budget** — defined in `lighthouserc.json` at the repo root, tuned to *pass on day one and fail only on real regressions*:
+
+| Category | Level | Min score |
+|---|---|---|
+| `seo` | **error** (hard gate) | 0.85 |
+| `accessibility` | warn | 0.90 |
+| `best-practices` | warn | 0.90 |
+| `performance` | warn | 0.50 |
+
+SEO is the hard gate because `jekyll-seo-tag` makes it reliably high — a failure means something real broke (meta tags removed, plugin gone). The other categories start as **warnings** so the job never red-fails on introduction. **Once a few green runs establish the real baseline scores, promote `accessibility`/`best-practices`/`performance` from `warn` to `error`** (and raise the thresholds) in `lighthouserc.json` — that's the whole point of the budget. The action uses Ruby 3.0 pinned to the same `ruby/setup-ruby` release as `jekyll.yml`/`checks.yml`; keep them in sync.
+
+`lighthouserc.json` and `AGENTS.md` are listed in `_config.yml` `exclude:` so they are not copied into the published site.
+
 ### `bootstrap-milestone.yml` — Bootstrap milestone
 
 Run manually from the Actions tab (`workflow_dispatch` only). Using `actions/github-script`, it creates the **versioned backlog milestones** (`v2.0` Performance & Navigazione, `v2.1` Contenuti & Engagement, `v2.2` Automazioni & Platform, `v3.0` Big rocks) and one issue per item in [ROADMAP](ROADMAP.md), each assigned to its milestone. It is idempotent: existing milestones/issues with the same title are skipped, and an issue found under the wrong milestone is moved to the right one — so after adding items to ROADMAP.md (mirrored in the workflow's `BACKLOG` array), re-running creates only the new ones. It needs `issues: write` and touches nothing else in the repo.

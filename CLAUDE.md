@@ -7,6 +7,7 @@ Portfolio/blog personale di Allan Nava (`https://allan-nava.github.io`), costrui
 - **MAI `git push`** — lo fa sempre Allan. **Commit solo se richiesto esplicitamente.** MAI `Co-Authored-By` nei commit.
 - **Validare dopo ogni modifica a `_posts/`**: `ruby scripts/validate_posts.rb` (front matter, date, riferimenti asset — no `bundle` richiesto). Gate del workflow `checks.yml` su ogni PR e del deploy.
 - **Verifica link/immagini**: `rake test` (build + html-proofer, segnala 4xx). Non esiste linter né unit test — la validazione è l'html-proofer contro `_site/`.
+- **Nuove feature = CI verde, senza rompere i gate esistenti**: prima di considerare completa una feature far passare i controlli che gireranno in CI — `ruby scripts/validate_posts.rb`, YAML-parse di config/workflow, JSON dei config, `rake test` se tocchi build/template. I gate sono `checks.yml` (validate + build + html-proofer) e `lighthouse.yml` (budget Lighthouse). Se il build locale non è eseguibile (serve Ruby 3.0/bundler), dirlo esplicitamente e lasciare la build a CI.
 - **Documentare SEMPRE** modifiche a build, content model o workflow: allineare i `.md` in `docs/` (getting-started, writing-content, architecture, deployment) **senza chiederlo**. Ogni cambiamento fattuale va propagato a `docs/`, `_config.yml`, template, script.
 - **Nuovi contenuti** solo come `_posts/YYYY-MM-DD-slug.markdown` con front matter corretto (vedi Content model sotto). `category: blog` → `/blog`; `category: project` + `projects: true` + `hidden: true` → `/projects`.
 - **Video**: MAI file `.MOV` nel repo — devono essere **embed YouTube** (vedi trappola Git LFS sotto).
@@ -84,5 +85,5 @@ Push su `master` → GitHub Pages via `.github/workflows/jekyll.yml` (push + cro
 
 - Documentazione: `docs/` — `getting-started.md`, `writing-content.md`, `architecture.md`, `deployment.md`, `ROADMAP.md`.
 - Script: `scripts/validate_posts.rb` (gate PR/deploy), `scripts/sync_youtube.rb`, `scripts/sync_strava.rb`, `scripts/backfill_youtube.rb` (one-shot: backfill dell'intero canale YouTube).
-- Workflow CI: `.github/workflows/` — `jekyll.yml` (deploy), `checks.yml` (validazione PR), `youtube-sync.yml` (post automatici ogni 3h), `strava-sync.yml` (post da attività, richiede secret), `uptime.yml` (probe), `bootstrap-milestone.yml` (one-shot issue/milestone).
+- Workflow CI: `.github/workflows/` — `jekyll.yml` (deploy), `checks.yml` (validazione PR), `lighthouse.yml` (budget Lighthouse su PR/push, config in `lighthouserc.json`), `youtube-sync.yml` (post automatici ogni 3h), `strava-sync.yml` (post da attività, richiede secret), `uptime.yml` (probe), `bootstrap-milestone.yml` (one-shot issue/milestone).
 - Pagine extra (toggle in `_config.yml`): `map.html` (`/map`, post con `lat`/`lng`), `fitness.html` (`/fitness`, dati in `_data/workouts.yml`), `gear.md` (`/gear`).
