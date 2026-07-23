@@ -56,7 +56,12 @@ The refresh token never expires (it rotates transparently; the script always exc
 
 ### `github-sync.yml` — GitHub Projects Sync
 
-Daily, creates a project post (listed on `/projects`) for every public repo of the sources configured in `_data/github_sync.yml` — currently the `Allan-Nava` user and the `hiway-media` org — via `scripts/sync_github.rb`. Forks are always skipped; by default repos without a description are too (`require_description`), and `min_stars` can raise the bar. Dedup is threefold: repo URL already in a post, `github: <full_name>` front-matter marker, or repo name already part of an existing post filename. **To permanently ban a repo, add it to `exclude` in `_data/github_sync.yml`** — deleting the generated post alone is not enough, the next run would recreate it. Same pipeline as the other syncs: validation, bot commit, explicit deploy dispatch.
+Hourly (`29 * * * *`), syncs the public repos of the sources configured in `_data/github_sync.yml` — currently the `Allan-Nava` user and the `hiway-media` org — into project posts (listed on `/projects`) via `scripts/sync_github.rb`. Each run does two things:
+
+- **Create** — a new repo gets a post within the hour.
+- **Update** — a repo that already has a *generated* post (identified by its `github: <full_name>` marker) is refreshed when it changed: the post tracks the repo's **last push** (`updated:` front matter + an "Ultimo push" line), plus description, language, topics and stars. This is how the sync reacts to pushes on existing repos. The original `date:` (and post URL) is always preserved; **hand-written project posts — those without the marker — are never touched.**
+
+Files are rewritten only when the regenerated content actually differs, so an idle run (no new repo, no push) leaves `_posts` unchanged → the commit step (`git status --porcelain _posts`) is a no-op and nothing deploys. The first run after this feature shipped rewrites every existing generated post once (to add the `updated:`/push fields). Same pipeline as the other syncs: validation, bot commit, explicit deploy dispatch. Forks are always skipped; by default repos without a description are too (`require_description`), and `min_stars` can raise the bar. Dedup is threefold: repo URL already in a post, `github: <full_name>` front-matter marker, or repo name already part of an existing post filename. **To permanently ban a repo, add it to `exclude` in `_data/github_sync.yml`** — deleting the generated post alone is not enough, the next run would recreate it.
 
 ### `uptime.yml` — Uptime Monitor
 

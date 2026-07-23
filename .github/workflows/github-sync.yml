@@ -1,13 +1,17 @@
-# Creates a project post on /projects for every public GitHub repo of the
-# sources configured in _data/github_sync.yml (user Allan-Nava + org
-# hiway-media). Repos already covered by a post are skipped; to ban a repo
+# Syncs public GitHub repos of the sources in _data/github_sync.yml (user
+# Allan-Nava + org hiway-media) into project posts on /projects: creates a post
+# for a new repo, and refreshes the post of an existing repo when it changed
+# (last push, description, stars). Only generated posts (with a `github:`
+# marker) are updated — hand-written ones are never touched. To ban a repo
 # permanently, add it to the exclude list in _data/github_sync.yml.
 name: GitHub Projects Sync
 
 on:
   schedule:
-    # Daily: new repos don't appear more often than that.
-    - cron: '29 5 * * *'
+    # Hourly: pick up newly created/published repos of the configured sources
+    # within the hour. The commit step is a no-op when nothing new appears, so
+    # a run with no new repos costs nothing (no commit, no deploy).
+    - cron: '29 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -41,7 +45,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add _posts
-          git commit -m "Add project posts from GitHub sync"
+          git commit -m "Sync project posts from GitHub (new + updated)"
           git push
           echo "pushed=true" >> "$GITHUB_OUTPUT"
       - name: Trigger deploy
