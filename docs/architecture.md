@@ -27,7 +27,7 @@ about.md          ─┘
 | `_includes/` | Partials: `nav`, `footer`, `author`, `related`, `pagination`, `read-time`, `social-links`, `blog-post` (listing item), `youtube-facade` (lazy YouTube player, loaded on posts), analytics snippets, and `style.scss` (Sass entry point). |
 | `_plugins/` | Custom build-time Ruby plugins (`lazy_images.rb`). These **run** — see "Custom plugins" below. |
 | `_sass/base/` | `variables.sass` (colors, fonts, breakpoints), `general`, `helpers`, `normalize`, `syntax` (code highlighting). |
-| `_sass/components/` | One file per UI component (header, nav, footer, author, pagination, side-by-side, spoiler, …). |
+| `_sass/components/` | One file per UI component (header, nav, footer, author, pagination, side-by-side, spoiler, …). `polish.sass` is **imported last** and holds dark-theme contrast fixes + hover/focus polish as cascade overrides — keep theme tweaks there rather than scattering them. |
 | `_sass/pages/` | Page-specific styles (home/blog/projects listing, post, tags). |
 | `index.html` | Home page (thin `page`-layout shell; content comes from config + includes). |
 | `map.html` | `/map` — Leaflet map of every post with `lat`/`lng` front matter (toggle: `map` in `_config.yml`). |

@@ -1,0 +1,103 @@
+// Dark-theme polish & contrast fixes.
+// Imported last from _includes/style.scss so these rules win the cascade.
+// Everything stays within the existing dark palette (variables.sass):
+// $background #050505 · $accent #10cf53 · $alpha #eae4e4 (light text).
+
+$chipBg: rgba(16, 207, 83, 0.12)
+$chipBorder: rgba(16, 207, 83, 0.35)
+$chipText: #7be8a6 // light green, readable on the dark background
+$hairline: rgba(255, 255, 255, 0.09)
+$rowHover: rgba(255, 255, 255, 0.035)
+
+// ---------------------------------------------------------------------------
+// Contrast fixes (elements styled for a light background)
+// ---------------------------------------------------------------------------
+
+// Bright white list separators → soft hairline on the dark background.
+.home > .list,
+.blog > .list,
+.projects > .list,
+.tags > .list
+  border-top: 1px solid $hairline
+
+// Decorative dot on top of each list: was white (#FFF) with a white halo.
+.home > .list:before,
+.blog > .list:before,
+.projects > .list:before,
+.tags > .list:before,
+.footer-main:before
+  border-color: $accent
+  background: $accent
+  box-shadow: rgba(16, 207, 83, 0.3) 0 0 0 4px
+
+hr
+  background: $hairline
+
+blockquote
+  border-left: 3px solid $accent
+  background: rgba(255, 255, 255, 0.03)
+  padding: 8px 15px
+  border-radius: 0 4px 4px 0
+
+// ---------------------------------------------------------------------------
+// Tag chips — one consistent style for post header + tag cloud.
+// Fixes /tags cloud (was #ededed bg + #eae4e4 text → invisible).
+// ---------------------------------------------------------------------------
+
+.post > .post-tags > .item,
+.tags > .list > .item
+  background: $chipBg
+  color: $chipText
+  border: 1px solid $chipBorder
+  transition: all 0.2s ease-in-out
+
+.post > .post-tags > .item:hover,
+.tags > .list > .item:hover
+  background: $accent
+  color: #04170c
+  border-color: $accent
+
+// ---------------------------------------------------------------------------
+// Listing rows — dividers + hover highlight + accent bar (no layout shift).
+// ---------------------------------------------------------------------------
+
+.home > .list > .item,
+.blog > .list > .item,
+.projects > .list > .item,
+.tag-list > .list > .item
+  border-bottom: 1px solid $hairline
+  border-radius: 4px
+  transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out
+
+  &:last-child
+    border-bottom: none
+
+.home > .list > .item:hover,
+.blog > .list > .item:hover,
+.projects > .list > .item:hover,
+.tag-list > .list > .item:hover
+  background: $rowHover
+  box-shadow: inset 3px 0 0 $accent
+
+// ---------------------------------------------------------------------------
+// Interaction & accessibility
+// ---------------------------------------------------------------------------
+
+a:hover
+  color: $accentSelected
+
+.nav > .list > .item > .link:hover
+  color: $accentSelected
+
+// Visible keyboard focus (helps the Lighthouse a11y score too).
+a:focus-visible,
+button:focus-visible,
+.nav .link:focus-visible,
+lite-youtube:focus-visible
+  outline: 2px solid $accent
+  outline-offset: 2px
+  border-radius: 2px
+
+::selection
+  background: rgba(16, 207, 83, 0.35)
+  color: #fff
