@@ -2,7 +2,7 @@
 title: "checkfleet"
 layout: post
 date: 2026-07-23 12:48
-updated: 2026-07-23
+updated: 2026-07-24
 tag:
 - go
 - monitor
@@ -25,6 +25,6 @@ github: Allan-Nava/checkfleet
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
-- **Ultimo push**: 2026-07-23
+- **Ultimo push**: 2026-07-24
 
 [Repo su GitHub →](https://github.com/Allan-Nava/checkfleet)

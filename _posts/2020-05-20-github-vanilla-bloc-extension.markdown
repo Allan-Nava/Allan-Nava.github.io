@@ -25,7 +25,7 @@ Support for the BLoC command allows you to create a Vanilla BLoC and the Events/
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: TypeScript
-- **Stars**: 5
+- **Stars**: 6
 - **Ultimo push**: 2026-07-24
 
 [Repo su GitHub →](https://github.com/Allan-Nava/Vanilla-BLoC-Extension)
