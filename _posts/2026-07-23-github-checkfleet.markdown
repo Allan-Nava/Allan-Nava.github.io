@@ -25,7 +25,7 @@ A fleet of infrastructure checks in one binary.  checkfleet runs *domain-aware* 
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
-- **Stars**: 1
+- **Stars**: 2
 - **Ultimo push**: 2026-07-26
 
 [Repo su GitHub →](https://github.com/Allan-Nava/checkfleet)
