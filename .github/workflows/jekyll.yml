@@ -63,3 +63,39 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # Post-deploy smoke test of the live site (config: ../../checkfleet.yml).
+  # checks.yml validates the locally built ./_site *before* the deploy, so until
+  # this job nothing ever read what Pages actually serves — a deploy that
+  # reports success while serving a wrong or partial page went unnoticed.
+  # This cannot gate the deploy (it already happened); it exists to notify.
+  smoke:
+    runs-on: ubuntu-latest
+    needs: deploy
+    name: Smoke test live site
+    # Narrower than the workflow-level block: this job never touches Pages.
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install checkfleet
+        # Pinned release tarball — no Go toolchain needed, reproducible run.
+        # Bump deliberately, like the ruby/setup-ruby pin above.
+        env:
+          CHECKFLEET_VERSION: '0.126.0'
+        run: |
+          curl -sSfL "https://github.com/Allan-Nava/checkfleet/releases/download/v${CHECKFLEET_VERSION}/checkfleet_${CHECKFLEET_VERSION}_linux_amd64.tar.gz" \
+            | tar -xz checkfleet
+          ./checkfleet version
+      - name: Check the live site
+        # `shell: bash` is required, not cosmetic: it enables pipefail, so the
+        # --exit-on-bad exit code survives the pipe into tee instead of being
+        # masked by tee's own 0.
+        shell: bash
+        # Pages sits behind Varnish with max-age=600. If this commit added a new
+        # page *and* a target for it, the first run right after the deploy can
+        # still read the cached 404 — the scheduled uptime.yml run clears it.
+        run: |
+          ./checkfleet check http --config checkfleet.yml \
+            --output markdown --exit-on-bad | tee -a "$GITHUB_STEP_SUMMARY"

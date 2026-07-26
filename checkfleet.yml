@@ -1,0 +1,72 @@
+# checkfleet — post-deploy smoke test of the site as GitHub Pages actually
+# serves it. Run by the `smoke` job in .github/workflows/jekyll.yml (after the
+# deploy) and on a schedule by .github/workflows/uptime.yml.
+#
+# Scope, and why this is not redundant with what already exists:
+#   - checks.yml   runs html-proofer over the locally built ./_site (internal
+#                  links and images) BEFORE the deploy, on a build artifact.
+#   - lighthouse.yml covers performance.
+# Neither of them ever reads the live site, so neither can catch a deploy that
+# reported success while Pages serves a stale, partial, or wrong page.
+#
+# Deliberately no max_latency_ms: latency measured from a GitHub runner has
+# enough variance to produce constant false WARNs. Uptime/latency is not what
+# this file is for.
+timeout_seconds: 20
+retries: 2                 # retry ERROR findings (transient DNS/TLS/reset)
+retry_backoff_ms: 1000
+
+labels:
+  site: allan-nava.github.io
+
+checks:
+  http:
+    # Every expect_body is that page's <title>. It is a stronger assertion than
+    # the status code alone on two counts: it proves the Jekyll layout rendered
+    # (an empty layout still returns 200), and it proves Pages served *this*
+    # page — the probe follows redirects silently, so a 200 does not tell you
+    # where you landed.
+    #
+    # Titles are stable content. Do not assert on a freshly published post:
+    # Pages sits behind Varnish with cache-control max-age=600, so for up to
+    # ten minutes after a deploy you may legitimately read the cached previous
+    # copy.
+    targets:
+      - url: https://allan-nava.github.io/
+        expect_body: "<title>Home | Allan Nava</title>"
+      - url: https://allan-nava.github.io/projects.html
+        expect_body: "<title>Projects | Allan Nava</title>"
+      - url: https://allan-nava.github.io/blog/
+        expect_body: "<title>Blog | Allan Nava</title>"
+      - url: https://allan-nava.github.io/about/
+        expect_body: "<title>About | Allan Nava</title>"
+      - url: https://allan-nava.github.io/tags.html
+        expect_body: "<title>Tags | Allan Nava</title>"
+      - url: https://allan-nava.github.io/gear/
+        expect_body: "<title>Gear | Allan Nava</title>"
+
+      # map.html and fitness.html set `permalink: /map/` and `/fitness/`, so the
+      # served URLs are not the filenames. Pinned here so a dropped permalink
+      # shows up as a finding instead of a silent 404.
+      - url: https://allan-nava.github.io/map/
+        expect_body: "<title>Map | Allan Nava</title>"
+      - url: https://allan-nava.github.io/fitness/
+        expect_body: "<title>Fitness | Allan Nava</title>"
+
+      # Machine-facing endpoints: nothing else verifies these, and a broken feed
+      # fails silently for readers.
+      - url: https://allan-nava.github.io/feed.xml
+        expect_body: '<feed xmlns="http://www.w3.org/2005/Atom"'
+      - url: https://allan-nava.github.io/sitemap.xml
+        expect_body: "https://allan-nava.github.io/"
+      # robots.txt currently has no `Sitemap:` directive (only User-agent /
+      # Disallow), so this asserts what is actually served.
+      - url: https://allan-nava.github.io/robots.txt
+        expect_body: "User-agent: *"
+
+      # A URL that must NOT exist: 404.html has to be served with a real 404,
+      # not a 200. Pages returning 200 for unknown paths is a classic
+      # misconfiguration — it makes every typo look like a valid page.
+      - url: https://allan-nava.github.io/checkfleet-smoke-test-does-not-exist
+        expect_status: 404
+        expect_body: "404"

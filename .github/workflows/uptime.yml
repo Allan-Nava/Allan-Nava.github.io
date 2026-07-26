@@ -1,3 +1,14 @@
+# Scheduled availability check of the live site.
+#
+# Was a single `curl --fail` against the homepage. Now runs the same checkfleet
+# target list as the post-deploy smoke job in jekyll.yml (see checkfleet.yml),
+# so a page that breaks on its own — expired permalink, broken feed, 404.html
+# starting to answer 200 — is caught too, not just a total outage.
+#
+# Note on what this is *not*: GitHub's scheduled cron has 5-minute granularity
+# with real delays of 10-20 minutes under load, so this is a coarse safety net,
+# not an SLA monitor. If you ever want real uptime figures, that needs an
+# external prober, not Actions.
 name: Uptime Monitor
 
 on:
@@ -6,13 +17,26 @@ on:
     - cron: '*/10 * * * *'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   ping_site:
     runs-on: ubuntu-latest
     name: Uptime Check
     steps:
-      - name: Ping Site
+      - name: Checkout
+        # Needed for checkfleet.yml (the previous curl needed no checkout).
+        uses: actions/checkout@v4
+      - name: Install checkfleet
+        # Keep the version in sync with the smoke job in jekyll.yml.
+        env:
+          CHECKFLEET_VERSION: '0.126.0'
         run: |
-          curl --silent --show-error --fail --output /dev/null \
-               --retry 3 --retry-delay 10 --max-time 30 \
-               https://allan-nava.github.io/
+          curl -sSfL "https://github.com/Allan-Nava/checkfleet/releases/download/v${CHECKFLEET_VERSION}/checkfleet_${CHECKFLEET_VERSION}_linux_amd64.tar.gz" \
+            | tar -xz checkfleet
+      - name: Check the live site
+        # Plain text to the run log, no job summary: this fires 144 times a day
+        # and a summary on every green run is noise. The signal is the failed
+        # run notification.
+        run: ./checkfleet check http --config checkfleet.yml --no-color --exit-on-bad

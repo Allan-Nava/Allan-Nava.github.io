@@ -9,6 +9,14 @@ The site deploys to **GitHub Pages** through GitHub Actions (not the legacy Page
 - **Triggers**: push to `master`, daily cron (`0 10 * * *`), manual (`workflow_dispatch`). The daily rebuild publishes future-dated posts without needing a push.
 - **Build job**: checkout → Ruby 3.0 with cached bundle → `actions/configure-pages` → `bundle exec jekyll build --baseurl <pages base path>` with `JEKYLL_ENV=production` → upload `_site/` as a Pages artifact.
 - **Deploy job**: `actions/deploy-pages` publishes the artifact to the `github-pages` environment.
+- **Smoke job**: after the deploy, [checkfleet](https://github.com/Allan-Nava/checkfleet) probes the **live** site (`checkfleet check http --config checkfleet.yml`) and attaches its Markdown report to the job summary.
+
+The smoke job closes a real gap: `checks.yml` validates the locally built `_site` *before* the deploy, so nothing else ever reads what Pages actually serves — a deploy that reported success while serving a wrong or partial page used to go unnoticed. It can't gate the deploy (that already happened); it exists to notify. Details of the target list are in [`checkfleet.yml`](../checkfleet.yml) at the repo root.
+
+Two implementation details that are load-bearing:
+
+- The step declares `shell: bash` so that **pipefail** is on. Without it, piping into `tee` for the job summary masks checkfleet's `--exit-on-bad` exit code with `tee`'s own `0`, and the job would never fail (verified: exit 2 with pipefail, exit 0 without).
+- checkfleet is installed from a **pinned release tarball** (no Go toolchain needed). Keep the version in sync with `uptime.yml`.
 
 The `pages` concurrency group with `cancel-in-progress: true` ensures simultaneous runs don't race: the newer run cancels the older one.
 
@@ -65,7 +73,11 @@ Files are rewritten only when the regenerated content actually differs, so an id
 
 ### `uptime.yml` — Uptime Monitor
 
-Every 10 minutes, curls `https://allan-nava.github.io/` and fails the run if the site doesn't respond with a success status (3 retries). A failing run in the Actions tab means the site is down.
+Every 10 minutes, runs [checkfleet](https://github.com/Allan-Nava/checkfleet) against the live site with the same target list as the post-deploy smoke job (`checkfleet.yml`), failing the run on any BAD/ERROR finding. A failing run in the Actions tab means the site is down **or** one of the checked pages broke on its own — an expired permalink, a broken feed, `404.html` starting to answer `200`.
+
+It previously curled only the homepage; the target list widens that to every structural page plus `feed.xml`, `sitemap.xml`, `robots.txt` and a must-not-exist URL. Output is plain text to the run log with no job summary: this fires 144 times a day, and a summary on every green run is noise — the signal is the failure notification.
+
+**What this is not**: GitHub's scheduled cron has 5-minute granularity with real delays of 10–20 minutes under load, so this is a coarse safety net, not an SLA monitor. Real uptime figures need an external prober, not Actions.
 
 ### `lighthouse.yml` — Lighthouse CI
 
