@@ -76,7 +76,7 @@ ruby scripts/validate_posts.rb # validazione veloce dei post — no bundle
 
 ## Deployment
 
-Push su `master` -> GitHub Pages via `.github/workflows/jekyll.yml` (push + cron giornaliero 10:00 UTC + dispatch manuale): build Ruby 3.0 / production, deploy dell'artifact `_site/`. `uptime.yml` fa curl al sito live ogni 10 minuti. `checks.yml` gira `validate_posts.rb` su ogni PR.
+Push su `master` -> GitHub Pages via `.github/workflows/jekyll.yml` (push + cron giornaliero 10:00 UTC + dispatch manuale): build Ruby 3.0 / production, deploy dell'artifact `_site/`, poi job `smoke`: **checkfleet** sonda il sito **live** (target in `checkfleet.yml`) e allega il report Markdown al job summary — `checks.yml` valida `_site` *prima* del deploy, quindi è l'unico controllo su ciò che Pages serve davvero. `uptime.yml` fa girare lo stesso check ogni 10 minuti. `checks.yml` gira `validate_posts.rb` su ogni PR.
 
 ## Architettura
 
@@ -91,5 +91,5 @@ Push su `master` -> GitHub Pages via `.github/workflows/jekyll.yml` (push + cron
 - Documentazione: `docs/` — `getting-started.md`, `writing-content.md`, `architecture.md`, `deployment.md`, `ROADMAP.md`.
 - Script: `scripts/validate_posts.rb` (gate PR/deploy), `scripts/sync_youtube.rb`, `scripts/sync_strava.rb`, `scripts/backfill_youtube.rb` (one-shot: backfill intero canale YouTube), `scripts/migrate_youtube_embeds.rb` (one-shot: iframe→facade `<lite-youtube>`).
 - Plugin build-time: `_plugins/lazy_images.rb` (lazy loading immagini). Facade video: `_includes/youtube-facade.html`.
-- Workflow CI: `.github/workflows/` — `jekyll.yml` (deploy), `checks.yml` (validazione PR), `lighthouse.yml` (budget Lighthouse su PR/push, config in `lighthouserc.json`), `youtube-sync.yml` (post automatici ogni 3h), `strava-sync.yml` (post da attività, richiede secret), `uptime.yml` (probe), `bootstrap-milestone.yml` (one-shot issue/milestone).
+- Workflow CI: `.github/workflows/` — `jekyll.yml` (deploy), `checks.yml` (validazione PR), `lighthouse.yml` (budget Lighthouse su PR/push, config in `lighthouserc.json`), `youtube-sync.yml` (post automatici ogni 3h), `strava-sync.yml` (post da attività, richiede secret), `uptime.yml` (probe checkfleet sul sito live ogni 10 min, target in `checkfleet.yml`), `bootstrap-milestone.yml` (one-shot issue/milestone).
 - Pagine extra (toggle in `_config.yml`): `map.html` (`/map`, post con `lat`/`lng`), `fitness.html` (`/fitness`, dati in `_data/workouts.yml`), `gear.md` (`/gear`).
