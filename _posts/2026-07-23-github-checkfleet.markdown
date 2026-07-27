@@ -2,7 +2,7 @@
 title: "checkfleet"
 layout: post
 date: 2026-07-23 12:48
-updated: 2026-07-26
+updated: 2026-07-27
 tag:
 - go
 - monitor
@@ -26,6 +26,6 @@ A fleet of infrastructure checks in one binary.  checkfleet runs *domain-aware* 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
 - **Stars**: 2
-- **Ultimo push**: 2026-07-26
+- **Ultimo push**: 2026-07-27
 
 [Repo su GitHub →](https://github.com/Allan-Nava/checkfleet)
