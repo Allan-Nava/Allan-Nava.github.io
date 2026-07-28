@@ -1,0 +1,17 @@
+# Configuration for scripts/sync_robots_sitemaps.rb.
+#
+# The script discovers which GitHub Pages *project* sites of `owner` are served
+# under `host` and expose a sitemap.xml (HTTP 200), then writes the result to
+# _data/pages_sitemaps.yml, which robots.txt renders one `Sitemap:` line from.
+#
+# Only `owner`'s own Pages sites belong here: robots.txt is read per-host, and a
+# repo owned by a different account/org publishes to a *different* host (e.g.
+# hiway-media repos → hiway-media.github.io), so it must not appear in this
+# host's robots.txt. That is why this is a single owner, not the multi-source
+# list in github_sync.yml.
+host: allan-nava.github.io
+owner: Allan-Nava
+
+# Repos to never list even if they expose a sitemap.
+exclude:
+  - Allan-Nava.github.io   # the host root itself — its sitemap is the fixed first line in robots.txt

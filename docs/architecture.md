@@ -66,7 +66,7 @@ Declared in `_config.yml` and provided by the `github-pages` gem (all whiteliste
 
 - `jekyll-seo-tag` — meta/OpenGraph tags via `{% seo %}` in `default.html`
 - `jekyll-feed` — RSS at `/feed.xml`
-- `jekyll-sitemap` — `/sitemap.xml` (350+ URLs). **It also generates a `robots.txt` containing the `Sitemap:` line — but only when the repo has none** (`@site.pages << robots unless file_exists?("robots.txt")`). This repo ships a hand-written `robots.txt`, so that automatic declaration never happened and the host advertised no sitemap at all until it was added by hand. See `robots.txt`, which explains it and lists one `Sitemap:` per site on the host.
+- `jekyll-sitemap` — `/sitemap.xml` (350+ URLs). **It also generates a `robots.txt` containing the `Sitemap:` line — but only when the repo has none** (`@site.pages << robots unless file_exists?("robots.txt")`). This repo ships its own `robots.txt`, so that automatic declaration never happened and the host advertised no sitemap at all until it was added. `robots.txt` is now a **Liquid template** (it carries empty front matter so Jekyll renders it): it prints the fixed host `Sitemap:` line plus one line per entry in `_data/pages_sitemaps.yml`. Crawlers read `robots.txt` only from the host root, so this one file speaks for every project site under `allan-nava.github.io/<repo>/` too — hence one `Sitemap:` per site. That data file is **generated in CI** by `scripts/sync_robots_sitemaps.rb` (workflow `robots-sync.yml`, config `_data/robots_sync.yml`): it lists only `Allan-Nava`-owned Pages sites whose `sitemap.xml` returns 200, so nothing is declared that isn't actually served. See `docs/deployment.md` for the workflow.
 - `jemoji` — `:emoji:` shortcodes
 - `jekyll-gist` — GitHub gist embeds
 

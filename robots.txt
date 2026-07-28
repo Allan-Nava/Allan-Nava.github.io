@@ -1,31 +1,31 @@
+---
+# Front matter (even empty) makes Jekyll render the Liquid below. Without it the
+# file would be copied verbatim. jekyll-sitemap only generates a robots.txt when
+# the repo has none, so keeping this file means we — not the plugin — own every
+# Sitemap: line here.
+---
 # robots.txt for the whole allan-nava.github.io host.
-#
-# Why this file is hand-written and must stay that way: jekyll-sitemap only
-# generates a robots.txt when the repo has none (jekyll-sitemap.rb: `@site.pages
-# << robots unless file_exists?("robots.txt")`). Its generated version contains
-# just one line — `Sitemap: .../sitemap.xml` — so this file replaced it and, for
-# a while, silently removed the only sitemap declaration on the host. Hence the
-# explicit list below.
 #
 # Crawlers read robots.txt **only from the host root**, so this one file speaks
 # for every project site published under allan-nava.github.io/<repo>/ too. Each
 # of those is a separate Jekyll/Hugo build with its own sitemap, which is why
 # there is one Sitemap: line per site rather than one for the host.
 #
-# Adding a project: only list a sitemap that actually returns 200. Declaring a
-# missing one wastes crawl budget and teaches crawlers to distrust the file. As
-# of 2026-07-28, 19 other project sites are live but ship no sitemap (they render
-# a README through a theme); add jekyll-sitemap or Hugo's sitemap output there
-# first, then add the line here.
+# The per-project Sitemap: lines are GENERATED, not hand-maintained: they come
+# from _data/pages_sitemaps.yml, which scripts/sync_robots_sitemaps.rb rebuilds
+# in CI (robots-sync.yml). It lists only Allan-Nava-owned GitHub Pages sites
+# whose sitemap.xml actually returns 200 — a declared-but-missing sitemap wastes
+# crawl budget, so a site that ships no sitemap simply doesn't appear until it
+# does. To change what's listed, don't edit here: add jekyll-sitemap / Hugo
+# sitemap output to the source repo, or adjust _data/robots_sync.yml.
 
 User-agent: *
 Disallow:
 
-# Portfolio and blog (this repo) — 351 URLs.
-Sitemap: https://allan-nava.github.io/sitemap.xml
+# Portfolio and blog (this repo).
+Sitemap: {{ site.url }}/sitemap.xml
+{%- for s in site.data.pages_sitemaps %}
 
-# checkfleet documentation — 11 URLs.
-Sitemap: https://allan-nava.github.io/checkfleet/sitemap.xml
-
-# Hugo-TuttoCampo — 10 URLs.
-Sitemap: https://allan-nava.github.io/Hugo-TuttoCampo/sitemap.xml
+# {{ s.name }}{% if s.urls %} — {{ s.urls }} URLs.{% endif %}
+Sitemap: {{ site.url }}/{{ s.name }}/sitemap.xml
+{%- endfor %}

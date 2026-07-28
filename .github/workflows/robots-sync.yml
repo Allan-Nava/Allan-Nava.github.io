@@ -1,0 +1,53 @@
+# Rebuilds _data/pages_sitemaps.yml from the owner's GitHub Pages sites that
+# expose a sitemap.xml (HTTP 200), so robots.txt's per-project Sitemap: lines
+# stay in sync with what is actually published. The commit step is a no-op when
+# nothing changed, so a run with no change costs nothing (no commit, no deploy).
+# Config: _data/robots_sync.yml. Script: scripts/sync_robots_sitemaps.rb.
+name: Robots Sitemaps Sync
+
+on:
+  schedule:
+    # Daily at 04:00 UTC — GitHub Pages enablement / sitemap presence changes
+    # rarely, so daily is plenty.
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: "robots-sync"
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Rebuild pages_sitemaps.yml from live GitHub Pages sitemaps
+        run: ruby scripts/sync_robots_sitemaps.rb
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Commit and push if changed
+        id: commit
+        run: |
+          if [ -z "$(git status --porcelain _data/pages_sitemaps.yml)" ]; then
+            echo "No change."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _data/pages_sitemaps.yml
+          git commit -m "Sync robots.txt sitemaps from live GitHub Pages"
+          git push
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+      - name: Trigger deploy
+        # Pushes made with GITHUB_TOKEN don't fire the push-triggered deploy
+        # workflow, so dispatch it explicitly.
+        if: steps.commit.outputs.pushed == 'true'
+        run: gh workflow run jekyll.yml --ref master
+        env:
+          GH_TOKEN: ${{ github.token }}
