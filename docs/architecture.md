@@ -66,7 +66,7 @@ Declared in `_config.yml` and provided by the `github-pages` gem (all whiteliste
 
 - `jekyll-seo-tag` — meta/OpenGraph tags via `{% seo %}` in `default.html`
 - `jekyll-feed` — RSS at `/feed.xml`
-- `jekyll-sitemap` — `/sitemap.xml`
+- `jekyll-sitemap` — `/sitemap.xml` (350+ URLs). **It also generates a `robots.txt` containing the `Sitemap:` line — but only when the repo has none** (`@site.pages << robots unless file_exists?("robots.txt")`). This repo ships a hand-written `robots.txt`, so that automatic declaration never happened and the host advertised no sitemap at all until it was added by hand. See `robots.txt`, which explains it and lists one `Sitemap:` per site on the host.
 - `jemoji` — `:emoji:` shortcodes
 - `jekyll-gist` — GitHub gist embeds
 

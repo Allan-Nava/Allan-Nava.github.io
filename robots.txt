@@ -1,2 +1,31 @@
+# robots.txt for the whole allan-nava.github.io host.
+#
+# Why this file is hand-written and must stay that way: jekyll-sitemap only
+# generates a robots.txt when the repo has none (jekyll-sitemap.rb: `@site.pages
+# << robots unless file_exists?("robots.txt")`). Its generated version contains
+# just one line — `Sitemap: .../sitemap.xml` — so this file replaced it and, for
+# a while, silently removed the only sitemap declaration on the host. Hence the
+# explicit list below.
+#
+# Crawlers read robots.txt **only from the host root**, so this one file speaks
+# for every project site published under allan-nava.github.io/<repo>/ too. Each
+# of those is a separate Jekyll/Hugo build with its own sitemap, which is why
+# there is one Sitemap: line per site rather than one for the host.
+#
+# Adding a project: only list a sitemap that actually returns 200. Declaring a
+# missing one wastes crawl budget and teaches crawlers to distrust the file. As
+# of 2026-07-28, 19 other project sites are live but ship no sitemap (they render
+# a README through a theme); add jekyll-sitemap or Hugo's sitemap output there
+# first, then add the line here.
+
 User-agent: *
 Disallow:
+
+# Portfolio and blog (this repo) — 351 URLs.
+Sitemap: https://allan-nava.github.io/sitemap.xml
+
+# checkfleet documentation — 11 URLs.
+Sitemap: https://allan-nava.github.io/checkfleet/sitemap.xml
+
+# Hugo-TuttoCampo — 10 URLs.
+Sitemap: https://allan-nava.github.io/Hugo-TuttoCampo/sitemap.xml
