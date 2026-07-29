@@ -2,7 +2,7 @@
 title: "NextJS-Blog"
 layout: post
 date: 2020-11-03 09:00
-updated: 2026-07-12
+updated: 2026-07-29
 tag:
 - javascript
 image: ""
@@ -23,6 +23,6 @@ Tutorial https://nextjs.org/learn/basics/create-nextjs-app/setup
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: JavaScript
 - **Stars**: 3
-- **Ultimo push**: 2026-07-12
+- **Ultimo push**: 2026-07-29
 
 [Repo su GitHub →](https://github.com/Allan-Nava/NextJS-Blog)

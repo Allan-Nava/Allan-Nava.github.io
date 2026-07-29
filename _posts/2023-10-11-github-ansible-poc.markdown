@@ -2,7 +2,7 @@
 title: "ansible-poc"
 layout: post
 date: 2023-10-11 13:53
-updated: 2026-04-30
+updated: 2026-07-29
 tag:
 - jinja
 - ansible
@@ -25,6 +25,6 @@ Ansible structure and poc
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Jinja
-- **Ultimo push**: 2026-04-30
+- **Ultimo push**: 2026-07-29
 
 [Repo su GitHub →](https://github.com/Allan-Nava/ansible-poc)
