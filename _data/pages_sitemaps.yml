@@ -5,6 +5,6 @@
 # 21 other Pages site(s) are live but ship no sitemap and are
 # omitted: ansible-vars-lens, AWS_SMS_LIBRARY, fakeyou.go, go-bytebase, go-cli, Go-DDD-Scaffold, go-gemini, Go-GestPay, go-kaltura, go-release.action, Haivision-go-sdk, haproxy-dataplane-go, hm-react-utils, KafkaJS-WS, Mailgun-Template-Extension-VSCode, MistServer-go-sdk, nats-lens, NextCMS, nomad-lens, OvenMediaEngine-go-sdk, Vanilla-BLoC-Extension
 - name: checkfleet
-  urls: 11
+  urls: 12
 - name: Hugo-TuttoCampo
   urls: 10
