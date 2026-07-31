@@ -2,7 +2,7 @@
 title: "teamcity-agent-gitlab-release-cli"
 layout: post
 date: 2024-02-08 08:54
-updated: 2026-07-03
+updated: 2026-07-31
 tag:
 - shell
 - teamcity
@@ -24,6 +24,6 @@ TeamCity docker images  Resources
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Shell
-- **Ultimo push**: 2026-07-03
+- **Ultimo push**: 2026-07-31
 
 [Repo su GitHub →](https://github.com/HiWay-Media/teamcity-agent-gitlab-release-cli)
