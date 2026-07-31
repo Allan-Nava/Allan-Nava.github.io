@@ -2,7 +2,7 @@
 title: "Go-DDD-Scaffold"
 layout: post
 date: 2022-10-14 15:25
-updated: 2026-07-30
+updated: 2026-07-31
 tag:
 - typescript
 - cli
@@ -26,6 +26,6 @@ Generate scaffold domain driven design project layout for Go.
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: TypeScript
 - **Stars**: 4
-- **Ultimo push**: 2026-07-30
+- **Ultimo push**: 2026-07-31
 
 [Repo su GitHub →](https://github.com/Allan-Nava/Go-DDD-Scaffold)
