@@ -2,7 +2,7 @@
 title: "Mailgun-Template-Extension-VSCode"
 layout: post
 date: 2020-05-13 09:02
-updated: 2026-07-30
+updated: 2026-08-01
 tag:
 - typescript
 - mailgun
@@ -26,6 +26,6 @@ Easy way to upload template to mailgun
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: TypeScript
 - **Stars**: 6
-- **Ultimo push**: 2026-07-30
+- **Ultimo push**: 2026-08-01
 
 [Repo su GitHub →](https://github.com/Allan-Nava/Mailgun-Template-Extension-VSCode)
