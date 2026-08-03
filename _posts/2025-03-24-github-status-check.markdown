@@ -24,7 +24,7 @@ github: HiWay-Media/status-check
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Markdown
-- **Stars**: 2
+- **Stars**: 3
 - **Ultimo push**: 2026-08-03
 
 [Repo su GitHub →](https://github.com/HiWay-Media/status-check)
