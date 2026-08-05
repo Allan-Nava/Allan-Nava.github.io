@@ -2,7 +2,7 @@
 title: "homebrew-tap"
 layout: post
 date: 2026-07-24 15:13
-updated: 2026-08-04
+updated: 2026-08-05
 tag:
 - shell
 image: ""
@@ -22,6 +22,6 @@ Homebrew tap for Allan-Nava projects.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Shell
-- **Ultimo push**: 2026-08-04
+- **Ultimo push**: 2026-08-05
 
 [Repo su GitHub →](https://github.com/Allan-Nava/homebrew-tap)
