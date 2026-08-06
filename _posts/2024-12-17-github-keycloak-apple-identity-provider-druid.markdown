@@ -2,7 +2,7 @@
 title: "keycloak-apple-identity-provider-druid"
 layout: post
 date: 2024-12-17 08:08
-updated: 2026-07-02
+updated: 2026-08-06
 tag:
 - github
 image: ""
@@ -21,6 +21,6 @@ github: HiWay-Media/keycloak-apple-identity-provider-druid
 Docker for Keycloak, that enables web-based sign in with Apple & DRUID and token exchange
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
-- **Ultimo push**: 2026-07-02
+- **Ultimo push**: 2026-08-06
 
 [Repo su GitHub →](https://github.com/HiWay-Media/keycloak-apple-identity-provider-druid)
