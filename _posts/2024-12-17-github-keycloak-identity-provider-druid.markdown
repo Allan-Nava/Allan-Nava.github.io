@@ -5,6 +5,7 @@ date: 2024-12-17 16:52
 updated: 2026-08-06
 tag:
 - java
+- druid
 image: ""
 headerImage: false
 projects: true
