@@ -2,7 +2,7 @@
 title: "nomad-events-to-slack"
 layout: post
 date: 2022-11-16 15:03
-updated: 2026-08-05
+updated: 2026-08-06
 tag:
 - python
 image: ""
@@ -23,6 +23,6 @@ Get nomad's allocations. Retrieve events from the tasks inside allocations. Post
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Python
 - **Stars**: 1
-- **Ultimo push**: 2026-08-05
+- **Ultimo push**: 2026-08-06
 
 [Repo su GitHub →](https://github.com/Allan-Nava/nomad-events-to-slack)
