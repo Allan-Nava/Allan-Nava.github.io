@@ -2,7 +2,7 @@
 title: "crowdsim"
 layout: post
 date: 2026-08-05 07:35
-updated: 2026-08-06
+updated: 2026-08-07
 tag:
 - javascript
 - load-testing
@@ -26,6 +26,6 @@ Replay a live-event traffic mix against a web frontend, find the knee, and measu
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: JavaScript
 - **Stars**: 1
-- **Ultimo push**: 2026-08-06
+- **Ultimo push**: 2026-08-07
 
 [Repo su GitHub →](https://github.com/HiWay-Media/crowdsim)
