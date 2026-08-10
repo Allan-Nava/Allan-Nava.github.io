@@ -14,12 +14,13 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
 
     {%- comment -%}
     La parola che ruota: i lettori di schermo leggono la versione fissa in
-    .sr-only, la lista visibile è aria-hidden. L'ultima voce ripete la prima,
-    così il ciclo si chiude senza scatti — e con `prefers-reduced-motion`
-    (dove polish.sass azzera le durate) resta ferma proprio su quella.
+    .sr-only, la lista visibile è aria-hidden. Le parole sono impilate nella
+    stessa cella e si incrociano in dissolvenza (`--i` è lo sfasamento); senza
+    animazioni — es. `prefers-reduced-motion` — resta visibile la prima, cioè
+    la stessa che viene letta ad alta voce.
     {%- endcomment -%}
     <h1 class="lede-title">
-        I build <span class="sr-only">tools</span><span class="em rotator" aria-hidden="true"><span class="rotator-list"><span>tools</span><span>pipelines</span><span>systems</span><span>tools</span></span></span> and <span class="em">infrastructure</span> for live video, and write about what breaks.
+        I build <span class="sr-only">tools</span><span class="em rotator" aria-hidden="true"><span class="rotator-list"><span style="--i:0">tools</span><span style="--i:1">pipelines</span><span style="--i:2">systems</span></span></span> and <span class="em">infrastructure</span> for live video, and write about what breaks.
     </h1>
 
     <p class="lede-sub">{{ site.bio }}. Go, Docker, streaming pipelines, and the odd editor extension — plus snowboarding, workouts and travel in between.</p>

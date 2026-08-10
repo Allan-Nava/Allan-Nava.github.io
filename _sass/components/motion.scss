@@ -252,41 +252,50 @@
    browser in _includes/interactions.html (le stime in `ch` sbagliano, con un
    font a peso 800 lasciano un buco dopo la parola). Il fallback in `ch` vale
    finché il JS non ha misurato, o se è disattivato. */
+/* Parole impilate nella stessa cella, non una lista che scorre dietro una
+   finestra: con il ritaglio i glifi della parola vicina sbordavano dalla
+   line-box e affioravano sopra a quella visibile. Qui si incrociano in
+   dissolvenza e non c'è nulla da ritagliare.
+   Stato base (nessuna animazione, es. prefers-reduced-motion): si vede la
+   prima parola, che è anche quella letta dai lettori di schermo. */
 .rotator {
-	display: inline-block;
-	overflow: hidden;
-	height: 1.04em;
+	display: inline-grid;
 	vertical-align: bottom;
 	width: var(--w0, 4.6ch);
 
 	> .rotator-list {
-		display: flex;
-		flex-direction: column;
-		/* Senza questo ogni parola si stira quanto la finestra e non si può
-		   misurarne la larghezza reale. */
-		align-items: flex-start;
+		display: grid;
+		grid-template-areas: "word";
+		justify-items: start;
 
 		> span {
-			display: block;
-			height: 1.04em;
-			line-height: 1.04;
+			grid-area: word;
 			white-space: nowrap;
+			opacity: 0;
+		}
+
+		> span:first-child {
+			opacity: 1;
 		}
 	}
 }
 
-@keyframes rotate-words {
-	0%, 22% { transform: translateY(0); }
-	28%, 50% { transform: translateY(-25%); }
-	56%, 78% { transform: translateY(-50%); }
-	84%, 100% { transform: translateY(-75%); }
+/* Una parola resta ferma per un terzo del ciclo, poi sale sfumando mentre la
+   successiva arriva dal basso. Ogni parola usa gli stessi keyframe con un
+   ritardo di un terzo di ciclo (--i). */
+@keyframes word-cycle {
+	0% { opacity: 0; transform: translateY(0.32em); }
+	5%, 28% { opacity: 1; transform: none; }
+	33%, 100% { opacity: 0; transform: translateY(-0.32em); }
 }
 
+/* La finestra si stringe sulla parola visibile: le larghezze reali le misura
+   il JS in --w0…--w2 (le stime in `ch` sbagliano con un font a peso 800). */
 @keyframes rotate-width {
-	0%, 22% { width: var(--w0, 4.6ch); }
-	28%, 50% { width: var(--w1, 8ch); }
-	56%, 78% { width: var(--w2, 6.6ch); }
-	84%, 100% { width: var(--w3, 4.6ch); }
+	0%, 28% { width: var(--w0, 4.6ch); }
+	33%, 61% { width: var(--w1, 8ch); }
+	66%, 94% { width: var(--w2, 6.6ch); }
+	100% { width: var(--w0, 4.6ch); }
 }
 
 @keyframes underline-in {
@@ -306,8 +315,9 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-	.rotator > .rotator-list {
-		animation: rotate-words 11s var(--ease) infinite;
+	.rotator > .rotator-list > span {
+		animation: word-cycle 10.5s var(--ease) infinite both;
+		animation-delay: calc(var(--i, 0) * 3.5s);
 	}
 
 	/* `animation` è una proprietà sola: la regola `.lede-title .em` qui sotto è
@@ -316,7 +326,7 @@
 	   un `.em`) — la finestra resterebbe larga quanto "tools" e taglierebbe
 	   "pipelines". */
 	.lede-title .em.rotator {
-		animation: rotate-width 11s var(--ease) infinite,
+		animation: rotate-width 10.5s var(--ease) infinite,
 			underline-in var(--dur-slow) var(--ease) 900ms both;
 	}
 

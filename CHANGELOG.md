@@ -11,6 +11,31 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ## [Non rilasciato]
 
+## [2.3.0] — 2026-08-10
+
+Il titolo della home si muove, e con lui l'apertura.
+
+### Aggiunto
+
+- **Parola che ruota** nel titolo della home: *tools → pipelines → systems*, parole impilate nella
+  stessa cella che si incrociano in dissolvenza. La finestra si stringe sulla parola visibile usando
+  larghezze **misurate dal browser** (`--w0…--w2`), rimisurate dopo `document.fonts.ready` e al
+  ridimensionamento — la taglia del titolo è fluida, e le stime in `ch` con un font a peso 800
+  tagliavano le parole. I lettori di schermo leggono una versione fissa (`.sr-only`).
+- **Ingresso a cascata** dell'apertura (kicker, titolo, sottotitolo, CTA, numeri) e sottolineatura
+  delle parole in evidenza che si accende dopo il titolo.
+- **Parallasse dell'apertura**: sale e sfuma uscendo dalla vista (scroll-driven).
+- **Righe delle sezioni** che si disegnano da sinistra quando la sezione entra nella vista.
+- Utility `.sr-only` in `_sass/base/helpers.sass`.
+
+### Corretto
+
+- La rotazione della larghezza non partiva: il rotator è anche un `.em`, e la regola più specifica
+  della sottolineatura **sostituiva** l'animazione (`animation` è una proprietà sola). Ora le due
+  animazioni sono dichiarate insieme.
+- Prima versione con lista scorrevole dietro una finestra: i glifi della parola vicina sbordavano
+  dalla line-box e affioravano sopra a quella visibile. Risolto passando alla dissolvenza incrociata.
+
 ## [2.2.0] — 2026-08-10
 
 Navigazione e home rifatte: erano le due parti rimaste con la forma da template.
@@ -132,7 +157,8 @@ Prima automazione di build e deploy del sito.
 
 Prima versione pubblica del sito sul tema Indigo.
 
-[Non rilasciato]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.2.0...HEAD
+[Non rilasciato]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.3.0...HEAD
+[2.3.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v1.6.1...v2.0.0
