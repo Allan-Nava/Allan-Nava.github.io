@@ -1,0 +1,69 @@
+# Workflow riusabile: apre (o aggiorna) una issue quando un workflow
+# schedulato fallisce.
+#
+# I cron girano di notte e senza nessuno che guardi: un fallimento silenzioso
+# di `youtube-sync` o `uptime` può passare inosservato per settimane. Qui il
+# fallimento diventa una issue etichettata `ci-failure`, e i run successivi che
+# falliscono aggiungono un commento a quella già aperta invece di crearne una
+# nuova ogni volta.
+#
+# Si richiama da un altro workflow così:
+#
+#   report-failure:
+#     needs: [sync]
+#     if: failure()
+#     uses: ./.github/workflows/failure-issue.yml
+#     permissions:
+#       issues: write
+name: Report workflow failure
+
+on:
+  workflow_call:
+
+jobs:
+  open-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Open or update the failure issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const workflow = context.workflow;
+            const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const title = `CI: "${workflow}" is failing`;
+            const stamp = new Date().toISOString().replace('T', ' ').slice(0, 16) + ' UTC';
+            const body = `Run fallito: ${runUrl}\n\nWorkflow: **${workflow}**\nTrigger: \`${context.eventName}\`\nQuando: ${stamp}`;
+
+            // L'etichetta può non esistere ancora: crearla è idempotente.
+            try {
+              await github.rest.issues.createLabel({
+                owner, repo, name: 'ci-failure', color: 'b60205',
+                description: 'Un workflow schedulato sta fallendo',
+              });
+            } catch (e) {
+              if (e.status !== 422) throw e;
+            }
+
+            const existing = await github.paginate(github.rest.issues.listForRepo, {
+              owner, repo, state: 'open', labels: 'ci-failure', per_page: 100,
+            });
+            const open = existing.find(i => i.title === title);
+
+            if (open) {
+              await github.rest.issues.createComment({
+                owner, repo, issue_number: open.number,
+                body: `Fallito di nuovo.\n\n${body}`,
+              });
+              core.info(`Commentata la issue #${open.number}`);
+              return;
+            }
+
+            const created = await github.rest.issues.create({
+              owner, repo, title,
+              body: `${body}\n\nQuesta issue si chiude da sola? No: chiudila quando il workflow torna verde.`,
+              labels: ['ci-failure'],
+            });
+            core.info(`Aperta la issue #${created.data.number}`);

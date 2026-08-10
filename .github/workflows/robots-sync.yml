@@ -51,3 +51,12 @@ jobs:
         run: gh workflow run jekyll.yml --ref master
         env:
           GH_TOKEN: ${{ github.token }}
+
+# Se il cron fallisce, apri (o aggiorna) una issue: nessuno guarda i run
+# notturni, e un sync rotto resterebbe rotto in silenzio.
+  report-failure:
+    needs: [sync]
+    if: failure()
+    uses: ./.github/workflows/failure-issue.yml
+    permissions:
+      issues: write

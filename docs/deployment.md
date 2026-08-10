@@ -104,6 +104,20 @@ SEO, accessibility and best-practices are hard gates: after the v2.3 restyling t
 
 `lighthouserc.json` and `AGENTS.md` are listed in `_config.yml` `exclude:` so they are not copied into the published site.
 
+### `release.yml` — Release
+
+Si attiva sul push di un tag `v*` (e a mano con `workflow_dispatch`, passando un tag esistente). Crea la GitHub Release prendendo le note dalla sezione di `CHANGELOG.md` che corrisponde alla versione del tag (`v2.4.0` → `## [2.4.0]`); se quella sezione non c'è usa il messaggio del tag annotato, e in ultima istanza lascia generare le note a GitHub dai commit. Se la release esiste già ne aggiorna le note invece di fallire. Usa `gh` con il `GITHUB_TOKEN` del runner: nessuna action di terze parti, nessun secret.
+
+**Quindi il flusso di rilascio è**: aggiorna `CHANGELOG.md` → `git tag -a vX.Y.Z` → `git push origin master --follow-tags`. La release compare da sola, e `jekyll.yml` (che ascolta anche i tag) ridistribuisce il sito.
+
+### `failure-issue.yml` — Report workflow failure
+
+Workflow **riusabile** (`workflow_call`): apre una issue etichettata `ci-failure` con il link al run fallito, o commenta quella già aperta per lo stesso workflow. È agganciato con `if: failure()` ai workflow schedulati (`youtube-sync`, `github-sync`, `robots-sync`, `strava-sync`, `uptime`), che girano di notte e senza nessuno che li guardi.
+
+### `link-check.yml` — Link check
+
+Cron il primo del mese (più `workflow_dispatch`): build del sito e html-proofer sui link **esterni**. I link morti finiscono in una issue `link-rot` (aggiornata, non duplicata) e il workflow **esce sempre verde**: un sito di terzi che sparisce non deve bloccare il deploy. I link *interni* restano un gate su ogni PR in `checks.yml`.
+
 ### `bootstrap-milestone.yml` — Bootstrap milestone
 
 Run manually from the Actions tab (`workflow_dispatch` only). Using `actions/github-script`, it creates the **versioned backlog milestones** (`v2.0` Performance & Navigazione, `v2.1` Contenuti & Engagement, `v2.2` Automazioni & Platform, `v3.0` Big rocks) and one issue per item in [ROADMAP](ROADMAP.md), each assigned to its milestone. It is idempotent: existing milestones/issues with the same title are skipped, and an issue found under the wrong milestone is moved to the right one — so after adding items to ROADMAP.md (mirrored in the workflow's `BACKLOG` array), re-running creates only the new ones. It needs `issues: write` and touches nothing else in the repo.

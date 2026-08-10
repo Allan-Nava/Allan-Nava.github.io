@@ -40,3 +40,12 @@ jobs:
         # and a summary on every green run is noise. The signal is the failed
         # run notification.
         run: ./checkfleet check http --config checkfleet.yml --no-color --exit-on-bad
+
+# Se il cron fallisce, apri (o aggiorna) una issue: nessuno guarda i run
+# notturni, e un sync rotto resterebbe rotto in silenzio.
+  report-failure:
+    needs: [ping_site]
+    if: failure()
+    uses: ./.github/workflows/failure-issue.yml
+    permissions:
+      issues: write

@@ -11,8 +11,22 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ## [Non rilasciato]
 
+## [2.4.0] — 2026-08-11
+
+Contenuto navigabile (milestone v2.1) e automazioni di piattaforma (milestone v2.2).
+
 ### Aggiunto
 
+- **Release GitHub automatica dai tag** — `.github/workflows/release.yml`: un tag `v*` crea la
+  release prendendo le note **da questo file** (sezione della versione corrispondente); se manca,
+  ripiega sul messaggio del tag annotato e infine sulle note generate da GitHub. Nessuna action di
+  terze parti: `gh` con il token del runner.
+- **Allerta sui workflow schedulati** — `.github/workflows/failure-issue.yml` (riusabile) agganciato
+  a youtube-sync, github-sync, robots-sync, strava-sync e uptime: un cron che fallisce apre una issue
+  `ci-failure`, e i fallimenti successivi commentano quella aperta invece di crearne una nuova.
+- **Link checker mensile** — `.github/workflows/link-check.yml`: html-proofer sui link **esterni** il
+  primo del mese; i morti finiscono in una issue `link-rot` e il workflow resta verde, perché un sito
+  altrui che sparisce non deve bloccare il deploy. I link **interni** restano un gate su ogni PR.
 - **YouTube location extraction** — `sync_youtube.rb` usa YouTube Data API per estrarre `recordingDetails.location` (lat/lng) da ogni video. Se disponibili, le aggiunge automaticamente al post front matter — la mappa `/map` si aggiorna senza intervento manuale. Fallback a RSS feed se `YOUTUBE_API_KEY` non è configurato.
 - **Trigger workflow su tag e release** — `jekyll.yml` ora ascolta a `push.tags` (pattern `v*`) e `release.types: published`, oltre al push su master. Ogni tag o GitHub Release pubblica genera automaticamente un deploy.
 - **Skill graphify** — `.claude/skills/graphify.md` per invocare `graphify` dall'IDE e analizzare la struttura del repository.
@@ -177,7 +191,8 @@ Prima automazione di build e deploy del sito.
 
 Prima versione pubblica del sito sul tema Indigo.
 
-[Non rilasciato]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.3.0...HEAD
+[Non rilasciato]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.4.0...HEAD
+[2.4.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.0.0...v2.1.0

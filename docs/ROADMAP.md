@@ -29,16 +29,19 @@ Le pagine che mancavano per *navigare* 330 post: archivio, ricerca, statistiche,
 - [ ] **Commenti con giscus** — `_includes/giscus.html` e il blocco `giscus:` in `_config.yml` sono pronti: l'include non renderizza nulla finché `repo-id` e `category-id` sono vuoti. **Serve Allan**: abilitare Discussions sul repo, installare l'app giscus e copiare i due id da giscus.app.
 - [ ] **Analytics GA4 o privacy-friendly** — l'include gtag esiste già. **Serve Allan**: creare la property e mettere `G-XXXX` in `analytics-google`.
 
-## v2.2 — Automazioni & Platform
+## v2.2 — Automazioni & Platform ✅ (4 su 9)
 
-- [ ] **Modernizzazione stack Ruby** — in sequenza: merge PR `github-pages` 211→223→232 (Jekyll 3.10), bump Ruby 3.3 nei workflow e unpin di `setup-ruby`, poi `html-proofer` 5.x adattando `Rakefile` e i flag in `checks.yml`.
-- [ ] **Sync YouTube v2** — descrizione completa del video nel body; coordinate GPS dalla descrizione YouTube (formato `📍 lat, lng`) → post geolocalizzato e marker su `/map` automatico.
-- [ ] **Setup secret Strava** — creare l'app API e configurare `STRAVA_*` nei secret (guida in `deployment.md`) per attivare `strava-sync.yml`.
-- [ ] **Auto-issue sui fallimenti dei cron** — step `if: failure()` nei workflow schedulati che apre/aggiorna una issue col link al run fallito.
-- [ ] **Link checker mensile** — workflow schedulato con html-proofer sui link esterni che apre/aggiorna una issue con l'elenco dei morti (senza far fallire la CI).
-- [ ] **OG image automatica** — immagine social generata per i post senza `image:`.
-- [ ] **Newsletter RSS-to-email** — Buttondown/Mailchimp sul `/feed.xml` esistente + form di iscrizione nel footer.
-- [ ] **Webmentions** — like/repost/commenti da Mastodon/Bluesky via brid.gy + webmention.io.
+Le automazioni che mancavano attorno al sito. Le voci ancora aperte non sono bloccate dal codice: aspettano credenziali, account esterni o una sequenza di PR da verificare una alla volta.
+
+- [x] **Release GitHub automatica dai tag** — `release.yml`: un tag `v*` crea la release con le note prese dalla sezione corrispondente di `CHANGELOG.md` (fallback: messaggio del tag annotato, poi note generate da GitHub). Nessuna action di terze parti — `gh` con il token del runner. Ha anche `workflow_dispatch` per rigenerare la release di un tag già esistente.
+- [x] **Auto-issue sui fallimenti dei workflow schedulati** — `failure-issue.yml` è un workflow **riusabile** agganciato a youtube-sync, github-sync, robots-sync, strava-sync e uptime: un cron che fallisce apre una issue `ci-failure`; i fallimenti successivi commentano quella già aperta invece di moltiplicarla.
+- [x] **Link checker mensile** — `link-check.yml` (cron il primo del mese): html-proofer sui link **esterni**, risultato in una issue `link-rot`, workflow sempre verde. I link interni restano un gate su ogni PR in `checks.yml`.
+- [x] **Sync YouTube v2 — coordinate** — l'estrazione `recordingDetails.location` via `YOUTUBE_API_KEY` è attiva (fatta da Allan): i post video geolocalizzati finiscono da soli su `/map`.
+- [ ] **Sync YouTube v2 — descrizione nel body** — portare la descrizione completa del video nel corpo del post generato.
+- [ ] **Modernizzazione stack Ruby** — merge PR Dependabot `github-pages` 211→232 (Jekyll 3.10), Ruby 3.3 nei workflow e unpin di `setup-ruby`, poi html-proofer 5.x adattando `Rakefile` e i flag in `checks.yml`. Da fare a PR separate, verificando la CI a ogni passo: non è una modifica da fare alla cieca.
+- [ ] **Setup secret Strava** — *serve Allan*: creare l'app API e configurare i tre `STRAVA_*` nei secret (guida in `deployment.md`).
+- [ ] **OG image automatica** — immagine social per i post senza `image:`. Serve un renderer in CI: da decidere se generarle come artefatti committati o al volo.
+- [ ] **Newsletter RSS-to-email** e **Webmentions** — *servono account esterni* (Buttondown/Mailchimp, brid.gy + webmention.io).
 
 ## v2.3 — Design & UI (restyling del template) ✅
 

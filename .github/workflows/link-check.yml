@@ -1,0 +1,113 @@
+# Controllo mensile dei link **esterni**.
+#
+# Perché separato da `checks.yml`: i post più vecchi hanno sei anni e i link
+# esterni muoiono da soli. Farli fallire sulla PR bloccherebbe il deploy per
+# colpa di un sito altrui, quindi qui il risultato diventa una issue e il
+# workflow esce sempre verde.
+#
+# `checks.yml` continua a controllare i link **interni** su ogni PR: quelli
+# dipendono da noi e devono restare un gate.
+name: Link check
+
+on:
+  schedule:
+    # Primo del mese, 06:00 UTC.
+    - cron: '0 6 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        # Stessa release pinnata e stessa versione degli altri workflow.
+        uses: ruby/setup-ruby@086ffb1a2090c870a3f881cc91ea83aa4243d408
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+
+      - name: Build with Jekyll
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      - name: Check links
+        id: proofer
+        run: |
+          set +e
+          bundle exec htmlproofer ./_site \
+            --url-ignore "/localhost/" \
+            --empty-alt-ignore \
+            --allow-hash-href \
+            --assume-extension \
+            --only-4xx \
+            --http-status-ignore "429" \
+            > proofer.log 2>&1
+          echo "status=$?" >> "$GITHUB_OUTPUT"
+          tail -n 40 proofer.log
+
+      - name: Open or update the issue
+        if: steps.proofer.outputs.status != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const { owner, repo } = context.repo;
+            const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const title = 'Link checker: dead external links';
+
+            // Solo le righe di fallimento, e non più di 60: il log intero
+            // supera facilmente il limite di una issue.
+            const log = fs.readFileSync('proofer.log', 'utf8').split('\n');
+            const failures = log.filter(l => /failed|internally linking|is not an? /.test(l)).slice(0, 60);
+            const more = failures.length === 60 ? '\n\n…e altri. Log completo nel run.' : '';
+
+            const body = [
+              `Il controllo mensile ha trovato link esterni non raggiungibili.`,
+              '',
+              `Run: ${runUrl}`,
+              '',
+              '```',
+              failures.join('\n') || 'Nessuna riga di dettaglio: vedi il log del run.',
+              '```',
+              more,
+              '',
+              'Non blocca il deploy: sistemare i post quando capita.',
+            ].join('\n');
+
+            const open = (await github.paginate(github.rest.issues.listForRepo, {
+              owner, repo, state: 'open', labels: 'link-rot', per_page: 100,
+            })).find(i => i.title === title);
+
+            try {
+              await github.rest.issues.createLabel({
+                owner, repo, name: 'link-rot', color: 'fbca04',
+                description: 'Link esterni morti trovati dal check mensile',
+              });
+            } catch (e) {
+              if (e.status !== 422) throw e;
+            }
+
+            if (open) {
+              await github.rest.issues.update({ owner, repo, issue_number: open.number, body });
+              core.info(`Aggiornata la issue #${open.number}`);
+            } else {
+              const created = await github.rest.issues.create({ owner, repo, title, body, labels: ['link-rot'] });
+              core.info(`Aperta la issue #${created.data.number}`);
+            }
+
+      - name: Summary
+        if: always()
+        run: |
+          if [ "${{ steps.proofer.outputs.status }}" = "0" ]; then
+            echo "Nessun link esterno rotto." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Link esterni rotti trovati: vedi la issue con etichetta \`link-rot\`." >> "$GITHUB_STEP_SUMMARY"
+          fi

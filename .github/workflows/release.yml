@@ -1,0 +1,106 @@
+# Crea la GitHub Release quando viene pushato un tag `v*`.
+#
+# Le note non si scrivono due volte: le prende dalla sezione corrispondente di
+# CHANGELOG.md (`## [2.4.0] — …` per il tag `v2.4.0`). Se quella sezione non
+# c'è, ripiega sul messaggio del tag annotato, e se manca anche quello lascia
+# generare le note a GitHub dai commit.
+#
+# Nessuna action di terze parti: `gh` è preinstallato sui runner e usa il
+# GITHUB_TOKEN del job, quindi non servono secret.
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag già esistente da rilasciare (es. v2.4.0)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Serve la storia completa: il messaggio del tag annotato non arriva
+          # con un checkout shallow.
+          fetch-depth: 0
+
+      - name: Resolve tag
+        id: tag
+        run: |
+          TAG="${{ github.event.inputs.tag || github.ref_name }}"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Build release notes
+        id: notes
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+          VERSION: ${{ steps.tag.outputs.version }}
+        run: |
+          NOTES_FILE="$RUNNER_TEMP/notes.md"
+
+          # 1. sezione del CHANGELOG per questa versione
+          if [ -f CHANGELOG.md ]; then
+            awk -v version="$VERSION" '
+              $0 ~ "^## \\[" version "\\]" { found = 1; next }
+              found && /^## / { exit }
+              found { print }
+            ' CHANGELOG.md > "$NOTES_FILE"
+          fi
+
+          # 2. fallback: messaggio del tag annotato (senza la prima riga, che è
+          #    già il titolo della release)
+          if [ ! -s "$NOTES_FILE" ]; then
+            git tag -l --format='%(contents)' "$TAG" | tail -n +2 > "$NOTES_FILE"
+          fi
+
+          if [ -s "$NOTES_FILE" ]; then
+            echo "file=$NOTES_FILE" >> "$GITHUB_OUTPUT"
+            echo "Note prese da: $( [ -f CHANGELOG.md ] && echo CHANGELOG.md/tag )"
+          else
+            echo "file=" >> "$GITHUB_OUTPUT"
+            echo "Nessuna nota trovata: le genera GitHub dai commit."
+          fi
+
+      - name: Create or update the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.tag.outputs.tag }}
+          NOTES_FILE: ${{ steps.notes.outputs.file }}
+        run: |
+          TITLE="$TAG"
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG già presente: aggiorno le note."
+            if [ -n "$NOTES_FILE" ]; then
+              gh release edit "$TAG" --title "$TITLE" --notes-file "$NOTES_FILE"
+            else
+              gh release edit "$TAG" --title "$TITLE"
+            fi
+            exit 0
+          fi
+
+          if [ -n "$NOTES_FILE" ]; then
+            gh release create "$TAG" --title "$TITLE" --notes-file "$NOTES_FILE" --verify-tag
+          else
+            gh release create "$TAG" --title "$TITLE" --generate-notes --verify-tag
+          fi
+
+      - name: Summary
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: |
+          {
+            echo "## Release $TAG"
+            echo
+            echo "<${{ github.server_url }}/${{ github.repository }}/releases/tag/$TAG>"
+          } >> "$GITHUB_STEP_SUMMARY"
