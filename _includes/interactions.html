@@ -1,0 +1,85 @@
+{%- comment -%}
+Le tre interazioni che non si possono fare in CSS puro, in un unico script
+inline (nessuna richiesta di rete in più):
+  1. fade-in delle immagini quando arrivano davvero (#110)
+  2. nomi per la View Transition sulla card cliccata (#105)
+  3. spotlight che segue il puntatore sulle card (#111)
+  4. conteggio animato dei numeri della home (#112)
+Tutto è progressive enhancement: senza JS il sito resta quello della v2.0.0.
+{%- endcomment -%}
+<script>
+(function () {
+  var root = document.documentElement;
+  var motionOK = !window.matchMedia || !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = !window.matchMedia || matchMedia('(min-width: 561px)').matches;
+
+  /* 1. Fade-in delle immagini ------------------------------------------------- */
+  /* La classe `js` abilita l'opacità 0 iniziale: senza di essa (JS disattivato) */
+  /* le immagini restano visibili. */
+  if (motionOK) root.classList.add('js');
+
+  function markLoaded(img) { img.classList.add('is-loaded'); }
+
+  document.addEventListener('load', function (e) {
+    if (e.target && e.target.classList && e.target.classList.contains('thumb-img')) markLoaded(e.target);
+  }, true);
+
+  document.addEventListener('DOMContentLoaded', function () {
+    /* Immagini già in cache: il loro evento `load` è passato prima di noi. */
+    document.querySelectorAll('.thumb-img').forEach(function (img) {
+      if (img.complete) markLoaded(img);
+    });
+  });
+
+  /* 2. View Transition: la card cliccata diventa l'header del post ------------ */
+  if (motionOK && 'startViewTransition' in document) {
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest ? e.target.closest('.list .item > .url') : null;
+      if (!link) return;
+
+      var item = link.closest('.item');
+      var img = item.querySelector('.thumb');
+      var title = item.querySelector('.title');
+      if (img) img.classList.add('vt-card-image');
+      if (title) title.classList.add('vt-card-title');
+    });
+  }
+
+  /* 3. Spotlight che segue il puntatore -------------------------------------- */
+  if (motionOK && fine) {
+    document.addEventListener('pointermove', function (e) {
+      var item = e.target.closest ? e.target.closest('.blog .item, .projects .item') : null;
+      if (!item) return;
+
+      var box = item.getBoundingClientRect();
+      item.style.setProperty('--mx', (e.clientX - box.left) + 'px');
+      item.style.setProperty('--my', (e.clientY - box.top) + 'px');
+    }, { passive: true });
+  }
+
+  /* 4. Conteggio animato dei numeri della home ------------------------------- */
+  /* Il valore finale è già nel DOM: qui si anima solo la salita. */
+  var stats = document.querySelectorAll('[data-count]');
+  if (motionOK && stats.length) {
+    stats.forEach(function (el) {
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      if (!target || target < 2) return;
+
+      var started = null;
+      var duration = 900;
+
+      function step(now) {
+        if (started === null) started = now;
+        var p = Math.min((now - started) / duration, 1);
+        /* easeOutCubic */
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased);
+        if (p < 1) requestAnimationFrame(step);
+      }
+
+      el.textContent = '0';
+      requestAnimationFrame(step);
+    });
+  }
+})();
+</script>

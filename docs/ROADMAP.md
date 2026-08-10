@@ -56,23 +56,23 @@ Restyling grafico del tema Indigo, che era rimasto quello originale (pensato per
 
 Extra emersi durante il lavoro: `name:` mancante in `_config.yml` (hero, brand e footer stampavano una stringa vuota), breakpoint `$mobile` spostato da 400px a **560px** (i telefoni stanno fra 390 e 430 CSS px e finivano nel layout tablet), `Rakefile` allineato ai flag di `checks.yml` + task `rake test_internal`.
 
-## v2.4 — Motion & visual polish (il sito che si muove)
+## v2.4 — Motion & visual polish (il sito che si muove) ✅
 
-Secondo giro di design, dopo le fondamenta di v2.3: ora che token, tipografia e componenti sono a posto, il sito è pulito ma **statico**. Qui si aggiungono movimento e ricchezza visiva — quasi tutto in CSS moderno (scroll-driven animations, view transitions, `@starting-style`), che degrada a "nessuna animazione" dove non supportato invece di rompersi.
+Secondo giro di design, dopo le fondamenta di v2.3. Rilasciato come **v2.1.0**. Ogni effetto è progressive enhancement: dietro `@supports`/`@media`, quindi dove il browser non conosce la tecnica l'elemento è già al suo posto, mai invisibile. Gate finali: **accessibility 100, best-practices 100, SEO 100** ovunque, performance 99–100 (`/tags` 91).
 
-Due regole non negoziabili per ogni voce: il blocco `@media (prefers-reduced-motion: reduce)` in `polish.sass` deve continuare a spegnere tutto, e i gate di `lighthouserc.json` (accessibility/best-practices `error` a 0.95) devono restare verdi. Restano in v2.1, non qui: reading progress, scroll-to-top e copy-code button.
+- [x] **Placeholder generativo per le card senza thumbnail** — `_plugins/card_placeholder.rb`: monogramma su gradiente da un hash **stabile** del titolo (non `Object#hash`, randomizzato per processo), 6 palette. Copre 112 card di progetto.
+- [x] **Reveal delle card allo scroll** — `animation-timeline: view()`, niente JS. **Escluso `/tags`**: animare le migliaia di righe di quella pagina costa ~5 punti di performance (86 → 91 togliendolo).
+- [x] **View Transitions fra le pagine** — `@view-transition` + nome dedicato alla nav (che resta ferma); il JS assegna `card-image`/`card-title` alla card cliccata, che il post ritrova sull'header.
+- [x] **Nav che reagisce allo scroll** — `animation-timeline: scroll()` su ombra e bordo: l'altezza non si tocca, altrimenti il contenuto salta.
+- [x] **Hero animato** — alone radiale in movimento dietro l'avatar ed entrata a cascata di titolo, bio, CTA, numeri e social.
+- [x] **Filtri dinamici su /projects** — chip dei 12 tag più usati (`_plugins/project_tags.rb`, conteggio **per slug e per post** così il numero sul chip è esattamente quello dei risultati), filtro client-side e contatore. Senza JS i chip non compaiono e la lista resta intera.
+- [x] **Micro-interazioni su link e bottoni** — underline che cresce sui link dei post, `:active` percepibile, freccia `↗` che scatta.
+- [x] **Fade-in delle immagini al caricamento** — l'opacità iniziale a 0 è attivata solo dalla classe `js`, così senza JavaScript le thumbnail non spariscono.
+- [x] **Hover spotlight sulle card** — `--mx`/`--my` aggiornate dal puntatore, spento sotto i 561px e con reduced-motion.
+- [x] **Numeri animati sulla home** — 176 post, 154 progetti, 118 video, 290 tag: contati in Liquid, animati dal JS, già corretti nell'HTML se il JS non parte.
+- [x] **Tipografia display per hero e titoli** — peso 800 e tracking più stretto sullo stesso file variabile: nessuna richiesta di rete in più.
 
-- [ ] **Placeholder generativo per le card senza thumbnail** — 108 progetti sincronizzati da GitHub hanno `image: ""`, quindi la card resta solo testo: generare a build time un monogramma dal titolo su gradiente derivato dal tag/linguaggio (SVG inline, zero richieste di rete).
-- [ ] **Reveal delle card allo scroll** — entrata in dissolvenza + risalita con `animation-timeline: view()` (scroll-driven animations CSS): niente IntersectionObserver, niente JS, e dove non è supportato l'elemento è semplicemente già visibile.
-- [ ] **View Transitions fra le pagine** — `@view-transition { navigation: auto }` più `view-transition-name` su titolo e thumbnail, così la card del listing si trasforma nell'header del post invece di sparire. Progressive enhancement puro.
-- [ ] **Nav che reagisce allo scroll** — la barra sticky si compatta e guadagna ombra/contrasto dopo i primi pixel, sempre con scroll-driven animation (`animation-timeline: scroll()`).
-- [ ] **Hero animato** — glow radiale in movimento dietro l'avatar e entrata a cascata di titolo, bio e CTA (oggi c'è solo il `fade-in-down` ereditato dal tema, applicato in blocco).
-- [ ] **Filtri dinamici su /projects** — chip per linguaggio/tag con filtro client-side in vanilla JS (i dati sono già nel front matter `tag`), contatore dei risultati e riordino animato con `@starting-style`: con 154 progetti in lista scorrere non basta più.
-- [ ] **Micro-interazioni su link e bottoni** — underline animata, stato `:active` percepibile, la freccia `↗` dei progetti esterni che scatta in hover; durate ed easing presi dai token, mai valori sciolti.
-- [ ] **Fade-in delle immagini al caricamento** — le thumbnail lazy oggi "pop"pano; transizione di opacità all'evento `load` (o `@starting-style`) per un caricamento morbido.
-- [ ] **Hover spotlight sulle card** — alone luminoso che segue il puntatore, via custom property aggiornata dal mouse e `radial-gradient`; una riga di JS, disattivato con reduced-motion e sotto i 560px.
-- [ ] **Numeri animati sulla home** — post, progetti, video e tag contati in Liquid a build time e animati in ingresso: dà peso alla home, che oggi è solo avatar + due bottoni.
-- [ ] **Tipografia display per hero e titoli** — un secondo taglio (o un asse ottico di Inter) per hero e `h1`, per staccare i titoli dal testo corrente senza aggiungere richieste di rete.
+Due trappole trovate durante il lavoro, ora documentate: i commenti `//` negli script inline vengono **mangiati da `compress.html`** (che collassa le newline), e l'attributo `hidden` non nasconde nulla dove un componente dichiara `display: block`.
 
 ## v3.0 — Big rocks
 

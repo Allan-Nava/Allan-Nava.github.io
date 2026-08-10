@@ -1,0 +1,412 @@
+/*
+ * Motion & visual polish (milestone v2.4).
+ *
+ * Regola di fondo: ogni effetto è progressive enhancement. Le animazioni
+ * scroll-driven e le view transitions stanno dentro @supports / @media, quindi
+ * dove il browser non le conosce l'elemento è semplicemente già al suo posto —
+ * mai invisibile, mai a metà. Tutto è inoltre racchiuso in
+ * `prefers-reduced-motion: no-preference`, così chi disattiva le animazioni
+ * vede il sito statico della v2.0.0.
+ */
+
+// ---------------------------------------------------------------------------
+// Placeholder generativo delle card (monogramma + gradiente)
+// Le classi .ph-0…5 le assegna Liquid via il filtro `card_palette`.
+// ---------------------------------------------------------------------------
+
+/* I selettori lunghi servono a battere `> .thumb { background: var(--color-bg) }`
+   di pages/home-blog-projects.sass, che ha la stessa profondità. */
+.blog > .list > .item > .url > .thumb.thumb-placeholder,
+.projects > .list > .item > .url > .thumb.thumb-placeholder,
+.thumb-placeholder {
+	display: grid;
+	place-items: center;
+	position: relative;
+	overflow: hidden;
+	background: linear-gradient(135deg, var(--ph-a), var(--ph-b));
+
+	> .mono {
+		font-size: clamp(1.4rem, 2.2vw, 2rem);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+		color: rgba(255, 255, 255, 0.92);
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+	}
+
+	// Riflesso diagonale: dà volume senza aggiungere immagini.
+	&:after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(120deg, rgba(255, 255, 255, 0.16), transparent 55%);
+	}
+}
+
+.ph-0 { --ph-a: #0b3d2e; --ph-b: #10cf53; }
+.ph-1 { --ph-a: #0b2f3d; --ph-b: #1e88a8; }
+.ph-2 { --ph-a: #221b3d; --ph-b: #6b4fd8; }
+.ph-3 { --ph-a: #3d1b2b; --ph-b: #c2456e; }
+.ph-4 { --ph-a: #3d2f0b; --ph-b: #c99213; }
+.ph-5 { --ph-a: #12303d; --ph-b: #2fa8a0; }
+
+// ---------------------------------------------------------------------------
+// Fade-in delle immagini al caricamento (#110)
+// L'opacità a 0 è applicata solo quando il JS è attivo (classe `js` su <html>),
+// altrimenti senza JavaScript le thumbnail resterebbero invisibili per sempre.
+// ---------------------------------------------------------------------------
+
+@media (prefers-reduced-motion: no-preference) {
+	.js .thumb-img {
+		opacity: 0;
+		transition: opacity var(--dur-slow) var(--ease-out);
+	}
+
+	.js .thumb-img.is-loaded {
+		opacity: 1;
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Reveal delle card allo scroll (#104) — scroll-driven animation, niente JS
+// ---------------------------------------------------------------------------
+
+@keyframes card-in {
+	from {
+		opacity: 0;
+		transform: translateY(14px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	@supports (animation-timeline: view()) {
+		/* Solo le card di blog e progetti: su /tags le righe sono migliaia
+		   (ogni post ripetuto per ciascun tag) e animarle tutte costa
+		   ~6 punti di performance in Lighthouse. */
+		.blog > .list > .item,
+		.projects > .list > .item {
+			animation: card-in linear both;
+			animation-timeline: view();
+			animation-range: entry 0% entry 65%;
+		}
+	}
+}
+
+// Riapparizione dopo un filtro (#108): stesso movimento, questa volta a tempo.
+@media (prefers-reduced-motion: no-preference) {
+	.is-filtered-in {
+		animation: card-in var(--dur) var(--ease-out) both;
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Nav che reagisce allo scroll (#106)
+// Si anima solo ombra e sfondo: toccare l'altezza sposterebbe il contenuto.
+// ---------------------------------------------------------------------------
+
+@keyframes nav-lift {
+	from {
+		box-shadow: none;
+		border-bottom-color: var(--color-border);
+	}
+	to {
+		box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55);
+		border-bottom-color: var(--color-border-strong);
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	@supports (animation-timeline: scroll()) {
+		.site-nav {
+			animation: nav-lift linear both;
+			animation-timeline: scroll();
+			animation-range: 0 140px;
+		}
+	}
+}
+
+// ---------------------------------------------------------------------------
+// View Transitions fra le pagine (#105)
+// La nav ha un nome proprio così resta ferma mentre il resto sfuma; il JS in
+// _includes/interactions.html assegna `card-image`/`card-title` alla card
+// cliccata, che sulla pagina del post ritrova gli stessi nomi.
+// ---------------------------------------------------------------------------
+
+@media (prefers-reduced-motion: no-preference) {
+	@view-transition {
+		navigation: auto;
+	}
+
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation-duration: var(--dur-slow);
+		animation-timing-function: var(--ease-out);
+	}
+
+	.site-nav {
+		view-transition-name: site-nav;
+	}
+
+	.vt-card-image {
+		view-transition-name: card-image;
+	}
+
+	.vt-card-title {
+		view-transition-name: card-title;
+	}
+
+	.post-header > .title-image {
+		view-transition-name: card-image;
+	}
+
+	.post-header > .title {
+		view-transition-name: card-title;
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Hero: entrata a cascata e alone luminoso dietro l'avatar (#107)
+// ---------------------------------------------------------------------------
+
+@keyframes rise-in {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes glow-drift {
+	0%,
+	100% {
+		transform: translate(-50%, -50%) scale(1);
+		opacity: 0.55;
+	}
+	50% {
+		transform: translate(-50%, -50%) scale(1.18);
+		opacity: 0.8;
+	}
+}
+
+.hero > .hero-avatar-link {
+	position: relative;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 210px;
+		height: 210px;
+		border-radius: 50%;
+		transform: translate(-50%, -50%);
+		background: radial-gradient(circle, rgba(16, 207, 83, 0.28), transparent 68%);
+		z-index: -1;
+		pointer-events: none;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.hero > .hero-avatar-link:before {
+		animation: glow-drift 9s var(--ease) infinite;
+	}
+
+	.hero > .hero-body > .title,
+	.hero > .hero-body > .description,
+	.hero > .hero-body .hero-actions,
+	.hero > .hero-body > .hero-stats,
+	.hero > .hero-body > .social-links {
+		animation: rise-in var(--dur-slow) var(--ease-out) both;
+	}
+
+	.hero > .hero-body > .title { animation-delay: 60ms; }
+	.hero > .hero-body > .description { animation-delay: 140ms; }
+	.hero > .hero-body .hero-actions { animation-delay: 220ms; }
+	.hero > .hero-body > .hero-stats { animation-delay: 300ms; }
+	.hero > .hero-body > .social-links { animation-delay: 380ms; }
+}
+
+// ---------------------------------------------------------------------------
+// Numeri della home (#112) — il valore finale è già nell'HTML, il JS lo anima
+// ---------------------------------------------------------------------------
+
+.hero-stats {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-6);
+	margin: var(--space-5) 0 0;
+
+	/* In un <dl> il <dt> precede il <dd>; il numero va comunque sopra l'etichetta. */
+	> .stat {
+		display: flex;
+		flex-direction: column-reverse;
+		margin: 0;
+	}
+
+	.stat-value {
+		display: block;
+		margin: 0;
+		font-size: var(--text-xl);
+		font-weight: 800;
+		letter-spacing: var(--tracking-tight);
+		color: var(--color-fg-strong);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.stat-label {
+		display: block;
+		font-size: var(--text-xs);
+		letter-spacing: var(--tracking-wide);
+		text-transform: uppercase;
+		color: var(--color-fg-muted);
+	}
+
+	@media #{$below} {
+		justify-content: center;
+		gap: var(--space-5);
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Spotlight sulle card (#111) — le coordinate le scrive il JS su --mx/--my
+// ---------------------------------------------------------------------------
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 561px) {
+	.blog > .list > .item,
+	.projects > .list > .item {
+		position: relative;
+
+		&:after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			border-radius: inherit;
+			pointer-events: none;
+			opacity: 0;
+			transition: opacity var(--dur) var(--ease);
+			background: radial-gradient(
+				220px circle at var(--mx, 50%) var(--my, 50%),
+				rgba(16, 207, 83, 0.1),
+				transparent 70%
+			);
+		}
+
+		&:hover:after {
+			opacity: 1;
+		}
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Chip di filtro dei progetti (#108)
+// ---------------------------------------------------------------------------
+
+.filters {
+	margin: var(--space-6) 0 0;
+}
+
+.filter-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-2);
+}
+
+.filter-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
+	padding: 5px 12px;
+	font-family: inherit;
+	font-size: var(--text-xs);
+	letter-spacing: 0.03em;
+	color: var(--color-fg-muted);
+	background: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-pill);
+	cursor: pointer;
+	transition: color var(--dur) var(--ease), background var(--dur) var(--ease),
+		border-color var(--dur) var(--ease);
+
+	> .count {
+		color: var(--color-fg-muted);
+		opacity: 0.7;
+	}
+
+	&:hover {
+		color: var(--color-fg-strong);
+		border-color: var(--color-border-strong);
+	}
+
+	&.is-active {
+		color: var(--color-on-accent);
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+
+		> .count {
+			color: var(--color-on-accent);
+		}
+	}
+}
+
+.filter-status {
+	margin: var(--space-3) 0 0;
+	font-size: var(--text-xs);
+	letter-spacing: var(--tracking-wide);
+	text-transform: uppercase;
+	color: var(--color-fg-muted);
+}
+
+// ---------------------------------------------------------------------------
+// Micro-interazioni (#109) e tipografia display (#113)
+// ---------------------------------------------------------------------------
+
+// Underline che cresce da sinistra sui link del testo dei post.
+.post-content a:not(.button):not(.item),
+.page a:not(.button):not(.item):not(.link) {
+	text-decoration: none;
+	background-image: linear-gradient(var(--color-accent), var(--color-accent));
+	background-repeat: no-repeat;
+	background-position: 0 100%;
+	background-size: 0% 1px;
+	transition: background-size var(--dur) var(--ease-out), color var(--dur) var(--ease);
+
+	&:hover {
+		background-size: 100% 1px;
+	}
+}
+
+.button:active,
+.filter-chip:active {
+	transform: translateY(0) scale(0.98);
+}
+
+.blog > .list > .item:active,
+.projects > .list > .item:active {
+	transform: translateY(0);
+}
+
+// La freccia dei progetti esterni scatta in diagonale.
+.title > .ext {
+	display: inline-block;
+	transition: transform var(--dur) var(--ease-out);
+}
+
+.item:hover .title > .ext {
+	transform: translate(2px, -2px);
+}
+
+// Titoli in "display": stesso file variabile, asse del peso spinto e tracking
+// più stretto — nessuna richiesta di rete in più.
+.hero > .hero-body > .title,
+.page-header > .title,
+.post-header > .title,
+.page > h1 {
+	font-weight: 800;
+	letter-spacing: -0.035em;
+}

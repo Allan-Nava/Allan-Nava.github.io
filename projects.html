@@ -3,14 +3,35 @@ layout: page
 title: Projects
 ---
 
-<section class="list">
+{%- comment -%}
+Chip di filtro: i tag più usati dai progetti, calcolati a build time da
+_plugins/project_tags.rb. Il filtro vero è in _includes/projects-filter.html;
+senza JavaScript i chip non compaiono e la lista resta completa e navigabile.
+{%- endcomment -%}
+{% if site.data.project_tags and site.data.project_tags.size > 0 %}
+    <div class="filters" data-projects-filter hidden>
+        <div class="filter-chips" role="group" aria-label="Filtra per tag">
+            <button type="button" class="filter-chip is-active" data-filter="*" aria-pressed="true">Tutti</button>
+            {% for t in site.data.project_tags %}
+                <button type="button" class="filter-chip" data-filter="{{ t.slug }}" aria-pressed="false">{{ t.name }} <span class="count">{{ t.count }}</span></button>
+            {% endfor %}
+        </div>
+        <p class="filter-status" role="status" aria-live="polite"></p>
+    </div>
+{% endif %}
+
+<section class="list" data-projects-list>
     {% for post in site.posts %}
         {% if post.projects %}
-            <article class="item{% if post.star %} star{% endif %}">
+            <article class="item{% if post.star %} star{% endif %}" data-tags="{% for t in post.tag %}{{ t | slugify }} {% endfor %}">
                 <a class="url" href="{% if post.externalLink %}{{ post.externalLink }}{% else %}{{ site.url }}{{ post.url }}{% endif %}"{% if post.externalLink %} rel="noopener"{% endif %}>
                     {% if post.image and post.image != "" %}
                         <span class="thumb">
-                            <img src="{{ post.image }}" alt="" loading="lazy" decoding="async" width="480" height="270">
+                            <img class="thumb-img" src="{{ post.image }}" alt="" loading="lazy" decoding="async" width="480" height="270">
+                        </span>
+                    {% else %}
+                        <span class="thumb thumb-placeholder ph-{{ post.title | card_palette }}" aria-hidden="true">
+                            <span class="mono">{{ post.title | card_initials }}</span>
                         </span>
                     {% endif %}
 
@@ -31,3 +52,5 @@ title: Projects
         {% endif %}
     {% endfor %}
 </section>
+
+{% include projects-filter.html %}

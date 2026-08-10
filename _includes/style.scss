@@ -46,4 +46,7 @@
 @import "components/side-by-side";
 @import "components/social-links";
 @import "components/spoiler";
+// motion prima di polish: il blocco `prefers-reduced-motion` di polish deve
+// restare l'ultima parola sulle animazioni.
+@import "components/motion";
 @import "components/polish";

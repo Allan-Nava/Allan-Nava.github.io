@@ -31,6 +31,31 @@ la lista comincia subito. La nav non è più qui: sta in _layouts/default.html.
                     {% if site.projects %}<a class="button" href="{{ site.url }}/projects">Browse projects</a>{% endif %}
                 </div>
 
+                {%- comment -%} Conteggi calcolati a build time; il JS anima solo la salita del numero. {%- endcomment -%}
+                {%- comment -%} where_exp di Liquid 4.0.3 non accetta `and`: due passaggi. {%- endcomment -%}
+                {% assign blogPosts = site.posts | where: "category", "blog" %}
+                {% assign blogPosts = blogPosts | where_exp: "p", "p.hidden != true" %}
+                {% assign projectPosts = site.posts | where: "projects", true %}
+                {% assign videoPosts = site.posts | where_exp: "p", "p.content contains 'lite-youtube'" %}
+                <dl class="hero-stats">
+                    <div class="stat">
+                        <dt class="stat-label">Post</dt>
+                        <dd class="stat-value" data-count="{{ blogPosts.size }}">{{ blogPosts.size }}</dd>
+                    </div>
+                    <div class="stat">
+                        <dt class="stat-label">Progetti</dt>
+                        <dd class="stat-value" data-count="{{ projectPosts.size }}">{{ projectPosts.size }}</dd>
+                    </div>
+                    <div class="stat">
+                        <dt class="stat-label">Video</dt>
+                        <dd class="stat-value" data-count="{{ videoPosts.size }}">{{ videoPosts.size }}</dd>
+                    </div>
+                    <div class="stat">
+                        <dt class="stat-label">Tag</dt>
+                        <dd class="stat-value" data-count="{{ site.tags.size }}">{{ site.tags.size }}</dd>
+                    </div>
+                </dl>
+
                 {% include social-links.html %}
             </div>
         </header>

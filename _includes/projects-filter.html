@@ -1,0 +1,51 @@
+{%- comment -%}
+Filtro client-side dei progetti. La barra dei chip è servita con `hidden` e
+viene mostrata solo qui: senza JavaScript non compare un controllo che non
+funzionerebbe, e la lista resta completa. Nessuna dipendenza esterna.
+{%- endcomment -%}
+<script>
+(function () {
+  var bar = document.querySelector('[data-projects-filter]');
+  var list = document.querySelector('[data-projects-list]');
+  if (!bar || !list) return;
+
+  var items = Array.prototype.slice.call(list.querySelectorAll('.item'));
+  var chips = Array.prototype.slice.call(bar.querySelectorAll('.filter-chip'));
+  var status = bar.querySelector('.filter-status');
+  bar.hidden = false;
+
+  function apply(filter) {
+    var shown = 0;
+    items.forEach(function (item) {
+      var tags = ' ' + (item.getAttribute('data-tags') || '') + ' ';
+      var match = filter === '*' || tags.indexOf(' ' + filter + ' ') !== -1;
+      item.hidden = !match;
+      if (match) {
+        shown++;
+        /* Riavvia l'animazione d'ingresso solo sugli elementi che restano. */
+        item.classList.remove('is-filtered-in');
+        void item.offsetWidth;
+        item.classList.add('is-filtered-in');
+      }
+    });
+
+    chips.forEach(function (chip) {
+      var active = chip.getAttribute('data-filter') === filter;
+      chip.classList.toggle('is-active', active);
+      chip.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+
+    status.textContent = filter === '*'
+      ? shown + ' progetti'
+      : shown + (shown === 1 ? ' progetto' : ' progetti') + ' con tag "' + filter + '"';
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      apply(chip.getAttribute('data-filter'));
+    });
+  });
+
+  status.textContent = items.length + ' progetti';
+})();
+</script>

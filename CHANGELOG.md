@@ -11,7 +11,41 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ## [Non rilasciato]
 
-- Milestone [v2.4 — Motion & visual polish](https://github.com/Allan-Nava/Allan-Nava.github.io/milestone/2): movimento e ricchezza visiva sopra le fondamenta della v2.0.0.
+## [2.1.0] — 2026-08-10
+
+Movimento e ricchezza visiva sopra le fondamenta della 2.0.0. Milestone
+[v2.4 — Motion & visual polish](https://github.com/Allan-Nava/Allan-Nava.github.io/milestone/2).
+Ogni effetto è progressive enhancement: dietro `@supports`/`@media`, spento da `prefers-reduced-motion`.
+
+### Aggiunto
+
+- **Placeholder generativo** per le card senza `image:`: monogramma su gradiente scelto da un hash
+  stabile del titolo (`_plugins/card_placeholder.rb`). Riguarda 112 card di progetto.
+- **Filtri su `/projects`**: chip dei 12 tag più usati (`_plugins/project_tags.rb`), filtro
+  client-side e contatore dei risultati. Senza JavaScript i chip non compaiono e la lista resta intera.
+- **Reveal delle card allo scroll** e **nav che guadagna ombra**, con `animation-timeline: view()/scroll()`.
+- **View Transitions** fra le pagine: la card cliccata si trasforma nell'header del post.
+- **Hero animato**: alone luminoso dietro l'avatar ed entrata a cascata di titolo, bio, CTA e numeri.
+- **Numeri della home** (post, progetti, video, tag) contati in Liquid e animati in ingresso.
+- **Fade-in delle thumbnail** al caricamento e **spotlight** che segue il puntatore sulle card.
+- Micro-interazioni: underline animata sui link dei post, stato `:active`, freccia `↗` che scatta.
+- `CHANGELOG.md` (questo file).
+
+### Modificato
+
+- Titoli in "display": stesso font variabile, peso 800 e tracking più stretto.
+- Il reveal allo scroll **non** si applica a `/tags`: animare le migliaia di righe di quella pagina
+  costava ~5 punti di performance in Lighthouse (86 con l'animazione, 91 senza).
+
+### Corretto
+
+- L'attributo `hidden` non nascondeva nulla dove un componente dichiara `display: block`
+  (`[hidden] { display: none !important }` in `general.sass`): è il motivo per cui il primo filtro
+  mostrava progetti fuori tema.
+- I commenti `//` negli script inline venivano mangiati da `_layouts/compress.html`, che collassa le
+  newline: tutto il codice successivo finiva commentato. Ora si usa `/* … */`.
+- Il numero sul chip di filtro non coincideva con i risultati: il conteggio è passato da
+  "occorrenze del nome" a "post per slug".
 
 ## [2.0.0] — 2026-08-10
 
@@ -76,7 +110,8 @@ Prima automazione di build e deploy del sito.
 
 Prima versione pubblica del sito sul tema Indigo.
 
-[Non rilasciato]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.0.0...HEAD
+[Non rilasciato]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v1.6.1...v2.0.0
 [1.6.1]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v1.5.1...v1.6.0

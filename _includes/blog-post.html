@@ -1,13 +1,18 @@
 {%- comment -%}
-Card di un post nel listing del blog. Thumbnail solo se il post ha `image:`
-(anche generata da _plugins/youtube_thumbnails.rb per i post video); senza
-immagine la card resta una riga titolo + descrizione, senza buchi nel layout.
+Card di un post nel listing del blog. Thumbnail se il post ha `image:` (anche
+generata da _plugins/youtube_thumbnails.rb per i post video); altrimenti un
+placeholder generativo — monogramma su gradiente scelto dal titolo, disegnato
+in CSS, zero richieste di rete (_plugins/card_placeholder.rb).
 {%- endcomment -%}
-<article class="item{% if post.star %} star{% endif %}">
+<article class="item{% if post.star %} star{% endif %}" data-tags="{% for t in post.tag %}{{ t | slugify }} {% endfor %}">
     <a class="url" href="{{ site.url }}{{ post.url }}">
         {% if post.image and post.image != "" %}
             <span class="thumb">
-                <img src="{{ post.image }}" alt="" loading="lazy" decoding="async" width="480" height="270">
+                <img class="thumb-img" src="{{ post.image }}" alt="" loading="lazy" decoding="async" width="480" height="270">
+            </span>
+        {% else %}
+            <span class="thumb thumb-placeholder ph-{{ post.title | card_palette }}" aria-hidden="true">
+                <span class="mono">{{ post.title | card_initials }}</span>
             </span>
         {% endif %}
 

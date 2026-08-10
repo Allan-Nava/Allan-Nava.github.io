@@ -73,6 +73,9 @@ ruby scripts/validate_posts.rb # validazione veloce dei post — no bundle
 - **Design token**: colori, spazi, raggi, motion e tipografia stanno in `_sass/base/tokens.scss` come custom properties su `:root`; `variables.sass` è solo un ponte (`$accent: var(--color-accent)`) per i partial storici. Mai hard-codare hex nei componenti. **Corollario**: sulle variabili della palette non si possono più usare le funzioni colore Sass (`darken()`, `rgba($var, …)`) — servono token dedicati (es. `--color-accent-soft`).
 - **Tema SCURO** (`--color-bg: #050505`, testo `--color-fg` chiaro): verificare sempre il contrasto sul fondo scuro. La palette attuale è tutta ≥ 6:1 (AA) — `code`/`pre` e `syntax.sass` sono ora scuri, non più la palette GitHub chiara.
 - **Breakpoint**: `$mobile` ≤ 560px, `$tablet` 561–1050px (il 400px originale del tema lasciava fuori i telefoni da 390–430 CSS px).
+- **Script inline: MAI commenti `//`** — `_layouts/compress.html` collassa le newline, quindi tutto ciò che segue `//` sulla riga collassata finisce commentato e lo script muore in silenzio. Usare `/* … */` (vale per `_includes/interactions.html` e `_includes/projects-filter.html`).
+- **`hidden` va forzato**: i componenti dichiarano `display: block`, che vince sull'attributo. In `general.sass` c'è `[hidden] { display: none !important }` — non rimuoverlo, il filtro dei progetti dipende da quello.
+- **Motion in `_sass/components/motion.scss`**, importato subito prima di `polish.sass` (che deve restare l'ultima parola su `prefers-reduced-motion`). Ogni animazione sta dietro `@supports`/`@media`: mai lasciare un elemento invisibile in attesa di un'animazione che potrebbe non partire.
 - **Screenshot headless su macOS**: Chrome impone una finestra minima di ~500px, quindi `--window-size=390,…` ritaglia una pagina renderizzata a 500px e sembra overflow orizzontale. Testare il layout mobile a 500px, non sotto.
 
 ## Deployment

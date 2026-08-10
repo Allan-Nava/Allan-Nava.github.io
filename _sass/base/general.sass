@@ -66,6 +66,12 @@ ol
 		color: var(--color-fg)
 		margin-bottom: var(--space-2)
 
+// L'attributo `hidden` deve vincere sui `display` dichiarati dai componenti
+// (le card hanno `display: block`, che altrimenti lo annulla: è così che il
+// filtro dei progetti "nascondeva" elementi lasciandoli in pagina).
+[hidden]
+	display: none !important
+
 img,
 pre,
 iframe
