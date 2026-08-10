@@ -1,5 +1,6 @@
 # Creates a blog post for every new video/short published on the YouTube
-# channel (via the channel RSS feed — no API key needed) and pushes it.
+# channel. With YOUTUBE_API_KEY, extracts recording location (lat/lng) for
+# automatic map updates. Falls back to RSS feed if no API key.
 # Videos already embedded in an existing post are skipped, so hand-written
 # posts are never duplicated.
 name: YouTube Sync
@@ -33,6 +34,7 @@ jobs:
         run: ruby scripts/sync_youtube.rb
         env:
           MAX_AGE_DAYS: ${{ github.event.inputs.max_age_days || '7' }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
       - name: Validate generated posts
         run: ruby scripts/validate_posts.rb
       - name: Commit and push new posts

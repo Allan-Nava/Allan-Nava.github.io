@@ -1,13 +1,16 @@
 #!/usr/bin/env ruby
 # Creates a blog post in _posts/ for every recent video/short published on
-# the YouTube channel, using the channel RSS feed (no API key required).
+# the YouTube channel. With YOUTUBE_API_KEY, extracts recording location
+# (lat/lng) and adds it to the post front matter for automatic map updates.
+# Falls back to RSS feed if no API key (no API key required for basic sync).
 # A video is skipped if its ID is already embedded in any existing post, so
 # hand-written posts are never duplicated.
 #
 # Usage: ruby scripts/sync_youtube.rb
-#   env CHANNEL_ID    — YouTube channel id (default: Allan's channel)
-#   env MAX_AGE_DAYS  — only sync videos newer than this (default: 7)
-#   env DRY_RUN=1     — print what would be created without writing files
+#   env CHANNEL_ID       — YouTube channel id (default: Allan's channel)
+#   env YOUTUBE_API_KEY  — YouTube Data API key (optional; enables location extraction)
+#   env MAX_AGE_DAYS     — only sync videos newer than this (default: 7)
+#   env DRY_RUN=1        — print what would be created without writing files
 #
 # Stdlib only, so it runs on any Ruby without bundle install.
 
@@ -15,9 +18,11 @@ require 'net/http'
 require 'rexml/document'
 require 'date'
 require 'uri'
+require 'json'
 
 ROOT = File.expand_path('..', __dir__)
 CHANNEL_ID = ENV.fetch('CHANNEL_ID', 'UC1qqsojpiyZB9-u8O02IVVQ')
+YOUTUBE_API_KEY = ENV['YOUTUBE_API_KEY'].to_s
 MAX_AGE_DAYS = Integer(ENV.fetch('MAX_AGE_DAYS', '7'))
 DRY_RUN = !ENV['DRY_RUN'].to_s.empty?
 
@@ -60,6 +65,39 @@ end
 
 def yaml_safe(text, max = 160)
   text.to_s.gsub(/\s+/, ' ').delete('"').strip[0, max].strip
+end
+
+def get_video_location(video_id, api_key)
+  return nil if api_key.empty?
+
+  uri = URI("https://www.googleapis.com/youtube/v3/videos")
+  uri.query = URI.encode_www_form(
+    'id' => video_id,
+    'part' => 'recordingDetails',
+    'key' => api_key
+  )
+
+  res = Net::HTTP.start(uri.host, uri.port, use_ssl: true, open_timeout: 15, read_timeout: 30) do |http|
+    http.get(uri.request_uri)
+  end
+
+  return nil unless res.is_a?(Net::HTTPSuccess)
+
+  data = JSON.parse(res.body)
+  items = data.fetch('items', [])
+  return nil if items.empty?
+
+  recording = items[0].fetch('recordingDetails', {})
+  location = recording.fetch('location', {})
+
+  {
+    lat: location['latitude'],
+    lng: location['longitude'],
+    location_name: location['locationDescription']
+  }
+rescue StandardError => e
+  warn "Warning: could not fetch location for #{video_id}: #{e.message}"
+  nil
 end
 
 res = http_get("https://www.youtube.com/feeds/videos.xml?channel_id=#{CHANNEL_ID}")
@@ -106,6 +144,13 @@ doc.root.each_element do |entry|
   desc = "Video dal canale YouTube di Allan Nava: #{yaml_safe(title, 100)}" if desc.empty?
   short_attr = is_short ? ' data-short' : ''
 
+  location = get_video_location(video_id, YOUTUBE_API_KEY)
+  location_yaml = if location && location[:lat] && location[:lng]
+                     "\n    lat: #{location[:lat]}\n    lng: #{location[:lng]}"
+                   else
+                     ''
+                   end
+
   post = <<~POST
     ---
     title: "#{yaml_safe(title, 120)}"
@@ -118,7 +163,7 @@ doc.root.each_element do |entry|
     headerImage: false
     description: "#{desc}"
     category: blog
-    author: allan
+    author: allan#{location_yaml}
     ---
 
     ## #{title.delete('#')}
@@ -127,10 +172,12 @@ doc.root.each_element do |entry|
   POST
 
   if DRY_RUN
-    puts "would create (#{kind}):        #{filename}"
+    loc_badge = location && location[:lat] && location[:lng] ? ' 📍' : ''
+    puts "would create (#{kind}):        #{filename}#{loc_badge}"
   else
     File.write(path, post)
-    puts "created (#{kind}):              #{filename}"
+    loc_badge = location && location[:lat] && location[:lng] ? ' 📍' : ''
+    puts "created (#{kind}):              #{filename}#{loc_badge}"
   end
   created << filename
 end
