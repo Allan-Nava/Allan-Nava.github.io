@@ -11,6 +11,18 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ## [Non rilasciato]
 
+### Aggiunto
+
+- **YouTube location extraction** — `sync_youtube.rb` usa YouTube Data API per estrarre `recordingDetails.location` (lat/lng) da ogni video. Se disponibili, le aggiunge automaticamente al post front matter — la mappa `/map` si aggiorna senza intervento manuale. Fallback a RSS feed se `YOUTUBE_API_KEY` non è configurato.
+- **Trigger workflow su tag e release** — `jekyll.yml` ora ascolta a `push.tags` (pattern `v*`) e `release.types: published`, oltre al push su master. Ogni tag o GitHub Release pubblica genera automaticamente un deploy.
+- **Skill graphify** — `.claude/skills/graphify.md` per invocare `graphify` dall'IDE e analizzare la struttura del repository.
+- **Il titolo della home entra parola per parola** — ogni parola sale in dissolvenza con 42 ms di ritardo sulla precedente; sottotitolo, CTA e numeri arrivano dopo la frase. Le parole le avvolge il JS (classe `is-split`): senza JavaScript, o con `prefers-reduced-motion`, resta la dissolvenza a blocco di prima, quindi il titolo non è mai invisibile. Il rotator viene **avvolto** e non marcato — ha già una sua `animation`, e marcarlo l'avrebbe sostituita (stessa trappola della 2.3.0).
+
+### Modificato
+
+- `.github/workflows/youtube-sync.yml` — aggiunto `YOUTUBE_API_KEY` dal secret, commentato per indicare che abilita la location extraction.
+- `.gitignore` — aggiunto `graphify-out/` per escludere gli artefatti di analisi.
+
 ## [2.3.0] — 2026-08-10
 
 Il titolo della home si muove, e con lui l'apertura.

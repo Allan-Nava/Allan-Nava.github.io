@@ -61,6 +61,55 @@ Tutto è progressive enhancement: senza JS il sito resta quello della v2.0.0.
   /* Le parole hanno larghezze diverse: qui si misurano davvero e si scrivono in
      --w0…--w3, che i keyframes usano per stringere la finestra sulla parola
      visibile. Senza JS resta il fallback in `ch` del CSS. */
+  /* 4-bis. Il titolo della home entra parola per parola --------------------- */
+  /* Le parole si avvolgono in <span class="w"> con un indice progressivo, che
+     il CSS usa come ritardo. Il rotator viene *avvolto*, non marcato: ha già
+     una sua `animation` e marcarlo la sostituirebbe. Se questo codice non gira
+     il titolo resta con la dissolvenza a blocco (`:not(.is-split)` nel CSS). */
+  (function splitTitle() {
+    var title = document.querySelector('.lede-title');
+    if (!title || !motionOK) return;
+
+    var index = 0;
+
+    function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (child) {
+        if (child.nodeType === 3) {
+          var parts = child.textContent.split(/(\s+)/);
+          var frag = document.createDocumentFragment();
+          parts.forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            var span = document.createElement('span');
+            span.className = 'w';
+            span.style.setProperty('--wi', index++);
+            span.textContent = part;
+            frag.appendChild(span);
+          });
+          node.replaceChild(frag, child);
+          return;
+        }
+
+        if (child.nodeType !== 1) return;
+        if (child.classList.contains('sr-only')) return;
+
+        if (child.classList.contains('rotator')) {
+          var wrap = document.createElement('span');
+          wrap.className = 'w';
+          wrap.style.setProperty('--wi', index++);
+          child.parentNode.insertBefore(wrap, child);
+          wrap.appendChild(child);
+          return;
+        }
+
+        walk(child);
+      });
+    }
+
+    walk(title);
+    title.classList.add('is-split');
+  })();
+
   function measureRotators() {
     document.querySelectorAll('.rotator').forEach(function (rot) {
       var words = rot.querySelectorAll('.rotator-list > span');

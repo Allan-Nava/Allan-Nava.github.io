@@ -303,6 +303,17 @@
 	to { text-decoration-color: var(--color-accent-border); }
 }
 
+@keyframes word-in {
+	from {
+		opacity: 0;
+		transform: translateY(0.42em);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
 @keyframes lede-in {
 	from {
 		opacity: 0;
@@ -332,7 +343,7 @@
 
 	/* Ingresso a cascata dell'apertura. */
 	.lede > .lede-kicker,
-	.lede > .lede-title,
+	.lede > .lede-title:not(.is-split),
 	.lede > .lede-sub,
 	.lede > .hero-actions,
 	.lede > .hero-stats {
@@ -340,14 +351,24 @@
 	}
 
 	.lede > .lede-kicker { animation-delay: 40ms; }
-	.lede > .lede-title { animation-delay: 100ms; }
-	.lede > .lede-sub { animation-delay: 220ms; }
-	.lede > .hero-actions { animation-delay: 320ms; }
-	.lede > .hero-stats { animation-delay: 420ms; }
+	.lede > .lede-title:not(.is-split) { animation-delay: 100ms; }
+	.lede > .lede-sub { animation-delay: 700ms; }
+	.lede > .hero-actions { animation-delay: 820ms; }
+	.lede > .hero-stats { animation-delay: 920ms; }
 
-	/* La sottolineatura delle parole in evidenza si accende dopo il titolo. */
+	/* Con il JS il titolo entra parola per parola (le avvolge
+	   _includes/interactions.html, che aggiunge anche `is-split`); senza,
+	   resta la dissolvenza a blocco qui sopra. */
+	.lede-title.is-split .w {
+		display: inline-block;
+		animation: word-in 620ms var(--ease-out) both;
+		animation-delay: calc(var(--wi, 0) * 42ms + 120ms);
+	}
+
+	/* La sottolineatura delle parole in evidenza si accende quando la cascata
+	   ha finito (15 parole x 42ms + durata). */
 	.lede-title .em {
-		animation: underline-in var(--dur-slow) var(--ease) 900ms both;
+		animation: underline-in var(--dur-slow) var(--ease) 1200ms both;
 	}
 
 	/* Parallasse: l'apertura sale e sfuma mentre si scorre. */
