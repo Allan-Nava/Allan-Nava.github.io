@@ -1,8 +1,42 @@
 <footer class="footer-main">
-    {{ site.name }} © {{ site.time | date: '%Y' }} <a class="link" href="{{ site.url }}/feed.xml" target="_blank"><svg class="icon icon-rss"><use xlink:href="#icon-rss"></use></svg></a>
+    <div class="footer-cols">
+        <div class="col about">
+            <p class="name">{{ site.name }}</p>
+            <p class="bio">{{ site.bio }}</p>
+        </div>
 
-    <p class="extra">
-        <a class="link" href="https://github.com/sergiokopplin/indigo">Indigo theme</a> by <a class="link" href="https://github.com/sergiokopplin/indigo">Kopplin</a>  <br>
-        Restyled by <a class="link" href="https://github.com/Allan-Nava">Allan Nava </a>
-    </p>
+        <div class="col">
+            <h2 class="col-title">Site</h2>
+            <ul class="col-list">
+                <li><a class="link" href="{{ site.url }}/">Home</a></li>
+                {% if site.blog %}<li><a class="link" href="{{ site.url }}/blog">Blog</a></li>{% endif %}
+                {% if site.projects %}<li><a class="link" href="{{ site.url }}/projects">Projects</a></li>{% endif %}
+                <li><a class="link" href="{{ site.url }}/tags">Tags</a></li>
+                {% if site.about %}<li><a class="link" href="{{ site.url }}/about">About</a></li>{% endif %}
+            </ul>
+        </div>
+
+        <div class="col">
+            <h2 class="col-title">Elsewhere</h2>
+            <ul class="col-list">
+                {% if site.github %}<li><a class="link" href="https://github.com/{{ site.github }}">GitHub</a></li>{% endif %}
+                {% if site.linkedin %}<li><a class="link" href="https://linkedin.com/in/{{ site.linkedin }}">LinkedIn</a></li>{% endif %}
+                {% if site.youtube %}<li><a class="link" href="https://youtube.com/{{ site.youtube }}">YouTube</a></li>{% endif %}
+                <li>
+                    <a class="link" href="{{ site.url }}/feed.xml">
+                        <svg class="icon icon-rss" aria-hidden="true"><use xlink:href="#icon-rss"></use></svg>RSS
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p class="copy">{{ site.name }} © {{ site.time | date: '%Y' }}</p>
+        <p class="extra">
+            <a class="link" href="https://github.com/sergiokopplin/indigo">Indigo theme</a> by
+            <a class="link" href="https://github.com/sergiokopplin/indigo">Kopplin</a>, restyled by
+            <a class="link" href="https://github.com/Allan-Nava">Allan Nava</a>
+        </p>
+    </div>
 </footer>

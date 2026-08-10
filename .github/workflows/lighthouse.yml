@@ -3,11 +3,11 @@
 # lighthouserc.json. Runs on every pull request and push to master.
 #
 # Gating policy (tune in lighthouserc.json):
-#   - SEO is a hard gate (error) — jekyll-seo-tag makes it reliably high, so a
-#     failure means a real regression (removed meta tags, broken plugin).
-#   - performance / accessibility / best-practices start as WARNINGS so the job
-#     never red-fails the build on day one. Once the first green runs establish
-#     a baseline, promote them to "error" in lighthouserc.json.
+#   - SEO, accessibility and best-practices are hard gates (error). After the
+#     v2.3 restyling the structural pages score 100 on all three locally, so a
+#     drop below the threshold means a real regression, not noise.
+#   - performance stays a WARNING: the score depends on the runner's speed and
+#     on page weight (/tags renders every post, ~350 KB of HTML).
 name: Lighthouse CI
 
 on:

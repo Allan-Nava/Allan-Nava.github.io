@@ -95,12 +95,12 @@ The build has no `--baseurl`: this is a GitHub user page, so the production base
 
 | Category | Level | Min score |
 |---|---|---|
-| `seo` | **error** (hard gate) | 0.85 |
-| `accessibility` | warn | 0.90 |
-| `best-practices` | warn | 0.90 |
-| `performance` | warn | 0.50 |
+| `seo` | **error** (hard gate) | 0.90 |
+| `accessibility` | **error** (hard gate) | 0.95 |
+| `best-practices` | **error** (hard gate) | 0.95 |
+| `performance` | warn | 0.85 |
 
-SEO is the hard gate because `jekyll-seo-tag` makes it reliably high — a failure means something real broke (meta tags removed, plugin gone). The other categories start as **warnings** so the job never red-fails on introduction. **Once a few green runs establish the real baseline scores, promote `accessibility`/`best-practices`/`performance` from `warn` to `error`** (and raise the thresholds) in `lighthouserc.json` — that's the whole point of the budget. The action uses Ruby 3.0 pinned to the same `ruby/setup-ruby` release as `jekyll.yml`/`checks.yml`; keep them in sync.
+SEO, accessibility and best-practices are hard gates: after the v2.3 restyling the structural pages score **100 on all three** (measured locally on `/`, `/blog/`, `/projects.html`, `/tags.html`), so a drop below the threshold is a real regression rather than noise. Performance stays a warning because the score depends on the runner's speed and on page weight — `/tags` renders every post in one page (~350 KB of HTML) and lands around 92 while the other pages sit at 99–100. The action uses Ruby 3.0 pinned to the same `ruby/setup-ruby` release as `jekyll.yml`/`checks.yml`; keep them in sync.
 
 `lighthouserc.json` and `AGENTS.md` are listed in `_config.yml` `exclude:` so they are not copied into the published site.
 

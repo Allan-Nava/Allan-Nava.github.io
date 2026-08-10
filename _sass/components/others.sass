@@ -1,12 +1,14 @@
 .evidence
-    background-image: linear-gradient(to bottom, rgba(39,243,106,0.15), rgba(39,243,106,0.15))
-    color: beta
+    background-image: linear-gradient(to bottom, var(--color-accent-soft), var(--color-accent-soft))
+    color: var(--color-fg)
 
+// Card in evidenza: dal restyling il titolo sta dentro .body, quindi il vecchio
+// selettore `> .url > .title` non matchava più.
 .star
-    > .url > .title
-        width: auto !important
-        display: inline
-        background-image: linear-gradient(rgba(39,243,106,0.15), rgba(39,243,106,0.15))
+    border-color: var(--color-accent-border) !important
+
+    .title
+        background-image: linear-gradient(var(--color-accent-soft), var(--color-accent-soft))
 
 .twitter-tweet
     margin: 10px auto

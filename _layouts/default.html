@@ -20,6 +20,8 @@ layout: compress
     
     {% include favicon.html %}
 
+    <link rel="preload" as="font" type="font/woff2" href="{{ site.baseurl }}/assets/fonts/inter-latin-wght-normal.woff2" crossorigin>
+
     <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}{{ "/feed.xml" }}" />
 
@@ -31,7 +33,10 @@ layout: compress
 </head>
 <body>
 
-    <div class="wrapper-{% if site.width == "normal" %}normal{% elsif site.width == "large" %}large{% endif %}">
+    {% include nav.html %}
+
+    {%- comment -%} <main> e non <div>: Lighthouse (landmark-one-main) e i lettori di schermo si aspettano un landmark principale {%- endcomment -%}
+    <main id="content" class="wrapper-{% if site.width == "normal" %}normal{% elsif site.width == "large" %}large{% endif %}">
         {% if page.tag %}
             <div class="post">
         {% else %}
@@ -44,7 +49,7 @@ layout: compress
 
             {{ content }}
         </div>
-    </div>
+    </main>
 
     {% include icons.html %}
 

@@ -2,125 +2,160 @@ body, html
 	font-size: 62.5%
 
 body
-	line-height: 1
-	font: 16px $fontSans
-	color: $alpha
-	background: $background
+	line-height: var(--leading)
+	font-family: var(--font-sans)
+	font-size: var(--text-base)
+	color: var(--color-fg)
+	background: var(--color-bg)
+	// `clip` e non `hidden`: taglia gli sforamenti orizzontali (es. .bigger-image)
+	// senza creare un contenitore di scroll, che romperebbe la nav sticky.
+	overflow-x: clip
+	-webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+	font-synthesis-weight: none
 
 h1, h2, h3, h4
-	font-family: $fontSans
-	color: $accent
+	font-family: var(--font-sans)
+	color: var(--color-accent)
+	line-height: var(--leading-tight)
+	text-wrap: balance
 	-webkit-font-smoothing: antialiased
 	text-rendering: optimizeLegibility
 
 h1
-	font-size: 3rem
-	letter-spacing: -1px
-	color: $accent
+	font-size: var(--text-3xl)
+	letter-spacing: var(--tracking-tight)
 	font-weight: 700
 
 h2
-	font-size: 2.2rem
+	font-size: var(--text-2xl)
+	letter-spacing: var(--tracking-tight)
+	font-weight: 650
 
 h3
-	font-size: 2rem
+	font-size: var(--text-xl)
+	font-weight: 600
 
 h4
-	font-size: 1.6rem
+	font-size: var(--text-lg)
+	font-weight: 600
 
 a
-	color: $accent
+	color: var(--color-accent)
 	text-decoration: underline
+	text-underline-offset: 2px
+	text-decoration-thickness: 1px
 
 p
-	line-height: 1.7
-	color: $alpha
-	font-weight: 300
-	margin-bottom: 20px
-	letter-spacing: 0.4px
-
-	@media #{$mobile}
-		letter-spacing: 0.2px
+	line-height: var(--leading)
+	color: var(--color-fg)
+	font-weight: 400
+	margin-bottom: var(--space-5)
+	text-wrap: pretty
 
 strong,
 b
 	font-weight: 700
-	color: $alpha
+	color: var(--color-fg-strong)
 
 ul,
 ol
 	li
-		line-height: 2.4rem
-		font-weight: 300
-		color: $alpha
+		line-height: var(--leading)
+		font-weight: 400
+		color: var(--color-fg)
+		margin-bottom: var(--space-2)
 
 img,
 pre,
 iframe
 	max-width: 100%
 
-img,
-pre
-	border-radius: 4px
+img
+	border-radius: var(--radius-md)
+	height: auto
 
 figcaption
-	position: relative
-	top: -20px
-	left: 0
-	right: 0
-	margin: 0 auto
+	margin: calc(var(--space-4) * -1) auto var(--space-5)
 	width: 100%
 	text-align: center
-	font-size: 1.3rem
-	color: $gama
-	font-weight: 300
-
-	@media #{$mobile}
-		font-size: 1.2rem
+	font-size: var(--text-sm)
+	color: var(--color-fg-muted)
+	font-weight: 400
 
 blockquote
-	padding-left: 15px
-	border-left: 3px solid #eee
+	padding-left: var(--space-4)
+	border-left: 3px solid var(--color-border-strong)
 
 hr
 	border: none
 	height: 1px
-	margin: 40px auto
-	background: #eee
+	margin: var(--space-8) auto
+	background: var(--color-border)
 	width: 100%
 
 figure.highlight
 	width: 100%
-	margin: 0
+	margin: 0 0 var(--space-5)
+
+// --- codice ---------------------------------------------------------------
+// Blocchi e inline code sul fondo scuro: la palette chiara originale del tema
+// lasciava slab bianchi in mezzo alla pagina nera.
 
 code,
 tt
-	padding: 1px 4px
-	font-family: $fontMonospace
-	font-size: 12px
-	line-height: 20px
-	color: $beta
-	background: #fff
-	border-radius: 2px
+	padding: 0.2em 0.45em
+	font-family: var(--font-mono)
+	font-size: 0.875em
+	color: var(--color-accent-text)
+	background: var(--color-accent-soft)
+	border: 1px solid var(--color-accent-border)
+	border-radius: var(--radius-sm)
 
 pre
 	box-sizing: border-box
-	margin: 0 0 1.75em 0
+	margin: 0 0 var(--space-5)
 	width: 100%
-	padding: 5px 10px
-	font-family: $fontMonospace
-	font-size: 1.2rem
-	line-height: 2rem
+	padding: var(--space-4)
+	font-family: var(--font-mono)
+	font-size: 1.4rem
+	line-height: 1.6
 	overflow: auto
-	color: $beta
-	background: #fff
-	border: 1px solid $epsilon
-	border-radius: 2px
+	color: var(--color-code-fg)
+	background: var(--color-code-bg)
+	border: 1px solid var(--color-code-border)
+	border-radius: var(--radius-md)
+	tab-size: 4
+
+	code,
+	tt
+		padding: 0
+		color: inherit
+		background: none
+		border: 0
+		border-radius: 0
+		font-size: inherit
+
+table
+	width: 100%
+	border-collapse: collapse
+	margin-bottom: var(--space-5)
+	font-size: var(--text-sm)
+
+	th,
+	td
+		padding: var(--space-2) var(--space-3)
+		border-bottom: 1px solid var(--color-border)
+		text-align: left
+
+	th
+		color: var(--color-fg-strong)
+		font-weight: 600
 
 .wrapper-normal,
 .wrapper-large
 	height: 100%
-	width: 96%
+	width: 92%
 	margin: 0 auto
 
 	@media #{$mobile}
@@ -130,7 +165,7 @@ pre
 		width: 88%
 
 .wrapper-normal
-	max-width: 560px
+	max-width: var(--width-normal)
 
 .wrapper-large
-	max-width: 810px
+	max-width: var(--width-large)

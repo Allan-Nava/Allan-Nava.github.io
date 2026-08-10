@@ -1,34 +1,108 @@
-.header-home
-    display: block
-    margin: 0 auto
-    text-align: center
-    position: relative
-    z-index: 99
+// Hero della home (avatar + bio + CTA) e intestazione compatta delle altre
+// pagine indice. Markup in _includes/header.html.
 
-    > .link > .selfie
-        width: 125px
-        margin-bottom: 25px
-        border-radius: 100%
-        transition: all .2s
-        box-shadow: 0
-        opacity: 1
+.hero
+	display: grid
+	grid-template-columns: 128px 1fr
+	align-items: center
+	gap: var(--space-6)
+	margin: var(--space-9) 0 var(--space-8)
 
-        &:hover
-            box-shadow: 0 0px 4px 0 rgba(0,0,0,0.18), 0 0px 12px 0 rgba(0,0,0,0.15)
-            opacity: .8
+	> .hero-avatar-link
+		display: block
+		line-height: 0
 
-    > .title
-        font-size: 4rem
-        margin: 0 0 13px
+		> .selfie
+			width: 128px
+			height: 128px
+			border-radius: var(--radius-pill)
+			object-fit: cover
+			border: 1px solid var(--color-border-strong)
+			box-shadow: var(--shadow-md)
+			transition: transform var(--dur) var(--ease-out), border-color var(--dur) var(--ease)
 
-    > .description
-        font-size: 1.85rem
-        font-weight: 300
-        font-style: normal
-        color: $alpha
-        width: 70%
-        margin: 0 auto 30px
+		&:hover > .selfie
+			transform: translateY(-2px)
+			border-color: var(--color-accent)
 
-        // if you put some links in your bio. ;)
-        a
-            font-weight: 200
+	> .hero-body
+		min-width: 0
+
+		> .title
+			font-size: var(--text-4xl)
+			line-height: var(--leading-tight)
+			letter-spacing: var(--tracking-tight)
+			color: var(--color-fg-strong)
+			margin: 0 0 var(--space-3)
+
+		> .description
+			font-size: var(--text-lg)
+			line-height: var(--leading-snug)
+			color: var(--color-fg-muted)
+			font-weight: 400
+			margin: 0 0 var(--space-5)
+
+		> .social-links
+			margin-top: var(--space-4)
+
+	@media #{$below}
+		grid-template-columns: 1fr
+		justify-items: center
+		text-align: center
+		gap: var(--space-5)
+		margin: var(--space-7) 0 var(--space-6)
+
+		> .hero-body > .social-links
+			display: flex
+			justify-content: center
+
+.hero-actions
+	display: flex
+	flex-wrap: wrap
+	gap: var(--space-3)
+
+	@media #{$below}
+		justify-content: center
+
+.button
+	display: inline-flex
+	align-items: center
+	gap: var(--space-2)
+	padding: var(--space-3) var(--space-5)
+	font-size: var(--text-sm)
+	font-weight: 600
+	text-decoration: none
+	color: var(--color-fg-strong)
+	background: var(--color-surface)
+	border: 1px solid var(--color-border-strong)
+	border-radius: var(--radius-pill)
+	transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease), transform var(--dur) var(--ease-out)
+
+	&:hover
+		background: var(--color-surface-hover)
+		border-color: var(--color-accent-border)
+		transform: translateY(-1px)
+
+.button-primary
+	color: var(--color-on-accent)
+	background: var(--color-accent)
+	border-color: var(--color-accent)
+
+	&:hover
+		background: var(--color-accent-hover)
+		border-color: var(--color-accent-hover)
+
+// Intestazione di Blog / Projects / Tags.
+.page-header
+	margin: var(--space-8) 0 var(--space-6)
+
+	> .title
+		font-size: var(--text-3xl)
+		color: var(--color-fg-strong)
+		letter-spacing: var(--tracking-tight)
+		margin: 0 0 var(--space-2)
+
+	> .subtitle
+		font-size: var(--text-base)
+		color: var(--color-fg-muted)
+		margin: 0

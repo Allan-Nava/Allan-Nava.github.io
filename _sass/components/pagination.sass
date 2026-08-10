@@ -1,19 +1,37 @@
 .pagination
-    width: 95%
-    margin: 3rem auto 0
-    text-align: center
+    display: flex
+    align-items: center
+    justify-content: center
+    gap: var(--space-3)
+    width: 100%
+    margin: var(--space-7) auto 0
 
     > .page_number
-        display: inline-block
-        font-size: 1.3rem
+        font-size: var(--text-xs)
+        letter-spacing: var(--tracking-wide)
+        text-transform: uppercase
+        color: var(--color-fg-muted)
 
     > .previous,
     > .next
-        display: inline-block
-        font-size: 1.8rem
-        position: relative
-        top: 1px
-        padding: 1px 9px
+        display: inline-flex
+        align-items: center
+        justify-content: center
+        width: 36px
+        height: 36px
+        font-size: var(--text-lg)
+        line-height: 1
+        text-decoration: none
+        color: var(--color-fg)
+        background: var(--color-surface)
+        border: 1px solid var(--color-border)
+        border-radius: var(--radius-pill)
+        transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease)
+
+        &:hover
+            color: var(--color-accent)
+            background: var(--color-surface-hover)
+            border-color: var(--color-accent-border)
 
     > .hidden
         visibility: hidden

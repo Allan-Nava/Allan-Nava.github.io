@@ -1,16 +1,24 @@
-$fontSans: "Helvetica Neue", Helvetica, Arial, sans-serif
-$fontMonospace: "Consolas", Liberation Mono, Menlo, Courier, monospace
+// Ponte fra i design token (base/tokens.scss) e i partial storici del tema.
+// I nomi Sass restano quelli originali di Indigo per non riscrivere ogni file,
+// ma il valore vero vive nelle custom properties: cambiare il tema = cambiare
+// tokens.scss, non questi alias.
 
-$background: #050505
-$accent: #10cf53
-$accentSelected: #01ff5a
-$alpha: #eae4e4
-$beta: #222
-$gama: #aaa
-$delta: #4b0082
-$epsilon: #ededed
+$fontSans: var(--font-sans)
+$fontMonospace: var(--font-mono)
 
-$mobile: "only screen and (max-width: 400px)"
-$tablet: "only screen and (min-width: 400px) and (max-width: 1050px)"
+$background: var(--color-bg)
+$accent: var(--color-accent)
+$accentSelected: var(--color-accent-hover)
+$alpha: var(--color-fg)
+$beta: var(--color-surface)
+$gama: var(--color-fg-muted)
+$delta: var(--color-accent-soft)
+$epsilon: var(--color-border)
+
+// I telefoni attuali stanno fra 390 e 430 CSS px: il breakpoint originale del
+// tema (400px) lasciava fuori mezzo parco dispositivi, che prendeva il layout
+// "tablet". Spostato a 560px, sopra la larghezza di ogni telefono in verticale.
+$mobile: "only screen and (max-width: 560px)"
+$tablet: "only screen and (min-width: 561px) and (max-width: 1050px)"
 $above: "only screen and (min-width: 780px)"
 $below: "only screen and (max-width: 780px)"

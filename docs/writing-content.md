@@ -58,8 +58,9 @@ externalLink: https://example.com   # optional, see below
 | `category` | `blog` \| `project` | Routes the post to the blog or projects listing. |
 | `author` | string | Must match a key under `authors:` in `_config.yml` (currently only `allan`); renders the author block at the end of the post. |
 | `description` | string | Used by `jekyll-seo-tag` and post listings. |
-| `image` | path/URL | Header image; only rendered when `headerImage: true`. |
-| `headerImage` | bool | Shows `image` above the title. |
+| `image` | path/URL | Thumbnail of the listing card and `og:image`; also rendered full-width above the title when `headerImage: true`. Left empty on a post that embeds a `<lite-youtube>` facade, it is filled at build time with the video thumbnail (`_plugins/youtube_thumbnails.rb`). |
+| `headerImage` | bool | Shows `image` as the post's hero above the title. |
+| `updated` | date | Shown in the post meta line as "updated …"; the GitHub sync sets it on repo pushes. |
 | `projects` | bool | Includes the post on `/projects` (`projects.html` filters on it). |
 | `hidden` | bool | Excludes the post from the blog listing (`blog/index.html`). |
 | `externalLink` | URL | On `/projects`, the item links to this URL instead of the post page. |
@@ -69,6 +70,8 @@ externalLink: https://example.com   # optional, see below
 Notes:
 
 - **Prev/next navigation** only renders for categories listed in `post-advance-links` in `_config.yml` (currently `[blog]`).
+- **Table of contents**: a post with at least 3 `##`/`###` headings automatically gets a collapsible index above the body (`_plugins/toc.rb`). Nothing to add to the front matter — write headings and it appears.
+- **Listing cards**: `/blog` and `/projects` render title, `description` (truncated at 130 chars) and the thumbnail when `image:` is set, so a good `description` is what makes a card readable.
 - **Read time** and **related posts** blocks are controlled globally by `read-time` and `related` in `_config.yml`, not per post.
 - Emoji shortcodes (e.g. `:smile:`) work everywhere thanks to the `jemoji` plugin.
 - Workout PRs shown on `/fitness` live in `_data/workouts.yml` — add a record (date, kg, optional post URL) whenever a PR falls.

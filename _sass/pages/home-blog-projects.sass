@@ -1,74 +1,113 @@
+// Listing di /blog e /projects: card con thumbnail opzionale, descrizione e
+// meta. Markup in _includes/blog-post.html e projects.html.
+// La thumbnail c'è solo se il post ha `image:` (anche quella derivata dal
+// videoid da _plugins/youtube_thumbnails.rb): senza, la card resta compatta.
+
 .home,
 .blog,
 .projects
-    margin-top: 125px
+	margin-top: 0
 
-    > .list
-        border-top: 1px solid $epsilon
-        margin-top: 30px
-        padding-top: 40px
-        position: relative
+	> .list
+		display: flex
+		flex-direction: column
+		gap: var(--space-3)
+		margin: var(--space-6) 0 0
+		padding: 0
 
-        &:before
-            display: block
-            content: " "
-            width: 7px
-            height: 7px
-            border: $epsilon 1px solid
-            position: absolute
-            top: -5px
-            left: 50%
-            margin-left: -5px
-            background: #FFF
-            box-shadow: #FFF 0 0 0 5px
-            border-radius: 3px
+		> .item
+			display: block
+			margin: 0
+			background: var(--color-surface)
+			border: 1px solid var(--color-border)
+			border-radius: var(--radius-lg)
+			transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease), transform var(--dur) var(--ease-out)
 
-.home > .list,
-.blog > .list,
-.projects > .list
-    > .item
-        display: block
-        width: 95%
-        margin: 0 auto
+			&:hover
+				background: var(--color-surface-hover)
+				border-color: var(--color-accent-border)
+				transform: translateY(-2px)
 
-    > .item > .url
-        width: 100%
-        display: block
-        padding: 20px 0
-        text-decoration: none
+		> .item > .url
+			display: flex
+			align-items: center
+			gap: var(--space-4)
+			padding: var(--space-4)
+			text-decoration: none
+			color: inherit
 
-    > .item > .url > .title
-        margin: 0
-        width: 75%
-        font-weight: 500
-        transition: all ease-in-out .2s
+		> .item > .url > .thumb
+			flex: 0 0 116px
+			aspect-ratio: 16 / 9
+			overflow: hidden
+			border-radius: var(--radius-md)
+			background: var(--color-bg)
 
-    > .item:hover > .url > .title
-        color: $accentSelected
+			> img
+				display: block
+				width: 100%
+				height: 100%
+				object-fit: cover
+				border-radius: 0
+				margin: 0
 
-    // maybe we can't nest html5 elements
-    // can you help me?
-    aside
-        position: relative
-        top: 2px
-        margin: 0
-        width: 25%
-        float: right
-        font-weight: 300
-        color: $gama
-        text-align: right
-        transition: all ease-in-out .2s
+		> .item > .url > .body
+			display: flex
+			flex-direction: column
+			gap: var(--space-2)
+			min-width: 0
 
-    .item:hover .url aside
-        color: $alpha
+		> .item > .url > .body > .title
+			margin: 0
+			width: auto
+			font-size: var(--text-lg)
+			font-weight: 600
+			line-height: var(--leading-snug)
+			color: var(--color-fg-strong)
+			transition: color var(--dur) var(--ease)
 
-.blog > .list > .item > .url,
-.projects > .list > .item > .url
-    > .title
-        display: inline
+			> .ext
+				margin-left: var(--space-2)
+				font-size: 0.8em
+				color: var(--color-fg-muted)
 
-    > .emoji
-        display: inline
-        position: relative
-        top: -4px
-        margin-right: 10px
+		> .item:hover > .url > .body > .title
+			color: var(--color-accent)
+
+		> .item > .url > .body > .excerpt
+			display: -webkit-box
+			-webkit-line-clamp: 2
+			-webkit-box-orient: vertical
+			overflow: hidden
+			font-size: var(--text-sm)
+			line-height: 1.5
+			color: var(--color-fg-muted)
+
+		> .item > .url > .body > .meta
+			display: flex
+			align-items: center
+			gap: var(--space-2)
+			font-size: var(--text-xs)
+			letter-spacing: var(--tracking-wide)
+			text-transform: uppercase
+			color: var(--color-fg-muted)
+
+			> .tag
+				color: var(--color-accent-text)
+
+	// Su mobile la card resta orizzontale con thumbnail più piccola: impilarla
+	// significherebbe due post per schermata, con immagini enormi.
+	@media #{$mobile}
+		> .list > .item > .url
+			gap: var(--space-3)
+			padding: var(--space-3)
+
+		> .list > .item > .url > .thumb
+			flex-basis: 92px
+
+		> .list > .item > .url > .body > .title
+			font-size: var(--text-base)
+
+		> .list > .item > .url > .body > .excerpt
+			-webkit-line-clamp: 2
+			font-size: var(--text-xs)

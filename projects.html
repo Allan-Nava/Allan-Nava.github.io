@@ -6,12 +6,28 @@ title: Projects
 <section class="list">
     {% for post in site.posts %}
         {% if post.projects %}
-            <div class="item {% if post.star %}star{% endif %}">
-                <a class="url" href="{% if post.externalLink %}{{ post.externalLink }}{% else %}{{ site.url }}{{ post.url }}{% endif %}">
-                    <aside><time datetime="{{ post.date | date:"%d-%m-%Y" }}">{{ post.date | date: "%b %d %Y" }}</time></aside>
-                    <h3 class="title">{{ post.title }}</h3>
+            <article class="item{% if post.star %} star{% endif %}">
+                <a class="url" href="{% if post.externalLink %}{{ post.externalLink }}{% else %}{{ site.url }}{{ post.url }}{% endif %}"{% if post.externalLink %} rel="noopener"{% endif %}>
+                    {% if post.image and post.image != "" %}
+                        <span class="thumb">
+                            <img src="{{ post.image }}" alt="" loading="lazy" decoding="async" width="480" height="270">
+                        </span>
+                    {% endif %}
+
+                    <span class="body">
+                        <h2 class="title">{{ post.title }}{% if post.externalLink %}<span class="ext" aria-hidden="true">↗</span>{% endif %}</h2>
+
+                        {% if post.description and post.description != "" %}
+                            <span class="excerpt">{{ post.description | strip_html | truncate: 130 }}</span>
+                        {% endif %}
+
+                        <span class="meta">
+                            <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date: "%b %d, %Y" }}</time>
+                            {% if post.tag and post.tag.first %}<span class="dot" aria-hidden="true">·</span><span class="tag">{{ post.tag.first }}</span>{% endif %}
+                        </span>
+                    </span>
                 </a>
-            </div>
+            </article>
         {% endif %}
     {% endfor %}
 </section>

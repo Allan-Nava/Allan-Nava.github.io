@@ -1,46 +1,108 @@
-.nav,
-.nav-home
-    > .list
-        list-style: none
-        margin: 0
-        padding: 0 13px 0
+// Barra di navigazione sticky (markup in _includes/nav.html, renderizzata fuori
+// dal wrapper da _layouts/default.html). Nessun menu JS: sotto i 700px la riga
+// di link scorre orizzontalmente.
 
-        > .item
-            display: inline-block
+.skip-link
+	position: absolute
+	left: -9999px
+	top: 0
+	z-index: 200
+	padding: var(--space-2) var(--space-4)
+	background: var(--color-accent)
+	color: var(--color-on-accent)
+	font-size: var(--text-sm)
+	font-weight: 600
+	border-radius: 0 0 var(--radius-sm) 0
 
-        > .item > .link
-            display: inline-block
-            font-weight: 300
-            font-size: 1.4rem
-            padding: 20px 10px
-            text-decoration: none
+	&:focus
+		left: 0
 
-.nav
-    position: absolute
-    right: 0
-    top: 0
+.site-nav
+	position: sticky
+	top: 0
+	z-index: 100
+	background: rgba(5, 5, 5, 0.78)
+	backdrop-filter: saturate(140%) blur(12px)
+	-webkit-backdrop-filter: saturate(140%) blur(12px)
+	border-bottom: 1px solid var(--color-border)
 
-    > .list
-        padding: 0 13px 0
+	> .site-nav-inner
+		display: flex
+		align-items: center
+		justify-content: space-between
+		gap: var(--space-4)
+		width: 92%
+		max-width: var(--width-large)
+		height: var(--nav-height)
+		margin: 0 auto
 
-        > .item > .link
-            font-size: 1.4rem
-            padding: 20px 10px
+	.brand
+		display: inline-flex
+		align-items: center
+		gap: var(--space-2)
+		text-decoration: none
+		color: var(--color-fg-strong)
+		font-size: var(--text-sm)
+		font-weight: 600
+		letter-spacing: var(--tracking-tight)
+		flex: 0 0 auto
 
-.nav-home
-    margin-top: 40px
-    text-align: center
+		> .brand-avatar
+			width: 28px
+			height: 28px
+			border-radius: var(--radius-pill)
+			border: 1px solid var(--color-border-strong)
 
-    > .list
-        padding: 0
+		&:hover > .brand-name
+			color: var(--color-accent)
 
-        > .item > .link
-            font-size: 2rem
-            padding: 7px 15px
-            margin: 0
-            border-radius: 4%
-            transition: all .4s ease-in-out
-            width: 70px
+	.links
+		display: flex
+		align-items: center
+		justify-content: flex-end
+		gap: var(--space-1)
+		list-style: none
+		margin: 0
+		padding: 0
+		// min-width: 0 è ciò che permette alla riga di restringersi sotto la
+		// larghezza dei suoi link invece di allargare la pagina (overflow
+		// orizzontale su mobile); da lì in poi scorre da sola.
+		min-width: 0
+		flex: 1 1 auto
+		overflow-x: auto
+		scrollbar-width: none
+		-ms-overflow-style: none
 
-            &:hover
-                color: $accentSelected
+		&::-webkit-scrollbar
+			display: none
+
+		> .item
+			margin: 0
+			line-height: 1
+
+		> .item > .link
+			display: inline-block
+			padding: var(--space-2) var(--space-3)
+			font-size: var(--text-sm)
+			font-weight: 500
+			white-space: nowrap
+			text-decoration: none
+			color: var(--color-fg-muted)
+			border-radius: var(--radius-pill)
+			transition: color var(--dur) var(--ease), background var(--dur) var(--ease)
+
+			&:hover
+				color: var(--color-fg-strong)
+				background: var(--color-row-hover)
+
+			&.is-active
+				color: var(--color-accent)
+				background: var(--color-accent-soft)
+
+	@media #{$mobile}
+		> .site-nav-inner
+			width: 94%
+			gap: var(--space-2)
+
+		.brand > .brand-name
+			display: none

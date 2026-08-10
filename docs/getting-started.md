@@ -40,8 +40,11 @@ JEKYLL_ENV=production bundle exec jekyll build   # what CI runs
 ```bash
 ruby scripts/validate_posts.rb   # fast content check: front matter, dates, titles, asset files (stdlib only)
 rake test                        # builds the site, then reports 4xx broken links/images (html-proofer)
+rake test_internal               # same, but skips external links (fast, and works around the crash below)
 ```
 
-The same checks run in CI on every pull request (see [Deployment & CI](deployment.md)).
+The same checks run in CI on every pull request (see [Deployment & CI](deployment.md)). Both rake tasks mirror the flags CI uses (`--empty-alt-ignore`, `--allow-hash-href`, `--assume-extension`): `alt=""` is the correct markup for decorative images (the nav avatar, listing thumbnails, where the link supplies the accessible name), and without that flag html-proofer 3 reports every one of them.
 
 Expect some noise from long-dead external links in old posts; treat failures on *internal* links and images as real problems.
+
+**Known local crash:** on macOS/arm64 the external-link phase of `rake test` can die with a `Segmentation fault` inside `ethon`/libcurl (`ethon-0.12.0/lib/ethon/multi/operations.rb`) while checking the ~1000 external links. It's an environment issue in that native stack, not a site failure — use `rake test_internal` locally and let CI do the external pass.

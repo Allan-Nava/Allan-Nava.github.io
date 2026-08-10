@@ -1,2 +1,39 @@
+// Box "Related Posts" in fondo ai post (markup in _includes/related.html).
+
 .related
-    margin: 10rem 0 0rem
+    margin: var(--space-8) 0 0
+    padding-top: var(--space-5)
+    border-top: 1px solid var(--color-border)
+
+    > h4
+        font-size: var(--text-xs)
+        font-weight: 600
+        letter-spacing: var(--tracking-wide)
+        text-transform: uppercase
+        color: var(--color-fg-muted)
+        margin: 0 0 var(--space-3)
+
+    > ul
+        list-style: none
+        margin: 0
+        padding: 0
+
+    .relatedPost
+        margin: 0
+        border-bottom: 1px solid var(--color-border)
+
+        &:last-child
+            border-bottom: none
+
+        > a
+            display: block
+            padding: var(--space-3) var(--space-2)
+            font-size: var(--text-sm)
+            color: var(--color-fg)
+            text-decoration: none
+            border-radius: var(--radius-md)
+            transition: background var(--dur) var(--ease), color var(--dur) var(--ease)
+
+            &:hover
+                color: var(--color-accent)
+                background: var(--color-row-hover)

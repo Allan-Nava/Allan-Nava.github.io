@@ -1,12 +1,21 @@
 .page
-    margin-top: 125px
+	margin-top: var(--space-7)
 
-    > h1
-        text-align: center
-        margin-bottom: 6rem
+	> h1
+		font-size: var(--text-3xl)
+		color: var(--color-fg-strong)
+		letter-spacing: var(--tracking-tight)
+		margin: 0 0 var(--space-6)
+
+	> h2,
+	> h3
+		margin-top: var(--space-7)
+		margin-bottom: var(--space-3)
+		scroll-margin-top: calc(var(--nav-height) + var(--space-4))
 
 .about
-    img
-        width: 50%
-        margin: 0 auto
-        display: block
+	img
+		width: 50%
+		margin: var(--space-5) auto
+		display: block
+		border-radius: var(--radius-lg)

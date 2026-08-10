@@ -1,60 +1,162 @@
-.post
-    margin-top: 125px
+// Pagina post: header (hero + meta), indice generato da _plugins/toc.rb e corpo
+// del testo limitato alla misura di riga dei token. Le classi sono sull'article
+// (.post-article), non sul wrapper: il vecchio `.post` dipendeva da `page.tag`
+// e spariva sui post senza tag.
 
-    > .title
-        text-align: center
-        margin-bottom: 3rem
+.post-article
+	margin-top: var(--space-7)
 
-    > .date,
-    > .post-tags
-        color: $gama
-        font-weight: 300
-        font-size: 1.4rem
-        text-transform: uppercase
-        text-align: center
-        display: block
-        margin-bottom: 6rem
-        letter-spacing: 1px
-        -webkit-font-smoothing: antialiased
-        text-rendering: optimizeLegibility
+.post-header
+	margin-bottom: var(--space-7)
 
-    > .date
-        margin-bottom: 2rem
+	> .title-image
+		display: block
+		width: 100%
+		height: auto
+		max-height: 380px
+		object-fit: cover
+		border-radius: var(--radius-lg)
+		margin-bottom: var(--space-6)
 
-    > .post-tags > .item
-        padding: 2px 8px
-        border-radius: 3px
-        font-size: 1.1rem
-        background: $epsilon
-        color: #000
-        letter-spacing: 1px
-        margin: 3px 1px
-        text-decoration: none
-        display: inline-block
+	> .title
+		font-size: var(--text-3xl)
+		color: var(--color-fg-strong)
+		letter-spacing: var(--tracking-tight)
+		margin: 0 0 var(--space-4)
 
-    // general style
-    > h2,
-    > h3,
-    > h4
-        margin-top: 40px
+.post-meta
+	display: flex
+	flex-wrap: wrap
+	align-items: center
+	gap: var(--space-2)
+	font-size: var(--text-xs)
+	letter-spacing: var(--tracking-wide)
+	text-transform: uppercase
+	color: var(--color-fg-muted)
 
-        a
-            text-decoration: none
+	.reading-time
+		display: inline
 
-    > .title-image
-        max-height: 120px
-        display: block
-        margin: 0 auto
+	> .dot
+		opacity: 0.5
 
-    > .blog-navigation
-        font-size: 1.4rem
-        display: block
-        width: auto
-        overflow: hidden
-        a
-            display: block
-            width: 50%
-            float: left
-            margin: 1em 0
-        .next
-            text-align: right
+.post-tags
+	display: flex
+	flex-wrap: wrap
+	gap: var(--space-2)
+	margin-top: var(--space-4)
+
+	> .item
+		padding: 3px 10px
+		font-size: var(--text-xs)
+		letter-spacing: 0.04em
+		border-radius: var(--radius-pill)
+		text-decoration: none
+		display: inline-block
+
+// --- indice dei contenuti --------------------------------------------------
+
+.toc
+	margin: 0 0 var(--space-7)
+	padding: var(--space-4) var(--space-5)
+	background: var(--color-surface)
+	border: 1px solid var(--color-border)
+	border-radius: var(--radius-lg)
+
+	> .toc-title
+		cursor: pointer
+		font-size: var(--text-xs)
+		font-weight: 600
+		letter-spacing: var(--tracking-wide)
+		text-transform: uppercase
+		color: var(--color-fg-muted)
+		list-style: none
+
+		&::-webkit-details-marker
+			display: none
+
+		&:before
+			content: "▸"
+			display: inline-block
+			margin-right: var(--space-2)
+			transition: transform var(--dur) var(--ease)
+
+	&[open] > .toc-title:before
+		transform: rotate(90deg)
+
+	> .toc-list
+		margin: var(--space-4) 0 0
+		padding: 0
+		list-style: none
+
+		> li
+			margin: 0
+			line-height: 1.4
+
+			> a
+				display: block
+				padding: var(--space-1) 0
+				font-size: var(--text-sm)
+				color: var(--color-fg-muted)
+				text-decoration: none
+
+				&:hover
+					color: var(--color-accent)
+
+		> .level-3 > a
+			padding-left: var(--space-4)
+			font-size: var(--text-xs)
+
+// --- corpo del post --------------------------------------------------------
+
+.post-content
+	max-width: var(--measure)
+
+	> h2,
+	> h3,
+	> h4
+		margin-top: var(--space-8)
+		margin-bottom: var(--space-3)
+		scroll-margin-top: calc(var(--nav-height) + var(--space-4))
+
+		a
+			text-decoration: none
+
+	> h2 + p,
+	> h3 + p
+		margin-top: 0
+
+	img
+		display: block
+		margin: var(--space-6) auto
+
+// --- navigazione fra post --------------------------------------------------
+
+.blog-navigation
+	display: flex
+	gap: var(--space-4)
+	justify-content: space-between
+	margin: var(--space-8) 0 0
+	padding-top: var(--space-5)
+	border-top: 1px solid var(--color-border)
+	font-size: var(--text-sm)
+
+	a
+		display: flex
+		flex-direction: column
+		gap: var(--space-1)
+		max-width: 48%
+		text-decoration: none
+
+		> .dir
+			font-size: var(--text-xs)
+			letter-spacing: var(--tracking-wide)
+			text-transform: uppercase
+			color: var(--color-fg-muted)
+
+		> .label
+			color: var(--color-accent)
+
+	.next
+		text-align: right
+		margin-left: auto

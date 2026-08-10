@@ -2,38 +2,49 @@
 layout: page
 ---
 
-{% if page.image and page.headerImage %}
-    <img class="title-image" src="{{ page.image }}" alt="{{ page.title }}">
-{% endif %}
+<article class="post-article">
+    <header class="post-header">
+        {% if page.image and page.image != "" and page.headerImage %}
+            <img class="title-image" src="{{ page.image }}" alt="{{ page.title }}" width="1280" height="720">
+        {% endif %}
 
-<h1 class="title">{{ page.title }}</h1>
+        <h1 class="title">{{ page.title }}</h1>
 
-<span class="date">
-    <time datetime="{{ page.date | date:"%d-%m-%Y" }}">{{ page.date | date: "%A. %B %d, %Y" }}</time>
-    {% if site.read-time %} - {% include read-time.html %}{% endif %}
-</span>
+        <div class="post-meta">
+            <time datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date: "%B %d, %Y" }}</time>
+            {% if page.updated %}<span class="dot" aria-hidden="true">·</span><span class="updated">updated {{ page.updated | date: "%b %d, %Y" }}</span>{% endif %}
+            {% if site.read-time %}<span class="dot" aria-hidden="true">·</span>{% include read-time.html %}{% endif %}
+        </div>
 
-{% if site.show-tags %}
-    <div class="post-tags">
-        {% for tag in page.tags %}
-            <a class="item" href="{{ site.url }}/tags/#{{ tag | slugify }}">{{ tag }}</a>
-        {% endfor %}
+        {% if site.show-tags and page.tags.size > 0 %}
+            <div class="post-tags">
+                {% for tag in page.tags %}
+                    <a class="item" href="{{ site.url }}/tags/#{{ tag | slugify }}">{{ tag }}</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </header>
+
+    {%- comment -%}
+    Segnaposto riempito a build time da _plugins/toc.rb: diventa un indice solo
+    se il post ha abbastanza titoli, altrimenti il plugin lo rimuove.
+    {%- endcomment -%}
+    <div class="toc-slot"></div>
+
+    <div class="post-content">
+        {{ content }}
     </div>
-{% endif %}
-
-{{content}}
+</article>
 
 {% if site.post-advance-links contains page.category %}
-    <div class="blog-navigation">
+    <nav class="blog-navigation" aria-label="Post">
         {% if page.previous.url %}
-            <a class="prev" href="{{ site.url }}{{ page.previous.url }}">&laquo; {{ page.previous.title }}</a>
-        {% else %}
-            <a class="prev"></a>
+            <a class="prev" href="{{ site.url }}{{ page.previous.url }}"><span class="dir">&laquo; Previous</span><span class="label">{{ page.previous.title }}</span></a>
         {% endif %}
         {% if page.next.url %}
-            <a class="next" href="{{ site.url }}{{ page.next.url }}">{{ page.next.title }} &raquo;</a>
+            <a class="next" href="{{ site.url }}{{ page.next.url }}"><span class="dir">Next &raquo;</span><span class="label">{{ page.next.title }}</span></a>
         {% endif %}
-    </div>
+    </nav>
 {% endif %}
 
 {% if site.related %}

@@ -4,7 +4,10 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Allan Nava
-email: 
+# `name` è quello che i template del tema stampano come firma (hero, brand della
+# nav, footer, alt dell'avatar): senza, quelle stringhe restavano vuote.
+name: Allan Nava
+email:
 bio: A man who loves videogames and coding
 description: ""
 baseurl: "" # the subpath of your site, e.g. /blog (CI overrides it with --baseurl)

@@ -1,52 +1,88 @@
+// Footer a colonne (about · site · elsewhere) + riga finale con copyright.
+// Markup in _includes/footer.html.
+
 .footer-main
-    border-top: 1px solid $accent
-    padding: 40px 0
-    margin: 40px 0 0
-    font-size: 1.3rem
-    color: $gama
-    font-weight: 300
-    text-align: center
-    position: relative
+	margin: var(--space-9) 0 0
+	padding: var(--space-7) 0 var(--space-6)
+	border-top: 1px solid var(--color-border)
+	font-size: var(--text-sm)
+	color: var(--color-fg-muted)
 
-    &:before
-        display: block
-        content: " "
-        width: 7px
-        height: 7px
-        border: $accent 1px solid
-        position: absolute
-        top: -5px
-        left: 50%
-        margin-left: -5px
-        background: #FFF
-        box-shadow: #FFF 0 0 0 5px
-        border-radius: 3px
+	> .footer-cols
+		display: grid
+		grid-template-columns: 2fr 1fr 1fr
+		gap: var(--space-6)
 
-    > .link
-        display: inline
+		@media #{$below}
+			grid-template-columns: 1fr 1fr
+			gap: var(--space-5)
 
-        > .icon
-            width: 15px !important
-            fill: $accent !important
-            transition: ease-in-out all .3s
-            position: relative
-            top: 3px
-            display: inherit
-            margin: 0
+		@media #{$mobile}
+			grid-template-columns: 1fr
 
-            &:hover
-                fill: $accentSelected !important
+	.col > .col-title
+		font-size: var(--text-xs)
+		font-weight: 600
+		letter-spacing: var(--tracking-wide)
+		text-transform: uppercase
+		color: var(--color-fg-muted)
+		margin: 0 0 var(--space-3)
 
-    > .extra
-        color: $gama
-        margin-top: 0
+	.col > .col-list
+		list-style: none
+		margin: 0
+		padding: 0
 
-        > .link
-            color: $accent
-            text-decoration: none
-            border-bottom: 1px solid transparent
-            transition: ease-in-out all .3s
-            padding-bottom: 1px
+		> li
+			margin-bottom: var(--space-2)
+			line-height: 1.4
 
-            &:hover
-                border-color: $accent
+	.col .link
+		display: inline-flex
+		align-items: center
+		gap: var(--space-2)
+		color: var(--color-fg)
+		text-decoration: none
+		border-bottom: 1px solid transparent
+		transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease)
+
+		&:hover
+			color: var(--color-accent)
+			border-color: var(--color-accent-border)
+
+		> .icon
+			width: 14px
+			height: 14px
+			margin: 0
+
+	.about > .name
+		color: var(--color-fg-strong)
+		font-weight: 600
+		margin: 0 0 var(--space-2)
+
+	.about > .bio
+		margin: 0
+		max-width: 34ch
+		font-size: var(--text-sm)
+		line-height: 1.5
+
+	> .footer-bottom
+		display: flex
+		flex-wrap: wrap
+		justify-content: space-between
+		gap: var(--space-2)
+		margin-top: var(--space-7)
+		padding-top: var(--space-4)
+		border-top: 1px solid var(--color-border)
+		font-size: var(--text-xs)
+
+		p
+			margin: 0
+
+		.link
+			color: var(--color-fg-muted)
+			text-decoration: underline
+			text-underline-offset: 2px
+
+			&:hover
+				color: var(--color-accent)

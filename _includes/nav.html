@@ -1,63 +1,48 @@
-<nav class="{% if page.title == "Home" %}nav-home{% else %}nav{% endif %}">
-    <ul class="list">
-        {% if page.title != "Home" %}
-            <li class="item">
-                <a class="link" href="{{ site.url }}/">Home</a>
-            </li>
-        {% endif %}
+{%- comment -%}
+Barra di navigazione sticky. Renderizzata da _layouts/default.html *fuori* dal
+wrapper (serve tutta la larghezza) e prima del contenuto, così resta agganciata
+in cima allo scroll. A differenza della nav originale del tema, la voce della
+pagina corrente non viene nascosta ma marcata con .is-active + aria-current.
+Su mobile la riga di link scorre orizzontalmente: nessun menu JS da mantenere.
+{%- endcomment -%}
+<a class="skip-link" href="#content">Skip to content</a>
 
-        {% if site.blog == true %}
-            {% if page.title != "Blog" %}
-                <li class="item">
-                    <a class="link" href="{{ site.url }}/blog">Blog</a>
-                </li>
+<nav class="site-nav" aria-label="Main">
+    <div class="site-nav-inner">
+        {%- comment -%} aria-label esplicito: sotto i 560px .brand-name è nascosto e il link resterebbe senza nome accessibile {%- endcomment -%}
+        <a class="brand" href="{{ site.url }}/" aria-label="{{ site.name }} — home">
+            <img class="brand-avatar" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" alt="" width="28" height="28" decoding="async">
+            <span class="brand-name">{{ site.name }}</span>
+        </a>
+
+        <ul class="links">
+            {% if site.blog == true %}
+                <li class="item"><a class="link{% if page.title == 'Blog' %} is-active{% endif %}"{% if page.title == 'Blog' %} aria-current="page"{% endif %} href="{{ site.url }}/blog">Blog</a></li>
             {% endif %}
-        {% endif %}
 
-        {% if site.projects == true %}
-            {% if page.title != "Projects" %}
-                <li class="item">
-                    <a class="link" href="{{ site.url }}/projects">Projects</a>
-                </li>
+            {% if site.projects == true %}
+                <li class="item"><a class="link{% if page.title == 'Projects' %} is-active{% endif %}"{% if page.title == 'Projects' %} aria-current="page"{% endif %} href="{{ site.url }}/projects">Projects</a></li>
             {% endif %}
-        {% endif %}
 
-        {% if site.map == true %}
-            {% if page.title != "Map" %}
-                <li class="item">
-                    <a class="link" href="{{ site.url }}/map">Map</a>
-                </li>
+            {% if site.map == true %}
+                <li class="item"><a class="link{% if page.title == 'Map' %} is-active{% endif %}"{% if page.title == 'Map' %} aria-current="page"{% endif %} href="{{ site.url }}/map">Map</a></li>
             {% endif %}
-        {% endif %}
 
-        {% if site.fitness == true %}
-            {% if page.title != "Fitness" %}
-                <li class="item">
-                    <a class="link" href="{{ site.url }}/fitness">Fitness</a>
-                </li>
+            {% if site.fitness == true %}
+                <li class="item"><a class="link{% if page.title == 'Fitness' %} is-active{% endif %}"{% if page.title == 'Fitness' %} aria-current="page"{% endif %} href="{{ site.url }}/fitness">Fitness</a></li>
             {% endif %}
-        {% endif %}
 
-        {% if site.gear == true %}
-            {% if page.title != "Gear" %}
-                <li class="item">
-                    <a class="link" href="{{ site.url }}/gear">Gear</a>
-                </li>
+            {% if site.gear == true %}
+                <li class="item"><a class="link{% if page.title == 'Gear' %} is-active{% endif %}"{% if page.title == 'Gear' %} aria-current="page"{% endif %} href="{{ site.url }}/gear">Gear</a></li>
             {% endif %}
-        {% endif %}
 
-        {% if site.about == true %}
-            {% if page.title != "About" %}
-                <li class="item">
-                    <a class="link" href="{{ site.url }}/about">About</a>
-                </li>
+            {% if site.about == true %}
+                <li class="item"><a class="link{% if page.title == 'About' %} is-active{% endif %}"{% if page.title == 'About' %} aria-current="page"{% endif %} href="{{ site.url }}/about">About</a></li>
             {% endif %}
-        {% endif %}
 
-        {% if site.resume == true %}
-            <li class="item">
-                <a class="link" href="{% if site.resume-external %}{{ site.resume-url }}{% else %}{{ site.url }}/{{ site.resume-url }}{% endif %}">Résumé</a>
-            </li>
-        {% endif %}
-    </ul>
+            {% if site.resume == true %}
+                <li class="item"><a class="link" href="{% if site.resume-external %}{{ site.resume-url }}{% else %}{{ site.url }}/{{ site.resume-url }}{% endif %}">Résumé</a></li>
+            {% endif %}
+        </ul>
+    </div>
 </nav>

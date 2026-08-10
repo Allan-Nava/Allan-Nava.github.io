@@ -1,208 +1,97 @@
 /*
- * GitHub style for Pygments syntax highlighter, for use with Jekyll
- * Courtesy of GitHub.com
+ * Syntax highlighting (Rouge) — tema scuro.
+ * Sostituisce la palette GitHub *chiara* originale, che su questo sito
+ * (fondo #050505) produceva blocchi bianchi accecanti nei post tech.
+ * I colori sono allineati ai token: sfondo --color-code-bg, testo --color-code-fg,
+ * tipi in verde per legarsi all'accento del tema.
  */
 
-.highlight
-	.c
-		color: #999988
+.highlight,
+.highlighter-rouge .highlight
+	background: var(--color-code-bg)
+	color: var(--color-code-fg)
+	border-radius: var(--radius-md)
+
+	pre
+		margin: 0
+		border: 0
+		background: none
+
+	// commenti
+	.c, .ch, .cd, .cm, .c1, .cs
+		color: #8b949e
 		font-style: italic
 
-	.err
-		color: #a61717
-		background-color: #e3d2d2
+	.cp, .cpf
+		color: #8b949e
 
-	.k
-		font-weight: bold
+	// keyword
+	.k, .kc, .kd, .kn, .kp, .kr, .kv
+		color: #ff7b72
 
-	.o
-		font-weight: bold
+	.kt
+		color: #7ee787
 
-	.cm
-		color: #999988
-		font-style: italic
+	// stringhe
+	.s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss
+		color: #a5d6ff
 
-	.cp
-		color: #999999
-		font-weight: bold
+	// numeri e costanti
+	.m, .mb, .mf, .mh, .mi, .il, .mo, .mx
+		color: #79c0ff
 
-	.c1
-		color: #999988
-		font-style: italic
+	.no, .nb, .bp
+		color: #79c0ff
 
-	.cs
-		color: #999999
-		font-weight: bold
-		font-style: italic
+	// nomi
+	.n, .py, .nx
+		color: var(--color-code-fg)
 
+	.na, .nv, .vc, .vg, .vi, .nl
+		color: #ffa657
+
+	.nf, .fm
+		color: #d2a8ff
+
+	.nc, .nn, .ne, .nt
+		color: #7ee787
+
+	.nd, .ni
+		color: #d2a8ff
+
+	// operatori e punteggiatura
+	.o, .ow, .p, .pi
+		color: #c9d1d9
+
+	// generico / diff
 	.gd
-		color: #000000
-		background-color: #ffdddd
+		color: #ffdcd7
+		background-color: rgba(248, 81, 73, 0.15)
 
-	.gd .x
-		color: #000000
-		background-color: #ffaaaa
+	.gi
+		color: #aff5b4
+		background-color: rgba(46, 160, 67, 0.15)
+
+	.gh, .gu
+		color: #79c0ff
+		font-weight: 600
 
 	.ge
 		font-style: italic
 
-	.gr
-		color: #aa0000
-
-	.gh
-		color: #999999
-
-	.gi
-		color: #000000
-		background-color: #ddffdd
-
-	.gi .x
-		color: #000000
-		background-color: #aaffaa
-
-	.go
-		color: #888888
+	.gs
+		font-weight: 700
 
 	.gp
-		color: #555555
+		color: #8b949e
 
-	.gs
-		font-weight: bold
+	.gl, .lineno
+		color: #6e7681
+		user-select: none
 
-	.gu
-		color: #800080
-		font-weight: bold
-
-	.gt
-		color: #aa0000
-
-	.kc
-		font-weight: bold
-
-	.kd
-		font-weight: bold
-
-	.kn
-		font-weight: bold
-
-	.kp
-		font-weight: bold
-
-	.kr
-		font-weight: bold
-
-	.kt
-		color: #445588
-		font-weight: bold
-
-	.m
-		color: #009999
-
-	.s
-		color: #dd1144
-
-	.n
-		color: #333333
-
-	.na
-		color: teal
-
-	.nb
-		color: #0086b3
-
-	.nc
-		color: #445588
-		font-weight: bold
-
-	.no
-		color: teal
-
-	.ni
-		color: purple
-
-	.ne
-		color: #990000
-		font-weight: bold
-
-	.nf
-		color: #990000
-		font-weight: bold
-
-	.nn
-		color: #555555
-
-	.nt
-		color: navy
-
-	.nv
-		color: teal
-
-	.ow
-		font-weight: bold
+	.err
+		color: #ffa198
+		background-color: rgba(248, 81, 73, 0.12)
 
 	.w
-		color: #bbbbbb
-
-	.mf
-		color: #009999
-
-	.mh
-		color: #009999
-
-	.mi
-		color: #009999
-
-	.mo
-		color: #009999
-
-	.sb
-		color: #dd1144
-
-	.sc
-		color: #dd1144
-
-	.sd
-		color: #dd1144
-
-	.s2
-		color: #dd1144
-
-	.se
-		color: #dd1144
-
-	.sh
-		color: #dd1144
-
-	.si
-		color: #dd1144
-
-	.sx
-		color: #dd1144
-
-	.sr
-		color: #009926
-
-	.s1
-		color: #dd1144
-
-	.ss
-		color: #990073
-
-	.bp
-		color: #999999
-
-	.vc
-		color: teal
-
-	.vg
-		color: teal
-
-	.vi
-		color: teal
-
-	.il
-		color: #009999
-
-	.gc
-		color: #999
-		background-color: #EAF2F5
+		color: transparent

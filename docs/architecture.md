@@ -15,7 +15,20 @@ about.md          ─┘
 
 - `_layouts/compress.html` minifies the final HTML at build time (pure Liquid, from [jekyll-compress-html](https://github.com/penibelst/jekyll-compress-html)).
 - `_layouts/default.html` builds the `<head>` (Google Analytics when `analytics-google` is set, `jekyll-seo-tag`, favicon, RSS feed) and **inlines all CSS**: it captures `_includes/style.scss` and runs it through `scssify`. There is no separate CSS file in the output — to change styles, edit the partials in `_sass/` and they get picked up through `style.scss`.
-- `_layouts/page.html` adds the site header/nav; `_layouts/post.html` adds title, date, read time, tags, prev/next navigation, related posts, author block, and (if configured) Disqus comments.
+- `_layouts/default.html` renders the sticky navigation (`_includes/nav.html`) **outside** the content wrapper — it needs the full viewport width — and wraps the content in `<main id="content">`, the landmark the skip-link points to.
+- `_layouts/page.html` adds the hero/page header; `_layouts/post.html` wraps the article in `.post-article` (header, table-of-contents slot, `.post-content`), then prev/next navigation, related posts, author block, and (if configured) Disqus comments.
+
+## Design system
+
+Every colour, space, radius, duration and type step lives in **`_sass/base/tokens.scss`** as CSS custom properties on `:root`. The historical Sass variables (`$accent`, `$alpha`, …) still exist in `_sass/base/variables.sass` but are now thin aliases (`$accent: var(--color-accent)`) so the old partials keep working with a single source of truth. Practical consequences:
+
+- **Re-theming** (including the light mode in the roadmap) means redefining tokens, not editing every partial.
+- Don't hard-code hex values in components — add or reuse a token.
+- Sass colour functions (`darken()`, `rgba($var, …)`) **cannot** be applied to the palette variables anymore, because their value is a `var()` reference. Use a token with the opacity baked in instead (`--color-accent-soft`).
+- `html` stays at `62.5%`, so **1rem = 10px** and the token scales follow that base (`--space-4: 1.6rem` = 16px).
+- Type is fluid: `--text-*` steps use `clamp()`, so headings scale with the viewport without breakpoints. Post bodies are capped at `--measure` (68ch) for readability.
+- Breakpoints (`variables.sass`): `$mobile` ≤ 560px, `$tablet` 561–1050px. The theme's original 560px `$mobile` was 400px, which left most phones (390–430 CSS px) on the tablet layout.
+- The self-hosted variable font (Inter, latin subset, 47 KB) is declared in `_includes/style.scss` — not in a `_sass/` partial — because only that file is processed by Liquid and the `@font-face` URL needs `{{ site.baseurl }}`. `_layouts/default.html` preloads it.
 
 ## Directory map
 
@@ -25,8 +38,9 @@ about.md          ─┘
 | `_posts/` | All content — blog posts and projects (see [Writing Content](writing-content.md)). |
 | `_layouts/` | `compress` → `default` → `page` → `post` chain described above. |
 | `_includes/` | Partials: `nav`, `footer`, `author`, `related`, `pagination`, `read-time`, `social-links`, `blog-post` (listing item), `youtube-facade` (lazy YouTube player, loaded on posts), analytics snippets, and `style.scss` (Sass entry point). |
-| `_plugins/` | Custom build-time Ruby plugins (`lazy_images.rb`). These **run** — see "Custom plugins" below. |
-| `_sass/base/` | `variables.sass` (colors, fonts, breakpoints), `general`, `helpers`, `normalize`, `syntax` (code highlighting). |
+| `_plugins/` | Custom build-time Ruby plugins (`lazy_images.rb`, `youtube_thumbnails.rb`, `toc.rb`). These **run** — see "Custom plugins" below. |
+| `_sass/base/` | `tokens.scss` (**design tokens**, imported first), `variables.sass` (aliases Sass → token + breakpoints), `general`, `helpers`, `normalize`, `syntax` (dark code highlighting). |
+| `assets/fonts/` | Self-hosted variable font (Inter, latin subset, 47 KB woff2), preloaded in `default.html`. |
 | `_sass/components/` | One file per UI component (header, nav, footer, author, pagination, side-by-side, spoiler, …). `polish.sass` is **imported last** and holds dark-theme contrast fixes + hover/focus polish as cascade overrides — keep theme tweaks there rather than scattering them. |
 | `_sass/pages/` | Page-specific styles (home/blog/projects listing, post, tags). |
 | `index.html` | Home page (thin `page`-layout shell; content comes from config + includes). |
@@ -54,7 +68,8 @@ Feature toggles read by layouts and includes:
 | `post-advance-links` | Categories that get prev/next navigation (currently `[blog]`). |
 | `show-author` | Show the author block after posts. |
 | `animation` | Enable theme animations. |
-| `width` | Content width: `normal` (560px) or `large` (810px). |
+| `width` | Content width: `normal` (`--width-normal`, 640px) or `large` (`--width-large`, 880px). |
+| `name` | Signature printed by the templates (hero title, nav brand, footer). Distinct from `title`; when it was missing those strings rendered empty. |
 | `paginate`, `paginate_path` | Blog pagination — currently commented out, so `/blog` lists everything. |
 | `analytics-google` | Google Analytics ID; the include is only rendered when set. |
 
@@ -79,6 +94,8 @@ Declared in `_config.yml` and provided by the `github-pages` gem (all whiteliste
 Unlike a site built on GitHub's own Pages infrastructure (which runs Jekyll in `--safe` mode and ignores `_plugins/`), this site is built with a full `bundle exec jekyll build` inside GitHub Actions (see [Deployment & CI](deployment.md)). **Custom plugins in `_plugins/` therefore execute** at build time — both in CI and locally.
 
 - `lazy_images.rb` — a `:post_render` hook that adds `loading="lazy"` + async decoding to content `<img>` tags. kramdown can't set a global image attribute, so Markdown photos would otherwise load eagerly. It skips images that already declare a `loading` attribute and the above-the-fold hero images (`title-image`, `selfie`), which stay eager as LCP candidates.
+- `youtube_thumbnails.rb` — a `Generator` that fills an empty `image:` with `https://i.ytimg.com/vi/<id>/hqdefault.jpg` when the post body contains a `<lite-youtube videoid="…">` facade (114 posts today). The backfilled video posts predate the thumbnail feature, so without it the listing cards and `og:image` would be empty. It only touches in-memory document data — nothing is written back to `_posts/`.
+- `toc.rb` — replaces the `<div class="toc-slot"></div>` emitted by `_layouts/post.html` with a collapsible `<details>` index of the post's `h2`/`h3`, or removes it when the post has fewer than 3 headings (which is every post today — the feature kicks in for long-form articles). It reads the ids kramdown already generates, so it needs no HTML parser.
 
 ## Pagination
 

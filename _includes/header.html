@@ -4,23 +4,46 @@
    or page.title == "Tags"
 %}{% assign showHeader = true %}{% endif %}
 
+{%- comment -%}
+Hero delle pagine indice. Su Home è la versione completa (avatar grande, bio,
+social, CTA); su Blog/Projects/Tags si riduce a una intestazione compatta, così
+la lista comincia subito. La nav non è più qui: sta in _layouts/default.html.
+{%- endcomment -%}
 {% if showHeader == true %}
-    <header class="header-home {% if site.animation %}animated{% endif %}">
-        {% if site.about %}
-            <a class="link" href="{{ site.url }}/about">
-                <img class="selfie" alt="{{ site.name }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
-            </a>
-        {% else %}
-            <span class="link">
-                <img class="selfie" alt="{{ site.name }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
-            </span>
-        {% endif %}
+    {% if page.title == "Home" %}
+        <header class="hero {% if site.animation %}animated{% endif %}">
+            {% if site.about %}
+                <a class="hero-avatar-link" href="{{ site.url }}/about">
+                    <img class="selfie" alt="{{ site.name }}" width="128" height="128" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
+                </a>
+            {% else %}
+                <span class="hero-avatar-link">
+                    <img class="selfie" alt="{{ site.name }}" width="128" height="128" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
+                </span>
+            {% endif %}
 
-        <h1 class="title">{{ site.name }}</h1>
-        <h2 class="description">{{ site.bio }}</h2>
+            <div class="hero-body">
+                <h1 class="title">{{ site.name }}</h1>
+                <p class="description">{{ site.bio }}</p>
 
-        {% include social-links.html %}
-    </header>
+                <div class="hero-actions">
+                    {% if site.blog %}<a class="button button-primary" href="{{ site.url }}/blog">Read the blog</a>{% endif %}
+                    {% if site.projects %}<a class="button" href="{{ site.url }}/projects">Browse projects</a>{% endif %}
+                </div>
+
+                {% include social-links.html %}
+            </div>
+        </header>
+    {% else %}
+        <header class="page-header">
+            <h1 class="title">{{ page.title }}</h1>
+            {% if page.title == "Blog" %}
+                <p class="subtitle">Post, appunti e video dal canale.</p>
+            {% elsif page.title == "Projects" %}
+                <p class="subtitle">Repository, tool e side project.</p>
+            {% elsif page.title == "Tags" %}
+                <p class="subtitle">Tutti gli argomenti del blog.</p>
+            {% endif %}
+        </header>
+    {% endif %}
 {% endif %}
-
-{% include nav.html %}
