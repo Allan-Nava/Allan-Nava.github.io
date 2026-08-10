@@ -244,6 +244,156 @@
 }
 
 // ---------------------------------------------------------------------------
+// Titolo della home: parola che ruota, rivelazione in ingresso, parallasse
+// ---------------------------------------------------------------------------
+
+/* La finestra alta una riga dentro cui scorre la lista di parole.
+   La larghezza segue la parola visibile: i valori --w0…--w3 li misura il
+   browser in _includes/interactions.html (le stime in `ch` sbagliano, con un
+   font a peso 800 lasciano un buco dopo la parola). Il fallback in `ch` vale
+   finché il JS non ha misurato, o se è disattivato. */
+.rotator {
+	display: inline-block;
+	overflow: hidden;
+	height: 1.04em;
+	vertical-align: bottom;
+	width: var(--w0, 4.6ch);
+
+	> .rotator-list {
+		display: flex;
+		flex-direction: column;
+		/* Senza questo ogni parola si stira quanto la finestra e non si può
+		   misurarne la larghezza reale. */
+		align-items: flex-start;
+
+		> span {
+			display: block;
+			height: 1.04em;
+			line-height: 1.04;
+			white-space: nowrap;
+		}
+	}
+}
+
+@keyframes rotate-words {
+	0%, 22% { transform: translateY(0); }
+	28%, 50% { transform: translateY(-25%); }
+	56%, 78% { transform: translateY(-50%); }
+	84%, 100% { transform: translateY(-75%); }
+}
+
+@keyframes rotate-width {
+	0%, 22% { width: var(--w0, 4.6ch); }
+	28%, 50% { width: var(--w1, 8ch); }
+	56%, 78% { width: var(--w2, 6.6ch); }
+	84%, 100% { width: var(--w3, 4.6ch); }
+}
+
+@keyframes underline-in {
+	from { text-decoration-color: transparent; }
+	to { text-decoration-color: var(--color-accent-border); }
+}
+
+@keyframes lede-in {
+	from {
+		opacity: 0;
+		transform: translateY(18px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.rotator > .rotator-list {
+		animation: rotate-words 11s var(--ease) infinite;
+	}
+
+	/* `animation` è una proprietà sola: la regola `.lede-title .em` qui sotto è
+	   più specifica e, senza questa dichiarazione combinata, sostituirebbe la
+	   rotazione della larghezza con la sola sottolineatura (il rotator è anche
+	   un `.em`) — la finestra resterebbe larga quanto "tools" e taglierebbe
+	   "pipelines". */
+	.lede-title .em.rotator {
+		animation: rotate-width 11s var(--ease) infinite,
+			underline-in var(--dur-slow) var(--ease) 900ms both;
+	}
+
+	/* Ingresso a cascata dell'apertura. */
+	.lede > .lede-kicker,
+	.lede > .lede-title,
+	.lede > .lede-sub,
+	.lede > .hero-actions,
+	.lede > .hero-stats {
+		animation: lede-in var(--dur-slow) var(--ease-out) both;
+	}
+
+	.lede > .lede-kicker { animation-delay: 40ms; }
+	.lede > .lede-title { animation-delay: 100ms; }
+	.lede > .lede-sub { animation-delay: 220ms; }
+	.lede > .hero-actions { animation-delay: 320ms; }
+	.lede > .hero-stats { animation-delay: 420ms; }
+
+	/* La sottolineatura delle parole in evidenza si accende dopo il titolo. */
+	.lede-title .em {
+		animation: underline-in var(--dur-slow) var(--ease) 900ms both;
+	}
+
+	/* Parallasse: l'apertura sale e sfuma mentre si scorre. */
+	@supports (animation-timeline: view()) {
+		.lede {
+			animation: lede-park linear both;
+			animation-timeline: view();
+			animation-range: exit 0% exit 90%;
+		}
+	}
+}
+
+@keyframes lede-park {
+	from {
+		opacity: 1;
+		transform: none;
+	}
+	to {
+		opacity: 0.25;
+		transform: translateY(-24px);
+	}
+}
+
+/* La riga sotto il titolo di sezione si disegna quando la sezione entra. */
+.section-head {
+	position: relative;
+}
+
+@keyframes rule-draw {
+	from { transform: scaleX(0); }
+	to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	@supports (animation-timeline: view()) {
+		.section-head {
+			border-bottom-color: transparent;
+
+			&:after {
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: -1px;
+				height: 1px;
+				background: var(--color-border);
+				transform-origin: left;
+				animation: rule-draw linear both;
+				animation-timeline: view();
+				animation-range: entry 10% entry 60%;
+			}
+		}
+	}
+}
+
+// ---------------------------------------------------------------------------
 // Numeri della home (#112) — il valore finale è già nell'HTML, il JS lo anima
 // ---------------------------------------------------------------------------
 

@@ -12,8 +12,14 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
 <section class="lede">
     <p class="lede-kicker">{{ site.name }} — DevOps engineer</p>
 
+    {%- comment -%}
+    La parola che ruota: i lettori di schermo leggono la versione fissa in
+    .sr-only, la lista visibile è aria-hidden. L'ultima voce ripete la prima,
+    così il ciclo si chiude senza scatti — e con `prefers-reduced-motion`
+    (dove polish.sass azzera le durate) resta ferma proprio su quella.
+    {%- endcomment -%}
     <h1 class="lede-title">
-        I build <span class="em">tools</span> and <span class="em">infrastructure</span> for live video, and write about what breaks.
+        I build <span class="sr-only">tools</span><span class="em rotator" aria-hidden="true"><span class="rotator-list"><span>tools</span><span>pipelines</span><span>systems</span><span>tools</span></span></span> and <span class="em">infrastructure</span> for live video, and write about what breaks.
     </h1>
 
     <p class="lede-sub">{{ site.bio }}. Go, Docker, streaming pipelines, and the odd editor extension — plus snowboarding, workouts and travel in between.</p>

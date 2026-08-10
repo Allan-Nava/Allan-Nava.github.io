@@ -57,7 +57,33 @@ Tutto è progressive enhancement: senza JS il sito resta quello della v2.0.0.
     }, { passive: true });
   }
 
-  /* 4. Conteggio animato dei numeri della home ------------------------------- */
+  /* 4. Larghezza della parola che ruota nel titolo ---------------------------- */
+  /* Le parole hanno larghezze diverse: qui si misurano davvero e si scrivono in
+     --w0…--w3, che i keyframes usano per stringere la finestra sulla parola
+     visibile. Senza JS resta il fallback in `ch` del CSS. */
+  function measureRotators() {
+    document.querySelectorAll('.rotator').forEach(function (rot) {
+      var words = rot.querySelectorAll('.rotator-list > span');
+      for (var i = 0; i < words.length; i++) {
+        rot.style.setProperty('--w' + i, Math.ceil(words[i].getBoundingClientRect().width) + 'px');
+      }
+    });
+  }
+
+  measureRotators();
+
+  /* Due motivi per rimisurare: il titolo usa il font variabile, che al primo
+     giro può non essere ancora applicato (font-display: swap), e la sua taglia
+     è fluida in clamp(), quindi cambia con la larghezza della finestra. */
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureRotators);
+
+  var resizeTimer;
+  addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(measureRotators, 150);
+  }, { passive: true });
+
+  /* 5. Conteggio animato dei numeri della home ------------------------------- */
   /* Il valore finale è già nel DOM: qui si anima solo la salita. */
   var stats = document.querySelectorAll('[data-count]');
   if (motionOK && stats.length) {
