@@ -5,7 +5,7 @@ date: 2023-05-29 09:57
 updated: 2023-05-30
 tag:
 - dockerfile
-image: ""
+image: "https://github.com/HiWay-Media/Deb-ImageMagick-LibVips/actions/workflows/docker-publish.yml/badge.svg"
 headerImage: false
 projects: true
 hidden: true

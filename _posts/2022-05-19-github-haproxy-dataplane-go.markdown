@@ -8,7 +8,7 @@ tag:
 - api
 - framework
 - golang
-image: ""
+image: "https://godoc.org/github.com/Allan-Nava/haproxy-dataplane-go?status.svg"
 headerImage: false
 projects: true
 hidden: true

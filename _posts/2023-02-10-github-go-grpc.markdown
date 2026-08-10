@@ -5,7 +5,7 @@ date: 2023-02-10 14:53
 updated: 2026-08-01
 tag:
 - go
-image: ""
+image: "https://github.com/Allan-Nava/GO-gRPC/actions/workflows/go.yml/badge.svg"
 headerImage: false
 projects: true
 hidden: true

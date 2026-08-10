@@ -8,7 +8,7 @@ tag:
 - bard
 - bard-api
 - chatbot
-image: ""
+image: "https://github.com/Allan-Nava/go-gemini/actions/workflows/go-build.yml/badge.svg"
 headerImage: false
 projects: true
 hidden: true

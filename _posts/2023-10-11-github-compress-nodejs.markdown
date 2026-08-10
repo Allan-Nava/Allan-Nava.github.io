@@ -5,7 +5,7 @@ date: 2023-10-11 15:39
 updated: 2024-12-15
 tag:
 - typescript
-image: ""
+image: "https://github.com/HiWay-Media/compress-nodejs/actions/workflows/npm.yml/badge.svg"
 headerImage: false
 projects: true
 hidden: true

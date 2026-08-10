@@ -8,7 +8,7 @@ tag:
 - ffmpeg
 - ffmpeg-command
 - ffmpeg-static
-image: ""
+image: "https://github.com/HiWay-Media/ffmpeg-static/actions/workflows/build-ffmpeg.yml/badge.svg"
 headerImage: false
 projects: true
 hidden: true

@@ -5,7 +5,7 @@ date: 2022-11-16 16:15
 updated: 2023-12-15
 tag:
 - go
-image: ""
+image: "https://github.com/Allan-Nava/Nomad-Deploy-Notifier/actions/workflows/docker-publish.yml/badge.svg"
 headerImage: false
 projects: true
 hidden: true

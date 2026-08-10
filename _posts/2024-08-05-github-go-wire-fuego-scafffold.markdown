@@ -5,7 +5,7 @@ date: 2024-08-05 07:49
 updated: 2026-07-25
 tag:
 - go
-image: ""
+image: "https://github.com/Allan-Nava/go-wire-fuego-scafffold/actions/workflows/go-build.yml/badge.svg"
 headerImage: false
 projects: true
 hidden: true

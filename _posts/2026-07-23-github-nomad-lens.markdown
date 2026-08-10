@@ -7,7 +7,7 @@ tag:
 - typescript
 - nomad
 - vscode-extension
-image: ""
+image: "https://github.com/Allan-Nava/nomad-lens/actions/workflows/ci.yml/badge.svg"
 headerImage: false
 projects: true
 hidden: true

@@ -5,7 +5,7 @@ date: 2023-04-20 14:12
 updated: 2023-05-22
 tag:
 - dockerfile
-image: ""
+image: "https://github.com/HiWay-Media/nvenc-docker/actions/workflows/docker-publish.yml/badge.svg"
 headerImage: false
 projects: true
 hidden: true

@@ -8,7 +8,7 @@ tag:
 - grafana
 - grafana-plugin
 - websocket
-image: ""
+image: "https://github.com/Allan-Nava/grafana-websocket-plugin/actions/workflows/release.yml/badge.svg"
 headerImage: false
 projects: true
 hidden: true

@@ -8,7 +8,7 @@ tag:
 - golang
 - hiway
 - hugo
-image: ""
+image: "https://github.com/Allan-Nava/Hugo-TuttoCampo/actions/workflows/hugo.yml/badge.svg"
 headerImage: false
 projects: true
 hidden: true

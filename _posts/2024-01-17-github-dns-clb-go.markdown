@@ -5,7 +5,7 @@ date: 2024-01-17 08:35
 updated: 2024-04-19
 tag:
 - go
-image: ""
+image: "https://github.com/HiWay-Media/dns-clb-go/actions/workflows/go-build.yml/badge.svg"
 headerImage: false
 projects: true
 hidden: true

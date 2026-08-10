@@ -8,7 +8,7 @@ tag:
 - docker
 - superset
 - superset-docker
-image: ""
+image: "https://github.com/HiWay-Media/Superset-Keycloak/actions/workflows/docker-publish.yml/badge.svg"
 headerImage: false
 projects: true
 hidden: true

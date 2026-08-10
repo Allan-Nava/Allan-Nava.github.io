@@ -5,7 +5,7 @@ date: 2024-07-25 14:31
 updated: 2026-08-10
 tag:
 - go
-image: ""
+image: "https://github.com/HiWay-Media/tiktok-go-sdk/actions/workflows/go-build.yml/badge.svg"
 headerImage: false
 projects: true
 hidden: true
