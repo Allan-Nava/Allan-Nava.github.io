@@ -1,0 +1,125 @@
+---
+layout: page
+title: Search
+permalink: /search/
+description: "Search titles, descriptions and tags across every post."
+---
+
+<header class="page-header">
+    <h1 class="title">Search</h1>
+    <p class="subtitle">Titles, descriptions and tags of every post.</p>
+</header>
+
+{%- comment -%}
+La ricerca gira nel browser sull'indice /search.json (generato a build time).
+Senza JavaScript il campo non compare e resta il rimando all'archivio: meglio
+di una casella che non cerca.
+{%- endcomment -%}
+<noscript>
+    <p class="search-fallback">Search needs JavaScript. You can browse everything by year in the <a href="{{ site.url }}/archive/">archive</a> or by topic in the <a href="{{ site.url }}/tags">tags</a>.</p>
+</noscript>
+
+<div class="search" data-search hidden>
+    <label class="search-label" for="q">What are you looking for?</label>
+    <input class="search-input" id="q" type="search" autocomplete="off" placeholder="nomad, ffmpeg, snowboard…" aria-describedby="search-status">
+    <p class="search-status" id="search-status" role="status" aria-live="polite"></p>
+    <ul class="search-results" data-search-results></ul>
+</div>
+
+<script>
+(function () {
+  var box = document.querySelector('[data-search]');
+  if (!box || !window.fetch) return;
+
+  var input = box.querySelector('.search-input');
+  var status = box.querySelector('.search-status');
+  var results = box.querySelector('[data-search-results]');
+  var base = '{{ site.url }}';
+  var index = null;
+  var pending = null;
+  box.hidden = false;
+
+  function load() {
+    if (index || pending) return pending;
+    pending = fetch('{{ site.baseurl }}/search.json')
+      .then(function (r) { return r.json(); })
+      .then(function (data) { index = data; return data; })
+      .catch(function () { status.textContent = 'Could not load the search index.'; return []; });
+    return pending;
+  }
+
+  /* Punteggio semplice: il titolo pesa più della descrizione, i tag stanno in
+     mezzo. Niente libreria di fuzzy match: su 330 voci il substring basta e
+     resta prevedibile. */
+  function score(item, q) {
+    var t = item.t.toLowerCase();
+    var d = (item.d || '').toLowerCase();
+    var g = (item.g || []).join(' ').toLowerCase();
+    var s = 0;
+    if (t.indexOf(q) === 0) s += 12;
+    else if (t.indexOf(q) !== -1) s += 8;
+    if (g.indexOf(q) !== -1) s += 4;
+    if (d.indexOf(q) !== -1) s += 2;
+    return s;
+  }
+
+  function render(list, q) {
+    results.innerHTML = '';
+    list.slice(0, 40).forEach(function (item) {
+      var li = document.createElement('li');
+      li.className = 'search-item';
+      var a = document.createElement('a');
+      a.className = 'url';
+      a.href = base + item.u;
+      var title = document.createElement('span');
+      title.className = 'search-title';
+      title.textContent = item.t;
+      var meta = document.createElement('span');
+      meta.className = 'search-meta';
+      meta.textContent = item.y + (item.g && item.g.length ? ' · ' + item.g.slice(0, 3).join(', ') : '');
+      a.appendChild(title);
+      a.appendChild(meta);
+      li.appendChild(a);
+      results.appendChild(li);
+    });
+
+    status.textContent = list.length
+      ? list.length + (list.length === 1 ? ' result' : ' results') + ' for "' + q + '"'
+      : 'Nothing for "' + q + '".';
+  }
+
+  function run(q) {
+    q = q.trim().toLowerCase();
+    if (q.length < 2) {
+      results.innerHTML = '';
+      status.textContent = q.length ? 'Keep typing…' : '';
+      return;
+    }
+
+    load().then(function () {
+      if (!index) return;
+      var hits = [];
+      for (var i = 0; i < index.length; i++) {
+        var s = score(index[i], q);
+        if (s > 0) hits.push({ item: index[i], s: s });
+      }
+      hits.sort(function (a, b) { return b.s - a.s; });
+      render(hits.map(function (h) { return h.item; }), q);
+    });
+  }
+
+  var timer;
+  input.addEventListener('input', function () {
+    clearTimeout(timer);
+    var value = input.value;
+    timer = setTimeout(function () { run(value); }, 120);
+  });
+
+  input.addEventListener('focus', load);
+
+  /* Arrivo da un link tipo /search/?q=nomad */
+  var initial = new URLSearchParams(location.search).get('q');
+  if (initial) { input.value = initial; run(initial); }
+  input.focus();
+})();
+</script>

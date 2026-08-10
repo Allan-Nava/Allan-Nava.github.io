@@ -1,0 +1,99 @@
+---
+layout: page
+title: Stats
+permalink: /stats/
+description: "Posts per year, most used tags and totals for the site, counted at build time."
+---
+
+{%- comment -%}
+Statistiche del sito, calcolate in Liquid a build time: nessun servizio
+esterno, nessun JS. Le barre sono div con una larghezza percentuale, quindi
+funzionano anche senza JavaScript e senza immagini.
+{%- endcomment -%}
+<header class="page-header">
+    <h1 class="title">Stats</h1>
+    <p class="subtitle">What this site is made of, counted at build time.</p>
+</header>
+
+{% assign blogPosts = site.posts | where: "category", "blog" %}
+{% assign blogPosts = blogPosts | where_exp: "p", "p.hidden != true" %}
+{% assign projectPosts = site.posts | where: "projects", true %}
+{% assign videoPosts = site.posts | where_exp: "p", "p.content contains 'lite-youtube'" %}
+{% assign geoPosts = site.posts | where_exp: "p", "p.lat" %}
+
+<dl class="hero-stats stats-grid">
+    <div class="stat">
+        <dt class="stat-label">Posts</dt>
+        <dd class="stat-value" data-count="{{ blogPosts.size }}">{{ blogPosts.size }}</dd>
+    </div>
+    <div class="stat">
+        <dt class="stat-label">Projects</dt>
+        <dd class="stat-value" data-count="{{ projectPosts.size }}">{{ projectPosts.size }}</dd>
+    </div>
+    <div class="stat">
+        <dt class="stat-label">Videos</dt>
+        <dd class="stat-value" data-count="{{ videoPosts.size }}">{{ videoPosts.size }}</dd>
+    </div>
+    <div class="stat">
+        <dt class="stat-label">Tags</dt>
+        <dd class="stat-value" data-count="{{ site.tags.size }}">{{ site.tags.size }}</dd>
+    </div>
+    <div class="stat">
+        <dt class="stat-label">On the map</dt>
+        <dd class="stat-value" data-count="{{ geoPosts.size }}">{{ geoPosts.size }}</dd>
+    </div>
+    <div class="stat">
+        <dt class="stat-label">Total pages</dt>
+        <dd class="stat-value" data-count="{{ site.posts.size }}">{{ site.posts.size }}</dd>
+    </div>
+</dl>
+
+<section class="stats-section">
+    <h2 class="section-title">Posts per year</h2>
+
+    {%- comment -%} La barra più lunga fa da 100%: serve il massimo. {%- endcomment -%}
+    {% assign postsByYear = site.posts | where_exp: "p", "p.hidden != true" | group_by_exp: "p", "p.date | date: '%Y'" %}
+    {% assign maxYear = 1 %}
+    {% for year in postsByYear %}
+        {% assign n = year.items | size %}
+        {% if n > maxYear %}{% assign maxYear = n %}{% endif %}
+    {% endfor %}
+
+    <ul class="bar-list">
+        {% for year in postsByYear %}
+            {% assign n = year.items | size %}
+            {% assign pct = n | times: 100 | divided_by: maxYear %}
+            <li class="bar-row">
+                <a class="bar-label" href="{{ site.url }}/archive/#y{{ year.name }}" aria-label="Posts from {{ year.name }} in the archive">{{ year.name }}</a>
+                <span class="bar-track"><span class="bar-fill" style="width: {{ pct }}%"></span></span>
+                <span class="bar-value">{{ n }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
+
+{% if site.data.project_tags and site.data.project_tags.size > 0 %}
+    <section class="stats-section">
+        <h2 class="section-title">Most used project tags</h2>
+
+        {% assign topCount = site.data.project_tags[0].count %}
+        <ul class="bar-list">
+            {% for t in site.data.project_tags %}
+                {% assign pct = t.count | times: 100 | divided_by: topCount %}
+                <li class="bar-row">
+                    {%- comment -%}
+                    Il "#" davanti al tag non è solo estetico: Lighthouse
+                    segnala come non descrittivi i link il cui testo è una
+                    parola della sua blocklist, e un tag che si chiama "go"
+                    ci finisce dentro.
+                    {%- endcomment -%}
+                    <a class="bar-label" href="{{ site.url }}/tags/#{{ t.slug }}" aria-label="Projects tagged {{ t.name }}">#{{ t.name }}</a>
+                    <span class="bar-track"><span class="bar-fill" style="width: {{ pct }}%"></span></span>
+                    <span class="bar-value">{{ t.count }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endif %}
+
+<p class="stats-note">Counted from <code>_posts/</code> when the site was last built: {{ site.time | date: "%B %d, %Y" }}.</p>

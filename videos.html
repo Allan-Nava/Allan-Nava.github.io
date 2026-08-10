@@ -1,0 +1,35 @@
+---
+layout: page
+title: Videos
+permalink: /videos/
+description: "Every video post from the YouTube channel, newest first."
+---
+
+{%- comment -%}
+Galleria dei post che contengono un video. La thumbnail arriva da `image:`,
+riempita a build time da _plugins/youtube_thumbnails.rb a partire dal videoid
+della facade: qui non serve nessuna chiamata a YouTube.
+{%- endcomment -%}
+<header class="page-header">
+    <h1 class="title">Videos</h1>
+    <p class="subtitle">Everything from the YouTube channel, newest first.</p>
+</header>
+
+{% assign videoPosts = site.posts | where_exp: "p", "p.content contains 'lite-youtube'" %}
+
+<div class="video-grid">
+    {% for post in videoPosts %}
+        <article class="video-card">
+            <a class="url" href="{{ site.url }}{{ post.url }}">
+                <span class="thumb">
+                    {% if post.image and post.image != "" %}
+                        <img class="thumb-img" src="{{ post.image }}" alt="" loading="lazy" decoding="async" width="480" height="270">
+                    {% endif %}
+                    <span class="play" aria-hidden="true"></span>
+                </span>
+                <h2 class="title">{{ post.title }}</h2>
+                <time class="date" datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date: "%b %d, %Y" }}</time>
+            </a>
+        </article>
+    {% endfor %}
+</div>

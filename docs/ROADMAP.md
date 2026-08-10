@@ -13,19 +13,21 @@ Urgente dopo il backfill YouTube: 218 file in `_posts/` (172 blog + 46 progetti)
 - [x] **Badge di stato nel README** — badge Deploy / Checks / Uptime.
 - [ ] **Disinstallare Renovate** — *manuale* (Settings → Integrations, poi chiudere le sue PR/issue #25, #43): l'app duplica Dependabot. Non automatizzabile da repo.
 
-## v2.1 — Contenuti & Engagement
+## v2.1 — Contenuti & Engagement ✅ (9 su 11)
 
-- [ ] **Pagina statistiche `/stats`** — post per anno, tag più usati, totali; tutto in Liquid a build time.
-- [ ] **Pagina archivio per anno `/archive`** — post raggruppati per anno, Liquid puro.
-- [ ] **Ricerca client-side** — indice `search.json` generato da Liquid + pagina `/search` con fuzzy match in vanilla JS; con 200+ post serve.
-- [ ] **Related posts per tag** — il box "related" mostra i post più recenti, non i più affini: sostituirlo con un match sui tag condivisi.
-- [ ] **Serie di post** — campo `series:` nel front matter + box "puntata N di M" con navigazione (es. Flutter Italia Espresso).
-- [ ] **Galleria video `/videos`** — griglia delle thumbnail di tutti i post YouTube (dipende dalle thumbnail in v2.0).
-- [ ] **404 intelligente** — link utili + ultimi post nella pagina 404.
-- [ ] **Copy-code button** — bottone "copia" sui blocchi di codice dei post tech.
-- [ ] **Reading progress + scroll-to-top** — barra di avanzamento lettura e bottone per risalire.
-- [ ] **Commenti con giscus** — GitHub Discussions come sistema di commenti, toggle in `_config.yml`.
-- [ ] **Analytics GA4 o privacy-friendly** — property GA4 (`G-XXXX` in `_config.yml`, include gtag già pronto) oppure GoatCounter/Plausible.
+Le pagine che mancavano per *navigare* 330 post: archivio, ricerca, statistiche, galleria video, più i controlli di lettura. Tutto in Liquid a build time o in vanilla JS; nessuna dipendenza nuova. Le due voci ancora aperte non sono codice: aspettano credenziali.
+
+- [x] **Pagina statistiche `/stats`** — totali, post per anno e tag più usati, con barre in CSS (nessun JS, nessun servizio esterno).
+- [x] **Pagina archivio per anno `/archive`** — post raggruppati per anno con barra di salto agli anni, Liquid puro.
+- [x] **Ricerca client-side** — indice `search.json` (194 voci, 44 KB, solo post non `hidden`) + pagina `/search` con punteggio su titolo/tag/descrizione. Supporta `/search/?q=…`; senza JS mostra il rimando ad archivio e tag invece di una casella morta.
+- [x] **Related posts per tag** — il box ora conta i tag condivisi e ordina per punteggio, mostrando quanti sono ("3 shared tags"). Prima erano semplicemente i post più recenti con un tag in comune.
+- [x] **Serie di post** — campo `series:` nel front matter → box "Part N of M" con l'elenco degli episodi, ordinati dal più vecchio. Nessun post lo usa ancora: basta aggiungere il campo.
+- [x] **Galleria video `/videos`** — griglia delle thumbnail di tutti i post con facade YouTube (120), con triangolo di play disegnato in CSS.
+- [x] **404 intelligente** — codice, spiegazione, tre vie d'uscita (home, ricerca, archivio) e gli ultimi post.
+- [x] **Copy-code button** — aggiunto dal JS solo se esiste la Clipboard API, così non compare un bottone che non copierebbe.
+- [x] **Reading progress + scroll-to-top** — barra di avanzamento e bottone, entrambi con scroll-driven animation: senza supporto la barra resta a zero e il bottone sempre visibile.
+- [ ] **Commenti con giscus** — `_includes/giscus.html` e il blocco `giscus:` in `_config.yml` sono pronti: l'include non renderizza nulla finché `repo-id` e `category-id` sono vuoti. **Serve Allan**: abilitare Discussions sul repo, installare l'app giscus e copiare i due id da giscus.app.
+- [ ] **Analytics GA4 o privacy-friendly** — l'include gtag esiste già. **Serve Allan**: creare la property e mettere `G-XXXX` in `analytics-google`.
 
 ## v2.2 — Automazioni & Platform
 

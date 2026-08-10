@@ -1,0 +1,42 @@
+---
+layout: page
+title: Archive
+permalink: /archive/
+description: "Every post on the site, grouped by year."
+---
+
+{%- comment -%}
+Archivio per anno, Liquid puro: nessun plugin, nessun JS. I progetti generati
+dal sync GitHub restano fuori (hanno `hidden: true`), altrimenti la lista
+diventerebbe un elenco di repository.
+{%- endcomment -%}
+<header class="page-header">
+    <h1 class="title">Archive</h1>
+    <p class="subtitle">Every post, by year.</p>
+</header>
+
+{% assign posts = site.posts | where_exp: "p", "p.hidden != true" %}
+{% assign years = posts | group_by_exp: "p", "p.date | date: '%Y'" %}
+
+<nav class="year-jump" aria-label="Years">
+    {% for year in years %}
+        <a class="year-pill" href="#y{{ year.name }}" aria-label="Jump to {{ year.name }}">{{ year.name }} <span class="count">{{ year.items | size }}</span></a>
+    {% endfor %}
+</nav>
+
+{% for year in years %}
+    <section class="archive-year">
+        <h2 class="year-title" id="y{{ year.name }}">{{ year.name }}</h2>
+
+        <ul class="archive-list">
+            {% for post in year.items %}
+                <li class="archive-item">
+                    <a class="url" href="{{ site.url }}{{ post.url }}">
+                        <span class="archive-title">{{ post.title }}</span>
+                        <time class="archive-date" datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date: "%b %d" }}</time>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endfor %}

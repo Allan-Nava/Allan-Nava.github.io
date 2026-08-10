@@ -18,7 +18,7 @@
    di pages/home-blog-projects.sass, che ha la stessa profondità. */
 .blog > .list > .item > .url > .thumb.thumb-placeholder,
 .projects > .list > .item > .url > .thumb.thumb-placeholder,
-.home .home-section > .list > .item > .url > .thumb.thumb-placeholder,
+.home-section > .list > .item > .url > .thumb.thumb-placeholder,
 .thumb-placeholder {
 	display: grid;
 	place-items: center;
@@ -89,7 +89,7 @@
 		   ~6 punti di performance in Lighthouse. */
 		.blog > .list > .item,
 		.projects > .list > .item,
-		.home .list > .item {
+		.home-section .list > .item {
 			animation: card-in linear both;
 			animation-timeline: view();
 			animation-range: entry 0% entry 65%;
@@ -327,8 +327,8 @@
 
 @media (prefers-reduced-motion: no-preference) {
 	.rotator > .rotator-list > span {
-		animation: word-cycle 10.5s var(--ease) infinite both;
-		animation-delay: calc(var(--i, 0) * 3.5s);
+		animation: word-cycle 15s var(--ease) infinite both;
+		animation-delay: calc(var(--i, 0) * 5s);
 	}
 
 	/* `animation` è una proprietà sola: la regola `.lede-title .em` qui sotto è
@@ -337,8 +337,8 @@
 	   un `.em`) — la finestra resterebbe larga quanto "tools" e taglierebbe
 	   "pipelines". */
 	.lede-title .em.rotator {
-		animation: rotate-width 10.5s var(--ease) infinite,
-			underline-in var(--dur-slow) var(--ease) 900ms both;
+		animation: rotate-width 15s var(--ease) infinite,
+			underline-in var(--dur-slow) var(--ease) 1900ms both;
 	}
 
 	/* Ingresso a cascata dell'apertura. */
@@ -352,23 +352,23 @@
 
 	.lede > .lede-kicker { animation-delay: 40ms; }
 	.lede > .lede-title:not(.is-split) { animation-delay: 100ms; }
-	.lede > .lede-sub { animation-delay: 700ms; }
-	.lede > .hero-actions { animation-delay: 820ms; }
-	.lede > .hero-stats { animation-delay: 920ms; }
+	.lede > .lede-sub { animation-delay: 1300ms; }
+	.lede > .hero-actions { animation-delay: 1450ms; }
+	.lede > .hero-stats { animation-delay: 1600ms; }
 
 	/* Con il JS il titolo entra parola per parola (le avvolge
 	   _includes/interactions.html, che aggiunge anche `is-split`); senza,
 	   resta la dissolvenza a blocco qui sopra. */
 	.lede-title.is-split .w {
 		display: inline-block;
-		animation: word-in 620ms var(--ease-out) both;
-		animation-delay: calc(var(--wi, 0) * 42ms + 120ms);
+		animation: word-in 760ms var(--ease-out) both;
+		animation-delay: calc(var(--wi, 0) * 70ms + 120ms);
 	}
 
 	/* La sottolineatura delle parole in evidenza si accende quando la cascata
 	   ha finito (15 parole x 42ms + durata). */
 	.lede-title .em {
-		animation: underline-in var(--dur-slow) var(--ease) 1200ms both;
+		animation: underline-in var(--dur-slow) var(--ease) 1900ms both;
 	}
 
 	/* Parallasse: l'apertura sale e sfuma mentre si scorre. */
@@ -472,7 +472,7 @@
 @media (prefers-reduced-motion: no-preference) and (min-width: 561px) {
 	.blog > .list > .item,
 	.projects > .list > .item,
-	.home .list > .item {
+	.home-section .list > .item {
 		position: relative;
 
 		&:after {
@@ -602,4 +602,35 @@
 .page > h1 {
 	font-weight: 800;
 	letter-spacing: -0.035em;
+}
+
+// ---------------------------------------------------------------------------
+// Avanzamento lettura e torna-su (v2.1) — scroll-driven, nessun JS.
+// Senza `animation-timeline` la barra resta a zero (invisibile, innocua) e il
+// bottone resta sempre visibile: entrambi degradano senza rompersi.
+// ---------------------------------------------------------------------------
+
+@keyframes progress-grow {
+	from { transform: scaleX(0); }
+	to { transform: scaleX(1); }
+}
+
+@keyframes to-top-in {
+	0%, 15% { opacity: 0; transform: translateY(8px); pointer-events: none; }
+	40%, 100% { opacity: 1; transform: none; pointer-events: auto; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	@supports (animation-timeline: scroll()) {
+		.reading-progress-bar {
+			animation: progress-grow linear both;
+			animation-timeline: scroll();
+		}
+
+		.to-top {
+			animation: to-top-in linear both;
+			animation-timeline: scroll();
+			animation-range: 0 60vh;
+		}
+	}
 }

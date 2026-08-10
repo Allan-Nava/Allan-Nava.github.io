@@ -1,24 +1,37 @@
 ---
-layout: default
+layout: page
+title: Not found
+permalink: /404.html
 ---
 
-<style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
+{%- comment -%}
+404 utile: invece del solo "page not found", offre le vie d'uscita — ricerca,
+archivio, tag — e gli ultimi post. Chi arriva da un link morto trova qualcosa
+da leggere invece di rimbalzare fuori.
+{%- endcomment -%}
+<header class="page-header notfound-header">
+    <p class="notfound-code" aria-hidden="true">404</p>
+    <h1 class="title">This page doesn't exist</h1>
+    <p class="subtitle">The link may be old, or I may have moved something. Here's the way back.</p>
+</header>
 
-<div class="container">
-  <h1>404</h1>
-
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
+<div class="hero-actions">
+    <a class="button button-primary" href="{{ site.url }}/">Go home</a>
+    <a class="button" href="{{ site.url }}/search/">Search the site</a>
+    <a class="button" href="{{ site.url }}/archive/">Browse the archive</a>
 </div>
+
+<section class="home-section">
+    <div class="section-head">
+        <h2 class="section-title">Latest posts</h2>
+        <a class="section-link" href="{{ site.url }}/blog">All posts <span aria-hidden="true">→</span></a>
+    </div>
+
+    {% assign latest = site.posts | where: "category", "blog" %}
+    {% assign latest = latest | where_exp: "p", "p.hidden != true" %}
+    <div class="list">
+        {% for post in latest limit: 4 %}
+            {% include blog-post.html %}
+        {% endfor %}
+    </div>
+</section>

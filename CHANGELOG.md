@@ -16,12 +16,20 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 - **YouTube location extraction** — `sync_youtube.rb` usa YouTube Data API per estrarre `recordingDetails.location` (lat/lng) da ogni video. Se disponibili, le aggiunge automaticamente al post front matter — la mappa `/map` si aggiorna senza intervento manuale. Fallback a RSS feed se `YOUTUBE_API_KEY` non è configurato.
 - **Trigger workflow su tag e release** — `jekyll.yml` ora ascolta a `push.tags` (pattern `v*`) e `release.types: published`, oltre al push su master. Ogni tag o GitHub Release pubblica genera automaticamente un deploy.
 - **Skill graphify** — `.claude/skills/graphify.md` per invocare `graphify` dall'IDE e analizzare la struttura del repository.
-- **Il titolo della home entra parola per parola** — ogni parola sale in dissolvenza con 42 ms di ritardo sulla precedente; sottotitolo, CTA e numeri arrivano dopo la frase. Le parole le avvolge il JS (classe `is-split`): senza JavaScript, o con `prefers-reduced-motion`, resta la dissolvenza a blocco di prima, quindi il titolo non è mai invisibile. Il rotator viene **avvolto** e non marcato — ha già una sua `animation`, e marcarlo l'avrebbe sostituita (stessa trappola della 2.3.0).
+- **Pagine di navigazione del contenuto** (milestone v2.1): `/archive` (post per anno), `/stats` (totali, post per anno e tag più usati con barre in CSS), `/videos` (griglia delle thumbnail dei 120 post video), `/search` (indice `search.json` di 194 voci generato a build time + ricerca nel browser, con `?q=` supportato).
+- **Controlli di lettura** — barra di avanzamento e bottone "torna su" (scroll-driven, nessun JS), bottone "copia" sui blocchi di codice (solo se esiste la Clipboard API).
+- **Serie di post** — campo `series:` nel front matter → box "Part N of M" con l'elenco degli episodi.
+- **404 utile** — tre vie d'uscita (home, ricerca, archivio) e gli ultimi post, invece del solo "page not found".
+- **Commenti giscus** — `_includes/giscus.html` + blocco `giscus:` in `_config.yml`: inerte finché `repo-id` e `category-id` restano vuoti.
+- **Il titolo della home entra parola per parola** — ogni parola sale in dissolvenza con 70 ms di ritardo sulla precedente; sottotitolo, CTA e numeri arrivano dopo la frase. Le parole le avvolge il JS (classe `is-split`): senza JavaScript, o con `prefers-reduced-motion`, resta la dissolvenza a blocco di prima, quindi il titolo non è mai invisibile. Il rotator viene **avvolto** e non marcato — ha già una sua `animation`, e marcarlo l'avrebbe sostituita (stessa trappola della 2.3.0).
 
 ### Modificato
 
 - `.github/workflows/youtube-sync.yml` — aggiunto `YOUTUBE_API_KEY` dal secret, commentato per indicare che abilita la location extraction.
 - `.gitignore` — aggiunto `graphify-out/` per escludere gli artefatti di analisi.
+- **Related posts per affinità** — il box in fondo ai post ordina per numero di tag condivisi e lo dichiara ("3 shared tags"); prima mostrava i post più recenti che avessero un tag qualsiasi in comune.
+- **Rotazione della parola nel titolo più lenta** — ciclo da 10,5 s a 15 s (5 s per parola) e cascata d'ingresso da 42 ms a 70 ms per parola.
+- Le card dei listing non dipendono più dalla pagina (`.home`) ma dalla sezione (`.home-section`), così la 404 riusa gli stessi stili invece di mostrare immagini a piena pagina.
 
 ## [2.3.0] — 2026-08-10
 

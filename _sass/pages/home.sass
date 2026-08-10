@@ -43,10 +43,10 @@
 
 // Sezioni della home ---------------------------------------------------------
 
-// `.home .home-section` e non `.home-section`: in pages/home-blog-projects.sass
-// lo stesso elemento azzera il margine (serve alle liste), e con un solo nome
-// di classe questa regola perdeva, incollando ogni sezione alla precedente.
-.home .home-section
+// In pages/home-blog-projects.sass lo stesso elemento azzera il margine (serve
+// alle liste): qui viene rimesso, e vince perché home.sass è importato dopo.
+// Vale anche per la 404, che riusa le stesse sezioni.
+.home-section
 	margin: var(--space-8) 0 0
 
 	> .list

@@ -2,6 +2,8 @@
 layout: page
 ---
 
+<div class="reading-progress" aria-hidden="true"><span class="reading-progress-bar"></span></div>
+
 <article class="post-article">
     <header class="post-header">
         {% if page.image and page.image != "" and page.headerImage %}
@@ -29,6 +31,8 @@ layout: page
     Segnaposto riempito a build time da _plugins/toc.rb: diventa un indice solo
     se il post ha abbastanza titoli, altrimenti il plugin lo rimuove.
     {%- endcomment -%}
+    {% include series.html %}
+
     <div class="toc-slot"></div>
 
     <div class="post-content">
@@ -54,6 +58,8 @@ layout: page
 {% if site.show-author %}
     {% include author.html %}
 {% endif %}
+
+{% include giscus.html %}
 
 {% if site.disqus.categories contains page.category %}
     {% include disqus.html %}

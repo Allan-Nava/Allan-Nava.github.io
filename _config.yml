@@ -57,6 +57,22 @@ blog: true
 map: true
 fitness: true
 gear: true
+# extra content pages added in v2.1 (toggles only drive the footer links:
+# the pages themselves live at /archive/, /videos/, /stats/, /search/)
+archive: true
+videos: true
+stats: true
+search: true
+#
+# Comments via GitHub Discussions. Fill repo-id and category-id from
+# https://giscus.app (Discussions must be enabled on the repo and the giscus
+# app installed); until then the include renders nothing.
+giscus:
+  repo: Allan-Nava/Allan-Nava.github.io
+  repo-id: ""
+  category: Announcements
+  category-id: ""
+#
 # do you want to show the "read time" of the posts?
 read-time: true
 # do you want to show the "tags" inside the posts?

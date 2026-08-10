@@ -61,6 +61,35 @@ Tutto è progressive enhancement: senza JS il sito resta quello della v2.0.0.
   /* Le parole hanno larghezze diverse: qui si misurano davvero e si scrivono in
      --w0…--w3, che i keyframes usano per stringere la finestra sulla parola
      visibile. Senza JS resta il fallback in `ch` del CSS. */
+  /* 5. Bottone "copia" sui blocchi di codice --------------------------------- */
+  /* Aggiunto dal JS e non dal template: senza Clipboard API (o senza JS) non
+     compare un bottone che non copierebbe niente. */
+  if (navigator.clipboard) {
+    document.querySelectorAll('.post-content div.highlight, .post-content figure.highlight').forEach(function (block) {
+      var pre = block.querySelector('pre');
+      if (!pre) return;
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'copy-code';
+      btn.textContent = 'Copy';
+      btn.setAttribute('aria-label', 'Copy code to clipboard');
+
+      btn.addEventListener('click', function () {
+        navigator.clipboard.writeText(pre.innerText).then(function () {
+          btn.textContent = 'Copied';
+          btn.classList.add('is-done');
+          setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('is-done'); }, 1600);
+        }, function () {
+          btn.textContent = 'Press Ctrl+C';
+        });
+      });
+
+      block.classList.add('has-copy');
+      block.appendChild(btn);
+    });
+  }
+
   /* 4-bis. Il titolo della home entra parola per parola --------------------- */
   /* Le parole si avvolgono in <span class="w"> con un indice progressivo, che
      il CSS usa come ritardo. Il rotator viene *avvolto*, non marcato: ha già

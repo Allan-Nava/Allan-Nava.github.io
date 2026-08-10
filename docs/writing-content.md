@@ -66,6 +66,7 @@ externalLink: https://example.com   # optional, see below
 | `externalLink` | URL | On `/projects`, the item links to this URL instead of the post page. |
 | `star` | bool | Adds the `star` CSS class to highlight the item in listings. |
 | `lat`, `lng` | float | Geolocates the post: it appears as a marker on `/map`. |
+| `series` | string | Groups posts into a series: the post gets a "Part N of M" box listing every episode, oldest first. Use the exact same string on each post. |
 
 Notes:
 

@@ -41,7 +41,7 @@ Every colour, space, radius, duration and type step lives in **`_sass/base/token
 | `_config.yml` | Site identity, social handles, plugins, feature toggles (see below). |
 | `_posts/` | All content — blog posts and projects (see [Writing Content](writing-content.md)). |
 | `_layouts/` | `compress` → `default` → `page` → `post` chain described above. |
-| `_includes/` | Partials: `nav`, `footer`, `author`, `related`, `pagination`, `read-time`, `social-links`, `blog-post` (listing item), `youtube-facade` (lazy YouTube player, loaded on posts), analytics snippets, and `style.scss` (Sass entry point). |
+| `_includes/` | Partials: `nav`, `footer`, `author`, `related`, `pagination`, `read-time`, `social-links`, `blog-post` (listing item), `youtube-facade` (lazy YouTube player, loaded on posts), `series` ("Part N of M" box), `giscus` (comments, inert until configured), `interactions` (image fade-in, view-transition naming, spotlight, counters, copy-code), `projects-filter`, analytics snippets, and `style.scss` (Sass entry point). |
 | `_plugins/` | Custom build-time Ruby plugins (`lazy_images.rb`, `youtube_thumbnails.rb`, `toc.rb`). These **run** — see "Custom plugins" below. |
 | `_sass/base/` | `tokens.scss` (**design tokens**, imported first), `variables.sass` (aliases Sass → token + breakpoints), `general`, `helpers`, `normalize`, `syntax` (dark code highlighting). |
 | `assets/fonts/` | Self-hosted variable font (Inter, latin subset, 47 KB woff2), preloaded in `default.html`. |
@@ -56,6 +56,10 @@ Every colour, space, radius, duration and type step lives in **`_sass/base/token
 | `projects.html` | Projects listing; filters `site.posts` on `projects: true`, honours `externalLink` and `star`. |
 | `tags.html` | Tag cloud + per-tag post lists, anchored by slugified tag name. |
 | `about.md` | About page (`/about/`). |
+| `archive.html` | `/archive/` — every post grouped by year (pure Liquid). |
+| `stats.html` | `/stats/` — totals, posts per year, most used project tags; CSS bars, no JS. |
+| `videos.html` | `/videos/` — grid of every post embedding a YouTube facade. |
+| `search.html`, `search.json` | `/search/` — client-side search over the build-time index (194 entries, 44 KB). |
 | `assets/images/`, `assets/video/` | Media; `.MOV` files tracked via Git LFS. |
 | `404.html` | GitHub Pages custom 404. |
 

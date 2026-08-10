@@ -1,0 +1,15 @@
+---
+layout: null
+permalink: /search.json
+---
+{%- comment -%}
+Indice di ricerca generato a build time. Campi corti (t/u/d/g/y) perché il file
+viene scaricato intero dal browser: con 330 post ogni byte per voce conta.
+`jsonify` fa l'escaping di virgolette, emoji e a capo.
+{%- endcomment -%}
+[
+{% assign indexable = site.posts | where_exp: "p", "p.hidden != true" -%}
+{% for post in indexable -%}
+{"t":{{ post.title | jsonify }},"u":{{ post.url | jsonify }},"d":{{ post.description | strip_html | truncate: 160 | jsonify }},"g":{{ post.tag | default: "" | jsonify }},"y":{{ post.date | date: "%Y" | jsonify }}}{% unless forloop.last %},{% endunless %}
+{% endfor -%}
+]

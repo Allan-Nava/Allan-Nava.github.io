@@ -1,0 +1,30 @@
+{%- comment -%}
+Commenti via GitHub Discussions (giscus). Disattivato finché `_config.yml` non
+ha `giscus.repo-id` e `giscus.category-id`: si prendono dal configuratore su
+https://giscus.app dopo aver abilitato Discussions sul repo e installato l'app.
+
+Lo script è di terze parti e viene caricato solo nelle pagine dei post, sotto
+al contenuto; il tema segue quello del sito (scuro).
+{%- endcomment -%}
+{% if site.giscus and site.giscus.repo-id and site.giscus.category-id %}
+    <section class="comments" aria-label="Comments">
+        <h2 class="comments-title">Comments</h2>
+        <script src="https://giscus.app/client.js"
+                data-repo="{{ site.giscus.repo | default: 'Allan-Nava/Allan-Nava.github.io' }}"
+                data-repo-id="{{ site.giscus.repo-id }}"
+                data-category="{{ site.giscus.category | default: 'Announcements' }}"
+                data-category-id="{{ site.giscus.category-id }}"
+                data-mapping="pathname"
+                data-strict="1"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="top"
+                data-theme="dark_dimmed"
+                data-lang="en"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+        </script>
+        <noscript>Comments need JavaScript. You can also reply in the repository discussions.</noscript>
+    </section>
+{% endif %}

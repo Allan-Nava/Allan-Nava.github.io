@@ -1,0 +1,34 @@
+{%- comment -%}
+Box "puntata N di M" per i post che dichiarano `series: "Nome serie"` nel front
+matter. Gli episodi sono i post con la stessa stringa, ordinati dal più vecchio
+al più recente: la puntata 1 è la prima uscita, non l'ultima.
+{%- endcomment -%}
+{% if page.series and page.series != "" %}
+    {% assign episodes = site.posts | where: "series", page.series | sort: "date" %}
+    {% assign total = episodes | size %}
+
+    {% if total > 1 %}
+        <aside class="series" aria-label="Series navigation">
+            <p class="series-head">
+                <span class="series-name">{{ page.series }}</span>
+                {% for ep in episodes %}
+                    {% if ep.url == page.url %}
+                        <span class="series-position">Part {{ forloop.index }} of {{ total }}</span>
+                    {% endif %}
+                {% endfor %}
+            </p>
+
+            <ol class="series-list">
+                {% for ep in episodes %}
+                    <li class="series-item{% if ep.url == page.url %} is-current{% endif %}">
+                        {% if ep.url == page.url %}
+                            <span aria-current="true">{{ ep.title }}</span>
+                        {% else %}
+                            <a href="{{ site.url }}{{ ep.url }}">{{ ep.title }}</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ol>
+        </aside>
+    {% endif %}
+{% endif %}
