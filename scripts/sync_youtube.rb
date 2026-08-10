@@ -67,9 +67,65 @@ def yaml_safe(text, max = 160)
   text.to_s.gsub(/\s+/, ' ').delete('"').strip[0, max].strip
 end
 
-def get_video_location(video_id, api_key)
-  return nil if api_key.empty?
+def geocode_city(city_name)
+  return nil if city_name.to_s.empty?
 
+  uri = URI("https://nominatim.openstreetmap.org/search")
+  uri.query = URI.encode_www_form(
+    'q' => city_name,
+    'format' => 'json',
+    'limit' => '1'
+  )
+
+  res = Net::HTTP.start(uri.host, uri.port, use_ssl: true, open_timeout: 15, read_timeout: 30) do |http|
+    http.get(uri.request_uri, 'User-Agent' => 'Mozilla/5.0 (jekyll-youtube-sync)')
+  end
+
+  return nil unless res.is_a?(Net::HTTPSuccess)
+
+  data = JSON.parse(res.body)
+  return nil if data.empty?
+
+  result = data[0]
+  {
+    lat: result['lat'].to_f,
+    lng: result['lon'].to_f,
+    location_name: result['display_name']
+  }
+rescue StandardError => e
+  warn "Warning: could not geocode '#{city_name}': #{e.message}"
+  nil
+end
+
+def extract_city_from_description(description)
+  return nil if description.to_s.empty?
+
+  desc = description.to_s.strip
+
+  if desc =~ /(?:📍|filmed in|shot in|recorded in|in|at|📸 )\s*([A-Z][A-Za-z\s]+(?:,?\s*[A-Z][A-Za-z]*)?)/i
+    city = Regexp.last_match(1).strip.sub(/,\s*$/, '')
+    return city unless city.empty?
+  end
+
+  nil
+end
+
+def get_video_location(video_id, api_key, description = '')
+  location = nil
+
+  if !api_key.empty?
+    location = get_video_location_from_api(video_id, api_key)
+  end
+
+  if !location && !description.empty?
+    city = extract_city_from_description(description)
+    location = geocode_city(city) if city
+  end
+
+  location
+end
+
+def get_video_location_from_api(video_id, api_key)
   uri = URI("https://www.googleapis.com/youtube/v3/videos")
   uri.query = URI.encode_www_form(
     'id' => video_id,
@@ -90,11 +146,15 @@ def get_video_location(video_id, api_key)
   recording = items[0].fetch('recordingDetails', {})
   location = recording.fetch('location', {})
 
-  {
-    lat: location['latitude'],
-    lng: location['longitude'],
-    location_name: location['locationDescription']
-  }
+  if location['latitude'] && location['longitude']
+    return {
+      lat: location['latitude'],
+      lng: location['longitude'],
+      location_name: location['locationDescription']
+    }
+  end
+
+  nil
 rescue StandardError => e
   warn "Warning: could not fetch location for #{video_id}: #{e.message}"
   nil
@@ -144,7 +204,7 @@ doc.root.each_element do |entry|
   desc = "Video dal canale YouTube di Allan Nava: #{yaml_safe(title, 100)}" if desc.empty?
   short_attr = is_short ? ' data-short' : ''
 
-  location = get_video_location(video_id, YOUTUBE_API_KEY)
+  location = get_video_location(video_id, YOUTUBE_API_KEY, description)
   location_yaml = if location && location[:lat] && location[:lng]
                      "\n    lat: #{location[:lat]}\n    lng: #{location[:lng]}"
                    else

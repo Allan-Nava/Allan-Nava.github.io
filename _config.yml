@@ -55,7 +55,7 @@ about: true
 blog: true
 # extra pages: hiking map, workout PRs, gear list
 map: true
-fitness: true
+fitness: false
 gear: true
 # extra content pages added in v2.1 (toggles only drive the footer links:
 # the pages themselves live at /archive/, /videos/, /stats/, /search/)
