@@ -76,7 +76,7 @@ ruby scripts/validate_posts.rb # validazione veloce dei post — no bundle
 - **Script inline: MAI commenti `//`** — `_layouts/compress.html` collassa le newline, quindi tutto ciò che segue `//` sulla riga collassata finisce commentato e lo script muore in silenzio. Usare `/* … */` (vale per `_includes/interactions.html` e `_includes/projects-filter.html`).
 - **`hidden` va forzato**: i componenti dichiarano `display: block`, che vince sull'attributo. In `general.sass` c'è `[hidden] { display: none !important }` — non rimuoverlo, il filtro dei progetti dipende da quello.
 - **Motion in `_sass/components/motion.scss`**, importato subito prima di `polish.sass` (che deve restare l'ultima parola su `prefers-reduced-motion`). Ogni animazione sta dietro `@supports`/`@media`: mai lasciare un elemento invisibile in attesa di un'animazione che potrebbe non partire.
-- **Screenshot headless su macOS**: Chrome impone una finestra minima di ~500px, quindi `--window-size=390,…` ritaglia una pagina renderizzata a 500px e sembra overflow orizzontale. Testare il layout mobile a 500px, non sotto.
+- **Screenshot headless su macOS**: Chrome impone una finestra minima di ~500px, quindi `--window-size=390,…` ritaglia una pagina renderizzata a 500px e sembra overflow orizzontale. Testare il layout mobile a 500px, non sotto. Inoltre `--screenshot` **non cattura la pagina scrollata** (esce tutto nero): per verificare uno stato sotto la piega, usare una finestra molto alta (`--window-size=1000,3000`) oppure sondare il DOM con `--dump-dom` leggendo `getComputedStyle`.
 
 ## Deployment
 

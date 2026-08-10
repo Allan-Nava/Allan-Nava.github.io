@@ -11,6 +11,28 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ## [Non rilasciato]
 
+## [2.2.0] — 2026-08-10
+
+Navigazione e home rifatte: erano le due parti rimaste con la forma da template.
+
+### Modificato
+
+- **Navigazione**: da barra a tutta larghezza a **isola flottante in vetro**, centrata e staccata dal
+  bordo. La striscia sticky resta a tutta larghezza ma è trasparente ai click (`pointer-events`), così
+  il contenuto sotto resta cliccabile. La pillola della voce attiva ha un `view-transition-name`
+  proprio: cambiando pagina **scivola** da una voce all'altra invece di sparire.
+- **Home**: da "avatar + due bottoni" a pagina editoriale — dichiarazione grande con parole in
+  evidenza, numeri, sezioni curate (ultimi progetti, ultimi post, argomenti) e chiusura con contatti.
+  Il testo dell'apertura vive in `index.html`, unico punto da modificare.
+- Lingua dell'interfaccia uniformata all'**inglese** (era mista: sottotitoli e filtri in italiano,
+  resto in inglese).
+- `--nav-height` a 68px per tenere conto dell'isola flottante: le ancore non finiscono più sotto la nav.
+
+### Corretto
+
+- Le sezioni della home si incollavano l'una all'altra: `margin-top: 0` delle liste vinceva per
+  specificità sul margine di sezione.
+
 ## [2.1.0] — 2026-08-10
 
 Movimento e ricchezza visiva sopra le fondamenta della 2.0.0. Milestone
@@ -110,7 +132,8 @@ Prima automazione di build e deploy del sito.
 
 Prima versione pubblica del sito sul tema Indigo.
 
-[Non rilasciato]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.1.0...HEAD
+[Non rilasciato]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.2.0...HEAD
+[2.2.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v1.6.1...v2.0.0
 [1.6.1]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v1.6.0...v1.6.1

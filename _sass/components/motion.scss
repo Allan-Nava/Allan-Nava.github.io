@@ -18,6 +18,7 @@
    di pages/home-blog-projects.sass, che ha la stessa profondità. */
 .blog > .list > .item > .url > .thumb.thumb-placeholder,
 .projects > .list > .item > .url > .thumb.thumb-placeholder,
+.home .home-section > .list > .item > .url > .thumb.thumb-placeholder,
 .thumb-placeholder {
 	display: grid;
 	place-items: center;
@@ -87,7 +88,8 @@
 		   (ogni post ripetuto per ciascun tag) e animarle tutte costa
 		   ~6 punti di performance in Lighthouse. */
 		.blog > .list > .item,
-		.projects > .list > .item {
+		.projects > .list > .item,
+		.home .list > .item {
 			animation: card-in linear both;
 			animation-timeline: view();
 			animation-range: entry 0% entry 65%;
@@ -288,7 +290,8 @@
 
 @media (prefers-reduced-motion: no-preference) and (min-width: 561px) {
 	.blog > .list > .item,
-	.projects > .list > .item {
+	.projects > .list > .item,
+	.home .list > .item {
 		position: relative;
 
 		&:after {

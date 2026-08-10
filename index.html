@@ -2,3 +2,114 @@
 layout: page
 title: Home
 ---
+
+{%- comment -%}
+Home in stile editoriale: dichiarazione grande, numeri, e poi sezioni curate
+(progetti, ultimi post, argomenti) invece di una pagina di solo avatar.
+Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
+{%- endcomment -%}
+
+<section class="lede">
+    <p class="lede-kicker">{{ site.name }} — DevOps engineer</p>
+
+    <h1 class="lede-title">
+        I build <span class="em">tools</span> and <span class="em">infrastructure</span> for live video, and write about what breaks.
+    </h1>
+
+    <p class="lede-sub">{{ site.bio }}. Go, Docker, streaming pipelines, and the odd editor extension — plus snowboarding, workouts and travel in between.</p>
+
+    <div class="hero-actions">
+        {% if site.projects %}<a class="button button-primary" href="{{ site.url }}/projects">See the projects</a>{% endif %}
+        {% if site.blog %}<a class="button" href="{{ site.url }}/blog">Read the blog</a>{% endif %}
+    </div>
+
+    {%- comment -%} Conteggi calcolati a build time; il JS anima solo la salita. {%- endcomment -%}
+    {% assign blogPosts = site.posts | where: "category", "blog" %}
+    {% assign blogPosts = blogPosts | where_exp: "p", "p.hidden != true" %}
+    {% assign projectPosts = site.posts | where: "projects", true %}
+    {% assign videoPosts = site.posts | where_exp: "p", "p.content contains 'lite-youtube'" %}
+    <dl class="hero-stats">
+        <div class="stat">
+            <dt class="stat-label">Posts</dt>
+            <dd class="stat-value" data-count="{{ blogPosts.size }}">{{ blogPosts.size }}</dd>
+        </div>
+        <div class="stat">
+            <dt class="stat-label">Projects</dt>
+            <dd class="stat-value" data-count="{{ projectPosts.size }}">{{ projectPosts.size }}</dd>
+        </div>
+        <div class="stat">
+            <dt class="stat-label">Videos</dt>
+            <dd class="stat-value" data-count="{{ videoPosts.size }}">{{ videoPosts.size }}</dd>
+        </div>
+        <div class="stat">
+            <dt class="stat-label">Tags</dt>
+            <dd class="stat-value" data-count="{{ site.tags.size }}">{{ site.tags.size }}</dd>
+        </div>
+    </dl>
+</section>
+
+<section class="home-section">
+    <div class="section-head">
+        <h2 class="section-title">Recent projects</h2>
+        <a class="section-link" href="{{ site.url }}/projects">All {{ projectPosts.size }} projects <span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="list">
+        {% for post in projectPosts limit: 5 %}
+            <article class="item" data-tags="{% for t in post.tag %}{{ t | slugify }} {% endfor %}">
+                <a class="url" href="{% if post.externalLink %}{{ post.externalLink }}{% else %}{{ site.url }}{{ post.url }}{% endif %}"{% if post.externalLink %} rel="noopener"{% endif %}>
+                    {% if post.image and post.image != "" %}
+                        <span class="thumb"><img class="thumb-img" src="{{ post.image }}" alt="" loading="lazy" decoding="async" width="480" height="270"></span>
+                    {% else %}
+                        <span class="thumb thumb-placeholder ph-{{ post.title | card_palette }}" aria-hidden="true"><span class="mono">{{ post.title | card_initials }}</span></span>
+                    {% endif %}
+
+                    <span class="body">
+                        <h3 class="title">{{ post.title }}{% if post.externalLink %}<span class="ext" aria-hidden="true">↗</span>{% endif %}</h3>
+                        {% if post.description and post.description != "" %}
+                            <span class="excerpt">{{ post.description | strip_html | truncate: 130 }}</span>
+                        {% endif %}
+                        <span class="meta">
+                            <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date: "%b %d, %Y" }}</time>
+                            {% if post.tag and post.tag.first %}<span class="dot" aria-hidden="true">·</span><span class="tag">{{ post.tag.first }}</span>{% endif %}
+                        </span>
+                    </span>
+                </a>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="home-section">
+    <div class="section-head">
+        <h2 class="section-title">Latest posts</h2>
+        <a class="section-link" href="{{ site.url }}/blog">All {{ blogPosts.size }} posts <span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="list">
+        {% for post in blogPosts limit: 4 %}
+            {% include blog-post.html %}
+        {% endfor %}
+    </div>
+</section>
+
+{% if site.data.project_tags and site.data.project_tags.size > 0 %}
+    <section class="home-section">
+        <div class="section-head">
+            <h2 class="section-title">What I work with</h2>
+            <a class="section-link" href="{{ site.url }}/tags">All {{ site.tags.size }} tags <span aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="topic-chips">
+            {% for t in site.data.project_tags %}
+                <a class="topic-chip" href="{{ site.url }}/tags/#{{ t.slug }}">{{ t.name }} <span class="count">{{ t.count }}</span></a>
+            {% endfor %}
+        </div>
+    </section>
+{% endif %}
+
+<section class="home-cta">
+    <h2 class="cta-title">Say hello</h2>
+    <p class="cta-text">Ships broken? Streams stuttering? Or just want to talk Go, video pipelines or snowboarding — I'm around.</p>
+    {% include social-links.html %}
+</section>

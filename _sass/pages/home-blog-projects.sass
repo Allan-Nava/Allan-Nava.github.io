@@ -3,7 +3,9 @@
 // La thumbnail c'è solo se il post ha `image:` (anche quella derivata dal
 // videoid da _plugins/youtube_thumbnails.rb): senza, la card resta compatta.
 
-.home,
+// Sulla home le liste stanno dentro le sezioni curate (index.html), non
+// direttamente sotto il wrapper: da qui l'antenato `.home .home-section`.
+.home .home-section,
 .blog,
 .projects
 	margin-top: 0

@@ -5,70 +5,23 @@
 %}{% assign showHeader = true %}{% endif %}
 
 {%- comment -%}
-Hero delle pagine indice. Su Home è la versione completa (avatar grande, bio,
-social, CTA); su Blog/Projects/Tags si riduce a una intestazione compatta, così
-la lista comincia subito. La nav non è più qui: sta in _layouts/default.html.
+Intestazione delle pagine indice. La Home non passa di qui: la sua apertura
+editoriale (dichiarazione + numeri + sezioni curate) vive in index.html, che è
+il posto giusto dove modificarla. Qui resta solo l'intestazione compatta di
+Blog/Projects/Tags. La nav sta in _layouts/default.html.
+
+`showHeader` serve comunque anche alla Home: _layouts/default.html lo legge per
+scegliere la classe del wrapper (`.home` invece di `.page home`).
 {%- endcomment -%}
-{% if showHeader == true %}
-    {% if page.title == "Home" %}
-        <header class="hero {% if site.animation %}animated{% endif %}">
-            {% if site.about %}
-                <a class="hero-avatar-link" href="{{ site.url }}/about">
-                    <img class="selfie" alt="{{ site.name }}" width="128" height="128" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
-                </a>
-            {% else %}
-                <span class="hero-avatar-link">
-                    <img class="selfie" alt="{{ site.name }}" width="128" height="128" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
-                </span>
-            {% endif %}
-
-            <div class="hero-body">
-                <h1 class="title">{{ site.name }}</h1>
-                <p class="description">{{ site.bio }}</p>
-
-                <div class="hero-actions">
-                    {% if site.blog %}<a class="button button-primary" href="{{ site.url }}/blog">Read the blog</a>{% endif %}
-                    {% if site.projects %}<a class="button" href="{{ site.url }}/projects">Browse projects</a>{% endif %}
-                </div>
-
-                {%- comment -%} Conteggi calcolati a build time; il JS anima solo la salita del numero. {%- endcomment -%}
-                {%- comment -%} where_exp di Liquid 4.0.3 non accetta `and`: due passaggi. {%- endcomment -%}
-                {% assign blogPosts = site.posts | where: "category", "blog" %}
-                {% assign blogPosts = blogPosts | where_exp: "p", "p.hidden != true" %}
-                {% assign projectPosts = site.posts | where: "projects", true %}
-                {% assign videoPosts = site.posts | where_exp: "p", "p.content contains 'lite-youtube'" %}
-                <dl class="hero-stats">
-                    <div class="stat">
-                        <dt class="stat-label">Post</dt>
-                        <dd class="stat-value" data-count="{{ blogPosts.size }}">{{ blogPosts.size }}</dd>
-                    </div>
-                    <div class="stat">
-                        <dt class="stat-label">Progetti</dt>
-                        <dd class="stat-value" data-count="{{ projectPosts.size }}">{{ projectPosts.size }}</dd>
-                    </div>
-                    <div class="stat">
-                        <dt class="stat-label">Video</dt>
-                        <dd class="stat-value" data-count="{{ videoPosts.size }}">{{ videoPosts.size }}</dd>
-                    </div>
-                    <div class="stat">
-                        <dt class="stat-label">Tag</dt>
-                        <dd class="stat-value" data-count="{{ site.tags.size }}">{{ site.tags.size }}</dd>
-                    </div>
-                </dl>
-
-                {% include social-links.html %}
-            </div>
-        </header>
-    {% else %}
-        <header class="page-header">
-            <h1 class="title">{{ page.title }}</h1>
-            {% if page.title == "Blog" %}
-                <p class="subtitle">Post, appunti e video dal canale.</p>
-            {% elsif page.title == "Projects" %}
-                <p class="subtitle">Repository, tool e side project.</p>
-            {% elsif page.title == "Tags" %}
-                <p class="subtitle">Tutti gli argomenti del blog.</p>
-            {% endif %}
-        </header>
-    {% endif %}
+{% if showHeader == true and page.title != "Home" %}
+    <header class="page-header">
+        <h1 class="title">{{ page.title }}</h1>
+        {% if page.title == "Blog" %}
+            <p class="subtitle">Posts, notes and videos from the channel.</p>
+        {% elsif page.title == "Projects" %}
+            <p class="subtitle">Repositories, tools and side projects.</p>
+        {% elsif page.title == "Tags" %}
+            <p class="subtitle">Every topic on the blog.</p>
+        {% endif %}
+    </header>
 {% endif %}
