@@ -1,14 +1,25 @@
 # Build and deploy the Jekyll site to GitHub Pages.
 # Runs on every push to master and once a day (so future-dated posts get
 # published without a manual push).
+#
+# Deliberatamente NON si attiva sui tag né sulle release, per due motivi:
+#
+#   1. l'ambiente `github-pages` ha una protection rule che ammette solo il
+#      branch di default, quindi un run partito da un tag muore con
+#      "Tag vX.Y.Z is not allowed to deploy to github-pages";
+#   2. il tag punta a un commit che sta già su master ed è già stato
+#      pubblicato: il secondo run è un doppione che, per via del concurrency
+#      group "pages" con cancel-in-progress, **cancella il deploy buono** di
+#      master. È successo con v2.4.0.
+#
+# La release la crea `release.yml`, che non tocca Pages. Se un giorno servisse
+# davvero deployare da un tag, va prima allargata la protection rule
+# dell'ambiente (Settings → Environments → github-pages).
 name: Deploy Jekyll site to Pages
 
 on:
   push:
     branches: ["master"]
-    tags: ["v*"]
-  release:
-    types: [published]
   schedule:
     - cron: '0 10 * * *'
   # Allows you to run this workflow manually from the Actions tab

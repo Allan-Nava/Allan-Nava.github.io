@@ -6,7 +6,7 @@ The site deploys to **GitHub Pages** through GitHub Actions (not the legacy Page
 
 ### `jekyll.yml` — Deploy Jekyll site to Pages
 
-- **Triggers**: push to `master`, daily cron (`0 10 * * *`), manual (`workflow_dispatch`). The daily rebuild publishes future-dated posts without needing a push.
+- **Triggers**: push to `master`, daily cron (`0 10 * * *`), manual (`workflow_dispatch`). The daily rebuild publishes future-dated posts without needing a push. **Not** tags or releases: the `github-pages` environment only accepts the default branch, so a tag-triggered run dies with `Tag vX.Y.Z is not allowed to deploy to github-pages` — and worse, the `pages` concurrency group (`cancel-in-progress: true`) makes it cancel the legitimate master deploy first. That happened with `v2.4.0`: the push published nothing. Releases are handled by `release.yml`, which never touches Pages.
 - **Build job**: checkout → Ruby 3.0 with cached bundle → `actions/configure-pages` → `bundle exec jekyll build --baseurl <pages base path>` with `JEKYLL_ENV=production` → upload `_site/` as a Pages artifact.
 - **Deploy job**: `actions/deploy-pages` publishes the artifact to the `github-pages` environment.
 - **Smoke job**: after the deploy, [checkfleet](https://github.com/Allan-Nava/checkfleet) probes the **live** site (`checkfleet check http --config checkfleet.yml`) and attaches its Markdown report to the job summary.
@@ -106,7 +106,7 @@ SEO, accessibility and best-practices are hard gates: after the v2.3 restyling t
 
 ### `release.yml` — Release
 
-Si attiva sul push di un tag `v*` (e a mano con `workflow_dispatch`, passando un tag esistente). Crea la GitHub Release prendendo le note dalla sezione di `CHANGELOG.md` che corrisponde alla versione del tag (`v2.4.0` → `## [2.4.0]`); se quella sezione non c'è usa il messaggio del tag annotato, e in ultima istanza lascia generare le note a GitHub dai commit. Se la release esiste già ne aggiorna le note invece di fallire. Usa `gh` con il `GITHUB_TOKEN` del runner: nessuna action di terze parti, nessun secret.
+Si attiva sul push di un tag `v*` (e a mano con `workflow_dispatch`, passando un tag esistente). Il titolo della release è la **prima riga del tag annotato** (usare il solo nome del tag lo faceva comparire due volte, dato che la pagina mostra già il tag sotto al titolo). Crea la GitHub Release prendendo le note dalla sezione di `CHANGELOG.md` che corrisponde alla versione del tag (`v2.4.0` → `## [2.4.0]`); se quella sezione non c'è usa il messaggio del tag annotato, e in ultima istanza lascia generare le note a GitHub dai commit. Se la release esiste già ne aggiorna le note invece di fallire. Usa `gh` con il `GITHUB_TOKEN` del runner: nessuna action di terze parti, nessun secret.
 
 **Quindi il flusso di rilascio è**: aggiorna `CHANGELOG.md` → `git tag -a vX.Y.Z` → `git push origin master --follow-tags`. La release compare da sola, e `jekyll.yml` (che ascolta anche i tag) ridistribuisce il sito.
 

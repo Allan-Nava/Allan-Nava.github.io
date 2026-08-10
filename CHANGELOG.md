@@ -11,6 +11,17 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ## [Non rilasciato]
 
+### Corretto
+
+- **Il deploy non partiva più sui tag** — `jekyll.yml` ascoltava anche `push.tags` e
+  `release: published`, ma l'ambiente `github-pages` ammette solo il branch di default: il run
+  partito dal tag falliva *e*, per via del concurrency group `pages` con `cancel-in-progress`,
+  cancellava il deploy buono di `master`. Con `v2.4.0` quel push non ha pubblicato niente.
+  Ora il deploy si attiva solo su master, cron e dispatch; le release le fa `release.yml`, che
+  non tocca Pages.
+- **Titolo della release duplicato** — era il nome del tag, che la pagina delle release mostra
+  già sotto al titolo. Ora è la prima riga del tag annotato.
+
 ## [2.4.0] — 2026-08-11
 
 Contenuto navigabile (milestone v2.1) e automazioni di piattaforma (milestone v2.2).

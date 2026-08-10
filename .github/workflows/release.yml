@@ -77,7 +77,12 @@ jobs:
           TAG: ${{ steps.tag.outputs.tag }}
           NOTES_FILE: ${{ steps.notes.outputs.file }}
         run: |
-          TITLE="$TAG"
+          # Titolo = prima riga del tag annotato (es. "v2.4.0 — Contenuto
+          # navigabile e automazioni"). Usare il solo nome del tag lo faceva
+          # comparire due volte nella pagina delle release, che sotto al titolo
+          # mostra già il tag.
+          TITLE="$(git tag -l --format='%(contents:subject)' "$TAG")"
+          [ -n "$TITLE" ] || TITLE="$TAG"
 
           if gh release view "$TAG" >/dev/null 2>&1; then
             echo "Release $TAG già presente: aggiorno le note."
