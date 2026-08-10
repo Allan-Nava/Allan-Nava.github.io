@@ -1,6 +1,10 @@
-// Barra di navigazione sticky (markup in _includes/nav.html, renderizzata fuori
-// dal wrapper da _layouts/default.html). Nessun menu JS: sotto i 700px la riga
-// di link scorre orizzontalmente.
+// Navigazione: isola flottante in vetro, centrata e agganciata in alto.
+// Markup in _includes/nav.html, renderizzata fuori dal wrapper da default.html.
+//
+// La barra a tutta larghezza con i link di testo era la forma standard dei
+// template di dieci anni fa: qui la striscia sticky resta (invisibile e
+// trasparente ai click) e a essere visibile è solo la pillola centrale.
+// Nessun menu JS: sotto i 560px l'isola si allarga e i link scorrono.
 
 .skip-link
 	position: absolute
@@ -23,27 +27,34 @@
 
 .site-nav
 	position: sticky
-	top: 0
+	top: var(--space-3)
 	z-index: 100
-	background: rgba(5, 5, 5, 0.78)
-	backdrop-filter: saturate(140%) blur(12px)
-	-webkit-backdrop-filter: saturate(140%) blur(12px)
-	border-bottom: 1px solid var(--color-border)
+	display: flex
+	justify-content: center
+	margin-bottom: calc(var(--space-3) * -1)
+	// La striscia occupa tutta la larghezza per restare sticky, ma non deve
+	// intercettare i click sul contenuto che le scorre sotto.
+	pointer-events: none
 
 	> .site-nav-inner
+		pointer-events: auto
 		display: flex
 		align-items: center
-		justify-content: space-between
-		gap: var(--space-4)
-		width: 92%
-		max-width: var(--width-large)
-		height: var(--nav-height)
-		margin: 0 auto
+		gap: var(--space-2)
+		max-width: min(94vw, var(--width-large))
+		padding: 5px
+		background: rgba(12, 13, 15, 0.72)
+		backdrop-filter: saturate(160%) blur(14px)
+		-webkit-backdrop-filter: saturate(160%) blur(14px)
+		border: 1px solid var(--color-border)
+		border-radius: var(--radius-pill)
+		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset
 
 	.brand
 		display: inline-flex
 		align-items: center
 		gap: var(--space-2)
+		padding: 0 var(--space-2) 0 3px
 		text-decoration: none
 		color: var(--color-fg-strong)
 		font-size: var(--text-sm)
@@ -52,25 +63,24 @@
 		flex: 0 0 auto
 
 		> .brand-avatar
-			width: 28px
-			height: 28px
+			width: 30px
+			height: 30px
 			border-radius: var(--radius-pill)
 			border: 1px solid var(--color-border-strong)
+			transition: border-color var(--dur) var(--ease)
 
-		&:hover > .brand-name
-			color: var(--color-accent)
+		&:hover > .brand-avatar
+			border-color: var(--color-accent)
 
+	// Separatore fra brand e link: un capello verticale, non un bordo pieno.
 	.links
 		display: flex
 		align-items: center
-		justify-content: flex-end
-		gap: var(--space-1)
+		gap: 2px
 		list-style: none
 		margin: 0
-		padding: 0
-		// min-width: 0 è ciò che permette alla riga di restringersi sotto la
-		// larghezza dei suoi link invece di allargare la pagina (overflow
-		// orizzontale su mobile); da lì in poi scorre da sola.
+		padding: 0 0 0 var(--space-2)
+		border-left: 1px solid var(--color-border)
 		min-width: 0
 		flex: 1 1 auto
 		overflow-x: auto
@@ -85,8 +95,9 @@
 			line-height: 1
 
 		> .item > .link
+			position: relative
 			display: inline-block
-			padding: var(--space-2) var(--space-3)
+			padding: 7px 13px
 			font-size: var(--text-sm)
 			font-weight: 500
 			white-space: nowrap
@@ -97,16 +108,25 @@
 
 			&:hover
 				color: var(--color-fg-strong)
-				background: var(--color-row-hover)
+				background: rgba(255, 255, 255, 0.06)
 
 			&.is-active
-				color: var(--color-accent)
-				background: var(--color-accent-soft)
+				color: var(--color-on-accent)
+				background: var(--color-accent)
 
 	@media #{$mobile}
 		> .site-nav-inner
-			width: 94%
-			gap: var(--space-2)
+			width: 94vw
+			gap: var(--space-1)
 
-		.brand > .brand-name
-			display: none
+		.brand
+			padding-left: 2px
+
+			> .brand-name
+				display: none
+
+		.links
+			padding-left: var(--space-1)
+
+		> .site-nav-inner .links > .item > .link
+			padding: 7px 11px

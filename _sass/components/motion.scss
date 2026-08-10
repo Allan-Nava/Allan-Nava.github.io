@@ -109,18 +109,19 @@
 
 @keyframes nav-lift {
 	from {
-		box-shadow: none;
-		border-bottom-color: var(--color-border);
+		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+		border-color: var(--color-border);
 	}
 	to {
-		box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55);
-		border-bottom-color: var(--color-border-strong);
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+		border-color: var(--color-border-strong);
 	}
 }
 
 @media (prefers-reduced-motion: no-preference) {
 	@supports (animation-timeline: scroll()) {
-		.site-nav {
+		/* L'ombra cresce sull'isola, non sulla striscia sticky che la contiene. */
+		.site-nav > .site-nav-inner {
 			animation: nav-lift linear both;
 			animation-timeline: scroll();
 			animation-range: 0 140px;
@@ -148,6 +149,14 @@
 
 	.site-nav {
 		view-transition-name: site-nav;
+	}
+
+	/* La pillola della voce attiva ha un nome proprio: fra una pagina e
+	   l'altra il browser la interpola, quindi scivola da "Blog" a "Projects"
+	   invece di sparire e riapparire. Il nome resta unico perché la voce
+	   attiva è una sola per pagina. */
+	.site-nav .links > .item > .link.is-active {
+		view-transition-name: nav-active;
 	}
 
 	.vt-card-image {
