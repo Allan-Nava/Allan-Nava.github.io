@@ -71,9 +71,34 @@ def yaml_safe(text, max = 160)
   text.to_s.gsub(/\s+/, ' ').delete('"').strip[0, max].strip
 end
 
+def get_repo_image(full_name)
+  uri = URI("https://api.github.com/repos/#{full_name}/readme")
+  headers = { 'User-Agent' => 'jekyll-github-sync', 'Accept' => 'application/vnd.github.v3.raw' }
+  headers['Authorization'] = "Bearer #{TOKEN}" unless TOKEN.empty?
+  res = Net::HTTP.start(uri.host, uri.port, use_ssl: true, open_timeout: 15, read_timeout: 30) do |http|
+    http.get(uri.request_uri, headers)
+  end
+  return nil unless res.is_a?(Net::HTTPSuccess)
+
+  readme = res.body
+  if readme =~ /!\[.*?\]\((https?:\/\/[^\)]+(?:\.png|\.jpg|\.jpeg|\.gif|\.svg))\)/i
+    return Regexp.last_match(1)
+  end
+
+  if readme =~ /!\[.*?\]\(([^\)]+(?:\.png|\.jpg|\.jpeg|\.gif|\.svg))\)/i
+    relative_path = Regexp.last_match(1)
+    return "https://raw.githubusercontent.com/#{full_name}/main/#{relative_path}" if relative_path !~ /^https?:\/\//
+  end
+
+  nil
+rescue StandardError => e
+  warn "Warning: could not fetch image for #{full_name}: #{e.message}"
+  nil
+end
+
 # Builds the full post file content for a repo. `date_str` is the front-matter
 # date to use (created_at for new posts, the preserved original on update).
-def build_post(repo, date_str)
+def build_post(repo, date_str, image = nil)
   full_name = repo['full_name']
   name = repo['name']
   owner = full_name.split('/').first
@@ -90,7 +115,7 @@ def build_post(repo, date_str)
   front << "updated: #{pushed}" if pushed
   front << 'tag:'
   tags.each { |t| front << "- #{yaml_safe(t, 40)}" }
-  front << 'image: ""'
+  front << %(image: "#{image || ''}")
   front << 'headerImage: false'
   front << 'projects: true'
   front << 'hidden: true'
@@ -158,10 +183,12 @@ SOURCES.each do |source|
       next
     end
 
+    image = get_repo_image(full_name)
+
     # Already have a generated post for this repo → refresh it if it changed.
     gp = generated[full_name.downcase]
     if gp
-      new_content = build_post(repo, gp[:date])
+      new_content = build_post(repo, gp[:date], image)
       if new_content.strip == gp[:content].strip
         # unchanged since last run — no-op
       elsif DRY_RUN
@@ -192,7 +219,7 @@ SOURCES.each do |source|
     path = File.join(ROOT, '_posts', filename)
     next if File.exist?(path)
 
-    content = build_post(repo, time.strftime('%Y-%m-%d %H:%M'))
+    content = build_post(repo, time.strftime('%Y-%m-%d %H:%M'), image)
     if DRY_RUN
       puts "would create:            #{filename}"
     else

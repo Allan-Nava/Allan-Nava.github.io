@@ -11,6 +11,11 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ## [Non rilasciato]
 
+### Aggiunto
+
+- **GitHub repo images** — `sync_github.rb` estrae il primo logo/immagine dal README del repo (markdown image link) e lo aggiunge al post — i progetti generati da GitHub hanno già una thumbnail, il placeholder generativo è fallback per i repo senza README.
+- **YouTube location extraction migliorata** — oltre a `recordingDetails.location` dalla YouTube API, se disponibile, ora fallback al geocoding della descrizione: estrae città con pattern (`📍 Roma`, `filmed in London`, etc) e converte in lat/lng con Nominatim (OpenStreetMap, gratuito, nessuna API key).
+
 ### Corretto
 
 - **Il deploy non partiva più sui tag** — `jekyll.yml` ascoltava anche `push.tags` e
