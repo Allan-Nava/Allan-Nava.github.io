@@ -25,6 +25,7 @@ Check what your HLS/DASH segments actually contain — not just what the manifes
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
+- **Stars**: 1
 - **Ultimo push**: 2026-08-10
 
 [Repo su GitHub →](https://github.com/Allan-Nava/segcheck)
