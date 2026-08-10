@@ -78,7 +78,13 @@
 	border-radius: var(--radius-pill)
 	transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease), transform var(--dur) var(--ease-out)
 
-	&:hover
+	// Il colore va ridichiarato su ogni stato: `a:hover` in components/polish.sass
+	// tinge di verde il testo di qualunque link, e su un bottone pieno verde
+	// significherebbe testo invisibile.
+	&:hover,
+	&:focus,
+	&:active
+		color: var(--color-fg-strong)
 		background: var(--color-surface-hover)
 		border-color: var(--color-accent-border)
 		transform: translateY(-1px)
@@ -88,7 +94,10 @@
 	background: var(--color-accent)
 	border-color: var(--color-accent)
 
-	&:hover
+	&:hover,
+	&:focus,
+	&:active
+		color: var(--color-on-accent)
 		background: var(--color-accent-hover)
 		border-color: var(--color-accent-hover)
 

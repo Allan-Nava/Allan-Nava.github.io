@@ -14,8 +14,12 @@
 	font-weight: 600
 	border-radius: 0 0 var(--radius-sm) 0
 
-	&:focus
+	// Come i bottoni: colore esplicito su ogni stato, altrimenti `a:hover` di
+	// polish.sass lo renderebbe verde su verde.
+	&:focus,
+	&:hover
 		left: 0
+		color: var(--color-on-accent)
 
 .site-nav
 	position: sticky
