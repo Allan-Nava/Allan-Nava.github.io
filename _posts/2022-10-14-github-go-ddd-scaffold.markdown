@@ -4,7 +4,7 @@ layout: post
 date: 2022-10-14 15:25
 updated: 2026-08-11
 tag:
-- go
+- typescript
 - cli
 - cmd
 - framework
@@ -24,7 +24,7 @@ github: Allan-Nava/Go-DDD-Scaffold
 Generate scaffold domain driven design project layout for Go.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
-- **Linguaggio**: Go
+- **Linguaggio**: TypeScript
 - **Stars**: 4
 - **Ultimo push**: 2026-08-11
 
