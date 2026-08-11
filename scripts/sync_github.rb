@@ -71,7 +71,53 @@ def yaml_safe(text, max = 160)
   text.to_s.gsub(/\s+/, ' ').delete('"').strip[0, max].strip
 end
 
-def get_repo_image(full_name)
+# Estensioni accettate. L'ordine conta: png/jpg/webp prima di svg e gif perché
+# l'immagine finisce anche in `og:image`, e i social non renderizzano gli SVG.
+RASTER_EXT = %w[png jpg jpeg webp].freeze
+VECTOR_EXT = %w[svg gif].freeze
+IMAGE_EXT = (RASTER_EXT + VECTOR_EXT).freeze
+
+# Un README di progetto è pieno di badge: shields.io, il badge dei workflow,
+# codecov, il Marketplace… Sono immagini valide ma come copertina non dicono
+# nulla, e prima erano proprio loro a vincere (il primo `![...]()` del file).
+BADGE_PATTERNS = [
+  %r{//img\.shields\.io/}i,
+  %r{//shields\.io/}i,
+  %r{//badgen\.net/}i,
+  %r{//codecov\.io/}i,
+  %r{//coveralls\.io/}i,
+  %r{//app\.travis-ci\.}i,
+  %r{//circleci\.com/}i,
+  %r{//api\.netlify\.com/}i,
+  %r{badge}i,          # .../ci.yml/badge.svg, badge.png, /badges/...
+  %r{/workflows/.+/badge}i
+].freeze
+
+def badge?(url)
+  BADGE_PATTERNS.any? { |pattern| url =~ pattern }
+end
+
+# Estensione dell'immagine ignorando query string e ancora
+# (`logo.png?raw=true`, `logo.svg#gh-dark-mode-only`).
+def image_ext(url)
+  path = url.split(/[?#]/).first.to_s
+  ext = File.extname(path).delete('.').downcase
+  IMAGE_EXT.include?(ext) ? ext : nil
+end
+
+def absolute_image_url(url, full_name, branch)
+  return url if url =~ %r{\Ahttps?://}i
+
+  path = url.sub(%r{\A\./}, '').sub(%r{\A/}, '')
+  "https://raw.githubusercontent.com/#{full_name}/#{branch}/#{path}"
+end
+
+# Primo logo "vero" del README, o nil.
+#
+# Cerca sia la sintassi Markdown `![alt](url)` sia i tag `<img src="…">`: i
+# README di questo autore mettono il logo in HTML dentro un blocco centrato,
+# quindi la versione che guardava solo il Markdown non trovava mai nulla.
+def get_repo_image(full_name, branch = 'main')
   uri = URI("https://api.github.com/repos/#{full_name}/readme")
   headers = { 'User-Agent' => 'jekyll-github-sync', 'Accept' => 'application/vnd.github.v3.raw' }
   headers['Authorization'] = "Bearer #{TOKEN}" unless TOKEN.empty?
@@ -80,17 +126,18 @@ def get_repo_image(full_name)
   end
   return nil unless res.is_a?(Net::HTTPSuccess)
 
-  readme = res.body
-  if readme =~ /!\[.*?\]\((https?:\/\/[^\)]+(?:\.png|\.jpg|\.jpeg|\.gif|\.svg))\)/i
-    return Regexp.last_match(1)
-  end
+  readme = res.body.to_s
 
-  if readme =~ /!\[.*?\]\(([^\)]+(?:\.png|\.jpg|\.jpeg|\.gif|\.svg))\)/i
-    relative_path = Regexp.last_match(1)
-    return "https://raw.githubusercontent.com/#{full_name}/main/#{relative_path}" if relative_path !~ /^https?:\/\//
-  end
+  # `![alt](url "titolo")` e `<img src="url">`, nell'ordine in cui compaiono.
+  candidates = readme.scan(/!\[[^\]]*\]\(\s*<?([^)\s"']+)>?(?:\s+["'][^"']*["'])?\s*\)/i).flatten
+  candidates += readme.scan(/<img[^>]+src\s*=\s*["']([^"']+)["']/i).flatten
 
-  nil
+  usable = candidates.reject { |url| badge?(url) }.select { |url| image_ext(url) }
+  return nil if usable.empty?
+
+  # A parità di posizione, meglio un raster: l'immagine è anche og:image.
+  best = usable.find { |url| RASTER_EXT.include?(image_ext(url)) } || usable.first
+  absolute_image_url(best, full_name, branch)
 rescue StandardError => e
   warn "Warning: could not fetch image for #{full_name}: #{e.message}"
   nil
@@ -183,7 +230,9 @@ SOURCES.each do |source|
       next
     end
 
-    image = get_repo_image(full_name)
+    # Il branch di default va letto dal repo: assumere "main" rompeva i raw URL
+    # dei repo ancora su master.
+    image = get_repo_image(full_name, repo['default_branch'].to_s.empty? ? 'main' : repo['default_branch'])
 
     # Already have a generated post for this repo → refresh it if it changed.
     gp = generated[full_name.downcase]

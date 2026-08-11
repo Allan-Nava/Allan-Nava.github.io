@@ -18,11 +18,19 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
   `og:image` per ogni pagina senza `image:`: 212 post su 330 finora venivano condivisi senza
   anteprima. I post video mantengono la loro thumbnail.
 - **Descrizione del video nel corpo dei post generati** — `description_html` in `sync_youtube.rb`.
-- **GitHub repo images** — `sync_github.rb` estrae il primo logo/immagine dal README del repo (markdown image link) e lo aggiunge al post — i progetti generati da GitHub hanno già una thumbnail, il placeholder generativo è fallback per i repo senza README.
+- **GitHub repo images** — `sync_github.rb` estrae il logo dal README del repo e lo mette in `image:`; il placeholder generativo resta il fallback per i repo che un logo non ce l’hanno.
 - **YouTube location extraction migliorata** — oltre a `recordingDetails.location` dalla YouTube API, se disponibile, ora fallback al geocoding della descrizione: estrae città con pattern (`📍 Roma`, `filmed in London`, etc) e converte in lat/lng con Nominatim (OpenStreetMap, gratuito, nessuna API key).
 
 ### Corretto
 
+- **L’estrazione del logo dal README non trovava quasi nulla** — cercava solo la sintassi
+  Markdown `![alt](url)`, ma i README di questi progetti mettono il logo in HTML
+  (`<img src="docs/assets/logo.svg">` dentro un blocco centrato): risultato `nil`. Dove invece il
+  Markdown c’era, vinceva il **primo badge** del file (shields.io, il badge del workflow CI),
+  cioè la copertina sbagliata. Ora legge sia Markdown sia `<img>`, scarta i badge, gestisce
+  `?raw=true`/`#anchor` e i titoli `![x](url "t")`, preferisce un raster all’SVG (l’immagine
+  finisce anche in `og:image`, e i social non renderizzano gli SVG) e risolve i path relativi con
+  il **default branch** del repo invece di assumere `main`.
 - **`sync_youtube.rb` era rotto su master**: chiamava `description_html` senza definirla, quindi il
   cron ogni 3 ore sarebbe morto con `NoMethodError` al primo video nuovo (e, con `failure-issue.yml`
   attivo, avrebbe aperto una issue a ogni giro). Helper ripristinato.
