@@ -160,25 +160,58 @@ rescue StandardError => e
   nil
 end
 
-res = http_get("https://www.youtube.com/feeds/videos.xml?channel_id=#{CHANNEL_ID}")
-abort "Feed request failed: HTTP #{res.code}" unless res.is_a?(Net::HTTPSuccess)
+def get_videos_from_api(channel_id, api_key, max_age_days)
+  abort "YOUTUBE_API_KEY is required to fetch videos" if api_key.empty?
 
-doc = REXML::Document.new(res.body)
+  videos = []
+  cutoff = (Date.today - max_age_days).to_s
+
+  uri = URI("https://www.googleapis.com/youtube/v3/search")
+  uri.query = URI.encode_www_form(
+    'channelId' => channel_id,
+    'part' => 'snippet',
+    'order' => 'date',
+    'maxResults' => '50',
+    'publishedAfter' => "#{cutoff}T00:00:00Z",
+    'type' => 'video',
+    'key' => api_key
+  )
+
+  res = Net::HTTP.start(uri.host, uri.port, use_ssl: true, open_timeout: 15, read_timeout: 30) do |http|
+    http.get(uri.request_uri)
+  end
+
+  abort "YouTube API error: HTTP #{res.code}" unless res.is_a?(Net::HTTPSuccess)
+
+  data = JSON.parse(res.body)
+  items = data.fetch('items', [])
+
+  items.each do |item|
+    video_id = item['id']['videoId']
+    snippet = item['snippet']
+    videos << {
+      video_id: video_id,
+      title: snippet['title'],
+      description: snippet['description'],
+      published_at: snippet['publishedAt']
+    }
+  end
+
+  videos
+end
+
+abort "YOUTUBE_API_KEY is required" if YOUTUBE_API_KEY.empty?
+
+videos = get_videos_from_api(CHANNEL_ID, YOUTUBE_API_KEY, MAX_AGE_DAYS)
 existing = Dir[File.join(ROOT, '_posts', '*')].map { |f| File.read(f, encoding: 'UTF-8') }.join("\n")
 cutoff = Date.today - MAX_AGE_DAYS
 created = []
 
-doc.root.each_element do |entry|
-  next unless entry.name == 'entry'
-
-  video_id  = child_text(entry, 'videoId')
-  title     = child_text(entry, 'title')
-  published = child_text(entry, 'published')
-  next if video_id.nil? || video_id.empty?
-
-  media = nil
-  entry.each_element { |c| media ||= c if c.name == 'group' }
-  description = media ? child_text(media, 'description').to_s : ''
+videos.each do |video|
+  video_id = video[:video_id]
+  title = video[:title]
+  published = video[:published_at]
+  description = video[:description].to_s
 
   time = DateTime.parse(published)
   if time.to_date < cutoff
@@ -202,6 +235,7 @@ doc.root.each_element do |entry|
 
   desc = yaml_safe(description.lines.first)
   desc = "Video dal canale YouTube di Allan Nava: #{yaml_safe(title, 100)}" if desc.empty?
+  body_description = description_html(description)
   short_attr = is_short ? ' data-short' : ''
 
   location = get_video_location(video_id, YOUTUBE_API_KEY, description)
@@ -229,6 +263,7 @@ doc.root.each_element do |entry|
     ## #{title.delete('#')}
 
     <lite-youtube videoid="#{video_id}"#{short_attr} playlabel="#{yaml_safe(title, 120)}"></lite-youtube>
+    #{body_description}
   POST
 
   if DRY_RUN
