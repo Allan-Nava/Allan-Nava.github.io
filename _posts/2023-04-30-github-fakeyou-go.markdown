@@ -8,7 +8,7 @@ tag:
 - ai
 - fake-api
 - fakeyou
-image: "https://github.com/Allan-Nava/fakeyou.go/actions/workflows/go-build.yml/badge.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

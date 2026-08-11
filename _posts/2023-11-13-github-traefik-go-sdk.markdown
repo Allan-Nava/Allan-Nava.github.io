@@ -8,7 +8,7 @@ tag:
 - go
 - go-sdk
 - golang
-image: "https://pkg.go.dev/badge/github.com/Allan-Nava/traefik-go-sdk.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

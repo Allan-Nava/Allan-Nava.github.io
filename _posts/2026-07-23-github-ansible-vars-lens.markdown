@@ -5,7 +5,7 @@ date: 2026-07-23 08:55
 updated: 2026-08-06
 tag:
 - typescript
-image: ""
+image: "https://raw.githubusercontent.com/Allan-Nava/ansible-vars-lens/main/media/icon.png"
 headerImage: false
 projects: true
 hidden: true

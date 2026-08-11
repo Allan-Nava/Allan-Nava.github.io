@@ -5,7 +5,7 @@ date: 2020-10-07 19:14
 updated: 2026-08-06
 tag:
 - kotlin
-image: ""
+image: "https://miro.medium.com/max/1280/1*HoHOQmr79f-SnoWGsuh1OQ.jpeg"
 headerImage: false
 projects: true
 hidden: true

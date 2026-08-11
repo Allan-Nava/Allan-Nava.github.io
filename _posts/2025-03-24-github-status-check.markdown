@@ -7,7 +7,7 @@ tag:
 - markdown
 - uptime
 - uptime-monitor
-image: "https://github.com/HiWay-Media/status-check/workflows/Uptime%20CI/badge.svg"
+image: "https://raw.githubusercontent.com/HiWay-Media/status-check/master/graphs/hiway-media-website/response-time-week.png"
 headerImage: false
 projects: true
 hidden: true

@@ -5,7 +5,7 @@ date: 2023-04-20 14:24
 updated: 2023-05-16
 tag:
 - dockerfile
-image: "https://github.com/HiWay-Media/Nvenc-ImageMagick/actions/workflows/docker-publish-ffmpeg6.yml/badge.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

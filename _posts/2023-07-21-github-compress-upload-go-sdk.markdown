@@ -5,7 +5,7 @@ date: 2023-07-21 10:23
 updated: 2023-10-30
 tag:
 - go
-image: "https://github.com/HiWay-Media/compress-upload-go-sdk/actions/workflows/go-build.yml/badge.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

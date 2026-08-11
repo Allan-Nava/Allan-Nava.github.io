@@ -5,7 +5,7 @@ date: 2026-07-23 09:03
 updated: 2026-08-05
 tag:
 - typescript
-image: ""
+image: "https://raw.githubusercontent.com/Allan-Nava/nats-lens/main/media/logo.png"
 headerImage: false
 projects: true
 hidden: true

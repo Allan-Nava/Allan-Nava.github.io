@@ -5,7 +5,7 @@ date: 2022-11-16 15:03
 updated: 2026-08-06
 tag:
 - python
-image: "https://github.com/Allan-Nava/nomad-events-to-slack/actions/workflows/docker-publish.yml/badge.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

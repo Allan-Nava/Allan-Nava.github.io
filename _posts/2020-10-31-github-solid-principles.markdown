@@ -5,7 +5,7 @@ date: 2020-10-31 11:19
 updated: 2026-06-20
 tag:
 - java
-image: ""
+image: "https://github.com/Allan-Nava/SOLID-Principles/blob/main/SOLID-Tutorial-1-1024x554.png?raw=true"
 headerImage: false
 projects: true
 hidden: true

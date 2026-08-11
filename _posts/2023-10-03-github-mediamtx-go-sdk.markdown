@@ -5,7 +5,7 @@ date: 2023-10-03 08:11
 updated: 2023-12-11
 tag:
 - go
-image: "https://github.com/HiWay-Media/mediamtx-go-sdk/actions/workflows/go-build.yml/badge.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

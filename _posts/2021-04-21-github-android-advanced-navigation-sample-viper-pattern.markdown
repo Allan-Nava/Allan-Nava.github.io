@@ -8,7 +8,7 @@ tag:
 - android
 - android-application
 - kotlin
-image: "https://github.com/Allan-Nava/Android-Advanced-Navigation-Sample-VIPER-Pattern/actions/workflows/android.yml/badge.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

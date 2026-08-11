@@ -8,7 +8,7 @@ tag:
 - go
 - golang
 - soap
-image: "https://godoc.org/github.com/Allan-Nava/Go-GestPay?status.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

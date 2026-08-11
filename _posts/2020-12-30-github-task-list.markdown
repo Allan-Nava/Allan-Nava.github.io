@@ -5,7 +5,7 @@ date: 2020-12-30 19:17
 updated: 2026-07-16
 tag:
 - go
-image: "https://github.com/Allan-Nava/task-list/workflows/Go/badge.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

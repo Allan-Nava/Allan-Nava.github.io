@@ -8,7 +8,7 @@ tag:
 - cuda
 - ffmpeg
 - ffmpeg-cuda
-image: "https://github.com/HiWay-Media/ffmpeg-nvenc-static/actions/workflows/build.yml/badge.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

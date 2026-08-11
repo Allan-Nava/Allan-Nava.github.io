@@ -5,7 +5,7 @@ date: 2022-02-05 15:24
 updated: 2026-08-07
 tag:
 - go
-image: "https://godoc.org/github.com/Allan-Nava/go-ddd?status.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

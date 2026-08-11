@@ -8,7 +8,7 @@ tag:
 - go
 - go-sdk
 - golang
-image: "https://github.com/HiWay-Media/Insta-go/actions/workflows/go-build.yml/badge.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

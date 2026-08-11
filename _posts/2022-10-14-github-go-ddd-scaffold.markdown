@@ -8,7 +8,7 @@ tag:
 - cli
 - cmd
 - framework
-image: "https://godoc.org/github.com/Allan-Nava/Go-DDD-Scaffold?status.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

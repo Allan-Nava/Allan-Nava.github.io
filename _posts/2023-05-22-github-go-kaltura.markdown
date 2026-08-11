@@ -8,7 +8,7 @@ tag:
 - go-kaltura
 - golang
 - golang-library
-image: "https://github.com/Allan-Nava/go-kaltura/actions/workflows/go-build.yml/badge.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

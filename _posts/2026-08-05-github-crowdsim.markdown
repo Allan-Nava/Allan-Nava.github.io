@@ -8,7 +8,7 @@ tag:
 - load-testing
 - stress
 - stress-test
-image: "https://github.com/HiWay-Media/crowdsim/actions/workflows/ci.yml/badge.svg"
+image: "https://raw.githubusercontent.com/HiWay-Media/crowdsim/main/docs/assets/screens/gui-run-form.png"
 headerImage: false
 projects: true
 hidden: true

@@ -8,7 +8,7 @@ tag:
 - go
 - golang
 - golang-library
-image: "https://github.com/HiWay-Media/hwm-go-utils/actions/workflows/go-build.yml/badge.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

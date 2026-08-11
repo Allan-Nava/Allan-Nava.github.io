@@ -5,7 +5,7 @@ date: 2024-09-27 14:12
 updated: 2024-10-02
 tag:
 - go
-image: "https://github.com/HiWay-Media/meta-go-sdk/actions/workflows/go-build.yml/badge.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

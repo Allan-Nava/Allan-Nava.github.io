@@ -8,7 +8,7 @@ tag:
 - ansible
 - certificate-monitoring
 - cli
-image: ""
+image: "https://raw.githubusercontent.com/Allan-Nava/checkfleet/main/docs/assets/logo.png"
 headerImage: false
 projects: true
 hidden: true

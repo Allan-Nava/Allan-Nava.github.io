@@ -8,7 +8,7 @@ tag:
 - audio
 - audio-processing
 - ffmpeg
-image: "https://github.com/HiWay-Media/SoundWave-Go/actions/workflows/go-build.yml/badge.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

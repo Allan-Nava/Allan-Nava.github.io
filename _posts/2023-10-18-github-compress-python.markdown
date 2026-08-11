@@ -5,7 +5,7 @@ date: 2023-10-18 14:07
 updated: 2024-06-26
 tag:
 - python
-image: "https://github.com/HiWay-Media/compress-python/actions/workflows/python-package.yml/badge.svg"
+image: ""
 headerImage: false
 projects: true
 hidden: true

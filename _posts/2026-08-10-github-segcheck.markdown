@@ -8,7 +8,7 @@ tag:
 - abr
 - cli
 - cmaf
-image: ""
+image: "https://raw.githubusercontent.com/Allan-Nava/segcheck/main/docs/assets/logo.svg"
 headerImage: false
 projects: true
 hidden: true
