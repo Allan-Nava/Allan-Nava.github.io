@@ -67,6 +67,33 @@ def yaml_safe(text, max = 160)
   text.to_s.gsub(/\s+/, ' ').delete('"').strip[0, max].strip
 end
 
+# La descrizione completa del video, come blocco HTML da mettere nel corpo del
+# post (la usa `body_description` più sotto).
+#
+# HTML e non Markdown di proposito: le descrizioni YouTube sono piene di
+# `#hashtag`, asterischi, trattini e URL nudi, che in Markdown diventerebbero
+# titoli, corsivi ed elenchi a caso. Qui il testo viene escapato, i link resi
+# cliccabili e i ritorni a capo conservati.
+MAX_DESCRIPTION_CHARS = 1200
+
+def description_html(text)
+  body = text.to_s.gsub("\r\n", "\n").strip
+  return '' if body.empty?
+
+  body = body[0, MAX_DESCRIPTION_CHARS].rstrip + '…' if body.length > MAX_DESCRIPTION_CHARS
+
+  paragraphs = body.split(/\n{2,}/).map do |paragraph|
+    escaped = paragraph.gsub('&', '&amp;').gsub('<', '&lt;').gsub('>', '&gt;')
+    escaped = escaped.gsub(%r{(https?://[^\s<]+)}) do
+      url = Regexp.last_match(1)
+      %(<a href="#{url}" rel="noopener">#{url}</a>)
+    end
+    "  <p>#{escaped.gsub("\n", "<br>")}</p>"
+  end
+
+  "\n<div class=\"video-description\">\n#{paragraphs.join("\n")}\n</div>\n"
+end
+
 def geocode_city(city_name)
   return nil if city_name.to_s.empty?
 

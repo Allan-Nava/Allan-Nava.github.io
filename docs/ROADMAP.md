@@ -29,7 +29,7 @@ Le pagine che mancavano per *navigare* 330 post: archivio, ricerca, statistiche,
 - [ ] **Commenti con giscus** — `_includes/giscus.html` e il blocco `giscus:` in `_config.yml` sono pronti: l'include non renderizza nulla finché `repo-id` e `category-id` sono vuoti. **Serve Allan**: abilitare Discussions sul repo, installare l'app giscus e copiare i due id da giscus.app.
 - [ ] **Analytics GA4 o privacy-friendly** — l'include gtag esiste già. **Serve Allan**: creare la property e mettere `G-XXXX` in `analytics-google`.
 
-## v2.2 — Automazioni & Platform ✅ (4 su 9)
+## v2.2 — Automazioni & Platform ✅ (6 su 9)
 
 Le automazioni che mancavano attorno al sito. Le voci ancora aperte non sono bloccate dal codice: aspettano credenziali, account esterni o una sequenza di PR da verificare una alla volta.
 
@@ -37,10 +37,10 @@ Le automazioni che mancavano attorno al sito. Le voci ancora aperte non sono blo
 - [x] **Auto-issue sui fallimenti dei workflow schedulati** — `failure-issue.yml` è un workflow **riusabile** agganciato a youtube-sync, github-sync, robots-sync, strava-sync e uptime: un cron che fallisce apre una issue `ci-failure`; i fallimenti successivi commentano quella già aperta invece di moltiplicarla.
 - [x] **Link checker mensile** — `link-check.yml` (cron il primo del mese): html-proofer sui link **esterni**, risultato in una issue `link-rot`, workflow sempre verde. I link interni restano un gate su ogni PR in `checks.yml`.
 - [x] **Sync YouTube v2 — coordinate** — l'estrazione `recordingDetails.location` via `YOUTUBE_API_KEY` è attiva (fatta da Allan): i post video geolocalizzati finiscono da soli su `/map`.
-- [ ] **Sync YouTube v2 — descrizione nel body** — portare la descrizione completa del video nel corpo del post generato.
+- [x] **Sync YouTube v2 — descrizione nel body** — `description_html` in `sync_youtube.rb` porta la descrizione completa nel corpo del post come blocco HTML **già escapato**: le descrizioni YouTube sono piene di `#hashtag`, asterischi e URL nudi, che in Markdown diventerebbero titoli, corsivi ed elenchi a caso. Link resi cliccabili, a capo conservati, taglio a 1200 caratteri.
 - [ ] **Modernizzazione stack Ruby** — merge PR Dependabot `github-pages` 211→232 (Jekyll 3.10), Ruby 3.3 nei workflow e unpin di `setup-ruby`, poi html-proofer 5.x adattando `Rakefile` e i flag in `checks.yml`. Da fare a PR separate, verificando la CI a ogni passo: non è una modifica da fare alla cieca.
 - [ ] **Setup secret Strava** — *serve Allan*: creare l'app API e configurare i tre `STRAVA_*` nei secret (guida in `deployment.md`).
-- [ ] **OG image automatica** — immagine social per i post senza `image:`. Serve un renderer in CI: da decidere se generarle come artefatti committati o al volo.
+- [x] **OG image di default** — `assets/images/og-default.png` (1200×630) generata da `scripts/og_card.html` con `ruby scripts/generate_og_card.rb` (screenshot Chrome, passo manuale: la card cambia raramente e così non serve un renderer in CI). `default.html` la usa come `og:image` per tutte le pagine senza `image:`, cioè 212 post su 330 che finora venivano condivisi senza anteprima. **Resta aperto**: una card *per post* con il titolo dentro, che richiede un renderer in CI e ~200 PNG committati.
 - [ ] **Newsletter RSS-to-email** e **Webmentions** — *servono account esterni* (Buttondown/Mailchimp, brid.gy + webmention.io).
 
 ## v2.3 — Design & UI (restyling del template) ✅

@@ -45,6 +45,7 @@ Every colour, space, radius, duration and type step lives in **`_sass/base/token
 | `_plugins/` | Custom build-time Ruby plugins (`lazy_images.rb`, `youtube_thumbnails.rb`, `toc.rb`). These **run** — see "Custom plugins" below. |
 | `_sass/base/` | `tokens.scss` (**design tokens**, imported first), `variables.sass` (aliases Sass → token + breakpoints), `general`, `helpers`, `normalize`, `syntax` (dark code highlighting). |
 | `assets/fonts/` | Self-hosted variable font (Inter, latin subset, 47 KB woff2), preloaded in `default.html`. |
+| `assets/images/og-default.png` | Social card used as `og:image` by every page without its own `image:`. Regenerate with `ruby scripts/generate_og_card.rb` after editing `scripts/og_card.html`. |
 | `_sass/components/` | One file per UI component (header, nav, footer, author, pagination, side-by-side, spoiler, …). `polish.sass` is **imported last** and holds dark-theme contrast fixes + hover/focus polish as cascade overrides — keep theme tweaks there rather than scattering them. |
 | `_sass/pages/` | Page-specific styles (home/blog/projects listing, post, tags). |
 | `index.html` | Home page (thin `page`-layout shell; content comes from config + includes). |

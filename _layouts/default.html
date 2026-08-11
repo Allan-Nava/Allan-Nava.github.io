@@ -17,6 +17,19 @@ layout: compress
     <meta name=author content="{{ site.name }}">
 
     {% seo %}
+
+    {%- comment -%}
+    jekyll-seo-tag emette og:image solo se la pagina ha `image:`: senza, i link
+    condivisi arrivano senza anteprima (oggi succede a 212 post su 330). Qui si
+    mette la card di default, rigenerabile con `ruby scripts/generate_og_card.rb`.
+    `twitter:card` lo lascia dichiarare al seo tag, per non emetterlo due volte.
+    {%- endcomment -%}
+    {% unless page.image and page.image != "" %}
+    <meta property="og:image" content="{{ site.url }}/assets/images/og-default.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:image" content="{{ site.url }}/assets/images/og-default.png">
+    {% endunless %}
     
     {% include favicon.html %}
 

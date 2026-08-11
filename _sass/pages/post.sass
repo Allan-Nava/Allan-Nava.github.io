@@ -130,6 +130,22 @@
 		display: block
 		margin: var(--space-6) auto
 
+// Descrizione del video riportata dal sync YouTube (scripts/sync_youtube.rb la
+// emette come blocco HTML già escapato).
+.video-description
+	margin: var(--space-5) 0 0
+	padding-left: var(--space-4)
+	border-left: 2px solid var(--color-border)
+	font-size: var(--text-sm)
+	color: var(--color-fg-muted)
+
+	p
+		margin-bottom: var(--space-3)
+		color: inherit
+
+		&:last-child
+			margin-bottom: 0
+
 // --- navigazione fra post --------------------------------------------------
 
 .blog-navigation
