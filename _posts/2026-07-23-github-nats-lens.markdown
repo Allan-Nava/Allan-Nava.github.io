@@ -2,7 +2,7 @@
 title: "nats-lens"
 layout: post
 date: 2026-07-23 09:03
-updated: 2026-08-05
+updated: 2026-08-12
 tag:
 - typescript
 image: "https://raw.githubusercontent.com/Allan-Nava/nats-lens/main/media/logo.png"
@@ -22,6 +22,6 @@ A NATS client inside VS Code — connect with the contexts you already have from
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: TypeScript
-- **Ultimo push**: 2026-08-05
+- **Ultimo push**: 2026-08-12
 
 [Repo su GitHub →](https://github.com/Allan-Nava/nats-lens)
