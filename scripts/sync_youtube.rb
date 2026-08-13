@@ -22,7 +22,8 @@ require 'json'
 
 ROOT = File.expand_path('..', __dir__)
 CHANNEL_ID = ENV.fetch('CHANNEL_ID', 'UC1qqsojpiyZB9-u8O02IVVQ')
-YOUTUBE_API_KEY = ENV['YOUTUBE_API_KEY'].to_s
+# .strip: una key incollata con spazi, apici o newline finale fa 400 API_KEY_INVALID.
+YOUTUBE_API_KEY = ENV['YOUTUBE_API_KEY'].to_s.strip.gsub(/\A['"]|['"]\z/, '')
 MAX_AGE_DAYS = Integer(ENV.fetch('MAX_AGE_DAYS', '7'))
 DRY_RUN = !ENV['DRY_RUN'].to_s.empty?
 
@@ -187,6 +188,18 @@ rescue StandardError => e
   nil
 end
 
+# L'HTTP status da solo non basta a capire cosa rifiuta Google: il motivo vero
+# (API_KEY_INVALID, quota, API disabilitata, referer non ammesso) sta nel JSON.
+def api_error_details(res)
+  data = JSON.parse(res.body)
+  err = data.fetch('error', {})
+  reasons = err.fetch('errors', []).map { |e| e['reason'] }.compact.uniq
+  detail = [err['status'], reasons.join(', ')].reject { |s| s.to_s.empty? }.join(' / ')
+  [err['message'], detail.empty? ? nil : "(#{detail})"].compact.join(' ')
+rescue StandardError
+  res.body.to_s[0, 300]
+end
+
 def get_videos_from_api(channel_id, api_key, max_age_days)
   abort "YOUTUBE_API_KEY is required to fetch videos" if api_key.empty?
 
@@ -208,7 +221,9 @@ def get_videos_from_api(channel_id, api_key, max_age_days)
     http.get(uri.request_uri)
   end
 
-  abort "YouTube API error: HTTP #{res.code}" unless res.is_a?(Net::HTTPSuccess)
+  unless res.is_a?(Net::HTTPSuccess)
+    abort "YouTube API error: HTTP #{res.code} — #{api_error_details(res)}"
+  end
 
   data = JSON.parse(res.body)
   items = data.fetch('items', [])
