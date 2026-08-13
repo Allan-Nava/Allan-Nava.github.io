@@ -2,7 +2,7 @@
 title: "status-check"
 layout: post
 date: 2025-03-24 10:06
-updated: 2026-08-12
+updated: 2026-08-13
 tag:
 - markdown
 - uptime
@@ -25,6 +25,6 @@ github: HiWay-Media/status-check
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Markdown
 - **Stars**: 2
-- **Ultimo push**: 2026-08-12
+- **Ultimo push**: 2026-08-13
 
 [Repo su GitHub →](https://github.com/HiWay-Media/status-check)
