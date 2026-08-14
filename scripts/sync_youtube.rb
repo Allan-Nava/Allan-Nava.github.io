@@ -281,8 +281,12 @@ videos.each do |video|
   short_attr = is_short ? ' data-short' : ''
 
   location = get_video_location(video_id, YOUTUBE_API_KEY, description)
+  # Niente indentazione: `<<~POST` de-indenta solo le righe letterali del
+  # sorgente, non il testo interpolato. Con spazi davanti, `lat:`/`lng:`
+  # diventerebbero la continuazione dello scalare `author: allan` e il front
+  # matter non sarebbe YAML valido.
   location_yaml = if location && location[:lat] && location[:lng]
-                     "\n    lat: #{location[:lat]}\n    lng: #{location[:lng]}"
+                     "\nlat: #{location[:lat]}\nlng: #{location[:lng]}"
                    else
                      ''
                    end
