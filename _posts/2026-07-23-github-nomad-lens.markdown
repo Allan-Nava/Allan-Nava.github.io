@@ -24,6 +24,7 @@ HashiCorp Nomad operations inside VS Code — the place where you already edit y
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: TypeScript
+- **Stars**: 1
 - **Ultimo push**: 2026-08-14
 
 [Repo su GitHub →](https://github.com/Allan-Nava/nomad-lens)
