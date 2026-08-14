@@ -43,12 +43,12 @@
 		gap: var(--space-2)
 		max-width: min(94vw, var(--width-large))
 		padding: 5px
-		background: rgba(12, 13, 15, 0.72)
+		background: var(--color-glass)
 		backdrop-filter: saturate(160%) blur(14px)
 		-webkit-backdrop-filter: saturate(160%) blur(14px)
 		border: 1px solid var(--color-border)
 		border-radius: var(--radius-pill)
-		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset
+		box-shadow: 0 1px 0 var(--color-inset-line) inset
 
 	.brand
 		display: inline-flex
@@ -108,11 +108,49 @@
 
 			&:hover
 				color: var(--color-fg-strong)
-				background: rgba(255, 255, 255, 0.06)
+				background: var(--color-hover-overlay)
 
 			&.is-active
 				color: var(--color-on-accent)
 				background: var(--color-accent)
+
+	// Toggle del tema (#137): ultimo elemento dell'isola, non scorre coi link.
+	// `flex: 0 0 auto` perché .links ha flex: 1 1 auto e altrimenti lo schiaccia.
+	.theme-toggle
+		flex: 0 0 auto
+		display: inline-flex
+		align-items: center
+		justify-content: center
+		width: 32px
+		height: 32px
+		margin-left: var(--space-1)
+		padding: 0
+		border: 1px solid transparent
+		border-radius: var(--radius-pill)
+		background: none
+		color: var(--color-fg-muted)
+		cursor: pointer
+		-webkit-appearance: none
+		appearance: none
+		transition: color var(--dur) var(--ease), background var(--dur) var(--ease), border-color var(--dur) var(--ease)
+
+		&:hover
+			color: var(--color-fg-strong)
+			background: var(--color-hover-overlay)
+			border-color: var(--color-border)
+
+		// display arriva dai token: `block` nel tema che deve mostrare l'icona,
+		// `none` nell'altro. Vedi --icon-sun/--icon-moon in base/tokens.scss.
+		> .theme-icon
+			width: 17px
+			height: 17px
+			pointer-events: none
+
+		> .theme-icon-sun
+			display: var(--icon-sun)
+
+		> .theme-icon-moon
+			display: var(--icon-moon)
 
 	@media #{$mobile}
 		> .site-nav-inner

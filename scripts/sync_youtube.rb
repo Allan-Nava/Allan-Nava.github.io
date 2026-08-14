@@ -1,14 +1,21 @@
 #!/usr/bin/env ruby
 # Creates a blog post in _posts/ for every recent video/short published on
-# the YouTube channel. With YOUTUBE_API_KEY, extracts recording location
-# (lat/lng) and adds it to the post front matter for automatic map updates.
-# Falls back to RSS feed if no API key (no API key required for basic sync).
+# the YouTube channel, listing them through the YouTube Data API and reading
+# recordingDetails.location to put lat/lng in the front matter, so geolocated
+# videos land on /map by themselves.
 # A video is skipped if its ID is already embedded in any existing post, so
 # hand-written posts are never duplicated.
 #
-# Usage: ruby scripts/sync_youtube.rb
+# YOUTUBE_API_KEY is REQUIRED: there is no RSS fallback (the feed carries only
+# the last 15 videos and no location).
+#
+# Usage: YOUTUBE_API_KEY=… ruby scripts/sync_youtube.rb
 #   env CHANNEL_ID       — YouTube channel id (default: Allan's channel)
-#   env YOUTUBE_API_KEY  — YouTube Data API key (optional; enables location extraction)
+#   env YOUTUBE_API_KEY  — YouTube Data API key (required). Get one at
+#                          console.cloud.google.com: enable "YouTube Data API v3",
+#                          then Credentials → API key. Restrict it to that API and
+#                          to "None"/IP — an HTTP-referrer restriction blocks this
+#                          script, which sends no Referer.
 #   env MAX_AGE_DAYS     — only sync videos newer than this (default: 7)
 #   env DRY_RUN=1        — print what would be created without writing files
 #

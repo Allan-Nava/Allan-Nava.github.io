@@ -35,7 +35,9 @@ Run the validator locally anytime with `ruby scripts/validate_posts.rb` (stdlib 
 
 ### `youtube-sync.yml` — YouTube Sync
 
-Every 3 hours, reads the channel RSS feed (`scripts/sync_youtube.rb`, no API key needed) and creates a blog post for every video/short published in the last 7 days that isn't already embedded in an existing post — hand-written posts are never duplicated, and re-runs are idempotent. New posts are validated with `scripts/validate_posts.rb`, committed by `github-actions[bot]`, pushed, and the deploy workflow is dispatched explicitly (pushes made with `GITHUB_TOKEN` don't fire push-triggered workflows).
+Every 3 hours, reads the channel through the YouTube Data API (`scripts/sync_youtube.rb`) and creates a blog post for every video/short published in the last 7 days that isn't already embedded in an existing post — hand-written posts are never duplicated, and re-runs are idempotent. New posts are validated with `scripts/validate_posts.rb`, committed by `github-actions[bot]`, pushed, and the deploy workflow is dispatched explicitly (pushes made with `GITHUB_TOKEN` don't fire push-triggered workflows).
+
+Requires the **`YOUTUBE_API_KEY`** secret — the script aborts without it, there is no RSS fallback. Create the key at [console.cloud.google.com](https://console.cloud.google.com/apis/credentials) after enabling *YouTube Data API v3*; restrict it to that API and to "None"/IP addresses, **not** HTTP referrers, since the script sends no `Referer`. An invalid or mistyped key answers `HTTP 400 API_KEY_INVALID`, quota and not-enabled-API answer `403`.
 
 Manual runs from the Actions tab accept a `max_age_days` input to backfill recent videos. For the full channel history there is `ruby scripts/backfill_youtube.rb` (one-shot, local): it enumerates every video and short on the channel by paginating the web player's internal API, then creates the missing posts — idempotent, `DRY_RUN=1` and `SINCE=YYYY` supported. Shorts are detected via a HEAD request to `/shorts/<id>` (200 = short, redirect = regular video) and get the `data-short` (portrait) facade plus a `short` tag.
 

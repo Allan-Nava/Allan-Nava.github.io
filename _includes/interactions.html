@@ -185,5 +185,57 @@ Tutto è progressive enhancement: senza JS il sito resta quello della v2.0.0.
       requestAnimationFrame(step);
     });
   }
+
+  /* 6. Toggle del tema (#137) ------------------------------------------------- */
+  /* L'attributo data-theme lo ha già messo theme-init.html nel <head>: qui si */
+  /* mostra il bottone, si commuta e si persiste la scelta. */
+  var toggle = document.querySelector('[data-theme-toggle]');
+  if (toggle) {
+    var systemLight = window.matchMedia && matchMedia('(prefers-color-scheme: light)');
+
+    function currentTheme() {
+      var explicit = root.getAttribute('data-theme');
+      if (explicit === 'light' || explicit === 'dark') return explicit;
+      return systemLight && systemLight.matches ? 'light' : 'dark';
+    }
+
+    /* Le due meta con `media` non possono seguire data-theme: alla prima scelta */
+    /* esplicita si collassano in una sola, aggiornata a mano. */
+    function syncThemeColor(theme) {
+      var metas = document.querySelectorAll('meta[data-theme-color]');
+      var keep = metas[0];
+      if (!keep) return;
+      for (var i = 1; i < metas.length; i++) metas[i].parentNode.removeChild(metas[i]);
+      keep.removeAttribute('media');
+      keep.setAttribute('content', theme === 'light' ? '#f6f7f8' : '#050505');
+    }
+
+    function label(theme) {
+      var next = theme === 'light' ? 'dark' : 'light';
+      toggle.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+      toggle.setAttribute('title', 'Switch to ' + next + ' theme');
+    }
+
+    label(currentTheme());
+    toggle.hidden = false;
+
+    toggle.addEventListener('click', function () {
+      var next = currentTheme() === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      try {
+        localStorage.setItem('theme', next);
+      } catch (e) { /* storage negato: il tema vale per questa pagina, non si perde altro */ }
+      syncThemeColor(next);
+      label(next);
+    });
+
+    /* Chi non ha ancora scelto segue il sistema anche se cambia a runtime */
+    /* (macOS al tramonto, Android in automatico). */
+    if (systemLight && systemLight.addEventListener) {
+      systemLight.addEventListener('change', function () {
+        if (!root.getAttribute('data-theme')) label(currentTheme());
+      });
+    }
+  }
 })();
 </script>

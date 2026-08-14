@@ -39,8 +39,18 @@ JEKYLL_ENV=production bundle exec jekyll build   # what CI runs
 
 ```bash
 ruby scripts/validate_posts.rb   # fast content check: front matter, dates, titles, asset files (stdlib only)
+ruby scripts/check_contrast.rb   # WCAG contrast of the palette, on both themes (stdlib only)
 rake test                        # builds the site, then reports 4xx broken links/images (html-proofer)
 rake test_internal               # same, but skips external links (fast, and works around the crash below)
+```
+
+`check_contrast.rb` reads the `palette-dark` / `palette-light` mixins straight out of `_sass/base/tokens.scss`, so it can't drift from the real CSS. Run it after touching any colour: it fails both when a pair drops below 6:1 and when a token is added to only one of the two themes (which is how a colour silently stops following the theme). Lighthouse only audits whichever theme the page loads with, so it won't catch the other one.
+
+If `rake` isn't in your bundle, call html-proofer directly with the CI flags:
+
+```bash
+bundle exec htmlproofer ./_site --disable-external --allow-hash-href \
+  --empty-alt-ignore --assume-extension --url-ignore "/localhost/"
 ```
 
 The same checks run in CI on every pull request (see [Deployment & CI](deployment.md)). Both rake tasks mirror the flags CI uses (`--empty-alt-ignore`, `--allow-hash-href`, `--assume-extension`): `alt=""` is the correct markup for decorative images (the nav avatar, listing thumbnails, where the link supplies the accessible name), and without that flag html-proofer 3 reports every one of them.

@@ -1,10 +1,9 @@
-/*
- * Syntax highlighting (Rouge) — tema scuro.
- * Sostituisce la palette GitHub *chiara* originale, che su questo sito
- * (fondo #050505) produceva blocchi bianchi accecanti nei post tech.
- * I colori sono allineati ai token: sfondo --color-code-bg, testo --color-code-fg,
- * tipi in verde per legarsi all'accento del tema.
- */
+// Syntax highlighting (Rouge) — segue il tema.
+// I colori non stanno più qui: sono i token --syn-* in base/tokens.scss, che
+// hanno una versione scura e una chiara. Questo file dice solo quale classe
+// Rouge prende quale token, così aggiungere un tema non tocca queste righe.
+// Ogni tinta è verificata ≥ 6:1 su --color-code-bg in entrambi i temi.
+//
 
 .highlight,
 .highlighter-rouge .highlight
@@ -19,61 +18,61 @@
 
 	// commenti
 	.c, .ch, .cd, .cm, .c1, .cs
-		color: #8b949e
+		color: var(--syn-comment)
 		font-style: italic
 
 	.cp, .cpf
-		color: #8b949e
+		color: var(--syn-preproc)
 
 	// keyword
 	.k, .kc, .kd, .kn, .kp, .kr, .kv
-		color: #ff7b72
+		color: var(--syn-keyword)
 
 	.kt
-		color: #7ee787
+		color: var(--syn-type)
 
 	// stringhe
 	.s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss
-		color: #a5d6ff
+		color: var(--syn-string)
 
 	// numeri e costanti
 	.m, .mb, .mf, .mh, .mi, .il, .mo, .mx
-		color: #79c0ff
+		color: var(--syn-number)
 
 	.no, .nb, .bp
-		color: #79c0ff
+		color: var(--syn-number)
 
 	// nomi
 	.n, .py, .nx
 		color: var(--color-code-fg)
 
 	.na, .nv, .vc, .vg, .vi, .nl
-		color: #ffa657
+		color: var(--syn-var)
 
 	.nf, .fm
-		color: #d2a8ff
+		color: var(--syn-func)
 
 	.nc, .nn, .ne, .nt
-		color: #7ee787
+		color: var(--syn-type)
 
 	.nd, .ni
-		color: #d2a8ff
+		color: var(--syn-func)
 
 	// operatori e punteggiatura
 	.o, .ow, .p, .pi
-		color: #c9d1d9
+		color: var(--syn-punct)
 
 	// generico / diff
 	.gd
-		color: #ffdcd7
-		background-color: rgba(248, 81, 73, 0.15)
+		color: var(--syn-del)
+		background-color: var(--syn-del-bg)
 
 	.gi
-		color: #aff5b4
-		background-color: rgba(46, 160, 67, 0.15)
+		color: var(--syn-ins)
+		background-color: var(--syn-ins-bg)
 
 	.gh, .gu
-		color: #79c0ff
+		color: var(--syn-heading)
 		font-weight: 600
 
 	.ge
@@ -83,15 +82,15 @@
 		font-weight: 700
 
 	.gp
-		color: #8b949e
+		color: var(--syn-comment)
 
 	.gl, .lineno
-		color: #6e7681
+		color: var(--syn-lineno)
 		user-select: none
 
 	.err
-		color: #ffa198
-		background-color: rgba(248, 81, 73, 0.12)
+		color: var(--syn-err)
+		background-color: var(--syn-err-bg)
 
 	.w
 		color: transparent

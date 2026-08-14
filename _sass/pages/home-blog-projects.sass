@@ -26,10 +26,18 @@
 			border-radius: var(--radius-lg)
 			transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease), transform var(--dur) var(--ease-out)
 
-			&:hover
+			// Il :hover vale solo per i puntatori veri: su touch resta
+			// "appiccicato" dopo il tap e la card sembra selezionata a caso.
+			@media (hover: hover)
+				&:hover
+					background: var(--color-surface-hover)
+					border-color: var(--color-accent-border)
+					transform: translateY(-2px)
+
+			// Feedback del tap: su mobile è l'unico stato che l'utente vede.
+			&:active
 				background: var(--color-surface-hover)
 				border-color: var(--color-accent-border)
-				transform: translateY(-2px)
 
 		> .item > .url
 			display: flex
@@ -38,6 +46,9 @@
 			padding: var(--space-4)
 			text-decoration: none
 			color: inherit
+			// Il rettangolo grigio di iOS sopra una card che ha già il suo
+			// stato :active non aggiunge niente e sbava sugli angoli tondi.
+			-webkit-tap-highlight-color: transparent
 
 		> .item > .url > .thumb
 			flex: 0 0 116px
@@ -54,6 +65,13 @@
 				border-radius: 0
 				margin: 0
 
+		// Anteprime YouTube (classe da _includes/blog-post.html): i.ytimg.com
+		// serve sempre un 480x360 con il frame utile nei 270px centrali e la
+		// cornice nera cotta nell'immagine. Ingrandire di 4/3 spinge la cornice
+		// fuori dal box — non esiste un formato senza barre da chiedere.
+		> .item > .url > .thumb.thumb-video > img
+			transform: scale(1.3334)
+
 		> .item > .url > .body
 			display: flex
 			flex-direction: column
@@ -68,13 +86,21 @@
 			line-height: var(--leading-snug)
 			color: var(--color-fg-strong)
 			transition: color var(--dur) var(--ease)
+			// Gli slug dei progetti sono parole singole lunghissime
+			// (keycloak-apple-identity-provider-fitp-enricher): senza break
+			// esplicito sforano la colonna invece di andare a capo.
+			overflow-wrap: anywhere
 
 			> .ext
 				margin-left: var(--space-2)
 				font-size: 0.8em
 				color: var(--color-fg-muted)
 
-		> .item:hover > .url > .body > .title
+		@media (hover: hover)
+			> .item:hover > .url > .body > .title
+				color: var(--color-accent)
+
+		> .item:active > .url > .body > .title
 			color: var(--color-accent)
 
 		> .item > .url > .body > .excerpt
@@ -98,19 +124,48 @@
 			> .tag
 				color: var(--color-accent-text)
 
-	// Su mobile la card resta orizzontale con thumbnail più piccola: impilarla
-	// significherebbe due post per schermata, con immagini enormi.
+	// Su mobile la card resta orizzontale: impilarla significherebbe due post
+	// per schermata, con immagini enormi. La thumbnail però segue la larghezza
+	// reale del telefono — a 92px fissi gli screenshot dei repo e i frame dei
+	// video erano macchie illeggibili.
 	@media #{$mobile}
+		> .list
+			gap: var(--space-2)
+
 		> .list > .item > .url
 			gap: var(--space-3)
 			padding: var(--space-3)
 
 		> .list > .item > .url > .thumb
-			flex-basis: 92px
+			flex-basis: clamp(100px, 30vw, 132px)
 
+		// Metà del canale sono Short verticali: in un box 16:9 stretto come
+		// quello del telefono resta più cornice che video. Quadrato il crop
+		// prende una fetta più alta della sorgente e il verticale si legge.
+		> .list > .item > .url > .thumb.thumb-video
+			aspect-ratio: 1 / 1
+			flex-basis: clamp(88px, 26vw, 116px)
+
+		> .list > .item > .url > .body
+			gap: var(--space-1)
+
+		// Titolo ed excerpt tagliati a due righe: senza il clamp una card con
+		// titolo lungo occupava mezza schermata e spingeva fuori le altre.
 		> .list > .item > .url > .body > .title
+			display: -webkit-box
+			-webkit-line-clamp: 2
+			-webkit-box-orient: vertical
+			overflow: hidden
 			font-size: var(--text-base)
 
 		> .list > .item > .url > .body > .excerpt
 			-webkit-line-clamp: 2
-			font-size: var(--text-xs)
+			// 12px su mobile è sotto la soglia di leggibilità: l'excerpt resta
+			// alla stessa misura del desktop.
+			font-size: var(--text-sm)
+
+		// Con un tag lungo la meta va a capo invece di sforare la card: il
+		// row-gap tiene le due righe leggibili.
+		> .list > .item > .url > .body > .meta
+			flex-wrap: wrap
+			row-gap: var(--space-1)

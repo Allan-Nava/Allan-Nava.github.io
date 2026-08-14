@@ -1,5 +1,10 @@
 {%- comment -%}
-Card di un post nel listing del blog. Thumbnail se il post ha `image:` (anche
+Card di un post nel listing del blog. Le anteprime di YouTube (i.ytimg.com)
+prendono la classe `thumb-video`: arrivano sempre in 4:3 con le barre nere
+attorno al frame, e su mobile il CSS le ritaglia quadrate — vedi
+_sass/pages/home-blog-projects.sass.
+
+Thumbnail se il post ha `image:` (anche
 generata da _plugins/youtube_thumbnails.rb per i post video); altrimenti un
 placeholder generativo — monogramma su gradiente scelto dal titolo, disegnato
 in CSS, zero richieste di rete (_plugins/card_placeholder.rb).
@@ -7,7 +12,7 @@ in CSS, zero richieste di rete (_plugins/card_placeholder.rb).
 <article class="item{% if post.star %} star{% endif %}" data-tags="{% for t in post.tag %}{{ t | slugify }} {% endfor %}">
     <a class="url" href="{{ site.url }}{{ post.url }}">
         {% if post.image and post.image != "" %}
-            <span class="thumb">
+            <span class="thumb{% if post.image contains 'ytimg.com' %} thumb-video{% endif %}">
                 <img class="thumb-img" src="{{ post.image }}" alt="" loading="lazy" decoding="async" width="480" height="270">
             </span>
         {% else %}

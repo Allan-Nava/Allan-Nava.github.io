@@ -111,11 +111,11 @@
 
 @keyframes nav-lift {
 	from {
-		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+		box-shadow: 0 1px 0 var(--color-inset-line) inset;
 		border-color: var(--color-border);
 	}
 	to {
-		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+		box-shadow: var(--shadow-nav), 0 1px 0 var(--color-inset-line-strong) inset;
 		border-color: var(--color-border-strong);
 	}
 }

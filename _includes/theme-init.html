@@ -1,0 +1,20 @@
+{%- comment -%}
+Tema (#137) — inizializzazione.
+
+Sta nel <head> e non in interactions.html perché deve girare PRIMA del primo
+paint: il default del CSS è lo scuro, quindi chi ha scelto il chiaro vedrebbe un
+lampo nero a ogni caricamento. È volutamente minuscolo e sincrono per lo stesso
+motivo — spostarlo a fondo pagina o renderlo async riporta il flash.
+
+ATTENZIONE ai commenti: `_layouts/compress.html` collassa le newline, quindi un
+`//` si mangia tutto il resto della riga collassata e lo script muore in
+silenzio. Qui e in interactions.html si usa solo /* … */.
+{%- endcomment -%}
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) { /* localStorage negato (Safari privato, cookie bloccati): si resta su prefers-color-scheme */ }
+})();
+</script>

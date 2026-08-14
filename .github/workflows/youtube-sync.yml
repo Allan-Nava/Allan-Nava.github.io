@@ -1,6 +1,8 @@
 # Creates a blog post for every new video/short published on the YouTube
-# channel. With YOUTUBE_API_KEY, extracts recording location (lat/lng) for
-# automatic map updates. Falls back to RSS feed if no API key.
+# channel, and reads recordingDetails.location so geolocated videos land on
+# /map by themselves.
+# Needs the YOUTUBE_API_KEY secret: the script aborts without it, there is no
+# RSS fallback.
 # Videos already embedded in an existing post are skipped, so hand-written
 # posts are never duplicated.
 name: YouTube Sync

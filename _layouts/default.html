@@ -33,6 +33,17 @@ layout: compress
     
     {% include favicon.html %}
 
+    {%- comment -%}
+    Due meta per il colore della chrome del browser: è la baseline corretta
+    quando il JS non parte e il tema lo decide il sistema. Se invece esiste una
+    scelta esplicita, il JS di interactions.html sostituisce queste due con una
+    meta unica — le media non possono seguire `data-theme`.
+    {%- endcomment -%}
+    <meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)" data-theme-color>
+    <meta name="theme-color" content="#f6f7f8" media="(prefers-color-scheme: light)" data-theme-color>
+
+    {% include theme-init.html %}
+
     <link rel="preload" as="font" type="font/woff2" href="{{ site.baseurl }}/assets/fonts/inter-latin-wght-normal.woff2" crossorigin>
 
     <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}">

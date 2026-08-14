@@ -23,16 +23,46 @@ about.md          ─┘
 
 Every colour, space, radius, duration and type step lives in **`_sass/base/tokens.scss`** as CSS custom properties on `:root`. The historical Sass variables (`$accent`, `$alpha`, …) still exist in `_sass/base/variables.sass` but are now thin aliases (`$accent: var(--color-accent)`) so the old partials keep working with a single source of truth. Practical consequences:
 
-- **Re-theming** (including the light mode in the roadmap) means redefining tokens, not editing every partial.
+- **Re-theming means redefining tokens**, not editing every partial — that is exactly how the light theme below is built.
 - Don't hard-code hex values in components — add or reuse a token.
 - Sass colour functions (`darken()`, `rgba($var, …)`) **cannot** be applied to the palette variables anymore, because their value is a `var()` reference. Use a token with the opacity baked in instead (`--color-accent-soft`).
 - `html` stays at `62.5%`, so **1rem = 10px** and the token scales follow that base (`--space-4: 1.6rem` = 16px).
 - Type is fluid: `--text-*` steps use `clamp()`, so headings scale with the viewport without breakpoints. Post bodies are capped at `--measure` (68ch) for readability.
 - Breakpoints (`variables.sass`): `$mobile` ≤ 560px, `$tablet` 561–1050px. The theme's original 560px `$mobile` was 400px, which left most phones (390–430 CSS px) on the tablet layout.
+- **Listing cards** (`_sass/pages/home-blog-projects.sass`, shared by `/blog`, `/projects` and the home sections) stay horizontal on mobile — stacking them would put two posts on a screen — but the thumbnail is fluid (`clamp(100px, 30vw, 132px)`), and title and excerpt are clamped to two lines each so a long project slug can't take over the card. Two details worth knowing:
+  - `:hover` is wrapped in `@media (hover: hover)`, with an `:active` state for touch. Without the guard the hover state sticks on a card after a tap on iOS.
+  - YouTube thumbnails (`i.ytimg.com`, class `thumb-video` set by `_includes/blog-post.html`) are always served as a 480×360 frame with the black border baked into the pixels; there is no unpadded size to ask for. The image is scaled `1.3334` so that border falls outside the box, and on mobile the box becomes square, because half the channel is vertical Shorts and a 16:9 crop of those was mostly border.
 - **Motion** lives in `_sass/components/motion.scss`, imported just before `polish.sass` so the `prefers-reduced-motion` block keeps the last word. Every effect is progressive enhancement: scroll-driven animations (`animation-timeline: view()/scroll()`) and view transitions sit inside `@supports`/`@media`, so an unsupporting browser shows the static v2.0.0 layout — never a half-animated or invisible element. Two practical rules learned the hard way:
   - **No `//` comments in inline `<script>`**: `_layouts/compress.html` collapses newlines, so everything after `//` on the collapsed line is commented out and the script dies silently. Use `/* … */`.
   - The `hidden` attribute needs `[hidden] { display: none !important }` in `general.sass`, otherwise a component's `display: block` overrides it (that's what made the projects filter "hide" cards that stayed on screen).
 - The self-hosted variable font (Inter, latin subset, 47 KB) is declared in `_includes/style.scss` — not in a `_sass/` partial — because only that file is processed by Liquid and the `@font-face` URL needs `{{ site.baseurl }}`. `_layouts/default.html` preloads it.
+
+## Themes (dark + light)
+
+The site ships **two themes**. Dark is the default and the site's identity; light is a redefinition of the same token names, which is the payoff of putting the palette in custom properties in the first place.
+
+`tokens.scss` declares two Sass mixins — `palette-dark` and `palette-light` — holding only the values that change with the theme: colours, `color-scheme`, shadows, the syntax-highlighting `--syn-*` set, and `--icon-sun`/`--icon-moon`. Everything theme-independent (spaces, radii, motion, type, layout) stays in `:root` and is declared once.
+
+They are applied in this order, and **the order is what makes it correct** — not specificity, since `:root:not([data-theme="dark"])` and `:root[data-theme="light"]` weigh the same:
+
+1. `:root` → `palette-dark`, the default.
+2. `@media (prefers-color-scheme: light)` on `:root:not([data-theme="dark"])` → the system preference. The `:not()` is load-bearing: without it, a visitor whose OS is light but who explicitly picked dark would get light anyway, because this rule comes after `:root`.
+3. `:root[data-theme="light"]` / `:root[data-theme="dark"]` → the explicit choice, last, so it beats both.
+
+Rules when touching the palette:
+
+- **Add every new colour to both mixins.** A token defined in only one theme silently stops changing with the theme, which is precisely how `strong` and `code` became invisible during v2.3. `scripts/check_contrast.rb` fails on this.
+- **Overlays are not symmetric.** Dark lightens with white (`rgba(255,255,255,…)`), light darkens with black — hence the separate `--color-overlay-soft`, `--color-hover-overlay`, `--color-inset-line`, `--color-glass` tokens instead of raw rgba in components. Shadows follow the same rule: the dark theme's 45–60 % blacks read as smudges on a light background.
+- **A mid-tone accent cannot serve both roles on light.** `--color-accent` is used both as text (26 places) and as a background with `--color-on-accent` on top (9 places). On a light background both readings improve as the green gets darker, so the light accent is a much deeper `#086830` rather than the dark theme's `#10cf53`.
+- Two colours are deliberately *not* themed: the card placeholder monogram (white on its own gradient) and the play triangle over a video thumbnail. Both sit on their own surface, not on the page background.
+
+Mechanics of the toggle:
+
+- `_includes/theme-init.html` runs **in `<head>`, synchronously**, and copies the saved choice from `localStorage` onto `<html data-theme>`. It has to be there: the CSS default is dark, so anything later means a black flash for light-theme visitors on every page load.
+- The button lives in `_includes/nav.html` and ships `hidden`; `_includes/interactions.html` reveals it, writes its `aria-label`, persists the choice, and collapses the two `theme-color` metas (which can't follow `data-theme`, only `prefers-color-scheme`) into a single one. **Without JavaScript there is no button at all** — the theme still follows `prefers-color-scheme`, so a dead control would be worse than none.
+- Which icon shows is driven by the `--icon-sun`/`--icon-moon` tokens rather than by repeating the three-state selector logic in `nav.sass`.
+
+Verify with **`ruby scripts/check_contrast.rb`** (stdlib only, no bundle): it parses the mixins straight out of `tokens.scss` — so it cannot drift from the real CSS — and checks 52 pairs across both themes against a 6:1 floor (`MIN=` to override). Lighthouse only ever audits the theme the page loads with, so this script is the only check that covers both.
 
 ## Directory map
 
@@ -41,12 +71,12 @@ Every colour, space, radius, duration and type step lives in **`_sass/base/token
 | `_config.yml` | Site identity, social handles, plugins, feature toggles (see below). |
 | `_posts/` | All content — blog posts and projects (see [Writing Content](writing-content.md)). |
 | `_layouts/` | `compress` → `default` → `page` → `post` chain described above. |
-| `_includes/` | Partials: `nav`, `footer`, `author`, `related`, `pagination`, `read-time`, `social-links`, `blog-post` (listing item), `youtube-facade` (lazy YouTube player, loaded on posts), `series` ("Part N of M" box), `giscus` (comments, inert until configured), `interactions` (image fade-in, view-transition naming, spotlight, counters, copy-code), `projects-filter`, analytics snippets, and `style.scss` (Sass entry point). |
+| `_includes/` | Partials: `nav`, `footer`, `author`, `related`, `pagination`, `read-time`, `social-links`, `blog-post` (listing item), `youtube-facade` (lazy YouTube player, loaded on posts), `series` ("Part N of M" box), `giscus` (comments, inert until configured), `theme-init` (reads the saved theme in `<head>`, before first paint), `interactions` (image fade-in, view-transition naming, spotlight, counters, copy-code, theme toggle), `projects-filter`, analytics snippets, and `style.scss` (Sass entry point). |
 | `_plugins/` | Custom build-time Ruby plugins (`lazy_images.rb`, `youtube_thumbnails.rb`, `toc.rb`). These **run** — see "Custom plugins" below. |
-| `_sass/base/` | `tokens.scss` (**design tokens**, imported first), `variables.sass` (aliases Sass → token + breakpoints), `general`, `helpers`, `normalize`, `syntax` (dark code highlighting). |
+| `_sass/base/` | `tokens.scss` (**design tokens** + the two theme palettes, imported first), `variables.sass` (aliases Sass → token + breakpoints), `general`, `helpers`, `normalize`, `syntax` (maps Rouge classes to the `--syn-*` tokens; holds no colours of its own). |
 | `assets/fonts/` | Self-hosted variable font (Inter, latin subset, 47 KB woff2), preloaded in `default.html`. |
 | `assets/images/og-default.png` | Social card used as `og:image` by every page without its own `image:`. Regenerate with `ruby scripts/generate_og_card.rb` after editing `scripts/og_card.html`. |
-| `_sass/components/` | One file per UI component (header, nav, footer, author, pagination, side-by-side, spoiler, …). `polish.sass` is **imported last** and holds dark-theme contrast fixes + hover/focus polish as cascade overrides — keep theme tweaks there rather than scattering them. |
+| `_sass/components/` | One file per UI component (header, nav, footer, author, pagination, side-by-side, spoiler, …). `polish.sass` is **imported last** and holds contrast fixes + hover/focus polish as cascade overrides — keep theme tweaks there rather than scattering them. |
 | `_sass/pages/` | Page-specific styles (home/blog/projects listing, post, tags). |
 | `index.html` | Home page (thin `page`-layout shell; content comes from config + includes). |
 | `map.html` | `/map` — Leaflet map of every post with `lat`/`lng` front matter (toggle: `map` in `_config.yml`). |
