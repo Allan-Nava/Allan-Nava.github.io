@@ -1,0 +1,84 @@
+# Genera le varianti WebP responsive delle immagini nuove in assets/images
+# (#138) e le committa, così il <picture> costruito da
+# _plugins/responsive_images.rb ha qualcosa da servire.
+#
+# Perché un workflow separato e non un passo del build: il build di Pages gira
+# col bundle `github-pages`, che non ha encoder per le immagini. Qui invece si
+# installa `webp` e si committano i file generati, come fa il sync YouTube.
+#
+# Non gira su ogni push: le immagini si aggiungono raramente e un job che
+# committa binari va tenuto stretto. Settimanale + a mano quando serve.
+name: Image Optimize
+
+on:
+  schedule:
+    # Lunedì mattina: se durante la settimana sono arrivate immagini nuove,
+    # entro il lunedì hanno le loro varianti.
+    - cron: '41 5 * * 1'
+  workflow_dispatch:
+    inputs:
+      threshold_kb:
+        description: "Ignora le immagini sotto questi KB"
+        required: false
+        default: "150"
+      force:
+        description: "Rigenera anche le varianti già aggiornate (1 = sì)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: "image-optimize"
+  cancel-in-progress: false
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install encoders
+        # `webp` porta cwebp. avifenc (libavif-bin) NON è installato: lo script
+        # genererebbe AVIF solo alle larghezze native e il percorso non è mai
+        # stato provato — vedi la nota in scripts/optimize_images.rb.
+        run: sudo apt-get update && sudo apt-get install -y webp
+
+      - name: Generate variants
+        run: ruby scripts/optimize_images.rb
+        env:
+          THRESHOLD_KB: ${{ github.event.inputs.threshold_kb || '150' }}
+          FORCE: ${{ github.event.inputs.force || '' }}
+
+      - name: Commit and push new variants
+        id: commit
+        run: |
+          if [ -z "$(git status --porcelain assets/images)" ]; then
+            echo "Nessuna variante nuova."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/images
+          git commit -m "Add responsive WebP variants for new images"
+          git push
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger deploy
+        # Come per gli altri sync: un push fatto con GITHUB_TOKEN non fa
+        # scattare il deploy su push, va lanciato a mano.
+        if: steps.commit.outputs.pushed == 'true'
+        run: gh workflow run jekyll.yml --ref master
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+  report-failure:
+    needs: [optimize]
+    if: failure()
+    uses: ./.github/workflows/failure-issue.yml
+    permissions:
+      issues: write

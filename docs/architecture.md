@@ -64,6 +64,26 @@ Mechanics of the toggle:
 
 Verify with **`ruby scripts/check_contrast.rb`** (stdlib only, no bundle): it parses the mixins straight out of `tokens.scss` — so it cannot drift from the real CSS — and checks 52 pairs across both themes against a 6:1 floor (`MIN=` to override). Lighthouse only ever audits the theme the page loads with, so this script is the only check that covers both.
 
+## Responsive images
+
+Local content images are served as WebP through a `<picture>` built at build time (#138). Two halves that stay independent on purpose:
+
+- **`scripts/optimize_images.rb`** generates the variants and they are **committed**. It shells out to `cwebp`; nothing converts during the Jekyll build, because the `github-pages` bundle has no image encoders — same reasoning as the manually generated OG card.
+- **`_plugins/responsive_images.rb`** wraps each `<img src="/assets/images/…">` in a `<picture>` with a `<source type="image/webp">`, **only when the variant files exist on disk**. Add an image without running the script and it is simply served unoptimized; nothing breaks.
+
+Numbers today: 158 variants for the 67 images above the 150 KB threshold, +17.5 MB in the repo, and **−77 % on image bytes** across the 27 pages that carry local images (18.1 MB → 4.0 MB). The heaviest post went from 3.4 MB to 607 KB.
+
+Things that are the way they are for a measured reason:
+
+- **Breakpoints are 480/960/1440** and the middle one must stay above ~900. The browser doesn't size against the CSS slot (~700px, the `--measure` cap) but against slot × DPR, so a phone asks for ~950–1080px. Replacing 960 with 720 was tried: Chrome jumps to the 1440 variant and the page grows from 0.9 MB to 1.3 MB.
+- **No variant wider than 1440** is generated. With `sizes` capped at 700px even a DPR-2 screen never asks for more, so a native-width WebP of a 4000px source would be dead weight.
+- **`<picture>` must not double-wrap.** The hook is registered on `[:posts, :pages, :documents]` and a post is both a `:post` and a `:document`, so it runs twice on the same output. The regex therefore matches `<picture>…</picture>` *before* `<img>`, so an already-wrapped image is consumed and returned untouched. (`lazy_images.rb` survives the same double run because of a negative lookahead on `loading=`.)
+- **Card thumbnails are skipped** (`class` containing `thumb`): `home-blog-projects.sass` styles them with direct-child selectors (`> .thumb > img`) that an inserted `<picture>` would break. They are remote `i.ytimg.com` URLs anyway.
+- **GIFs are skipped**: `error.gif` has 50 frames and `cwebp` only writes static WebP.
+- **AVIF is not done.** The plugin already emits an `image/avif` source when the files exist, and the script has an `avifenc` branch, but **that branch has never been executed** and the workflow doesn't install the encoder. `avifenc` also can't resize, so as written it would only produce AVIF for images already narrower than 1440px. Treat it as a stub.
+
+One honest caveat about Lighthouse on image-heavy posts: the performance score can *drop* after this change. Before, a 1 MB photo never finished painting inside the measurement window, so LCP fell back to the page title (~1.5 s); now the photo actually appears and becomes the LCP element (~5.5 s median on simulated mobile). The page delivers 4× fewer bytes — the metric just stopped flattering it. Individual posts are not in the Lighthouse CI url list, so no gate depends on this.
+
 ## Directory map
 
 | Path | Purpose |
@@ -72,9 +92,10 @@ Verify with **`ruby scripts/check_contrast.rb`** (stdlib only, no bundle): it pa
 | `_posts/` | All content — blog posts and projects (see [Writing Content](writing-content.md)). |
 | `_layouts/` | `compress` → `default` → `page` → `post` chain described above. |
 | `_includes/` | Partials: `nav`, `footer`, `author`, `related`, `pagination`, `read-time`, `social-links`, `blog-post` (listing item), `youtube-facade` (lazy YouTube player, loaded on posts), `series` ("Part N of M" box), `giscus` (comments, inert until configured), `theme-init` (reads the saved theme in `<head>`, before first paint), `interactions` (image fade-in, view-transition naming, spotlight, counters, copy-code, theme toggle), `projects-filter`, analytics snippets, and `style.scss` (Sass entry point). |
-| `_plugins/` | Custom build-time Ruby plugins (`lazy_images.rb`, `youtube_thumbnails.rb`, `toc.rb`). These **run** — see "Custom plugins" below. |
+| `_plugins/` | Custom build-time Ruby plugins (`lazy_images.rb`, `responsive_images.rb`, `youtube_thumbnails.rb`, `toc.rb`). These **run** — see "Custom plugins" below. |
 | `_sass/base/` | `tokens.scss` (**design tokens** + the two theme palettes, imported first), `variables.sass` (aliases Sass → token + breakpoints), `general`, `helpers`, `normalize`, `syntax` (maps Rouge classes to the `--syn-*` tokens; holds no colours of its own). |
 | `assets/fonts/` | Self-hosted variable font (Inter, latin subset, 47 KB woff2), preloaded in `default.html`. |
+| `assets/images/*.webp` | Responsive WebP variants (`name-480/960/1440.webp`) generated by `ruby scripts/optimize_images.rb` and committed. Served through `<picture>` — see "Responsive images". |
 | `assets/images/og-default.png` | Social card used as `og:image` by every page without its own `image:`. Regenerate with `ruby scripts/generate_og_card.rb` after editing `scripts/og_card.html`. |
 | `_sass/components/` | One file per UI component (header, nav, footer, author, pagination, side-by-side, spoiler, …). `polish.sass` is **imported last** and holds contrast fixes + hover/focus polish as cascade overrides — keep theme tweaks there rather than scattering them. |
 | `_sass/pages/` | Page-specific styles (home/blog/projects listing, post, tags). |

@@ -43,6 +43,14 @@ Manual runs from the Actions tab accept a `max_age_days` input to backfill recen
 
 Generated posts embed the video with the `<lite-youtube>` facade (not a raw iframe — see [Architecture](architecture.md)) and set the YouTube thumbnail as `image:` for og:image/listing previews. `scripts/migrate_youtube_embeds.rb` is a one-shot that converted the pre-existing iframe embeds to the same facade (`DRY_RUN=1` supported, idempotent).
 
+### `image-optimize.yml` — Image Optimize
+
+Weekly (`41 5 * * 1`) plus manual dispatch. Installs `webp`, runs `ruby scripts/optimize_images.rb` to generate the responsive WebP variants of any new image in `assets/images` above the threshold (default 150 KB), commits them and dispatches the deploy — same pattern as the syncs above.
+
+Deliberately **not** on every push: images are added rarely, and a job that commits binaries is worth keeping on a short leash. Run it by hand from the Actions tab right after adding images if you don't want to wait for Monday; `threshold_kb` and `force` are inputs. It does not install `avifenc`, so no AVIF is produced — see [Architecture](architecture.md#responsive-images).
+
+Nothing breaks if the workflow never runs: `_plugins/responsive_images.rb` only builds a `<picture>` when the variant files exist, so an unconverted image is just served as-is.
+
 ### `strava-sync.yml` — Strava Sync
 
 Every 6 hours, creates a blog post for every new Strava activity of the configured types (default: Hike, RockClimbing, TrailRun, Snowboard, AlpineSki) via `scripts/sync_strava.rb`. Same pipeline as the YouTube sync: dedup by activity ID (`strava.com/activities/<id>` in any post), validation, bot commit, explicit deploy dispatch. Until the secrets below are configured, runs exit successfully doing nothing.
