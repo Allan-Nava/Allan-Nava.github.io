@@ -1,0 +1,19 @@
+{%- comment -%}
+Registrazione del service worker (#139).
+
+A fondo pagina e dietro `load`: registrare il SW durante il caricamento gli fa
+competere per la banda con la pagina che l'utente sta aspettando.
+
+ATTENZIONE ai commenti: `_layouts/compress.html` collassa le newline, quindi un
+`//` si mangia il resto della riga e lo script muore in silenzio. Solo /* … */.
+{%- endcomment -%}
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('{{ site.baseurl }}/sw.js').catch(function () {
+      /* Registrazione negata (http, modalità privata, policy): il sito
+         funziona esattamente come prima, senza offline. */
+    });
+  });
+}
+</script>

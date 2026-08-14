@@ -84,6 +84,30 @@ Things that are the way they are for a measured reason:
 
 One honest caveat about Lighthouse on image-heavy posts: the performance score can *drop* after this change. Before, a 1 MB photo never finished painting inside the measurement window, so LCP fell back to the page title (~1.5 s); now the photo actually appears and becomes the LCP element (~5.5 s median on simulated mobile). The page delivers 4× fewer bytes — the metric just stopped flattering it. Individual posts are not in the Lighthouse CI url list, so no gate depends on this.
 
+## PWA (installable + offline)
+
+Three files at the repo root, all rendered by Jekyll so they can use Liquid:
+
+- **`manifest.webmanifest`** — name, `standalone` display, theme/background `#050505`, four icons (192/512 in both `any` and `maskable`), plus shortcuts to Blog/Projects/Search. Linked from `default.html`.
+- **`sw.js`** — the service worker. It has to sit at the **root**: a worker's scope can never rise above its own directory, so `/assets/sw.js` could not control `/blog/`.
+- **`offline.html`** → `/offline/`, the fallback for a page never visited before.
+
+Registration lives in `_includes/pwa.html`, deferred to the `load` event so it doesn't compete for bandwidth with the page the visitor is waiting for. If registration is refused (plain http, private mode, policy) the site behaves exactly as before.
+
+The caching strategy is deliberately conservative, because a bad service worker on a live site serves stale content for a long time and cannot be fixed by deleting the file:
+
+- **Freshness comes from the network, not from cache invalidation.** HTML is always **network-first**, so an edited post shows up on the first online load. Offline it falls back to the copy from the last visit, then to `/offline/`.
+- **The cache name is not versioned per build.** The daily cron rebuild would otherwise wipe every visitor's offline cache once a day for nothing. Bump `CACHE` only when the *strategy* changes.
+- Fonts, PWA icons and favicons are **cache-first** (immutable under a stable name). Everything else under `/assets/images/` is **stale-while-revalidate**, so an image replaced under the same filename fixes itself on the next visit rather than sticking forever.
+- `search.json`, `feed.xml`, `sitemap.xml` and `robots.txt` are **never cached**: they are regenerated on every build, and a stale search index is worse than a network error.
+- Cross-origin requests are left alone — YouTube thumbnails (`i.ytimg.com`) stay on the network and its own caching.
+
+**To disable it**, deleting `sw.js` is not enough: browsers that already installed it keep using it. Replace the file's body with an unregister-and-clear worker (the recipe is in a comment at the top of `sw.js`) and deploy that.
+
+Icons are generated from `scripts/pwa_icon.html` with **`ruby scripts/generate_pwa_icons.rb`** (Chrome screenshot at 512×512, then `sips`/ImageMagick down to 192) into `assets/images/pwa/` and committed — the same manual-step-plus-committed-PNG pattern as the OG card. The maskable variant shrinks the mark to ~62 %, because Android crops icons with a mask (often a circle) and would eat the corners of the full-bleed version.
+
+Verified with a Node harness that loads the built `sw.js` into a sandbox with mocked service-worker globals and asserts the routing (22 checks: precache contents, old-cache cleanup, what is bypassed, network-first on HTML, offline fallbacks, stale-while-revalidate, cache-first fonts), plus a real-browser registration check through the DevTools protocol. Worth confirming once after the first deploy in DevTools → Application → Service Workers.
+
 ## Directory map
 
 | Path | Purpose |
@@ -91,10 +115,12 @@ One honest caveat about Lighthouse on image-heavy posts: the performance score c
 | `_config.yml` | Site identity, social handles, plugins, feature toggles (see below). |
 | `_posts/` | All content — blog posts and projects (see [Writing Content](writing-content.md)). |
 | `_layouts/` | `compress` → `default` → `page` → `post` chain described above. |
-| `_includes/` | Partials: `nav`, `footer`, `author`, `related`, `pagination`, `read-time`, `social-links`, `blog-post` (listing item), `youtube-facade` (lazy YouTube player, loaded on posts), `series` ("Part N of M" box), `giscus` (comments, inert until configured), `theme-init` (reads the saved theme in `<head>`, before first paint), `interactions` (image fade-in, view-transition naming, spotlight, counters, copy-code, theme toggle), `projects-filter`, analytics snippets, and `style.scss` (Sass entry point). |
+| `_includes/` | Partials: `nav`, `footer`, `author`, `related`, `pagination`, `read-time`, `social-links`, `blog-post` (listing item), `youtube-facade` (lazy YouTube player, loaded on posts), `series` ("Part N of M" box), `giscus` (comments, inert until configured), `theme-init` (reads the saved theme in `<head>`, before first paint), `pwa` (service-worker registration), `interactions` (image fade-in, view-transition naming, spotlight, counters, copy-code, theme toggle), `projects-filter`, analytics snippets, and `style.scss` (Sass entry point). |
 | `_plugins/` | Custom build-time Ruby plugins (`lazy_images.rb`, `responsive_images.rb`, `youtube_thumbnails.rb`, `toc.rb`). These **run** — see "Custom plugins" below. |
 | `_sass/base/` | `tokens.scss` (**design tokens** + the two theme palettes, imported first), `variables.sass` (aliases Sass → token + breakpoints), `general`, `helpers`, `normalize`, `syntax` (maps Rouge classes to the `--syn-*` tokens; holds no colours of its own). |
 | `assets/fonts/` | Self-hosted variable font (Inter, latin subset, 47 KB woff2), preloaded in `default.html`. |
+| `manifest.webmanifest`, `sw.js`, `offline.html` | PWA: web app manifest, service worker (root scope, network-first HTML), offline fallback page — see "PWA". |
+| `assets/images/pwa/` | Installable-app icons (192/512, plus maskable) from `ruby scripts/generate_pwa_icons.rb`. |
 | `assets/images/*.webp` | Responsive WebP variants (`name-480/960/1440.webp`) generated by `ruby scripts/optimize_images.rb` and committed. Served through `<picture>` — see "Responsive images". |
 | `assets/images/og-default.png` | Social card used as `og:image` by every page without its own `image:`. Regenerate with `ruby scripts/generate_og_card.rb` after editing `scripts/og_card.html`. |
 | `_sass/components/` | One file per UI component (header, nav, footer, author, pagination, side-by-side, spoiler, …). `polish.sass` is **imported last** and holds contrast fixes + hover/focus polish as cascade overrides — keep theme tweaks there rather than scattering them. |

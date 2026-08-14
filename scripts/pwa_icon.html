@@ -1,0 +1,98 @@
+<!doctype html>
+<!--
+  Sorgente delle icone della PWA (#139). Non fa parte del sito: è il template
+  da cui si rigenerano i PNG.
+
+  Rigenerare dopo averlo modificato:
+
+    ruby scripts/generate_pwa_icons.rb
+
+  (serve Chrome; lo script fa due screenshot 512x512 in assets/images/pwa/)
+
+  Due composizioni dallo stesso file, scelte da `?maskable=1`:
+  - normale: monogramma grande, l'icona riempie il riquadro;
+  - maskable: lo stesso marchio rimpicciolito al 62%, perché Android ritaglia
+    l'icona con una maschera (spesso un cerchio) e mangia gli angoli. Tutto ciò
+    che conta deve stare nel cerchio inscritto.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: "Inter Variable";
+    font-style: normal;
+    font-weight: 100 900;
+    src: url("../assets/fonts/inter-latin-wght-normal.woff2") format("woff2-variations");
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 512px;
+    height: 512px;
+  }
+
+  /* Fondo pieno e non trasparente: un'icona con alpha su Android viene
+     composita su bianco e il monogramma verde sparisce. */
+  body {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #050505;
+    font-family: "Inter Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  /* Alone verde, lo stesso stacco dell'hero della home. */
+  body::before {
+    content: "";
+    position: absolute;
+    width: 620px;
+    height: 620px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(16, 207, 83, 0.28), transparent 62%);
+  }
+
+  .mark {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 392px;
+    height: 392px;
+    border-radius: 84px;
+    background: linear-gradient(150deg, #0b3d2e, #10cf53);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
+  }
+
+  .mark > span {
+    font-size: 176px;
+    font-weight: 800;
+    letter-spacing: -0.055em;
+    color: #04170c;
+    line-height: 1;
+  }
+
+  /* Maschera Android: il marchio resta dentro il cerchio inscritto. */
+  body.maskable .mark {
+    width: 318px;
+    height: 318px;
+    border-radius: 68px;
+  }
+
+  body.maskable .mark > span { font-size: 142px; }
+</style>
+</head>
+<body>
+  <div class="mark"><span>AN</span></div>
+  <script>
+    if (location.search.indexOf('maskable=1') !== -1) {
+      document.body.classList.add('maskable');
+    }
+  </script>
+</body>
+</html>

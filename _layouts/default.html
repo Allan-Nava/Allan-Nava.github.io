@@ -44,6 +44,8 @@ layout: compress
 
     {% include theme-init.html %}
 
+    <link rel="manifest" href="{{ site.baseurl }}/manifest.webmanifest">
+
     <link rel="preload" as="font" type="font/woff2" href="{{ site.baseurl }}/assets/fonts/inter-latin-wght-normal.woff2" crossorigin>
 
     <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}">
@@ -80,6 +82,8 @@ layout: compress
     {% include icons.html %}
 
     {% include interactions.html %}
+
+    {% include pwa.html %}
 
     {% if page.tag %}{% include youtube-facade.html %}{% endif %}
 
