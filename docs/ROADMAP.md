@@ -13,7 +13,7 @@ Urgente dopo il backfill YouTube: 218 file in `_posts/` (172 blog + 46 progetti)
 - [x] **Badge di stato nel README** — badge Deploy / Checks / Uptime.
 - [ ] **Disinstallare Renovate** — *manuale* (Settings → Integrations, poi chiudere le sue PR/issue #25, #43): l'app duplica Dependabot. Non automatizzabile da repo.
 
-## v2.1 — Contenuti & Engagement ✅ (9 su 11)
+## v2.1 — Contenuti & Engagement ✅ (9 su 11 — milestone aperta per #123 e #124)
 
 Le pagine che mancavano per *navigare* 330 post: archivio, ricerca, statistiche, galleria video, più i controlli di lettura. Tutto in Liquid a build time o in vanilla JS; nessuna dipendenza nuova. Le due voci ancora aperte non sono codice: aspettano credenziali.
 
@@ -26,10 +26,10 @@ Le pagine che mancavano per *navigare* 330 post: archivio, ricerca, statistiche,
 - [x] **404 intelligente** — codice, spiegazione, tre vie d'uscita (home, ricerca, archivio) e gli ultimi post.
 - [x] **Copy-code button** — aggiunto dal JS solo se esiste la Clipboard API, così non compare un bottone che non copierebbe.
 - [x] **Reading progress + scroll-to-top** — barra di avanzamento e bottone, entrambi con scroll-driven animation: senza supporto la barra resta a zero e il bottone sempre visibile.
-- [ ] **Commenti con giscus** — `_includes/giscus.html` e il blocco `giscus:` in `_config.yml` sono pronti: l'include non renderizza nulla finché `repo-id` e `category-id` sono vuoti. **Serve Allan**: abilitare Discussions sul repo, installare l'app giscus e copiare i due id da giscus.app.
-- [ ] **Analytics GA4 o privacy-friendly** — l'include gtag esiste già. **Serve Allan**: creare la property e mettere `G-XXXX` in `analytics-google`.
+- [ ] **Commenti con giscus** (#123) — `_includes/giscus.html` e il blocco `giscus:` in `_config.yml` sono pronti: l'include non renderizza nulla finché `repo-id` e `category-id` sono vuoti. **Serve Allan**: abilitare Discussions sul repo, installare l'app giscus e copiare i due id da giscus.app.
+- [ ] **Analytics GA4 o privacy-friendly** (#124) — l'include gtag esiste già. **Serve Allan**: creare la property e mettere `G-XXXX` in `analytics-google`.
 
-## v2.2 — Automazioni & Platform ✅ (6 su 9)
+## v2.2 — Automazioni & Platform ✅ (6 su 9 — milestone aperta per #128, #130, #131, #132, #133)
 
 Le automazioni che mancavano attorno al sito. Le voci ancora aperte non sono bloccate dal codice: aspettano credenziali, account esterni o una sequenza di PR da verificare una alla volta.
 
@@ -38,12 +38,12 @@ Le automazioni che mancavano attorno al sito. Le voci ancora aperte non sono blo
 - [x] **Link checker mensile** — `link-check.yml` (cron il primo del mese): html-proofer sui link **esterni**, risultato in una issue `link-rot`, workflow sempre verde. I link interni restano un gate su ogni PR in `checks.yml`.
 - [x] **Sync YouTube v2 — coordinate** — l'estrazione `recordingDetails.location` via `YOUTUBE_API_KEY` è attiva (fatta da Allan): i post video geolocalizzati finiscono da soli su `/map`.
 - [x] **Sync YouTube v2 — descrizione nel body** — `description_html` in `sync_youtube.rb` porta la descrizione completa nel corpo del post come blocco HTML **già escapato**: le descrizioni YouTube sono piene di `#hashtag`, asterischi e URL nudi, che in Markdown diventerebbero titoli, corsivi ed elenchi a caso. Link resi cliccabili, a capo conservati, taglio a 1200 caratteri.
-- [ ] **Modernizzazione stack Ruby** — merge PR Dependabot `github-pages` 211→232 (Jekyll 3.10), Ruby 3.3 nei workflow e unpin di `setup-ruby`, poi html-proofer 5.x adattando `Rakefile` e i flag in `checks.yml`. Da fare a PR separate, verificando la CI a ogni passo: non è una modifica da fare alla cieca.
-- [ ] **Setup secret Strava** — *serve Allan*: creare l'app API e configurare i tre `STRAVA_*` nei secret (guida in `deployment.md`).
-- [x] **OG image di default** — `assets/images/og-default.png` (1200×630) generata da `scripts/og_card.html` con `ruby scripts/generate_og_card.rb` (screenshot Chrome, passo manuale: la card cambia raramente e così non serve un renderer in CI). `default.html` la usa come `og:image` per tutte le pagine senza `image:`, cioè 212 post su 330 che finora venivano condivisi senza anteprima. **Resta aperto**: una card *per post* con il titolo dentro, che richiede un renderer in CI e ~200 PNG committati.
-- [ ] **Newsletter RSS-to-email** e **Webmentions** — *servono account esterni* (Buttondown/Mailchimp, brid.gy + webmention.io).
+- [ ] **Modernizzazione stack Ruby** (#128) — merge PR Dependabot `github-pages` 211→232 (Jekyll 3.10), Ruby 3.3 nei workflow e unpin di `setup-ruby`, poi html-proofer 5.x adattando `Rakefile` e i flag in `checks.yml`. Da fare a PR separate, verificando la CI a ogni passo: non è una modifica da fare alla cieca.
+- [ ] **Setup secret Strava** (#130) — *serve Allan*: creare l'app API e configurare i tre `STRAVA_*` nei secret (guida in `deployment.md`).
+- [ ] **OG image automatica** (#131) — *parzialmente fatta*. Già in repo: `assets/images/og-default.png` (1200×630) generata da `scripts/og_card.html` con `ruby scripts/generate_og_card.rb` (screenshot Chrome, passo manuale: la card cambia raramente e così non serve un renderer in CI). `default.html` la usa come `og:image` per tutte le pagine senza `image:`, cioè 212 post su 330 che finora venivano condivisi senza anteprima. **Resta aperto** lo scope vero della issue: una card *per post* con il titolo dentro, che richiede un renderer in CI e ~200 PNG committati.
+- [ ] **Newsletter RSS-to-email** (#132) e **Webmentions** (#133) — *servono account esterni* (Buttondown/Mailchimp, brid.gy + webmention.io).
 
-## v2.3 — Design & UI (restyling del template) ✅
+## v2.3 — Design & UI (restyling del template) ✅ (milestone chiusa)
 
 Restyling grafico del tema Indigo, che era rimasto quello originale (pensato per sfondo chiaro) con sopra le pezze di `_sass/components/polish.sass`. Fatto nell'ordine giusto: **token e tipografia prima**, componenti dopo — le fondamenta valgono anche per il light mode di v3.0. Verificato con build Ruby 3.0.7, html-proofer interno (359 file, 0 failure) e Lighthouse locale: **performance 99–100, accessibility 100, best-practices 100, SEO 100** sulle pagine strutturali (`/tags` a 92 di performance per il peso della pagina).
 
@@ -61,7 +61,7 @@ Restyling grafico del tema Indigo, che era rimasto quello originale (pensato per
 
 Extra emersi durante il lavoro: `name:` mancante in `_config.yml` (hero, brand e footer stampavano una stringa vuota), breakpoint `$mobile` spostato da 400px a **560px** (i telefoni stanno fra 390 e 430 CSS px e finivano nel layout tablet), `Rakefile` allineato ai flag di `checks.yml` + task `rake test_internal`.
 
-## v2.4 — Motion & visual polish (il sito che si muove) ✅
+## v2.4 — Motion & visual polish (il sito che si muove) ✅ (milestone chiusa)
 
 Secondo giro di design, dopo le fondamenta di v2.3. Rilasciato come **v2.1.0**. Ogni effetto è progressive enhancement: dietro `@supports`/`@media`, quindi dove il browser non conosce la tecnica l'elemento è già al suo posto, mai invisibile. Gate finali: **accessibility 100, best-practices 100, SEO 100** ovunque, performance 99–100 (`/tags` 91).
 
@@ -81,10 +81,12 @@ Due trappole trovate durante il lavoro, ora documentate: i commenti `//` negli s
 
 ## v3.0 — Big rocks
 
-- [ ] **Migrazione video LFS → YouTube** — caricare su YouTube i ~39 `.MOV` (`assets/video/`, serviti via `github.com/raw` con quota banda LFS 1 GB/mese), sostituire gli embed, rimuovere `assets/video/` (−700 MB). Opzionale: BFG sulla history (force-push, per ultima).
-- [ ] **Light mode / toggle tema** — il tema è già **scuro** (`$background: #050505` in `_sass/base/variables.sass`); manca una palette chiara e un toggle `prefers-color-scheme`. **Dipende dai design token di v2.3**: con i colori esposti come custom properties il light mode è una ridefinizione di `:root`, senza token va riscritto ogni file `.sass`. NB: essendo scuro, ogni nuovo stile va verificato per contrasto (es. `strong`/`code` avevano colori pensati per sfondo chiaro → testo invisibile, corretto).
-- [ ] **Ottimizzazione immagini automatica** — WebP/AVIF con fallback, `srcset` responsivo, job CI che comprime le immagini nuove sopra soglia.
-- [ ] **PWA** — manifest + service worker: sito installabile e leggibile offline.
+Milestone `v3.0` creata su GitHub con le quattro issue qui sotto. Sono le uniche voci di **codice** ancora aperte nel backlog: tutto ciò che resta in v2.1/v2.2 aspetta credenziali o account esterni (vedi sopra). Nota: queste issue sono state create a mano, non da `bootstrap-milestone.yml` — quel workflow copre solo le voci v2.x che ha generato.
+
+- [ ] **Migrazione video LFS → YouTube** (#136) — caricare su YouTube i ~39 `.MOV` (`assets/video/`, serviti via `github.com/raw` con quota banda LFS 1 GB/mese), sostituire gli embed con la facade, rimuovere `assets/video/` (−700 MB). Sono i 34 warning di `validate_posts.rb` sui video via URL raw. **Serve Allan** per il caricamento; la sostituzione degli embed è scriptabile sul modello di `scripts/migrate_youtube_embeds.rb`. Opzionale: BFG sulla history (force-push, per ultima).
+- [ ] **Light mode / toggle tema** (#137) — il tema è già **scuro** (`--color-bg: #050505` in `_sass/base/tokens.scss`); manca una palette chiara e un toggle `prefers-color-scheme`. **Sbloccata dai design token di v2.3**: con i colori esposti come custom properties il light mode è una ridefinizione di `:root`, senza token andrebbe riscritto ogni file `.sass`. Da rifare in versione chiara anche `syntax.sass` e i chip `code`, riscritti scuri in v2.3. Ogni coppia va verificata per contrasto **su entrambi i temi**.
+- [ ] **Ottimizzazione immagini automatica** (#138) — WebP/AVIF con fallback, `srcset` responsivo, job CI che comprime le immagini nuove sopra soglia. Innesto naturale: `_plugins/lazy_images.rb`, che gira già a build time. Le thumbnail YouTube (`i.ytimg.com`) sono remote e restano fuori scope.
+- [ ] **PWA** (#139) — manifest + service worker: sito installabile e leggibile offline. Da calibrare su 330 post: precache dello shell, runtime cache per i post, e **non** cachare `search.json` che è rigenerato a ogni build.
 
 ## ✅ Fatte
 
