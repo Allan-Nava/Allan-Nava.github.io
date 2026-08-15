@@ -25,7 +25,7 @@ Domain-aware infrastructure health checks in one Go binary — TLS expiry, HTTP,
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
-- **Stars**: 5
+- **Stars**: 6
 - **Ultimo push**: 2026-08-09
 
 [Repo su GitHub →](https://github.com/Allan-Nava/checkfleet)
