@@ -10,12 +10,35 @@ permalink: /map/
 <div id="trip-map" style="width: 100%; height: 480px; border-radius: 6px; margin: 1.5em 0;"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
+{%- comment -%}
+ATTENZIONE, due trappole di `jemoji` che hanno già rotto questa pagina.
+
+jemoji gira DOPO Liquid, sull'HTML finito, e **non salta il contenuto degli
+`<script>`** (ignora solo pre/code/tt, e la pipeline è cablata nel gem: non c'è
+un'opzione per aggiungere `script`). Se nella pagina compare un solo shortcode
+tipo `:video_camera:` — e 10 post ce l'hanno nel titolo — succedono due cose:
+
+1. lo shortcode dentro la stringa JS diventa `<img class="emoji" …>`, e le sue
+   virgolette doppie chiudono la stringa: "Unexpected identifier", mappa morta;
+2. per sostituirlo jemoji ri-parsa e ri-serializza TUTTO il documento con
+   Nokogiri, che nel frattempo scambia per markup le stringhe HTML dentro il JS
+   e ne riscrive gli attributi — `'<a href="' + s.url + '">'` diventava
+   `'<a href="'%20+%20s.url%20+%20'">'`.
+
+Di qui le due contromisure qui sotto:
+
+- i due punti dei titoli escono come `\u003a`, che in JS vale `:` ma non fa
+  scattare il pattern di jemoji: senza match, il documento non viene nemmeno
+  ri-parsato, e cade anche il problema 2;
+- il popup si costruisce con il DOM invece che concatenando HTML, così non
+  restano stringhe che Nokogiri possa scambiare per tag.
+{%- endcomment -%}
 <script>
     var spots = [
     {% for post in site.posts %}
         {% if post.lat and post.lng %}
         {
-            title: {{ post.title | jsonify }},
+            title: {{ post.title | jsonify | replace: ":", "\u003a" }},
             url: {{ post.url | prepend: site.url | jsonify }},
             date: {{ post.date | date: "%d %b %Y" | jsonify }},
             lat: {{ post.lat }},
@@ -26,10 +49,16 @@ permalink: /map/
     ];
 
     (function () {
+        var host = document.getElementById('trip-map');
+        if (!host) return;
+
         if (!spots.length) {
-            document.getElementById('trip-map').outerHTML = '<p>Nessun post geolocalizzato (ancora).</p>';
+            var empty = document.createElement('p');
+            empty.textContent = 'Nessun post geolocalizzato (ancora).';
+            host.parentNode.replaceChild(empty, host);
             return;
         }
+
         var map = L.map('trip-map', { scrollWheelZoom: false });
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 17,
@@ -38,8 +67,20 @@ permalink: /map/
 
         var bounds = [];
         spots.forEach(function (s) {
-            L.marker([s.lat, s.lng]).addTo(map)
-                .bindPopup('<a href="' + s.url + '">' + s.title + '</a><br><small>' + s.date + '</small>');
+            var box = document.createElement('div');
+
+            var link = document.createElement('a');
+            link.href = s.url;
+            link.textContent = s.title;
+            box.appendChild(link);
+
+            box.appendChild(document.createElement('br'));
+
+            var when = document.createElement('small');
+            when.textContent = s.date;
+            box.appendChild(when);
+
+            L.marker([s.lat, s.lng]).addTo(map).bindPopup(box);
             bounds.push([s.lat, s.lng]);
         });
         map.fitBounds(bounds, { padding: [30, 30], maxZoom: 10 });
