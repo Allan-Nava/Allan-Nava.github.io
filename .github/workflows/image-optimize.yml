@@ -1,6 +1,6 @@
 # Due generatori di immagini che il build non può fare da sé, in un workflow solo:
-#   - varianti WebP responsive delle immagini in assets/images (#138), servite
-#     dal <picture> di _plugins/responsive_images.rb;
+#   - varianti WebP e AVIF responsive delle immagini in assets/images (#138),
+#     servite dal <picture> di _plugins/responsive_images.rb;
 #   - card social per-post in assets/images/og (#131), servite da
 #     _plugins/og_image.rb. Servono ai post progetto, che github-sync crea ogni
 #     ora: finché la card non c'è si ricade sulla card generica.
@@ -45,13 +45,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install encoders
-        # `webp` porta cwebp; imagemagick serve a generate_og_cards.rb per il
-        # PNG->JPEG (in locale lo fa `sips`, che su Linux non esiste). Chrome è
-        # già preinstallato sui runner ubuntu.
-        # avifenc (libavif-bin) NON è installato: lo script genererebbe AVIF solo
-        # alle larghezze native e il percorso non è mai stato provato — vedi la
-        # nota in scripts/optimize_images.rb.
-        run: sudo apt-get update && sudo apt-get install -y webp imagemagick
+        # `webp` porta cwebp (varianti WebP); `ffmpeg` fa gli AVIF, scalandoli
+        # nello stesso passo — avifenc non ridimensiona e non servirebbe;
+        # `imagemagick` serve a generate_og_cards.rb per il PNG->JPEG (in locale
+        # lo fa `sips`, che su Linux non esiste). Chrome è già preinstallato sui
+        # runner ubuntu.
+        run: sudo apt-get update && sudo apt-get install -y webp ffmpeg imagemagick
 
       - name: Generate variants
         run: ruby scripts/optimize_images.rb

@@ -2,15 +2,15 @@
 # Genera le varianti moderne e responsive delle immagini in assets/images (#138).
 #
 # Per ogni JPEG/PNG sopra soglia produce, accanto all'originale:
-#   nome-<w>.webp      una per ogni breakpoint più piccolo della nativa
-#   nome.webp          solo se l'originale è già più stretto del breakpoint massimo
+#   nome-<w>.webp / nome-<w>.avif   una coppia per ogni breakpoint più stretto della nativa
+#   nome.webp / nome.avif           solo se l'originale è già più stretto del breakpoint massimo
 #
-# ATTENZIONE, AVIF: il ramo `avifenc` esiste ma **non è mai stato eseguito** —
-# l'encoder non era disponibile in fase di sviluppo e il workflow
-# image-optimize.yml non lo installa. Inoltre avifenc non ridimensiona, quindi
-# oggi produrrebbe AVIF solo alle larghezze native, cioè quasi mai. Il plugin
-# `_plugins/responsive_images.rb` è già pronto a servirli quando i file
-# esisteranno: prima di fidarsi, va provato su qualche immagine vera.
+# AVIF con **ffmpeg**, non con `avifenc`: avifenc non ridimensiona, quindi
+# avrebbe potuto produrre solo le larghezze native (cioè quasi mai, visto che si
+# scarta tutto quello che supera 1440px). ffmpeg scala e codifica in un passo.
+# Misurato su una foto reale a 960px: WebP q82 = 60 KB, AVIF crf 32 = 32 KB, a
+# parità di resa visiva. `-cpu-used 4` dimezza abbondantemente il tempo (1.8s ->
+# 0.7s) senza cambiare di un byte il risultato; da 6 in su inizia a perderci.
 #
 # L'originale NON viene toccato: resta il fallback dentro <picture>, che è quello
 # che `_plugins/responsive_images.rb` costruisce a build time leggendo quali
@@ -24,7 +24,8 @@
 #
 # Uso: ruby scripts/optimize_images.rb
 #   env THRESHOLD_KB  — ignora i file più leggeri di così (default 150)
-#   env QUALITY       — qualità webp/avif (default 82)
+#   env QUALITY       — qualità webp, 0-100 (default 82)
+#   env AVIF_CRF      — qualità avif, più basso = migliore (default 32)
 #   env WIDTHS        — breakpoint, separati da virgola (default 480,960,1440).
 #                       Misurati, non dedotti: il browser non mira alla larghezza
 #                       CSS dello slot (~700px) ma a slot × DPR, quindi su mobile
@@ -44,6 +45,8 @@ ROOT = File.expand_path('..', __dir__)
 IMAGES = File.join(ROOT, 'assets', 'images')
 THRESHOLD = Integer(ENV.fetch('THRESHOLD_KB', '150')) * 1024
 QUALITY = Integer(ENV.fetch('QUALITY', '82'))
+AVIF_CRF = Integer(ENV.fetch('AVIF_CRF', '32'))
+AVIF_CPU = Integer(ENV.fetch('AVIF_CPU', '4'))
 WIDTHS = ENV.fetch('WIDTHS', '480,960,1440').split(',').map { |w| Integer(w.strip) }.sort
 DRY_RUN = !ENV['DRY_RUN'].to_s.empty?
 FORCE = !ENV['FORCE'].to_s.empty?
@@ -57,7 +60,7 @@ def tool?(name)
 end
 
 HAVE_WEBP = tool?('cwebp')
-HAVE_AVIF = tool?('avifenc')
+HAVE_AVIF = tool?('ffmpeg')
 
 # --- dimensioni senza dipendenze --------------------------------------------
 # Serve solo la larghezza, per non generare varianti più grandi dell'originale
@@ -106,31 +109,51 @@ end
 
 # --- encoder ----------------------------------------------------------------
 
-def run(cmd)
+# Un encoder che fallisce lascia comunque il file di output, vuoto. Se non lo si
+# cancella, al giro successivo `stale?` lo vede esistere e non lo rigenera mai
+# più: il sito finirebbe per servire un'immagine da 0 byte dentro il srcset.
+# Ed è successo davvero: 4 encode AVIF su 158 sono falliti, tutti e 4 riusciti
+# al rilancio con gli stessi identici parametri. Sono transitori (pressione di
+# risorse durante il batch), quindi si ritenta una volta prima di arrendersi.
+def run(cmd, output, attempts: 2)
   return true if DRY_RUN
 
-  ok = system(*cmd, out: File::NULL, err: File::NULL)
-  warn "  ! encoder fallito: #{cmd.first}" unless ok
-  ok
+  attempts.times do |i|
+    ok = system(*cmd, out: File::NULL, err: File::NULL)
+    ok &&= File.exist?(output) && File.size(output).positive?
+    return true if ok
+
+    File.delete(output) if File.exist?(output)
+    warn "  ~ ritento #{File.basename(output)}" if i + 1 < attempts
+  end
+
+  warn "  ! encoder fallito (#{cmd.first}): #{File.basename(output)}"
+  false
 end
 
 def encode_webp(src, dst, width)
   cmd = ['cwebp', '-quiet', '-q', QUALITY.to_s]
   cmd += ['-resize', width.to_s, '0'] if width
   cmd += [src, '-o', dst]
-  run(cmd)
+  run(cmd, dst)
 end
 
 def encode_avif(src, dst, width)
-  # avifenc non ridimensiona: le varianti per larghezza le fa solo il webp.
-  return false if width
-
-  run(['avifenc', '--min', '0', '--max', '40', '-a', "end-usage=q", '-a', "cq-level=#{(100 - QUALITY) / 2}",
-       src, dst])
+  cmd = ['ffmpeg', '-y', '-hide_banner', '-loglevel', 'error', '-i', src]
+  # `-2` e non `-1`: l'altezza deve restare pari, altrimenti yuv420p rifiuta.
+  cmd += ['-vf', "scale=#{width}:-2"] if width
+  cmd += ['-c:v', 'libaom-av1', '-crf', AVIF_CRF.to_s, '-cpu-used', AVIF_CPU.to_s,
+          '-still-picture', '1', '-pix_fmt', 'yuv420p', dst]
+  run(cmd, dst)
 end
 
+# Un file da 0 byte è il residuo di un encode fallito: va considerato mancante,
+# altrimenti resta rotto per sempre.
 def stale?(dst, src)
-  FORCE || !File.exist?(dst) || File.mtime(dst) < File.mtime(src)
+  return true if FORCE || !File.exist?(dst)
+  return true if File.size(dst).zero?
+
+  File.mtime(dst) < File.mtime(src)
 end
 
 # --- giro principale --------------------------------------------------------
@@ -138,11 +161,11 @@ end
 abort "Cartella non trovata: #{IMAGES}" unless Dir.exist?(IMAGES)
 
 unless HAVE_WEBP || HAVE_AVIF
-  abort "Nessun encoder disponibile. Installa almeno cwebp:\n" \
-        "  macOS: brew install webp\n  Debian/Ubuntu: apt-get install webp"
+  abort "Nessun encoder disponibile. Serve almeno cwebp (webp) o ffmpeg (avif):\n" \
+        "  macOS: brew install webp ffmpeg\n  Debian/Ubuntu: apt-get install webp ffmpeg"
 end
 
-puts "encoder: webp=#{HAVE_WEBP ? 'cwebp' : 'assente'} avif=#{HAVE_AVIF ? 'avifenc' : 'assente'}"
+puts "encoder: webp=#{HAVE_WEBP ? 'cwebp' : 'assente'} avif=#{HAVE_AVIF ? "ffmpeg crf #{AVIF_CRF}" : 'assente'}"
 puts "soglia: #{THRESHOLD / 1024} KB · qualità: #{QUALITY} · larghezze: #{WIDTHS.join(', ')}"
 puts
 
@@ -171,6 +194,7 @@ sources.each do |src|
     next if native && w >= native
 
     targets << [w, "#{base}-#{w}.webp", :webp]
+    targets << [w, "#{base}-#{w}.avif", :avif]
   end
 
   # La variante alla larghezza nativa si genera SOLO se l'originale è già più
@@ -179,7 +203,7 @@ sources.each do |src|
   # display a DPR 2 arriverebbe a chiedere più di 1440px.
   if native.nil? || native <= WIDTHS.max
     targets << [nil, "#{base}.webp", :webp]
-    targets << [nil, "#{base}.avif", :avif] if HAVE_AVIF
+    targets << [nil, "#{base}.avif", :avif]
   end
 
   did = []

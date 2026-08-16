@@ -40,7 +40,7 @@ JEKYLL_ENV=production bundle exec jekyll build   # what CI runs
 ```bash
 ruby scripts/validate_posts.rb   # fast content check: front matter, dates, titles, asset files (stdlib only)
 ruby scripts/check_contrast.rb   # WCAG contrast of the palette, on both themes (stdlib only)
-ruby scripts/optimize_images.rb  # WebP variants for new images (needs cwebp; DRY_RUN=1 to preview)
+ruby scripts/optimize_images.rb  # WebP+AVIF variants for new images (needs cwebp and ffmpeg; DRY_RUN=1)
 ruby scripts/generate_pwa_icons.rb  # regenerate the installable-app icons (needs Chrome)
 ruby scripts/generate_og_cards.rb   # per-post social cards (needs Chrome; LIMIT=5/DRY_RUN=1)
 rake test                        # builds the site, then reports 4xx broken links/images (html-proofer)
