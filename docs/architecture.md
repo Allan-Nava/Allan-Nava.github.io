@@ -14,7 +14,7 @@ about.md          ─┘
 ```
 
 - `_layouts/compress.html` minifies the final HTML at build time (pure Liquid, from [jekyll-compress-html](https://github.com/penibelst/jekyll-compress-html)).
-- `_layouts/default.html` builds the `<head>` (Google Analytics when `analytics-google` is set, `jekyll-seo-tag`, favicon, RSS feed) and **inlines all CSS**: it captures `_includes/style.scss` and runs it through `scssify`. There is no separate CSS file in the output — to change styles, edit the partials in `_sass/` and they get picked up through `style.scss`.
+- `_layouts/default.html` builds the `<head>` (`<meta charset>` first, then Google Analytics when `analytics-google` is set, `jekyll-seo-tag`, favicon, RSS feed) and **inlines all CSS**: it captures `_includes/style.scss` and runs it through `scssify`. There is no separate CSS file in the output — to change styles, edit the partials in `_sass/` and they get picked up through `style.scss`.
 - `_layouts/default.html` renders the navigation (`_includes/nav.html`) **outside** the content wrapper and wraps the content in `<main id="content">`, the landmark the skip-link points to. The nav is a **floating glass island**: the sticky strip spans the viewport (so it can stick) but is `pointer-events: none`, and only the centred pill inside it is interactive — otherwise an invisible full-width bar would swallow clicks on the content scrolling underneath.
 - The **home page is built in `index.html`**, not in `_includes/header.html`: an editorial opening (statement, metrics, curated sections, contact) rather than the theme's avatar hero. `header.html` now only renders the compact heading of Blog/Projects/Tags. Edit the opening copy in `index.html`.
 - `_layouts/page.html` adds the hero/page header; `_layouts/post.html` wraps the article in `.post-article` (header, table-of-contents slot, `.post-content`), then prev/next navigation, related posts, author block, and (if configured) Disqus comments.
@@ -83,6 +83,23 @@ Things that are the way they are for a measured reason:
 - **AVIF is not done.** The plugin already emits an `image/avif` source when the files exist, and the script has an `avifenc` branch, but **that branch has never been executed** and the workflow doesn't install the encoder. `avifenc` also can't resize, so as written it would only produce AVIF for images already narrower than 1440px. Treat it as a stub.
 
 One honest caveat about Lighthouse on image-heavy posts: the performance score can *drop* after this change. Before, a 1 MB photo never finished painting inside the measurement window, so LCP fell back to the page title (~1.5 s); now the photo actually appears and becomes the LCP element (~5.5 s median on simulated mobile). The page delivers 4× fewer bytes — the metric just stopped flattering it. Individual posts are not in the Lighthouse CI url list, so no gate depends on this.
+
+## Analytics
+
+Off today: `analytics-google` is commented out in `_config.yml`, so `_includes/analytics-google.html` renders nothing and the site collects no data at all. The old Universal Analytics property stopped collecting in July 2023.
+
+Turning it on is one line — create a GA4 property, add a web data stream for `https://allan-nava.github.io`, and paste the `G-XXXXXXXXXX` measurement ID into `analytics-google`. The steps are spelled out in the `_config.yml` comment.
+
+The include is not the stock gtag snippet. It builds the `<script>` tag itself so it can decide **not** to, behind two guards:
+
+- **Hostname** — nothing is sent from `localhost`, `127.0.0.1`, `0.0.0.0` or an empty host. Otherwise every `jekyll serve`, every Lighthouse CI run and every smoke test would land in the data as real traffic; on a site with modest numbers that noise would be a large share of the total.
+- **Do Not Track / Global Privacy Control** — respected. It lowers the counts, and it is a deliberate choice: drop `trackingAllowed()` from the condition to disable it. Note this is *not* a consent banner; if one is ever needed, the place to hook a consent manager is right before the script is appended.
+
+Measured before wiring it up, with a dummy ID: enabling GA4 leaves Lighthouse at **100 on all four categories** for the gated pages, so no CI gate is at risk. The two audits that do degrade (`uses-long-cache-ttl`, `unused-javascript`) are diagnostics with no weight in the score.
+
+`<meta charset>` is emitted **before** the analytics include: the spec wants it as early as possible, and a `<script>` in front of it pushes it back for no benefit — the analytics script loads itself asynchronously and does not need to be first.
+
+An `analytics-piwik.html` include also exists, unused and unreferenced by any config key.
 
 ## Social preview (og:image)
 
@@ -175,7 +192,7 @@ Feature toggles read by layouts and includes:
 | `width` | Content width: `normal` (`--width-normal`, 640px) or `large` (`--width-large`, 880px). |
 | `name` | Signature printed by the templates (hero title, nav brand, footer). Distinct from `title`; when it was missing those strings rendered empty. |
 | `paginate`, `paginate_path` | Blog pagination — currently commented out, so `/blog` lists everything. |
-| `analytics-google` | Google Analytics ID; the include is only rendered when set. |
+| `analytics-google` | GA4 measurement ID (`G-XXXXXXXXXX`). Commented out today, so nothing is collected; the include only renders when it is set. See "Analytics". |
 
 Social handles (`github`, `instagram`, `linkedin`, `youtube`, `twitter`, `dev`) feed `_includes/social-links.html`. The `authors:` map defines the author block data; post `author` fields must reference a key in it.
 
