@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Gallipoli 2019"
 category: blog
 author: allan
+lat: 40.0547
+lng: 17.9758
 ---
 
 ## Gallipoli 2019

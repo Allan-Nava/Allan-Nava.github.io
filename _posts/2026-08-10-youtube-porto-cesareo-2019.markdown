@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Porto Cesareo 2019 🌊"
 category: blog
 author: allan
+lat: 40.2628
+lng: 17.8984
 ---
 
 ## Porto Cesareo 2019 🌊

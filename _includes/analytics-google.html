@@ -1,8 +1,49 @@
-<!-- Google Analytics (GA4 / gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics-google }}"></script>
+{%- comment -%}
+Google Analytics 4 (gtag.js). Renderizzato solo se `analytics-google` è
+valorizzato in _config.yml (il controllo lo fa _layouts/default.html), quindi
+finché la chiave è commentata questo file non produce nulla.
+
+Due guardie prima di caricare lo script, entrambe volute:
+
+1. HOSTNAME — niente statistiche da localhost/127.0.0.1. Senza, ogni
+   `jekyll serve`, ogni run di Lighthouse CI e ogni smoke test finirebbero nei
+   dati come traffico vero, su un sito che di visite ne ha poche: il rumore
+   sarebbe una frazione enorme del totale.
+2. DNT / GPC — si rispetta "Do Not Track" e Global Privacy Control. Riduce i
+   numeri, ed è una scelta: per toglierla basta eliminare `trackingAllowed()`
+   dalla condizione sotto.
+
+NB: questo non è un banner di consenso. GA4 senza consenso esplicito è
+discutibile sotto GDPR; se serve, il posto giusto per agganciare un consent
+manager è qui, prima di `load()`.
+
+ATTENZIONE ai commenti nello script: `_layouts/compress.html` collassa le
+newline, quindi un `//` si mangia il resto della riga e lo script muore in
+silenzio. Solo /* … */.
+{%- endcomment -%}
 <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '{{ site.analytics-google }}');
+(function () {
+  var id = '{{ site.analytics-google }}';
+  if (!id) return;
+
+  var host = location.hostname;
+  if (host === 'localhost' || host === '127.0.0.1' || host === '' || host === '0.0.0.0') return;
+
+  function trackingAllowed() {
+    if (navigator.globalPrivacyControl) return false;
+    var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+    return dnt !== '1' && dnt !== 'yes';
+  }
+  if (!trackingAllowed()) return;
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  gtag('js', new Date());
+  gtag('config', id);
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
+  document.head.appendChild(s);
+})();
 </script>

@@ -5,13 +5,19 @@ layout: compress
 <html lang="en">
 <head>
 
-    {% if site.analytics-google %}
-        {% include analytics-google.html %}
-    {% endif %}
-
+    {%- comment -%}
+    charset per primo: la specifica lo vuole il prima possibile (entro 1024
+    byte) e uno <script> davanti lo spinge più in là senza motivo. L'analytics
+    non ha bisogno di stare in cima — carica il suo script da sé, in modo
+    asincrono.
+    {%- endcomment -%}
     <meta charset="utf-8">
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
+
+    {% if site.analytics-google %}
+        {% include analytics-google.html %}
+    {% endif %}
 
     <meta name=description content="{{ site.bio }}">
     <meta name=author content="{{ site.name }}">

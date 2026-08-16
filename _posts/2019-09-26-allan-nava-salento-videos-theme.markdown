@@ -13,6 +13,8 @@ description: "Salento videos - Vlog 2019"
 category: blog
 author: allan
 externalLink: true
+lat: 40.1522
+lng: 18.2261
 ---
 
 ## :video_camera: Salento - Vlog 2019
