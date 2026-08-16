@@ -45,7 +45,12 @@ Generated posts embed the video with the `<lite-youtube>` facade (not a raw ifra
 
 ### `image-optimize.yml` — Image Optimize
 
-Weekly (`41 5 * * 1`) plus manual dispatch. Installs `webp`, runs `ruby scripts/optimize_images.rb` to generate the responsive WebP variants of any new image in `assets/images` above the threshold (default 150 KB), commits them and dispatches the deploy — same pattern as the syncs above.
+Weekly (`41 5 * * 1`) plus manual dispatch. Runs the two image generators the Jekyll build cannot do itself, commits the result and dispatches the deploy — same pattern as the syncs above:
+
+- `ruby scripts/optimize_images.rb` — responsive WebP variants of any new image in `assets/images` above the threshold (default 150 KB).
+- `ruby scripts/generate_og_cards.rb` — per-post social cards for posts that would otherwise have no preview of their own. This matters because `github-sync` creates project posts every hour; until the card exists they fall back to the generic one.
+
+It installs `webp` and `imagemagick` (Chrome is preinstalled on the runners).
 
 Deliberately **not** on every push: images are added rarely, and a job that commits binaries is worth keeping on a short leash. Run it by hand from the Actions tab right after adding images if you don't want to wait for Monday; `threshold_kb` and `force` are inputs. It does not install `avifenc`, so no AVIF is produced — see [Architecture](architecture.md#responsive-images).
 

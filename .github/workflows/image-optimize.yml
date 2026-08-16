@@ -1,6 +1,9 @@
-# Genera le varianti WebP responsive delle immagini nuove in assets/images
-# (#138) e le committa, così il <picture> costruito da
-# _plugins/responsive_images.rb ha qualcosa da servire.
+# Due generatori di immagini che il build non può fare da sé, in un workflow solo:
+#   - varianti WebP responsive delle immagini in assets/images (#138), servite
+#     dal <picture> di _plugins/responsive_images.rb;
+#   - card social per-post in assets/images/og (#131), servite da
+#     _plugins/og_image.rb. Servono ai post progetto, che github-sync crea ogni
+#     ora: finché la card non c'è si ricade sulla card generica.
 #
 # Perché un workflow separato e non un passo del build: il build di Pages gira
 # col bundle `github-pages`, che non ha encoder per le immagini. Qui invece si
@@ -42,16 +45,22 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install encoders
-        # `webp` porta cwebp. avifenc (libavif-bin) NON è installato: lo script
-        # genererebbe AVIF solo alle larghezze native e il percorso non è mai
-        # stato provato — vedi la nota in scripts/optimize_images.rb.
-        run: sudo apt-get update && sudo apt-get install -y webp
+        # `webp` porta cwebp; imagemagick serve a generate_og_cards.rb per il
+        # PNG->JPEG (in locale lo fa `sips`, che su Linux non esiste). Chrome è
+        # già preinstallato sui runner ubuntu.
+        # avifenc (libavif-bin) NON è installato: lo script genererebbe AVIF solo
+        # alle larghezze native e il percorso non è mai stato provato — vedi la
+        # nota in scripts/optimize_images.rb.
+        run: sudo apt-get update && sudo apt-get install -y webp imagemagick
 
       - name: Generate variants
         run: ruby scripts/optimize_images.rb
         env:
           THRESHOLD_KB: ${{ github.event.inputs.threshold_kb || '150' }}
           FORCE: ${{ github.event.inputs.force || '' }}
+
+      - name: Generate missing per-post OG cards
+        run: ruby scripts/generate_og_cards.rb
 
       - name: Commit and push new variants
         id: commit
@@ -64,7 +73,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets/images
-          git commit -m "Add responsive WebP variants for new images"
+          git commit -m "Add responsive WebP variants and per-post OG cards"
           git push
           echo "pushed=true" >> "$GITHUB_OUTPUT"
 

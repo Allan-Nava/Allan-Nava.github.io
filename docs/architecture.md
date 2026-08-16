@@ -84,6 +84,23 @@ Things that are the way they are for a measured reason:
 
 One honest caveat about Lighthouse on image-heavy posts: the performance score can *drop* after this change. Before, a 1 MB photo never finished painting inside the measurement window, so LCP fell back to the page title (~1.5 s); now the photo actually appears and becomes the LCP element (~5.5 s median on simulated mobile). The page delivers 4× fewer bytes — the metric just stopped flattering it. Individual posts are not in the Lighthouse CI url list, so no gate depends on this.
 
+## Social preview (og:image)
+
+Every post gets a real preview image, resolved in this order:
+
+1. its own `image:` (11 posts);
+2. the YouTube thumbnail derived from the `<lite-youtube>` facade by `_plugins/youtube_thumbnails.rb` (123 posts);
+3. a **per-post card with the title in it**, `assets/images/og/<post-filename>.jpg` (201 posts);
+4. the generic `assets/images/og-default.png`, for anything else.
+
+**The trap that made this necessary.** 315 of 335 posts carry `image: ""` in their front matter (that is what the sync scripts write). An empty string is **truthy** for `jekyll-seo-tag`, which resolved it as a relative URL and emitted `<meta property="og:image" content="https://allan-nava.github.io/">` — the site URL where an image should be. Those pages ended up with *two* `og:image` tags: the broken one from the SEO tag first, the correct fallback from `default.html` second. Scrapers read the first, so **201 project posts were being shared with a broken preview**.
+
+`_plugins/og_image.rb` fixes it by deleting the empty key before rendering, which is enough because every template already tests `post.image and post.image != ""`. It runs as a Generator at `:lowest` priority, i.e. after `youtube_thumbnails.rb` (`:low`), so video posts keep their thumbnail and never get a card.
+
+**The card goes in `page.og_card`, not `page.image`** — on purpose. `image` doubles as the listing thumbnail, so filling it would replace the generative monogram placeholders on `/blog`, `/projects` and the home page with 1200×630 social cards, downloading ~50 KB per row. `default.html` reads `og_card` only for the meta tags.
+
+Cards are named after the **post filename, date included** — not the permalink slug, because three pairs of posts share a slug (`allan-nava-padel-murat4ll`, …) and would otherwise share one card carrying the wrong date. Cards are produced by **`ruby scripts/generate_og_cards.rb`** from `scripts/og_post_card.html` (Chrome screenshot at 1200×630, title and meta passed through the query string, font size stepped down by title length) and committed. They are **JPEG, not PNG**: 49 KB average instead of ~120 KB, which over 201 posts is the difference between 9.5 MB and 24 MB in the repo. The generator is idempotent and only touches posts that would otherwise have no preview of their own. `image-optimize.yml` runs it weekly so the project posts that `github-sync` creates hourly pick up a card; until then they fall back to the generic one, which is why nothing breaks if it never runs.
+
 ## PWA (installable + offline)
 
 Three files at the repo root, all rendered by Jekyll so they can use Liquid:
@@ -116,10 +133,11 @@ Verified with a Node harness that loads the built `sw.js` into a sandbox with mo
 | `_posts/` | All content — blog posts and projects (see [Writing Content](writing-content.md)). |
 | `_layouts/` | `compress` → `default` → `page` → `post` chain described above. |
 | `_includes/` | Partials: `nav`, `footer`, `author`, `related`, `pagination`, `read-time`, `social-links`, `blog-post` (listing item), `youtube-facade` (lazy YouTube player, loaded on posts), `series` ("Part N of M" box), `giscus` (comments, inert until configured), `theme-init` (reads the saved theme in `<head>`, before first paint), `pwa` (service-worker registration), `interactions` (image fade-in, view-transition naming, spotlight, counters, copy-code, theme toggle), `projects-filter`, analytics snippets, and `style.scss` (Sass entry point). |
-| `_plugins/` | Custom build-time Ruby plugins (`lazy_images.rb`, `responsive_images.rb`, `youtube_thumbnails.rb`, `toc.rb`). These **run** — see "Custom plugins" below. |
+| `_plugins/` | Custom build-time Ruby plugins (`lazy_images.rb`, `responsive_images.rb`, `og_image.rb`, `youtube_thumbnails.rb`, `toc.rb`). These **run** — see "Custom plugins" below. |
 | `_sass/base/` | `tokens.scss` (**design tokens** + the two theme palettes, imported first), `variables.sass` (aliases Sass → token + breakpoints), `general`, `helpers`, `normalize`, `syntax` (maps Rouge classes to the `--syn-*` tokens; holds no colours of its own). |
 | `assets/fonts/` | Self-hosted variable font (Inter, latin subset, 47 KB woff2), preloaded in `default.html`. |
 | `manifest.webmanifest`, `sw.js`, `offline.html` | PWA: web app manifest, service worker (root scope, network-first HTML), offline fallback page — see "PWA". |
+| `assets/images/og/` | Per-post social cards (`<post-filename>.jpg`, 1200×630) from `ruby scripts/generate_og_cards.rb`. |
 | `assets/images/pwa/` | Installable-app icons (192/512, plus maskable) from `ruby scripts/generate_pwa_icons.rb`. |
 | `assets/images/*.webp` | Responsive WebP variants (`name-480/960/1440.webp`) generated by `ruby scripts/optimize_images.rb` and committed. Served through `<picture>` — see "Responsive images". |
 | `assets/images/og-default.png` | Social card used as `og:image` by every page without its own `image:`. Regenerate with `ruby scripts/generate_og_card.rb` after editing `scripts/og_card.html`. |

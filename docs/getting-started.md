@@ -42,6 +42,7 @@ ruby scripts/validate_posts.rb   # fast content check: front matter, dates, titl
 ruby scripts/check_contrast.rb   # WCAG contrast of the palette, on both themes (stdlib only)
 ruby scripts/optimize_images.rb  # WebP variants for new images (needs cwebp; DRY_RUN=1 to preview)
 ruby scripts/generate_pwa_icons.rb  # regenerate the installable-app icons (needs Chrome)
+ruby scripts/generate_og_cards.rb   # per-post social cards (needs Chrome; LIMIT=5/DRY_RUN=1)
 rake test                        # builds the site, then reports 4xx broken links/images (html-proofer)
 rake test_internal               # same, but skips external links (fast, and works around the crash below)
 ```

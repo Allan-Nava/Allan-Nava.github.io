@@ -20,15 +20,26 @@ layout: compress
 
     {%- comment -%}
     jekyll-seo-tag emette og:image solo se la pagina ha `image:`: senza, i link
-    condivisi arrivano senza anteprima (oggi succede a 212 post su 330). Qui si
-    mette la card di default, rigenerabile con `ruby scripts/generate_og_card.rb`.
+    condivisi arrivano senza anteprima. Qui si mette l'anteprima di riserva.
+
+    In ordine: la card **per-post** con il titolo dentro (`page.og_card`, che
+    assegna `_plugins/og_image.rb` quando il JPEG esiste in assets/images/og/),
+    altrimenti la card generica, rigenerabile con
+    `ruby scripts/generate_og_card.rb`.
+
+    Perché `og_card` e non `image`: `image` è anche la thumbnail dei listing, e
+    riempirla con una card 1200x630 rimpiazzerebbe i placeholder generativi di
+    /blog e /projects. Lo stesso plugin cancella le `image: ""`, che il seo tag
+    tratterebbe come URL relativo emettendo un og:image rotto.
+
     `twitter:card` lo lascia dichiarare al seo tag, per non emetterlo due volte.
     {%- endcomment -%}
     {% unless page.image and page.image != "" %}
-    <meta property="og:image" content="{{ site.url }}/assets/images/og-default.png">
+    {% assign og_fallback = page.og_card | default: "/assets/images/og-default.png" %}
+    <meta property="og:image" content="{{ site.url }}{{ og_fallback }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta name="twitter:image" content="{{ site.url }}/assets/images/og-default.png">
+    <meta name="twitter:image" content="{{ site.url }}{{ og_fallback }}">
     {% endunless %}
     
     {% include favicon.html %}
