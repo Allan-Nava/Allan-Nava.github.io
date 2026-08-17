@@ -3,6 +3,7 @@ layout: page
 title: Stats
 permalink: /stats/
 description: "Posts per year, most used tags and totals for the site, counted at build time."
+subtitle: "What this site is made of, counted at build time."
 ---
 
 {%- comment -%}
@@ -10,11 +11,6 @@ Statistiche del sito, calcolate in Liquid a build time: nessun servizio
 esterno, nessun JS. Le barre sono div con una larghezza percentuale, quindi
 funzionano anche senza JavaScript e senza immagini.
 {%- endcomment -%}
-<header class="page-header">
-    <h1 class="title">Stats</h1>
-    <p class="subtitle">What this site is made of, counted at build time.</p>
-</header>
-
 {% assign blogPosts = site.posts | where: "category", "blog" %}
 {% assign blogPosts = blogPosts | where_exp: "p", "p.hidden != true" %}
 {% assign projectPosts = site.posts | where: "projects", true %}

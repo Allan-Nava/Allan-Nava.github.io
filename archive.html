@@ -3,6 +3,7 @@ layout: page
 title: Archive
 permalink: /archive/
 description: "Every post on the site, grouped by year."
+subtitle: "Every post, by year."
 ---
 
 {%- comment -%}
@@ -10,11 +11,6 @@ Archivio per anno, Liquid puro: nessun plugin, nessun JS. I progetti generati
 dal sync GitHub restano fuori (hanno `hidden: true`), altrimenti la lista
 diventerebbe un elenco di repository.
 {%- endcomment -%}
-<header class="page-header">
-    <h1 class="title">Archive</h1>
-    <p class="subtitle">Every post, by year.</p>
-</header>
-
 {% assign posts = site.posts | where_exp: "p", "p.hidden != true" %}
 {% assign years = posts | group_by_exp: "p", "p.date | date: '%Y'" %}
 

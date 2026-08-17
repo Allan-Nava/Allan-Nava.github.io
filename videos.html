@@ -4,6 +4,7 @@ title: Videos
 wide: true
 permalink: /videos/
 description: "Every video post from the YouTube channel, newest first."
+subtitle: "Everything from the YouTube channel, newest first."
 ---
 
 {%- comment -%}
@@ -11,10 +12,6 @@ Galleria dei post che contengono un video. La thumbnail arriva da `image:`,
 riempita a build time da _plugins/youtube_thumbnails.rb a partire dal videoid
 della facade: qui non serve nessuna chiamata a YouTube.
 {%- endcomment -%}
-<header class="page-header">
-    <h1 class="title">Videos</h1>
-    <p class="subtitle">Everything from the YouTube channel, newest first.</p>
-</header>
 
 {% assign videoPosts = site.posts | where_exp: "p", "p.content contains 'lite-youtube'" %}
 

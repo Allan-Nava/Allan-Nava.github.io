@@ -5,23 +5,31 @@
 %}{% assign showHeader = true %}{% endif %}
 
 {%- comment -%}
-Intestazione delle pagine indice. La Home non passa di qui: la sua apertura
-editoriale (dichiarazione + numeri + sezioni curate) vive in index.html, che è
-il posto giusto dove modificarla. Qui resta solo l'intestazione compatta di
-Blog/Projects/Tags. La nav sta in _layouts/default.html.
+Intestazione delle pagine: `<h1>` + sottotitolo opzionale (`subtitle:` nel front
+matter). Vale per ogni pagina che passa da _layouts/page.html, tranne la Home —
+la sua apertura editoriale (dichiarazione + numeri + sezioni curate) vive in
+index.html, che è il posto giusto dove modificarla. La nav sta in
+_layouts/default.html.
 
-`showHeader` serve comunque anche alla Home: _layouts/default.html lo legge per
-scegliere la classe del wrapper (`.home` invece di `.page home`).
+Prima l'`<h1>` usciva solo per quattro titoli cablati qui (Blog/Projects/Tags),
+mentre quattro pagine se lo disegnavano da sé e **cinque restavano senza**:
+/about, /map, /fitness, /gear e /offline arrivavano al lettore e allo screen
+reader senza titolo di primo livello (#150). Ora il titolo lo mette questo
+include per tutte, e c'è un posto solo dove cambiarlo.
+
+`custom_header: true` è la via d'uscita per chi ha un'intestazione irriducibile:
+la usa solo la 404, che sopra al titolo mostra il numerone e il cui `<h1>` non è
+il `title:` della pagina.
+
+`showHeader` NON governa più il titolo: resta perché _layouts/default.html lo
+legge per scegliere la classe del wrapper (`.blog` invece di `.page blog`) —
+toccarlo qui cambierebbe il CSS di quelle quattro pagine.
 {%- endcomment -%}
-{% if showHeader == true and page.title != "Home" %}
+{% if page.title != "Home" and page.custom_header != true %}
     <header class="page-header">
         <h1 class="title">{{ page.title }}</h1>
-        {% if page.title == "Blog" %}
-            <p class="subtitle">Posts, notes and videos from the channel.</p>
-        {% elsif page.title == "Projects" %}
-            <p class="subtitle">Repositories, tools and side projects.</p>
-        {% elsif page.title == "Tags" %}
-            <p class="subtitle">Every topic on the blog.</p>
+        {% if page.subtitle %}
+            <p class="subtitle">{{ page.subtitle }}</p>
         {% endif %}
     </header>
 {% endif %}

@@ -1,42 +1,39 @@
 ---
 layout: page
 title: Gear
+subtitle: "The kit behind the posts — what I actually use, not a wish list."
 permalink: /gear/
 ---
 
-L'attrezzatura che uso per le cose di cui scrivo qui: montagna, palestra e sviluppo.
+Only things I own and have used long enough to have an opinion about. Where there's
+a post or a video about one, it's linked.
 
-## 🥾 Hiking & Trekking
+## 🥾 Hiking & trekking
 
-- **Salomon XT Pathway** — le mie scarpe da trail/hike ([unboxing]({{ site.url }}/blog/2024/04/23/allan-nava-unboxing-salomon-xt-pathway.html))
-<!-- - **Zaino** — ... -->
-<!-- - **Bastoncini** — ... -->
+- **Salomon XT Pathway** — trail and hike shoes
+  ([unboxing]({{ site.url }}/blog/2024/04/23/allan-nava-unboxing-salomon-xt-pathway.html))
 
-## 🧗 Climbing
+## 🏋🏽 Gym
 
-<!-- - **Imbrago** — ... -->
-<!-- - **Scarpette** — ... -->
-<!-- - **Set da ferrata** — ... -->
-
-## 🏂 Snowboard
-
-<!-- - **Tavola** — ... -->
-<!-- - **Attacchi / Boots** — ... -->
-
-## 🏋🏽 Palestra
-
-- Cintura per zavorra — dips e trazioni zavorrate (PR su [/fitness]({{ site.url }}/fitness/))
-
-## 💻 Dev setup
-
-<!-- - **Laptop** — ... -->
-<!-- - **Editor** — ... -->
-<!-- - **Tastiera / Mouse** — ... -->
+- **Weighted dip belt** — for weighted dips and pull-ups (the PRs are on
+  [/fitness]({{ site.url }}/fitness/))
 
 ## 👟 Lifestyle
 
-- **Nike Air Force 1** ([unboxing]({{ site.url }}/blog/2024/12/04/allan-nava-air-force-1-unboxing.html))
+- **Nike Air Force 1 '07 Fresh** — ([unboxing]({{ site.url }}/blog/2024/12/04/allan-nava-air-force-1-unboxing.html))
 
----
+{%- comment -%}
+Da compilare quando c'è l'attrezzatura vera davanti, con marca e modello.
+Finché una voce non è reale, **non** va messa qui: prima questa pagina aveva tre
+sezioni con il solo titolo (Climbing, Snowboard, Dev setup), dieci voci
+commentate nel sorgente contro due attive, e in fondo dichiarava al lettore di
+essere in costruzione (#150). Meglio corta e vera che lunga e vuota.
 
-*Pagina in costruzione: le voci commentate nel sorgente aspettano di essere compilate.*
+- Climbing: imbrago, scarpette, set da ferrata (ci sono i video della Gamma 1 e
+  delle falesie a cui agganciarle)
+- Snowboard: tavola, attacchi, boots
+- Dev setup: laptop, editor, tastiera
+
+La pagina è fuori dalla nav: `gear: false` in _config.yml. Quando le sezioni
+sono piene, il flag va messo a `true` — è l'unica cosa che la rimette nel menu.
+{%- endcomment -%}

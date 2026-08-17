@@ -79,6 +79,23 @@ Notes:
 - Emoji shortcodes (e.g. `:smile:`) work everywhere thanks to the `jemoji` plugin.
 - Workout PRs shown on `/fitness` live in `_data/workouts.yml` — add a record (date, kg, optional post URL) whenever a PR falls.
 
+## Standalone pages
+
+Pages outside `_posts/` (`about.md`, `gear.md`, `map.html`, `videos.html`, …) use `layout: page` and get their heading from `_includes/header.html`:
+
+| Field | Type | Effect |
+|---|---|---|
+| `title` | string | Rendered as the page `<h1>`. Every page needs one. |
+| `subtitle` | string | Optional line under the title, inside the same `<header class="page-header">`. |
+| `custom_header` | bool | Opts out of the automatic heading, for a page that builds its own. Only `404.html` uses it: its `<h1>` is not the `title:` and it shows the big "404" above. |
+| `permalink` | path | The page URL. Use the trailing-slash form (`/gear/`) — it is what all pages but `tags.html` and `projects.html` do (#159). |
+| `wide` | bool | Widens the container to `--width-listing` for pages that show a grid instead of running text. |
+| `sitemap` | bool | `false` keeps the page out of `sitemap.xml` (used by `/offline/`). |
+
+Do **not** write a `<header class="page-header">` by hand: the include does it for every page, and a hand-rolled one produces a second `<h1>`. That heading used to come from a hard-coded list of four titles, which left `/about`, `/map`, `/fitness`, `/gear` and `/offline` with **no `<h1>` at all** (#150).
+
+Some pages are behind a toggle in `_config.yml` (`map`, `fitness`, `gear`, `archive`, `videos`, `stats`, `search`): the flag drives the nav and footer links, not the page, which is built and published either way. `gear: false` and `fitness: false` today, so those two are reachable only by direct URL.
+
 ## Media
 
 - **Images**: put them in `assets/images/` and reference them with a root-relative path (`/assets/images/foo.jpg`). Don't hotlink repo files through `github.com/...?raw=true` — it adds a redirect on every load and breaks local previews. Resize photos to ~1600px width before committing; multi-MB camera originals slow the site down for nothing.
