@@ -110,7 +110,7 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
 
         <div class="topic-chips">
             {% for t in site.data.project_tags %}
-                <a class="topic-chip" href="{{ site.url }}/tags/#{{ t.slug }}">{{ t.name }} <span class="count">{{ t.count }}</span></a>
+                <a class="topic-chip" href="{{ site.url }}/tags#{{ t.slug }}">{{ t.name }} <span class="count">{{ t.count }}</span></a>
             {% endfor %}
         </div>
     </section>

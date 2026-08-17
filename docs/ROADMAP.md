@@ -91,6 +91,17 @@ Terzo giro di design, dopo le fondamenta di v2.3 e il motion di v2.4. Le voci **
 - [ ] **Thumbnail dei progetti incoerenti** (#151) — loghi su fondo bianco accanto a screenshot scuri e monogrammi. Normalizzare il contenitore, non le immagini. Attenzione ai selettori a figlio diretto e all'esclusione dal `<picture>`.
 - [x] **Misura del contenuto** (#152) — nuovo token `--width-listing: 1120px` e classe `.wrapper-wide`, attivata da `wide: true` nel front matter di home, `/blog`, `/projects` e `/videos`. Post e pagine di testo restano su `--width-normal`, dove `--measure` fa il suo lavoro.
 
+## v2.6 — Contenuti e rifiniture
+
+Quarto giro, dopo v2.5. Come per quella, le voci nascono guardando le pagine sul sito pubblicato — non da un elenco di buoni propositi. Milestone `v2.6` su GitHub.
+
+- [ ] **Titolo ripetuto due volte** (#153) — **250 post su 337** hanno come primo `##` del corpo esattamente il titolo già stampato nell'`<h1>`. Eredità del tema originale, replicata dai generatori (`sync_youtube.rb` scrive `## {{ title }}`). Da correggere nei generatori *e* con uno script one-shot sui post esistenti.
+- [ ] **Griglia e lightbox per i post fotografici** (#154) — 6 foto impilate a piena larghezza sono ~4000px di scroll e nessun modo di ingrandirne una. Il raggruppamento può farlo `responsive_images.rb`, che quegli `<img>` li riscrive già; le varianti WebP/AVIF esistono, quindi una griglia sarebbe anche **più leggera** di adesso.
+- [ ] **Contatori incoerenti** (#155) — posts 181 sulla home contro 168 su `/stats`; projects **155, 145 e 156** su tre pagine diverse. Ogni pagina conta per conto suo in Liquid. Da centralizzare in un Generator che espone `site.data.counts`.
+- [ ] **`/search` vuota e nascosta** (#156) — nessuno stato iniziale (mezzo schermo bianco finché non si digita) e **non è nella nav**: sta solo nel footer. Aggiungere tag e post recenti come scorciatoie, la lente in nav, `/` e `Esc`.
+- [ ] **`/stats`: etichette troncate** (#157) — `#javascr...`, `#docker...`, `#typesc...`: un quarto della lista è illeggibile proprio nella pagina fatta per leggere quei numeri.
+- [ ] **Àncore sui titoli dei post** (#158) — gli `id` di kramdown ci sono già e li usa il TOC, ma non c'è modo di copiare il link a una sezione. Da aggiungere in `toc.rb`, funzionante anche senza JS.
+
 ## v3.0 — Big rocks
 
 Milestone `v3.0` creata su GitHub con le quattro issue qui sotto. Sono le uniche voci di **codice** ancora aperte nel backlog: tutto ciò che resta in v2.1/v2.2 aspetta credenziali o account esterni (vedi sopra). Nota: queste issue sono state create a mano, non da `bootstrap-milestone.yml` — quel workflow copre solo le voci v2.x che ha generato.
