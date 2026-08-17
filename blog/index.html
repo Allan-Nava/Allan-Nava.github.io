@@ -5,6 +5,12 @@ layout: page
 title: Blog
 wide: true
 ---
+{%- comment -%}
+La paginazione sta FUORI da `.list`: dalla griglia responsive dei listing
+`.list` è un `display: grid`, e un blocco al suo interno diventa un elemento
+della griglia — cioè finiva in una cella della prima colonna invece che
+centrato sotto alle card.
+{%- endcomment -%}
 <section class="list">
 	{% if site.posts.size == 0 %}
 		<p class="text-center">Nothing published yet!</p>
@@ -16,8 +22,6 @@ wide: true
 				{% endif %}
 			{% endif %}
 		{% endfor %}
-
-		{% include pagination.html%}
 	{% else %}
 		{% for post in site.posts %}
 			{% if post.category == 'blog' %}
@@ -28,3 +32,7 @@ wide: true
 		{% endfor %}
 	{% endif %}
 </section>
+
+{% if site.paginate and site.posts.size > 0 %}
+	{% include pagination.html %}
+{% endif %}

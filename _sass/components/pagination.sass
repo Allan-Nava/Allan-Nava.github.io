@@ -5,6 +5,11 @@
     gap: var(--space-3)
     width: 100%
     margin: var(--space-7) auto 0
+    // Rete di sicurezza: `.list` è una griglia a più colonne sul desktop, e una
+    // paginazione finita lì dentro occuperebbe una sola cella. Il markup la
+    // tiene fuori (blog/index.html), questa riga la tiene centrata anche se
+    // qualcuno un domani la rimette dentro.
+    grid-column: 1 / -1
 
     > .page_number
         font-size: var(--text-xs)

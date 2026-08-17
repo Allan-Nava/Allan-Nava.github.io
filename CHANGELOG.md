@@ -23,6 +23,7 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ### Corretto
 
+- **Paginazione del blog fuori posto sul desktop** — con la griglia responsive dei listing `.list` è diventata un `display: grid`, e il blocco della paginazione (che stava dentro la section) si è ritrovato a occupare una cella: finiva nella prima colonna invece che centrato sotto alle card. Ora il markup lo tiene fuori dalla griglia, e `grid-column: 1 / -1` fa da rete di sicurezza.
 - **L’estrazione del logo dal README non trovava quasi nulla** — cercava solo la sintassi
   Markdown `![alt](url)`, ma i README di questi progetti mettono il logo in HTML
   (`<img src="docs/assets/logo.svg">` dentro un blocco centrato): risultato `nil`. Dove invece il
