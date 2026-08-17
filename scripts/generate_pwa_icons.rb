@@ -28,18 +28,43 @@ CHROME_CANDIDATES = [
   ENV['CHROME_PATH'],
   '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   '/Applications/Chromium.app/Contents/MacOS/Chromium',
+  # Runner Linux: i pacchetti mettono il binario in /usr/bin, e senza questi
+  # percorsi la ricerca dipendeva solo dal PATH.
+  '/usr/bin/google-chrome',
+  '/usr/bin/google-chrome-stable',
+  '/usr/bin/chromium',
+  '/usr/bin/chromium-browser',
   'google-chrome',
-  'chromium'
+  'google-chrome-stable',
+  'chromium',
+  'chromium-browser'
 ].compact
 
 def chrome_binary
-  CHROME_CANDIDATES.find do |candidate|
-    File.executable?(candidate) || system('command', '-v', candidate, out: File::NULL, err: File::NULL)
+  # `map.compact.first` e non `filter_map`: quest'ultimo richiede Ruby 2.7,
+  # e questi script devono girare anche col Ruby di sistema di macOS (2.6).
+  CHROME_CANDIDATES.map { |c| which(c) }.compact.first
+end
+
+# Ricerca di un eseguibile nel PATH, in Ruby puro.
+#
+# NON usare `system('command', '-v', nome)`: `command` è un builtin di shell e
+# su Ubuntu **non esiste** come binario, quindi la forma ad array fallisce
+# sempre. Su macOS invece /usr/bin/command esiste davvero, per cui il bug non si
+# vedeva in locale — è così che il workflow Image Optimize è morto in CI con
+# "Chrome non trovato" pur avendo Chrome installato.
+def which(name)
+  return name if name.include?(File::SEPARATOR) && File.executable?(name)
+
+  ENV.fetch('PATH', '').split(File::PATH_SEPARATOR).each do |dir|
+    candidate = File.join(dir, name)
+    return candidate if File.file?(candidate) && File.executable?(candidate)
   end
+  nil
 end
 
 def tool?(name)
-  system('command', '-v', name, out: File::NULL, err: File::NULL)
+  !which(name).nil?
 end
 
 def shoot(chrome, url, output)
@@ -72,7 +97,11 @@ end
 abort "Template mancante: #{TEMPLATE}" unless File.exist?(TEMPLATE)
 
 chrome = chrome_binary
-abort 'Chrome non trovato: esporta CHROME_PATH con il percorso del binario.' unless chrome
+unless chrome
+  abort "Chrome non trovato. Cercati (in ordine):\n  " +
+        CHROME_CANDIDATES.join("\n  ") +
+        "\nPATH=#{ENV.fetch('PATH', '')}\nEsporta CHROME_PATH col percorso del binario."
+end
 
 FileUtils.mkdir_p(OUT_DIR)
 

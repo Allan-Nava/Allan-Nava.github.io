@@ -7,7 +7,7 @@ The site deploys to **GitHub Pages** through GitHub Actions (not the legacy Page
 ### `jekyll.yml` — Deploy Jekyll site to Pages
 
 - **Triggers**: push to `master`, daily cron (`0 10 * * *`), manual (`workflow_dispatch`). The daily rebuild publishes future-dated posts without needing a push. **Not** tags or releases: the `github-pages` environment only accepts the default branch, so a tag-triggered run dies with `Tag vX.Y.Z is not allowed to deploy to github-pages` — and worse, the `pages` concurrency group (`cancel-in-progress: true`) makes it cancel the legitimate master deploy first. That happened with `v2.4.0`: the push published nothing. Releases are handled by `release.yml`, which never touches Pages.
-- **Build job**: checkout → Ruby 3.0 with cached bundle → `actions/configure-pages` → `bundle exec jekyll build --baseurl <pages base path>` with `JEKYLL_ENV=production` → upload `_site/` as a Pages artifact.
+- **Build job**: checkout → Ruby 3.3 with cached bundle → `actions/configure-pages` → `bundle exec jekyll build --baseurl <pages base path>` with `JEKYLL_ENV=production` → upload `_site/` as a Pages artifact.
 - **Deploy job**: `actions/deploy-pages` publishes the artifact to the `github-pages` environment.
 - **Smoke job**: after the deploy, [checkfleet](https://github.com/Allan-Nava/checkfleet) probes the **live** site (`checkfleet check http --config checkfleet.yml`) and attaches its Markdown report to the job summary.
 
@@ -50,9 +50,9 @@ Weekly (`41 5 * * 1`) plus manual dispatch. Runs the two image generators the Je
 - `ruby scripts/optimize_images.rb` — responsive WebP variants of any new image in `assets/images` above the threshold (default 150 KB).
 - `ruby scripts/generate_og_cards.rb` — per-post social cards for posts that would otherwise have no preview of their own. This matters because `github-sync` creates project posts every hour; until the card exists they fall back to the generic one.
 
-It installs `webp` and `imagemagick` (Chrome is preinstalled on the runners).
+It installs `webp`, `ffmpeg` and `imagemagick`; Chrome comes with the runner image. The commit step runs with `if: always()`, so if one generator fails the other one's work is still committed — the first version threw away 199 freshly encoded variants because a later step died.
 
-Deliberately **not** on every push: images are added rarely, and a job that commits binaries is worth keeping on a short leash. Run it by hand from the Actions tab right after adding images if you don't want to wait for Monday; `threshold_kb` and `force` are inputs. It does not install `avifenc`, so no AVIF is produced — see [Architecture](architecture.md#responsive-images).
+Deliberately **not** on every push: images are added rarely, and a job that commits binaries is worth keeping on a short leash. Run it by hand from the Actions tab right after adding images if you don't want to wait for Monday; `threshold_kb` and `force` are inputs. AVIF is produced with ffmpeg, not `avifenc` — see [Architecture](architecture.md#responsive-images).
 
 Nothing breaks if the workflow never runs: `_plugins/responsive_images.rb` only builds a `<picture>` when the variant files exist, so an unconverted image is just served as-is.
 
@@ -115,7 +115,7 @@ The build has no `--baseurl`: this is a GitHub user page, so the production base
 | `best-practices` | **error** (hard gate) | 0.95 |
 | `performance` | warn | 0.85 |
 
-SEO, accessibility and best-practices are hard gates: after the v2.3 restyling the structural pages score **100 on all three** (measured locally on `/`, `/blog/`, `/projects.html`, `/tags.html`), so a drop below the threshold is a real regression rather than noise. Performance stays a warning because the score depends on the runner's speed and on page weight — `/tags` renders every post in one page (~350 KB of HTML) and lands around 92 while the other pages sit at 99–100. The action uses Ruby 3.0 pinned to the same `ruby/setup-ruby` release as `jekyll.yml`/`checks.yml`; keep them in sync.
+SEO, accessibility and best-practices are hard gates: after the v2.3 restyling the structural pages score **100 on all three** (measured locally on `/`, `/blog/`, `/projects.html`, `/tags.html`), so a drop below the threshold is a real regression rather than noise. Performance stays a warning because the score depends on the runner's speed and on page weight — `/tags` renders every post in one page (~350 KB of HTML) and lands around 92 while the other pages sit at 99–100. The action uses Ruby 3.3 pinned to the same `ruby/setup-ruby` release as `jekyll.yml`/`checks.yml`; keep them in sync.
 
 `lighthouserc.json` and `AGENTS.md` are listed in `_config.yml` `exclude:` so they are not copied into the published site.
 

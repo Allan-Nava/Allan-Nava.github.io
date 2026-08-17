@@ -63,6 +63,10 @@ jobs:
 
       - name: Commit and push new variants
         id: commit
+        # `always()`: i due generatori sono indipendenti, e se il secondo fallisce
+        # il lavoro del primo va comunque committato — altrimenti si buttano via
+        # minuti di encoding. Il job resta comunque rosso e apre la issue.
+        if: always()
         run: |
           if [ -z "$(git status --porcelain assets/images)" ]; then
             echo "Nessuna variante nuova."
@@ -79,7 +83,7 @@ jobs:
       - name: Trigger deploy
         # Come per gli altri sync: un push fatto con GITHUB_TOKEN non fa
         # scattare il deploy su push, va lanciato a mano.
-        if: steps.commit.outputs.pushed == 'true'
+        if: always() && steps.commit.outputs.pushed == 'true'
         run: gh workflow run jekyll.yml --ref master
         env:
           GH_TOKEN: ${{ github.token }}

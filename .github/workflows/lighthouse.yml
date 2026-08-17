@@ -27,9 +27,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Ruby
         # Keep in sync with jekyll.yml / checks.yml (same pinned release, same Ruby).
-        uses: ruby/setup-ruby@086ffb1a2090c870a3f881cc91ea83aa4243d408
+        uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b
         with:
-          ruby-version: '3.0'
+          ruby-version: '3.3'
           bundler-cache: true
       - name: Build with Jekyll
         # No --baseurl: this repo is a user page (production baseurl is empty),
