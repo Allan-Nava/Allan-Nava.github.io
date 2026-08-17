@@ -23,6 +23,7 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ### Corretto
 
+- **Toolchain locale ripristinato** — `.ruby-version` con **3.3.12** (la stessa minor della CI): dopo il passaggio a `html-proofer ~> 5.0`, che richiede Ruby ≥ 3.1, in locale il bundle non si installava più e `bundle exec jekyll build` moriva con `Bundler::GemNotFound`. Build, `rake test_internal` e Lighthouse tornano eseguibili prima del push.
 - **Paginazione del blog fuori posto sul desktop** — con la griglia responsive dei listing `.list` è diventata un `display: grid`, e il blocco della paginazione (che stava dentro la section) si è ritrovato a occupare una cella: finiva nella prima colonna invece che centrato sotto alle card. Ora il markup lo tiene fuori dalla griglia, e `grid-column: 1 / -1` fa da rete di sicurezza.
 - **L’estrazione del logo dal README non trovava quasi nulla** — cercava solo la sintassi
   Markdown `![alt](url)`, ma i README di questi progetti mettono il logo in HTML
