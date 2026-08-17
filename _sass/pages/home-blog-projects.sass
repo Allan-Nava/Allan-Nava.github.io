@@ -181,10 +181,11 @@
 // `.home-section` compare anche sulla 404, che resta a 640px, e lì due colonne
 // da ~310px strozzerebbero la card.
 //
-// I breakpoint sono scelti sulla larghezza della CARD, non della finestra: la
-// card è orizzontale (thumbnail a sinistra, testo a destra) e sotto i ~350px di
-// colonna il testo si comprime. Col contenitore a 1120px, due colonne fanno
-// ~545px e tre ~355px.
+// Si ferma a DUE colonne, anche sugli schermi larghi. Tre colonne dentro 1120px
+// fanno ~355px l'una: la card è orizzontale (thumbnail a sinistra, testo a
+// destra), quindi a quella misura il titolo va a capo su due o tre righe, gli
+// excerpt si tagliano e le righe della griglia si allineano sulla card più alta
+// lasciando buchi. Con due colonne ognuna sta a ~545px e la card respira.
 //
 // `minmax(0, 1fr)` e non `1fr`: senza, uno slug lungo sfonda la colonna invece
 // di andare a capo.
@@ -195,6 +196,3 @@
 		> .list
 			@media only screen and (min-width: 860px)
 				grid-template-columns: repeat(2, minmax(0, 1fr))
-
-			@media only screen and (min-width: 1240px)
-				grid-template-columns: repeat(3, minmax(0, 1fr))
