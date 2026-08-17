@@ -1,0 +1,99 @@
+{%- comment -%}
+Lightbox per le gallerie dei post (#154).
+
+Non fa nulla se la pagina non ha una `.gallery`: le gallerie le crea
+`_plugins/photo_gallery.rb` solo dove ci sono due o più foto consecutive, e
+oggi sono 22 post su 337.
+
+Progressive enhancement: senza JS le foto restano quelle della griglia, e
+restano cliccabili perché il markup non cambia — semplicemente non si apre
+l'overlay. Nessun contenitore morto, nessun link finto.
+
+ATTENZIONE ai commenti: `_layouts/compress.html` collassa le newline, quindi un
+`//` si mangia il resto della riga. Solo /* … */.
+{%- endcomment -%}
+<script>
+(function () {
+  var galleries = document.querySelectorAll('.gallery');
+  if (!galleries.length) return;
+
+  var photos = [];
+  galleries.forEach(function (g) {
+    g.querySelectorAll('img').forEach(function (img) { photos.push(img); });
+  });
+  if (!photos.length) return;
+
+  var box = null;
+  var current = 0;
+
+  /* La sorgente piena: il srcset serve la variante piccola per la griglia, ma
+     nel lightbox si vuole l'originale, che è il src dell'<img> di fallback. */
+  function fullSrc(img) { return img.getAttribute('src') || img.currentSrc; }
+
+  function show(i) {
+    current = (i + photos.length) % photos.length;
+    var img = photos[current];
+    box.querySelector('img').src = fullSrc(img);
+    box.querySelector('img').alt = img.alt || '';
+    box.querySelector('.lightbox-count').textContent = (current + 1) + ' / ' + photos.length;
+  }
+
+  function close() {
+    if (!box) return;
+    box.remove();
+    box = null;
+    document.body.style.removeProperty('overflow');
+    document.removeEventListener('keydown', onKey);
+  }
+
+  function onKey(e) {
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowRight') show(current + 1);
+    else if (e.key === 'ArrowLeft') show(current - 1);
+  }
+
+  function open(i) {
+    box = document.createElement('div');
+    box.className = 'lightbox';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Photo viewer');
+
+    var pic = document.createElement('img');
+    box.appendChild(pic);
+
+    [['lightbox-prev', '‹', 'Previous photo', -1],
+     ['lightbox-next', '›', 'Next photo', 1],
+     ['lightbox-close', '✕', 'Close', 0]].forEach(function (spec) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = spec[0];
+      b.textContent = spec[1];
+      b.setAttribute('aria-label', spec[2]);
+      b.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (spec[0] === 'lightbox-close') close(); else show(current + spec[3]);
+      });
+      box.appendChild(b);
+    });
+
+    var count = document.createElement('span');
+    count.className = 'lightbox-count';
+    box.appendChild(count);
+
+    /* Click sul fondo (non sulla foto) chiude. */
+    box.addEventListener('click', function (e) { if (e.target === box) close(); });
+
+    document.body.appendChild(box);
+    /* Blocca lo scroll dietro l'overlay, altrimenti la pagina scorre sotto. */
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onKey);
+    show(i);
+    box.querySelector('.lightbox-close').focus();
+  }
+
+  photos.forEach(function (img, i) {
+    img.addEventListener('click', function () { open(i); });
+  });
+})();
+</script>

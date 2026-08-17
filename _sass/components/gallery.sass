@@ -1,0 +1,120 @@
+// Galleria fotografica nei post (#154) e lightbox.
+// Il raggruppamento lo fa _plugins/photo_gallery.rb a build time: qui si
+// impagina e basta. I <div> interni sono quelli originali del post, con dentro
+// il <picture> che ha già le varianti WebP/AVIF.
+
+.gallery
+	display: grid
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))
+	gap: var(--space-2)
+	margin: var(--space-6) 0
+
+	> div
+		margin: 0
+		min-width: 0
+
+	// Le foto sono di formati diversi (verticali, orizzontali, screenshot):
+	// senza un rapporto fisso la griglia diventa una scala. Il taglio è solo
+	// nella griglia — il lightbox mostra l'immagine intera.
+	picture,
+	> div > img
+		display: block
+		width: 100%
+		height: 100%
+
+	img
+		display: block
+		width: 100%
+		aspect-ratio: 1
+		object-fit: cover
+		margin: 0
+		border-radius: var(--radius-md)
+		background: var(--color-surface)
+		cursor: zoom-in
+		transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease-out)
+
+	@media (hover: hover)
+		img:hover
+			opacity: 0.88
+			transform: scale(1.015)
+
+	// Due foto sole: mezza larghezza ciascuna sta meglio di tre colonne vuote.
+	&[data-count="2"]
+		grid-template-columns: repeat(2, minmax(0, 1fr))
+
+// ---------------------------------------------------------------------------
+// Lightbox — aperto dal JS in _includes/lightbox.html
+// ---------------------------------------------------------------------------
+
+.lightbox
+	position: fixed
+	inset: 0
+	z-index: 200
+	display: flex
+	align-items: center
+	justify-content: center
+	padding: var(--space-4)
+	// Fondo sempre scuro, in entrambi i temi: una foto va guardata su nero,
+	// e su tema chiaro un overlay bianco la slaverebbe.
+	background: rgba(4, 5, 6, 0.92)
+	backdrop-filter: blur(6px)
+	-webkit-backdrop-filter: blur(6px)
+
+	> img
+		max-width: 100%
+		max-height: 100%
+		object-fit: contain
+		border-radius: var(--radius-md)
+
+	> .lightbox-close,
+	> .lightbox-prev,
+	> .lightbox-next
+		position: absolute
+		display: inline-flex
+		align-items: center
+		justify-content: center
+		width: 44px
+		height: 44px
+		padding: 0
+		font-size: var(--text-lg)
+		line-height: 1
+		color: #eae4e4
+		background: rgba(255, 255, 255, 0.12)
+		border: 1px solid rgba(255, 255, 255, 0.22)
+		border-radius: var(--radius-pill)
+		cursor: pointer
+		-webkit-appearance: none
+		appearance: none
+
+		&:hover
+			background: rgba(255, 255, 255, 0.2)
+
+	> .lightbox-close
+		top: var(--space-4)
+		right: var(--space-4)
+
+	> .lightbox-prev
+		left: var(--space-4)
+
+	> .lightbox-next
+		right: var(--space-4)
+
+	> .lightbox-count
+		position: absolute
+		bottom: var(--space-4)
+		left: 50%
+		transform: translateX(-50%)
+		font-size: var(--text-xs)
+		letter-spacing: var(--tracking-wide)
+		color: rgba(234, 228, 228, 0.75)
+		font-variant-numeric: tabular-nums
+
+@media (prefers-reduced-motion: no-preference)
+	.lightbox
+		animation: lightbox-in var(--dur) var(--ease-out) both
+
+@keyframes lightbox-in
+	from
+		opacity: 0
+	to
+		opacity: 1
