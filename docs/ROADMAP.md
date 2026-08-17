@@ -79,6 +79,19 @@ Secondo giro di design, dopo le fondamenta di v2.3. Rilasciato come **v2.1.0**. 
 
 Due trappole trovate durante il lavoro, ora documentate: i commenti `//` negli script inline vengono **mangiati da `compress.html`** (che collassa le newline), e l'attributo `hidden` non nasconde nulla dove un componente dichiara `display: block`.
 
+## v2.5 — Rifinitura grafica
+
+Terzo giro di design, dopo le fondamenta di v2.3 e il motion di v2.4. Le voci **non** vengono da un elenco di buoni propositi: sono i difetti visti guardando le pagine sul sito pubblicato, dopo che #144 ha finalmente reso visibile l'output dei plugin. Milestone `v2.5` su GitHub.
+
+- [ ] **Buco nel titolo della home** (#145) — dopo "tools" c'è uno spazio vuoto e una sottolineatura orfana: il rotatore riserva la larghezza della parola più lunga. È la prima cosa che si vede sul sito.
+- [ ] **Griglia per i listing** (#146) — 155 progetti in colonna singola dentro 640px, su schermi da 1280. Griglia responsive per i listing, misura stretta solo per il corpo dei post.
+- [ ] **`/tags` senza gerarchia** (#147) — 1254 chip identici, nessun conteggio, **400 KB di HTML**; è anche la pagina più lenta (Lighthouse ~91 contro 99-100). Conteggi, peso per frequenza, raggruppamento, coda lunga dietro un "mostra tutti".
+- [ ] **Tag duplicati** (#148) — 5 gruppi di varianti (`open-source`/`open source`, `iOS`/`ios`, `github actions`/`github-actions`, …): 5 archivi frammentati. Da consolidare, con un controllo in `validate_posts.rb` perché non ricapiti.
+- [ ] **Lingua mista** (#149) — su `/projects` titolo e sottotitolo in inglese ma chip "Tutti" e contatore "155 PROGETTI". Uniformare le stringhe di interfaccia.
+- [ ] **`/gear`** (#150) — manca l'`<h1>`, tre sezioni su sei sono vuote e la pagina dichiara di essere in costruzione. O si riempie o si toglie dal menu.
+- [ ] **Thumbnail dei progetti incoerenti** (#151) — loghi su fondo bianco accanto a screenshot scuri e monogrammi. Normalizzare il contenitore, non le immagini. Attenzione ai selettori a figlio diretto e all'esclusione dal `<picture>`.
+- [ ] **Misura del contenuto** (#152) — 640px anche su home e listing, dove non serve. `--measure` resta per il testo continuo.
+
 ## v3.0 — Big rocks
 
 Milestone `v3.0` creata su GitHub con le quattro issue qui sotto. Sono le uniche voci di **codice** ancora aperte nel backlog: tutto ciò che resta in v2.1/v2.2 aspetta credenziali o account esterni (vedi sopra). Nota: queste issue sono state create a mano, non da `bootstrap-milestone.yml` — quel workflow copre solo le voci v2.x che ha generato.
