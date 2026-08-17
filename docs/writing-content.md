@@ -90,6 +90,14 @@ Notes:
 
 `_includes/youtube-facade.html` renders a clickable thumbnail and only loads the real (cookie-less) player on click — a big performance win, since most posts embed video. Plain `<iframe>` embeds still work, but prefer `<lite-youtube>`; the YouTube sync scripts emit it automatically, and `scripts/migrate_youtube_embeds.rb` converted all existing posts. For auto-generated posts the YouTube thumbnail is also set as `image:` (og:image / listing preview).
 
+- **Photo galleries**: nothing to write. Two or more images one after another — with nothing but whitespace between them — are grouped into a grid at build time by `_plugins/photo_gallery.rb` and open full-size in a lightbox on click (arrows, `Esc`, `←`/`→`). Put a paragraph between two photos and they stay full width, one under the other, which is still the right layout when each photo needs its own caption.
+
+```markdown
+<div><img src="/assets/images/trip-01.jpg" alt="…"></div>
+<div><img src="/assets/images/trip-02.jpg" alt="…"></div>
+<div><img src="/assets/images/trip-03.jpg" alt="…"></div>
+```
+
 - **Side-by-side layout** (image next to text), used by several project posts:
 
 ```html
