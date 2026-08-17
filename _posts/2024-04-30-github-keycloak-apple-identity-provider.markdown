@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/keycloak-apple-identity-provider
 github: HiWay-Media/keycloak-apple-identity-provider
 ---
 
-## keycloak-apple-identity-provider
-
 Docker for Keycloak, that enables web-based sign in with Apple and token exchange
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

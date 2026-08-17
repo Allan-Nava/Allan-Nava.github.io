@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Flat Bench Press 102,5 kg 🏋🏽
-
 <lite-youtube videoid="RROPuBQUGtA" data-short playlabel="Flat Bench Press 102,5 kg 🏋🏽"></lite-youtube>

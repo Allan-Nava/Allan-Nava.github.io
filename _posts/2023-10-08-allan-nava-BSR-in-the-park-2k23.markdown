@@ -18,8 +18,6 @@ author: allan
 externalLink: true
 ---
 
-## BSR in the park 🍻
-
 <div>
     <video class="fullscreen fill" width="100%" autoplay loop controls muted="muted">
     <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/bsrinthepark.MOV" type="video/mp4">

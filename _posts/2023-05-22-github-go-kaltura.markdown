@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/go-kaltura
 github: Allan-Nava/go-kaltura
 ---
 
-## go-kaltura
-
 A powerful golang sdk library for interacting with the Kaltura easily
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

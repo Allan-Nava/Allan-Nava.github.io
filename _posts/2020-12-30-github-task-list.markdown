@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/task-list
 github: Allan-Nava/task-list
 ---
 
-## task-list
-
 Simple task list in Go Lang
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

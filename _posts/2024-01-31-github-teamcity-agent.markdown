@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/teamcity-agent
 github: HiWay-Media/teamcity-agent
 ---
 
-## teamcity-agent
-
 TeamCity docker images
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

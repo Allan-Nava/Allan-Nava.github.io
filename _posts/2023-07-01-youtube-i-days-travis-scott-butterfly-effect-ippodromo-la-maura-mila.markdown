@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## I-Days ♦️ Travis Scott - Butterfly Effect 🦋 🔹 Ippodromo la Maura Milan 2023
-
 <lite-youtube videoid="cpHFB3pmCN0" playlabel="I-Days ♦️ Travis Scott - Butterfly Effect 🦋 🔹 Ippodromo la Maura Milan 2023"></lite-youtube>

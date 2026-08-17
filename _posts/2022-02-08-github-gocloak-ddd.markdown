@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/gocloak-ddd
 github: Allan-Nava/gocloak-ddd
 ---
 
-## gocloak-ddd
-
 GOCloak gateway Simple api domain drived design / service repository pattern
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

@@ -313,8 +313,6 @@ videos.each do |video|
     author: allan#{location_yaml}
     ---
 
-    ## #{title.delete('#')}
-
     <lite-youtube videoid="#{video_id}"#{short_attr} playlabel="#{yaml_safe(title, 120)}"></lite-youtube>
     #{body_description}
   POST

@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/docker-ansible-dind
 github: Allan-Nava/docker-ansible-dind
 ---
 
-## docker-ansible-dind
-
 Docker in docker with ansible
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

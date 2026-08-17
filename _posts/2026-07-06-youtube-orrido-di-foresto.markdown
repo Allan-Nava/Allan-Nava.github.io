@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Orrido di Foresto 🏞️🦋🧗🏼‍♂️
-
 <lite-youtube videoid="bCs3z05sRp4" playlabel="Orrido di Foresto 🏞️🦋🧗🏼‍♂️"></lite-youtube>

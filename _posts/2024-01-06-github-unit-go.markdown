@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/unit-go
 github: Allan-Nava/unit-go
 ---
 
-## unit-go
-
 NGINX Unit - universal web app server - a lightweight and versatile open source server that simplifies the application stack by natively executing application code across eight different programming language runtimes.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

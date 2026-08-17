@@ -15,9 +15,6 @@ author: allan
 externalLink: true
 ---
 
-## Padel Sport Comasina 🎾  
-
-
 <div>
     <video class="fullscreen fill" width="100%" autoplay loop controls muted="muted">
     <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/padel.MOV" type="video/mp4">

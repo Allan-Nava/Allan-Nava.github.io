@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## I-Days Ava DJ Set 2023 🔹Ippodromo La Maura
-
 <lite-youtube videoid="OO9fRN0EQ0I" data-short playlabel="I-Days Ava DJ Set 2023 🔹Ippodromo La Maura"></lite-youtube>

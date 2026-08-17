@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/Android-TODO-LIST-VIPER
 github: Allan-Nava/Android-TODO-LIST-VIPER
 ---
 
-## Android-TODO-LIST-VIPER
-
 Simple TODO List application with VIPER Pattern
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

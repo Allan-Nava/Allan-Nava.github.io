@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/rust-exercises
 github: Allan-Nava/rust-exercises
 ---
 
-## rust-exercises
-
 🦀 Small exercises to get you used to reading and writing Rust code!
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

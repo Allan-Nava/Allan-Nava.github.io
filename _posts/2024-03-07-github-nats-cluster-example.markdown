@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/nats-cluster-example
 github: HiWay-Media/nats-cluster-example
 ---
 
-## nats-cluster-example
-
 NATS examples
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

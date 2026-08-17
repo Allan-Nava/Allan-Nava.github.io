@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## I-Days - Travis Scott ♦️ Milan 🔹 Intro 🔥 Ippodromo la Maura 2023
-
 <lite-youtube videoid="qbJYbxEzSo0" playlabel="I-Days - Travis Scott ♦️ Milan 🔹 Intro 🔥 Ippodromo la Maura 2023"></lite-youtube>

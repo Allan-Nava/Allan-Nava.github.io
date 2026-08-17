@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/schedule-service
 github: HiWay-Media/schedule-service
 ---
 
-## schedule-service
-
 Service for automatic schedule creation for fastchannel engine
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/ai-guidelines
 github: Allan-Nava/ai-guidelines
 ---
 
-## ai-guidelines
-
 Reference repository for operational, technical, and organizational guidelines to manage software projects and DevOps platforms.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

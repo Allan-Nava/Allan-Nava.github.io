@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/compress-upload-go-sdk
 github: HiWay-Media/compress-upload-go-sdk
 ---
 
-## compress-upload-go-sdk
-
 Compress upload go sdk
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

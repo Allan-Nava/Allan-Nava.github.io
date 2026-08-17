@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Pull ups x 15kg 🏋🏽‍♂️
-
 <lite-youtube videoid="zawfM8wL4uk" data-short playlabel="Pull ups x 15kg 🏋🏽‍♂️"></lite-youtube>

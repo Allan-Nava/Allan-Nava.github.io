@@ -19,8 +19,6 @@ externalLink: https://github.com/HiWay-Media/Insta-go
 github: HiWay-Media/Insta-go
 ---
 
-## Insta-go
-
 Instagram GO SDK
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

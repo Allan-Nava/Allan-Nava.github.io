@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/ansible-vars-lens
 github: Allan-Nava/ansible-vars-lens
 ---
 
-## ansible-vars-lens
-
 See the effective value of every Ansible variable, per host.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

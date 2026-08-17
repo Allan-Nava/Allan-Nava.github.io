@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/haproxy-dataplane-go
 github: Allan-Nava/haproxy-dataplane-go
 ---
 
-## haproxy-dataplane-go
-
 haproxy dataplane api (v2) client
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

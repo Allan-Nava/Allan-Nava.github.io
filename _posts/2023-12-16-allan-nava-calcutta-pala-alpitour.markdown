@@ -15,8 +15,6 @@ author: allan
 externalLink: true
 ---
 
-## Calcutta Pala AlpiTour 🎤🎸
-
 <div>
     <video class="fullscreen fill" width="100%" autoplay loop controls >
     <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/calcutta-pala-alpitour.mp4" type="video/mp4">

@@ -18,7 +18,6 @@ lng: 23.727
 externalLink: true
 ---
 
-## Athens 
 Le luci della città ✨🇬🇷
 
 <blockquote class="twitter-tweet" data-media-max-width="560"><p lang="it" dir="ltr">Le luci della città ✨🇬🇷 <a href="https://t.co/XrG7BJBGio">pic.twitter.com/XrG7BJBGio</a></p>&mdash; Allan Nava (@allan__nava) <a href="https://twitter.com/allan__nava/status/1734107491133255834?ref_src=twsrc%5Etfw">December 11, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>∑

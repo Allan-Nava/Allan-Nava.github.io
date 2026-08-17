@@ -14,9 +14,6 @@ author: allan
 externalLink: true
 ---
 
-## Unboxing Salomon XT Pathway 👟
-
-
 <div>
     <img class="image" src="/assets/images/salomon-xt-pathway.jpg" alt="salomon" />
 </div>

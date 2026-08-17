@@ -19,8 +19,6 @@ externalLink: https://github.com/HiWay-Media/Superset-Keycloak
 github: HiWay-Media/Superset-Keycloak
 ---
 
-## Superset-Keycloak
-
 Apache Superset is a modern data exploration and visualization platform with keycloak adapter
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

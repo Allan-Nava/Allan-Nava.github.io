@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/checkfleet
 github: Allan-Nava/checkfleet
 ---
 
-## checkfleet
-
 Domain-aware infrastructure health checks in one Go binary — TLS expiry, HTTP, DNS, NATS, Kafka, PostgreSQL, Consul, HAProxy and 20+ more. No agents, no server.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

@@ -13,9 +13,6 @@ author: allan
 externalLink: true
 ---
 
-## La mia Liguria 🌊
-
-
 <div>
     <img class="image" src="/assets/images/portofino_2024-04-13.jpg" alt="PortoFino" />
 </div>

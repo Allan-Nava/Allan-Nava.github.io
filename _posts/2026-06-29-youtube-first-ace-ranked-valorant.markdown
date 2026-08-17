@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## FIRST ACE RANKED VALORANT 🔫
-
 <lite-youtube videoid="s1qDBGJ0Ppc" playlabel="FIRST ACE RANKED VALORANT 🔫"></lite-youtube>

@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Rancore - Arlecchino Live 🔹 Carroponte Milano
-
 <lite-youtube videoid="ltszbLKYIig" playlabel="Rancore - Arlecchino Live 🔹 Carroponte Milano"></lite-youtube>

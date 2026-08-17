@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## I-Days - Capo Plaza 🔹 Giovane Fuoriclasse ♦️ Ippodromo La Maura 2023
-
 <lite-youtube videoid="fl73OAZwT9c" playlabel="I-Days - Capo Plaza 🔹 Giovane Fuoriclasse ♦️ Ippodromo La Maura 2023"></lite-youtube>

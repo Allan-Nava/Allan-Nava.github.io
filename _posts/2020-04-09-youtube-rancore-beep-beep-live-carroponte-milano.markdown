@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Rancore - Beep Beep Live 🔹 Carroponte Milano
-
 <lite-youtube videoid="5Uy_mpP1NV0" playlabel="Rancore - Beep Beep Live 🔹 Carroponte Milano"></lite-youtube>

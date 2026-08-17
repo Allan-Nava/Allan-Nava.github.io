@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/meta-go-sdk
 github: HiWay-Media/meta-go-sdk
 ---
 
-## meta-go-sdk
-
 Meta Go SDK: A simple library for interacting with Meta Developer API in Go.
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

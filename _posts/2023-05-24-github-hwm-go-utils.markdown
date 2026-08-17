@@ -19,8 +19,6 @@ externalLink: https://github.com/HiWay-Media/hwm-go-utils
 github: HiWay-Media/hwm-go-utils
 ---
 
-## hwm-go-utils
-
 HiWay Media GoLang Utils
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

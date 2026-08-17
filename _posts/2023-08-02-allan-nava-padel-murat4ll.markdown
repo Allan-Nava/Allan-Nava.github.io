@@ -16,9 +16,6 @@ author: allan
 externalLink: true
 ---
 
-## Padel Murat4All  🎾  
-
-
 <div>
     <img class="image" src="/assets/images/padel-murat4ll.jpg" alt="Padel Murat4All " />
 </div>

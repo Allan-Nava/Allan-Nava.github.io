@@ -19,8 +19,6 @@ externalLink: https://github.com/HiWay-Media/crowdsim
 github: HiWay-Media/crowdsim
 ---
 
-## crowdsim
-
 Replay a live-event traffic mix against a web frontend, find the knee, and measure what caching would actually buy you — instead of estimating it from logs after the outage.
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

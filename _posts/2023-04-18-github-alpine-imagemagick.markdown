@@ -19,8 +19,6 @@ externalLink: https://github.com/HiWay-Media/Alpine-Imagemagick
 github: HiWay-Media/Alpine-Imagemagick
 ---
 
-## Alpine-Imagemagick
-
 Docker Alpine ImageMagick
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

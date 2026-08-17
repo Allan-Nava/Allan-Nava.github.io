@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## FC Inter Milan 21 scudetto 🖤💙
-
 <lite-youtube videoid="y4VbRABut-s" data-short playlabel="FC Inter Milan 21 scudetto 🖤💙"></lite-youtube>

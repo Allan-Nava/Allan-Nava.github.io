@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/Android-Recruitment-Test
 github: Allan-Nava/Android-Recruitment-Test
 ---
 
-## Android-Recruitment-Test
-
 Android Recruitment test (Frontend & Backend)
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

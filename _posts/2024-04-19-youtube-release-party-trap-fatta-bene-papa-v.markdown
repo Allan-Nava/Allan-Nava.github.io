@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Release Party - Trap Fatta Bene 🪙Papa V
-
 <lite-youtube videoid="RiGJmT9Z0ws" data-short playlabel="Release Party - Trap Fatta Bene 🪙Papa V"></lite-youtube>

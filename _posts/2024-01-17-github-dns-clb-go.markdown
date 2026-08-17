@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/dns-clb-go
 github: HiWay-Media/dns-clb-go
 ---
 
-## dns-clb-go
-
 Client-Side Load-Balancer for DNS based Service Discovery written in Golang
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

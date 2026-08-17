@@ -142,8 +142,6 @@ missing.each do |id|
     author: allan
     ---
 
-    ## #{meta[:title].delete('#')}
-
     <lite-youtube videoid="#{id}"#{short_attr} playlabel="#{yaml_safe(meta[:title], 120)}"></lite-youtube>
   POST
 

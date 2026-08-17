@@ -18,8 +18,6 @@ externalLink: https://github.com/Allan-Nava/nomad-lens
 github: Allan-Nava/nomad-lens
 ---
 
-## nomad-lens
-
 HashiCorp Nomad operations inside VS Code — the place where you already edit your job specs.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

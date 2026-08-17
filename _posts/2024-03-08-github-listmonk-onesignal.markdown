@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/listmonk-onesignal
 github: HiWay-Media/listmonk-onesignal
 ---
 
-## listmonk-onesignal
-
 Lightweight HTTP server to handle webhooks from listmonk and forward it to onesignal.
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

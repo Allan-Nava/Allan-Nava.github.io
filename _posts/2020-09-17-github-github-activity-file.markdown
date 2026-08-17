@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/github-activity-file
 github: Allan-Nava/github-activity-file
 ---
 
-## github-activity-file
-
 Updates FILE with the recent GitHub activity of a user
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

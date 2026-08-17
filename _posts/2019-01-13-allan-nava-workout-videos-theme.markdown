@@ -14,8 +14,6 @@ author: allan
 externalLink: true
 ---
 
-## :video_camera: Calisthenics & workout videos
-
 <lite-youtube videoid="F0pHik5TYkM"></lite-youtube>
 
 

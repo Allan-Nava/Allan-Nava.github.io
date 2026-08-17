@@ -14,7 +14,5 @@ author: allan
 externalLink: true
 ---
 
-## :video_camera: Budapest - Vlog 2019
-
 <lite-youtube videoid="lubeO-cuG6g"></lite-youtube>
 

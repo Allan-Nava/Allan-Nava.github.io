@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Rancore - Giocattoli Live 🔹Carroponte Milano
-
 <lite-youtube videoid="qA5YOvdcxA4" playlabel="Rancore - Giocattoli Live 🔹Carroponte Milano"></lite-youtube>

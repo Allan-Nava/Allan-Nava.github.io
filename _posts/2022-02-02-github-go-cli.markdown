@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/go-cli
 github: Allan-Nava/go-cli
 ---
 
-## go-cli
-
 Building go cli demo
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

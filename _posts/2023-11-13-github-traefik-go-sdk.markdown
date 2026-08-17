@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/traefik-go-sdk
 github: Allan-Nava/traefik-go-sdk
 ---
 
-## traefik-go-sdk
-
 The Traefik Go SDK provides a convenient way to interact with Traefik, a modern reverse proxy and load balancer. This SDK is designed to simplify the integration of Traefik into your Go applications.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

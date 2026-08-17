@@ -15,8 +15,6 @@ author: allan
 externalLink: true
 ---
 
-## Padel Garden Tennis Club 🎾  
-
 <div>
     <img class="image" src="/assets/images/padel_2024-04-11_22-00-37.jpg" alt="Padel Garden Tennis Club" />
 </div>

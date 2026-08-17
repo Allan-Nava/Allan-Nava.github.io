@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/baseimage-docker-mc
 github: Allan-Nava/baseimage-docker-mc
 ---
 
-## baseimage-docker-mc
-
 About A minimal Ubuntu base image modified for Docker-friendliness with minio mc cli
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

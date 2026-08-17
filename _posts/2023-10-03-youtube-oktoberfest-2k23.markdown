@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Oktoberfest 2k23 🍻🥨🇩🇪
-
 <lite-youtube videoid="AEL9FdgyLLY" data-short playlabel="Oktoberfest 2k23 🍻🥨🇩🇪"></lite-youtube>

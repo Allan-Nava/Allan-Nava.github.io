@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Rancore - Underman Live 🔹 Carroponte Milano
-
 <lite-youtube videoid="MEMNIuDvp3Y" playlabel="Rancore - Underman Live 🔹 Carroponte Milano"></lite-youtube>

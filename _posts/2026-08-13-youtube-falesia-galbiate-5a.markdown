@@ -14,7 +14,5 @@ lat: 45.8296901
 lng: 9.3626944
 ---
 
-## Falesia Galbiate 5A 🧗🏼‍♂️⛰️
-
 <lite-youtube videoid="dTGJbcjjsi4" data-short playlabel="Falesia Galbiate 5A 🧗🏼‍♂️⛰️"></lite-youtube>
 

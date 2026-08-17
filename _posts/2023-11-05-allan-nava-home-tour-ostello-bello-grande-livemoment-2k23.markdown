@@ -18,8 +18,6 @@ author: allan
 externalLink: true
 ---
 
-## Home Tour Concert x Livemoment at Ostello Bello Grande 🎶 🎛️
-
 <div>
     <video class="fullscreen fill" width="100%" autoplay loop controls >
     <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/hometour-obg-2023.mp4" type="video/mp4">

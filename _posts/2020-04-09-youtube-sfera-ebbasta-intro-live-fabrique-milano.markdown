@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Sfera Ebbasta - Intro Live 🔹 Fabrique Milano
-
 <lite-youtube videoid="BdvTxb0tBdY" playlabel="Sfera Ebbasta - Intro Live 🔹 Fabrique Milano"></lite-youtube>

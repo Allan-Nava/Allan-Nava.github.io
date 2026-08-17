@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/SOLID-Principles
 github: Allan-Nava/SOLID-Principles
 ---
 
-## SOLID-Principles
-
 Explanation from https://www-freecodecamp-org.cdn.ampproject.org/c/s/www.freecodecamp.org/news/solid-principles-explained-in-plain-english/amp/
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Lisboa - Miradouro
-
 <lite-youtube videoid="U1JOOtDxCBg" data-short playlabel="Lisboa - Miradouro"></lite-youtube>

@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/Vanilla-BLoC-Extension
 github: Allan-Nava/Vanilla-BLoC-Extension
 ---
 
-## Vanilla-BLoC-Extension
-
 Support for the BLoC command allows you to create a Vanilla BLoC and the Events/States
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

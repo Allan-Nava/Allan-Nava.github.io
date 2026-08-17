@@ -19,8 +19,6 @@ externalLink: https://github.com/HiWay-Media/ffmpeg-static
 github: HiWay-Media/ffmpeg-static
 ---
 
-## ffmpeg-static
-
 FFmpeg & FFprobe static
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

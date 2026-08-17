@@ -17,8 +17,6 @@ author: allan
 externalLink: true
 ---
 
-## Wedding Ema and Ally
-
 <div>
     <img class="image" src="/assets/images/wedding-DSC04033.jpg" alt="oktoberfest 2023" />
 

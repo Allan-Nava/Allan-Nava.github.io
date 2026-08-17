@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Positano 2021 🌊🇮🇹
-
 <lite-youtube videoid="GZmbFN-Q_jA" data-short playlabel="Positano 2021 🌊🇮🇹"></lite-youtube>

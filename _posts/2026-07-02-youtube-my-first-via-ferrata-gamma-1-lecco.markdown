@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## 🧗 My First Via Ferrata | Gamma 1, Lecco 🇮🇹⛰️
-
 <lite-youtube videoid="NgftlPEFHNs" data-short playlabel="🧗 My First Via Ferrata | Gamma 1, Lecco 🇮🇹⛰️"></lite-youtube>

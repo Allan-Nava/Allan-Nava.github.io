@@ -14,8 +14,6 @@ author: allan
 externalLink: true
 ---
 
-## :video_camera: Holidays videos
-
 <lite-youtube videoid="Y3wg9FqQyKM"></lite-youtube>
 
 

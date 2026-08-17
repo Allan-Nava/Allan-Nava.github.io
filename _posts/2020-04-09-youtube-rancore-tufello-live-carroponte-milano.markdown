@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Rancore - Tufello Live 🔹 Carroponte Milano
-
 <lite-youtube videoid="jQd20KhovxE" playlabel="Rancore - Tufello Live 🔹 Carroponte Milano"></lite-youtube>

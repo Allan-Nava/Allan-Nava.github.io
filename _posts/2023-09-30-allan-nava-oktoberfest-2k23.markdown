@@ -19,8 +19,6 @@ lng: 11.549
 externalLink: true
 ---
 
-## Oktoberfest 2k23 🥨🍻🇩🇪
-
 <div>
     <video class="fullscreen fill" width="100%" autoplay loop controls muted="muted">
     <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/IMG_2490.MOV" type="video/mp4">

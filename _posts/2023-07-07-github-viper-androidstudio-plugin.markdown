@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/VIPER-AndroidStudio-Plugin
 github: HiWay-Media/VIPER-AndroidStudio-Plugin
 ---
 
-## VIPER-AndroidStudio-Plugin
-
 Intellij Idea, Android Studio plugin for generating VIPER data classes from JSON. Helps to avoid writing boilerplate code for model classes.
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

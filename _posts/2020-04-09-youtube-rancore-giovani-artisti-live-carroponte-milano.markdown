@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Rancore - Giovani Artisti Live 🔹 Carroponte Milano
-
 <lite-youtube videoid="dVoTfABGLZg" playlabel="Rancore - Giovani Artisti Live 🔹 Carroponte Milano"></lite-youtube>

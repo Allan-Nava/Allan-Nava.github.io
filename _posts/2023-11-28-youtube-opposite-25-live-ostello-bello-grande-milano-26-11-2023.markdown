@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Opposite - 25 live 🎤 Ostello Bello Grande 📍 Milano 🎶🎸 26/11/2023
-
 <lite-youtube videoid="I_eRXoaIuT8" playlabel="Opposite - 25 live 🎤 Ostello Bello Grande 📍 Milano 🎶🎸 26/11/2023"></lite-youtube>

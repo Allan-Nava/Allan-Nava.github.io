@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Plage du Soleil 2023 🇫🇷🌅
-
 <lite-youtube videoid="-_TnoktpSBM" data-short playlabel="Plage du Soleil 2023 🇫🇷🌅"></lite-youtube>

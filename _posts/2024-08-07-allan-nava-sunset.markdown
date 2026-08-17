@@ -15,9 +15,6 @@ author: allan
 externalLink: true
 ---
 
-## Sunset 🌇
-
-
 <div>
     <img class="image" src="/assets/images/photo_2024-08-07.jpg" alt="" />
 </div>

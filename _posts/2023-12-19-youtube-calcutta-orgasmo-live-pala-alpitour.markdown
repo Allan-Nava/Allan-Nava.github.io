@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Calcutta - Orgasmo live 🔹Pala Alpitour
-
 <lite-youtube videoid="HYkW4dWiy3g" playlabel="Calcutta - Orgasmo live 🔹Pala Alpitour"></lite-youtube>

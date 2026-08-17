@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## I-Days ♦️Travis Scott concert 🔥 Ippodromo la Maura Milan 2023
-
 <lite-youtube videoid="QFfUryojD2A" playlabel="I-Days ♦️Travis Scott concert 🔥 Ippodromo la Maura Milan 2023"></lite-youtube>

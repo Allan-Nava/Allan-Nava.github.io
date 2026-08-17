@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## ENSI - Freestyle with Nerone & Lazza
-
 <lite-youtube videoid="kHc9IGjSYF4" playlabel="ENSI - Freestyle with Nerone & Lazza"></lite-youtube>

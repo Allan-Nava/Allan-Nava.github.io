@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/HB-Nvenc-Imagemagick
 github: HiWay-Media/HB-Nvenc-Imagemagick
 ---
 
-## HB-Nvenc-Imagemagick
-
 Docker Handbrake1.6 Nvenc ImageMagick
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

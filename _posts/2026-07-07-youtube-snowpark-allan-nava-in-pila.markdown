@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Snowpark Allan Nava in Pila 🏂🏞️
-
 <lite-youtube videoid="jsPBA2y1t04" playlabel="Snowpark Allan Nava in Pila 🏂🏞️"></lite-youtube>

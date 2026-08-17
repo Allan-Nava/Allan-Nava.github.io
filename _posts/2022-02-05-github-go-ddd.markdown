@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/go-ddd
 github: Allan-Nava/go-ddd
 ---
 
-## go-ddd
-
 Simple api domain drived design / service repository pattern
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

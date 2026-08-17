@@ -19,8 +19,6 @@ externalLink: https://github.com/HiWay-Media/ns1-observium
 github: HiWay-Media/ns1-observium
 ---
 
-## ns1-observium
-
 A python library for interacting with the Observium API: http://docs.observium.org/api/
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

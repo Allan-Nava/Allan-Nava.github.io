@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/HelloWorldSwift
 github: Allan-Nava/HelloWorldSwift
 ---
 
-## HelloWorldSwift
-
 HelloWorldSwift
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

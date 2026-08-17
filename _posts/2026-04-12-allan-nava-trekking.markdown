@@ -13,7 +13,6 @@ category: blog
 author: allan
 externalLink: true
 ---
-## Trekking Morone
 
 <div>
     <img class="image" src="/assets/images/20260412_121945_1.jpg" alt="" />

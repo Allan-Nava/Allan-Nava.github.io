@@ -17,8 +17,6 @@ externalLink: https://github.com/HiWay-Media/keycloak-fitp-enricher
 github: HiWay-Media/keycloak-fitp-enricher
 ---
 
-## keycloak-fitp-enricher
-
 Plugin Keycloak che, su login via FITP/B2C, chiama Microsoft Graph per recuperare email, firstName, lastName dell'utente e li popola sull'utente Keycloak.
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Monte Spluga ⛰️
-
 <lite-youtube videoid="Y4yfxXpu6iA" playlabel="Monte Spluga ⛰️"></lite-youtube>

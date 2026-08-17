@@ -124,8 +124,6 @@ activities.each do |act|
     author: allan
     ---
 
-    ## #{name.delete('#')}
-
     | | |
     |---|---|
     | **Attività** | #{label} |

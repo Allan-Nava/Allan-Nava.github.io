@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/go-gemini
 github: Allan-Nava/go-gemini
 ---
 
-## go-gemini
-
 Go package that returns response of Google Bard through API.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

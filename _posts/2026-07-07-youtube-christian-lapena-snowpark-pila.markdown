@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Christian LaPena Snowpark Pila 🏂
-
 <lite-youtube videoid="cas8k91OiwY" playlabel="Christian LaPena Snowpark Pila 🏂"></lite-youtube>

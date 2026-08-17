@@ -16,7 +16,6 @@ lat: 45.69
 lng: 7.305
 externalLink: true
 ---
-## Après ski Pila 
 
 <lite-youtube videoid="QLryDUjf94k" data-short playlabel="Pila aprés ski 🏂🍹"></lite-youtube>
 

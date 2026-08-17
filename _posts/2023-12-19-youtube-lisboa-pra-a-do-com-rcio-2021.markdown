@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Lisboa - Praça do Comércio 🏛️ 2021
-
 <lite-youtube videoid="1rw9t3yNcuE" playlabel="Lisboa - Praça do Comércio 🏛️ 2021"></lite-youtube>

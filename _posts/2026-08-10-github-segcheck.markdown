@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/segcheck
 github: Allan-Nava/segcheck
 ---
 
-## segcheck
-
 Check what your HLS/DASH segments actually contain — not just what the manifest claims. Undeclared gaps, mislabelled ladder rungs, duration drift, ABR misalignment. One static Go binary, zero dependencies, no ffmpeg.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

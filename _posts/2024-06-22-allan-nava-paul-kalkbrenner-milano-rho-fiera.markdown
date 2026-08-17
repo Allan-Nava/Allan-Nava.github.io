@@ -15,8 +15,6 @@ author: allan
 externalLink: true
 ---
 
-## Paul Kalkbrenner DJSet live - Milano Rho Fiera 🔥
-
 <lite-youtube videoid="b7_5cr83AQY" data-short playlabel="YouTube video player"></lite-youtube>
 
 

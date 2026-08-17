@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Grilling with the Boys 🍔🔥
-
 <lite-youtube videoid="1OcGPCSwiF8" data-short playlabel="Grilling with the Boys 🍔🔥"></lite-youtube>

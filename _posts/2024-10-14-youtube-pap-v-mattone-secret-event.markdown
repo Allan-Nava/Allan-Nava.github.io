@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Papà V - Mattone 💀 Secret Event
-
 <lite-youtube videoid="IRw3txiJKkA" data-short playlabel="Papà V - Mattone 💀 Secret Event"></lite-youtube>

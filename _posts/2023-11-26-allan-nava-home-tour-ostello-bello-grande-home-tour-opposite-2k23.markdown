@@ -19,8 +19,6 @@ author: allan
 externalLink: true
 ---
 
-## Opposite x Livemoment at Ostello Bello Grande 🎶 🎛️
-
 <div>
     <video class="fullscreen fill" width="100%" autoplay loop controls >
     <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/opposite1.MOV" type="video/mp4">

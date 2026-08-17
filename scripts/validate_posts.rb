@@ -102,6 +102,18 @@ posts.each do |path|
     warnings << "#{name}: category 'project' without 'projects: true' — won't appear on /projects"
   end
 
+  # The post header already prints the title as the <h1>: repeating it as the
+  # first heading of the body shows it twice, which is what 259 posts did
+  # before scripts/dedupe_title_heading.rb (#153). Whitespace-insensitive and
+  # case-insensitive, like the one-shot.
+  body = text.split(/^---\s*$/, 3)[2].to_s.lstrip
+  if (heading = body[/\A\#{1,6}[ \t]*(.+?)[ \t]*\r?$/, 1])
+    squash = ->(s) { s.to_s.gsub(/\s+/, ' ').strip.downcase }
+    if squash.call(heading) == squash.call(fm['title'])
+      warnings << "#{name}: body starts with the title again — the header already prints it as the <h1>"
+    end
+  end
+
   # Body checks on the raw text.
   if text =~ %r{github\.com/Allan-Nava/Allan-Nava\.github\.io/blob}
     errors << "#{name}: hotlinks repo files via github.com/...blob — use /assets/... paths instead"

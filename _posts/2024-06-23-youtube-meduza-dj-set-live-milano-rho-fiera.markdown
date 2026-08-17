@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Meduza DJ SET Live🔹Milano Rho Fiera
-
 <lite-youtube videoid="TCdzC1J8SzU" data-short playlabel="Meduza DJ SET Live🔹Milano Rho Fiera"></lite-youtube>

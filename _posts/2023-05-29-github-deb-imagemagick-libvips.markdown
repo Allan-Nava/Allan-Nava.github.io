@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/Deb-ImageMagick-LibVips
 github: HiWay-Media/Deb-ImageMagick-LibVips
 ---
 
-## Deb-ImageMagick-LibVips
-
 Docker debian imagemagick and libvips
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

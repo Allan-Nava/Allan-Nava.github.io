@@ -13,7 +13,6 @@ category: blog
 author: allan
 externalLink: true
 ---
-## Climbing rope
 
 <div>
     <img class="image" src="/assets/images/climbing-14-04.jpg" alt="" />

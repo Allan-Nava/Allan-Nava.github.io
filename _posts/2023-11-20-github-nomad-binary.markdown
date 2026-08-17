@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/nomad-binary
 github: HiWay-Media/nomad-binary
 ---
 
-## nomad-binary
-
 Example nomad binary
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

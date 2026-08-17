@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/docker-fast
 github: HiWay-Media/docker-fast
 ---
 
-## docker-fast
-
 Fast Channel Engine is a sustainable Fast Channel Engine base on VOD2Live technology and the open source Channel Engine library from Eyevinn Technology.
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/homebrew-tap
 github: Allan-Nava/homebrew-tap
 ---
 
-## homebrew-tap
-
 Homebrew tap for Allan-Nava projects.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

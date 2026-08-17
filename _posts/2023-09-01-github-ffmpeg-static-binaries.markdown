@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/ffmpeg-static-binaries
 github: HiWay-Media/ffmpeg-static-binaries
 ---
 
-## ffmpeg-static-binaries
-
 Three scripts to make a static build of ffmpeg with all the latest codecs (webm + h264).
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

@@ -14,6 +14,4 @@ lat: 46.292
 lng: 9.924
 ---
 
-## Hiking to Rifugio Cristina, Valmalenco 🇮🇹⛰️
-
 <lite-youtube videoid="qqTGW-7asHU" playlabel="Hiking to Rifugio Cristina, Valmalenco 🇮🇹⛰️"></lite-youtube>

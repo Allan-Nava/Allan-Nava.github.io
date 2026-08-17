@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/hm-react-utils
 github: Allan-Nava/hm-react-utils
 ---
 
-## hm-react-utils
-
 HM React utils functions
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## TonyPitony
-
 <lite-youtube videoid="F0Xe6Vk7B8Q" data-short playlabel="TonyPitony"></lite-youtube>

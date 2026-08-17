@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Rancore - Depressissimo Live 🔹 Carroponte Milano
-
 <lite-youtube videoid="gJpstYh8ZXY" playlabel="Rancore - Depressissimo Live 🔹 Carroponte Milano"></lite-youtube>

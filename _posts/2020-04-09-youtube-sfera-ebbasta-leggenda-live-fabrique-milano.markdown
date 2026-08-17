@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Sfera Ebbasta - Leggenda Live 🔹 Fabrique Milano
-
 <lite-youtube videoid="aFSZl79zk_M" playlabel="Sfera Ebbasta - Leggenda Live 🔹 Fabrique Milano"></lite-youtube>

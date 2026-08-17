@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/Go-GestPay
 github: Allan-Nava/Go-GestPay
 ---
 
-## Go-GestPay
-
 GO gestpay SDK  https://api.axerve.com/#wscryptdecrypt-api
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

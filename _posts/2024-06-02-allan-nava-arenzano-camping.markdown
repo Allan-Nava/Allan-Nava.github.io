@@ -15,9 +15,6 @@ author: allan
 externalLink: true
 ---
 
-## Arenzano Weekend 🌊
-
-
 <div>
     <img class="image" src="/assets/images/photo_1_2024-06-2.jpg" alt="" />
 </div>

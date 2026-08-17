@@ -14,6 +14,4 @@ lat: 40.2628
 lng: 17.8984
 ---
 
-## Porto Cesareo 2019 🌊
-
 <lite-youtube videoid="Cj5Wm3Iff_Y" data-short playlabel="Porto Cesareo 2019 🌊"></lite-youtube>

@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/AWS_SMS_LIBRARY
 github: Allan-Nava/AWS_SMS_LIBRARY
 ---
 
-## AWS_SMS_LIBRARY
-
 Simple aws sms library for python3
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/handbrake-nvenc-docker-v2
 github: HiWay-Media/handbrake-nvenc-docker-v2
 ---
 
-## handbrake-nvenc-docker-v2
-
 About Handbrake GUI with Web browser and VNC access. Supports NVENC encoding
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

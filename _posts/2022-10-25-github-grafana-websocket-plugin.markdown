@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/grafana-websocket-plugin
 github: Allan-Nava/grafana-websocket-plugin
 ---
 
-## grafana-websocket-plugin
-
 Grafana websocket plugin
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

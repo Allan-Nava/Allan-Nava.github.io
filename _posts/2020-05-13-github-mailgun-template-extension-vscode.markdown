@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/Mailgun-Template-Extension-VSCode
 github: Allan-Nava/Mailgun-Template-Extension-VSCode
 ---
 
-## Mailgun-Template-Extension-VSCode
-
 Easy way to upload template to mailgun
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

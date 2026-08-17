@@ -23,8 +23,10 @@ category: blog
 author: allan
 ---
 
-## Post body in Markdown…
+Post body in Markdown…
 ```
+
+**Don't open the body with the title again.** The post header already prints it as the `<h1>`, so a `## Athens 2k23 🇬🇷` on the first line shows it twice — which is exactly what 259 posts did until `scripts/dedupe_title_heading.rb` removed it (#153). `validate_posts.rb` warns if it comes back. Headings *inside* the body are fine and feed the table of contents.
 
 ## Project
 

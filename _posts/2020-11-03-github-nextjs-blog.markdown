@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/NextJS-Blog
 github: Allan-Nava/NextJS-Blog
 ---
 
-## NextJS-Blog
-
 Tutorial https://nextjs.org/learn/basics/create-nextjs-app/setup
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

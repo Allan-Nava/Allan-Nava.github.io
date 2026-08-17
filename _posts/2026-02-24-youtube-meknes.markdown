@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Meknes 🇲🇦
-
 <lite-youtube videoid="aodp6Aa1Ibk" data-short playlabel="Meknes 🇲🇦"></lite-youtube>

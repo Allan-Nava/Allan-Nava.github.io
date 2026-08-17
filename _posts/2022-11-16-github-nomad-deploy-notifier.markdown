@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/Nomad-Deploy-Notifier
 github: Allan-Nava/Nomad-Deploy-Notifier
 ---
 
-## Nomad-Deploy-Notifier
-
 Send Nomad deployment messages to slack in GO Lang
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

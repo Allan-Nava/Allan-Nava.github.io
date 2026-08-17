@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/mediamtx-go-sdk
 github: HiWay-Media/mediamtx-go-sdk
 ---
 
-## mediamtx-go-sdk
-
 MediaMTX go sdk rest api
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

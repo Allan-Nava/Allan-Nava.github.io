@@ -14,7 +14,5 @@ category: blog
 author: allan
 externalLink: true
 ---
-## Climbing 🏋🏽
-
 
 <lite-youtube videoid="w7O_L4glUwI" data-short playlabel="Slab Mode ON 🟡🧠 Focus &amp; Control"></lite-youtube>

@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## I-Days - Capo Plaza 🔹 Tesla ♦️ Ippodromo la Maura 2023
-
 <lite-youtube videoid="LJh-h5QJn3w" data-short playlabel="I-Days - Capo Plaza 🔹 Tesla ♦️ Ippodromo la Maura 2023"></lite-youtube>

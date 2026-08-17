@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/compress-php
 github: HiWay-Media/compress-php
 ---
 
-## compress-php
-
 The Compress PHP library provides access to the Compress API for encoding videos, restreamers
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## SQUIRTle00 ACEEE Valorant 🔫
-
 <lite-youtube videoid="ZUsPTt_07i0" playlabel="SQUIRTle00 ACEEE Valorant 🔫"></lite-youtube>

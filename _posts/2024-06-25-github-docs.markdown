@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/docs
 github: HiWay-Media/docs
 ---
 
-## docs
-
 Compress documentation
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

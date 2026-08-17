@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Salmo feat Blanco - La canzone nostra 🔹 Stadio San Siro 2022 🏟
-
 <lite-youtube videoid="yxESKiB9_kM" playlabel="Salmo feat Blanco - La canzone nostra 🔹 Stadio San Siro 2022 🏟"></lite-youtube>

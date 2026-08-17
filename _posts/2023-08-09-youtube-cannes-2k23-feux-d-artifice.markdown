@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Cannes 2k23 Feux d'artifice 🎆🎇
-
 <lite-youtube videoid="xlXN9Wu7pqk" playlabel="Cannes 2k23 Feux d'artifice 🎆🎇"></lite-youtube>

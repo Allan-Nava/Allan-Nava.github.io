@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## I-Days AvA ♦️SAD! XXXTentacion 🔹 Ippodromo la Maura 2023
-
 <lite-youtube videoid="6J8DBZldXAA" data-short playlabel="I-Days AvA ♦️SAD! XXXTentacion 🔹 Ippodromo la Maura 2023"></lite-youtube>

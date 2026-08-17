@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Cyprus 2017 🇨🇾
-
 <lite-youtube videoid="QuDZWZy1sVo" playlabel="Cyprus 2017 🇨🇾"></lite-youtube>

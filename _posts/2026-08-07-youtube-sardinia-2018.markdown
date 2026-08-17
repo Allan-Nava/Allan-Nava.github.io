@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Sardinia 2018 🌅
-
 <lite-youtube videoid="FMN7jHGbLUI" data-short playlabel="Sardinia 2018 🌅"></lite-youtube>

@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/rust-tutorial
 github: Allan-Nava/rust-tutorial
 ---
 
-## rust-tutorial
-
 🦀
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

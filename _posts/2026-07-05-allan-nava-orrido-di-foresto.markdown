@@ -16,7 +16,6 @@ lat: 45.133
 lng: 7.089
 externalLink: true
 ---
-## Orrido di Foresto
 
 <lite-youtube videoid="OhbUGISQ6mc" data-short playlabel="Orrido di foresto"></lite-youtube>
 

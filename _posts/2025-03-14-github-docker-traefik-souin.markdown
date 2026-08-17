@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/docker-traefik-souin
 github: HiWay-Media/docker-traefik-souin
 ---
 
-## docker-traefik-souin
-
 Docker Traefik with souin
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

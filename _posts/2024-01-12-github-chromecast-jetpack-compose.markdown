@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/Chromecast-Jetpack-Compose
 github: HiWay-Media/Chromecast-Jetpack-Compose
 ---
 
-## Chromecast-Jetpack-Compose
-
 AndroidCast is an Android app built using Kotlin and Jetpack Compose that allows you to easily cast online videos to your cast device.
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

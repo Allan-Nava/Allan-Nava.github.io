@@ -18,8 +18,6 @@ externalLink: https://github.com/HiWay-Media/teamcity-agent-gitlab-release-cli
 github: HiWay-Media/teamcity-agent-gitlab-release-cli
 ---
 
-## teamcity-agent-gitlab-release-cli
-
 TeamCity docker images  Resources
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

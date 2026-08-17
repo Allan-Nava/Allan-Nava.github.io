@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/go-alpine
 github: HiWay-Media/go-alpine
 ---
 
-## go-alpine
-
 DockerImage packaging for golang with git and make
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

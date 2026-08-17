@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Salmo - La prima volta 🔹 Stadio San Siro 🏟
-
 <lite-youtube videoid="CuLbpMFt3nc" playlabel="Salmo - La prima volta 🔹 Stadio San Siro 🏟"></lite-youtube>

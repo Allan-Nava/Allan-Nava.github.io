@@ -182,8 +182,6 @@ def build_post(repo, date_str, image = nil)
     #{front.join("\n")}
     ---
 
-    ## #{name}
-
     #{description}
 
     #{body.join("\n")}

@@ -19,8 +19,6 @@ externalLink: https://github.com/HiWay-Media/docker-ansible
 github: HiWay-Media/docker-ansible
 ---
 
-## docker-ansible
-
 This repository provides a Docker image with Ansible preinstalled, allowing you to easily run Ansible playbooks within a Docker container.
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

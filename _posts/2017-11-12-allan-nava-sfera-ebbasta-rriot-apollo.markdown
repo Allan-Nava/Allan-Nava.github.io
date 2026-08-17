@@ -14,8 +14,6 @@ author: allan
 externalLink: true
 ---
 
-## Sfera Ebbasta RRIOT at Apollo
-
 <div>
     <video class="fullscreen fill" width="100%" autoplay loop controls >
     <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/sferaebbasta-ciny.mp4" type="video/mp4">

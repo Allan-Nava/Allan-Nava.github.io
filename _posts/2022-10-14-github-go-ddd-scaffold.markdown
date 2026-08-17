@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/Go-DDD-Scaffold
 github: Allan-Nava/Go-DDD-Scaffold
 ---
 
-## Go-DDD-Scaffold
-
 Generate scaffold domain driven design project layout for Go.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/AndroidMVP
 github: Allan-Nava/AndroidMVP
 ---
 
-## AndroidMVP
-
 Simple structure for Android Model View Presenter pattern
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

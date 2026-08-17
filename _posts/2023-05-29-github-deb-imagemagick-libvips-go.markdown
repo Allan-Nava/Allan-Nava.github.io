@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/Deb-ImageMagick-LibVips-Go
 github: HiWay-Media/Deb-ImageMagick-LibVips-Go
 ---
 
-## Deb-ImageMagick-LibVips-Go
-
 Docker debian, imagemagick, libvips and golang
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

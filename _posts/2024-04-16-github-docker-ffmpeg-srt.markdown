@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/Docker-FFmpeg-SRT
 github: HiWay-Media/Docker-FFmpeg-SRT
 ---
 
-## Docker-FFmpeg-SRT
-
 Docker image with FFmpeg and SRT
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

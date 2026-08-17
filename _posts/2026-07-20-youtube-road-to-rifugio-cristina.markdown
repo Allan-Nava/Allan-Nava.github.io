@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Road to Rifugio Cristina🏔️
-
 <lite-youtube videoid="Z0dulJk_BGk" playlabel="Road to Rifugio Cristina🏔️"></lite-youtube>

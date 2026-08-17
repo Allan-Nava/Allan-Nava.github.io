@@ -16,9 +16,6 @@ author: allan
 externalLink: true
 ---
 
-## Padel Garden Tennis Club  🎾  
-
-
 <div>
     <img class="image" src="/assets/images/padel-novatemilanese.jpg" alt="Padel Garden Tennis Club " />
 </div>

@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Pizzo Tambò: An Unforgettable Alpine Hike 🏔️
-
 <lite-youtube videoid="84Vq38OX4Bg" playlabel="Pizzo Tambò: An Unforgettable Alpine Hike 🏔️"></lite-youtube>

@@ -15,7 +15,6 @@ lat: 46.468
 lng: 10.37
 externalLink: true
 ---
-## Bormio Pozze di Leonardo 
 
 <div>
     <img class="image" src="/assets/images/bormio-1.jpg" alt="" />

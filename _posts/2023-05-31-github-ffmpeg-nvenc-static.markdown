@@ -19,8 +19,6 @@ externalLink: https://github.com/HiWay-Media/ffmpeg-nvenc-static
 github: HiWay-Media/ffmpeg-nvenc-static
 ---
 
-## ffmpeg-nvenc-static
-
 FFmpeg supports NVENC encoding
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

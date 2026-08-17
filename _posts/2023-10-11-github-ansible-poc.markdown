@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/ansible-poc
 github: Allan-Nava/ansible-poc
 ---
 
-## ansible-poc
-
 Ansible structure and poc
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

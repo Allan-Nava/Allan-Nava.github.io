@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/Nvenc-ImageMagick
 github: HiWay-Media/Nvenc-ImageMagick
 ---
 
-## Nvenc-ImageMagick
-
 Docker FFmpeg Nvenc ImageMagick
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

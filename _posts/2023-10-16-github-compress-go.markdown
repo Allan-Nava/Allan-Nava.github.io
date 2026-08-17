@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/compress-go
 github: HiWay-Media/compress-go
 ---
 
-## compress-go
-
 The Compress Go lang library provides access to the Compress API for encoding videos, restreamers
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/keycloak-doctor
 github: Allan-Nava/keycloak-doctor
 ---
 
-## keycloak-doctor
-
 Audit a Keycloak realm for the mistakes that actually get exploited — from an export file or a live server, in one static Go binary.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

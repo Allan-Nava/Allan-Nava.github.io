@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Rancore - D.A.R.K.N.E.S.S. Live 🔹 Carroponte Milano
-
 <lite-youtube videoid="_pX8Mqspqbc" playlabel="Rancore - D.A.R.K.N.E.S.S. Live 🔹 Carroponte Milano"></lite-youtube>

@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/Complete-BLoC-example
 github: Allan-Nava/Complete-BLoC-example
 ---
 
-## Complete-BLoC-example
-
 Complete example of an app built with BLoC
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

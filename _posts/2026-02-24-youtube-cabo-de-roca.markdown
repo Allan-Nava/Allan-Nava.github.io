@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Cabo de roca 🇵🇹
-
 <lite-youtube videoid="mibIyQKna-E" data-short playlabel="Cabo de roca 🇵🇹"></lite-youtube>

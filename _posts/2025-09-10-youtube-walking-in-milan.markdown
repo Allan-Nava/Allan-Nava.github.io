@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## walking in milan 🚶🏽
-
 <lite-youtube videoid="d-AeIA3LUP0" playlabel="walking in milan 🚶🏽"></lite-youtube>

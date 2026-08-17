@@ -19,8 +19,6 @@ externalLink: https://github.com/HiWay-Media/SoundWave-Go
 github: HiWay-Media/SoundWave-Go
 ---
 
-## SoundWave-Go
-
 SoundWave-go is a tool
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

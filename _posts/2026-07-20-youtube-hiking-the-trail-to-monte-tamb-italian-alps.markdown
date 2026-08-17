@@ -14,6 +14,4 @@ lat: 46.517
 lng: 9.317
 ---
 
-## ⛰️ Hiking the Trail to Monte Tambò | Italian Alps 🇮🇹
-
 <lite-youtube videoid="6fpBDVV7VoU" playlabel="⛰️ Hiking the Trail to Monte Tambò | Italian Alps 🇮🇹"></lite-youtube>

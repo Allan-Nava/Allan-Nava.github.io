@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Nayt -  Non è fortuna 🔹 Release Party Lettera Q 🔹 Dazi Milano
-
 <lite-youtube videoid="DdW07xwYLkA" data-short playlabel="Nayt - Non è fortuna 🔹 Release Party Lettera Q 🔹 Dazi Milano"></lite-youtube>

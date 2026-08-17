@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/S3-Uploader
 github: HiWay-Media/S3-Uploader
 ---
 
-## S3-Uploader
-
 S3 Uploader
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

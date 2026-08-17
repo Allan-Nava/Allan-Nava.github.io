@@ -18,8 +18,6 @@ externalLink: https://github.com/Allan-Nava/ffmpeg-static-binaries
 github: Allan-Nava/ffmpeg-static-binaries
 ---
 
-## ffmpeg-static-binaries
-
 FFmpeg static binaries
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Fez 🇲🇦
-
 <lite-youtube videoid="fr-S7FIZw0s" data-short playlabel="Fez 🇲🇦"></lite-youtube>

@@ -18,8 +18,6 @@ externalLink: https://github.com/HiWay-Media/status-check
 github: HiWay-Media/status-check
 ---
 
-## status-check
-
 ◾️ Status Dashboard
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

@@ -14,6 +14,4 @@ lat: 40.0547
 lng: 17.9758
 ---
 
-## Gallipoli 2019
-
 <lite-youtube videoid="PhzqYmizYAo" data-short playlabel="Gallipoli 2019"></lite-youtube>

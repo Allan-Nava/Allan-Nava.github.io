@@ -14,6 +14,4 @@ lat: 46.273
 lng: 9.927
 ---
 
-## Pizzo Scalino ⛰️🧗🏼‍♂️
-
 <lite-youtube videoid="2PDaTkSEuHs" data-short playlabel="Pizzo Scalino ⛰️🧗🏼‍♂️"></lite-youtube>

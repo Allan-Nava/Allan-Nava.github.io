@@ -15,8 +15,6 @@ author: allan
 externalLink: true
 ---
 
-## Athens 🌅
-
 <div>
     <img class="image" src="/assets/images/P1100820.JPG" alt="athens 2023" />
 

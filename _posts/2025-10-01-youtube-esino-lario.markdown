@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Esino Lario 🥾
-
 <lite-youtube videoid="UgPxLwtKAs4" data-short playlabel="Esino Lario 🥾"></lite-youtube>

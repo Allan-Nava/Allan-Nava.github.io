@@ -16,7 +16,5 @@ author: allan
 externalLink: true
 ---
 
-## Dips 50kg 🏋🏽
-
 <lite-youtube videoid="imHrCNI7CuU" data-short playlabel="YouTube video player"></lite-youtube>
 

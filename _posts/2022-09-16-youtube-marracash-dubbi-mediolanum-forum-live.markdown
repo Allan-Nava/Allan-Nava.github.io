@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Marracash - Dubbi ( Mediolanum Forum Live )
-
 <lite-youtube videoid="4H2Cgza79oU" playlabel="Marracash - Dubbi ( Mediolanum Forum Live )"></lite-youtube>

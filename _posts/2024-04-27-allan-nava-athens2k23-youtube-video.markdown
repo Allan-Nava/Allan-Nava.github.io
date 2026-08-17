@@ -15,6 +15,4 @@ author: allan
 externalLink: true
 ---
 
-## Athens 2k23 🇬🇷
-
 <lite-youtube videoid="WKQ9fQQNZHc" playlabel="YouTube video player"></lite-youtube>

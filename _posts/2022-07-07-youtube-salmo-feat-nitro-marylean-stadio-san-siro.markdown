@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Salmo feat Nitro - Marylean 🔹 Stadio San Siro 🏟
-
 <lite-youtube videoid="-cERJ90_grA" playlabel="Salmo feat Nitro - Marylean 🔹 Stadio San Siro 🏟"></lite-youtube>

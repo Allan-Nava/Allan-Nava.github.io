@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/baseimage-docker-mc-mediainfo
 github: Allan-Nava/baseimage-docker-mc-mediainfo
 ---
 
-## baseimage-docker-mc-mediainfo
-
 About A minimal Ubuntu base image modified for Docker-friendliness with minio cli and mediainfo
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

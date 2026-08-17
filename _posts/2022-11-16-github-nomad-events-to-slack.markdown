@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/nomad-events-to-slack
 github: Allan-Nava/nomad-events-to-slack
 ---
 
-## nomad-events-to-slack
-
 Get nomad's allocations. Retrieve events from the tasks inside allocations. Post events to Slack channel as a Slack bot using incoming web hooks.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

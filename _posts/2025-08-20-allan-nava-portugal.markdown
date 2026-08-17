@@ -16,8 +16,6 @@ lat: 38.722
 lng: -9.139
 externalLink: true
 ---
-## Portugal 🇵🇹
-
 
 <lite-youtube videoid="-K_GtPoeIOY" data-short playlabel="Lisboa road trip 🇵🇹"></lite-youtube>
 

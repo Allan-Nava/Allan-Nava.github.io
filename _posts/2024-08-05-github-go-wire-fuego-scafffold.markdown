@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/go-wire-fuego-scafffold
 github: Allan-Nava/go-wire-fuego-scafffold
 ---
 
-## go-wire-fuego-scafffold
-
 Generate scaffold wire with fuego webserver project layout for Go.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

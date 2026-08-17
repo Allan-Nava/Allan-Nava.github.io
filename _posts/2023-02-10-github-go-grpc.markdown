@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/GO-gRPC
 github: Allan-Nava/GO-gRPC
 ---
 
-## GO-gRPC
-
 go gRPC example project
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

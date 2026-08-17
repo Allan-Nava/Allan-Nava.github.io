@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Rancore - Capolinea Live 🔹 Carroponte Milano
-
 <lite-youtube videoid="cQIrwvUefjs" playlabel="Rancore - Capolinea Live 🔹 Carroponte Milano"></lite-youtube>

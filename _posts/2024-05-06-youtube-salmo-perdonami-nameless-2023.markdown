@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Salmo - Perdonami 🔥 Nameless 2023
-
 <lite-youtube videoid="lcaiWXFnfTI" data-short playlabel="Salmo - Perdonami 🔥 Nameless 2023"></lite-youtube>

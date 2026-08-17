@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/go-bytebase
 github: Allan-Nava/go-bytebase
 ---
 
-## go-bytebase
-
 ByteBase go sdk
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

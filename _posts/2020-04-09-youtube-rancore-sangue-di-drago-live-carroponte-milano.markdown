@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Rancore - Sangue di Drago Live 🔹 Carroponte Milano
-
 <lite-youtube videoid="my6vCh96ZYA" playlabel="Rancore - Sangue di Drago Live 🔹 Carroponte Milano"></lite-youtube>

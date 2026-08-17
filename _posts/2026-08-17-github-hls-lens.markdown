@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/hls-lens
 github: Allan-Nava/hls-lens
 ---
 
-## hls-lens
-
 VS Code extension: read HLS manifests in the editor
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

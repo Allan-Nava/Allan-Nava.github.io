@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/compress-python
 github: HiWay-Media/compress-python
 ---
 
-## compress-python
-
 The Compress python library provides access to the Compress API for encoding videos, restreamers
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

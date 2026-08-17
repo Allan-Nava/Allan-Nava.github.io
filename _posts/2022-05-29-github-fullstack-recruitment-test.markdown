@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/FullStack-Recruitment-Test
 github: Allan-Nava/FullStack-Recruitment-Test
 ---
 
-## FullStack-Recruitment-Test
-
 FullStack Recruitment test (frontend & backend)
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

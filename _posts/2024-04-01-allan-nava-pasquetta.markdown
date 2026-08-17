@@ -16,9 +16,6 @@ author: allan
 externalLink: true
 ---
 
-## Pasquetta 🐣
-
-
 <div>
     <img class="image" src="/assets/images/photo_2024-04-01_11-27-28.jpg" alt="Pasquetta 2024" />
 </div>

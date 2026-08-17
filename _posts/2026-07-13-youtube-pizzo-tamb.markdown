@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Pizzo Tambò ⛰️
-
 <lite-youtube videoid="xO__fNc5iX0" data-short playlabel="Pizzo Tambò ⛰️"></lite-youtube>

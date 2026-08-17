@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/nats-check-availability
 github: HiWay-Media/nats-check-availability
 ---
 
-## nats-check-availability
-
 NATS golang to check availability infrastructure
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

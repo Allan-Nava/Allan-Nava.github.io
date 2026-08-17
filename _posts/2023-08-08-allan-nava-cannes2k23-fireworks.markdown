@@ -14,9 +14,6 @@ author: allan
 externalLink: true
 ---
 
-## Cannes 2k23 Fireworks 🇫🇷
-
-
 <div>
     <video class="fullscreen fill" width="100%" autoplay controls >
     <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/cannes-fireworks.mp4" type="video/mp4">

@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Dinosaurs
-
 <lite-youtube videoid="uMeomN-M8NI" playlabel="Dinosaurs"></lite-youtube>

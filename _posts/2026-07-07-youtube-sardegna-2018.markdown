@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Sardegna 2018
-
 <lite-youtube videoid="aoMSzu5llY0" data-short playlabel="Sardegna 2018"></lite-youtube>

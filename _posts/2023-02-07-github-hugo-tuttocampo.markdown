@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/Hugo-TuttoCampo
 github: Allan-Nava/Hugo-TuttoCampo
 ---
 
-## Hugo-TuttoCampo
-
 Hugo OTT TuttoCampo
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

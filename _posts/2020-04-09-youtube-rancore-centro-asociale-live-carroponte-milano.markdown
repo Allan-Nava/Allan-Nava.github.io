@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Rancore - Centro Asociale Live 🔹 Carroponte Milano
-
 <lite-youtube videoid="yr2VkvPEfBc" playlabel="Rancore - Centro Asociale Live 🔹 Carroponte Milano"></lite-youtube>

@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/kong-ubuntu-oidc-jwt
 github: HiWay-Media/kong-ubuntu-oidc-jwt
 ---
 
-## kong-ubuntu-oidc-jwt
-
 🦍 The Cloud-Native API Gateway Docker OIDC JWT
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

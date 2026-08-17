@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Oktoberfest 2023 🍺🍻
-
 <lite-youtube videoid="-tDAVrpbA5U" data-short playlabel="Oktoberfest 2023 🍺🍻"></lite-youtube>

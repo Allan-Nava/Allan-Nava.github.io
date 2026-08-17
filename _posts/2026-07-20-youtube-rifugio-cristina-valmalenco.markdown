@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Rifugio Cristina🏔️ Valmalenco
-
 <lite-youtube videoid="KjkOamRxdmQ" playlabel="Rifugio Cristina🏔️ Valmalenco"></lite-youtube>

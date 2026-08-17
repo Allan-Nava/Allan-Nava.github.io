@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/fakeyou.go
 github: Allan-Nava/fakeyou.go
 ---
 
-## fakeyou.go
-
 A powerful golang sdk library for interacting with the FakeYouAPI easily
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

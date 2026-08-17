@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/nvenc-docker
 github: HiWay-Media/nvenc-docker
 ---
 
-## nvenc-docker
-
 Docker with FFMPEG supports NVENC encoding
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

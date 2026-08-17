@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## One leg squat with bosu
-
 <lite-youtube videoid="Iz1NKwlNIaE" data-short playlabel="One leg squat with bosu"></lite-youtube>

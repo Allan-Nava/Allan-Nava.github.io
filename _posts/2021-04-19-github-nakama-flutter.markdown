@@ -19,8 +19,6 @@ externalLink: https://github.com/Allan-Nava/nakama-flutter
 github: Allan-Nava/nakama-flutter
 ---
 
-## nakama-flutter
-
 Dart / Flutter client for Nakama server.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

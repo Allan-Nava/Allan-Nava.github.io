@@ -14,7 +14,5 @@ category: blog
 author: allan
 externalLink: true
 ---
-## Climbing 🏋🏽
-
 
 <lite-youtube videoid="D8nc6oXrpz8" data-short playlabel="Working through this 6a circuit — every move a lesson. 🔥🧗‍♂️ #climbingjourney #climbingcommunity"></lite-youtube>

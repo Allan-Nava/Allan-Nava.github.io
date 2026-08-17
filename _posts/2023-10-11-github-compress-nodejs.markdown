@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/compress-nodejs
 github: HiWay-Media/compress-nodejs
 ---
 
-## compress-nodejs
-
 The Compress NodeJS library provides access to the Compress API for encoding videos, restreamers
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

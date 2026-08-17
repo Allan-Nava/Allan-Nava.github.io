@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## 5 Pull UPs 10kg 🏋🏽
-
 <lite-youtube videoid="JjSyUAln32s" playlabel="5 Pull UPs 10kg 🏋🏽"></lite-youtube>

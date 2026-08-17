@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Hiking to Passo degli Ometti 🇮🇹⛰️
-
 <lite-youtube videoid="G-edSSJ2ETw" playlabel="Hiking to Passo degli Ometti 🇮🇹⛰️"></lite-youtube>

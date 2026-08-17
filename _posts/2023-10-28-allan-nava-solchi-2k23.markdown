@@ -16,8 +16,6 @@ author: allan
 externalLink: true
 ---
 
-## Solchi Milano 🎶 🎛️
-
 <div>
     <video class="fullscreen fill" width="100%" autoplay loop controls >
     <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/IMG_2893.MOV" type="video/mp4">

@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Nazarè
-
 <lite-youtube videoid="quPLIhTRRy0" data-short playlabel="Nazarè"></lite-youtube>

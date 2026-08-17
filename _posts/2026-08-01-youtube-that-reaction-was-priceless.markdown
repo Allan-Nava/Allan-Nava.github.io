@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## That Reaction Was Priceless 🤯
-
 <lite-youtube videoid="t2hypIQdwME" playlabel="That Reaction Was Priceless 🤯"></lite-youtube>

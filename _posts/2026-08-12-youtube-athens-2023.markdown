@@ -12,8 +12,6 @@ category: blog
 author: allan
 ---
 
-## Athens  2023 🇬🇷✨
-
 <lite-youtube videoid="REiUU0guC7k" data-short playlabel="Athens 2023 🇬🇷✨"></lite-youtube>
 
 <div class="video-description">

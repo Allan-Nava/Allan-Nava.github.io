@@ -14,6 +14,4 @@ lat: 45.894
 lng: 9.425
 ---
 
-## Via Ferrata Gamma 1 | Lecco’s Epic Climb 🇮🇹⛰️
-
 <lite-youtube videoid="jpzlWi9d-zg" playlabel="Via Ferrata Gamma 1 | Lecco’s Epic Climb 🇮🇹⛰️"></lite-youtube>

@@ -16,8 +16,6 @@ externalLink: https://github.com/Allan-Nava/nats-lens
 github: Allan-Nava/nats-lens
 ---
 
-## nats-lens
-
 A NATS client inside VS Code — connect with the contexts you already have from the nats CLI, publish/subscribe/request on subjects, and browse JetStream streams and consumers without leaving the editor.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)

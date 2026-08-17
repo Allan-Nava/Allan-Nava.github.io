@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Valorant big clutch with itzuckzz and shaylala 🔫
-
 <lite-youtube videoid="w21RaP87gUU" playlabel="Valorant big clutch with itzuckzz and shaylala 🔫"></lite-youtube>

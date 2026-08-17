@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## FC Inter Milan 🖤💙
-
 <lite-youtube videoid="lz6Az5Iyzpo" data-short playlabel="FC Inter Milan 🖤💙"></lite-youtube>

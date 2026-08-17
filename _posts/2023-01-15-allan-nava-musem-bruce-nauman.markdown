@@ -17,8 +17,6 @@ author: allan
 externalLink: true
 ---
 
-## Neons, Corridors & Rooms ✨  
-
 If you really want to do it, you do it
 - Bruce Nauman
 

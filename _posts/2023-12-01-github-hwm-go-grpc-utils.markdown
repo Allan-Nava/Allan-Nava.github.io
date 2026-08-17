@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/hwm-go-grpc-utils
 github: HiWay-Media/hwm-go-grpc-utils
 ---
 
-## hwm-go-grpc-utils
-
 HiWay Media Go gRPC lang utils
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

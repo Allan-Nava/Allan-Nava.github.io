@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/keycloak-apple-identity-provider-fi
 github: HiWay-Media/keycloak-apple-identity-provider-fitp-enricher
 ---
 
-## keycloak-apple-identity-provider-fitp-enricher
-
 About Docker for Keycloak, that enables web-based sign in with Apple & FITP Enricher
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

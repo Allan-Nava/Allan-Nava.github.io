@@ -42,7 +42,7 @@ Requires the **`YOUTUBE_API_KEY`** secret — the script aborts without it, ther
 
 Manual runs from the Actions tab accept a `max_age_days` input to backfill recent videos. For the full channel history there is `ruby scripts/backfill_youtube.rb` (one-shot, local): it enumerates every video and short on the channel by paginating the web player's internal API, then creates the missing posts — idempotent, `DRY_RUN=1` and `SINCE=YYYY` supported. Shorts are detected via a HEAD request to `/shorts/<id>` (200 = short, redirect = regular video) and get the `data-short` (portrait) facade plus a `short` tag.
 
-Generated posts embed the video with the `<lite-youtube>` facade (not a raw iframe — see [Architecture](architecture.md)) and set the YouTube thumbnail as `image:` for og:image/listing previews. `scripts/migrate_youtube_embeds.rb` is a one-shot that converted the pre-existing iframe embeds to the same facade (`DRY_RUN=1` supported, idempotent).
+Generated posts embed the video with the `<lite-youtube>` facade (not a raw iframe — see [Architecture](architecture.md)) and set the YouTube thumbnail as `image:` for og:image/listing previews. `scripts/migrate_youtube_embeds.rb` is a one-shot that converted the pre-existing iframe embeds to the same facade (`DRY_RUN=1` supported, idempotent). A second one-shot, `scripts/dedupe_title_heading.rb`, stripped the `## <title>` heading these generators used to write at the top of every body — the header already prints it as the `<h1>` (259 posts, #153). The generators no longer emit it, and `validate_posts.rb` warns if a post reintroduces it.
 
 ### `image-optimize.yml` — Image Optimize
 

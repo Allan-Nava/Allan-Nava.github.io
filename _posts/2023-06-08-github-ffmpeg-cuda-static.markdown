@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/FFmpeg-Cuda-Static
 github: HiWay-Media/FFmpeg-Cuda-Static
 ---
 
-## FFmpeg-Cuda-Static
-
 FFmpeg supports NVENC Cuda encoding
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

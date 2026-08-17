@@ -16,8 +16,6 @@ externalLink: https://github.com/HiWay-Media/Superset-Keycloak-PSQL
 github: HiWay-Media/Superset-Keycloak-PSQL
 ---
 
-## Superset-Keycloak-PSQL
-
 Apache Superset is a modern data exploration and visualization platform with keycloak adapter
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)

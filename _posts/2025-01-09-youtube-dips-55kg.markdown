@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Dips 55kg 🏋🏽‍♂️
-
 <lite-youtube videoid="a4ElSKP2q5g" data-short playlabel="Dips 55kg 🏋🏽‍♂️"></lite-youtube>

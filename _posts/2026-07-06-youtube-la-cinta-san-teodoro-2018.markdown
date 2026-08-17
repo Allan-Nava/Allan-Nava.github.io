@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## La cinta San Teodoro 2018
-
 <lite-youtube videoid="uCHMn0-vQws" playlabel="La cinta San Teodoro 2018"></lite-youtube>

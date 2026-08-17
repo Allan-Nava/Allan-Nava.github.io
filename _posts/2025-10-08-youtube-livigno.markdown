@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Livigno 🌲
-
 <lite-youtube videoid="vhTPly_lyew" data-short playlabel="Livigno 🌲"></lite-youtube>

@@ -12,6 +12,4 @@ category: blog
 author: allan
 ---
 
-## Sfera Ebbasta - Serpenti A Sonagli Live 🔹 Fabrique Milano
-
 <lite-youtube videoid="Z1huR5jEmkI" playlabel="Sfera Ebbasta - Serpenti A Sonagli Live 🔹 Fabrique Milano"></lite-youtube>
