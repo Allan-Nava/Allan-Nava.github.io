@@ -102,6 +102,16 @@ Quarto giro, dopo v2.5. Come per quella, le voci nascono guardando le pagine sul
 - [ ] **`/stats`: etichette troncate** (#157) — `#javascr...`, `#docker...`, `#typesc...`: un quarto della lista è illeggibile proprio nella pagina fatta per leggere quei numeri.
 - [ ] **Àncore sui titoli dei post** (#158) — gli `id` di kramdown ci sono già e li usa il TOC, ma non c'è modo di copiare il link a una sezione. Da aggiungere in `toc.rb`, funzionante anche senza JS.
 
+## v2.7 — URL, feed e contenuti generati
+
+Quinto giro. Come i due precedenti, le voci vengono dal sito pubblicato — questa volta non dalle pagine ma dalle **superfici con cui ci si arriva**: permalink, RSS, indice di ricerca, `meta description`. Sono i punti in cui il sito parla a chi non lo sta ancora guardando, e sono rimasti indietro rispetto al lavoro fatto sulle pagine. Milestone `v2.7` su GitHub.
+
+- [ ] **Permalink incoerenti** (#159) — `tags.html` e `projects.html` sono le uniche 2 pagine su 12 senza `permalink: /nome/`, e da lì escono tre difetti: `/tags/` risponde **404** (i chip della home, le barre di `/stats` e i tag di ogni post ci puntavano — link corretti a `/tags#slug`, causa ancora aperta), i link nav a `/blog` `/about` `/map` fanno un **301 a ogni click** (gli unici 3 non-200 su 373 link interni), e la nav porta su URL che dichiarano `canonical` altrove. Attenzione: `/tags.html` e `/projects.html` sono cablati in `checkfleet.yml`, `lighthouse.yml` e nella sitemap.
+- [ ] **Feed RSS pieno di progetti** (#160) — **5 entry su 10** in `feed.xml` sono post progetto generati da `sync_github.rb`, e occupano le prime cinque posizioni. `hidden: true` li tiene fuori dalla paginazione del blog ma non dal feed, e `github-sync.yml` gira ogni ora: il feed si rimescola anche quando non è stato scritto niente.
+- [ ] **La ricerca non trova i progetti** (#161) — `search.json` filtra `p.hidden != true`, quindi nessuno dei 159 progetti è cercabile: **197 record su ~356 contenuti**. È l'unica superficie del sito che fa finta che non esistano.
+- [ ] **Descrizioni boilerplate** (#162) — **103 post** con `description` "Video dal canale YouTube di Allan Nava: <titolo>": ripete il titolo, in italiano su interfaccia inglese (#149), e finisce in `meta description`, feed, estratto dei listing e anteprima dei risultati di ricerca. Da correggere nel generatore, nello storico (one-shot con `DRY_RUN=1`) e con un warning in `validate_posts.rb`.
+- [ ] **Anteprime YouTube letterboxed** (#163) — le thumbnail `i.ytimg.com` (114 post) arrivano 4:3 e il ritaglio quadrato di `home-blog-projects.sass` vale solo su mobile: su desktop metà griglia è incorniciata di nero. Stesso CSS di #151, da fare insieme.
+
 ## v3.0 — Big rocks
 
 Milestone `v3.0` creata su GitHub con le quattro issue qui sotto. Sono le uniche voci di **codice** ancora aperte nel backlog: tutto ciò che resta in v2.1/v2.2 aspetta credenziali o account esterni (vedi sopra). Nota: queste issue sono state create a mano, non da `bootstrap-milestone.yml` — quel workflow copre solo le voci v2.x che ha generato.
