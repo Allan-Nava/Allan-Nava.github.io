@@ -36,8 +36,8 @@ funzionerebbe, e la lista resta completa. Nessuna dipendenza esterna.
     });
 
     status.textContent = filter === '*'
-      ? shown + ' progetti'
-      : shown + (shown === 1 ? ' progetto' : ' progetti') + ' con tag "' + filter + '"';
+      ? shown + (shown === 1 ? ' project' : ' projects')
+      : shown + (shown === 1 ? ' project' : ' projects') + ' tagged "' + filter + '"';
   }
 
   chips.forEach(function (chip) {
@@ -46,6 +46,6 @@ funzionerebbe, e la lista resta completa. Nessuna dipendenza esterna.
     });
   });
 
-  status.textContent = items.length + ' progetti';
+  status.textContent = items.length + (items.length === 1 ? ' project' : ' projects');
 })();
 </script>

@@ -11,7 +11,7 @@ senza JavaScript i chip non compaiono e la lista resta completa e navigabile.
 {% if site.data.project_tags and site.data.project_tags.size > 0 %}
     <div class="filters" data-projects-filter hidden>
         <div class="filter-chips" role="group" aria-label="Filtra per tag">
-            <button type="button" class="filter-chip is-active" data-filter="*" aria-pressed="true">Tutti</button>
+            <button type="button" class="filter-chip is-active" data-filter="*" aria-pressed="true">All</button>
             {% for t in site.data.project_tags %}
                 <button type="button" class="filter-chip" data-filter="{{ t.slug }}" aria-pressed="false">{{ t.name }} <span class="count">{{ t.count }}</span></button>
             {% endfor %}

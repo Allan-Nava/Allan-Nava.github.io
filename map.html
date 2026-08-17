@@ -4,7 +4,7 @@ title: Map
 permalink: /map/
 ---
 
-<p>Le escursioni, le vie e i viaggi raccontati sul blog: ogni marker è un post. Aggiungi <code>lat</code>/<code>lng</code> al front matter di un post per farlo comparire qui.</p>
+<p>The hikes, climbs and trips written up on the blog: every marker is a post. Add <code>lat</code>/<code>lng</code> to a post's front matter to put it on the map.</p>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
 <div id="trip-map" style="width: 100%; height: 480px; border-radius: 6px; margin: 1.5em 0;"></div>
@@ -54,7 +54,7 @@ Di qui le due contromisure qui sotto:
 
         if (!spots.length) {
             var empty = document.createElement('p');
-            empty.textContent = 'Nessun post geolocalizzato (ancora).';
+            empty.textContent = 'No geolocated posts yet.';
             host.parentNode.replaceChild(empty, host);
             return;
         }
