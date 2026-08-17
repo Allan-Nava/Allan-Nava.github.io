@@ -5,7 +5,7 @@ date: 2026-08-17 11:12
 updated: 2026-08-17
 tag:
 - go
-image: ""
+image: "https://raw.githubusercontent.com/Allan-Nava/keycloak-doctor/main/docs/assets/logo.svg"
 headerImage: false
 projects: true
 hidden: true
