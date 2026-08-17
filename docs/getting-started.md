@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- **Ruby** — CI builds with Ruby 3.3 (`.github/workflows/jekyll.yml`); any 3.x works locally. To match CI exactly with a version manager: `brew install rbenv ruby-build && rbenv install 3.3`. Note that `html-proofer` is pinned to `~> 4.4` only because the toolchain used to be on 3.0; on 3.3 the pin can be lifted to 5.x (#128).
+- **Ruby** — CI builds with Ruby 3.3 (`.github/workflows/jekyll.yml`); any 3.x works locally. To match CI exactly with a version manager: `brew install rbenv ruby-build && rbenv install 3.3`. `html-proofer` is pinned to `~> 5.0`, which needs Ruby ≥ 3.1 — so a 3.0 toolchain can no longer install this bundle.
 - **UTF-8 locale** — the Sass pipeline reads accented characters, so a non-UTF-8 shell fails the build with `Invalid US-ASCII character`. Export `LANG=en_US.UTF-8` (and `LC_ALL=en_US.UTF-8`) before building; CI runners already do.
 - **Bundler** — `gem install bundler`.
 - **Git LFS** — `.MOV` video files in `assets/video/` are stored with [Git LFS](https://git-lfs.com/) (see `.gitattributes`). Install it and run `git lfs install` before cloning, otherwise videos come down as pointer files.
@@ -56,10 +56,12 @@ bundle exec htmlproofer ./_site --disable-external --allow-hash-href \
   --ignore-empty-alt --assume-extension ".html" --ignore-urls "/localhost/"
 ```
 
-Those are **html-proofer 4.x** names: 3.x used `--url-ignore` / `--empty-alt-ignore` and a valueless `--assume-extension`. If you see the old spellings anywhere, they are stale.
+Those names are **html-proofer 4/5**: 3.x used `--url-ignore` / `--empty-alt-ignore` and a valueless `--assume-extension`. If you see the old spellings anywhere, they are stale. In 5.x the booleans are documented as `--[no-]flag`, but the plain `--flag` form still works, so nothing changed between 4 and 5 for the CLI.
 
 The same checks run in CI on every pull request (see [Deployment & CI](deployment.md)). `--ignore-empty-alt` is there because `alt=""` is the correct markup for decorative images (the nav avatar, listing thumbnails, where the link supplies the accessible name); a **missing** alt attribute is still an error, which is how the upgrade to 4.x caught one.
 
 Expect some noise from long-dead external links in old posts; treat failures on *internal* links and images as real problems.
 
-**Known local crash:** on macOS/arm64 the external-link phase of `rake test` can die with a `Segmentation fault` inside `ethon`/libcurl (`ethon-0.12.0/lib/ethon/multi/operations.rb`) while checking the ~1000 external links. It's an environment issue in that native stack, not a site failure — use `rake test_internal` locally and let CI do the external pass.
+**External links are noisy, not broken.** A full `rake test` checks ~1440 external links and currently reports ~1010 failures: a decade of posts pointing at Heroku apps and sites that no longer exist. That is why `checks.yml` only validates internal links, and `link-check.yml` reports the external ones to an issue once a month instead of gating.
+
+The old `Segmentation fault` in `ethon`/libcurl that used to kill the external phase on macOS/arm64 did **not** reproduce with html-proofer 5 — a full local run completed cleanly. `ethon` is still in the bundle, so the crash may simply have moved rather than gone; if it comes back, `rake test_internal` remains the local workaround.

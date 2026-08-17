@@ -19,10 +19,14 @@ PROOFER_OPTIONS = {
   assume_extension: '.html'
 }.freeze
 
+# NB: sempre una COPIA delle opzioni. html-proofer 5 **modifica** l'hash che gli
+# passi, e PROOFER_OPTIONS è `freeze`d: passarlo direttamente fa esplodere il
+# task con `FrozenError: can't modify frozen Hash`. Non si vedeva con la 4.x, e
+# `test_internal` se la cavava per caso perché `merge` restituisce già una copia.
 desc 'build and test website'
 task :test do
   sh 'bundle exec jekyll build'
-  HTMLProofer.check_directory('./_site', PROOFER_OPTIONS).run
+  HTMLProofer.check_directory('./_site', PROOFER_OPTIONS.dup).run
 end
 
 desc 'build and test website without checking external links'
