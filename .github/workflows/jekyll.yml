@@ -103,13 +103,31 @@ jobs:
             | tar -xz checkfleet
           ./checkfleet version
       - name: Check the live site
-        # `shell: bash` is required, not cosmetic: it enables pipefail, so the
-        # --exit-on-bad exit code survives the pipe into tee instead of being
-        # masked by tee's own 0.
         shell: bash
-        # Pages sits behind Varnish with max-age=600. If this commit added a new
-        # page *and* a target for it, the first run right after the deploy can
-        # still read the cached 404 — the scheduled uptime.yml run clears it.
+        # Pages sits behind Varnish. Right after a deploy an URL can answer 5xx
+        # while the CDN propagates: that happened on cf5734f, where `/gear/`
+        # came back 503 while the other eleven targets were 200, and the job
+        # went red on a site that was fine seconds later.
+        #
+        # checkfleet.yml already sets `retries: 2`, but those retry **ERROR**
+        # findings (DNS, TLS, connection reset). A 503 is a **BAD** finding —
+        # unexpected status — and is not retried. Hence the loop here: three
+        # attempts, 20s apart. A page that is genuinely broken still fails all
+        # three and the job still goes red, just ~40s later.
+        #
+        # Output goes to a file and is appended afterwards, instead of piping
+        # into tee: the pipe used to mask checkfleet's exit code unless pipefail
+        # was on, and with the retry loop we need that exit code per attempt.
         run: |
-          ./checkfleet check http --config checkfleet.yml \
-            --output markdown --exit-on-bad | tee -a "$GITHUB_STEP_SUMMARY"
+          ok=0
+          for attempt in 1 2 3; do
+            if ./checkfleet check http --config checkfleet.yml \
+                 --output markdown --exit-on-bad > smoke.md; then
+              ok=1
+              break
+            fi
+            echo "smoke test: attempt $attempt failed"
+            if [ "$attempt" -lt 3 ]; then sleep 20; fi
+          done
+          cat smoke.md >> "$GITHUB_STEP_SUMMARY"
+          if [ "$ok" -ne 1 ]; then exit 2; fi

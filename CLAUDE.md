@@ -91,7 +91,7 @@ ruby scripts/validate_posts.rb # validazione veloce dei post — no bundle
 
 ## Deployment
 
-Push su `master` → GitHub Pages via `.github/workflows/jekyll.yml` (push + cron giornaliero 10:00 UTC + dispatch manuale): build Ruby 3.3 / production, deploy dell'artifact `_site/`, poi job `smoke`: **checkfleet** sonda il sito **live** (target in `checkfleet.yml`) e allega il report Markdown al job summary — `checks.yml` valida `_site` *prima* del deploy, quindi è l'unico controllo su ciò che Pages serve davvero. `uptime.yml` fa girare lo stesso check ogni 10 minuti. `checks.yml` gira `validate_posts.rb` su ogni PR.
+Push su `master` → GitHub Pages via `.github/workflows/jekyll.yml` (push + cron giornaliero 10:00 UTC + dispatch manuale): build Ruby 3.3 / production, deploy dell'artifact `_site/`, poi job `smoke`: **checkfleet** sonda il sito **live** (target in `checkfleet.yml`, 3 tentativi a 20s — subito dopo il deploy la CDN può rispondere 5xx, e un 503 è un finding BAD che `retries:` non ritenta) e allega il report Markdown al job summary — `checks.yml` valida `_site` *prima* del deploy, quindi è l'unico controllo su ciò che Pages serve davvero. `uptime.yml` fa girare lo stesso check ogni 10 minuti. `checks.yml` gira `validate_posts.rb` su ogni PR.
 
 ## Architettura
 

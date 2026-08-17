@@ -13,9 +13,10 @@ The site deploys to **GitHub Pages** through GitHub Actions (not the legacy Page
 
 The smoke job closes a real gap: `checks.yml` validates the locally built `_site` *before* the deploy, so nothing else ever reads what Pages actually serves — a deploy that reported success while serving a wrong or partial page used to go unnoticed. It can't gate the deploy (that already happened); it exists to notify. Details of the target list are in [`checkfleet.yml`](../checkfleet.yml) at the repo root.
 
-Two implementation details that are load-bearing:
+Three implementation details that are load-bearing:
 
-- The step declares `shell: bash` so that **pipefail** is on. Without it, piping into `tee` for the job summary masks checkfleet's `--exit-on-bad` exit code with `tee`'s own `0`, and the job would never fail (verified: exit 2 with pipefail, exit 0 without).
+- The check is **retried up to three times, 20s apart**. Pages sits behind Varnish, and right after a deploy a URL can answer 5xx while the CDN propagates — exactly what happened on `cf5734f`, where `/gear/` came back 503 while the other eleven targets were 200 and the job went red on a site that was fine seconds later. `checkfleet.yml` does set `retries: 2`, but those cover **ERROR** findings (DNS, TLS, reset); a 503 is a **BAD** finding and is not retried. A genuinely broken page still fails all three attempts and still turns the job red, just ~40s later.
+- The output goes to a file and is appended to the job summary afterwards, instead of being piped into `tee`. The old pipe masked checkfleet's `--exit-on-bad` exit code unless `pipefail` was on, and the retry loop needs that exit code on every attempt.
 - checkfleet is installed from a **pinned release tarball** (no Go toolchain needed). Keep the version in sync with `uptime.yml`.
 
 The `pages` concurrency group with `cancel-in-progress: true` ensures simultaneous runs don't race: the newer run cancels the older one.
