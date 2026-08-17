@@ -159,7 +159,8 @@ table
 		font-weight: 600
 
 .wrapper-normal,
-.wrapper-large
+.wrapper-large,
+.wrapper-wide
 	height: 100%
 	width: 92%
 	margin: 0 auto
@@ -175,3 +176,8 @@ table
 
 .wrapper-large
 	max-width: var(--width-large)
+
+// Usata dalle pagine con `wide: true` nel front matter: i listing. Il corpo dei
+// post resta su .wrapper-normal, dove --measure fa il suo lavoro.
+.wrapper-wide
+	max-width: var(--width-listing)

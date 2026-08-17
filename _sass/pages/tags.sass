@@ -1,35 +1,123 @@
-// /tags — cloud dei tag in alto (chip colorati in components/polish.sass) e,
-// sotto, l'elenco dei post raggruppati per tag.
+// /tags — nuvola pesata in alto, poi le sezioni per tag come blocchi
+// collassabili. Il markup è in tags.html, che spiega il perché delle due scelte.
+// I colori dei chip restano in components/polish.sass, insieme a quelli dei tag
+// nei post: sono lo stesso elemento visivo e devono restare allineati.
 
-.tags
-	margin-top: 0
+.tag-cloud
+	display: flex
+	flex-wrap: wrap
+	align-items: baseline
+	gap: var(--space-2)
+	margin: var(--space-6) 0 0
+	padding: 0
 
-	> .list
-		display: flex
-		flex-wrap: wrap
+	> .item
+		display: inline-flex
+		align-items: baseline
+		gap: 6px
+		padding: 4px 12px
+		letter-spacing: 0.04em
+		text-transform: lowercase
+		text-decoration: none
+		border-radius: var(--radius-pill)
+
+	// Peso per frequenza: è l'unica cosa che distingue un argomento ricorrente
+	// da un tag capitato una volta. La scala parte da --text-xs e sale piano —
+	// una nuvola con salti troppo larghi diventa illeggibile.
+	> .t-1
+		font-size: var(--text-xs)
+
+	> .t-2
+		font-size: var(--text-xs)
+
+	> .t-3
+		font-size: var(--text-sm)
+
+	> .t-4
+		font-size: var(--text-sm)
+		font-weight: 600
+
+	> .t-5
+		font-size: var(--text-base)
+		font-weight: 700
+
+	> .item > .count
+		font-size: 0.82em
+		font-variant-numeric: tabular-nums
+		opacity: 0.72
+
+// La coda lunga: i tag con un post solo, che sono la maggioranza.
+.tag-tail
+	margin: var(--space-4) 0 0
+
+	> summary
+		display: inline-flex
+		align-items: center
 		gap: var(--space-2)
-		margin: var(--space-6) 0 0
-		padding: 0
+		padding: 4px 2px
+		font-size: var(--text-sm)
+		color: var(--color-fg-muted)
+		cursor: pointer
+		list-style: none
 
-		> .item
-			display: inline-block
-			padding: 4px 12px
-			font-size: var(--text-xs)
-			letter-spacing: 0.04em
-			text-transform: lowercase
-			text-decoration: none
-			border-radius: var(--radius-pill)
+		&::-webkit-details-marker
+			display: none
+
+		&::before
+			content: '▸'
+			transition: transform var(--dur) var(--ease)
+
+		&:hover
+			color: var(--color-fg-strong)
+
+	&[open] > summary::before
+		transform: rotate(90deg)
+
+	> .tag-cloud
+		margin-top: var(--space-3)
 
 .tag-list
-	> .title
-		font-size: var(--text-xl)
-		color: var(--color-fg-strong)
-		margin: var(--space-8) 0 var(--space-4)
+	margin-top: var(--space-8)
+
+	> .tag-block
+		border-bottom: 1px solid var(--color-border)
+		// L'ancora arriva dai chip dei post (/tags/#slug): senza questo il
+		// blocco finisce sotto l'isola flottante della nav.
 		scroll-margin-top: calc(var(--nav-height) + var(--space-4))
 
-	> .list
+		> summary
+			display: flex
+			align-items: baseline
+			gap: var(--space-3)
+			padding: var(--space-3) var(--space-2)
+			cursor: pointer
+			list-style: none
+			border-radius: var(--radius-md)
+			transition: background var(--dur) var(--ease)
+
+			&::-webkit-details-marker
+				display: none
+
+			&:hover
+				background: var(--color-row-hover)
+
+		> summary > .tag-name
+			font-size: var(--text-lg)
+			font-weight: 600
+			color: var(--color-fg-strong)
+
+		> summary > .count
+			font-size: var(--text-xs)
+			letter-spacing: var(--tracking-wide)
+			color: var(--color-fg-muted)
+			font-variant-numeric: tabular-nums
+
+		&[open] > summary > .tag-name
+			color: var(--color-accent)
+
+	.list
 		list-style: none
-		margin: 0
+		margin: 0 0 var(--space-4)
 		padding: 0
 
 		> .item

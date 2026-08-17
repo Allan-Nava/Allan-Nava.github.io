@@ -222,6 +222,10 @@
 	--measure: 68ch; // misura di riga dei post
 	--width-normal: 640px;
 	--width-large: 880px;
+	// Misura dei listing (home, blog, projects, videos): lì non si legge un
+	// testo continuo ma si scorre una griglia, quindi la regola dei 68ch non
+	// si applica e restare a 640px lascia vuoto mezzo schermo.
+	--width-listing: 1120px;
 	// Altezza occupata dall'isola flottante (pillola + stacco dal bordo):
 	// serve a `scroll-margin-top`, così un'ancora non finisce sotto la nav.
 	--nav-height: 68px;

@@ -83,13 +83,13 @@ Due trappole trovate durante il lavoro, ora documentate: i commenti `//` negli s
 
 Terzo giro di design, dopo le fondamenta di v2.3 e il motion di v2.4. Le voci **non** vengono da un elenco di buoni propositi: sono i difetti visti guardando le pagine sul sito pubblicato, dopo che #144 ha finalmente reso visibile l'output dei plugin. Milestone `v2.5` su GitHub.
 
-- [ ] **Griglia per i listing** (#146) — 155 progetti in colonna singola dentro 640px, su schermi da 1280. Griglia responsive per i listing, misura stretta solo per il corpo dei post.
+- [x] **Griglia per i listing** (#146) — `.list` è una griglia: 1 colonna, 2 da 860px, 3 da 1240px. I breakpoint sono sulla larghezza della **card**, non della finestra, perché la card è orizzontale e sotto i ~350px di colonna il testo si strozza. La griglia è legata a `.wrapper-wide`, non alla finestra: `.home-section` compare anche sulla 404, che resta stretta.
 - [ ] **`/tags` senza gerarchia** (#147) — 1254 chip identici, nessun conteggio, **400 KB di HTML**; è anche la pagina più lenta (Lighthouse ~91 contro 99-100). Conteggi, peso per frequenza, raggruppamento, coda lunga dietro un "mostra tutti".
 - [ ] **Tag duplicati** (#148) — 5 gruppi di varianti (`open-source`/`open source`, `iOS`/`ios`, `github actions`/`github-actions`, …): 5 archivi frammentati. Da consolidare, con un controllo in `validate_posts.rb` perché non ricapiti.
 - [x] **Lingua mista** (#149) — interfaccia uniformata all'inglese: chip `All`, contatore `155 projects` / `37 projects tagged "go"`, più i corpi di `/offline` e `/map` e il messaggio di mappa vuota. I commenti Liquid restano in italiano, che è la convenzione del repo.
 - [ ] **`/gear`** (#150) — manca l'`<h1>`, tre sezioni su sei sono vuote e la pagina dichiara di essere in costruzione. O si riempie o si toglie dal menu.
 - [ ] **Thumbnail dei progetti incoerenti** (#151) — loghi su fondo bianco accanto a screenshot scuri e monogrammi. Normalizzare il contenitore, non le immagini. Attenzione ai selettori a figlio diretto e all'esclusione dal `<picture>`.
-- [ ] **Misura del contenuto** (#152) — 640px anche su home e listing, dove non serve. `--measure` resta per il testo continuo.
+- [x] **Misura del contenuto** (#152) — nuovo token `--width-listing: 1120px` e classe `.wrapper-wide`, attivata da `wide: true` nel front matter di home, `/blog`, `/projects` e `/videos`. Post e pagine di testo restano su `--width-normal`, dove `--measure` fa il suo lavoro.
 
 ## v3.0 — Big rocks
 

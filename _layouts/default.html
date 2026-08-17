@@ -79,7 +79,12 @@ layout: compress
     {% include nav.html %}
 
     {%- comment -%} <main> e non <div>: Lighthouse (landmark-one-main) e i lettori di schermo si aspettano un landmark principale {%- endcomment -%}
-    <main id="content" class="wrapper-{% if site.width == "normal" %}normal{% elsif site.width == "large" %}large{% endif %}">
+    {%- comment -%}
+    `wide: true` nel front matter allarga il contenitore: serve ai listing
+    (home, blog, projects, videos), che scorrono una griglia invece di far
+    leggere un testo continuo. Tutto il resto resta sulla misura di `site.width`.
+    {%- endcomment -%}
+    <main id="content" class="{% if page.wide %}wrapper-wide{% else %}wrapper-{% if site.width == "normal" %}normal{% elsif site.width == "large" %}large{% endif %}{% endif %}">
         {% if page.tag %}
             <div class="post">
         {% else %}

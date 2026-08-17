@@ -27,9 +27,31 @@ Tutto è progressive enhancement: senza JS il sito resta quello della v2.0.0.
   document.addEventListener('DOMContentLoaded', function () {
     /* Immagini già in cache: il loro evento `load` è passato prima di noi. */
     document.querySelectorAll('.thumb-img').forEach(function (img) {
-      if (img.complete) markLoaded(img);
+      if (img.complete) {
+        /* `complete` è true anche per un'immagine fallita: naturalWidth 0 la
+           distingue, altrimenti si "rivelerebbe" un buco. */
+        if (img.naturalWidth) markLoaded(img); else dropThumb(img);
+      }
     });
   });
+
+  /* Le thumbnail dei progetti sono ospitate altrove (raw.githubusercontent.com,
+     e per quattro card host terzi). Se una non arriva — 429 di GitHub, repo
+     rinominato, immagine rimossa — senza questo resterebbe a `opacity: 0` per
+     sempre, cioè un rettangolo vuoto dentro la card: il fade-in si accende solo
+     su `load`. Meglio togliere la thumbnail e lasciare la card compatta, che è
+     già come si presentano le card senza immagine.
+     `error` non fa bubbling: serve la fase di cattura. */
+  function dropThumb(img) {
+    var thumb = img.closest ? img.closest('.thumb') : null;
+    if (thumb && thumb.parentNode) thumb.parentNode.removeChild(thumb);
+    else if (img.parentNode) img.parentNode.removeChild(img);
+  }
+
+  document.addEventListener('error', function (e) {
+    var img = e.target;
+    if (img && img.classList && img.classList.contains('thumb-img')) dropThumb(img);
+  }, true);
 
   /* 2. View Transition: la card cliccata diventa l'header del post ------------ */
   if (motionOK && 'startViewTransition' in document) {

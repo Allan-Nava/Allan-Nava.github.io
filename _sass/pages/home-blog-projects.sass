@@ -11,9 +11,15 @@
 .projects
 	margin-top: 0
 
+	// Colonna singola di default: vale ovunque, 404 compresa.
+	// Le colonne multiple stanno più sotto, dentro `.wrapper-wide`.
+	//
+	// `minmax(0, 1fr)` anche qui, non `1fr`: `1fr` vale `minmax(auto, 1fr)` e
+	// quell'`auto` è il min-content della card, che con una descrizione lunga
+	// supera il contenitore — le card sfondavano a destra sotto gli 860px.
 	> .list
-		display: flex
-		flex-direction: column
+		display: grid
+		grid-template-columns: minmax(0, 1fr)
 		gap: var(--space-3)
 		margin: var(--space-6) 0 0
 		padding: 0
@@ -169,3 +175,26 @@
 		> .list > .item > .url > .body > .meta
 			flex-wrap: wrap
 			row-gap: var(--space-1)
+
+// Griglia dei listing (#146), solo dove il contenitore è largo — cioè nelle
+// pagine con `wide: true`. Legarla al wrapper e non alla finestra è necessario:
+// `.home-section` compare anche sulla 404, che resta a 640px, e lì due colonne
+// da ~310px strozzerebbero la card.
+//
+// I breakpoint sono scelti sulla larghezza della CARD, non della finestra: la
+// card è orizzontale (thumbnail a sinistra, testo a destra) e sotto i ~350px di
+// colonna il testo si comprime. Col contenitore a 1120px, due colonne fanno
+// ~545px e tre ~355px.
+//
+// `minmax(0, 1fr)` e non `1fr`: senza, uno slug lungo sfonda la colonna invece
+// di andare a capo.
+.wrapper-wide
+	.home-section,
+	.blog,
+	.projects
+		> .list
+			@media only screen and (min-width: 860px)
+				grid-template-columns: repeat(2, minmax(0, 1fr))
+
+			@media only screen and (min-width: 1240px)
+				grid-template-columns: repeat(3, minmax(0, 1fr))

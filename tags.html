@@ -2,47 +2,99 @@
 layout: page
 title: Tags
 ---
-<section class="list">
-    {%- comment -%} Il titolo della pagina lo rende _includes/header.html {%- endcomment -%}
-    {% assign tags_list = site.tags %}
+{%- comment -%}
+Il titolo della pagina lo rende _includes/header.html.
 
-    {% if tags_list.first[0] == null %}
-        {% for tag in tags_list %}
-            <a class="item" href="#{{ tag | slugify }}">{{ tag }}</a>
-        {% endfor %}
-    {% else %}
-        {% for tag in tags_list %}
-            <a class="item" href="#{{ tag[0] | slugify }}">{{ tag[0] }}</a>
-        {% endfor %}
-    {% endif %}
+Prima questa pagina era due muri: 290 chip tutti uguali e, sotto, l'elenco di
+ogni post ripetuto per ognuno dei suoi tag — 960 voci, 274 KB di HTML e uno
+scroll interminabile. Nessun tag pesava più di un altro e non c'era modo di
+capire quali fossero gli argomenti veri del blog.
 
-    {% assign tags_list = nil %}
-</section>
+Due cambiamenti:
 
-<hr>
+1. i chip mostrano il conteggio e hanno un peso visivo proporzionale, così i
+   temi ricorrenti si distinguono dalla coda lunga; i tag con un solo post
+   stanno dietro un "mostra tutti", perché sono la maggioranza e sommergono
+   gli altri;
+2. le sezioni per tag sono `<details>` chiusi: la pagina diventa un indice
+   navigabile e il browser non impagina 960 voci che nessuno sta guardando.
 
-<section class="tag-list">
-    {% for tag in site.tags  %}
-    <h2 class="title" id="{{ tag[0] | slugify }}">#{{ tag[0] }}</h2>
+Liquid non sa ordinare una hash per valore, da qui il giro con le stringhe
+"NNNNN|tag": il conteggio va imbottito di zeri perché l'ordinamento è
+alfabetico, altrimenti "9" verrebbe dopo "10".
+{%- endcomment -%}
 
-    <ul class="list">
-        {% assign pages_list = tag[1] %}
-        {% for post in pages_list reversed %}
-            {% if post.title != null %}
-                {% if group == null or group == post.group %}
-                    <li class="item">
-                        <a class="url" href="{{ site.url }}{{ post.url }}">
-                            <aside class="date"><time datetime="{{ post.date | date:"%d-%m-%Y" }}">{{ post.date | date: "%b %d %Y" }}</time></aside>
-                            <h3 class="title">{{ post.title }}</h3>
-                        </a>
-                    </li>
-                {% endif %}
-            {% endif %}
-        {% endfor %}
-        {% assign pages_list = nil %}
-        {% assign group = nil %}
-    </ul>
+{% capture tag_rows %}{% for t in site.tags %}{{ t[1].size | prepend: '00000' | slice: -5, 5 }}|{{ t[0] }}~{% endfor %}{% endcapture %}
+{% assign sorted_tags = tag_rows | split: '~' | sort | reverse %}
 
-    <div class="breaker"></div>
+<section class="tag-cloud">
+    {% assign singles = '' %}
+    {% for row in sorted_tags %}
+        {% assign parts = row | split: '|' %}
+        {% assign count = parts[0] | plus: 0 %}
+        {% assign name = parts[1] %}
+        {% if count > 1 %}
+            {% if count >= 20 %}{% assign weight = 't-5' %}
+            {% elsif count >= 10 %}{% assign weight = 't-4' %}
+            {% elsif count >= 5 %}{% assign weight = 't-3' %}
+            {% else %}{% assign weight = 't-2' %}{% endif %}
+            <a class="item {{ weight }}" href="#{{ name | slugify }}">{{ name }} <span class="count">{{ count }}</span></a>
+        {% endif %}
     {% endfor %}
 </section>
+
+{%- comment -%} La coda lunga: tag con un post solo. Sono la maggioranza e non
+aiutano a orientarsi, ma restano raggiungibili. {%- endcomment -%}
+<details class="tag-tail">
+    <summary>Tags used once</summary>
+    <div class="tag-cloud">
+        {% for row in sorted_tags %}
+            {% assign parts = row | split: '|' %}
+            {% assign count = parts[0] | plus: 0 %}
+            {% if count == 1 %}
+                <a class="item t-1" href="#{{ parts[1] | slugify }}">{{ parts[1] }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</details>
+
+<section class="tag-list">
+    {% for row in sorted_tags %}
+        {% assign parts = row | split: '|' %}
+        {% assign count = parts[0] | plus: 0 %}
+        {% assign name = parts[1] %}
+        <details class="tag-block" id="{{ name | slugify }}">
+            <summary><span class="tag-name">#{{ name }}</span> <span class="count">{{ count }}</span></summary>
+            <ul class="list">
+                {% for post in site.tags[name] %}
+                    {% if post.title != null %}
+                        <li class="item">
+                            <a class="url" href="{{ site.url }}{{ post.url }}">
+                                <aside class="date"><time datetime="{{ post.date | date:'%d-%m-%Y' }}">{{ post.date | date: '%b %d %Y' }}</time></aside>
+                                <h3 class="title">{{ post.title }}</h3>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </details>
+    {% endfor %}
+</section>
+
+<script>
+/* I post linkano a /tags/#slug: senza questo si atterra su un blocco chiuso.
+   È solo un miglioramento — senza JS il blocco è comunque lì, basta cliccarlo.
+   ATTENZIONE: niente commenti `//`, compress.html collassa le newline. */
+(function () {
+  function openTarget() {
+    if (!location.hash) return;
+    var el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (el && el.tagName === 'DETAILS') {
+      el.open = true;
+      el.scrollIntoView({ block: 'start' });
+    }
+  }
+  openTarget();
+  addEventListener('hashchange', openTarget);
+})();
+</script>
