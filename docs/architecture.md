@@ -87,6 +87,21 @@ Things that are the way they are for a measured reason:
 
 One honest caveat about Lighthouse on image-heavy posts: the performance score can *drop* after this change. Before, a 1 MB photo never finished painting inside the measurement window, so LCP fell back to the page title (~1.5 s); now the photo actually appears and becomes the LCP element (~5.5 s median on simulated mobile). The page delivers 4× fewer bytes — the metric just stopped flattering it. Individual posts are not in the Lighthouse CI url list, so no gate depends on this.
 
+## Comments (giscus)
+
+Live on posts only, backed by GitHub Discussions in the **Announcements** category — not answerable, and only maintainers can open threads there, so the discussions are created by the giscus app on the first comment.
+
+The two ids in `_config.yml` are **not** copied from giscus.app: they are GraphQL node ids and can be read straight from the API, which is also how to recover them if they are ever lost:
+
+```bash
+gh api repos/:owner/:repo --jq .node_id                     # repo-id
+gh api graphql -f query='{repository(owner:"Allan-Nava",name:"Allan-Nava.github.io"){discussionCategories(first:20){nodes{id name}}}}'
+```
+
+To check the app is actually installed on a repo — enabling Discussions is not the same thing — ask giscus itself: `https://giscus.app/api/discussions?repo=OWNER/REPO&term=/x/&category=<id>` answers `Discussion not found` (404) when everything is wired and simply nobody has commented yet, versus `giscus is not installed on this repository` (403) when the app is missing.
+
+`_includes/giscus.html` builds the `<script>` tag in JS rather than emitting it statically, because **the widget has to follow the site's two themes**. `data-theme` must be right before the iframe is created, otherwise a light-mode reader gets a dark comment box and then a jump; once the iframe exists the theme can only be changed by `postMessage`, which is what the `MutationObserver` on `data-theme` does. giscus's own `preferred_color_scheme` is not usable here: it follows the OS and would ignore an explicit choice made with the site toggle. The include still renders nothing while `repo-id` or `category-id` are empty.
+
 ## Analytics
 
 Off today: `analytics-google` is commented out in `_config.yml`, so `_includes/analytics-google.html` renders nothing and the site collects no data at all. The old Universal Analytics property stopped collecting in July 2023.

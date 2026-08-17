@@ -1,30 +1,89 @@
 {%- comment -%}
-Commenti via GitHub Discussions (giscus). Disattivato finché `_config.yml` non
-ha `giscus.repo-id` e `giscus.category-id`: si prendono dal configuratore su
-https://giscus.app dopo aver abilitato Discussions sul repo e installato l'app.
+Commenti via GitHub Discussions (giscus), #123.
 
-Lo script è di terze parti e viene caricato solo nelle pagine dei post, sotto
-al contenuto; il tema segue quello del sito (scuro).
+Non renderizza nulla finché `_config.yml` non ha `giscus.repo-id` e
+`giscus.category-id`. Quei due valori NON sono da copiare a mano da giscus.app:
+sono i node id GraphQL del repo e della categoria (vedi il commento sopra il
+blocco `giscus:` in `_config.yml` per i comandi che li rileggono).
+
+TEMA: il sito ne ha due (#137) e giscus deve seguirli, altrimenti chi legge in
+chiaro si trova il riquadro commenti nero. Per questo lo `<script>` lo costruisce
+il JS invece di stare qui statico: `data-theme` va deciso PRIMA che l'iframe
+venga creato, altrimenti si vede il tema sbagliato e poi il salto. A tema già
+caricato si cambia solo via postMessage, che è quello che fa `applyTheme()`.
+
+`preferred_color_scheme` di giscus non va bene: seguirebbe il sistema operativo
+e ignorerebbe la scelta esplicita fatta col nostro toggle.
+
+ATTENZIONE ai commenti nello script: `_layouts/compress.html` collassa le
+newline, quindi un `//` si mangia il resto della riga. Solo /* … */.
 {%- endcomment -%}
 {% if site.giscus and site.giscus.repo-id and site.giscus.category-id %}
     <section class="comments" aria-label="Comments">
         <h2 class="comments-title">Comments</h2>
-        <script src="https://giscus.app/client.js"
-                data-repo="{{ site.giscus.repo | default: 'Allan-Nava/Allan-Nava.github.io' }}"
-                data-repo-id="{{ site.giscus.repo-id }}"
-                data-category="{{ site.giscus.category | default: 'Announcements' }}"
-                data-category-id="{{ site.giscus.category-id }}"
-                data-mapping="pathname"
-                data-strict="1"
-                data-reactions-enabled="1"
-                data-emit-metadata="0"
-                data-input-position="top"
-                data-theme="dark_dimmed"
-                data-lang="en"
-                data-loading="lazy"
-                crossorigin="anonymous"
-                async>
-        </script>
+        <div id="giscus-mount"></div>
         <noscript>Comments need JavaScript. You can also reply in the repository discussions.</noscript>
     </section>
+    <script>
+    (function () {
+      var mount = document.getElementById('giscus-mount');
+      if (!mount) return;
+
+      var root = document.documentElement;
+      var systemLight = window.matchMedia && matchMedia('(prefers-color-scheme: light)');
+
+      function siteTheme() {
+        var explicit = root.getAttribute('data-theme');
+        if (explicit === 'light' || explicit === 'dark') return explicit;
+        return systemLight && systemLight.matches ? 'light' : 'dark';
+      }
+
+      function giscusTheme() {
+        return siteTheme() === 'light' ? 'light' : 'dark_dimmed';
+      }
+
+      var s = document.createElement('script');
+      s.src = 'https://giscus.app/client.js';
+      s.async = true;
+      s.crossOrigin = 'anonymous';
+      s.setAttribute('data-repo', '{{ site.giscus.repo }}');
+      s.setAttribute('data-repo-id', '{{ site.giscus.repo-id }}');
+      s.setAttribute('data-category', '{{ site.giscus.category }}');
+      s.setAttribute('data-category-id', '{{ site.giscus.category-id }}');
+      s.setAttribute('data-mapping', 'pathname');
+      s.setAttribute('data-strict', '1');
+      s.setAttribute('data-reactions-enabled', '1');
+      s.setAttribute('data-emit-metadata', '0');
+      s.setAttribute('data-input-position', 'top');
+      s.setAttribute('data-lang', 'en');
+      s.setAttribute('data-loading', 'lazy');
+      s.setAttribute('data-theme', giscusTheme());
+      mount.appendChild(s);
+
+      /* A iframe creato il tema si cambia solo parlandoci: riscrivere
+         l'attributo sullo <script> non ha alcun effetto. */
+      function applyTheme() {
+        var frame = document.querySelector('iframe.giscus-frame');
+        if (!frame || !frame.contentWindow) return;
+        frame.contentWindow.postMessage(
+          { giscus: { setConfig: { theme: giscusTheme() } } },
+          'https://giscus.app'
+        );
+      }
+
+      /* Si osserva l'attributo invece di ascoltare il bottone: così vale per
+         qualunque cosa cambi il tema, oggi e domani. */
+      if (window.MutationObserver) {
+        new MutationObserver(applyTheme).observe(root, {
+          attributes: true,
+          attributeFilter: ['data-theme']
+        });
+      }
+      if (systemLight && systemLight.addEventListener) {
+        systemLight.addEventListener('change', function () {
+          if (!root.getAttribute('data-theme')) applyTheme();
+        });
+      }
+    })();
+    </script>
 {% endif %}

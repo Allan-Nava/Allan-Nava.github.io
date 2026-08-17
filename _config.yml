@@ -78,11 +78,17 @@ search: true
 # Comments via GitHub Discussions. Fill repo-id and category-id from
 # https://giscus.app (Discussions must be enabled on the repo and the giscus
 # app installed); until then the include renders nothing.
+# Commenti via GitHub Discussions (#123). Gli id NON si copiano da giscus.app:
+# sono i node id GraphQL del repo e della categoria, e si rileggono con
+#   gh api repos/:owner/:repo --jq .node_id
+#   gh api graphql -f query='{repository(owner:"Allan-Nava",name:"Allan-Nava.github.io"){discussionCategories(first:20){nodes{id name}}}}'
+# Categoria "Announcements": non answerable e solo i maintainer possono aprire
+# discussioni: i thread li crea l'app giscus al primo commento.
 giscus:
   repo: Allan-Nava/Allan-Nava.github.io
-  repo-id: ""
+  repo-id: "MDEwOlJlcG9zaXRvcnkxNjUzNzQyNTc="
   category: Announcements
-  category-id: ""
+  category-id: "DIC_kwDOCdtpMc4DDkZW"
 #
 # do you want to show the "read time" of the posts?
 read-time: true
