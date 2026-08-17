@@ -185,7 +185,12 @@ Tutto è progressive enhancement: senza JS il sito resta quello della v2.0.0.
 
   /* 5. Conteggio animato dei numeri della home ------------------------------- */
   /* Il valore finale è già nel DOM: qui si anima solo la salita. */
-  var stats = document.querySelectorAll('[data-count]');
+  /* `.stat-value[data-count]` e non `[data-count]` e basta: il selettore largo
+     prendeva qualunque elemento con quell'attributo e ne **sostituiva il
+     contenuto** con il numero animato. La galleria dei post (#154) usava
+     `data-count` per il numero di foto e si è ritrovata svuotata, con dentro
+     solo la cifra. Restare aderenti all'elemento che si vuole animare. */
+  var stats = document.querySelectorAll('.stat-value[data-count]');
   if (motionOK && stats.length) {
     stats.forEach(function (el) {
       var target = parseInt(el.getAttribute('data-count'), 10);

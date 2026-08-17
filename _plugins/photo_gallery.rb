@@ -11,7 +11,7 @@
 # matrimonio sono 6 scatti quasi identici e ~4000px di scroll. Qui una sequenza
 # di due o più diventa:
 #
-#   <div class="gallery" data-count="6"> …i div originali… </div>
+#   <div class="gallery" data-photos="6"> …i div originali… </div>
 #
 # e `_sass/components/gallery.sass` la dispone in griglia. I <div> interni non
 # vengono toccati: restano quelli, con dentro il <picture> che ha già le
@@ -19,6 +19,10 @@
 # leggera della colonna a piena larghezza, non più pesante.
 #
 # 22 post hanno almeno due immagini consecutive, per 77 foto in tutto.
+#
+# L'attributo è `data-photos` e NON `data-count`: quest'ultimo è già usato dai
+# numeri animati della home, e il loro script selezionava `[data-count]` senza
+# altri vincoli — svuotava la galleria e ci scriveva dentro la cifra.
 #
 # ORDINE: gira sia prima sia dopo `responsive_images.rb` (l'ordine di
 # caricamento è alfabetico e questo file viene prima), quindi il blocco è
@@ -71,7 +75,7 @@ module PhotoGallery
       return '' if run.empty?
       return run.join if run.size < MIN_PHOTOS
 
-      %(<div class="gallery" data-count="#{run.size}">#{run.join}</div>)
+      %(<div class="gallery" data-photos="#{run.size}">#{run.join}</div>)
     end
   end
 end
