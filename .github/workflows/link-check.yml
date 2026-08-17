@@ -43,12 +43,12 @@ jobs:
         run: |
           set +e
           bundle exec htmlproofer ./_site \
-            --url-ignore "/localhost/" \
-            --empty-alt-ignore \
+            --ignore-urls "/localhost/" \
+            --ignore-empty-alt \
             --allow-hash-href \
-            --assume-extension \
+            --assume-extension ".html" \
             --only-4xx \
-            --http-status-ignore "429" \
+            --ignore-status-codes "429" \
             > proofer.log 2>&1
           echo "status=$?" >> "$GITHUB_OUTPUT"
           tail -n 40 proofer.log

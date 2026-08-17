@@ -47,10 +47,12 @@ jobs:
         env:
           JEKYLL_ENV: production
       - name: Check internal links and images (html-proofer)
+        # Nomi dei flag della 4.x: la 3.x usava --url-ignore / --empty-alt-ignore
+        # e --assume-extension senza valore. Tenere allineato il Rakefile.
         run: |
           bundle exec htmlproofer ./_site \
             --disable-external \
             --allow-hash-href \
-            --empty-alt-ignore \
-            --assume-extension \
-            --url-ignore "/localhost/"
+            --ignore-empty-alt \
+            --assume-extension ".html" \
+            --ignore-urls "/localhost/"

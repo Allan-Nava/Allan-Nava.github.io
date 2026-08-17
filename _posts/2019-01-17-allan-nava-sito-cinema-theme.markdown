@@ -18,7 +18,7 @@ author: allan
 
 <div class="side-by-side">
     <div class="toleft">
-        <img src="https://sito-cinema.herokuapp.com/img/logo.png">
+        <img src="https://sito-cinema.herokuapp.com/img/logo.png" alt="Logo del progetto Sito Cinema">
         <figcaption class="caption">Sito cinema - Schegge di vetro</figcaption>
     </div>
 

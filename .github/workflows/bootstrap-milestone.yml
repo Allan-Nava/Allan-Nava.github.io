@@ -72,7 +72,7 @@ jobs:
                 title: 'v2.2', description: 'Automazioni & Platform',
                 issues: [
                   { title: 'Modernizzazione stack Ruby',
-                    body: 'In sequenza: merge PR Dependabot `github-pages` 211→223→232 (Jekyll 3.10), bump `ruby-version` a 3.3 nei workflow e unpin di `setup-ruby`, poi `html-proofer` 5.x adattando `Rakefile` e i flag CLI in `checks.yml`.' },
+                    body: 'In sequenza, e l ordine e vincolato: 1) `github-pages` 232 (la 223 pinna ancora Jekyll 3.9) INSIEME a `html-proofer` 4.x, perche la 3.x va in segfault col nokogiri della 232; 2) `ruby-version` 3.3 nei quattro workflow + bump di `setup-ruby` (la versione pinnata non conosce 3.3) + `BUNDLED WITH` moderno; 3) `html-proofer` 5.x, che richiede Ruby >= 3.1, adattando `Rakefile` e i flag CLI.' },
                   { title: 'Sync YouTube v2 (descrizione + GPS)',
                     body: 'Descrizione completa del video nel body del post; coordinate GPS dalla descrizione YouTube (formato `📍 lat, lng`) → post geolocalizzato e marker su /map automatico.' },
                   { title: 'Setup secret Strava',

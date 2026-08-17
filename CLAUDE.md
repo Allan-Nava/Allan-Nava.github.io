@@ -71,7 +71,8 @@ ruby scripts/validate_posts.rb # validazione veloce dei post — no bundle
 - **I `_plugins/` GIRANO**: il build è un `bundle exec jekyll build` completo in Actions (non la safe-mode di GH Pages), quindi i plugin custom in `_plugins/` vengono eseguiti (es. `lazy_images.rb` = lazy loading immagini). Sfruttabile per trasformazioni build-time.
 - **Build locale richiede locale UTF-8**: senza `LANG=en_US.UTF-8` il Sass fallisce con `Invalid US-ASCII character`. Toolchain 3.0 via rbenv: `~/.rbenv/versions/3.0.7`.
 - **Nessun branch `main`**: si lavora su `master`. Il deploy parte da push su `master`.
-- **Ruby version**: il workflow `jekyll.yml` builda con **Ruby 3.0** / `JEKYLL_ENV=production`. Deve restare allineata a `Gemfile.lock`.
+- **Ruby version**: i workflow buildano con **Ruby 3.0** / `JEKYLL_ENV=production`, allineata a `Gemfile.lock`. Il bump a 3.3 è #128 e **non è testabile in locale** (qui c'è solo 3.0.7): va verificato in CI.
+- **Stack gem (#128, parziale)**: `github-pages` **232** (Jekyll 3.10, kramdown 2.4, nokogiri 1.17), `html-proofer` **4.4** pinnato. Due vincoli scoperti misurando: html-proofer **3.x va in segfault** col nokogiri di gh-pages 232, e html-proofer **5.x richiede Ruby ≥ 3.1** — quindi 5.x e il bump di Ruby sono un passo unico, non due. I flag CLI della 4.x sono rinominati: `--ignore-urls`, `--ignore-empty-alt`, `--assume-extension ".html"`, `--ignore-status-codes`. Tenere allineati `Rakefile`, `checks.yml` e `link-check.yml`.
 - **Paginazione `/blog` attiva** (`paginate: 10`): `jekyll-paginate` v1 conta anche i progetti `hidden`, quindi le pagine vecchie mostrano <10 item (dettaglio in `docs/architecture.md`).
 - **Immagini nei post**: usare **URL relativi** per coerenza (vedi commit recenti).
 - `_includes/style.scss` è l'entry point Sass che importa tutto da `_sass/` (`base/`, `components/`, `pages/`) ed è **l'unico file di stile processato da Liquid** (lì sta il `@font-face` che usa `{{ site.baseurl }}`).

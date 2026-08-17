@@ -25,6 +25,6 @@ author: allan
     </div>
 
     <div class="toright">
-       <a href="http://flutteritalia.dev/" target="_blank">Flutter Italia DEV</a>
+       <a href="https://www.flutteritalia.dev/" target="_blank">Flutter Italia DEV</a>
     </div>
 </div>

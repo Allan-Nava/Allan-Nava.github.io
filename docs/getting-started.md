@@ -49,14 +49,16 @@ rake test_internal               # same, but skips external links (fast, and wor
 
 `check_contrast.rb` reads the `palette-dark` / `palette-light` mixins straight out of `_sass/base/tokens.scss`, so it can't drift from the real CSS. Run it after touching any colour: it fails both when a pair drops below 6:1 and when a token is added to only one of the two themes (which is how a colour silently stops following the theme). Lighthouse only audits whichever theme the page loads with, so it won't catch the other one.
 
-If `rake` isn't in your bundle, call html-proofer directly with the CI flags:
+Both rake tasks mirror the flags CI uses. To call html-proofer directly:
 
 ```bash
 bundle exec htmlproofer ./_site --disable-external --allow-hash-href \
-  --empty-alt-ignore --assume-extension --url-ignore "/localhost/"
+  --ignore-empty-alt --assume-extension ".html" --ignore-urls "/localhost/"
 ```
 
-The same checks run in CI on every pull request (see [Deployment & CI](deployment.md)). Both rake tasks mirror the flags CI uses (`--empty-alt-ignore`, `--allow-hash-href`, `--assume-extension`): `alt=""` is the correct markup for decorative images (the nav avatar, listing thumbnails, where the link supplies the accessible name), and without that flag html-proofer 3 reports every one of them.
+Those are **html-proofer 4.x** names: 3.x used `--url-ignore` / `--empty-alt-ignore` and a valueless `--assume-extension`. If you see the old spellings anywhere, they are stale.
+
+The same checks run in CI on every pull request (see [Deployment & CI](deployment.md)). `--ignore-empty-alt` is there because `alt=""` is the correct markup for decorative images (the nav avatar, listing thumbnails, where the link supplies the accessible name); a **missing** alt attribute is still an error, which is how the upgrade to 4.x caught one.
 
 Expect some noise from long-dead external links in old posts; treat failures on *internal* links and images as real problems.
 
