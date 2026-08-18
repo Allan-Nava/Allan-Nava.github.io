@@ -23,6 +23,7 @@ Measure your ABR encoding ladder instead of inheriting it: VMAF-measured rate-qu
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
+- **Stars**: 1
 - **Ultimo push**: 2026-08-18
 
 [Repo su GitHub →](https://github.com/Allan-Nava/ladder-bench)
