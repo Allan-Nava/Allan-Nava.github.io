@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Volubilis 🇲🇦"
 category: blog
 author: allan
+lat: 34.074
+lng: -5.555
 ---
 
 <lite-youtube videoid="W7ZWbZy80bs" data-short playlabel="Volubilis 🇲🇦"></lite-youtube>

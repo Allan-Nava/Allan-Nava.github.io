@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Meknes 🇲🇦"
 category: blog
 author: allan
+lat: 33.894
+lng: -5.547
 ---
 
 <lite-youtube videoid="aodp6Aa1Ibk" data-short playlabel="Meknes 🇲🇦"></lite-youtube>

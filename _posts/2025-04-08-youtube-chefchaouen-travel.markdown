@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Chefchaouen 🇲🇦 #travel"
 category: blog
 author: allan
+lat: 35.169
+lng: -5.264
 ---
 
 ## Chefchaouen 🇲🇦 travel

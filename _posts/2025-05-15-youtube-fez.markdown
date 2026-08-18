@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: FEZ 🇲🇦"
 category: blog
 author: allan
+lat: 34.018
+lng: -5.008
 ---
 
 <lite-youtube videoid="iTlMoZWOnLY" playlabel="FEZ 🇲🇦"></lite-youtube>
