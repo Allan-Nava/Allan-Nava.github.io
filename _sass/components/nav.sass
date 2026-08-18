@@ -114,8 +114,11 @@
 				color: var(--color-on-accent)
 				background: var(--color-accent)
 
-	// Toggle del tema (#137): ultimo elemento dell'isola, non scorre coi link.
-	// `flex: 0 0 auto` perché .links ha flex: 1 1 auto e altrimenti lo schiaccia.
+	// Bottoni a icona in coda all'isola: ricerca (#156) e toggle del tema (#137).
+	// Non scorrono coi link: `flex: 0 0 auto` perché .links ha flex: 1 1 auto e
+	// altrimenti li schiaccia. Stessa misura e stesso stato hover, così la coda
+	// della nav resta una cosa sola.
+	.nav-icon,
 	.theme-toggle
 		flex: 0 0 auto
 		display: inline-flex
@@ -139,6 +142,23 @@
 			background: var(--color-hover-overlay)
 			border-color: var(--color-border)
 
+	.nav-icon
+		text-decoration: none
+
+		> .nav-icon-glyph
+			width: 17px
+			height: 17px
+			pointer-events: none
+
+		&.is-active
+			color: var(--color-on-accent)
+			background: var(--color-accent)
+
+			&:hover
+				color: var(--color-on-accent)
+				background: var(--color-accent)
+
+	.theme-toggle
 		// display arriva dai token: `block` nel tema che deve mostrare l'icona,
 		// `none` nell'altro. Vedi --icon-sun/--icon-moon in base/tokens.scss.
 		> .theme-icon

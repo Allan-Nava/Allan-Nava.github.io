@@ -8,33 +8,16 @@ custom_header: true
 ---
 
 {%- comment -%}
-404 utile: invece del solo "page not found", offre le vie d'uscita — ricerca,
-archivio, tag — e gli ultimi post. Chi arriva da un link morto trova qualcosa
-da leggere invece di rimbalzare fuori.
+Solo il messaggio 404. La nav (in _layouts/default.html) e il footer (in
+_layouts/page.html) arrivano dal layout e bastano come vie d'uscita: la nav ha
+gia' home, blog, projects, map, about e la ricerca, il footer il resto.
+
+Qui prima c'erano tre bottoni e una griglia con gli ultimi quattro post: su una
+pagina di errore erano rumore, e la griglia era anche l'unico punto del sito
+dove il listing compariva fuori da un contenitore `wrapper-wide`.
 {%- endcomment -%}
 <header class="page-header notfound-header">
     <p class="notfound-code" aria-hidden="true">404</p>
     <h1 class="title">This page doesn't exist</h1>
-    <p class="subtitle">The link may be old, or I may have moved something. Here's the way back.</p>
+    <p class="subtitle">The link may be old, or I may have moved something.</p>
 </header>
-
-<div class="hero-actions">
-    <a class="button button-primary" href="{{ site.url }}/">Go home</a>
-    <a class="button" href="{{ site.url }}/search/">Search the site</a>
-    <a class="button" href="{{ site.url }}/archive/">Browse the archive</a>
-</div>
-
-<section class="home-section">
-    <div class="section-head">
-        <h2 class="section-title">Latest posts</h2>
-        <a class="section-link" href="{{ site.url }}/blog">All posts <span aria-hidden="true">→</span></a>
-    </div>
-
-    {% assign latest = site.posts | where: "category", "blog" %}
-    {% assign latest = latest | where_exp: "p", "p.hidden != true" %}
-    <div class="list">
-        {% for post in latest limit: 4 %}
-            {% include blog-post.html %}
-        {% endfor %}
-    </div>
-</section>

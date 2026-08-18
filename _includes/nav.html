@@ -46,6 +46,22 @@ Su mobile la riga di link scorre orizzontalmente: nessun menu JS da mantenere.
         </ul>
 
         {%- comment -%}
+        Ricerca (#156): fino a qui /search stava solo nel footer, cioe' in fondo
+        a una pagina che magari non e' quella che stai leggendo. E' un <a> e non
+        un <button>: la pagina di ricerca esiste come URL, quindi il link porta
+        li' anche senza JavaScript — al contrario del toggle qui sotto, che
+        senza JS non avrebbe niente da commutare e resta hidden.
+        {%- endcomment -%}
+        {% if site.search == true %}
+            <a class="nav-icon{% if page.title == 'Search' %} is-active{% endif %}"{% if page.title == 'Search' %} aria-current="page"{% endif %} href="{{ site.url }}/search/" aria-label="Search the site" title="Search">
+                <svg class="nav-icon-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false">
+                    <circle cx="10.5" cy="10.5" r="6.5"></circle>
+                    <path d="M15.4 15.4 20 20"></path>
+                </svg>
+            </a>
+        {% endif %}
+
+        {%- comment -%}
         Toggle del tema (#137). Parte `hidden` e lo mostra il JS: senza JS non
         c'è niente da commutare — il tema lo decide `prefers-color-scheme` — e un
         bottone inerte è peggio di nessun bottone (stessa scelta del copy-code).
