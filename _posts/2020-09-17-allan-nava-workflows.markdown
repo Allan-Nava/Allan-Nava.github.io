@@ -1,5 +1,5 @@
 ---
-title: "Last Actvities 📃"
+title: "Last Activities 📃"
 layout: post
 date: 2020-09-22 00:09
 tag: 
@@ -16,8 +16,6 @@ description: "My last activities 📃"
 category: project
 author: allan
 ---
-
-# Last Activities 📃
 
 
 <!--START_SECTION:activity-->
