@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-DevOPS Engineer and passionate about videogames, snowboarding, workout and coding.
+DevOPS Engineer and passionate about videogames, climbing, snowboarding, workout and coding.
 
 Always looking for new challenges.
 
