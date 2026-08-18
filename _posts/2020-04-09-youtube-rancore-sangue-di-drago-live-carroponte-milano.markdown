@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Rancore - Sangue di Drago Live 🔹 Carroponte Milano"
 category: blog
 author: allan
+lat: 45.535
+lng: 9.244
 ---
 
 <lite-youtube videoid="my6vCh96ZYA" playlabel="Rancore - Sangue di Drago Live 🔹 Carroponte Milano"></lite-youtube>

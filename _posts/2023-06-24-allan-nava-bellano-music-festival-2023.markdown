@@ -13,6 +13,8 @@ description: "Foto e video dal Bellano Music Festival 2023 con il GSOL."
 category: blog
 author: allan
 externalLink: true
+lat: 46.041
+lng: 9.302
 ---
 
 ## Bellano Music Festival 🎶 🎸 

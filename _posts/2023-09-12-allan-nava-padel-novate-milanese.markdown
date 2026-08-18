@@ -14,6 +14,8 @@ description: "Foto di una partita di padel del 12 settembre al Garden Tennis Clu
 category: blog
 author: allan
 externalLink: true
+lat: 45.531
+lng: 9.138
 ---
 
 ## Padel Garden Tennis Club - 12 September 🎾  

@@ -12,6 +12,8 @@ description: "Video dei fuochi d'artificio visti a Cannes nell'estate 2023."
 category: blog
 author: allan
 externalLink: true
+lat: 43.552
+lng: 7.017
 ---
 
 <div>

@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Esino Lario 🥾"
 category: blog
 author: allan
+lat: 45.996
+lng: 9.353
 ---
 
 <lite-youtube videoid="UgPxLwtKAs4" data-short playlabel="Esino Lario 🥾"></lite-youtube>

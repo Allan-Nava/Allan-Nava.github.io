@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Hiking to Passo degli Ometti 🇮🇹⛰️"
 category: blog
 author: allan
+lat: 46.292
+lng: 9.924
 ---
 
 <lite-youtube videoid="G-edSSJ2ETw" playlabel="Hiking to Passo degli Ometti 🇮🇹⛰️"></lite-youtube>

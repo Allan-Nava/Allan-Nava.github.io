@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Oktoberfest 2023"
 category: blog
 author: allan
+lat: 48.132
+lng: 11.549
 ---
 
 <lite-youtube videoid="4ss4T-d0JG8" data-short playlabel="Oktoberfest 2023"></lite-youtube>

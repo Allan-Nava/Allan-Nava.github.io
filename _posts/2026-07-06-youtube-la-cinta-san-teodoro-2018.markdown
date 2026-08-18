@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: La cinta San Teodoro 2018"
 category: blog
 author: allan
+lat: 40.795
+lng: 9.674
 ---
 
 <lite-youtube videoid="uCHMn0-vQws" playlabel="La cinta San Teodoro 2018"></lite-youtube>

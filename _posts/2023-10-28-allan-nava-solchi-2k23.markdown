@@ -14,6 +14,8 @@ description: "Video e foto della serata Solchi a Milano tra musica e amici."
 category: blog
 author: allan
 externalLink: true
+lat: 45.464
+lng: 9.19
 ---
 
 <div>

@@ -16,6 +16,8 @@ description: "Video del concerto Home Tour per Livemoment all'Ostello Bello Gran
 category: blog
 author: allan
 externalLink: true
+lat: 45.485
+lng: 9.204
 ---
 
 <div>

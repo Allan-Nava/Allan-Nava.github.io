@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Calcutta - 2 minuti live 📍Pala Alpitour #musica #music #calcutta"
 category: blog
 author: allan
+lat: 45.042
+lng: 7.65
 ---
 
 ## Calcutta - 2 minuti live 📍Pala Alpitour musica music calcutta

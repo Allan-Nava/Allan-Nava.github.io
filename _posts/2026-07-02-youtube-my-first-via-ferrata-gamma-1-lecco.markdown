@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: 🧗 My First Via Ferrata | Gamma 1, Lecco 🇮🇹⛰️"
 category: blog
 author: allan
+lat: 45.894
+lng: 9.425
 ---
 
 <lite-youtube videoid="NgftlPEFHNs" data-short playlabel="🧗 My First Via Ferrata | Gamma 1, Lecco 🇮🇹⛰️"></lite-youtube>

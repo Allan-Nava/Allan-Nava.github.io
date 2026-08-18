@@ -13,6 +13,8 @@ description: "Video di una partita di padel allo Sport Comasina di Milano."
 category: blog
 author: allan
 externalLink: true
+lat: 45.526
+lng: 9.163
 ---
 
 <div>

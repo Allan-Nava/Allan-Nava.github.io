@@ -11,6 +11,8 @@ description: "Foto di un weekend in Liguria tra Portofino e Santa Margherita Lig
 category: blog
 author: allan
 externalLink: true
+lat: 44.303
+lng: 9.21
 ---
 
 <div>

@@ -4,9 +4,30 @@ title: Map
 permalink: /map/
 ---
 
-<p>The hikes, climbs and trips written up on the blog: every marker is a post. Add <code>lat</code>/<code>lng</code> to a post's front matter to put it on the map.</p>
+<p>The hikes, climbs and trips written up on the blog: every marker is a place, and a marker can hold more than one post. Add <code>lat</code>/<code>lng</code> to a post's front matter to put it on the map.</p>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+
+{%- comment -%}
+Il popup di Leaflet arriva bianco dalla sua CSS, mentre il testo eredita il
+colore del tema: sul tema scuro il titolo del gruppo era bianco su bianco,
+cioe' invisibile. Questo blocco sta QUI e non in _sass/ perche' deve venire
+dopo il <link> di Leaflet, che il layout carica nel body: la CSS del sito e'
+inlineata nel <head> e a parita' di specificita' perderebbe.
+{%- endcomment -%}
+<style>
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+    background: var(--color-surface);
+    color: var(--color-fg);
+}
+.leaflet-popup-content-wrapper { border: 1px solid var(--color-border); }
+.leaflet-popup-content strong { color: var(--color-fg-strong); }
+.leaflet-popup-content a { color: var(--color-accent); }
+.leaflet-popup-content small { color: var(--color-fg-muted); }
+.leaflet-popup-content > div + div { margin-top: 0.5em; }
+.leaflet-container a.leaflet-popup-close-button { color: var(--color-fg-muted); }
+</style>
 <div id="trip-map" style="width: 100%; height: 480px; border-radius: 6px; margin: 1.5em 0;"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
@@ -65,23 +86,47 @@ Di qui le due contromisure qui sotto:
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        var bounds = [];
+        /* Un marker per PUNTO, non per post: allo stesso luogo possono esserci
+           piu' post (12 al Carroponte, 8 all'Ippodromo La Maura) e marker
+           sovrapposti si coprono a vicenda — si apriva solo quello in cima e
+           gli altri erano irraggiungibili. Qui il popup li elenca tutti. */
+        var groups = {};
+        var order = [];
         spots.forEach(function (s) {
-            var box = document.createElement('div');
+            var key = s.lat + ',' + s.lng;
+            if (!groups[key]) { groups[key] = []; order.push(key); }
+            groups[key].push(s);
+        });
 
+        function entry(s) {
+            var wrap = document.createElement('div');
             var link = document.createElement('a');
             link.href = s.url;
             link.textContent = s.title;
-            box.appendChild(link);
-
-            box.appendChild(document.createElement('br'));
-
+            wrap.appendChild(link);
+            wrap.appendChild(document.createElement('br'));
             var when = document.createElement('small');
             when.textContent = s.date;
-            box.appendChild(when);
+            wrap.appendChild(when);
+            return wrap;
+        }
 
-            L.marker([s.lat, s.lng]).addTo(map).bindPopup(box);
-            bounds.push([s.lat, s.lng]);
+        var bounds = [];
+        order.forEach(function (key) {
+            var list = groups[key];
+            var box = document.createElement('div');
+
+            if (list.length > 1) {
+                var count = document.createElement('strong');
+                count.textContent = list.length + ' posts here';
+                box.appendChild(count);
+            }
+
+            list.forEach(function (s) { box.appendChild(entry(s)); });
+
+            L.marker([list[0].lat, list[0].lng]).addTo(map)
+                .bindPopup(box, { maxHeight: 220 });
+            bounds.push([list[0].lat, list[0].lng]);
         });
         map.fitBounds(bounds, { padding: [30, 30], maxZoom: 10 });
     })();

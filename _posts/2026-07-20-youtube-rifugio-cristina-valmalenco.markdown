@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Rifugio Cristina🏔️ Valmalenco"
 category: blog
 author: allan
+lat: 46.292
+lng: 9.924
 ---
 
 <lite-youtube videoid="KjkOamRxdmQ" playlabel="Rifugio Cristina🏔️ Valmalenco"></lite-youtube>

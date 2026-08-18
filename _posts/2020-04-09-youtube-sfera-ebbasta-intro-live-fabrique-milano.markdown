@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Sfera Ebbasta - Intro Live 🔹 Fabrique Milano"
 category: blog
 author: allan
+lat: 45.442
+lng: 9.246
 ---
 
 <lite-youtube videoid="BdvTxb0tBdY" playlabel="Sfera Ebbasta - Intro Live 🔹 Fabrique Milano"></lite-youtube>

@@ -12,6 +12,8 @@ description: "Budapest - Vlog 2019"
 category: blog
 author: allan
 externalLink: true
+lat: 47.498
+lng: 19.04
 ---
 
 <lite-youtube videoid="lubeO-cuG6g"></lite-youtube>

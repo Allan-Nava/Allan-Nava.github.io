@@ -17,6 +17,8 @@ description: "Video e foto del concerto Opposite per Livemoment all'Ostello Bell
 category: blog
 author: allan
 externalLink: true
+lat: 45.485
+lng: 9.204
 ---
 
 <div>

@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Road to Rifugio Cristina🏔️"
 category: blog
 author: allan
+lat: 46.292
+lng: 9.924
 ---
 
 <lite-youtube videoid="Z0dulJk_BGk" playlabel="Road to Rifugio Cristina🏔️"></lite-youtube>

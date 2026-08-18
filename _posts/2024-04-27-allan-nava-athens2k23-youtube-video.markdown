@@ -13,6 +13,8 @@ description: "Exploring the Ancient Marvels of Athens 🏛️ | Join me on a jou
 category: blog
 author: allan
 externalLink: true
+lat: 37.976
+lng: 23.727
 ---
 
 <lite-youtube videoid="WKQ9fQQNZHc" playlabel="YouTube video player"></lite-youtube>

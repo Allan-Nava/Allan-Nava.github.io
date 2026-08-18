@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Positano 2021 🌊🇮🇹"
 category: blog
 author: allan
+lat: 40.628
+lng: 14.485
 ---
 
 <lite-youtube videoid="GZmbFN-Q_jA" data-short playlabel="Positano 2021 🌊🇮🇹"></lite-youtube>

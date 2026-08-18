@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Christian LaPena Snowpark Pila 🏂"
 category: blog
 author: allan
+lat: 45.69
+lng: 7.305
 ---
 
 <lite-youtube videoid="cas8k91OiwY" playlabel="Christian LaPena Snowpark Pila 🏂"></lite-youtube>

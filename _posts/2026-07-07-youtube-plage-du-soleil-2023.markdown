@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Plage du Soleil 2023 🇫🇷🌅"
 category: blog
 author: allan
+lat: 43.581
+lng: 7.125
 ---
 
 <lite-youtube videoid="-_TnoktpSBM" data-short playlabel="Plage du Soleil 2023 🇫🇷🌅"></lite-youtube>

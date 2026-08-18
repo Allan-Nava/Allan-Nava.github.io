@@ -11,6 +11,8 @@ description: "Allan Nava - Marc Chagall"
 category: blog
 author: allan
 externalLink: true
+lat: 45.451
+lng: 9.164
 ---
 
 ## 🎨 Marc Chagall

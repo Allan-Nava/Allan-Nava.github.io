@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: I-Days ♦️ Travis Scott - Butterfly Effect 🦋 🔹 Ippodromo la Maura Milan 2023"
 category: blog
 author: allan
+lat: 45.497
+lng: 9.116
 ---
 
 <lite-youtube videoid="cpHFB3pmCN0" playlabel="I-Days ♦️ Travis Scott - Butterfly Effect 🦋 🔹 Ippodromo la Maura Milan 2023"></lite-youtube>

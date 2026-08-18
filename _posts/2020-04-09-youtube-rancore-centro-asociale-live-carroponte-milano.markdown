@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Rancore - Centro Asociale Live 🔹 Carroponte Milano"
 category: blog
 author: allan
+lat: 45.535
+lng: 9.244
 ---
 
 <lite-youtube videoid="yr2VkvPEfBc" playlabel="Rancore - Centro Asociale Live 🔹 Carroponte Milano"></lite-youtube>

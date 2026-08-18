@@ -15,6 +15,8 @@ description: "Photos from the Bruce Nauman exhibition Neons, Corridors and Rooms
 category: blog
 author: allan
 externalLink: true
+lat: 45.52
+lng: 9.216
 ---
 
 If you really want to do it, you do it

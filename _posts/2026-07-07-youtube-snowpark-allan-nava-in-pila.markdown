@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Snowpark Allan Nava in Pila 🏂🏞️"
 category: blog
 author: allan
+lat: 45.69
+lng: 7.305
 ---
 
 <lite-youtube videoid="jsPBA2y1t04" playlabel="Snowpark Allan Nava in Pila 🏂🏞️"></lite-youtube>

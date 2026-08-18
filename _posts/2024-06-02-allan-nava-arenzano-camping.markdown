@@ -13,6 +13,8 @@ description: "Foto e video di un weekend di grigliate e campeggio ad Arenzano."
 category: blog
 author: allan
 externalLink: true
+lat: 44.403
+lng: 8.68
 ---
 
 <div>

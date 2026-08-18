@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: FC Inter Milan 21 scudetto 🖤💙"
 category: blog
 author: allan
+lat: 45.478
+lng: 9.124
 ---
 
 <lite-youtube videoid="y4VbRABut-s" data-short playlabel="FC Inter Milan 21 scudetto 🖤💙"></lite-youtube>

@@ -11,6 +11,8 @@ description: "Foto e tweet dalla visita al Castello Sforzesco di Milano nel 2022
 category: blog
 author: allan
 externalLink: true
+lat: 45.47
+lng: 9.179
 ---
 
 ## Castello Sforzesco Milano 2022 ✨

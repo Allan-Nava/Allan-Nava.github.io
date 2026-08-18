@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: walking in milan 🚶🏽"
 category: blog
 author: allan
+lat: 45.464
+lng: 9.19
 ---
 
 <lite-youtube videoid="d-AeIA3LUP0" playlabel="walking in milan 🚶🏽"></lite-youtube>

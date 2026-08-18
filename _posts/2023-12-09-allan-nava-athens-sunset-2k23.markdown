@@ -13,6 +13,8 @@ description: "Foto del tramonto ad Atene durante il viaggio in Grecia del 2023."
 category: blog
 author: allan
 externalLink: true
+lat: 37.976
+lng: 23.727
 ---
 
 <div>

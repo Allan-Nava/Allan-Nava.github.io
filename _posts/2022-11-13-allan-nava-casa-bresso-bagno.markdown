@@ -13,6 +13,8 @@ description: "Foto dei lavori di ristrutturazione del bagno di casa a Bresso."
 category: blog
 author: allan
 externalLink: true
+lat: 45.539
+lng: 9.19
 ---
 
 Begins to take shape 🏡🚿

@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Cabo de roca 🇵🇹"
 category: blog
 author: allan
+lat: 38.78
+lng: -9.499
 ---
 
 <lite-youtube videoid="mibIyQKna-E" data-short playlabel="Cabo de roca 🇵🇹"></lite-youtube>

@@ -14,6 +14,8 @@ description: "Video e foto della serata jazz al Leoncavallo di Milano."
 category: blog
 author: allan
 externalLink: true
+lat: 45.502
+lng: 9.213
 ---
 
 <div>

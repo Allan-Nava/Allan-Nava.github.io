@@ -12,6 +12,8 @@ description: "Allan Nava - Lisboa holidays"
 category: blog
 author: allan
 externalLink: true
+lat: 38.722
+lng: -9.139
 ---
 
 ## :video_camera: Lisboa videos

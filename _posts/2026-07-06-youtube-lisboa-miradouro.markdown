@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Lisboa - Miradouro"
 category: blog
 author: allan
+lat: 38.722
+lng: -9.139
 ---
 
 <lite-youtube videoid="U1JOOtDxCBg" data-short playlabel="Lisboa - Miradouro"></lite-youtube>

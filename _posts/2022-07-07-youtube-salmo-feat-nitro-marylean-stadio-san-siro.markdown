@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Salmo feat Nitro - Marylean 🔹 Stadio San Siro 🏟"
 category: blog
 author: allan
+lat: 45.478
+lng: 9.124
 ---
 
 <lite-youtube videoid="-cERJ90_grA" playlabel="Salmo feat Nitro - Marylean 🔹 Stadio San Siro 🏟"></lite-youtube>

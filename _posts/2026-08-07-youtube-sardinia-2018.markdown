@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Sardinia 2018 🌅"
 category: blog
 author: allan
+lat: 40.121
+lng: 9.012
 ---
 
 <lite-youtube videoid="FMN7jHGbLUI" data-short playlabel="Sardinia 2018 🌅"></lite-youtube>

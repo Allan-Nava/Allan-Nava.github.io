@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Pizzo Tambò ⛰️"
 category: blog
 author: allan
+lat: 46.517
+lng: 9.317
 ---
 
 <lite-youtube videoid="xO__fNc5iX0" data-short playlabel="Pizzo Tambò ⛰️"></lite-youtube>

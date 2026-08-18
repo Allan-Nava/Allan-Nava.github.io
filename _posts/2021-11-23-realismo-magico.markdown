@@ -11,6 +11,8 @@ description: "Allan Nava - Realismo Magico"
 category: blog
 author: allan
 externalLink: true
+lat: 45.463
+lng: 9.191
 ---
 
 <blockquote class="twitter-tweet" data-theme="dark"><p lang="und" dir="ltr"><a href="https://twitter.com/hashtag/RealismoMagico?src=hash&amp;ref_src=twsrc%5Etfw">#RealismoMagico</a> <a href="https://twitter.com/hashtag/art?src=hash&amp;ref_src=twsrc%5Etfw">#art</a> <a href="https://t.co/RFUHB68n1j">pic.twitter.com/RFUHB68n1j</a></p>&mdash; Allan Nava (@allan__nava) <a href="https://twitter.com/allan__nava/status/1463269920842686466?ref_src=twsrc%5Etfw">November 23, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

@@ -14,6 +14,8 @@ description: "Foto di una partita di padel con Parach al Garden Tennis Club di N
 category: blog
 author: allan
 externalLink: true
+lat: 45.531
+lng: 9.138
 ---
 
 ## Padel Garden Tennis Club - 26 September 🎾  

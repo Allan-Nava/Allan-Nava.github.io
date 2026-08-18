@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Sfera Ebbasta - Serpenti A Sonagli Live 🔹 Fabrique Milano"
 category: blog
 author: allan
+lat: 45.442
+lng: 9.246
 ---
 
 <lite-youtube videoid="Z1huR5jEmkI" playlabel="Sfera Ebbasta - Serpenti A Sonagli Live 🔹 Fabrique Milano"></lite-youtube>

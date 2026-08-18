@@ -12,6 +12,8 @@ description: "Foto di una serata all'Ostello Bello tra birre e sorrisi."
 category: blog
 author: allan
 externalLink: true
+lat: 45.485
+lng: 9.204
 ---
 
 ## Ostello Bello 2024 

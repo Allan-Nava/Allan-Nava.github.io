@@ -14,6 +14,8 @@ description: "Foto della mostra di Richard Avedon a Palazzo Reale, Milano, nel 2
 category: blog
 author: allan
 externalLink: true
+lat: 45.463
+lng: 9.191
 ---
 
 ## Palazzo Reale Milano - Richard Avedon  ✨  

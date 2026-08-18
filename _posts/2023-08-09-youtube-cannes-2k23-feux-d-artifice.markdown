@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Cannes 2k23 Feux d'artifice 🎆🎇"
 category: blog
 author: allan
+lat: 43.552
+lng: 7.017
 ---
 
 <lite-youtube videoid="xlXN9Wu7pqk" playlabel="Cannes 2k23 Feux d'artifice 🎆🎇"></lite-youtube>

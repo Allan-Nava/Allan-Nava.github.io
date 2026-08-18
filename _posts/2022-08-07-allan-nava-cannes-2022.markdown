@@ -13,6 +13,8 @@ description: "Foto e ricordi di un viaggio a Cannes, in Francia, nel 2022."
 category: blog
 author: allan
 externalLink: true
+lat: 43.552
+lng: 7.017
 ---
 
 <blockquote class="twitter-tweet" data-theme="dark"><p lang="fr" dir="ltr">Cannes , France 🇫🇷 <a href="https://t.co/B6Wnqxl5zz">pic.twitter.com/B6Wnqxl5zz</a></p>&mdash; Allan Nava (@allan__nava) <a href="https://twitter.com/allan__nava/status/1556581454221565953?ref_src=twsrc%5Etfw">August 8, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

@@ -14,6 +14,8 @@ description: "Una mappa Google con i migliori posti economici dove mangiare."
 category: blog
 author: allan
 externalLink: true
+lat: 45.464
+lng: 9.19
 ---
 
 <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1ISOgf-u2p_F3uVyEQUYlpNMkO74guEg&ehbc=2E312F" width="640" height="480"></iframe>

@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Monte Spluga ⛰️"
 category: blog
 author: allan
+lat: 46.508
+lng: 9.336
 ---
 
 <lite-youtube videoid="Y4yfxXpu6iA" playlabel="Monte Spluga ⛰️"></lite-youtube>

@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Cyprus 2017 🇨🇾"
 category: blog
 author: allan
+lat: 35.126
+lng: 33.43
 ---
 
 <lite-youtube videoid="QuDZWZy1sVo" playlabel="Cyprus 2017 🇨🇾"></lite-youtube>

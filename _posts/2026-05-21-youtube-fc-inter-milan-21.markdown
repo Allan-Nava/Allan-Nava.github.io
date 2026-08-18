@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: FC Inter Milan 🖤💙 21"
 category: blog
 author: allan
+lat: 45.478
+lng: 9.124
 ---
 
 <lite-youtube videoid="0bxkQ8kMlTk" data-short playlabel="FC Inter Milan 🖤💙 21"></lite-youtube>

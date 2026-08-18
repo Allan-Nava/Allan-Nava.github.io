@@ -14,6 +14,8 @@ description: "Foto di una partita di padel al Garden Tennis Club di Novate Milan
 category: blog
 author: allan
 externalLink: true
+lat: 45.531
+lng: 9.138
 ---
 
 <div>

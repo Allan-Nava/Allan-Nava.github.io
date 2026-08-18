@@ -10,6 +10,8 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Rancore - Giocattoli Live 🔹Carroponte Milano"
 category: blog
 author: allan
+lat: 45.535
+lng: 9.244
 ---
 
 <lite-youtube videoid="qA5YOvdcxA4" playlabel="Rancore - Giocattoli Live 🔹Carroponte Milano"></lite-youtube>

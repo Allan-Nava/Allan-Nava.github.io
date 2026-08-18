@@ -13,6 +13,8 @@ description: "Video del concerto di Calcutta al Pala Alpitour con gli amici."
 category: blog
 author: allan
 externalLink: true
+lat: 45.042
+lng: 7.65
 ---
 
 <div>

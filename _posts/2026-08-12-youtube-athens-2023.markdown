@@ -10,6 +10,8 @@ headerImage: false
 description: "allan_nava."
 category: blog
 author: allan
+lat: 37.976
+lng: 23.727
 ---
 
 <lite-youtube videoid="REiUU0guC7k" data-short playlabel="Athens 2023 🇬🇷✨"></lite-youtube>

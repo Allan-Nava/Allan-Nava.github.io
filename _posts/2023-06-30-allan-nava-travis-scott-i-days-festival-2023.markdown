@@ -15,6 +15,8 @@ description: "Video del concerto di Travis Scott all'Ippodromo di Milano per gli
 category: blog
 author: allan
 externalLink: true
+lat: 45.497
+lng: 9.116
 ---
 
 ## Travis Scott - Milano Ippodromo 🎸 
