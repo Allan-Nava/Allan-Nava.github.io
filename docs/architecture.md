@@ -193,7 +193,7 @@ Verified with a Node harness that loads the built `sw.js` into a sandbox with mo
 | `videos.html` | `/videos/` — grid of every post embedding a YouTube facade. |
 | `search.html`, `search.json` | `/search/` — client-side search over the build-time index (194 entries, 44 KB). |
 | `assets/images/`, `assets/video/` | Media; `.MOV` files tracked via Git LFS. |
-| `404.html` | GitHub Pages custom 404. |
+| `404.html` | GitHub Pages custom 404. Deliberately minimal: the big numeral, the `<h1>` and one line of explanation — nav and footer come from the layout and are the only way out it needs. Don't add listings here. |
 
 ## Configuration (`_config.yml`)
 
