@@ -4,7 +4,9 @@
 # Needs the YOUTUBE_API_KEY secret: the script aborts without it, there is no
 # RSS fallback.
 # Videos already embedded in an existing post are skipped, so hand-written
-# posts are never duplicated.
+# posts are never duplicated. Because of that skip, a location added on YouTube
+# after the post was created would never reach /map: scripts/resync_locations.rb
+# runs right after and backfills lat/lng into the posts that already exist.
 name: YouTube Sync
 
 on:
@@ -37,6 +39,14 @@ jobs:
         env:
           MAX_AGE_DAYS: ${{ github.event.inputs.max_age_days || '7' }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+      # Le localita' taggate su YouTube DOPO la creazione del post: il passo
+      # sopra salta i video gia' pubblicati, quindi senza questo un video
+      # geolocalizzato in un secondo momento non arriverebbe mai su /map.
+      # Costa 1 unita' di quota ogni 50 video.
+      - name: Backfill locations on existing posts
+        run: ruby scripts/resync_locations.rb
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
       - name: Validate generated posts
         run: ruby scripts/validate_posts.rb
       - name: Commit and push new posts
@@ -50,7 +60,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add _posts
-          git commit -m "Add posts from YouTube sync"
+          git commit -m "Sync posts and locations from YouTube"
           git push
           echo "pushed=true" >> "$GITHUB_OUTPUT"
       - name: Trigger deploy

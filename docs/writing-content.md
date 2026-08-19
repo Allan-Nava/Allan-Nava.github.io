@@ -67,7 +67,7 @@ externalLink: https://example.com   # optional, see below
 | `hidden` | bool | Excludes the post from the blog listing (`blog/index.html`). |
 | `externalLink` | URL | On `/projects`, the item links to this URL instead of the post page. |
 | `star` | bool | Adds the `star` CSS class to highlight the item in listings. |
-| `lat`, `lng` | float | Geolocates the post: it appears on `/map`. Posts at the same coordinate share one marker and are listed together in its popup, so reusing the exact point of an existing post — same trail, same venue — groups them instead of hiding one behind the other. |
+| `lat`, `lng` | float | Geolocates the post: it appears on `/map`. Posts at the same coordinate share one marker and are listed together in its popup, so reusing the exact point of an existing post — same trail, same venue — groups them instead of hiding one behind the other. For YouTube posts you don't write these by hand: tag the place on the video and the sync reads it (`resync_locations.rb` backfills posts that already exist). |
 | `series` | string | Groups posts into a series: the post gets a "Part N of M" box listing every episode, oldest first. Use the exact same string on each post. |
 
 Notes:

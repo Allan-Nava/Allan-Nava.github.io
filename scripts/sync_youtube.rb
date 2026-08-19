@@ -132,17 +132,27 @@ rescue StandardError => e
   nil
 end
 
+# Ripiego quando `recordingDetails.location` è vuoto: la città scritta nella
+# descrizione. Serve un **marcatore esplicito** di luogo, e la parola dopo deve
+# essere maiuscola.
+#
+# Il pattern precedente accettava anche `in`/`at` nudi, e col flag /i finiva per
+# prendere qualunque parola dopo qualunque "in" o "at" della descrizione:
+# "Follow me at Instagram" → "Instagram for more", "Training in FEBRUARY 2024"
+# → "ing in FEBRUARY", "notifications" → "ions". Nominatim a quel punto
+# restituisce comunque *qualcosa*, e il marker finisce in un altro continente.
+# Il /i resta sulla sola parola chiave (le descrizioni cominciano con
+# "Filmed in …", maiuscolo), non sulla città.
+PLACE_MARKER = /(?:📍|📸)\s*|(?i:\b(?:filmed|shot|recorded|located)\s+(?:in|at)\s+)/
+
 def extract_city_from_description(description)
   return nil if description.to_s.empty?
 
-  desc = description.to_s.strip
+  m = description.to_s.strip.match(/#{PLACE_MARKER}([A-Z][\p{L}'’.-]*(?:[ ,]+[A-Z][\p{L}'’.-]*){0,3})/)
+  return nil unless m
 
-  if desc =~ /(?:📍|filmed in|shot in|recorded in|in|at|📸 )\s*([A-Z][A-Za-z\s]+(?:,?\s*[A-Z][A-Za-z]*)?)/i
-    city = Regexp.last_match(1).strip.sub(/,\s*$/, '')
-    return city unless city.empty?
-  end
-
-  nil
+  city = m[1].strip.sub(/[,\s]+\z/, '')
+  city.empty? ? nil : city
 end
 
 def get_video_location(video_id, api_key, description = '')
