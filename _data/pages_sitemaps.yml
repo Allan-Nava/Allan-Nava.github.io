@@ -2,8 +2,8 @@
 #
 # Allan-Nava-owned GitHub Pages project sites under allan-nava.github.io that expose a
 # sitemap.xml (HTTP 200). robots.txt renders one `Sitemap:` line per entry.
-# 24 other Pages site(s) are live but ship no sitemap and are
-# omitted: ansible-vars-lens, AWS_SMS_LIBRARY, fakeyou.go, go-bytebase, go-cli, Go-DDD-Scaffold, go-gemini, Go-GestPay, go-kaltura, go-release.action, Haivision-go-sdk, haproxy-dataplane-go, hls-lens, hm-react-utils, KafkaJS-WS, keycloak-doctor, Mailgun-Template-Extension-VSCode, MistServer-go-sdk, nats-lens, NextCMS, nomad-lens, OvenMediaEngine-go-sdk, segcheck, Vanilla-BLoC-Extension
+# 26 other Pages site(s) are live but ship no sitemap and are
+# omitted: abrsim, ansible-vars-lens, AWS_SMS_LIBRARY, fakeyou.go, go-bytebase, go-cli, Go-DDD-Scaffold, go-gemini, Go-GestPay, go-kaltura, go-release.action, Haivision-go-sdk, haproxy-dataplane-go, hls-lens, hm-react-utils, KafkaJS-WS, keycloak-doctor, ladder-bench, Mailgun-Template-Extension-VSCode, MistServer-go-sdk, nats-lens, NextCMS, nomad-lens, OvenMediaEngine-go-sdk, segcheck, Vanilla-BLoC-Extension
 - name: checkfleet
   urls: 43
 - name: Hugo-TuttoCampo
