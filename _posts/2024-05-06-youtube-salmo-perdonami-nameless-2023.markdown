@@ -10,6 +10,7 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Salmo - Perdonami 🔥 Nameless 2023"
 category: blog
 author: allan
+lat: 45.7934349
+lng: 9.3128923
 ---
-
 <lite-youtube videoid="lcaiWXFnfTI" data-short playlabel="Salmo - Perdonami 🔥 Nameless 2023"></lite-youtube>

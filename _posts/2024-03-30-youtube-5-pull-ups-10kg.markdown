@@ -10,6 +10,7 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: 5 Pull UPs 10kg 🏋🏽"
 category: blog
 author: allan
+lat: 45.5332164
+lng: 9.1952654
 ---
-
 <lite-youtube videoid="JjSyUAln32s" playlabel="5 Pull UPs 10kg 🏋🏽"></lite-youtube>

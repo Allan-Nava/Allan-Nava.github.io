@@ -10,8 +10,9 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: It’s not about strength — it’s about balance. 🧗 #climbing"
 category: blog
 author: allan
+lat: 45.5162562
+lng: 9.2225565
 ---
-
 ## It’s not about strength — it’s about balance. 🧗 climbing
 
 <lite-youtube videoid="tQZb2iI9XLA" data-short playlabel="It’s not about strength — it’s about balance. 🧗 #climbing"></lite-youtube>

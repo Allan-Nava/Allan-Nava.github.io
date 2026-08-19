@@ -12,9 +12,10 @@ headerImage: false
 description: "Video del DJ set live di Paul Kalkbrenner a Milano Rho Fiera."
 category: blog
 author: allan
+lat: 45.5179727
+lng: 9.0856454
 externalLink: true
 ---
-
 <lite-youtube videoid="b7_5cr83AQY" data-short playlabel="YouTube video player"></lite-youtube>
 
 

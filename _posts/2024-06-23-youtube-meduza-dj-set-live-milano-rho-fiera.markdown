@@ -10,6 +10,7 @@ headerImage: false
 description: "Video dal canale YouTube di Allan Nava: Meduza DJ SET Live🔹Milano Rho Fiera"
 category: blog
 author: allan
+lat: 45.5179727
+lng: 9.0856454
 ---
-
 <lite-youtube videoid="TCdzC1J8SzU" data-short playlabel="Meduza DJ SET Live🔹Milano Rho Fiera"></lite-youtube>

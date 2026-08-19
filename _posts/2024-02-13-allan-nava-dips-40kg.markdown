@@ -13,9 +13,10 @@ headerImage: false
 description: "Video di un allenamento di dips da 40kg in calisthenics alla Body Time Club."
 category: blog
 author: allan
+lat: 45.5332164
+lng: 9.1952654
 externalLink: true
 ---
-
 <lite-youtube videoid="y7nIt9_yHAw" data-short playlabel="YouTube video player"></lite-youtube>
 
 
