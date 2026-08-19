@@ -67,6 +67,12 @@ layout: compress
 
     <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}{{ "/feed.xml" }}" />
+    {%- comment -%}
+    I progetti hanno un feed separato (#160): /feed.xml e' solo il blog, perche'
+    `hidden: true` li teneva fuori dal listing ma non dal feed. Il link lo
+    dichiara la sola pagina che li elenca, con `projects_feed: true`.
+    {%- endcomment -%}
+    {% if page.projects_feed %}<link rel="alternate" type="application/rss+xml" title="{{ site.title }} — Projects" href="{{ site.url }}/projects/feed.xml" />{% endif %}
 
     <style>
     {% capture scss_sheet %}{% include style.scss %}{% endcapture %}

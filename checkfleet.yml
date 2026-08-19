@@ -57,6 +57,11 @@ checks:
       # fails silently for readers.
       - url: https://allan-nava.github.io/feed.xml
         expect_body: '<feed xmlns="http://www.w3.org/2005/Atom"'
+      # Il feed dei progetti e' separato da quello del blog (#160): entrambi
+      # sono template scritti a mano, quindi nessun plugin li rigenererebbe se
+      # un rinomino li facesse sparire.
+      - url: https://allan-nava.github.io/projects/feed.xml
+        expect_body: '<feed xmlns="http://www.w3.org/2005/Atom"'
       - url: https://allan-nava.github.io/sitemap.xml
         expect_body: "https://allan-nava.github.io/"
       # robots.txt currently has no `Sitemap:` directive (only User-agent /

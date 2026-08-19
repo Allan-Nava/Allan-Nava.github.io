@@ -105,7 +105,11 @@ show-author: true
 animation: true
 #
 plugins:
-  - jekyll-feed
+  # jekyll-feed rimosso (#160): `feed.xml` e `feed-projects.xml` sono scritti a
+  # mano perche' il plugin non sa escludere i post `hidden: true` — meta' del
+  # feed erano schede di repo generate da sync_github.rb. Quando un file occupa
+  # gia' /feed.xml il suo generator salta, quindi tenerlo qui lasciava solo un
+  # doppione silenzioso pronto a rientrare al primo rinomino.
   - jekyll-seo-tag
   - jekyll-gist
   - jemoji

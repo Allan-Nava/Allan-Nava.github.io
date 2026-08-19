@@ -1,0 +1,63 @@
+---
+layout: null
+permalink: /feed.xml
+sitemap: false
+---
+{%- comment -%}
+Feed Atom del blog, scritto a mano e non lasciato a `jekyll-feed` (#160).
+
+Il motivo: i post progetto sono `hidden: true`, che li tiene fuori dalla
+paginazione del blog ma **non** dal feed — jekyll-feed non guarda quel campo e
+prende gli ultimi N post per data. Con `github-sync.yml` che gira ogni ora, le
+prime cinque entry su dieci erano schede di repo, rimescolate anche quando non
+era stato scritto niente. I progetti hanno il loro feed in `feed-projects.xml`.
+
+`jekyll-feed` è stato togliere dai `plugins:` in `_config.yml`: quando un file
+occupa già `/feed.xml` il suo generator si limita a saltare, quindi restava un
+doppione silenzioso pronto a rimettere dentro i progetti al primo rinomino.
+
+Due cose che nella prima versione di questo file mancavano:
+
+1. `<content>` sta in CDATA, quindi **non** va passato a `xml_escape`: le
+   entità escapate dentro un CDATA i lettori le mostrano letterali.
+2. `strip_html` sul corpo di un post video non lascia niente — il corpo è solo
+   `<lite-youtube>` — e usciva un feed di 20 entry con summary e content
+   **vuoti**. Il summary viene dalla `description` (sempre presente), e il
+   contenuto apre con la thumbnail linkata; se il corpo non ha testo, si chiude
+   con il rimando al post.
+{%- endcomment -%}
+<?xml version="1.0" encoding="utf-8"?>
+{%- assign visible_posts = site.posts | where_exp: "p", "p.hidden != true" -%}
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title type="text">{{ site.title | xml_escape }}</title>
+  <subtitle type="text">{{ site.bio | xml_escape }}</subtitle>
+  <link href="{{ site.url }}/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="{{ site.url }}/" rel="alternate" type="text/html" />
+  <updated>{% if visible_posts.first %}{{ visible_posts.first.date | date_to_xmlschema }}{% else %}{{ site.time | date_to_xmlschema }}{% endif %}</updated>
+  <id>{{ site.url }}/</id>
+  <author>
+    <name>{{ site.name | xml_escape }}</name>
+  </author>
+{%- for post in visible_posts limit: 20 %}
+  {%- comment -%}
+  URL assolute: nel lettore la pagina non ha una base da cui risolvere `/assets/…`.
+  {%- endcomment -%}
+  {%- capture body -%}{{ post.content | replace: 'src="/', 'src="https://allan-nava.github.io/' | replace: 'href="/', 'href="https://allan-nava.github.io/' }}{%- endcapture -%}
+  {%- assign body_text = body | strip_html | strip -%}
+  <entry>
+    <title type="html">{{ post.title | xml_escape }}</title>
+    <link href="{{ site.url }}{{ post.url }}" rel="alternate" type="text/html" title="{{ post.title | xml_escape }}" />
+    <published>{{ post.date | date_to_xmlschema }}</published>
+    <updated>{% if post.updated %}{{ post.updated | date_to_xmlschema }}{% else %}{{ post.date | date_to_xmlschema }}{% endif %}</updated>
+    <id>{{ site.url }}{{ post.url }}</id>
+    <author>
+      <name>{{ site.name | xml_escape }}</name>
+    </author>
+    {%- for tag in post.tag %}
+    <category term="{{ tag | xml_escape }}" />
+    {%- endfor %}
+    <summary type="text">{% if post.description and post.description != "" %}{{ post.description | strip_html | xml_escape }}{% else %}{{ body_text | truncatewords: 40 | xml_escape }}{% endif %}</summary>
+    <content type="html"><![CDATA[{% if post.image and post.image != "" %}<p><a href="{{ site.url }}{{ post.url }}"><img src="{{ post.image }}" alt="{{ post.title }}" /></a></p>{% endif %}{{ body }}{% if body_text == "" %}<p><a href="{{ site.url }}{{ post.url }}">Read the post on allan-nava.github.io</a></p>{% endif %}]]></content>
+  </entry>
+{%- endfor %}
+</feed>
