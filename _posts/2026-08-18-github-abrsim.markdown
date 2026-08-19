@@ -2,7 +2,7 @@
 title: "abrsim"
 layout: post
 date: 2026-08-18 22:45
-updated: 2026-08-18
+updated: 2026-08-19
 tag:
 - go
 image: "https://raw.githubusercontent.com/Allan-Nava/abrsim/main/docs/assets/logo.svg"
@@ -20,6 +20,6 @@ abrsim takes a real manifest and a network trace, simulates what an ABR player w
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
-- **Ultimo push**: 2026-08-18
+- **Ultimo push**: 2026-08-19
 
 [Repo su GitHub →](https://github.com/Allan-Nava/abrsim)
