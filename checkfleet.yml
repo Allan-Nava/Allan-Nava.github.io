@@ -34,13 +34,13 @@ checks:
     targets:
       - url: https://allan-nava.github.io/
         expect_body: "<title>Home | Allan Nava</title>"
-      - url: https://allan-nava.github.io/projects.html
+      - url: https://allan-nava.github.io/projects/
         expect_body: "<title>Projects | Allan Nava</title>"
       - url: https://allan-nava.github.io/blog/
         expect_body: "<title>Blog | Allan Nava</title>"
       - url: https://allan-nava.github.io/about/
         expect_body: "<title>About | Allan Nava</title>"
-      - url: https://allan-nava.github.io/tags.html
+      - url: https://allan-nava.github.io/tags/
         expect_body: "<title>Tags | Allan Nava</title>"
       - url: https://allan-nava.github.io/gear/
         expect_body: "<title>Gear | Allan Nava</title>"

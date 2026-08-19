@@ -88,7 +88,7 @@ Pages outside `_posts/` (`about.md`, `gear.md`, `map.html`, `videos.html`, …) 
 | `title` | string | Rendered as the page `<h1>`. Every page needs one. |
 | `subtitle` | string | Optional line under the title, inside the same `<header class="page-header">`. |
 | `custom_header` | bool | Opts out of the automatic heading, for a page that builds its own. Only `404.html` uses it: its `<h1>` is not the `title:` and it shows the big "404" above. |
-| `permalink` | path | The page URL. Use the trailing-slash form (`/gear/`) — it is what all pages but `tags.html` and `projects.html` do (#159). |
+| `permalink` | path | The page URL. Use the trailing-slash form (`/gear/`) — it is the canonical form across the site, including `tags` and `projects`. |
 | `wide` | bool | Widens the container to `--width-listing` for pages that show a grid instead of running text. |
 | `sitemap` | bool | `false` keeps the page out of `sitemap.xml` (used by `/offline/`). |
 

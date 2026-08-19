@@ -49,13 +49,14 @@ jobs:
         uses: treosh/lighthouse-ci-action@v12
         with:
           # Structural pages only — no individual posts, so the budget is not
-          # coupled to content. projects/tags have no trailing-slash permalink,
-          # so they are served as .html by the local static server.
+          # coupled to content. Keep the canonical paths aligned with the site
+          # permalinks so the smoke and Lighthouse checks exercise the published
+          # URLs instead of the raw filename fallback.
           urls: |
             http://localhost:8080/
             http://localhost:8080/blog/
-            http://localhost:8080/projects.html
-            http://localhost:8080/tags.html
+            http://localhost:8080/projects/
+            http://localhost:8080/tags/
             http://localhost:8080/about/
             http://localhost:8080/map/
             http://localhost:8080/fitness/

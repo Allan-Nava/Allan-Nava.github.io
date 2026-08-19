@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^ruby -e 'files=%w\\[projects\\.html tags\\.html\\]; missing=files\\.reject\\{\\|f\\| File\\.read\\(f\\)\\.include\\?\\(\"permalink:\"\\)\\}; abort\\(\"missing permalink in: #\\{missing\\.join\\(\", \"\\)\\}\"\\) unless missing\\.empty\\?; puts \"permalink OK\"'$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

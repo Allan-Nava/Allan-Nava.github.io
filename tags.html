@@ -2,6 +2,7 @@
 layout: page
 title: Tags
 subtitle: "Every topic on the blog."
+permalink: /tags/
 ---
 {%- comment -%}
 Il titolo della pagina lo rende _includes/header.html.
@@ -83,8 +84,8 @@ aiutano a orientarsi, ma restano raggiungibili. {%- endcomment -%}
 </section>
 
 <script>
-/* I post linkano a /tags#slug (senza slash finale: la pagina è tags.html e
-   /tags/ è 404): senza questo si atterra su un blocco chiuso.
+/* I post linkano a /tags#slug e la pagina ora usa il permalink canonico
+   /tags/: senza questo il browser avrebbe aperto il blocco chiuso in fondo.
    È solo un miglioramento — senza JS il blocco è comunque lì, basta cliccarlo.
    ATTENZIONE: niente commenti `//`, compress.html collassa le newline. */
 (function () {
