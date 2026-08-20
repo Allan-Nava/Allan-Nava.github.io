@@ -112,6 +112,32 @@ def absolute_image_url(url, full_name, branch)
   "https://raw.githubusercontent.com/#{full_name}/#{branch}/#{path}"
 end
 
+# I README sono scritti per GitHub, che di default è chiaro: quando un repo ha
+# più varianti del logo, in pagina finisce quasi sempre `*-logo-light.svg`, cioè
+# quella con l'inchiostro scuro (#1f2328 su edgemix). Sul sito quel file è quasi
+# invisibile sulle card del tema scuro, e la variante `-dark` lo sarebbe su
+# quello chiaro: i temi sono due, quindi nessuna delle due va bene sempre.
+#
+# Se il repo ha una variante **neutra** (`-mark`, di solito solo il colore
+# d'accento) si usa quella. Costa una richiesta HEAD, e solo per i repo che
+# dichiarano la variante nel nome del file.
+def neutral_variant(url)
+  return url unless url =~ /-(logo-)?(light|dark)\.(svg|png)\z/i
+
+  # Apici singoli: in una stringa a doppi apici `\3` sarebbe un escape ottale,
+  # non il backreference del gruppo.
+  candidate = url.sub(/-(logo-)?(light|dark)(\.[a-z]+)\z/i, '-mark\3')
+  return url if candidate == url
+
+  uri = URI(candidate)
+  res = Net::HTTP.start(uri.host, uri.port, use_ssl: true, open_timeout: 10, read_timeout: 15) do |http|
+    http.head(uri.request_uri, 'User-Agent' => 'jekyll-github-sync')
+  end
+  res.is_a?(Net::HTTPSuccess) ? candidate : url
+rescue StandardError
+  url
+end
+
 # Primo logo "vero" del README, o nil.
 #
 # Cerca sia la sintassi Markdown `![alt](url)` sia i tag `<img src="…">`: i
@@ -137,7 +163,7 @@ def get_repo_image(full_name, branch = 'main')
 
   # A parità di posizione, meglio un raster: l'immagine è anche og:image.
   best = usable.find { |url| RASTER_EXT.include?(image_ext(url)) } || usable.first
-  absolute_image_url(best, full_name, branch)
+  neutral_variant(absolute_image_url(best, full_name, branch))
 rescue StandardError => e
   warn "Warning: could not fetch image for #{full_name}: #{e.message}"
   nil

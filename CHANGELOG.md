@@ -11,6 +11,15 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ## [Non rilasciato]
 
+### Corretto
+
+- **Logo dei progetti: variante neutra invece di quella per sfondo chiaro** — i README sono scritti
+  per GitHub, che di default è chiaro, quindi il logo in pagina è quasi sempre `*-logo-light.svg`,
+  cioè quello con l'inchiostro scuro (`#1f2328` su edgemix): sulle card del tema scuro era quasi
+  invisibile, e la variante `-dark` lo sarebbe stata su quello chiaro. Ora `sync_github.rb` prova la
+  variante `-mark` (solo colore d'accento, leggibile su entrambi i temi) con una richiesta HEAD, e
+  ripiega su quella del README se non esiste. `edgemix` aggiornato.
+
 ### Modificato
 
 - **SEO: il sito ora dice chi è.** Sei difetti che si sommavano, tutti nella `<head>`:
