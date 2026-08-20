@@ -11,6 +11,26 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ## [Non rilasciato]
 
+### Modificato
+
+- **SEO: il sito ora dice chi è.** Sei difetti che si sommavano, tutti nella `<head>`:
+  la home usciva su Google come **"Home | Allan Nava"** (il `<title>` lo compone ora
+  `_layouts/default.html`, con `{% seo title=false %}`); `description:` in `_config.yml`
+  era una stringa vuota, quindi ogni pagina si presentava con la sola bio del tema;
+  c'erano **due** `<meta name=description>` e **due** `<link rel=canonical>` per pagina
+  (tema + plugin), e con due Google ne sceglie una; `twitter:site` era `@` perché
+  `jekyll-seo-tag` legge solo `site.twitter.username`; `og:title` della home era "Home",
+  cioè il titolo di ogni condivisione del sito.
+- **Identità dichiarata**: nuovo `_includes/schema-person.html` — JSON-LD `Person` +
+  `WebSite` con le `sameAs` verso GitHub, LinkedIn, YouTube, X, Instagram e dev.to
+  (da `social.links` in `_config.yml`), su `/` e `/about/`; gli stessi profili sono
+  linkati con `rel="me"` da `_includes/social-links.html`. È il segnale che collega il
+  dominio alla persona per la query col nome proprio — mancava del tutto.
+- **Descrizioni per pagina** su `/blog`, `/projects`, `/about`, `/tags`, `/map`, `/gear`
+  e `/fitness` (prima ereditavano tutte la stessa).
+- `_config.yml`: aggiunte `tagline`, `social`, `description` e la chiave commentata
+  `google_site_verification` (serve il token da Search Console).
+
 ## [2.5.0] — 2026-08-17
 
 Il giro più lungo dalla 2.0.0: secondo tema, PWA, galleria foto, feed riscritti e lo stack

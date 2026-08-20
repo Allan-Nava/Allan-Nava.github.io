@@ -88,10 +88,14 @@ Pages outside `_posts/` (`about.md`, `gear.md`, `map.html`, `videos.html`, …) 
 |---|---|---|
 | `title` | string | Rendered as the page `<h1>`. Every page needs one. |
 | `subtitle` | string | Optional line under the title, inside the same `<header class="page-header">`. |
+| `description` | string | Meta description and `og:description` for the page. Without one the page falls back to `site.description`, so every page sharing that fallback looks identical in search results — every standalone page now carries its own. |
+| `seo_title` | string | Overrides the `<title>` of the document only (not the `<h1>`, the nav or `og:title`). Nothing uses it yet; it is the escape hatch for a page whose heading and search title should differ. |
 | `custom_header` | bool | Opts out of the automatic heading, for a page that builds its own. Only `404.html` uses it: its `<h1>` is not the `title:` and it shows the big "404" above. |
 | `permalink` | path | The page URL. Use the trailing-slash form (`/gear/`) — it is the canonical form across the site, including `tags` and `projects`. |
 | `wide` | bool | Widens the container to `--width-listing` for pages that show a grid instead of running text. |
 | `sitemap` | bool | `false` keeps the page out of `sitemap.xml` (used by `/offline/`). |
+
+The home page is a special case: its `title:` is **`Allan Nava`**, not `Home`, because `og:title` is taken from `page.title` and nothing else. Nothing keys on that string any more — `_includes/header.html` recognises the home by `page.url == "/"` — but if you rename it, check both.
 
 Do **not** write a `<header class="page-header">` by hand: the include does it for every page, and a hand-rolled one produces a second `<h1>`. That heading used to come from a hard-coded list of four titles, which left `/about`, `/map`, `/fitness`, `/gear` and `/offline` with **no `<h1>` at all** (#150).
 

@@ -139,6 +139,29 @@ Every post gets a real preview image, resolved in this order:
 
 Cards are named after the **post filename, date included** — not the permalink slug, because three pairs of posts share a slug (`allan-nava-padel-murat4ll`, …) and would otherwise share one card carrying the wrong date. Cards are produced by **`ruby scripts/generate_og_cards.rb`** from `scripts/og_post_card.html` (Chrome screenshot at 1200×630, title and meta passed through the query string, font size stepped down by title length) and committed. They are **JPEG, not PNG**: 49 KB average instead of ~120 KB, which over 201 posts is the difference between 9.5 MB and 24 MB in the repo. The generator is idempotent and only touches posts that would otherwise have no preview of their own. `image-optimize.yml` runs it weekly so the project posts that `github-sync` creates hourly pick up a card; until then they fall back to the generic one, which is why nothing breaks if it never runs.
 
+## Search engines (titles, descriptions, identity)
+
+`jekyll-seo-tag` renders inside `default.html`, but two of its outputs are overridden there — deliberately.
+
+**The `<title>` is composed by `default.html`, not by the plugin** (`{% seo title=false %}` suppresses the plugin's). The plugin's rule is `"{page.title} | {site.title}"`, and the home page's `title:` is what the nav and the wrapper class key on — so the home shipped to Google as **`Home | Allan Nava`**. The first word of a title is the one that carries the most weight, and it was saying nothing. The composition order in `default.html` is:
+
+1. `seo_title:` in the page front matter, when a page wants an exact title;
+2. the home page (`page.url == "/"`) → `"{site.name} — {site.tagline}"`;
+3. a paginated listing → `"{page.title} — page N | {site.title}"` (distinct titles, so `/blog/2/` isn't seen as a duplicate of `/blog/`);
+4. any other page → `"{page.title} | {site.title}"`.
+
+**The home page's `title:` is `Allan Nava`, not `Home`.** `og:title` is the one field with no override in `jekyll-seo-tag` — it reads `page.title` and nothing else — so every share of the home page on LinkedIn or WhatsApp was titled "Home". Renaming it meant unhooking the two things that keyed on the string: `_includes/header.html` now tests `page.url == "/"`, and the wrapper class in `default.html` uses `slugify` instead of `downcase` so a title with a space doesn't emit two classes.
+
+**One description, one canonical.** The theme printed its own `<meta name=description>` from `site.bio` on top of the plugin's, and `default.html` printed a second `<link rel=canonical>` on top of the plugin's. Both duplicates are gone: with two descriptions a search engine picks one (usually the first, i.e. the generic one), and two canonicals are a contradictory signal that can get both ignored. `site.description` in `_config.yml` is now filled — it is the fallback for every page that declares no `description:` of its own, and it was an empty string, which is why the whole site advertised nothing but the theme's bio.
+
+**Identity (`sameAs` + `rel="me"`).** For a query that is a person's name, a search engine has to be able to tie the domain to the person. `_includes/schema-person.html` emits a JSON-LD `@graph` with a `Person` (name, image, job, employer, city, `sameAs`) and a `WebSite` that names the Person as its author and publisher; it is included **only on `/` and `/about/`**, the two pages that are about the person. The profile URLs are not hard-coded there — they come from `social.links` in `_config.yml`, and the same profiles are linked with `rel="me"` from `_includes/social-links.html`.
+
+That is the half of the job that lives in the repo. **The other half does not**: the link back *from* each profile to `https://allan-nava.github.io/` (GitHub's "Website" field, the LinkedIn contact info, the YouTube channel's About tab) has to be set on those sites. As of writing, the GitHub profile's website field points at LinkedIn, not at this site.
+
+> The JSON-LD is written with **a space after every colon** on purpose. `jemoji` also runs inside `<script>` tags, and a single `:word:` sequence in the document makes it re-parse and rewrite the whole HTML (see the `/map` incident in `CLAUDE.md`). A space after the colon means no shortcode pattern can ever match.
+
+**Search Console.** `google_site_verification` in `_config.yml` (commented out, waiting for the token) is emitted by `jekyll-seo-tag` as the verification meta. Nothing in the repo can substitute for it: without a verified property there is no way to see what is indexed or to request indexing of a URL.
+
 ## PWA (installable + offline)
 
 Three files at the repo root, all rendered by Jekyll so they can use Liquid:
@@ -213,15 +236,19 @@ Feature toggles read by layouts and includes:
 | `width` | Content width: `normal` (`--width-normal`, 640px) or `large` (`--width-large`, 880px). |
 | `name` | Signature printed by the templates (hero title, nav brand, footer). Distinct from `title`; when it was missing those strings rendered empty. |
 | `paginate`, `paginate_path` | Blog pagination — currently commented out, so `/blog` lists everything. |
+| `description` | Site-wide meta description and `og:description` fallback for any page without its own `description:`. Not decorative — see "Search engines". |
+| `tagline` | Second half of the home page `<title>`: `"{name} — {tagline}"`. |
+| `social` | `name` + `links`: the profile URLs that become the `sameAs` of the `Person` JSON-LD (`_includes/schema-person.html`). |
+| `google_site_verification` | Search Console verification token; `jekyll-seo-tag` turns it into the verification meta. Commented out until the property is claimed. |
 | `analytics-google` | GA4 measurement ID — `G-X841VQSHB8` (active). Comment it out to stop collecting; the include only renders when it is set. See "Analytics". |
 
-Social handles (`github`, `instagram`, `linkedin`, `youtube`, `twitter`, `dev`) feed `_includes/social-links.html`. The `authors:` map defines the author block data; post `author` fields must reference a key in it.
+Social handles (`github`, `instagram`, `linkedin`, `youtube`, `dev`) feed `_includes/social-links.html`. **`twitter` is the exception: it is nested as `twitter.username`**, because `jekyll-seo-tag` reads only `site.twitter.username` — with the flat form every page shipped `<meta name="twitter:site" content="@">`. The `authors:` map defines the author block data; post `author` fields must reference a key in it.
 
 ## Plugins
 
 Declared in `_config.yml` and provided by the `github-pages` gem (all whitelisted by GitHub Pages):
 
-- `jekyll-seo-tag` — meta/OpenGraph tags via `{% seo %}` in `default.html`
+- `jekyll-seo-tag` — meta/OpenGraph tags via `{% seo title=false %}` in `default.html` (the `<title>` is composed by the layout; see "Search engines")
 - ~~`jekyll-feed`~~ — **removed** (#160). The plugin has no way to exclude `hidden: true` posts, and it takes the latest N posts by date, so five of the ten entries in `/feed.xml` were repo cards generated by `sync_github.rb`, reshuffled every hour by `github-sync.yml` even when nothing had been written. The two feeds are hand-written templates instead — see "Feeds" below.
 - `jekyll-sitemap` — `/sitemap.xml` (350+ URLs). **It also generates a `robots.txt` containing the `Sitemap:` line — but only when the repo has none** (`@site.pages << robots unless file_exists?("robots.txt")`). This repo ships its own `robots.txt`, so that automatic declaration never happened and the host advertised no sitemap at all until it was added. `robots.txt` is now a **Liquid template** (it carries empty front matter so Jekyll renders it): it prints the fixed host `Sitemap:` line plus one line per entry in `_data/pages_sitemaps.yml`. Crawlers read `robots.txt` only from the host root, so this one file speaks for every project site under `allan-nava.github.io/<repo>/` too — hence one `Sitemap:` per site. That data file is **generated in CI** by `scripts/sync_robots_sitemaps.rb` (workflow `robots-sync.yml`, config `_data/robots_sync.yml`): it lists only `Allan-Nava`-owned Pages sites whose `sitemap.xml` returns 200, so nothing is declared that isn't actually served. See `docs/deployment.md` for the workflow.
 - `jemoji` — `:emoji:` shortcodes
