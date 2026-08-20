@@ -1,0 +1,19 @@
+---
+title: "Dips 50kg 2018 💪🏼🏋🏽‍♂️"
+layout: post
+date: 2026-08-19 23:20
+tag:
+- youtube
+- short
+image: "https://i.ytimg.com/vi/CX-HBRfV7lY/hqdefault.jpg"
+thumb: "https://i.ytimg.com/vi/CX-HBRfV7lY/oardefault.jpg"
+headerImage: false
+description: "Video dal canale YouTube di Allan Nava: Dips 50kg 2018 💪🏼🏋🏽‍♂️"
+category: blog
+author: allan
+lat: 45.504734
+lng: 9.198678
+---
+
+<lite-youtube videoid="CX-HBRfV7lY" data-short playlabel="Dips 50kg 2018 💪🏼🏋🏽‍♂️"></lite-youtube>
+
