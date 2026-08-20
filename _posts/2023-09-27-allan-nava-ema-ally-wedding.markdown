@@ -4,10 +4,9 @@ layout: post
 date: 2023-09-27 10:00
 tag: 
 - wedding
-- munich
-- beer
+- duomo
+- milan
 - "2023"
-- pretzel
 - friends
 image: ""
 headerImage: false
