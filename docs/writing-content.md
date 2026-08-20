@@ -77,6 +77,7 @@ Notes:
 - **Table of contents**: a post with at least 3 `##`/`###` headings automatically gets a collapsible index above the body (`_plugins/toc.rb`). Nothing to add to the front matter — write headings and it appears.
 - **Listing cards**: `/blog` and `/projects` render title, `description` (truncated at 130 chars) and the thumbnail when `image:` is set, so a good `description` is what makes a card readable.
 - **Read time** and **related posts** blocks are controlled globally by `read-time` and `related` in `_config.yml`, not per post.
+- **Reuse existing tags.** Two spellings of the same topic (`iOS` and `ios`, `open source` and `open-source`) are different tags to Jekyll but share one slug, so they split the archive in two. `validate_posts.rb` warns about collisions; `scripts/consolidate_tags.rb` merges them.
 - Emoji shortcodes (e.g. `:smile:`) work everywhere thanks to the `jemoji` plugin.
 - Workout PRs shown on `/fitness` live in `_data/workouts.yml` — add a record (date, kg, optional post URL) whenever a PR falls.
 

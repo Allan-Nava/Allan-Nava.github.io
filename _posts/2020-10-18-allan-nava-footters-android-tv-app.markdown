@@ -6,7 +6,7 @@ tag:
 - github
 - vscode
 - jekyll
-- github actions
+- github-actions
 - app
 - android
 - tv

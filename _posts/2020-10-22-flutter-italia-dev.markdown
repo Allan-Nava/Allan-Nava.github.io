@@ -7,7 +7,7 @@ tag:
 - flutter 
 - italia
 - fltuter dev
-- open source
+- open-source
 image: ""
 headerImage: false
 projects: true

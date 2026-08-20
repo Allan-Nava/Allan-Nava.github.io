@@ -13,6 +13,7 @@ YEAR_RANGE = (2015..(Date.today.year + 1)).freeze
 
 errors = []
 warnings = []
+tag_usage = Hash.new { |h, k| h[k] = [] }
 
 def parse_front_matter(text)
   m = text.match(/\A---\s*\n(.*?)\n---\s*(\n|\z)/m)
@@ -85,6 +86,12 @@ posts.each do |path|
     warnings << "#{name}: empty description (bad for SEO)"
   end
 
+  # #148: due varianti dello stesso tag (`iOS`/`ios`, `open source`/`open-source`)
+  # per Jekyll sono tag diversi ma condividono lo slug, quindi generano due voci
+  # nella cloud e due archivi con meta' dei post ciascuno. Si raccolgono qui e si
+  # confrontano dopo il ciclo: e' un difetto che esiste solo fra post diversi.
+  Array(fm['tag']).each { |t| tag_usage[t.to_s] << name }
+
   # Date: must parse, and the year must be plausible (catches typos like 22026).
   raw_date = fm['date']
   date =
@@ -143,6 +150,16 @@ posts.each do |path|
   if text =~ %r{(?:github\.com/Allan-Nava/Allan-Nava\.github\.io/raw|media\.githubusercontent\.com)/[^"]*assets/video/}
     warnings << "#{name}: links videos via GitHub raw/media URLs — works but consumes the LFS bandwidth quota; prefer YouTube embeds"
   end
+end
+
+# Varianti dello stesso tag (#148): stesso slug, scrittura diversa.
+tag_usage.keys.group_by { |t| t.downcase.gsub(/[^a-z0-9]+/, '-').gsub(/\A-|-\z/, '') }
+         .each do |slug, variants|
+  next if variants.size < 2
+
+  detail = variants.sort.map { |v| "#{v.inspect} (#{tag_usage[v].size})" }.join(' vs ')
+  warnings << "tag: #{detail} share the slug '#{slug}' - two clouds and two archives for one topic; " \
+              'run scripts/consolidate_tags.rb'
 end
 
 puts "Checked #{posts.size} posts."

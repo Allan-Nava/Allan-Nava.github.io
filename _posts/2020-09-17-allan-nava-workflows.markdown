@@ -7,7 +7,7 @@ tag:
 - open-source
 - vscode
 - jekyll
-- github actions
+- github-actions
 image: ""
 headerImage: false
 projects: true

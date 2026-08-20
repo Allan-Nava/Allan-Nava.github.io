@@ -7,7 +7,7 @@ tag:
 - novate milanese
 - milan
 - head
-- Murat4All
+- murat4all
 image: ""
 headerImage: false
 description: "Foto di una partita di padel al circolo Murat4All."

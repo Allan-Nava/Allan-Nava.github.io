@@ -7,7 +7,7 @@ tag:
 - javascript
 - html
 - android
-- iOS
+- ios
 image: ""
 headerImage: false
 projects: true

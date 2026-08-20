@@ -7,7 +7,7 @@ tag:
 - javascript
 - html
 - android
-- iOS
+- ios
 - getivo
 image: ""
 headerImage: false

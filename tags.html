@@ -8,19 +8,22 @@ permalink: /tags/
 {%- comment -%}
 Il titolo della pagina lo rende _includes/header.html.
 
-Prima questa pagina era due muri: 290 chip tutti uguali e, sotto, l'elenco di
-ogni post ripetuto per ognuno dei suoi tag — 960 voci, 274 KB di HTML e uno
-scroll interminabile. Nessun tag pesava più di un altro e non c'era modo di
-capire quali fossero gli argomenti veri del blog.
+Questa pagina era due muri: 290 chip tutti uguali e, sotto, l'elenco di ogni
+post ripetuto per ognuno dei suoi tag. Nessun tag pesava più di un altro, e non
+c'era modo di capire quali fossero gli argomenti veri del blog.
 
-Due cambiamenti:
+Tre cambiamenti (#147):
 
 1. i chip mostrano il conteggio e hanno un peso visivo proporzionale, così i
    temi ricorrenti si distinguono dalla coda lunga; i tag con un solo post
    stanno dietro un "mostra tutti", perché sono la maggioranza e sommergono
    gli altri;
-2. le sezioni per tag sono `<details>` chiusi: la pagina diventa un indice
-   navigabile e il browser non impagina 960 voci che nessuno sta guardando.
+2. le sezioni per tag sono `<details>` chiusi, così la pagina è un indice
+   navigabile invece di uno scroll interminabile;
+3. ogni sezione mostra solo i primi cinque post e manda alla ricerca per il
+   resto. I `<details>` chiusi non risparmiano **byte**: il browser scarica
+   comunque tutto, e con 1019 coppie (tag, post) la pagina era 361 KB di HTML —
+   la più pesante del sito e l'unica sotto 99 di performance.
 
 Liquid non sa ordinare una hash per valore, da qui il giro con le stringhe
 "NNNNN|tag": il conteggio va imbottito di zeri perché l'ordinamento è
@@ -46,8 +49,11 @@ alfabetico, altrimenti "9" verrebbe dopo "10".
     {% endfor %}
 </section>
 
-{%- comment -%} La coda lunga: tag con un post solo. Sono la maggioranza e non
-aiutano a orientarsi, ma restano raggiungibili. {%- endcomment -%}
+{%- comment -%} La coda lunga: tag con un post solo. Sono la maggioranza (190 su
+292) e non aiutano a orientarsi. Il chip porta **dritto al post**, e non a una
+sezione che conterrebbe una riga sola: cosi' spariscono 190 blocchi di archivio
+dall'HTML. L'`id` resta qui, perche' i tag sotto ogni post linkano /tags/#slug e
+quell'ancora deve continuare a esistere. {%- endcomment -%}
 <details class="tag-tail">
     <summary>Tags used once</summary>
     <div class="tag-cloud">
@@ -55,31 +61,58 @@ aiutano a orientarsi, ma restano raggiungibili. {%- endcomment -%}
             {% assign parts = row | split: '|' %}
             {% assign count = parts[0] | plus: 0 %}
             {% if count == 1 %}
-                <a class="item t-1" href="#{{ parts[1] | slugify }}">{{ parts[1] }}</a>
+                {%- comment -%}
+                `site.tags[name]` e non `site.tags[parts[1]]`: Liquid non risolve
+                un indice preso da un elemento di array, e l'href usciva vuoto
+                (183 <a> senza riferimento, presi da html-proofer).
+                {%- endcomment -%}
+                {% assign tail_name = parts[1] %}
+                {% assign only_post = site.tags[tail_name] | first %}
+                <a class="item t-1" id="{{ tail_name | slugify }}" href="{{ only_post.url }}">{{ tail_name }}</a>
             {% endif %}
         {% endfor %}
     </div>
 </details>
+
+{%- comment -%}
+Archivio per tag. Ogni blocco mostra i **primi 5** post e rimanda alla ricerca
+per il resto: i `<details>` chiusi non risparmiano un byte — il browser scarica
+comunque tutto — e con 1019 coppie (tag, post) la pagina arrivava a 361 KB di
+HTML, la piu' pesante del sito e l'unica sotto 99 di performance. I tag grossi
+sono pochi e fanno quasi tutto il peso: youtube 125, short 66, video 57.
+
+Il rimando va a /search/?q= e non a un archivio per tag perche' quelle pagine
+non esistono: generarle vorrebbe dire un plugin, e i plugin non girano sul sito
+pubblicato (#144). La ricerca invece copre tutto, progetti compresi (#161).
+
+URL relativi e non `{{ site.url }}{{ post.url }}`: il prefisso assoluto sono 28
+byte moltiplicati per ogni voce, e per un link interno non serve a nulla.
+{%- endcomment -%}
+{% assign preview_size = 5 %}
 
 <section class="tag-list">
     {% for row in sorted_tags %}
         {% assign parts = row | split: '|' %}
         {% assign count = parts[0] | plus: 0 %}
         {% assign name = parts[1] %}
+        {% if count == 1 %}{% continue %}{% endif %}
         <details class="tag-block" id="{{ name | slugify }}">
             <summary><span class="tag-name">#{{ name }}</span> <span class="count">{{ count }}</span></summary>
             <ul class="list">
-                {% for post in site.tags[name] %}
+                {% for post in site.tags[name] limit: preview_size %}
                     {% if post.title != null %}
                         <li class="item">
-                            <a class="url" href="{{ site.url }}{{ post.url }}">
-                                <aside class="date"><time datetime="{{ post.date | date:'%d-%m-%Y' }}">{{ post.date | date: '%b %d %Y' }}</time></aside>
+                            <a class="url" href="{{ post.url }}">
+                                <aside class="date"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%b %d %Y' }}</time></aside>
                                 <h3 class="title">{{ post.title }}</h3>
                             </a>
                         </li>
                     {% endif %}
                 {% endfor %}
             </ul>
+            {% if count > preview_size %}
+                <p class="tag-more"><a href="{{ site.url }}/search/?q={{ name | uri_escape }}">See all {{ count }} tagged {{ name }} <span aria-hidden="true">&rarr;</span></a></p>
+            {% endif %}
         </details>
     {% endfor %}
 </section>
@@ -93,10 +126,13 @@ aiutano a orientarsi, ma restano raggiungibili. {%- endcomment -%}
   function openTarget() {
     if (!location.hash) return;
     var el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
-    if (el && el.tagName === 'DETAILS') {
-      el.open = true;
-      el.scrollIntoView({ block: 'start' });
-    }
+    if (!el) return;
+    /* L'ancora e' o il blocco del tag, o — per i tag con un post solo — il chip
+       dentro la coda lunga: in quel caso va aperto il <details> che lo contiene,
+       altrimenti il salto finisce su un elemento nascosto. */
+    var box = el.tagName === 'DETAILS' ? el : el.closest('details');
+    if (box) box.open = true;
+    el.scrollIntoView({ block: 'start' });
   }
   openTarget();
   addEventListener('hashchange', openTarget);

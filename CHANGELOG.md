@@ -13,6 +13,8 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ### Corretto
 
+- **/tags: gerarchia e 190 KB in meno** (#147) — la pagina piu' pesante del sito (445 KB, l'unica sotto 99 di performance) spediva 1019 coppie (tag, post) anche se i `<details>` erano chiusi: chiusi o aperti, il browser scarica lo stesso. Ora gli archivi esistono solo per i tag con piu' di un post, con anteprima a 5 e rimando alla ricerca; i 190 tag con un post solo hanno il chip che porta dritto al post. **254 KB**, performance **91 → 95**. Corretto anche il `datetime` malformato delle voci.
+- **Tag duplicati** (#148) — `iOS` e `ios`, `open source` e `open-source`, `github actions` e `github-actions`, `Murat4All` e `murat4all` erano archivi separati sullo stesso argomento. Unificati da `scripts/consolidate_tags.rb` (7 post); `validate_posts.rb` avvisa se due tag tornano a condividere lo slug.
 - **La ricerca ignorava i 162 progetti** (#161) — `search.json` filtrava `hidden: true`, flag che
   serve a tenere i progetti fuori dalla paginazione del blog: la ricerca fingeva che quelle pagine
   non esistessero, proprio lo strumento che si usa quando non si sa dove cercare. Ora l'indice ha
@@ -46,6 +48,12 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
   dominio alla persona per la query col nome proprio — mancava del tutto.
 - **Descrizioni per pagina** su `/blog`, `/projects`, `/about`, `/tags`, `/map`, `/gear`
   e `/fitness` (prima ereditavano tutte la stessa).
+- `checkfleet.yml`: l'assertion sulla home era ancora `<title>Home | Allan Nava</title>`
+  e il monitor ha dato il sito **giu' per ore** mentre rispondeva 200 su tutto (12 OK,
+  1 BAD). Ora asserisce il prefisso stabile `<title>Allan Nava — `: la tagline e' copy
+  e non deve poter dichiarare un'outage. Aggiunta anche la riga `Sitemap:` di robots.txt
+  fra i controlli (il file e' un template Liquid: se perdesse il front matter uscirebbe
+  grezzo e nessun altro controllo se ne accorgerebbe).
 - `_config.yml`: aggiunte `tagline`, `social`, `description` e `google_site_verification`
   — il token della proprieta' Search Console `https://allan-nava.github.io/`, che
   `jekyll-seo-tag` stampa come `<meta name="google-site-verification">` su tutte le
