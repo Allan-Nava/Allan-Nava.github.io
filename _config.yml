@@ -17,21 +17,19 @@ url: "https://allan-nava.github.io" # the base hostname & protocol for your site
 external-image: false
 picture: assets/images/profile.jpg
 #
-# Analytics (#124). Oggi il sito NON raccoglie nulla: la vecchia property
-# Universal Analytics (UA-132362885-1) ha smesso di collezionare a luglio 2023.
-#
-# Per riattivarlo servono 30 secondi e un id, il resto è già pronto:
-#   1. analytics.google.com -> Amministrazione -> Crea -> Proprieta' (GA4)
-#   2. dentro la proprieta': Flussi di dati -> Web -> aggiungi
-#      https://allan-nava.github.io
-#   3. copia l'ID misurazione, che ha la forma G-XXXXXXXXXX
-#   4. togli il commento alla riga qui sotto e incollacelo
+# Analytics (#124). ATTIVO da agosto 2026 su GA4: proprieta' "Allan Nava github
+# pages - GA4", flusso web 5725926646, ID misurazione G-X841VQSHB8. La vecchia
+# property Universal Analytics (UA-132362885-1) ha smesso di collezionare a
+# luglio 2023 ed e' morta.
 #
 # `_includes/analytics-google.html` non carica nulla da localhost/127.0.0.1
 # (niente statistiche da `jekyll serve`, da Lighthouse CI o dagli smoke test) e
 # rispetta Do Not Track / Global Privacy Control. Verificato: con l'id attivo i
 # punteggi Lighthouse restano 100 su tutte e quattro le categorie.
-#analytics-google: ''
+#
+# Per spegnerlo: ricommentare la riga qui sotto (l'include non renderizza nulla
+# se la chiave non e' valorizzata). Non serve toccare altro.
+analytics-google: 'G-X841VQSHB8'
 #
 github_username: Allan-Nava
 github: Allan-Nava

@@ -105,9 +105,9 @@ To check the app is actually installed on a repo — enabling Discussions is not
 
 ## Analytics
 
-Off today: `analytics-google` is commented out in `_config.yml`, so `_includes/analytics-google.html` renders nothing and the site collects no data at all. The old Universal Analytics property stopped collecting in July 2023.
+**On since August 2026**: `analytics-google` is set to `G-X841VQSHB8` in `_config.yml` — GA4 property "Allan Nava github pages - GA4", web data stream `5725926646`. The old Universal Analytics property (`UA-132362885-1`) stopped collecting in July 2023 and is dead.
 
-Turning it on is one line — create a GA4 property, add a web data stream for `https://allan-nava.github.io`, and paste the `G-XXXXXXXXXX` measurement ID into `analytics-google`. The steps are spelled out in the `_config.yml` comment.
+Turning it off is one line too: comment `analytics-google` out again and `_includes/analytics-google.html` renders nothing, because the include only fires when the key has a value.
 
 The include is not the stock gtag snippet. It builds the `<script>` tag itself so it can decide **not** to, behind two guards:
 
@@ -211,7 +211,7 @@ Feature toggles read by layouts and includes:
 | `width` | Content width: `normal` (`--width-normal`, 640px) or `large` (`--width-large`, 880px). |
 | `name` | Signature printed by the templates (hero title, nav brand, footer). Distinct from `title`; when it was missing those strings rendered empty. |
 | `paginate`, `paginate_path` | Blog pagination — currently commented out, so `/blog` lists everything. |
-| `analytics-google` | GA4 measurement ID (`G-XXXXXXXXXX`). Commented out today, so nothing is collected; the include only renders when it is set. See "Analytics". |
+| `analytics-google` | GA4 measurement ID — `G-X841VQSHB8` (active). Comment it out to stop collecting; the include only renders when it is set. See "Analytics". |
 
 Social handles (`github`, `instagram`, `linkedin`, `youtube`, `twitter`, `dev`) feed `_includes/social-links.html`. The `authors:` map defines the author block data; post `author` fields must reference a key in it.
 
