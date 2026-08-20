@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/2PDaTkSEuHs/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Pizzo Scalino ⛰️🧗🏼‍♂️"
+description: ""
 category: blog
 author: allan
 lat: 46.273

@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/PhzqYmizYAo/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Gallipoli 2019"
+description: ""
 category: blog
 author: allan
 lat: 40.0547

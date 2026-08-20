@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/TCdzC1J8SzU/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Meduza DJ SET Live🔹Milano Rho Fiera"
+description: ""
 category: blog
 author: allan
 lat: 45.5179727

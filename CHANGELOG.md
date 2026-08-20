@@ -13,6 +13,15 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ### Corretto
 
+- **La ricerca ignorava i 162 progetti** (#161) — `search.json` filtrava `hidden: true`, flag che
+  serve a tenere i progetti fuori dalla paginazione del blog: la ricerca fingeva che quelle pagine
+  non esistessero, proprio lo strumento che si usa quando non si sa dove cercare. Ora l'indice ha
+  356 record (70 KB) e ogni risultato dichiara se è un post o un progetto.
+- **Descrizioni che ripetevano il titolo** (#162) — 118 post generati avevano
+  `description: "Video dal canale YouTube di Allan Nava: <titolo>"`, che finiva nel
+  `<meta description>`, nel summary del feed, nell'estratto di ogni card e nell'anteprima dei
+  risultati. Generatori corretti e storico ripulito con uno script one-shot.
+- **Un 301 a ogni click** (#159) — i permalink dichiarano la barra finale, i 19 link interni no.
 - **Logo dei progetti: variante neutra invece di quella per sfondo chiaro** — i README sono scritti
   per GitHub, che di default è chiaro, quindi il logo in pagina è quasi sempre `*-logo-light.svg`,
   cioè quello con l'inchiostro scuro (`#1f2328` su edgemix): sulle card del tema scuro era quasi

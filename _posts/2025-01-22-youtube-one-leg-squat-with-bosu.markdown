@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/Iz1NKwlNIaE/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: One leg squat with bosu"
+description: ""
 category: blog
 author: allan
 lat: 45.5382074

@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/6J8DBZldXAA/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: I-Days AvA ♦️SAD! XXXTentacion 🔹 Ippodromo la Maura 2023"
+description: ""
 category: blog
 author: allan
 lat: 45.497

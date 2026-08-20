@@ -7,7 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: Cannes 2k23 Feux d'artifice 🎆🎇"
+description: ""
 category: blog
 author: allan
 lat: 43.552

@@ -7,7 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: FEZ 🇲🇦"
+description: ""
 category: blog
 author: allan
 lat: 34.018

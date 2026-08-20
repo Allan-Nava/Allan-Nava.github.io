@@ -7,7 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: FIRST ACE RANKED VALORANT 🔫"
+description: ""
 category: blog
 author: allan
 ---

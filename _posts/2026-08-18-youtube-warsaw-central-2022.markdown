@@ -8,7 +8,7 @@ tag:
 image: "https://i.ytimg.com/vi/XYp_GISLOq0/hqdefault.jpg"
 headerImage: false
 thumb: "https://i.ytimg.com/vi/XYp_GISLOq0/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Warsaw Central 2022 🇵🇱"
+description: ""
 category: blog
 author: allan
 lat: 52.22884

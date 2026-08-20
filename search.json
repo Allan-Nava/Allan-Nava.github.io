@@ -3,13 +3,20 @@ layout: null
 permalink: /search.json
 ---
 {%- comment -%}
-Indice di ricerca generato a build time. Campi corti (t/u/d/g/y) perché il file
-viene scaricato intero dal browser: con 330 post ogni byte per voce conta.
-`jsonify` fa l'escaping di virgolette, emoji e a capo.
+Indice di ricerca generato a build time.
+
+Include **anche i progetti** (#161): sono `hidden: true`, flag che serve a
+tenerli fuori dalla paginazione del blog, e filtrando su quello la ricerca
+fingeva che 159 pagine non esistessero — proprio lo strumento che si usa quando
+non si sa dove cercare. Il campo `k` distingue il tipo (`p` progetto, `b` post)
+così i risultati possono etichettarli.
+
+Campi corti perché il file lo scarica il browser per intero: ogni byte per voce
+conta. `jsonify` fa l'escaping di virgolette, emoji e a capo.
 {%- endcomment -%}
 [
-{% assign indexable = site.posts | where_exp: "p", "p.hidden != true" -%}
+{% assign indexable = site.posts -%}
 {% for post in indexable -%}
-{"t":{{ post.title | jsonify }},"u":{{ post.url | jsonify }},"d":{{ post.description | strip_html | truncate: 160 | jsonify }},"g":{{ post.tag | default: "" | jsonify }},"y":{{ post.date | date: "%Y" | jsonify }}}{% unless forloop.last %},{% endunless %}
+{"t":{{ post.title | jsonify }},"u":{{ post.url | jsonify }},"d":{{ post.description | strip_html | truncate: 140 | jsonify }},"g":{{ post.tag | default: "" | jsonify }},"y":{{ post.date | date: "%Y" | jsonify }},"k":{% if post.projects %}"p"{% else %}"b"{% endif %}}{% unless forloop.last %},{% endunless %}
 {% endfor -%}
 ]

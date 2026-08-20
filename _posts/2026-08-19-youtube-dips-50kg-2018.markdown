@@ -8,7 +8,7 @@ tag:
 image: "https://i.ytimg.com/vi/CX-HBRfV7lY/hqdefault.jpg"
 thumb: "https://i.ytimg.com/vi/CX-HBRfV7lY/oardefault.jpg"
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: Dips 50kg 2018 💪🏼🏋🏽‍♂️"
+description: ""
 category: blog
 author: allan
 lat: 45.504734

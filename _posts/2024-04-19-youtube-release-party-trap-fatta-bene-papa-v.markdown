@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/RiGJmT9Z0ws/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Release Party - Trap Fatta Bene 🪙Papa V"
+description: ""
 category: blog
 author: allan
 lat: 45.4440424

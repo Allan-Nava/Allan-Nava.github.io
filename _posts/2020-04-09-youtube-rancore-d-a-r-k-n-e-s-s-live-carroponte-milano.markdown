@@ -7,7 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: Rancore - D.A.R.K.N.E.S.S. Live 🔹 Carroponte Milano"
+description: ""
 category: blog
 author: allan
 lat: 45.535

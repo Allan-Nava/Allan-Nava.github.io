@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/quPLIhTRRy0/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Nazarè"
+description: ""
 category: blog
 author: allan
 lat: 39.601

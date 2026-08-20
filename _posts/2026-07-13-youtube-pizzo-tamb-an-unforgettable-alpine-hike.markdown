@@ -7,7 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: Pizzo Tambò: An Unforgettable Alpine Hike 🏔️"
+description: ""
 category: blog
 author: allan
 lat: 46.517

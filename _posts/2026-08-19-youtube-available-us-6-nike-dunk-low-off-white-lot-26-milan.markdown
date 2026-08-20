@@ -8,7 +8,7 @@ tag:
 image: "https://i.ytimg.com/vi/IBq2_vN-Gds/hqdefault.jpg"
 headerImage: false
 thumb: "https://i.ytimg.com/vi/IBq2_vN-Gds/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Available US 6 - Nike Dunk Low Off-White Lot 26 Milan 👟🔥"
+description: ""
 category: blog
 author: allan
 lat: 45.468503

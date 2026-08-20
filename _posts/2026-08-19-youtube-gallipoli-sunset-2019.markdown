@@ -8,7 +8,7 @@ tag:
 image: "https://i.ytimg.com/vi/EmORA7-8Onw/hqdefault.jpg"
 headerImage: false
 thumb: "https://i.ytimg.com/vi/EmORA7-8Onw/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Gallipoli sunset 2019 🌊🌅"
+description: ""
 category: blog
 author: allan
 lat: 40.055953

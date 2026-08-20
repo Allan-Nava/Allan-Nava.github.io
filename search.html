@@ -12,7 +12,7 @@ Senza JavaScript il campo non compare e resta il rimando all'archivio: meglio
 di una casella che non cerca.
 {%- endcomment -%}
 <noscript>
-    <p class="search-fallback">Search needs JavaScript. You can browse everything by year in the <a href="{{ site.url }}/archive/">archive</a> or by topic in the <a href="{{ site.url }}/tags">tags</a>.</p>
+    <p class="search-fallback">Search needs JavaScript. You can browse everything by year in the <a href="{{ site.url }}/archive/">archive</a> or by topic in the <a href="{{ site.url }}/tags/">tags</a>.</p>
 </noscript>
 
 <div class="search" data-search hidden>
@@ -72,15 +72,22 @@ di una casella che non cerca.
       title.textContent = item.t;
       var meta = document.createElement('span');
       meta.className = 'search-meta';
-      meta.textContent = item.y + (item.g && item.g.length ? ' · ' + item.g.slice(0, 3).join(', ') : '');
+      /* `k` distingue progetto da post (#161): senza etichetta, in mezzo ai
+         risultati un repo e un articolo si somigliano troppo. */
+      var kind = item.k === 'p' ? 'Project' : 'Post';
+      meta.textContent = kind + ' · ' + item.y + (item.g && item.g.length ? ' · ' + item.g.slice(0, 3).join(', ') : '');
       a.appendChild(title);
       a.appendChild(meta);
       li.appendChild(a);
       results.appendChild(li);
     });
 
+    var projects = list.filter(function (i) { return i.k === 'p'; }).length;
+    var detail = projects && projects !== list.length
+      ? ' (' + (list.length - projects) + ' posts, ' + projects + ' projects)'
+      : '';
     status.textContent = list.length
-      ? list.length + (list.length === 1 ? ' result' : ' results') + ' for "' + q + '"'
+      ? list.length + (list.length === 1 ? ' result' : ' results') + ' for "' + q + '"' + detail
       : 'Nothing for "' + q + '".';
   }
 

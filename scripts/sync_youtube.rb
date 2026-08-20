@@ -100,6 +100,22 @@ end
 # cliccabili e i ritorni a capo conservati.
 MAX_DESCRIPTION_CHARS = 1200
 
+# Prima riga della descrizione YouTube, se dice davvero qualcosa in più del
+# titolo. Restituisce "" quando è vuota, troppo corta (`allan_nava.`, `🦀`) o
+# quando ripete il titolo: in quei casi il post esce senza `description`.
+MIN_DESCRIPTION_CHARS = 25
+
+def usable_description(description, title)
+  first = yaml_safe(description.to_s.lines.first)
+  return '' if first.empty? || first.length < MIN_DESCRIPTION_CHARS
+
+  clean_title = yaml_safe(title).downcase
+  return '' if first.downcase == clean_title
+  return '' if clean_title.length > 10 && first.downcase.include?(clean_title)
+
+  first
+end
+
 def description_html(text)
   body = text.to_s.gsub("\r\n", "\n").strip
   return '' if body.empty?
@@ -308,8 +324,13 @@ videos.each do |video|
     path = File.join(ROOT, '_posts', filename)
   end
 
-  desc = yaml_safe(description.lines.first)
-  desc = "Video dal canale YouTube di Allan Nava: #{yaml_safe(title, 100)}" if desc.empty?
+  # #162: meglio NESSUNA description che una che ripete il titolo. La premessa
+  # fissa "Video dal canale YouTube di Allan Nava: <titolo>" finiva nel
+  # <meta description> di 116 pagine, nel summary del feed, nell'estratto di
+  # ogni card e nell'anteprima dei risultati di ricerca — quattro posti in cui
+  # si leggeva due volte lo stesso titolo. I template sanno già saltare il
+  # campo quando è vuoto.
+  desc = usable_description(description, title)
   body_description = description_html(description)
   short_attr = is_short ? ' data-short' : ''
   thumb_yaml = oar_thumb(video_id)

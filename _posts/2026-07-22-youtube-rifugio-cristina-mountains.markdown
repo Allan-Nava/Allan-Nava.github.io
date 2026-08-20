@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/5h6EwBcr3_4/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Rifugio Cristina #mountains ⛰️🧗🏼‍♂️"
+description: ""
 category: blog
 author: allan
 lat: 46.291

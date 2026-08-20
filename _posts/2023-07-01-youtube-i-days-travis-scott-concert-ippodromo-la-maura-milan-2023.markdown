@@ -7,7 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: I-Days ♦️Travis Scott concert 🔥 Ippodromo la Maura Milan 2023"
+description: ""
 category: blog
 author: allan
 lat: 45.497

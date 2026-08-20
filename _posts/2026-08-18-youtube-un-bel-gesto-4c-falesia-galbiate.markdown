@@ -8,7 +8,7 @@ tag:
 image: "https://i.ytimg.com/vi/yi1MhAA4G_8/hqdefault.jpg"
 headerImage: false
 thumb: "https://i.ytimg.com/vi/yi1MhAA4G_8/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Un bel Gesto 4c - Falesia Galbiate 🧗🏼‍♂️🌄"
+description: ""
 category: blog
 author: allan
 lat: 45.8296901

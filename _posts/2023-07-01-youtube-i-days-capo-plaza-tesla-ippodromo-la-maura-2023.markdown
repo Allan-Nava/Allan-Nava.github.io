@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/LJh-h5QJn3w/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: I-Days - Capo Plaza 🔹 Tesla ♦️ Ippodromo la Maura 2023"
+description: ""
 category: blog
 author: allan
 lat: 45.497

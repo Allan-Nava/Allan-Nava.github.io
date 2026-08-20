@@ -8,7 +8,7 @@ tag:
 - video editing
 image: ""
 headerImage: false
-description: "Budapest - Vlog 2019"
+description: ""
 category: blog
 author: allan
 externalLink: true

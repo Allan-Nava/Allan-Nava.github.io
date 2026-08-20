@@ -8,7 +8,7 @@ tag:
 image: "https://i.ytimg.com/vi/FMN7jHGbLUI/hqdefault.jpg"
 headerImage: false
 thumb: "https://i.ytimg.com/vi/FMN7jHGbLUI/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Sardinia 2018 🌅"
+description: ""
 category: blog
 author: allan
 lat: 40.121

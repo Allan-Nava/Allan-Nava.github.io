@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/lRHWNFRn8Aw/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Nayt - Se ne va 🔹 Release Party Lettera Q ~ Dazi Milano #rap #hiphop"
+description: ""
 category: blog
 author: allan
 lat: 45.464

@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/0uAI09Lg9Jw/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Inter Milan 🖤💙"
+description: ""
 category: blog
 author: allan
 lat: 45.478

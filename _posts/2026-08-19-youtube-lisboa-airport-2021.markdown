@@ -8,7 +8,7 @@ tag:
 image: "https://i.ytimg.com/vi/PXO0gaEG0eY/hqdefault.jpg"
 headerImage: false
 thumb: "https://i.ytimg.com/vi/PXO0gaEG0eY/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Lisboa Airport 2021 🇵🇹"
+description: ""
 category: blog
 author: allan
 lat: 38.7788454

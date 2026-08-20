@@ -8,7 +8,7 @@ tag:
 image: "https://i.ytimg.com/vi/Bqr_sWcFzww/hqdefault.jpg"
 thumb: "https://i.ytimg.com/vi/Bqr_sWcFzww/oardefault.jpg"
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: Polish Vodka Musuem 🇵🇱🍹"
+description: ""
 category: blog
 author: allan
 lat: 52.2553641

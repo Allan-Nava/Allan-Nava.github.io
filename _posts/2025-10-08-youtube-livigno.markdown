@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/vhTPly_lyew/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Livigno 🌲"
+description: ""
 category: blog
 author: allan
 lat: 46.538

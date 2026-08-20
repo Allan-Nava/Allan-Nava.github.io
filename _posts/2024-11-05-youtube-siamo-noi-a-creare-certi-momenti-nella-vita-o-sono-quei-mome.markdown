@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/dPJnDkd84qM/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Siamo noi a creare certi momenti nella vita o sono quei momenti a creare noi? #sea #chill"
+description: ""
 category: blog
 author: allan
 ---

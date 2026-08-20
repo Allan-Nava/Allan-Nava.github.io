@@ -7,7 +7,7 @@ tag:
 - video
 image: "https://i.ytimg.com/vi/kT1bA47vkL4/hqdefault.jpg"
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: 🏂 Snowboarding in Sestriere 2019 | Italian Alps 🇮🇹❄️"
+description: ""
 category: blog
 author: allan
 lat: 44.9577893

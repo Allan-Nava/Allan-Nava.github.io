@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/a4ElSKP2q5g/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Dips 55kg 🏋🏽‍♂️"
+description: ""
 category: blog
 author: allan
 ---

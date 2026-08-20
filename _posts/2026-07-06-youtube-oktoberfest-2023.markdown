@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/4ss4T-d0JG8/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Oktoberfest 2023"
+description: ""
 category: blog
 author: allan
 lat: 48.132

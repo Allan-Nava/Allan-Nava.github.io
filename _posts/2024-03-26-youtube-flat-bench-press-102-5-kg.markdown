@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/RROPuBQUGtA/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Flat Bench Press 102,5 kg 🏋🏽"
+description: ""
 category: blog
 author: allan
 lat: 45.5332164

@@ -8,7 +8,7 @@ tag:
 image: "https://i.ytimg.com/vi/6osDN7iqwww/hqdefault.jpg"
 headerImage: false
 thumb: "https://i.ytimg.com/vi/6osDN7iqwww/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Praia do Beliche 2025 🌊🌅"
+description: ""
 category: blog
 author: allan
 lat: 37.025631

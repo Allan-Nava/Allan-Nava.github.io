@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/aoMSzu5llY0/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Sardegna 2018"
+description: ""
 category: blog
 author: allan
 lat: 40.121

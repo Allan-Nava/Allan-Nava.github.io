@@ -7,7 +7,7 @@ tag:
 - video
 image: "https://i.ytimg.com/vi/t2hypIQdwME/hqdefault.jpg"
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: That Reaction Was Priceless 🤯"
+description: ""
 category: blog
 author: allan
 ---

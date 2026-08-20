@@ -31,8 +31,8 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
     <p class="lede-sub">{{ site.bio }}. Go, Docker, streaming pipelines, and the odd editor extension — plus climbing, snowboarding, workouts and travel in between.</p>
 
     <div class="hero-actions">
-        {% if site.projects %}<a class="button button-primary" href="{{ site.url }}/projects">See the projects</a>{% endif %}
-        {% if site.blog %}<a class="button" href="{{ site.url }}/blog">Read the blog</a>{% endif %}
+        {% if site.projects %}<a class="button button-primary" href="{{ site.url }}/projects/">See the projects</a>{% endif %}
+        {% if site.blog %}<a class="button" href="{{ site.url }}/blog/">Read the blog</a>{% endif %}
     </div>
 
     {%- comment -%} Conteggi calcolati a build time; il JS anima solo la salita. {%- endcomment -%}
@@ -63,7 +63,7 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
 <section class="home-section">
     <div class="section-head">
         <h2 class="section-title">Recent projects</h2>
-        <a class="section-link" href="{{ site.url }}/projects">All {{ projectPosts.size }} projects <span aria-hidden="true">→</span></a>
+        <a class="section-link" href="{{ site.url }}/projects/">All {{ projectPosts.size }} projects <span aria-hidden="true">→</span></a>
     </div>
 
     <div class="list">
@@ -95,7 +95,7 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
 <section class="home-section">
     <div class="section-head">
         <h2 class="section-title">Latest posts</h2>
-        <a class="section-link" href="{{ site.url }}/blog">All {{ blogPosts.size }} posts <span aria-hidden="true">→</span></a>
+        <a class="section-link" href="{{ site.url }}/blog/">All {{ blogPosts.size }} posts <span aria-hidden="true">→</span></a>
     </div>
 
     <div class="list">
@@ -109,12 +109,12 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
     <section class="home-section">
         <div class="section-head">
             <h2 class="section-title">What I work with</h2>
-            <a class="section-link" href="{{ site.url }}/tags">All {{ site.tags.size }} tags <span aria-hidden="true">→</span></a>
+            <a class="section-link" href="{{ site.url }}/tags/">All {{ site.tags.size }} tags <span aria-hidden="true">→</span></a>
         </div>
 
         <div class="topic-chips">
             {% for t in site.data.project_tags %}
-                <a class="topic-chip" href="{{ site.url }}/tags#{{ t.slug }}">{{ t.name }} <span class="count">{{ t.count }}</span></a>
+                <a class="topic-chip" href="{{ site.url }}/tags/#{{ t.slug }}">{{ t.name }} <span class="count">{{ t.count }}</span></a>
             {% endfor %}
         </div>
     </section>

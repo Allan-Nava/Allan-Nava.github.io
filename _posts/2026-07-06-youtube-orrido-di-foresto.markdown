@@ -7,7 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: Orrido di Foresto 🏞️🦋🧗🏼‍♂️"
+description: ""
 category: blog
 author: allan
 lat: 45.133

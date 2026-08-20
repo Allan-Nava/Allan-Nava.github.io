@@ -154,7 +154,7 @@ missing.each do |id|
     - #{kind}
     image: "https://i.ytimg.com/vi/#{id}/hqdefault.jpg"#{thumb_yaml}
     headerImage: false
-    description: "Video dal canale YouTube di Allan Nava: #{yaml_safe(meta[:title], 100)}"
+    description: ""
     category: blog
     author: allan
     ---

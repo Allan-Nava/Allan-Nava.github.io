@@ -7,7 +7,7 @@ tag:
 - video
 image: "https://i.ytimg.com/vi/ZUsPTt_07i0/hqdefault.jpg"
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: SQUIRTle00 ACEEE Valorant 🔫"
+description: ""
 category: blog
 author: allan
 ---

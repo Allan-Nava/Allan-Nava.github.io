@@ -7,7 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: walking in milan 🚶🏽"
+description: ""
 category: blog
 author: allan
 lat: 45.464

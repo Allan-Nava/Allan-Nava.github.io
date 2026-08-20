@@ -8,7 +8,7 @@ tag:
 image: "https://i.ytimg.com/vi/uEv7zief_uM/hqdefault.jpg"
 headerImage: false
 thumb: "https://i.ytimg.com/vi/uEv7zief_uM/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Gerola Alta 2025 ⛰️🌄"
+description: ""
 category: blog
 author: allan
 lat: 46.0603517

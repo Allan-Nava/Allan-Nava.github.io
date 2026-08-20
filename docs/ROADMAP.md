@@ -102,15 +102,26 @@ Quarto giro, dopo v2.5. Come per quella, le voci nascono guardando le pagine sul
 - [ ] **`/stats`: etichette troncate** (#157) — `#javascr...`, `#docker...`, `#typesc...`: un quarto della lista è illeggibile proprio nella pagina fatta per leggere quei numeri.
 - [ ] **Àncore sui titoli dei post** (#158) — gli `id` di kramdown ci sono già e li usa il TOC, ma non c'è modo di copiare il link a una sezione. Da aggiungere in `toc.rb`, funzionante anche senza JS.
 
-## v2.7 — URL, feed e contenuti generati
+## v2.7 — URL, feed e contenuti generati ✅
 
-Quinto giro. Come i due precedenti, le voci vengono dal sito pubblicato — questa volta non dalle pagine ma dalle **superfici con cui ci si arriva**: permalink, RSS, indice di ricerca, `meta description`. Sono i punti in cui il sito parla a chi non lo sta ancora guardando, e sono rimasti indietro rispetto al lavoro fatto sulle pagine. Milestone `v2.7` su GitHub.
+Igiene su tre difetti visti sul sito live: URL incoerenti, ricerca cieca sui progetti e descrizioni
+boilerplate.
 
-- [x] **Permalink incoerenti** (#159) — `tags.html` e `projects.html` ora usano i permalinks canonici `/tags/` e `/projects/`, eliminando il 404 sul tag cloud, i redirect inutili e la discrepanza con le URL usate dalla nav e dai check live. I check di smoke e Lighthouse sono allineati ai path pubblicati.
-- [x] **Feed RSS pieno di progetti** (#160) — `jekyll-feed` **rimosso** dai plugin: non sa escludere i post `hidden: true` e prende gli ultimi N per data, quindi metà delta feed erano schede di repo. Al suo posto due template scritti a mano: `feed.xml` (blog, `hidden` esclusi, 20 entry) e `feed-projects.xml` → `/projects/feed.xml` (i progetti, utile per conto suo), linkato nell'`<head>` della sola `/projects/` con `projects_feed: true`; il footer resta sul feed del blog. Il `feed.xml` non tracciato che c'era in locale escludeva sì i progetti ma consegnava **20 entry con summary e content vuoti**: `strip_html` sul corpo di un post video (solo `<lite-youtube>`) non lascia niente, e `xml_escape` dentro un CDATA i lettori lo mostrano letterale. Ora il summary viene dalla `description`, il contenuto apre con la thumbnail linkata e chiude col rimando al post quando il corpo non ha testo, e le URL sono assolute. Verificato: XML ben formato, 20/20 entry `blog` nel primo e 20/20 `project` nel secondo, 0 summary o content vuoti, 0 URL relative, 0 entità escapate nei CDATA, `rel=self` corretto, feed fuori dalla sitemap, entrambi aggiunti ai target di `checkfleet.yml`.
-- [ ] **La ricerca non trova i progetti** (#161) — `search.json` filtra `p.hidden != true`, quindi nessuno dei 159 progetti è cercabile: **197 record su ~356 contenuti**. È l'unica superficie del sito che fa finta che non esistano.
-- [ ] **Descrizioni boilerplate** (#162) — **103 post** con `description` "Video dal canale YouTube di Allan Nava: <titolo>": ripete il titolo, in italiano su interfaccia inglese (#149), e finisce in `meta description`, feed, estratto dei listing e anteprima dei risultati di ricerca. Da correggere nel generatore, nello storico (one-shot con `DRY_RUN=1`) e con un warning in `validate_posts.rb`.
-- [x] **Anteprime YouTube letterboxed** (#163) — misurato pixel per pixel prima di toccare il CSS, e la diagnosi dell'issue era rovesciata. `hqdefault.jpg` è sempre 480x360: nei video 16:9 il frame sta nei 270px centrali fra due bande nere da **45px**, nei verticali il frame sta al centro e i fianchi li riempie YouTube con una copia sfocata. Nel box 16:9 del desktop `object-fit: cover` ritaglia esattamente quelle bande, quindi il `transform: scale(1.3334)` che c'era era un **sovra-ritaglio del 33%**; le bande si vedono invece nel box **quadrato** di mobile, dove quello zoom è l'unica cosa che le toglie. Per i verticali (**74 video su 133**) nuovo campo `thumb:` = `oardefault.jpg`, il formato originale 1080x1920: esiste solo quando il video non è 16:9 e 404 altrimenti, quindi la sua presenza è essa stessa il segnale dell'orientamento — più affidabile del tag `short`, che sbaglia in 4 casi su 133. `image:` resta l'hqdefault perché è anche l'`og:image`. Nuovo `scripts/sync_youtube_thumbs.rb` (incrementale, `DRY_RUN=1`, `FULL=1`, idempotente) l'ha registrato su 75 post e gira nel workflow youtube-sync, perché di un video appena caricato l'anteprima originale può non essere ancora pronta; `sync_youtube.rb` e `backfill_youtube.rb` lo emettono alla creazione. Box verticale per le sorgenti verticali: quadrato nei listing, `3/4` su `/videos` (griglia mista di proposito — un 9:16 in un 16:9 è una fettina orizzontale). Tre impaginazioni confrontate a schermo prima di scegliere. Verificato su desktop e mobile, `/videos`, `/blog` e home: zero bande, zero pannelli sfocati.
+- [x] **Permalink coerenti** (#159) — `tags.html` e `projects.html` dichiarano `permalink: /tags/` e
+  `/projects/` come le altre dieci pagine, e i **19 link** in nav, footer, home, `/stats`, `/search`
+  e nel template dei post ora hanno la barra finale: prima ogni click in nav passava da un 301, e
+  `/tags/` era 404.
+- [x] **La ricerca indicizza anche i progetti** (#161) — `search.json` non filtra più su
+  `hidden: true`, che serve alla paginazione del blog e non alla ricerca: da **197 a 356 record**
+  (194 post + 162 progetti), 70 KB. Ogni record porta `k` (`p`/`b`) e i risultati etichettano il
+  tipo. Verificato: "lens" ora trova hls-lens, nomad-lens, nats-lens e ansible-vars-lens, che prima
+  non esistevano per la ricerca.
+- [x] **Via le descrizioni boilerplate** (#162) — `sync_youtube.rb` e `backfill_youtube.rb` non
+  scrivono più "Video dal canale YouTube di Allan Nava: <titolo>": `usable_description` tiene la
+  prima riga solo se dice qualcosa in più del titolo, altrimenti lascia il campo vuoto e
+  `jekyll-seo-tag` ricade su `site.description`. Lo storico l'ha ripulito
+  `scripts/strip_boilerplate_descriptions.rb` (**118 post**, i 220 scritti a mano non toccati), e
+  `validate_posts.rb` non segnala più come difetto una description vuota sui post video generati.
 
 ## v3.0 — Big rocks
 

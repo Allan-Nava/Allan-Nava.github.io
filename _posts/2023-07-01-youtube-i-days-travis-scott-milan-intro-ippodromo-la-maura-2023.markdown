@@ -7,7 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: I-Days - Travis Scott ♦️ Milan 🔹 Intro 🔥 Ippodromo la Maura 2023"
+description: ""
 category: blog
 author: allan
 lat: 45.497

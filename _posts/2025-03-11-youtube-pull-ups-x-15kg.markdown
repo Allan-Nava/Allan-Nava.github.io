@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/zawfM8wL4uk/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Pull ups x 15kg 🏋🏽‍♂️"
+description: ""
 category: blog
 author: allan
 ---

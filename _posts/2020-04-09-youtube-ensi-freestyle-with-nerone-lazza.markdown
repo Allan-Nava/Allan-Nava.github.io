@@ -7,7 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: ENSI - Freestyle with Nerone & Lazza"
+description: ""
 category: blog
 author: allan
 ---

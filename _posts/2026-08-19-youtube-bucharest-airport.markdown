@@ -8,7 +8,7 @@ tag:
 image: "https://i.ytimg.com/vi/wjLr6UVvm_A/hqdefault.jpg"
 headerImage: false
 thumb: "https://i.ytimg.com/vi/wjLr6UVvm_A/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Bucharest Airport"
+description: ""
 category: blog
 author: allan
 lat: 44.5668635

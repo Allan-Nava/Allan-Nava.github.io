@@ -7,7 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: Sfera Ebbasta - Leggenda Live 🔹 Fabrique Milano"
+description: ""
 category: blog
 author: allan
 lat: 45.442

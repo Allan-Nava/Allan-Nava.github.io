@@ -8,7 +8,7 @@ tag:
 image: "https://i.ytimg.com/vi/aMAjUISLCdQ/hqdefault.jpg"
 headerImage: false
 thumb: "https://i.ytimg.com/vi/aMAjUISLCdQ/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Legnone - Pagnona 2025 ⛰️🌄"
+description: ""
 category: blog
 author: allan
 lat: 46.0593538

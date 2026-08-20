@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/YSnhkbFGdN8/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Cosa conta davvero - Nayt 🔹Fabrique 2025 #concert #live #music"
+description: ""
 category: blog
 author: allan
 lat: 45.442

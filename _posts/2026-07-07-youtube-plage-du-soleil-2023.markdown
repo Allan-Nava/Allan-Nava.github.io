@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/-_TnoktpSBM/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Plage du Soleil 2023 🇫🇷🌅"
+description: ""
 category: blog
 author: allan
 lat: 43.581

@@ -72,7 +72,18 @@ posts.each do |path|
     errors << "#{name}: author #{fm['author'].inspect} not defined in _config.yml authors"
   end
 
-  warnings << "#{name}: empty description (bad for SEO)" if fm['description'].to_s.strip.empty?
+  # #162: sui post generati da YouTube una description vuota e' la scelta giusta,
+  # non un difetto. La premessa fissa "Video dal canale YouTube di Allan Nava:
+  # <titolo>" ripeteva il titolo in quattro punti visibili (meta, feed, card,
+  # ricerca); senza il campo, jekyll-seo-tag ricade su `site.description`.
+  # Per i post scritti a mano l'avviso resta.
+  # `text` e non `body`: quest'ultimo viene assegnato piu' sotto, e in Ruby una
+  # variabile locale usata prima della sua assegnazione e' una chiamata a metodo
+  # — NameError a runtime.
+  generated_video = text.include?('<lite-youtube')
+  if fm['description'].to_s.strip.empty? && !generated_video
+    warnings << "#{name}: empty description (bad for SEO)"
+  end
 
   # Date: must parse, and the year must be plausible (catches typos like 22026).
   raw_date = fm['date']

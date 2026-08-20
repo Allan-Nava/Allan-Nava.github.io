@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/aodp6Aa1Ibk/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Meknes 🇲🇦"
+description: ""
 category: blog
 author: allan
 lat: 33.894

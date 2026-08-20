@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/W7ZWbZy80bs/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Volubilis 🇲🇦"
+description: ""
 category: blog
 author: allan
 lat: 34.074

@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/UgPxLwtKAs4/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Esino Lario 🥾"
+description: ""
 category: blog
 author: allan
 lat: 45.996

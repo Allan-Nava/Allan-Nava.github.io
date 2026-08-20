@@ -7,7 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: Lisboa - Praça do Comércio 🏛️ 2021"
+description: ""
 category: blog
 author: allan
 lat: 38.7075

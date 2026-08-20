@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/AEL9FdgyLLY/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Oktoberfest 2k23 🍻🥨🇩🇪"
+description: ""
 category: blog
 author: allan
 lat: 48.132

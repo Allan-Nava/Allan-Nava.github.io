@@ -8,7 +8,7 @@ tag:
 image: "https://i.ytimg.com/vi/Cj5Wm3Iff_Y/hqdefault.jpg"
 headerImage: false
 thumb: "https://i.ytimg.com/vi/Cj5Wm3Iff_Y/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Porto Cesareo 2019 🌊"
+description: ""
 category: blog
 author: allan
 lat: 40.2628

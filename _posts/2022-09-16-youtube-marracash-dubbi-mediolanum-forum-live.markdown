@@ -7,7 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: Marracash - Dubbi ( Mediolanum Forum Live )"
+description: ""
 category: blog
 author: allan
 lat: 45.397

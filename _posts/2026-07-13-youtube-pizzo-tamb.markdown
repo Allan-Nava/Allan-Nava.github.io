@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/xO__fNc5iX0/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Pizzo Tambò ⛰️"
+description: ""
 category: blog
 author: allan
 lat: 46.517

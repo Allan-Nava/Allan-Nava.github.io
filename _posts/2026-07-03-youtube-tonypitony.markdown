@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/F0Xe6Vk7B8Q/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: TonyPitony"
+description: ""
 category: blog
 author: allan
 ---

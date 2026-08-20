@@ -7,7 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: Salmo feat Blanco - La canzone nostra 🔹 Stadio San Siro 2022 🏟"
+description: ""
 category: blog
 author: allan
 lat: 45.478

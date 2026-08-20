@@ -7,7 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: Hiking to Rifugio Cristina, Valmalenco 🇮🇹⛰️"
+description: ""
 category: blog
 author: allan
 lat: 46.292

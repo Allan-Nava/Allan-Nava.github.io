@@ -7,7 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
-description: "Video dal canale YouTube di Allan Nava: Opposite - 25 live 🎤 Ostello Bello Grande 📍 Milano 🎶🎸 26/11/2023"
+description: ""
 category: blog
 author: allan
 lat: 45.485

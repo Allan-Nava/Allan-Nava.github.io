@@ -8,7 +8,7 @@ tag:
 image: ""
 headerImage: false
 thumb: "https://i.ytimg.com/vi/mibIyQKna-E/oardefault.jpg"
-description: "Video dal canale YouTube di Allan Nava: Cabo de roca 🇵🇹"
+description: ""
 category: blog
 author: allan
 lat: 38.78
