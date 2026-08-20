@@ -160,7 +160,9 @@ That is the half of the job that lives in the repo. **The other half does not**:
 
 > The JSON-LD is written with **a space after every colon** on purpose. `jemoji` also runs inside `<script>` tags, and a single `:word:` sequence in the document makes it re-parse and rewrite the whole HTML (see the `/map` incident in `CLAUDE.md`). A space after the colon means no shortcode pattern can ever match.
 
-**Search Console.** `google_site_verification` in `_config.yml` (commented out, waiting for the token) is emitted by `jekyll-seo-tag` as the verification meta. Nothing in the repo can substitute for it: without a verified property there is no way to see what is indexed or to request indexing of a URL.
+**Search Console.** `google_site_verification` in `_config.yml` holds the token of the `https://allan-nava.github.io/` URL-prefix property; `jekyll-seo-tag` turns it into `<meta name="google-site-verification">` on **every** page (387 of them), which is why the layout must never print one by hand. Only the `content` value belongs in the config, not the whole tag.
+
+**Do not delete the token once the property is verified.** Google re-checks the tag periodically: if it disappears the property reverts to unverified, taking with it the index coverage data and the ability to request indexing of a URL.
 
 ## PWA (installable + offline)
 
@@ -239,7 +241,7 @@ Feature toggles read by layouts and includes:
 | `description` | Site-wide meta description and `og:description` fallback for any page without its own `description:`. Not decorative — see "Search engines". |
 | `tagline` | Second half of the home page `<title>`: `"{name} — {tagline}"`. |
 | `social` | `name` + `links`: the profile URLs that become the `sameAs` of the `Person` JSON-LD (`_includes/schema-person.html`). |
-| `google_site_verification` | Search Console verification token; `jekyll-seo-tag` turns it into the verification meta. Commented out until the property is claimed. |
+| `google_site_verification` | Search Console verification token for the `https://allan-nava.github.io/` property; `jekyll-seo-tag` turns it into the verification meta on every page. Removing it un-verifies the property — see "Search engines". |
 | `analytics-google` | GA4 measurement ID — `G-X841VQSHB8` (active). Comment it out to stop collecting; the include only renders when it is set. See "Analytics". |
 
 Social handles (`github`, `instagram`, `linkedin`, `youtube`, `dev`) feed `_includes/social-links.html`. **`twitter` is the exception: it is nested as `twitter.username`**, because `jekyll-seo-tag` reads only `site.twitter.username` — with the flat form every page shipped `<meta name="twitter:site" content="@">`. The `authors:` map defines the author block data; post `author` fields must reference a key in it.

@@ -28,8 +28,11 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
   dominio alla persona per la query col nome proprio — mancava del tutto.
 - **Descrizioni per pagina** su `/blog`, `/projects`, `/about`, `/tags`, `/map`, `/gear`
   e `/fitness` (prima ereditavano tutte la stessa).
-- `_config.yml`: aggiunte `tagline`, `social`, `description` e la chiave commentata
-  `google_site_verification` (serve il token da Search Console).
+- `_config.yml`: aggiunte `tagline`, `social`, `description` e `google_site_verification`
+  — il token della proprieta' Search Console `https://allan-nava.github.io/`, che
+  `jekyll-seo-tag` stampa come `<meta name="google-site-verification">` su tutte le
+  pagine. Non va rimosso dopo la verifica: Google ricontrolla il tag e senza torna
+  proprieta' non verificata.
 
 ## [2.5.0] — 2026-08-17
 
