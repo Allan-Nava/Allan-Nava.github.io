@@ -11,8 +11,29 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ## [Non rilasciato]
 
+## [2.5.0] — 2026-08-17
+
+Il giro più lungo dalla 2.0.0: secondo tema, PWA, galleria foto, feed riscritti e lo stack
+Ruby portato alla 3.3. Resta una **minor** e non una major perché il tema non cambia forma —
+guadagna una seconda palette, non un'altra impaginazione.
+
 ### Aggiunto
 
+- **Tema chiaro con toggle** — il sito ha due palette (`palette-dark` / `palette-light` in
+  `_sass/base/tokens.scss`) e un interruttore nella nav; `_includes/theme-init.html` applica la
+  scelta salvata **prima del primo paint**, così non si vede il lampo del tema sbagliato.
+  `scripts/check_contrast.rb` verifica 52 coppie di colori su entrambi i temi, soglia 6:1.
+- **PWA** — manifest, icone generate da `scripts/generate_pwa_icons.rb`, pagina `/offline` e
+  service worker: HTML sempre network-first, in cache solo font, icone e immagini.
+- **Galleria foto con lightbox** — due o più immagini consecutive diventano una griglia
+  (`_plugins/photo_gallery.rb`), apribile a tutto schermo.
+- **Card social per-post** — `scripts/generate_og_cards.rb` genera le anteprime in
+  `assets/images/og/`; `_plugins/og_image.rb` le assegna a `page.og_card`.
+- **Immagini responsive** — `scripts/optimize_images.rb` produce le varianti WebP/AVIF e
+  `_plugins/responsive_images.rb` avvolge gli `<img>` locali in `<picture>`.
+- **Commenti giscus attivi**, con il riquadro che segue il tema del sito via `postMessage`.
+- **Sottotitolo di pagina** (`subtitle:` nel front matter) e `<h1>` uniforme per tutte le pagine:
+  prima cinque pagine arrivavano allo screen reader senza titolo di primo livello.
 - **Card social di default** — `assets/images/og-default.png` (1200x630), generata da
   `scripts/og_card.html` con `ruby scripts/generate_og_card.rb`. `default.html` la usa come
   `og:image` per ogni pagina senza `image:`: 212 post su 330 finora venivano condivisi senza
@@ -21,8 +42,28 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 - **GitHub repo images** — `sync_github.rb` estrae il logo dal README del repo e lo mette in `image:`; il placeholder generativo resta il fallback per i repo che un logo non ce l’hanno.
 - **YouTube location extraction migliorata** — oltre a `recordingDetails.location` dalla YouTube API, se disponibile, ora fallback al geocoding della descrizione: estrae città con pattern (`📍 Roma`, `filmed in London`, etc) e converte in lat/lng con Nominatim (OpenStreetMap, gratuito, nessuna API key).
 
+### Modificato
+
+- **Feed RSS fatti in casa** — via `jekyll-feed`, che non sa escludere i post `hidden`: i progetti
+  generati dal sync occupavano metà di `/feed.xml`. Ora `feed.xml` (blog) e `/projects/feed.xml`
+  sono template a mano.
+- **Listing a griglia responsive** — due colonne da 860px, tre da 1240px, con `minmax(0, 1fr)`
+  perché uno slug lungo non sfondi la colonna.
+- **Stack Ruby modernizzato** — `github-pages` 232 (Jekyll 3.10), Ruby **3.3** nei workflow,
+  `html-proofer` 5.x con i flag CLI rinominati in `Rakefile`, `checks.yml` e `link-check.yml`.
+- **Interfaccia tutta in inglese** (filtri dei progetti compresi) e **404 asciugata**: niente più
+  bottoni e listing su una pagina d'errore.
+- **Smoke test più tollerante** con la propagazione della CDN dopo il deploy.
+
 ### Corretto
 
+- **`jemoji` rompeva `/map`** — gira dopo Liquid sull'HTML finito e ignora solo `pre`/`code`/`tt`:
+  uno shortcode dentro una stringa JS diventava un `<img>` e la pagina moriva. Titoli passati con
+  `replace: ":"` e popup costruiti col DOM invece che concatenando HTML.
+- **`data-count` era usato da due cose diverse** — il conteggio animato della home svuotava la
+  galleria dei post, che usava lo stesso attributo per il numero di foto (ora `data-photos`).
+- **Titoli duplicati nei post** — il primo heading del corpo ripeteva il `title:` del front matter
+  in 259 post; `scripts/dedupe_title_heading.rb` li ha ripuliti e il validator ora avvisa.
 - **Permalink canonici per Projects e Tags** — `projects.html` e `tags.html` ora hanno `permalink: /projects/` e `/tags/`, così gli URL pubblicati, la nav e i check live coincidono con le canoniche URL del sito. Questo elimina il 404 sulla tag cloud, i redirect inutili e il mismatch fra live URL e canonical. I check di smoke e Lighthouse sono aggiornati ai percorsi finali.
 - **Toolchain locale ripristinato** — `.ruby-version` con **3.3.12** (la stessa minor della CI): dopo il passaggio a `html-proofer ~> 5.0`, che richiede Ruby ≥ 3.1, in locale il bundle non si installava più e `bundle exec jekyll build` moriva con `Bundler::GemNotFound`. Build, `rake test_internal` e Lighthouse tornano eseguibili prima del push.
 - **Paginazione del blog fuori posto sul desktop** — con la griglia responsive dei listing `.list` è diventata un `display: grid`, e il blocco della paginazione (che stava dentro la section) si è ritrovato a occupare una cella: finiva nella prima colonna invece che centrato sotto alle card. Ora il markup lo tiene fuori dalla griglia, e `grid-column: 1 / -1` fa da rete di sicurezza.
@@ -226,7 +267,8 @@ Prima automazione di build e deploy del sito.
 
 Prima versione pubblica del sito sul tema Indigo.
 
-[Non rilasciato]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.4.0...HEAD
+[Non rilasciato]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.5.0...HEAD
+[2.5.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.1.0...v2.2.0
