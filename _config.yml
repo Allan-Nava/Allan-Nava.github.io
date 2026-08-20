@@ -79,13 +79,15 @@ social:
     - https://www.instagram.com/allan_nava/
     - https://dev.to/allannava
 #
-# Verifica della proprieta' in Google Search Console. jekyll-seo-tag emette da
-# solo <meta name="google-site-verification"> quando questa chiave e' valorizzata.
-# Il token si prende da https://search.google.com/search-console -> Aggiungi
-# proprieta' -> "Prefisso URL" https://allan-nava.github.io/ -> metodo "Tag HTML":
-# copiare SOLO il valore dell'attributo content. Senza Search Console non si puo'
-# ne' vedere cosa e' indicizzato ne' chiedere l'indicizzazione di una URL.
-# google_site_verification: "INCOLLA_QUI_IL_TOKEN"
+# Verifica della proprieta' in Google Search Console (proprieta' "Prefisso URL"
+# https://allan-nava.github.io/, metodo "Tag HTML"). Il tag lo emette da solo
+# jekyll-seo-tag su ogni pagina: NON aggiungerlo a mano nel layout, sarebbe un
+# doppione. Vale solo il valore dell'attributo content, non il tag intero.
+#
+# NON rimuovere il token dopo la verifica: Google ricontrolla periodicamente che
+# il tag ci sia ancora e, se sparisce, la proprieta' torna non verificata e si
+# perdono accesso ai dati e la possibilita' di richiedere l'indicizzazione.
+google_site_verification: "zP6hpydIHduWC6nXQpy_QLRJhRWo86hVjZ8lC852t24"
 #
 # do you want a larger site? change the option below
 # options: [normal, large] | default: normal
