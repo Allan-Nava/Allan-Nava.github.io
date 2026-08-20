@@ -5,7 +5,7 @@ date: 2026-08-20 09:37
 updated: 2026-08-20
 tag:
 - go
-image: ""
+image: "https://raw.githubusercontent.com/Allan-Nava/edgemix/main/docs/assets/edgemix-logo-light.svg"
 headerImage: false
 projects: true
 hidden: true
