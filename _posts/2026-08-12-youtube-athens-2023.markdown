@@ -7,6 +7,7 @@ tag:
 - short
 image: "https://i.ytimg.com/vi/REiUU0guC7k/hqdefault.jpg"
 headerImage: false
+thumb: "https://i.ytimg.com/vi/REiUU0guC7k/oardefault.jpg"
 description: "allan_nava."
 category: blog
 author: allan

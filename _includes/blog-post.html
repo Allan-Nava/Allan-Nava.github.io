@@ -1,8 +1,20 @@
 {%- comment -%}
-Card di un post nel listing del blog. Le anteprime di YouTube (i.ytimg.com)
-prendono la classe `thumb-video`: arrivano sempre in 4:3 con le barre nere
-attorno al frame, e su mobile il CSS le ritaglia quadrate — vedi
-_sass/pages/home-blog-projects.sass.
+Card di un post nel listing del blog.
+
+Anteprime YouTube (i.ytimg.com), due casi distinti — vedi
+_sass/pages/home-blog-projects.sass:
+
+- video 16:9: `image:` punta a `hqdefault.jpg`, che YouTube serve sempre 480x360
+  con il frame nei 270px centrali e due bande nere da 45px. La classe
+  `thumb-video` le governa: nel box 16:9 `object-fit: cover` ritaglia esattamente
+  quelle bande, nel box quadrato di mobile serve anche lo zoom del CSS.
+- video verticali (Short e non): hanno `thumb:` in front matter, che punta a
+  `oardefault.jpg` — il formato originale, senza il riempimento sfocato che
+  YouTube mette ai lati nell'hqdefault (#163). Prendono anche `thumb-short`,
+  perché una sorgente verticale vuole un box verticale.
+
+`image:` resta l'hqdefault anche per i verticali: è pure l'`og:image`, e
+un'anteprima social 1080x1920 la ritagliano male tutti gli scraper.
 
 Thumbnail se il post ha `image:` (anche
 generata da _plugins/youtube_thumbnails.rb per i post video); altrimenti un
@@ -12,8 +24,13 @@ in CSS, zero richieste di rete (_plugins/card_placeholder.rb).
 <article class="item{% if post.star %} star{% endif %}" data-tags="{% for t in post.tag %}{{ t | slugify }} {% endfor %}">
     <a class="url" href="{{ site.url }}{{ post.url }}">
         {% if post.image and post.image != "" %}
-            <span class="thumb{% if post.image contains 'ytimg.com' %} thumb-video{% endif %}">
-                <img class="thumb-img" src="{{ post.image }}" alt="" loading="lazy" decoding="async" width="480" height="270">
+            {%- assign thumb_src = post.thumb | default: post.image -%}
+            <span class="thumb{% if post.image contains 'ytimg.com' %} thumb-video{% endif %}{% if post.thumb %} thumb-short{% endif %}">
+                {%- if post.thumb -%}
+                <img class="thumb-img" src="{{ thumb_src }}" alt="" loading="lazy" decoding="async" width="1080" height="1920">
+                {%- else -%}
+                <img class="thumb-img" src="{{ thumb_src }}" alt="" loading="lazy" decoding="async" width="480" height="270">
+                {%- endif -%}
             </span>
         {% else %}
             <span class="thumb thumb-placeholder ph-{{ post.title | card_palette }}" aria-hidden="true">

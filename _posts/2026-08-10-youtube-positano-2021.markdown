@@ -7,6 +7,7 @@ tag:
 - short
 image: "https://i.ytimg.com/vi/GZmbFN-Q_jA/hqdefault.jpg"
 headerImage: false
+thumb: "https://i.ytimg.com/vi/GZmbFN-Q_jA/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Positano 2021 🌊🇮🇹"
 category: blog
 author: allan

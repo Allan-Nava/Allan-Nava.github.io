@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/fr-S7FIZw0s/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Fez 🇲🇦"
 category: blog
 author: allan

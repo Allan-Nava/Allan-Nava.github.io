@@ -180,12 +180,24 @@
 	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 	gap: var(--space-4);
 	margin-top: var(--space-6);
+	/* Le card verticali sono piu' alte delle 16:9: senza questo la riga stira
+	   tutte le thumb alla piu' alta e il ritaglio salta. */
+	align-items: start;
 }
 
 .video-card {
 	> .url {
 		display: block;
 		text-decoration: none;
+	}
+
+	/* Video verticali (`thumb:` = oardefault.jpg, il formato originale): box
+	   verticale. In un 16:9 un 9:16 diventa una fettina orizzontale, e con la
+	   sola hqdefault si vedeva il riempimento sfocato che YouTube mette ai
+	   lati — due pannelli su meta' della griglia (#163). Griglia mista di
+	   proposito: e' cosi' che YouTube stesso mostra gli Short. */
+	.thumb.thumb-short {
+		aspect-ratio: 3 / 4;
 	}
 
 	.thumb {

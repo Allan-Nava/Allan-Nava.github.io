@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/8Gun-joH1kM/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Guerra dentro - Nayt 🔹Fabrique 2025 #musica #rap #music #concert #live"
 category: blog
 author: allan

@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/J5LhrQOuNmQ/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Blue holds, big focus. Every move is a puzzle. 🔹🧩 #Climbing"
 category: blog
 author: allan

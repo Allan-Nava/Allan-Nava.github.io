@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/1OcGPCSwiF8/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Grilling with the Boys 🍔🔥"
 category: blog
 author: allan

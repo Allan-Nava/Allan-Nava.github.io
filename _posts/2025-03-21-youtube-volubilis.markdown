@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/W7ZWbZy80bs/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Volubilis 🇲🇦"
 category: blog
 author: allan

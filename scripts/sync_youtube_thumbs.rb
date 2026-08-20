@@ -4,6 +4,13 @@
 #
 # Usage: ruby scripts/sync_youtube_thumbs.rb
 #   env DRY_RUN=1  — elenca cosa cambierebbe senza scrivere
+#   env FULL=1     — risonda anche i post che hanno già `thumb:`, per togliere
+#                    quelli rimasti su un'anteprima che non esiste più
+#
+# Di default sonda solo i post **senza** `thumb:`. Serve perché di un video
+# appena caricato l'anteprima nel formato originale può non essere ancora
+# pronta quando il sync crea il post: rigirandolo il post la prende al giro
+# dopo. Così ogni run costa 59 richieste invece di 133.
 #
 # Il problema: `image:` punta a `hqdefault.jpg`, che YouTube serve **sempre**
 # 480x360. Per un video 16:9 dentro c'è il frame nei 270px centrali con due
@@ -33,6 +40,7 @@ require 'date'
 
 ROOT = File.expand_path('..', __dir__)
 DRY_RUN = !ENV['DRY_RUN'].to_s.empty?
+FULL = !ENV['FULL'].to_s.empty?
 
 VIDEO_ID = /<lite-youtube\s+videoid="([A-Za-z0-9_-]{11})"/
 def oar_url(id) = "https://i.ytimg.com/vi/#{id}/oardefault.jpg"
@@ -70,10 +78,14 @@ Dir[File.join(ROOT, '_posts', '*')].sort.each do |path|
   next if File.directory?(path)
 
   raw = File.read(path, encoding: 'UTF-8')
-  parts = raw.split(/^---\s*$/, 3)
-  next if parts.size < 3
+  # NON `split(/^---\s*$/)`: `\s` matcha anche le newline, quindi il separatore
+  # si mangia la riga vuota che sta fra il front matter e il corpo e riscrivendo
+  # il file la si perde. Qui il blocco si delimita con un match esplicito.
+  m = raw.match(/\A---[ \t]*\r?\n(.*?)^---[ \t]*\r?\n/m)
+  next unless m
 
-  fm_text = parts[1]
+  fm_text = m[1]
+  body = m.post_match
   fm = begin
     YAML.safe_load(fm_text, permitted_classes: [Date, Time], aliases: true)
   rescue StandardError
@@ -81,8 +93,13 @@ Dir[File.join(ROOT, '_posts', '*')].sort.each do |path|
   end
   next unless fm.is_a?(Hash)
 
-  id = parts[2][VIDEO_ID, 1]
+  id = body[VIDEO_ID, 1]
   next unless id
+
+  if !FULL && fm['thumb'].to_s.include?('oardefault')
+    kept += 1
+    next
+  end
 
   exists = oar_exists?(id)
   if exists.nil?
@@ -101,11 +118,11 @@ Dir[File.join(ROOT, '_posts', '*')].sort.each do |path|
     end
     added += 1
     puts "#{name}\n    + thumb: #{want}"
-    File.write(path, "---#{with_thumb(fm_text, want)}---#{parts[2]}") unless DRY_RUN
+    File.write(path, "---\n#{with_thumb(fm_text, want)}---\n#{body}") unless DRY_RUN
   elsif current.include?('oardefault')
     removed += 1
     puts "#{name}\n    - thumb (oardefault non esiste più per #{id})"
-    File.write(path, "---#{without_thumb(fm_text)}---#{parts[2]}") unless DRY_RUN
+    File.write(path, "---\n#{without_thumb(fm_text)}---\n#{body}") unless DRY_RUN
   else
     plain += 1
   end
@@ -113,5 +130,5 @@ end
 
 puts
 puts "#{added} thumb aggiunte, #{removed} rimosse#{' (dry run)' if DRY_RUN}."
-puts "#{kept} già a posto, #{plain} video 16:9 nativi (nessuna thumb serve)."
+puts "#{kept} già a posto#{FULL ? '' : ' (non risondati: FULL=1 per farlo)'}, #{plain} video 16:9 nativi (nessuna thumb serve)."
 puts "#{skipped} saltati per errore di rete." if skipped.positive?

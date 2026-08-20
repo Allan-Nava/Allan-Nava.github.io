@@ -65,6 +65,22 @@ end
 
 # /shorts/<id> answers 200 only for actual shorts (videos redirect to /watch);
 # the SOCS cookie skips the EU consent interstitial.
+# `oardefault.jpg` e' l'anteprima nel formato ORIGINALE e YouTube la genera solo
+# quando il video non e' 16:9 (404 sugli altri): la sua presenza e' quindi essa
+# stessa il segnale "video verticale", piu' affidabile del tag `short` — che sul
+# canale sbaglia in 4 casi su 133. Va in `thumb:`, che usano i listing e
+# /videos; `image:` resta l'hqdefault perche' e' anche l'`og:image`, e un'anteprima
+# social 1080x1920 la ritagliano male tutti gli scraper (#163).
+def oar_thumb(video_id)
+  uri = URI("https://i.ytimg.com/vi/#{video_id}/oardefault.jpg")
+  res = Net::HTTP.start(uri.host, uri.port, use_ssl: true, open_timeout: 15, read_timeout: 20) do |http|
+    http.head(uri.request_uri, 'User-Agent' => 'Mozilla/5.0 (jekyll-youtube-sync)')
+  end
+  res.is_a?(Net::HTTPSuccess) ? "\nthumb: \"#{uri}\"" : ''
+rescue StandardError
+  ''
+end
+
 def short?(video_id)
   uri = URI("https://www.youtube.com/shorts/#{video_id}")
   res = Net::HTTP.start(uri.host, uri.port, use_ssl: true, open_timeout: 10, read_timeout: 15) do |http|
@@ -125,6 +141,7 @@ missing.each do |id|
   filename = "#{base}-#{id.downcase.gsub(/[^a-z0-9]/, '')[0, 6]}.markdown" if File.exist?(File.join(ROOT, '_posts', filename))
   path = File.join(ROOT, '_posts', filename)
   short_attr = meta[:short] ? ' data-short' : ''
+  thumb_yaml = oar_thumb(id)
   hour = meta[:date].hour.zero? && meta[:date].minute.zero? ? '12:00' : meta[:date].strftime('%H:%M')
 
   post = <<~POST
@@ -135,7 +152,7 @@ missing.each do |id|
     tag:
     - youtube
     - #{kind}
-    image: "https://i.ytimg.com/vi/#{id}/hqdefault.jpg"
+    image: "https://i.ytimg.com/vi/#{id}/hqdefault.jpg"#{thumb_yaml}
     headerImage: false
     description: "Video dal canale YouTube di Allan Nava: #{yaml_safe(meta[:title], 100)}"
     category: blog

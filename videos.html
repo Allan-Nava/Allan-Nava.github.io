@@ -11,6 +11,12 @@ subtitle: "Everything from the YouTube channel, newest first."
 Galleria dei post che contengono un video. La thumbnail arriva da `image:`,
 riempita a build time da _plugins/youtube_thumbnails.rb a partire dal videoid
 della facade: qui non serve nessuna chiamata a YouTube.
+
+I video verticali (56% del canale) hanno anche `thumb:` — `oardefault.jpg`, il
+formato originale — e prendono un box verticale (#163). Con la sola hqdefault
+si vedeva il riempimento sfocato che YouTube mette ai lati del frame, cioè due
+pannelli su metà della griglia. La griglia è mista di proposito: un 9:16 in un
+box 16:9 è una fettina orizzontale di un video verticale, che non dice niente.
 {%- endcomment -%}
 
 {% assign videoPosts = site.posts | where_exp: "p", "p.content contains 'lite-youtube'" %}
@@ -19,9 +25,14 @@ della facade: qui non serve nessuna chiamata a YouTube.
     {% for post in videoPosts %}
         <article class="video-card">
             <a class="url" href="{{ site.url }}{{ post.url }}">
-                <span class="thumb">
+                <span class="thumb{% if post.thumb %} thumb-short{% endif %}">
                     {% if post.image and post.image != "" %}
-                        <img class="thumb-img" src="{{ post.image }}" alt="" loading="lazy" decoding="async" width="480" height="270">
+                        {%- assign thumb_src = post.thumb | default: post.image -%}
+                        {%- if post.thumb -%}
+                        <img class="thumb-img" src="{{ thumb_src }}" alt="" loading="lazy" decoding="async" width="1080" height="1920">
+                        {%- else -%}
+                        <img class="thumb-img" src="{{ thumb_src }}" alt="" loading="lazy" decoding="async" width="480" height="270">
+                        {%- endif -%}
                     {% endif %}
                     <span class="play" aria-hidden="true"></span>
                 </span>

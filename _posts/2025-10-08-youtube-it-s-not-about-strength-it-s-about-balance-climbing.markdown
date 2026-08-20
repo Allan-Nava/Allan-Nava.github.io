@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/tQZb2iI9XLA/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: It’s not about strength — it’s about balance. 🧗 #climbing"
 category: blog
 author: allan

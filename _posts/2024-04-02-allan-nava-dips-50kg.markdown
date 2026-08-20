@@ -10,6 +10,7 @@ tag:
 - body time club
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/imHrCNI7CuU/oardefault.jpg"
 description: "Video di un allenamento di dips da 50kg in calisthenics."
 category: blog
 author: allan

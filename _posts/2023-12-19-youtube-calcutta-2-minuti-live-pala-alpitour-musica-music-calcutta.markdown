@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/B5q3RVxyREA/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Calcutta - 2 minuti live 📍Pala Alpitour #musica #music #calcutta"
 category: blog
 author: allan

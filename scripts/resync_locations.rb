@@ -110,17 +110,19 @@ targets = {}   # path => { id:, title:, lat:, lng: }
 
 posts.each do |path|
   raw = File.read(path, encoding: 'UTF-8')
-  parts = raw.split(/^---\s*$/, 3)
-  next if parts.size < 3
+  # NON `split(/^---\s*$/)`: `\s` matcha anche le newline e il separatore si
+  # mangia la riga vuota fra front matter e corpo, che riscrivendo si perde.
+  block = raw.match(/\A---[ \t]*\r?\n(.*?)^---[ \t]*\r?\n/m)
+  next unless block
 
   fm = begin
-    YAML.safe_load(parts[1], permitted_classes: [Date, Time], aliases: true)
+    YAML.safe_load(block[1], permitted_classes: [Date, Time], aliases: true)
   rescue StandardError
     nil
   end
   next unless fm.is_a?(Hash)
 
-  id = parts[2][VIDEO_ID, 1]
+  id = block.post_match[VIDEO_ID, 1]
   next unless id
 
   has_coords = fm['lat'] && fm['lng']
@@ -164,8 +166,8 @@ targets.each do |path, info|
   next if DRY_RUN
 
   raw = File.read(path, encoding: 'UTF-8')
-  parts = raw.split(/^---\s*$/, 3)
-  File.write(path, "---#{apply(parts[1], loc[:lat], loc[:lng])}---#{parts[2]}")
+  block = raw.match(/\A---[ \t]*\r?\n(.*?)^---[ \t]*\r?\n/m)
+  File.write(path, "---\n#{apply(block[1], loc[:lat], loc[:lng])}---\n#{block.post_match}")
   written += 1
 end
 

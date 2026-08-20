@@ -7,6 +7,7 @@ tag:
 - video
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/JjSyUAln32s/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: 5 Pull UPs 10kg 🏋🏽"
 category: blog
 author: allan

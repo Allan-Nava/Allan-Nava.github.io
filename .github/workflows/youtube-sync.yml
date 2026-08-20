@@ -47,6 +47,12 @@ jobs:
         run: ruby scripts/resync_locations.rb
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+      # L'anteprima nel formato originale (oardefault.jpg) di un video appena
+      # caricato puo' non essere ancora pronta quando il post viene creato:
+      # questo passo la recupera al giro dopo. Nessuna quota API, sono HEAD su
+      # i.ytimg.com, e sonda solo i post che ancora non ce l'hanno.
+      - name: Backfill original-ratio thumbnails
+        run: ruby scripts/sync_youtube_thumbs.rb
       - name: Validate generated posts
         run: ruby scripts/validate_posts.rb
       - name: Commit and push new posts

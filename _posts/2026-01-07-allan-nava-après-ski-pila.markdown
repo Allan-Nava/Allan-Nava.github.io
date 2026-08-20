@@ -9,6 +9,7 @@ tag:
 - video
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/QLryDUjf94k/oardefault.jpg"
 description: "Video di apres ski a Pila dopo una giornata sulla neve in snowboard."
 category: blog
 author: allan

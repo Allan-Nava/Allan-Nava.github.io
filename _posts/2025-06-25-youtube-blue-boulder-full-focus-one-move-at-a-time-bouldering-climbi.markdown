@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/YaXeaBhDJMc/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Blue boulder, full focus. One move at a time. 🧗‍♂️💥 #Bouldering #climbinglife"
 category: blog
 author: allan

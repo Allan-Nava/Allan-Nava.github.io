@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/MomU35rllpo/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Do your things and be quiet about it. #chill #art"
 category: blog
 author: allan

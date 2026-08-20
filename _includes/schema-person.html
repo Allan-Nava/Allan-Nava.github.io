@@ -1,0 +1,60 @@
+{%- comment -%}
+JSON-LD dell'ENTITA' dietro al sito, non della pagina: <script type="application/ld+json">
+con un @graph Person + WebSite, incluso solo su / e /about (le uniche due pagine
+che parlano della persona; ripeterlo ovunque non aggiunge segnale).
+
+Perche' serve: jekyll-seo-tag emette solo un WebSite/WebPage con headline e url —
+zero `sameAs`, quindi nessun legame dichiarato fra questo dominio e i profili
+GitHub/LinkedIn/YouTube. Per una query col nome proprio Google deve poter dire
+"questo sito E' quella persona": le sameAs sono il modo standard di dirlo, e sono
+il pezzo che mancava (i profili social quel legame ce l'hanno gia' fra loro).
+
+I link NON si hard-codano qui: vengono da `site.social.links` in _config.yml.
+
+TRAPPOLA jemoji: gira anche dentro gli <script> e basta un `:parola:` nel
+documento per fargli ri-parsare e riscrivere tutto l'HTML (vedi CLAUDE.md, ha
+ucciso /map). Qui il JSON e' scritto con **uno spazio dopo ogni due punti**: cosi'
+nessuna sequenza `:...:` puo' combaciare col pattern degli shortcode.
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "{{ site.url }}/#person",
+      "name": "{{ site.social.name | default: site.name }}",
+      "url": "{{ site.url }}/",
+      "image": "{{ site.url }}/{{ site.picture }}",
+      "description": "{{ site.description }}",
+      "jobTitle": "DevOps Engineer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "HiWay Media",
+        "url": "https://hiway.media"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Milan",
+        "addressCountry": "IT"
+      },
+      "knowsAbout": [ "DevOps", "Live video streaming", "Go", "Docker", "Kubernetes", "HashiCorp Nomad", "Consul", "CI/CD" ],
+      "sameAs": [
+        {%- for link in site.social.links %}
+        "{{ link }}"{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": "{{ site.url }}/",
+      "name": "{{ site.title }}",
+      "description": "{{ site.description }}",
+      "inLanguage": "en",
+      "publisher": { "@id": "{{ site.url }}/#person" },
+      "author": { "@id": "{{ site.url }}/#person" }
+    }
+  ]
+}
+</script>

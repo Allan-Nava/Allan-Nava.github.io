@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Gear
+description: "The hardware, software and climbing gear Allan Nava actually uses."
 subtitle: "The kit behind the posts — what I actually use, not a wish list."
 permalink: /gear/
 ---

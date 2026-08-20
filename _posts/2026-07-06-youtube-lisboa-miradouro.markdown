@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/U1JOOtDxCBg/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Lisboa - Miradouro"
 category: blog
 author: allan

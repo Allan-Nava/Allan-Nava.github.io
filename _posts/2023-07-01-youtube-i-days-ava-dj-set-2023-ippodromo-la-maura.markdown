@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/OO9fRN0EQ0I/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: I-Days Ava DJ Set 2023 🔹Ippodromo La Maura"
 category: blog
 author: allan

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+description: "Who Allan Nava is: DevOps engineer at HiWay Media in Milan, working on live video infrastructure, Go and Kubernetes."
 permalink: /about/
 ---
 

@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/IRw3txiJKkA/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Papà V - Mattone 💀 Secret Event"
 category: blog
 author: allan

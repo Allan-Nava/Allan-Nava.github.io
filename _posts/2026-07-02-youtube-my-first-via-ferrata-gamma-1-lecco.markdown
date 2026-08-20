@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/NgftlPEFHNs/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: 🧗 My First Via Ferrata | Gamma 1, Lecco 🇮🇹⛰️"
 category: blog
 author: allan

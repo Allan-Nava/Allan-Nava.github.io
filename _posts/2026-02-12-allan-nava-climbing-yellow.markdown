@@ -9,6 +9,7 @@ tag:
 - video
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/w7O_L4glUwI/oardefault.jpg"
 description: "Video di una sessione di arrampicata su placca a Milano."
 category: blog
 author: allan

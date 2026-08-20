@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/quPLIhTRRy0/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Nazarè"
 category: blog
 author: allan

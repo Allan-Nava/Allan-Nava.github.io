@@ -7,6 +7,7 @@ tag:
 - short
 image: "https://i.ytimg.com/vi/dTGJbcjjsi4/hqdefault.jpg"
 headerImage: false
+thumb: "https://i.ytimg.com/vi/dTGJbcjjsi4/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Falesia Galbiate 5A 🧗🏼‍♂️⛰️"
 category: blog
 author: allan

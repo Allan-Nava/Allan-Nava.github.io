@@ -1,4 +1,4 @@
-{% if page.title == "Home"
+{% if page.url == "/"
    or page.title == "Blog"
    or page.title == "Projects"
    or page.title == "Tags"
@@ -27,11 +27,16 @@ di qui anche lui — ma il titolo dell'articolo lo mette già `post.html` nella 
 `<h1>` identici uno sopra l'altro. Il flag `custom_header` non basterebbe: sta
 nel front matter del layout, che Liquid espone come `layout.`, non come `page.`.
 
+La Home si riconosce da `page.url == "/"`, non dal suo `title:`: il titolo della
+home ora è il nome della persona (serve a og:title e agli snippet), e legarci
+sopra la logica di layout significherebbe che cambiare una stringa SEO spegne
+l'`<h1>` di ogni altra pagina.
+
 `showHeader` NON governa più il titolo: resta perché _layouts/default.html lo
 legge per scegliere la classe del wrapper (`.blog` invece di `.page blog`) —
 toccarlo qui cambierebbe il CSS di quelle quattro pagine.
 {%- endcomment -%}
-{% if page.title != "Home" and page.custom_header != true and page.collection != "posts" %}
+{% if page.url != "/" and page.custom_header != true and page.collection != "posts" %}
     <header class="page-header">
         <h1 class="title">{{ page.title }}</h1>
         {% if page.subtitle %}

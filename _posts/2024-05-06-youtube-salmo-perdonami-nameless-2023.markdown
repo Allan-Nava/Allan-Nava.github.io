@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/lcaiWXFnfTI/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Salmo - Perdonami 🔥 Nameless 2023"
 category: blog
 author: allan

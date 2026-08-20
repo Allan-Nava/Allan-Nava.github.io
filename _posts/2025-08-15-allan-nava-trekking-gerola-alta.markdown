@@ -8,6 +8,7 @@ tag:
 - video
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/Q75japXIxSk/oardefault.jpg"
 description: "Video di un trekking a Gerola Alta."
 category: blog
 author: allan

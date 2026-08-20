@@ -9,6 +9,7 @@ tag:
 
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/OhbUGISQ6mc/oardefault.jpg"
 description: "Video di un'escursione all'Orrido di Foresto."
 category: blog
 author: allan

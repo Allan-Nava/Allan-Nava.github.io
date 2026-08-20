@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/0bxkQ8kMlTk/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: FC Inter Milan 🖤💙 21"
 category: blog
 author: allan

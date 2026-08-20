@@ -7,6 +7,7 @@ tag:
 - short
 image: "https://i.ytimg.com/vi/RZvVd8P7E3E/hqdefault.jpg"
 headerImage: false
+thumb: "https://i.ytimg.com/vi/RZvVd8P7E3E/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Bal Harbour 2018 🌅🌊"
 category: blog
 author: allan

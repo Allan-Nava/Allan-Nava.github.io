@@ -19,10 +19,40 @@ layout: compress
         {% include analytics-google.html %}
     {% endif %}
 
-    <meta name=description content="{{ site.bio }}">
+    {%- comment -%}
+    La <meta name=description> la emette jekyll-seo-tag (page.description ->
+    page.excerpt -> site.description): scriverne un'altra qui significava DUE tag
+    description per pagina, quella del tema con la sola bio e quella del plugin.
+    Con due, Google ne sceglie una a caso — di norma la prima, cioe' la generica.
+    {%- endcomment -%}
     <meta name=author content="{{ site.name }}">
 
-    {% seo %}
+    {%- comment -%}
+    Il <title> lo scriviamo noi (`title=false` disattiva quello del plugin) perche'
+    seo-tag lo componeva come "{page.title} | {site.title}", e in home page.title
+    e' "Home": la home usciva su Google come **"Home | Allan Nava"**. Per una query
+    col nome proprio e' il peggior titolo possibile — la parola in prima posizione,
+    quella che pesa di piu', non dice ne' chi ne' cosa. Il `title:` della home
+    e' ora "Allan Nava" (lo esige og:title, che seo-tag prende solo da li'), e le
+    due logiche che ci si appoggiavano sono state slegate: header.html guarda
+    `page.url`, e la classe del wrapper qui sotto passa da `downcase` a `slugify`
+    per non sputare due classi quando il titolo ha uno spazio.
+
+    Ordine: `seo_title` esplicito nel front matter > home > pagina normale.
+    Il ramo `paginator` replica quello che faceva il plugin su /blog/2/ e seguenti
+    (titoli distinti = niente pagine viste come duplicate).
+    {%- endcomment -%}
+    {%- capture page_title -%}
+    {%- if page.seo_title -%}{{ page.seo_title }}
+    {%- elsif page.url == "/" -%}{{ site.name }} — {{ site.tagline | default: "DevOps engineer, live video infrastructure" }}
+    {%- elsif paginator and paginator.page > 1 -%}{{ page.title }} — page {{ paginator.page }} | {{ site.title }}
+    {%- elsif page.title -%}{{ page.title }} | {{ site.title }}
+    {%- else -%}{{ site.title }}
+    {%- endif -%}
+    {%- endcapture -%}
+    <title>{{ page_title | strip }}</title>
+
+    {% seo title=false %}
 
     {%- comment -%}
     jekyll-seo-tag emette og:image solo se la pagina ha `image:`: senza, i link
@@ -48,6 +78,11 @@ layout: compress
     <meta name="twitter:image" content="{{ site.url }}{{ og_fallback }}">
     {% endunless %}
     
+    {%- comment -%}
+    Segnali di entita' (Person + sameAs) solo dove si parla della persona.
+    {%- endcomment -%}
+    {% if page.url == "/" or page.url == "/about/" %}{% include schema-person.html %}{% endif %}
+
     {% include favicon.html %}
 
     {%- comment -%}
@@ -65,7 +100,12 @@ layout: compress
 
     <link rel="preload" as="font" type="font/woff2" href="{{ site.baseurl }}/assets/fonts/inter-latin-wght-normal.woff2" crossorigin>
 
-    <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}">
+    {%- comment -%}
+    Il <link rel=canonical> lo emette gia' jekyll-seo-tag, sopra: qui ce n'era un
+    secondo, scritto a mano. Due canonical nella stessa pagina sono un segnale
+    contraddittorio e Google puo' ignorarli entrambi e scegliersi da se' l'URL da
+    indicizzare. Ne resta uno solo, quello del plugin.
+    {%- endcomment -%}
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}{{ "/feed.xml" }}" />
     {%- comment -%}
     I progetti hanno un feed separato (#160): /feed.xml e' solo il blog, perche'
@@ -95,9 +135,9 @@ layout: compress
             <div class="post">
         {% else %}
             {% if showHeader != true %}
-                <div class="page {{ page.title | downcase }}">
+                <div class="page {{ page.title | slugify }}">
             {% else %}
-                <div class="{{ page.title | downcase }}">
+                <div class="{{ page.title | slugify }}">
             {% endif %}
         {% endif %}
 

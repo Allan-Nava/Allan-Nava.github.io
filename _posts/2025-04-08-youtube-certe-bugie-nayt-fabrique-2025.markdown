@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/z1no7V6IRp8/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Certe Bugie - Nayt 🔷 Fabrique 2025"
 category: blog
 author: allan

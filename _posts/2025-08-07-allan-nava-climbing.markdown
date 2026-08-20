@@ -9,6 +9,7 @@ tag:
 - video
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/D8nc6oXrpz8/oardefault.jpg"
 description: "Video di una sessione di arrampicata su un circuito di grado 6a a Milano."
 category: blog
 author: allan

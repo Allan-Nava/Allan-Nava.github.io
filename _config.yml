@@ -7,9 +7,18 @@ title: Allan Nava
 # `name` è quello che i template del tema stampano come firma (hero, brand della
 # nav, footer, alt dell'avatar): senza, quelle stringhe restavano vuote.
 name: Allan Nava
+# `tagline` e' la seconda meta' del <title> della home ("Allan Nava — ..."):
+# e' la riga che Google mostra come titolo del risultato per la query col nome.
+tagline: "DevOps engineer building live video infrastructure"
 email:
 bio: A man who loves videogames and coding
-description: ""
+# `description` NON e' decorativa: jekyll-seo-tag la usa come <meta name=description>
+# e og:description su ogni pagina che non ne dichiara una propria, e finisce nello
+# snippet di Google. Lasciandola vuota il sito girava con la sola bio del tema
+# ("A man who loves videogames and coding"), che non contiene ne' il nome ne'
+# una sola parola su cosa c'e' dentro: per la query "Allan Nava" non c'era nulla
+# da agganciare. Tenerla sotto i ~155 caratteri, altrimenti Google la tronca.
+description: "Allan Nava — DevOps engineer in Milan building live video infrastructure with Go, Docker and Kubernetes. Open source projects, notes and videos."
 baseurl: "" # the subpath of your site, e.g. /blog (CI overrides it with --baseurl)
 url: "https://allan-nava.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 # if it's an external image, update below for true
@@ -36,7 +45,12 @@ github: Allan-Nava
 instagram: allan_nava
 linkedin: allannava
 youtube: '@allan_nava'
-twitter: allan__nava
+# `twitter` e' annidata perche' jekyll-seo-tag legge SOLO `site.twitter.username`:
+# con la forma piatta emetteva <meta name="twitter:site" content="@"> su ogni
+# pagina, cioe' una card senza attribuzione. `_includes/social-links.html` e'
+# stato allineato a `site.twitter.username`.
+twitter:
+  username: allan__nava
 dev: allannava
 #
 #
@@ -46,6 +60,32 @@ authors:
     bio: A man who loves videogames and coding 
     external-image: false
     picture: assets/images/profile.jpg
+#
+# Identita' della persona dietro al sito (#SEO). `social.name` + `social.links`
+# alimentano il JSON-LD Person di `_includes/schema-person.html`: sono le
+# `sameAs` che dicono a Google che allan-nava.github.io, il profilo GitHub, il
+# canale YouTube e LinkedIn sono la STESSA entita'. Senza, il sito e' un dominio
+# anonimo che nomina un tale Allan Nava, e per la query col nome perde contro i
+# profili social che quei segnali ce l'hanno. Ordine: il primo link e' quello
+# piu' autorevole.
+social:
+  name: Allan Nava
+  type: Person
+  links:
+    - https://github.com/Allan-Nava
+    - https://www.linkedin.com/in/allannava/
+    - https://www.youtube.com/@allan_nava
+    - https://twitter.com/allan__nava
+    - https://www.instagram.com/allan_nava/
+    - https://dev.to/allannava
+#
+# Verifica della proprieta' in Google Search Console. jekyll-seo-tag emette da
+# solo <meta name="google-site-verification"> quando questa chiave e' valorizzata.
+# Il token si prende da https://search.google.com/search-console -> Aggiungi
+# proprieta' -> "Prefisso URL" https://allan-nava.github.io/ -> metodo "Tag HTML":
+# copiare SOLO il valore dell'attributo content. Senza Search Console non si puo'
+# ne' vedere cosa e' indicizzato ne' chiedere l'indicizzazione di una URL.
+# google_site_verification: "INCOLLA_QUI_IL_TOKEN"
 #
 # do you want a larger site? change the option below
 # options: [normal, large] | default: normal

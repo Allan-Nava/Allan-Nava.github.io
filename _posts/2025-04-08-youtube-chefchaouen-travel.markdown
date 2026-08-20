@@ -7,6 +7,7 @@ tag:
 - short
 image: ""
 headerImage: false
+thumb: "https://i.ytimg.com/vi/XUrS1C-WTXs/oardefault.jpg"
 description: "Video dal canale YouTube di Allan Nava: Chefchaouen 🇲🇦 #travel"
 category: blog
 author: allan

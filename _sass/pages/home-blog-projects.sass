@@ -71,12 +71,20 @@
 				border-radius: 0
 				margin: 0
 
-		// Anteprime YouTube (classe da _includes/blog-post.html): i.ytimg.com
-		// serve sempre un 480x360 con il frame utile nei 270px centrali e la
-		// cornice nera cotta nell'immagine. Ingrandire di 4/3 spinge la cornice
-		// fuori dal box — non esiste un formato senza barre da chiedere.
-		> .item > .url > .thumb.thumb-video > img
-			transform: scale(1.3334)
+		// Anteprime YouTube (classi da _includes/blog-post.html). Qui il box e'
+		// 16:9 e l'hqdefault e' un 480x360 col frame nei 270px centrali fra due
+		// bande nere da 45px (misurate): `object-fit: cover` ritaglia esattamente
+		// quelle bande, quindi non serve nessuno zoom. C'era un
+		// `transform: scale(1.3334)`, che su questo box e' un sovra-ritaglio del
+		// 33% del frame utile: serve solo dove il box e' quadrato, vedi mobile.
+		//
+		// I video verticali arrivano invece da `oardefault.jpg` (formato
+		// originale, `thumb:` nel front matter) e prendono `.thumb-short`: sono
+		// 9:16, quindi il box diventa quadrato anche su desktop — in un 16:9
+		// resterebbe una fettina orizzontale di un video verticale.
+		> .item > .url > .thumb.thumb-short
+			aspect-ratio: 1 / 1
+			flex-basis: 92px
 
 		> .item > .url > .body
 			display: flex
@@ -151,6 +159,13 @@
 		> .list > .item > .url > .thumb.thumb-video
 			aspect-ratio: 1 / 1
 			flex-basis: clamp(88px, 26vw, 116px)
+
+		// Qui, e SOLO qui, lo zoom serve: in un box quadrato `cover` ritaglia la
+		// larghezza dell'hqdefault e le due bande nere da 45px restano dentro.
+		// 4/3 le spinge fuori esattamente. Escluso `.thumb-short`, che ha una
+		// sorgente verticale senza bande: zoomarla taglierebbe il soggetto.
+		> .list > .item > .url > .thumb.thumb-video:not(.thumb-short) > img
+			transform: scale(1.3334)
 
 		> .list > .item > .url > .body
 			gap: var(--space-1)
