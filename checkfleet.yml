@@ -32,8 +32,14 @@ checks:
     # ten minutes after a deploy you may legitimately read the cached previous
     # copy.
     targets:
+      # La home e' l'unica pagina il cui <title> NON e' "{page.title} | {site.title}":
+      # lo compone _layouts/default.html come "{site.name} — {site.tagline}", perche'
+      # seo-tag ci metteva "Home" davanti (vedi docs/architecture.md, "Search engines").
+      # Qui si asserisce solo il prefisso stabile: la tagline e' copy di marketing e
+      # cambiarla non deve far risultare il sito giu'. Il prefisso resta univoco —
+      # ogni altra pagina ha il nome del sito in coda, non in testa.
       - url: https://allan-nava.github.io/
-        expect_body: "<title>Home | Allan Nava</title>"
+        expect_body: "<title>Allan Nava — "
       - url: https://allan-nava.github.io/projects/
         expect_body: "<title>Projects | Allan Nava</title>"
       - url: https://allan-nava.github.io/blog/
@@ -64,10 +70,15 @@ checks:
         expect_body: '<feed xmlns="http://www.w3.org/2005/Atom"'
       - url: https://allan-nava.github.io/sitemap.xml
         expect_body: "https://allan-nava.github.io/"
-      # robots.txt currently has no `Sitemap:` directive (only User-agent /
-      # Disallow), so this asserts what is actually served.
+      # robots.txt e' un template Liquid e le righe `Sitemap:` dei progetti le
+      # genera scripts/sync_robots_sitemaps.rb (workflow robots-sync.yml): quelle
+      # variano, quindi l'assertion resta sulle due parti fisse — la direttiva di
+      # accesso e la sitemap di questo sito. Se il file tornasse copiato verbatim
+      # (front matter rimosso) il Liquid arriverebbe grezzo e questa fallirebbe.
       - url: https://allan-nava.github.io/robots.txt
         expect_body: "User-agent: *"
+      - url: https://allan-nava.github.io/robots.txt
+        expect_body: "Sitemap: https://allan-nava.github.io/sitemap.xml"
 
       # A URL that must NOT exist: 404.html has to be served with a real 404,
       # not a 200. Pages returning 200 for unknown paths is a classic
