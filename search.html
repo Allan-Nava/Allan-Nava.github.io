@@ -17,9 +17,47 @@ di una casella che non cerca.
 
 <div class="search" data-search hidden>
     <label class="search-label" for="q">What are you looking for?</label>
-    <input class="search-input" id="q" type="search" autocomplete="off" placeholder="nomad, ffmpeg, snowboard…" aria-describedby="search-status">
-    <p class="search-status" id="search-status" role="status" aria-live="polite"></p>
+    <input class="search-input" id="q" type="search" autocomplete="off" placeholder="nomad, ffmpeg, snowboard…" aria-describedby="search-hint">
+    <p class="search-hint" id="search-hint">{{ site.data.counts.total }} posts and projects indexed — press <kbd>/</kbd> to jump here, <kbd>Esc</kbd> to clear.</p>
+    <p class="search-status" role="status" aria-live="polite"></p>
     <ul class="search-results" data-search-results></ul>
+
+    {%- comment -%}
+    Stato iniziale (#156): finché non si digita, la pagina era un titolo, una
+    casella e mezzo schermo vuoto. Le scorciatoie sono rese a build time, quindi
+    esistono anche prima che il JS carichi l'indice — e restano l'unica cosa
+    utile della pagina se il JS non parte affatto.
+    {%- endcomment -%}
+    <div class="search-empty" data-search-empty>
+        {% capture tag_rows %}{% for t in site.tags %}{{ t[1].size | prepend: '00000' | slice: -5, 5 }}|{{ t[0] }}~{% endfor %}{% endcapture %}
+        {% assign top_tags = tag_rows | split: '~' | sort | reverse %}
+
+        <section class="search-shortcuts">
+            <h2 class="search-shortcuts-title">Most written about</h2>
+            <div class="topic-chips">
+                {% for row in top_tags limit: 12 %}
+                    {% assign parts = row | split: '|' %}
+                    <a class="topic-chip" href="{{ site.url }}/search/?q={{ parts[1] | uri_escape }}">{{ parts[1] }} <span class="count">{{ parts[0] | plus: 0 }}</span></a>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="search-shortcuts">
+            <h2 class="search-shortcuts-title">Latest posts</h2>
+            {% assign latest = site.posts | where: "category", "blog" %}
+            {% assign latest = latest | where_exp: "p", "p.hidden != true" %}
+            <ul class="search-results">
+                {% for post in latest limit: 5 %}
+                    <li class="search-item">
+                        <a class="url" href="{{ post.url }}">
+                            <span class="search-title">{{ post.title }}</span>
+                            <span class="search-meta">Post · {{ post.date | date: "%Y" }}{% if post.tag and post.tag.first %} · {{ post.tag.first }}{% endif %}</span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
 </div>
 
 <script>
@@ -30,6 +68,7 @@ di una casella che non cerca.
   var input = box.querySelector('.search-input');
   var status = box.querySelector('.search-status');
   var results = box.querySelector('[data-search-results]');
+  var empty = box.querySelector('[data-search-empty]');
   var base = '{{ site.url }}';
   var index = null;
   var pending = null;
@@ -91,13 +130,19 @@ di una casella che non cerca.
       : 'Nothing for "' + q + '".';
   }
 
+  function showEmptyState(show) {
+    if (empty) empty.hidden = !show;
+  }
+
   function run(q) {
     q = q.trim().toLowerCase();
     if (q.length < 2) {
       results.innerHTML = '';
       status.textContent = q.length ? 'Keep typing…' : '';
+      showEmptyState(true);
       return;
     }
+    showEmptyState(false);
 
     load().then(function () {
       if (!index) return;
@@ -119,6 +164,23 @@ di una casella che non cerca.
   });
 
   input.addEventListener('focus', load);
+
+  /* `/` porta il fuoco nella casella da qualunque punto della pagina, `Esc` la
+     svuota e rimette lo stato iniziale. Il `/` non va rubato a chi sta gia'
+     scrivendo in un campo. */
+  document.addEventListener('keydown', function (e) {
+    var typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName) ||
+                 document.activeElement.isContentEditable;
+    if (e.key === '/' && !typing) {
+      e.preventDefault();
+      input.focus();
+      return;
+    }
+    if (e.key === 'Escape' && document.activeElement === input) {
+      input.value = '';
+      run('');
+    }
+  });
 
   /* Arrivo da un link tipo /search/?q=nomad */
   var initial = new URLSearchParams(location.search).get('q');

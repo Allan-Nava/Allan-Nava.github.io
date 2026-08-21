@@ -35,7 +35,12 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
         {% if site.blog %}<a class="button" href="{{ site.url }}/blog/">Read the blog</a>{% endif %}
     </div>
 
-    {%- comment -%} Conteggi calcolati a build time; il JS anima solo la salita. {%- endcomment -%}
+    {%- comment -%}
+    I numeri vengono da `site.data.counts` (_plugins/site_counts.rb): un tempo
+    ogni pagina se li ricalcolava con filtri suoi, e home, /stats e /projects
+    mostravano tre valori diversi per la stessa cosa (#155). Le liste qui sotto
+    usano ancora gli array, ma i conteggi no. Il JS anima solo la salita.
+    {%- endcomment -%}
     {% assign blogPosts = site.posts | where: "category", "blog" %}
     {% assign blogPosts = blogPosts | where_exp: "p", "p.hidden != true" %}
     {% assign projectPosts = site.posts | where: "projects", true %}
@@ -43,19 +48,19 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
     <dl class="hero-stats">
         <div class="stat">
             <dt class="stat-label">Posts</dt>
-            <dd class="stat-value" data-count="{{ blogPosts.size }}">{{ blogPosts.size }}</dd>
+            <dd class="stat-value" data-count="{{ site.data.counts.posts }}">{{ site.data.counts.posts }}</dd>
         </div>
         <div class="stat">
             <dt class="stat-label">Projects</dt>
-            <dd class="stat-value" data-count="{{ projectPosts.size }}">{{ projectPosts.size }}</dd>
+            <dd class="stat-value" data-count="{{ site.data.counts.projects }}">{{ site.data.counts.projects }}</dd>
         </div>
         <div class="stat">
             <dt class="stat-label">Videos</dt>
-            <dd class="stat-value" data-count="{{ videoPosts.size }}">{{ videoPosts.size }}</dd>
+            <dd class="stat-value" data-count="{{ site.data.counts.videos }}">{{ site.data.counts.videos }}</dd>
         </div>
         <div class="stat">
             <dt class="stat-label">Tags</dt>
-            <dd class="stat-value" data-count="{{ site.tags.size }}">{{ site.tags.size }}</dd>
+            <dd class="stat-value" data-count="{{ site.data.counts.all_tags }}">{{ site.data.counts.all_tags }}</dd>
         </div>
     </dl>
 </section>
@@ -63,7 +68,7 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
 <section class="home-section">
     <div class="section-head">
         <h2 class="section-title">Recent projects</h2>
-        <a class="section-link" href="{{ site.url }}/projects/">All {{ projectPosts.size }} projects <span aria-hidden="true">→</span></a>
+        <a class="section-link" href="{{ site.url }}/projects/">All {{ site.data.counts.projects }} projects <span aria-hidden="true">→</span></a>
     </div>
 
     <div class="list">
@@ -95,7 +100,7 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
 <section class="home-section">
     <div class="section-head">
         <h2 class="section-title">Latest posts</h2>
-        <a class="section-link" href="{{ site.url }}/blog/">All {{ blogPosts.size }} posts <span aria-hidden="true">→</span></a>
+        <a class="section-link" href="{{ site.url }}/blog/">All {{ site.data.counts.posts }} posts <span aria-hidden="true">→</span></a>
     </div>
 
     <div class="list">
@@ -109,7 +114,7 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
     <section class="home-section">
         <div class="section-head">
             <h2 class="section-title">What I work with</h2>
-            <a class="section-link" href="{{ site.url }}/tags/">All {{ site.tags.size }} tags <span aria-hidden="true">→</span></a>
+            <a class="section-link" href="{{ site.url }}/tags/">All {{ site.data.counts.all_tags }} tags <span aria-hidden="true">→</span></a>
         </div>
 
         <div class="topic-chips">

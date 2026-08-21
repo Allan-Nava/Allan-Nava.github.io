@@ -16,6 +16,39 @@ module TableOfContents
   CONTENT = /<div class="post-content">(.*)<\/div>/m.freeze
   HEADING = /<h([23])[^>]*\sid="([^"]+)"[^>]*>(.*?)<\/h\1>/m.freeze
 
+  # Ancora copiabile accanto a ogni titolo del corpo (#158).
+  #
+  # Su un blog tecnico serve a mandare a qualcuno *quel* passaggio invece
+  # dell'intero articolo. E' un `<a href="#id">` normale: senza JavaScript resta
+  # un link che si copia col tasto destro; con JS, `interactions.html` ci mette
+  # sopra la copia negli appunti.
+  #
+  # L'iniezione va resa **idempotente**: registrando su :documents un post passa
+  # da qui due volte (e' sia :post sia :document), e senza il controllo si
+  # otterrebbero due ancore per titolo.
+  ANCHORED = 'heading-anchor'
+  # L'ancora va tolta dal testo prima di usarlo come etichetta dell'indice:
+  # l'hook aggiunge le ancore *prima* di costruirlo, e senza questo ogni voce
+  # finiva con un "#" attaccato ("Primo#").
+  ANCHOR_TAG = /<a class="#{ANCHORED}".*?<\/a>/m.freeze
+
+  def self.add_anchors(output)
+    body = output[CONTENT, 1]
+    return output if body.nil? || body.include?(ANCHORED)
+
+    anchored = body.gsub(/<h([23])([^>]*\sid="([^"]+)"[^>]*)>(.*?)<\/h\1>/m) do
+      level = Regexp.last_match(1)
+      attrs = Regexp.last_match(2)
+      id = Regexp.last_match(3)
+      inner = Regexp.last_match(4)
+
+      link = %(<a class="#{ANCHORED}" href="##{id}" aria-label="Link to this section">#</a>)
+      %(<h#{level}#{attrs}>#{inner}#{link}</h#{level}>)
+    end
+
+    output.sub(body, anchored)
+  end
+
   def self.render(output)
     body = output[CONTENT, 1]
     return '' if body.nil?
@@ -24,7 +57,7 @@ module TableOfContents
     return '' if headings.size < MIN_HEADINGS
 
     items = headings.map do |level, id, raw|
-      text = raw.gsub(/<[^>]+>/, '').strip
+      text = raw.gsub(ANCHOR_TAG, '').gsub(/<[^>]+>/, '').strip
       next if text.empty?
 
       %(<li class="level-#{level}"><a href="##{id}">#{text}</a></li>)
@@ -43,6 +76,11 @@ end
 
 Jekyll::Hooks.register :documents, :post_render do |doc|
   next unless doc.output.is_a?(String)
+
+  # Le ancore valgono per ogni post con dei titoli, anche quelli troppo corti
+  # per avere l'indice.
+  doc.output = TableOfContents.add_anchors(doc.output)
+
   next unless doc.output.include?(TableOfContents::SLOT)
 
   doc.output = doc.output.sub(TableOfContents::SLOT, TableOfContents.render(doc.output))

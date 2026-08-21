@@ -127,7 +127,12 @@
 
 .bar-row {
 	display: grid;
-	grid-template-columns: 8ch 1fr 4ch;
+	/* #157: la colonna dell'etichetta era fissa a 8ch e tagliava i tag piu'
+	   lunghi (`#javascr...`, `#typesc...`): un quarto della lista illeggibile,
+	   proprio nella pagina che esiste per far leggere quei numeri. Ora
+	   l'etichetta prende la larghezza del contenuto e la barra — che e'
+	   decorativa — assorbe la differenza. */
+	grid-template-columns: minmax(5ch, max-content) minmax(0, 1fr) 4ch;
 	align-items: center;
 	gap: var(--space-3);
 	margin-bottom: var(--space-2);
@@ -138,8 +143,6 @@
 	color: var(--color-fg-muted);
 	text-decoration: none;
 	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
 
 	&:hover {
 		color: var(--color-accent);
@@ -302,6 +305,40 @@
 	&:focus {
 		outline: none;
 		border-color: var(--color-accent);
+	}
+}
+
+.search-hint {
+	margin: var(--space-3) 0 0;
+	font-size: var(--text-xs);
+	color: var(--color-fg-muted);
+
+	kbd {
+		padding: 1px 5px;
+		font-family: var(--font-mono);
+		font-size: 0.9em;
+		color: var(--color-fg);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border-strong);
+		border-radius: var(--radius-sm);
+	}
+}
+
+/* Stato iniziale (#156): scorciatoie invece di mezzo schermo vuoto. */
+.search-empty {
+	margin-top: var(--space-7);
+}
+
+.search-shortcuts {
+	margin-bottom: var(--space-7);
+
+	> .search-shortcuts-title {
+		margin: 0 0 var(--space-3);
+		font-size: var(--text-xs);
+		font-weight: 600;
+		letter-spacing: var(--tracking-wide);
+		text-transform: uppercase;
+		color: var(--color-fg-muted);
 	}
 }
 

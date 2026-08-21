@@ -146,6 +146,31 @@
 		&:last-child
 			margin-bottom: 0
 
+// Ancora copiabile accanto ai titoli (#158): il markup lo mette
+// _plugins/toc.rb. Discreta ma raggiungibile — compare all'hover del titolo e
+// al focus da tastiera, che e' l'unico modo di trovarla senza mouse.
+.heading-anchor
+	margin-left: var(--space-2)
+	font-weight: 400
+	text-decoration: none
+	color: var(--color-accent)
+	opacity: 0
+	transition: opacity var(--dur) var(--ease)
+
+	&:hover
+		color: var(--color-accent-hover)
+
+	// Stato "copiato": lo scrive il JS, che sostituisce il glifo.
+	&.is-copied
+		opacity: 1
+		color: var(--color-accent-text)
+
+h2:hover > .heading-anchor,
+h3:hover > .heading-anchor,
+h4:hover > .heading-anchor,
+.heading-anchor:focus-visible
+	opacity: 1
+
 // --- navigazione fra post --------------------------------------------------
 
 .blog-navigation

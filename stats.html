@@ -11,43 +11,40 @@ Statistiche del sito, calcolate in Liquid a build time: nessun servizio
 esterno, nessun JS. Le barre sono div con una larghezza percentuale, quindi
 funzionano anche senza JavaScript e senza immagini.
 {%- endcomment -%}
-{% assign blogPosts = site.posts | where: "category", "blog" %}
-{% assign blogPosts = blogPosts | where_exp: "p", "p.hidden != true" %}
-{% assign projectPosts = site.posts | where: "projects", true %}
-{% assign videoPosts = site.posts | where_exp: "p", "p.content contains 'lite-youtube'" %}
-{% assign geoPosts = site.posts | where_exp: "p", "p.lat" %}
-
 <dl class="hero-stats stats-grid">
     <div class="stat">
         <dt class="stat-label">Posts</dt>
-        <dd class="stat-value" data-count="{{ blogPosts.size }}">{{ blogPosts.size }}</dd>
+        <dd class="stat-value" data-count="{{ site.data.counts.posts }}">{{ site.data.counts.posts }}</dd>
     </div>
     <div class="stat">
         <dt class="stat-label">Projects</dt>
-        <dd class="stat-value" data-count="{{ projectPosts.size }}">{{ projectPosts.size }}</dd>
+        <dd class="stat-value" data-count="{{ site.data.counts.projects }}">{{ site.data.counts.projects }}</dd>
     </div>
     <div class="stat">
         <dt class="stat-label">Videos</dt>
-        <dd class="stat-value" data-count="{{ videoPosts.size }}">{{ videoPosts.size }}</dd>
+        <dd class="stat-value" data-count="{{ site.data.counts.videos }}">{{ site.data.counts.videos }}</dd>
     </div>
     <div class="stat">
         <dt class="stat-label">Tags</dt>
-        <dd class="stat-value" data-count="{{ site.tags.size }}">{{ site.tags.size }}</dd>
+        <dd class="stat-value" data-count="{{ site.data.counts.all_tags }}">{{ site.data.counts.all_tags }}</dd>
     </div>
     <div class="stat">
         <dt class="stat-label">On the map</dt>
-        <dd class="stat-value" data-count="{{ geoPosts.size }}">{{ geoPosts.size }}</dd>
+        <dd class="stat-value" data-count="{{ site.data.counts.geo }}">{{ site.data.counts.geo }}</dd>
     </div>
     <div class="stat">
         <dt class="stat-label">Total pages</dt>
-        <dd class="stat-value" data-count="{{ site.posts.size }}">{{ site.posts.size }}</dd>
+        <dd class="stat-value" data-count="{{ site.data.counts.total }}">{{ site.data.counts.total }}</dd>
     </div>
 </dl>
 
 <section class="stats-section">
     <h2 class="section-title">Posts per year</h2>
 
-    {%- comment -%} La barra più lunga fa da 100%: serve il massimo. {%- endcomment -%}
+    {%- comment -%} I totali qui sopra vengono da `site.data.counts`
+    (_plugins/site_counts.rb): stesse definizioni della home, cosi' le due
+    pagine non possono piu' contraddirsi (#155).
+    La barra più lunga fa da 100%: serve il massimo. {%- endcomment -%}
     {% assign postsByYear = site.posts | where_exp: "p", "p.hidden != true" | group_by_exp: "p", "p.date | date: '%Y'" %}
     {% assign maxYear = 1 %}
     {% for year in postsByYear %}

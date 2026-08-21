@@ -13,6 +13,10 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ### Corretto
 
+- **Contatori che si contraddicevano** (#155) — ogni pagina rifaceva il conto con filtri suoi; ora `_plugins/site_counts.rb` e' la sorgente unica e i template leggono `site.data.counts`.
+- **/search era mezzo schermo vuoto** (#156) — stato iniziale con voci indicizzate, argomenti piu' scritti e ultimi post, piu' `/` per il fuoco e `Esc` per svuotare.
+- **/stats: etichette dei tag troncate** (#157) — la colonna era fissa a 8ch.
+- **Ancore copiabili sui titoli dei post** (#158) — messe da `_plugins/toc.rb`, 35 post; funzionano anche senza JS.
 - **/tags: gerarchia e 190 KB in meno** (#147) — la pagina piu' pesante del sito (445 KB, l'unica sotto 99 di performance) spediva 1019 coppie (tag, post) anche se i `<details>` erano chiusi: chiusi o aperti, il browser scarica lo stesso. Ora gli archivi esistono solo per i tag con piu' di un post, con anteprima a 5 e rimando alla ricerca; i 190 tag con un post solo hanno il chip che porta dritto al post. **254 KB**, performance **91 → 95**. Corretto anche il `datetime` malformato delle voci.
 - **Tag duplicati** (#148) — `iOS` e `ios`, `open source` e `open-source`, `github actions` e `github-actions`, `Murat4All` e `murat4all` erano archivi separati sullo stesso argomento. Unificati da `scripts/consolidate_tags.rb` (7 post); `validate_posts.rb` avvisa se due tag tornano a condividere lo slug.
 - **La ricerca ignorava i 162 progetti** (#161) — `search.json` filtrava `hidden: true`, flag che
