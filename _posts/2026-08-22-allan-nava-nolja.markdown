@@ -13,7 +13,9 @@ image: ""
 headerImage: false
 projects: true
 hidden: true # don't count this post in blog pagination
-description: "Sito dell'Associazione Culturale Corea-Italia: tema WordPress block costruito da zero, trilingue IT/EN/KO, con font self-hosted, wizard di setup e una pipeline di qualita completa."
+description: "Sito dell'Associazione Culturale Corea–Italia: tema WordPress block (FSE) scritto da zero, trilingue IT/EN/KO, con font self-hosted e wizard di setup."
+lang: it
+locale: it_IT
 category: project
 author: allan
 ---

@@ -64,6 +64,8 @@ externalLink: https://example.com   # optional, see below
 | `headerImage` | bool | Shows `image` as the post's hero above the title. |
 | `thumb` | URL | Listing/gallery thumbnail, when it must differ from `image`. Written by the YouTube sync for **vertical** videos: `image` stays the 4:3 `hqdefault.jpg` (it is also the `og:image`, and a portrait social preview gets cropped badly by every scraper) while `thumb` points at `oardefault.jpg`, the original-ratio frame. Its presence is what makes a card use a portrait box (#163). Don't set it by hand for videos — `scripts/sync_youtube_thumbs.rb` probes and records it. |
 | `updated` | date | Shown in the post meta line as "updated …"; the GitHub sync sets it on repo pushes. |
+| `lang` | string | Language of the page, emitted as `<html lang>`. Defaults to `en`; set `it` on Italian posts. |
+| `locale` | string | Locale for `og:locale` (jekyll-seo-tag reads it), e.g. `it_IT`. Pair it with `lang`. |
 | `projects` | bool | Includes the post on `/projects` (`projects.html` filters on it). |
 | `hidden` | bool | Excludes the post from the blog listing (`blog/index.html`). |
 | `externalLink` | URL | On `/projects`, the item links to this URL instead of the post page. |

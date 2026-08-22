@@ -2,7 +2,13 @@
 layout: compress
 ---
 <!DOCTYPE html>
-<html lang="en">
+{%- comment -%}
+Lingua della pagina: era cablata a "en" su tutto il sito, mentre i post sono
+quasi tutti in italiano — un segnale sbagliato per i motori e per gli screen
+reader. Si dichiara per pagina con `lang:` nel front matter (e `locale:`, che
+jekyll-seo-tag usa per `og:locale`); senza, resta il default di prima.
+{%- endcomment -%}
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
 <head>
 
     {%- comment -%}
