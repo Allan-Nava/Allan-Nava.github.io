@@ -2,7 +2,7 @@
 title: "qrspi"
 layout: post
 date: 2026-08-21 15:11
-updated: 2026-08-21
+updated: 2026-08-22
 tag:
 - javascript
 - agents
@@ -12,17 +12,17 @@ image: "https://raw.githubusercontent.com/Allan-Nava/qrspi/main/assets/logo.svg"
 headerImage: false
 projects: true
 hidden: true
-description: "A Claude Code plugin for running coding tasks through phase-gated intentional compaction: every phase writes one self-contained artifact to disk, the next phase"
+description: "Questions → Research → Spec → Plan → Implement: a phase-gated Claude Code plugin that keeps a coding agent under 40% context by writing one artifact to disk per"
 category: project
 author: allan
 externalLink: https://github.com/Allan-Nava/qrspi
 github: Allan-Nava/qrspi
 ---
 
-A Claude Code plugin for running coding tasks through phase-gated intentional compaction: every phase writes one self-contained artifact to disk, the next phase starts from a fresh session and reads only that artifact.
+Questions → Research → Spec → Plan → Implement: a phase-gated Claude Code plugin that keeps a coding agent under 40% context by writing one artifact to disk per phase.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: JavaScript
-- **Ultimo push**: 2026-08-21
+- **Ultimo push**: 2026-08-22
 
 [Repo su GitHub →](https://github.com/Allan-Nava/qrspi)
