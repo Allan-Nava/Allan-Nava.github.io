@@ -142,4 +142,6 @@ Some pages are behind a toggle in `_config.yml` (`map`, `fitness`, `gear`, `arch
 
 Commit the new file to `master` and push — the GitHub Actions workflow builds and deploys automatically (see [Deployment & CI](deployment.md)). Posts dated in the future are not published until the date passes and the site rebuilds (the daily scheduled workflow takes care of that).
 
+**Future is measured in UTC, not in your timezone.** `_config.yml` sets no `timezone`, so CI reads `date: 2026-08-23 00:30` as *00:30 UTC* — which is still ahead of a build running at 23:01 UTC the day before. The post then vanishes from the deployed site with no error at all: green build, successful deploy, 404 on the post URL and no card on `/projects`. Locally it looks fine, because a `+02:00` clock puts the same timestamp in the past. Give a new post a time that is already past in UTC, check with `ruby scripts/validate_posts.rb` (it warns: *date is in the future in UTC*), and reproduce the CI view with `TZ=UTC bundle exec jekyll build`.
+
 New YouTube videos don't need a hand-written post at all: the `youtube-sync.yml` workflow creates one automatically within ~3 hours of publishing (tags `youtube` + `video`/`short`). If you prefer to write the post yourself, just embed the video with `<lite-youtube videoid="…">` — the sync skips any video whose ID already appears in `_posts/`.

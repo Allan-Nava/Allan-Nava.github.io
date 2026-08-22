@@ -6,6 +6,7 @@
 
 require 'yaml'
 require 'date'
+require 'time'
 
 ROOT = File.expand_path('..', __dir__)
 CATEGORIES = %w[blog project].freeze
@@ -14,6 +15,23 @@ YEAR_RANGE = (2015..(Date.today.year + 1)).freeze
 errors = []
 warnings = []
 tag_usage = Hash.new { |h, k| h[k] = [] }
+
+# The published date as CI sees it: no `timezone` in _config.yml means Jekyll
+# reads a bare timestamp as UTC. Returns nil when the value can't be read.
+def post_time_utc(raw)
+  case raw
+  when Time then raw.getutc
+  when Date then Time.utc(raw.year, raw.month, raw.day)
+  when String
+    stamp = raw.strip
+    zoned = stamp.match?(/(?:[+-]\d{2}:?\d{2}|[Zz])\z/)
+    begin
+      (zoned ? Time.parse(stamp) : Time.parse("#{stamp} UTC")).getutc
+    rescue ArgumentError
+      nil
+    end
+  end
+end
 
 def parse_front_matter(text)
   m = text.match(/\A---\s*\n(.*?)\n---\s*(\n|\z)/m)
@@ -113,6 +131,14 @@ posts.each do |path|
     filename_date = name[0, 10]
     if date.strftime('%Y-%m-%d') != filename_date && YEAR_RANGE.cover?(date.year)
       warnings << "#{name}: front matter date (#{date.strftime('%Y-%m-%d')}) differs from filename date (#{filename_date}) — the URL uses the front matter date"
+    end
+
+    # CI reads the front matter date as UTC (_config.yml sets no `timezone`) and
+    # Jekyll drops future posts by default: a post dated later today is silently
+    # missing from the deployed site — green build, 404 page. Warn while it can
+    # still be fixed. Reproduce the CI view with `TZ=UTC bundle exec jekyll build`.
+    if (utc = post_time_utc(raw_date)) && utc > Time.now.utc + 60
+      warnings << "#{name}: date is in the future in UTC (#{utc.strftime('%Y-%m-%d %H:%M')} UTC) — Jekyll skips it, so the post won't be on the live site until a later build"
     end
   end
 

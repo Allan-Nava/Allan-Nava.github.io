@@ -1,7 +1,7 @@
 ---
 title: "nolja.it — Associazione Culturale Corea–Italia"
 layout: post
-date: 2026-08-23 00:30
+date: 2026-08-22 21:00
 tag:
 - site
 - web
