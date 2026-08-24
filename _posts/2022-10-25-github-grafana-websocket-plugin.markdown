@@ -8,7 +8,7 @@ tag:
 - grafana
 - grafana-plugin
 - websocket
-image: ""
+image: "https://user-images.githubusercontent.com/8334211/155154644-8925b616-a5e0-4c32-92bd-305696d0a4d1.png"
 headerImage: false
 projects: true
 hidden: true
