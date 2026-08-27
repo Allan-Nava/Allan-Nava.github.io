@@ -2,7 +2,7 @@
 title: "checkfleet"
 layout: post
 date: 2026-07-23 12:48
-updated: 2026-08-25
+updated: 2026-08-27
 tag:
 - go
 - ansible
@@ -24,6 +24,6 @@ Domain-aware infrastructure health checks in one Go binary — TLS expiry, HTTP,
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
 - **Stars**: 7
-- **Ultimo push**: 2026-08-25
+- **Ultimo push**: 2026-08-27
 
 [Repo su GitHub →](https://github.com/Allan-Nava/checkfleet)
