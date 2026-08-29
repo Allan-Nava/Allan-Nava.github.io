@@ -2,7 +2,7 @@
 title: "keycloak-doctor"
 layout: post
 date: 2026-08-17 11:12
-updated: 2026-08-23
+updated: 2026-08-29
 tag:
 - go
 image: "https://raw.githubusercontent.com/Allan-Nava/keycloak-doctor/main/docs/assets/logo.svg"
@@ -20,6 +20,6 @@ Audit a Keycloak realm for the mistakes that actually get exploited — from an 
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
-- **Ultimo push**: 2026-08-23
+- **Ultimo push**: 2026-08-29
 
 [Repo su GitHub →](https://github.com/Allan-Nava/keycloak-doctor)
