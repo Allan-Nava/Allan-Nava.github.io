@@ -2,7 +2,7 @@
 title: "nakama-flutter"
 layout: post
 date: 2021-04-19 12:18
-updated: 2026-08-23
+updated: 2026-08-29
 tag:
 - dart
 - dart
@@ -24,6 +24,6 @@ Dart / Flutter client for Nakama server.
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Dart
 - **Stars**: 125
-- **Ultimo push**: 2026-08-23
+- **Ultimo push**: 2026-08-29
 
 [Repo su GitHub →](https://github.com/Allan-Nava/nakama-flutter)
