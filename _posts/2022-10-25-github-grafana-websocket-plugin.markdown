@@ -2,7 +2,7 @@
 title: "grafana-websocket-plugin"
 layout: post
 date: 2022-10-25 07:38
-updated: 2026-08-29
+updated: 2026-08-30
 tag:
 - typescript
 - grafana
@@ -24,6 +24,6 @@ Grafana websocket plugin
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: TypeScript
 - **Stars**: 1
-- **Ultimo push**: 2026-08-29
+- **Ultimo push**: 2026-08-30
 
 [Repo su GitHub →](https://github.com/Allan-Nava/grafana-websocket-plugin)
