@@ -2,7 +2,7 @@
 title: "keycloak-fitp-enricher"
 layout: post
 date: 2026-05-04 10:52
-updated: 2026-07-16
+updated: 2026-08-31
 tag:
 - java
 - keycloak
@@ -22,6 +22,6 @@ Plugin Keycloak che, su login via FITP/B2C, chiama Microsoft Graph per recuperar
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Java
 - **Stars**: 1
-- **Ultimo push**: 2026-07-16
+- **Ultimo push**: 2026-08-31
 
 [Repo su GitHub →](https://github.com/HiWay-Media/keycloak-fitp-enricher)
