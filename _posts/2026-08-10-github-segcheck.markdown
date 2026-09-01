@@ -2,7 +2,7 @@
 title: "segcheck"
 layout: post
 date: 2026-08-10 08:06
-updated: 2026-08-29
+updated: 2026-09-01
 tag:
 - go
 - abr
@@ -24,6 +24,6 @@ Check what your HLS/DASH segments actually contain — not just what the manifes
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
 - **Stars**: 1
-- **Ultimo push**: 2026-08-29
+- **Ultimo push**: 2026-09-01
 
 [Repo su GitHub →](https://github.com/Allan-Nava/segcheck)
