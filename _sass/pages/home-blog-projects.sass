@@ -86,6 +86,44 @@
 			aspect-ratio: 1 / 1
 			flex-basis: 92px
 
+		// Thumbnail dei progetti (#151). Le immagini vengono dai README dei
+		// repo e non hanno niente in comune: 6 loghi con il fondo dentro il
+		// file, 4 diagrammi su bianco, 3 screenshot scuri, 1 grafico chiaro su
+		// trasparenza (misurati uno per uno). Scorrendo /projects il ritmo si
+		// spezzava a ogni riga: rettangoli bianchi accanto ai gradienti dei
+		// monogrammi, che sono invece coerenti fra loro.
+		//
+		// Si normalizza il contenitore, non le immagini — quelle sono di altri
+		// repo e cambiano senza preavviso:
+		//   - `contain` invece di `cover`: l'immagine sta tutta dentro e non
+		//     viene ritagliata a caso, quindi tutte le tessere hanno la stessa
+		//     forma qualunque sia il formato della sorgente;
+		//   - la tessera ha un fondo nostro, che si vede attorno all'immagine
+		//     e sotto le trasparenze;
+		//   - il velo sopra toglie il bagliore ai fondi bianchi nel tema scuro
+		//     (a zero nel chiaro, dove non serve).
+		// `cover` resta per blog e video: là le sorgenti sono foto e frame
+		// YouTube, che vogliono riempire il box (vedi .thumb-video).
+		> .item > .url > .thumb.thumb-project
+			position: relative
+			background: var(--color-thumb-bg)
+			box-shadow: inset 0 0 0 1px var(--color-inset-line)
+
+			> img
+				object-fit: contain
+				box-sizing: border-box
+				padding: var(--space-2)
+
+			// Il velo è un pseudo-elemento del contenitore: l'immagine resta
+			// il file originale, senza filtri.
+			&:after
+				content: ""
+				position: absolute
+				inset: 0
+				border-radius: inherit
+				background: var(--color-thumb-veil)
+				pointer-events: none
+
 		> .item > .url > .body
 			display: flex
 			flex-direction: column

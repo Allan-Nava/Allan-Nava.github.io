@@ -55,6 +55,15 @@
 	--color-inset-line: rgba(255, 255, 255, 0.04);
 	--color-inset-line-strong: rgba(255, 255, 255, 0.06);
 
+	// --- tessera delle thumbnail dei progetti (#151) ----------------------
+	// Le immagini dei progetti arrivano dai README dei repo e portano ognuna
+	// il proprio fondo: loghi su bianco, screenshot scuri, PNG trasparenti.
+	// Non si normalizzano le immagini, si normalizza il contenitore: fondo
+	// nostro sotto, e un velo sopra che toglie il bagliore ai fondi bianchi
+	// senza toccare i file. Sullo scuro serve, sul chiaro no.
+	--color-thumb-bg: #0b0d10;
+	--color-thumb-veil: rgba(5, 6, 8, 0.22);
+
 	// --- elevazione ------------------------------------------------------
 	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
 	--shadow-md: 0 10px 30px rgba(0, 0, 0, 0.45);
@@ -128,6 +137,12 @@
 	--color-hover-overlay: rgba(0, 0, 0, 0.055);
 	--color-inset-line: rgba(0, 0, 0, 0.04);
 	--color-inset-line-strong: rgba(0, 0, 0, 0.06);
+
+	// --- tessera delle thumbnail dei progetti (#151) ----------------------
+	// Qui un logo su bianco sta gia' bene: il velo e' a zero, la tessera serve
+	// solo a dare un bordo a cio' che e' trasparente.
+	--color-thumb-bg: #eef1f4;
+	--color-thumb-veil: rgba(255, 255, 255, 0);
 
 	// --- elevazione ------------------------------------------------------
 	// Nere al 45-60% le ombre del tema scuro diventano macchie su fondo chiaro.

@@ -76,7 +76,7 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
             <article class="item" data-tags="{% for t in post.tag %}{{ t | slugify }} {% endfor %}">
                 <a class="url" href="{% if post.externalLink %}{{ post.externalLink }}{% else %}{{ site.url }}{{ post.url }}{% endif %}"{% if post.externalLink %} rel="noopener"{% endif %}>
                     {% if post.image and post.image != "" %}
-                        <span class="thumb"><img class="thumb-img" src="{{ post.image }}" alt="" loading="lazy" decoding="async" width="480" height="270"></span>
+                        <span class="thumb thumb-project"><img class="thumb-img" src="{{ post.image }}" alt="" loading="lazy" decoding="async" width="480" height="270"></span>
                     {% else %}
                         <span class="thumb thumb-placeholder ph-{{ post.title | card_palette }}" aria-hidden="true"><span class="mono">{{ post.title | card_initials }}</span></span>
                     {% endif %}
