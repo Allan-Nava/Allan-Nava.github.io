@@ -4,7 +4,7 @@ layout: post
 date: 2026-09-02 15:27
 updated: 2026-09-02
 tag:
-- shell
+- go
 - ansible-inventory
 - cdn
 - cli
@@ -22,7 +22,7 @@ github: Allan-Nava/pqprobe
 Which classes of TLS client can still handshake with your endpoint? pqprobe dials it as a classical client and as a post-quantum one (ML-KEM), and tells a civil refusal apart from a ClientHello it choked on. One static Go binary, zero dependencies, no request ever sent.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
-- **Linguaggio**: Shell
+- **Linguaggio**: Go
 - **Ultimo push**: 2026-09-02
 
 [Repo su GitHub →](https://github.com/Allan-Nava/pqprobe)
