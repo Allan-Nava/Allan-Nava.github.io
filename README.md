@@ -23,3 +23,5 @@ Full documentation lives in [`docs/`](docs/README.md):
 - [Architecture](docs/architecture.md) — layouts, includes, Sass, configuration, plugins
 - [Deployment & CI](docs/deployment.md) — GitHub Actions workflows, content sync (YouTube/Strava), publishing flow, checks
 - [Roadmap](docs/ROADMAP.md) — versioned backlog (milestones v2.0 → v3.0), planned features by priority
+
+Why the project is the way it is — purpose, audience, goals and non-goals, and the filter a new feature has to pass — lives in [`intent.md`](intent.md).

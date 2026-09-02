@@ -9,6 +9,7 @@ Documentation for [allan-nava.github.io](https://allan-nava.github.io) — a per
 | [Architecture](architecture.md) | How the site is put together: layouts, includes, Sass, configuration |
 | [Deployment & CI](deployment.md) | GitHub Actions workflows, content sync (YouTube/Strava), testing, uptime monitoring |
 | [Roadmap](ROADMAP.md) | Backlog versionato (milestone v2.0 → v3.0), feature da implementare |
+| [Intent](../intent.md) | Perché il progetto esiste: obiettivi, non-obiettivi, principi, criteri per accettare una feature |
 
 ## Quick reference
 
