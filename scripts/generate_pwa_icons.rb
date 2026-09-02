@@ -13,8 +13,9 @@
 # che committa i PNG: le icone cambiano una volta ogni mai, e così non serve un
 # renderer in CI.
 #
-# Serve Chrome per lo screenshot. Per ridurre 512 -> 192 usa `sips` (macOS) o
-# ImageMagick se c'è; senza nessuno dei due genera solo i 512 e lo dice.
+# Serve Chrome per lo screenshot. Per ridurre 512 -> 192 usa il primo fra
+# `sips` (macOS), `magick` (ImageMagick 7), `convert` (ImageMagick 6) e
+# `ffmpeg`; se non c'è nessuno dei quattro genera solo i 512 e lo dice.
 #
 # Stdlib only.
 
@@ -84,14 +85,31 @@ def shoot(chrome, url, output)
   abort "Chrome ha fallito lo screenshot di #{File.basename(output)}." unless ok && File.exist?(output)
 end
 
+# Ridimensionatori, in ordine di preferenza. Come per le card social (#141):
+# `magick` è ImageMagick **7**, ma il pacchetto `imagemagick` di Ubuntu è la
+# **6** e installa `convert` — cercare solo `magick` significa non trovare
+# ImageMagick proprio dove è appena stato installato. `ffmpeg` chiude il giro:
+# su Linux c'è quasi sempre, e qui basta scalare un PNG.
+RESIZERS = {
+  'sips' => ->(src, dst, size) { ['sips', '-z', size.to_s, size.to_s, src, '--out', dst] },
+  'magick' => ->(src, dst, size) { ['magick', src, '-resize', "#{size}x#{size}", dst] },
+  'convert' => ->(src, dst, size) { ['convert', src, '-resize', "#{size}x#{size}", dst] },
+  # `-pix_fmt rgba`: le icone di oggi non hanno canale alfa (sono screenshot di
+  # Chrome su fondo pieno), ma se un domani ne avranno uno ffmpeg lo
+  # scarterebbe in silenzio e la maskable finirebbe con gli angoli neri.
+  'ffmpeg' => lambda { |src, dst, size|
+    ['ffmpeg', '-y', '-loglevel', 'error', '-i', src, '-vf', "scale=#{size}:#{size}", '-pix_fmt', 'rgba', dst]
+  }
+}.freeze
+
 def resize(src, dst, size)
-  if tool?('sips')
-    system('sips', '-z', size.to_s, size.to_s, src, '--out', dst, out: File::NULL, err: File::NULL)
-  elsif tool?('magick')
-    system('magick', src, '-resize', "#{size}x#{size}", dst, out: File::NULL, err: File::NULL)
-  else
-    false
-  end
+  tool = RESIZERS.keys.find { |name| tool?(name) }
+  return false unless tool
+
+  # Il file va controllato: un encoder può uscire 0 e lasciare 0 byte, e
+  # un'icona vuota nel manifest è peggio di un'icona mancante.
+  system(*RESIZERS[tool].call(src, dst, size), out: File::NULL, err: File::NULL) &&
+    File.exist?(dst) && File.size(dst).positive?
 end
 
 abort "Template mancante: #{TEMPLATE}" unless File.exist?(TEMPLATE)
@@ -115,7 +133,7 @@ made = []
   if resize(big, small, 192)
     made << small
   else
-    warn "  ! nessun ridimensionatore (sips/magick): #{File.basename(small)} non generata"
+    warn "  ! nessun ridimensionatore fra #{RESIZERS.keys.join(', ')}: #{File.basename(small)} non generata"
   end
 end
 

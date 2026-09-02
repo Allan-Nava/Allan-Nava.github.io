@@ -185,7 +185,7 @@ The caching strategy is deliberately conservative, because a bad service worker 
 
 **To disable it**, deleting `sw.js` is not enough: browsers that already installed it keep using it. Replace the file's body with an unregister-and-clear worker (the recipe is in a comment at the top of `sw.js`) and deploy that.
 
-Icons are generated from `scripts/pwa_icon.html` with **`ruby scripts/generate_pwa_icons.rb`** (Chrome screenshot at 512×512, then `sips`/ImageMagick down to 192) into `assets/images/pwa/` and committed — the same manual-step-plus-committed-PNG pattern as the OG card. The maskable variant shrinks the mark to ~62 %, because Android crops icons with a mask (often a circle) and would eat the corners of the full-bleed version.
+Icons are generated from `scripts/pwa_icon.html` with **`ruby scripts/generate_pwa_icons.rb`** (Chrome screenshot at 512×512, then the first of `sips`, `magick`, `convert` or `ffmpeg` down to 192 — four of them because none is available everywhere, see #141 in [Deployment](deployment.md)) into `assets/images/pwa/` and committed — the same manual-step-plus-committed-PNG pattern as the OG card. The maskable variant shrinks the mark to ~62 %, because Android crops icons with a mask (often a circle) and would eat the corners of the full-bleed version.
 
 Verified with a Node harness that loads the built `sw.js` into a sandbox with mocked service-worker globals and asserts the routing (22 checks: precache contents, old-cache cleanup, what is bypassed, network-first on HTML, offline fallbacks, stale-while-revalidate, cache-first fonts), plus a real-browser registration check through the DevTools protocol. Worth confirming once after the first deploy in DevTools → Application → Service Workers.
 

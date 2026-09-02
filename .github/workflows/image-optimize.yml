@@ -46,11 +46,18 @@ jobs:
 
       - name: Install encoders
         # `webp` porta cwebp (varianti WebP); `ffmpeg` fa gli AVIF, scalandoli
-        # nello stesso passo — avifenc non ridimensiona e non servirebbe;
-        # `imagemagick` serve a generate_og_cards.rb per il PNG->JPEG (in locale
-        # lo fa `sips`, che su Linux non esiste). Chrome è già preinstallato sui
-        # runner ubuntu.
-        run: sudo apt-get update && sudo apt-get install -y webp ffmpeg imagemagick
+        # nello stesso passo — avifenc non ridimensiona e non servirebbe — ed è
+        # anche il convertitore PNG->JPEG delle card social (in locale lo fa
+        # `sips`, che su Linux non esiste). Chrome è già preinstallato sui runner
+        # ubuntu.
+        #
+        # Qui c'era anche `imagemagick`, installato apposta per le card: non è
+        # mai servito a niente perché lo script cercava il binario `magick`, che
+        # è di ImageMagick **7**, mentre il pacchetto di Ubuntu è la **6** e dà
+        # `convert` (#141). Ora lo script conosce entrambi, ma il convertitore
+        # che gira qui è ffmpeg: è già installato per gli AVIF e non aggiunge un
+        # pacchetto solo per convertire dei JPEG.
+        run: sudo apt-get update && sudo apt-get install -y webp ffmpeg
 
       - name: Generate variants
         run: ruby scripts/optimize_images.rb

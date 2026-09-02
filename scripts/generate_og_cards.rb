@@ -6,6 +6,7 @@
 #     env FORCE=1      rigenera anche quelle già presenti
 #     env DRY_RUN=1    elenca cosa farebbe
 #     env QUALITY=82   qualità JPEG (default 82)
+#     env JPEG_TOOL=…  forza il convertitore (sips|magick|convert|ffmpeg)
 #
 # Le card finiscono in assets/images/og/<slug>.jpg e si committano.
 # JPEG e non PNG: a 1200x630 lo screenshot PNG pesa ~120 KB, il JPEG ~45 KB, e
@@ -20,7 +21,9 @@
 # senza, si ricade sulla card generica. Quindi non lanciare questo script non
 # rompe niente.
 #
-# Serve Chrome. Per PNG -> JPEG usa `sips` (macOS) o ImageMagick.
+# Serve Chrome. Per PNG -> JPEG serve uno fra `sips` (macOS), `magick`
+# (ImageMagick 7), `convert` (ImageMagick 6) o `ffmpeg` — il primo trovato in
+# quest'ordine, o quello imposto da `JPEG_TOOL`.
 #
 # Stdlib only.
 
@@ -136,15 +139,54 @@ def shoot(chrome, url, output)
   ) && File.exist?(output)
 end
 
-def to_jpeg(png, jpg)
-  if tool?('sips')
-    system('sips', '-s', 'format', 'jpeg', '-s', 'formatOptions', QUALITY.to_s,
-           png, '--out', jpg, out: File::NULL, err: File::NULL)
-  elsif tool?('magick')
-    system('magick', png, '-quality', QUALITY.to_s, jpg, out: File::NULL, err: File::NULL)
-  else
-    false
+# Convertitori PNG -> JPEG, in ordine di preferenza. Ce ne sono quattro perché
+# nessuno è disponibile ovunque:
+#
+#   sips      solo macOS (in locale è già lì, nessuna installazione)
+#   magick    ImageMagick **7**
+#   convert   ImageMagick **6** — è questo che installa `apt install imagemagick`
+#             su Ubuntu, e il binario `magick` lì NON esiste. Cercare solo
+#             `magick` è ciò che ha fatto fallire "Image Optimize" per tre
+#             esecuzioni di fila (#141): il workflow installava ImageMagick e lo
+#             script abortiva lo stesso con "Serve sips o ImageMagick".
+#   ffmpeg    già installato dal workflow per gli AVIF, quindi la conversione non
+#             dipende da nessun pacchetto in più. La sua scala `-q:v` va da 2
+#             (migliore) a 31: misurato sulla card di un post, QUALITY 82 -> q:v 4
+#             dà 46 KB contro i 68 KB di sips, con una differenza media di
+#             0.4/255 sui pixel — invisibile.
+#
+# `JPEG_TOOL` forza la scelta: serve a provare in locale il ramo che girerà in CI.
+def jpeg_qscale
+  # 82 -> 4, 90 -> 2, 70 -> 7. Fuori scala ffmpeg rifiuta il valore.
+  [[((100 - QUALITY) / 4.5).round, 2].max, 31].min
+end
+
+JPEG_TOOLS = {
+  'sips' => ->(png, jpg) { ['sips', '-s', 'format', 'jpeg', '-s', 'formatOptions', QUALITY.to_s, png, '--out', jpg] },
+  'magick' => ->(png, jpg) { ['magick', png, '-quality', QUALITY.to_s, jpg] },
+  'convert' => ->(png, jpg) { ['convert', png, '-quality', QUALITY.to_s, jpg] },
+  'ffmpeg' => ->(png, jpg) { ['ffmpeg', '-y', '-loglevel', 'error', '-i', png, '-q:v', jpeg_qscale.to_s, jpg] }
+}.freeze
+
+def jpeg_tool
+  forced = ENV['JPEG_TOOL'].to_s.strip
+  unless forced.empty?
+    abort "JPEG_TOOL sconosciuto: #{forced} (validi: #{JPEG_TOOLS.keys.join(', ')})" unless JPEG_TOOLS.key?(forced)
+    abort "JPEG_TOOL=#{forced} ma il binario non è nel PATH." unless tool?(forced)
+    return forced
   end
+
+  JPEG_TOOLS.keys.find { |name| tool?(name) }
+end
+
+def to_jpeg(png, jpg)
+  tool = jpeg_tool
+  return false unless tool
+
+  # `File.exist?` in coda: ffmpeg può uscire 0 e non scrivere nulla se il
+  # formato non gli piace, e una card da 0 byte finirebbe committata.
+  system(*JPEG_TOOLS[tool].call(png, jpg), out: File::NULL, err: File::NULL) &&
+    File.exist?(jpg) && File.size(jpg).positive?
 end
 
 abort "Template mancante: #{TEMPLATE}" unless File.exist?(TEMPLATE)
@@ -155,7 +197,10 @@ unless chrome
         CHROME_CANDIDATES.join("\n  ") +
         "\nPATH=#{ENV.fetch('PATH', '')}\nEsporta CHROME_PATH col percorso del binario."
 end
-abort 'Serve sips o ImageMagick per convertire in JPEG.' unless tool?('sips') || tool?('magick')
+unless jpeg_tool
+  abort "Nessun convertitore PNG -> JPEG nel PATH. Cercati: " \
+        "#{JPEG_TOOLS.keys.join(', ')}. Su Ubuntu: `apt install imagemagick` (dà `convert`) o `ffmpeg`."
+end
 
 FileUtils.mkdir_p(OUT_DIR)
 
