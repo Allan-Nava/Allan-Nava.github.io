@@ -2,7 +2,7 @@
 title: "go-cli"
 layout: post
 date: 2022-02-02 14:57
-updated: 2026-08-29
+updated: 2026-09-02
 tag:
 - go
 image: ""
@@ -21,6 +21,6 @@ Building go cli demo
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
 - **Stars**: 1
-- **Ultimo push**: 2026-08-29
+- **Ultimo push**: 2026-09-02
 
 [Repo su GitHub →](https://github.com/Allan-Nava/go-cli)
