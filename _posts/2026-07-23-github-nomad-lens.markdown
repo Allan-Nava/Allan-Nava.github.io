@@ -2,7 +2,7 @@
 title: "nomad-lens"
 layout: post
 date: 2026-07-23 10:58
-updated: 2026-08-27
+updated: 2026-09-03
 tag:
 - typescript
 - nomad
@@ -23,6 +23,6 @@ HashiCorp Nomad operations inside VS Code — the place where you already edit y
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: TypeScript
 - **Stars**: 1
-- **Ultimo push**: 2026-08-27
+- **Ultimo push**: 2026-09-03
 
 [Repo su GitHub →](https://github.com/Allan-Nava/nomad-lens)
