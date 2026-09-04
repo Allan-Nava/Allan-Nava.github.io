@@ -5,9 +5,9 @@
 # 28 other Pages site(s) are live but ship no sitemap and are
 # omitted: abrsim, ansible-vars-lens, AWS_SMS_LIBRARY, edgemix, fakeyou.go, go-bytebase, go-cli, Go-DDD-Scaffold, go-gemini, Go-GestPay, go-kaltura, go-release.action, Haivision-go-sdk, haproxy-dataplane-go, hls-lens, hm-react-utils, KafkaJS-WS, keycloak-doctor, ladder-bench, Mailgun-Template-Extension-VSCode, MistServer-go-sdk, nats-lens, NextCMS, nomad-lens, OvenMediaEngine-go-sdk, qrspi, segcheck, Vanilla-BLoC-Extension
 - name: checkfleet
-  urls: 43
+  urls: 44
 - name: galera-doctor
-  urls: 1
+  urls: 7
 - name: Hugo-TuttoCampo
   urls: 10
 - name: pqprobe
