@@ -2,7 +2,7 @@
 title: "edgemix"
 layout: post
 date: 2026-08-20 09:37
-updated: 2026-09-01
+updated: 2026-09-05
 tag:
 - go
 image: "https://raw.githubusercontent.com/Allan-Nava/edgemix/main/docs/assets/edgemix-mark.svg"
@@ -20,6 +20,6 @@ Your edge log already knows what your traffic is made of. edgemix reads it out â
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
-- **Ultimo push**: 2026-09-01
+- **Ultimo push**: 2026-09-05
 
 [Repo su GitHub â†’](https://github.com/Allan-Nava/edgemix)
