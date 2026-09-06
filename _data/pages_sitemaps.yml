@@ -7,7 +7,7 @@
 - name: checkfleet
   urls: 44
 - name: galera-doctor
-  urls: 7
+  urls: 8
 - name: Hugo-TuttoCampo
   urls: 10
 - name: keycloak-doctor
