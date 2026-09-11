@@ -2,9 +2,9 @@
 title: "teamcity-agent"
 layout: post
 date: 2024-01-31 08:50
-updated: 2025-09-18
+updated: 2026-09-11
 tag:
-- roff
+- github
 image: ""
 headerImage: false
 projects: true
@@ -19,7 +19,6 @@ github: HiWay-Media/teamcity-agent
 TeamCity docker images
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
-- **Linguaggio**: Roff
-- **Ultimo push**: 2025-09-18
+- **Ultimo push**: 2026-09-11
 
 [Repo su GitHub →](https://github.com/HiWay-Media/teamcity-agent)
