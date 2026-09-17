@@ -23,6 +23,6 @@ author: allan
 
     <div class="toright">
         <p></p>
-        <p><a href="https://recipyer.herokuapp.com/" target="_blank">Recipyer site</a></p>
+        <p>Recipyer site <em>(non più online)</em></p>
     </div>
 </div>

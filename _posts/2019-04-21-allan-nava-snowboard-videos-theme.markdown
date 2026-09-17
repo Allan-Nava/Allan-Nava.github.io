@@ -17,13 +17,3 @@ externalLink: true
 
 ## :video_camera: Snowboard - Vlog 2019
 
-<lite-youtube videoid="Ziktpnb8p6E"></lite-youtube>
-
-<lite-youtube videoid="71EcZ0ZQejo"></lite-youtube>
-
-<lite-youtube videoid="EuYgp4Dq5LI"></lite-youtube>
-
-<lite-youtube videoid="YSOOtdT4igQ"></lite-youtube>
-
-
-

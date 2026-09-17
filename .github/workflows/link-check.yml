@@ -43,7 +43,7 @@ jobs:
         run: |
           set +e
           bundle exec htmlproofer ./_site \
-            --ignore-urls "/localhost/" \
+            --ignore-urls "/localhost/,//(www\\.)?livereporter\\.com,//(www\\.)?superenduro\\.tv" \
             --ignore-empty-alt \
             --allow-hash-href \
             --assume-extension ".html" \

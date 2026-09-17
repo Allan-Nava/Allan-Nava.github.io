@@ -23,14 +23,14 @@ externalLink: true
 
 <div>
     <video class="fullscreen fill" width="100%" autoplay loop controls >
-    <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/aprica.mp4" type="video/mp4">
+    <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/aprica-2024.mp4" type="video/mp4">
     </video>
 
 </div>
 
 <div>
     <video class="fullscreen fill" width="100%" loop controls >
-    <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/aprica-1.mp4" type="video/mp4">
+    <source src="https://github.com/Allan-Nava/Allan-Nava.github.io/raw/master/assets/video/aprica-1-2024.mp4" type="video/mp4">
     </video>
 
 </div>

@@ -1,28 +1,29 @@
 ---
-title: "Docker FFmpeg Nvenc"
+title: "Docker-FFmpeg-Nvenc"
 layout: post
 date: 2023-01-18 16:00
-tag: 
-- devops
+updated: 2026-09-17
+tag:
+- python
 - docker
 - ffmpeg
-- nvidia
+- github-actions
 image: ""
 headerImage: false
 projects: true
-hidden: false # don't count this post in blog pagination
-description: "Docker FFmpeg Nvenc"
+hidden: true
+description: "Base Docker image with ffmpeg nvenc"
 category: project
 author: allan
+externalLink: https://github.com/Allan-Nava/Docker-FFmpeg-Nvenc
+github: Allan-Nava/Docker-FFmpeg-Nvenc
 ---
 
-<div class="side-by-side">
-    <div class="toleft">
-        <figcaption class="caption">Docker FFmpeg Nvenc</figcaption>
-    </div>
+Base Docker image with ffmpeg nvenc
 
-    <div class="toright">
-        <p></p>
-        <p><a href="https://github.com/Allan-Nava/Docker-FFmpeg-Nvenc" target="_blank">https://github.com/Allan-Nava/Docker-FFmpeg-Nvenc</a></p>
-    </div>
-</div>
+- **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
+- **Linguaggio**: Python
+- **Stars**: 7
+- **Ultimo push**: 2026-09-17
+
+[Repo su GitHub →](https://github.com/Allan-Nava/Docker-FFmpeg-Nvenc)

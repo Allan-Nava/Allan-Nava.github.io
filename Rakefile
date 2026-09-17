@@ -11,8 +11,12 @@ require 'html-proofer'
 # `ignore_empty_alt`: alt="" è la marcatura corretta per le immagini decorative
 # (avatar della nav, thumbnail delle card, dove il nome accessibile lo dà il
 # link). Un alt **mancante** del tutto resta un errore, ed è giusto così.
+# `ignore_urls`: oltre a localhost, i domini che rispondono **403 a un bot** pur
+# essendo vivi in un browser (Cloudflare e simili). Sono falsi positivi che
+# tornavano a ogni giro mensile e rendevano illeggibile il report (#170). Qui
+# vanno solo i domini verificati vivi: un 403 non verificato resta un finding.
 PROOFER_OPTIONS = {
-  ignore_urls: [/localhost/],
+  ignore_urls: [/localhost/, %r{//(www\.)?livereporter\.com}, %r{//(www\.)?superenduro\.tv}],
   only_4xx: true,
   ignore_empty_alt: true,
   allow_hash_href: true,

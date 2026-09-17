@@ -14,17 +14,3 @@ author: allan
 externalLink: true
 ---
 
-<lite-youtube videoid="F0pHik5TYkM"></lite-youtube>
-
-
-<lite-youtube videoid="SzyynM9Bhgo"></lite-youtube>
-
-
-<lite-youtube videoid="0B7-iEcLG8o"></lite-youtube>
-
-
-
-<lite-youtube videoid="O6am0_LDG10"></lite-youtube>
-
-
-<lite-youtube videoid="nRXCdRX7-MQ"></lite-youtube>

@@ -27,6 +27,6 @@ LVF TV è la piattaforma OTT ufficiale della Lega Pallavolo Serie A Femminile, d
     </div>
 
     <div class="toright">
-       <a href="https://www.amazon.it/LVF-TV-per-Fire-OS/dp/B08NW69XBX/ref=sr_1_1?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=lega+volley+tv&qid=1606117154&s=mobile-apps&sr=1-1" target="_blank">Lega Volley Femminile Firestick APP</a>
+       Lega Volley Femminile Firestick APP <em>(non più disponibile)</em>
     </div>
 </div>

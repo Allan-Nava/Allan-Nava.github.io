@@ -16,5 +16,3 @@ lat: 47.498
 lng: 19.04
 ---
 
-<lite-youtube videoid="lubeO-cuG6g"></lite-youtube>
-

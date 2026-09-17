@@ -17,4 +17,3 @@ lat: 40.1522
 lng: 18.2261
 ---
 
-<lite-youtube videoid="aMg2fm79tVo"></lite-youtube>

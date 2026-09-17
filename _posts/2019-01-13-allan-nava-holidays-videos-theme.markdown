@@ -17,9 +17,3 @@ externalLink: true
 <lite-youtube videoid="Y3wg9FqQyKM"></lite-youtube>
 
 
-<lite-youtube videoid="lgCQ88K0DEk"></lite-youtube>
-
-<lite-youtube videoid="_ILi53gVKZE"></lite-youtube>
-
-
-<lite-youtube videoid="klKV-DoxQG0"></lite-youtube>

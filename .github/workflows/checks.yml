@@ -55,4 +55,4 @@ jobs:
             --allow-hash-href \
             --ignore-empty-alt \
             --assume-extension ".html" \
-            --ignore-urls "/localhost/"
+            --ignore-urls "/localhost/,//(www\\.)?livereporter\\.com,//(www\\.)?superenduro\\.tv"

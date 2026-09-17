@@ -19,7 +19,6 @@ author: allan
 
 <div class="side-by-side">
     <div class="toleft">
-        <img class="image" src="https://media-exp1.licdn.com/dms/image/C4D22AQHElgc6iqmG0w/feedshare-shrink_800/0/1613665638911?e=1616630400&v=beta&t=CpKInIH_fcSvgFNRsENM4z43BW_V1WWgneH-2RvaSzg" alt="flutter italia espresso">
         <figcaption class="caption">Flutter Italia Espresso</figcaption>
     </div>
 

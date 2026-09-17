@@ -53,7 +53,8 @@ Both rake tasks mirror the flags CI uses. To call html-proofer directly:
 
 ```bash
 bundle exec htmlproofer ./_site --disable-external --allow-hash-href \
-  --ignore-empty-alt --assume-extension ".html" --ignore-urls "/localhost/"
+  --ignore-empty-alt --assume-extension ".html" \
+  --ignore-urls "/localhost/,//(www\\.)?livereporter\\.com,//(www\\.)?superenduro\\.tv"
 ```
 
 Those names are **html-proofer 4/5**: 3.x used `--url-ignore` / `--empty-alt-ignore` and a valueless `--assume-extension`. If you see the old spellings anywhere, they are stale. In 5.x the booleans are documented as `--[no-]flag`, but the plain `--flag` form still works, so nothing changed between 4 and 5 for the CLI.
@@ -63,5 +64,7 @@ The same checks run in CI on every pull request (see [Deployment & CI](deploymen
 Expect some noise from long-dead external links in old posts; treat failures on *internal* links and images as real problems.
 
 **External links are noisy, not broken.** A full `rake test` checks ~1440 external links and currently reports ~1010 failures: a decade of posts pointing at Heroku apps and sites that no longer exist. That is why `checks.yml` only validates internal links, and `link-check.yml` reports the external ones to an issue once a month instead of gating.
+
+`--ignore-urls` carries two domains beyond localhost: `livereporter.com` and `superenduro.tv` answer **403 to a bot** while being perfectly alive in a browser (Cloudflare and friends). They came back on every monthly run and made the report harder to read (#170). Only add a domain here after checking it is actually alive — an unverified 403 stays a finding. Keep the list identical in `Rakefile`, `checks.yml` and `link-check.yml`.
 
 The old `Segmentation fault` in `ethon`/libcurl that used to kill the external phase on macOS/arm64 did **not** reproduce with html-proofer 5 — a full local run completed cleanly. `ethon` is still in the bundle, so the crash may simply have moved rather than gone; if it comes back, `rake test_internal` remains the local workaround.

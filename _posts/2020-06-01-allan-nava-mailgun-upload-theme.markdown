@@ -27,7 +27,7 @@ author: allan
     </div>
 
     <div class="toright">
-       <a href="https://marketplace.visualstudio.com/items?itemName=Allan-Nava.mailgun-upload-template-vscodec" target="_blank"> Mailgun Upload Templates Visual Studio Code Extension</a>
+       <a href="https://marketplace.visualstudio.com/items?itemName=Allan-Nava.mailgun-upload-template-vscode" target="_blank"> Mailgun Upload Templates Visual Studio Code Extension</a>
     </div>
 </div>
 

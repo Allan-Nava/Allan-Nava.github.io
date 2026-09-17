@@ -29,6 +29,6 @@ author: allan
     </div>
 
     <div class="toright">
-       <a href="https://play.google.com/store/apps/details?id=it.iesitalia.footterstv&hl=en&gl=US" target="_blank">Footters TV APP</a>
+       Footters TV APP <em>(non più disponibile)</em>
     </div>
 </div>

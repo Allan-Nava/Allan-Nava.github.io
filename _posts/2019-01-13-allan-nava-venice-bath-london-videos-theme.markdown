@@ -17,8 +17,3 @@ externalLink: true
 ## :video_camera: Holidays videos
 
 
-<lite-youtube videoid="UP-DspVsx0w"></lite-youtube>
-
-
-<lite-youtube videoid="Yv5BMQV8-Fg"></lite-youtube>
-

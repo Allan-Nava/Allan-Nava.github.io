@@ -28,4 +28,3 @@ externalLink: true
     <img class="image" src="/assets/images/20260412_121512_1.jpg" alt="" />
 </div>
 
-<lite-youtube videoid="cvw3dynD0i4" data-short playlabel="Monte Marone ⛰️"></lite-youtube>
