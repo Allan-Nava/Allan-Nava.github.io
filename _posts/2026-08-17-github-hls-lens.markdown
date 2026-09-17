@@ -2,7 +2,7 @@
 title: "hls-lens"
 layout: post
 date: 2026-08-17 13:51
-updated: 2026-09-03
+updated: 2026-09-13
 tag:
 - typescript
 image: "https://raw.githubusercontent.com/Allan-Nava/hls-lens/main/media/icon.png"
@@ -20,6 +20,6 @@ VS Code extension: read HLS manifests in the editor
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: TypeScript
-- **Ultimo push**: 2026-09-03
+- **Ultimo push**: 2026-09-13
 
 [Repo su GitHub →](https://github.com/Allan-Nava/hls-lens)

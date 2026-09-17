@@ -2,7 +2,7 @@
 title: "robotsmith"
 layout: post
 date: 2026-09-04 08:18
-updated: 2026-09-04
+updated: 2026-09-07
 tag:
 - go
 image: "https://raw.githubusercontent.com/Allan-Nava/robotsmith/main/docs/logo.svg"
@@ -20,6 +20,6 @@ Verifies a robots.txt — and advises how to write it starting from the traffic 
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
-- **Ultimo push**: 2026-09-04
+- **Ultimo push**: 2026-09-07
 
 [Repo su GitHub →](https://github.com/Allan-Nava/robotsmith)
