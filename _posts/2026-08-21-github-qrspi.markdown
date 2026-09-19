@@ -23,6 +23,7 @@ Questions → Research → Spec → Plan → Implement: a phase-gated Claude Cod
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: JavaScript
+- **Stars**: 1
 - **Ultimo push**: 2026-09-18
 
 [Repo su GitHub →](https://github.com/Allan-Nava/qrspi)
