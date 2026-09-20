@@ -2,7 +2,7 @@
 title: "ffmpeg-static-binaries"
 layout: post
 date: 2023-10-04 07:41
-updated: 2026-06-20
+updated: 2026-09-20
 tag:
 - shell
 - ffmpeg
@@ -22,6 +22,6 @@ FFmpeg static binaries
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Shell
-- **Ultimo push**: 2026-06-20
+- **Ultimo push**: 2026-09-20
 
 [Repo su GitHub →](https://github.com/Allan-Nava/ffmpeg-static-binaries)
