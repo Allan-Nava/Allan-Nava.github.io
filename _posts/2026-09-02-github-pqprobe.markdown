@@ -2,7 +2,7 @@
 title: "pqprobe"
 layout: post
 date: 2026-09-02 15:27
-updated: 2026-09-19
+updated: 2026-09-21
 tag:
 - go
 - ansible-inventory
@@ -23,6 +23,6 @@ Which classes of TLS client can still handshake with your endpoint? pqprobe dial
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
-- **Ultimo push**: 2026-09-19
+- **Ultimo push**: 2026-09-21
 
 [Repo su GitHub →](https://github.com/Allan-Nava/pqprobe)

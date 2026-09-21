@@ -2,7 +2,7 @@
 title: "NextCMS"
 layout: post
 date: 2022-04-20 11:00
-updated: 2026-09-14
+updated: 2026-09-20
 tag:
 - typescript
 - cms
@@ -24,6 +24,6 @@ NextCMS  | Page builder
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: TypeScript
 - **Stars**: 4
-- **Ultimo push**: 2026-09-14
+- **Ultimo push**: 2026-09-20
 
 [Repo su GitHub →](https://github.com/Allan-Nava/NextCMS)
