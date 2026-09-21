@@ -59,6 +59,8 @@ layout: page
     {% include author.html %}
 {% endif %}
 
+{% include webmentions.html %}
+
 {% include giscus.html %}
 
 {% if site.disqus.categories contains page.category %}

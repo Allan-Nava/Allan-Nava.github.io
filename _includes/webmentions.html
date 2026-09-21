@@ -1,0 +1,196 @@
+{%- comment -%}
+Webmentions sotto il post (#133): like, repost e risposte che arrivano da
+Mastodon e Bluesky via brid.gy, aggregati da webmention.io.
+
+Non emette nulla finche' `webmentions.domain` e' vuoto in _config.yml. I <link>
+dell'endpoint stanno in _includes/webmention-links.html, nel <head> di ogni
+pagina.
+
+TRE REGOLE, tutte gia' pagate altrove in questo repo:
+
+1. Il contenuto lo scrivono SCONOSCIUTI. Ogni stringa che arriva dall'API entra
+   nel DOM come `textContent` e ogni elemento si costruisce con createElement:
+   mai `innerHTML`, mai concatenare HTML. Vale per il testo e vale per gli URL,
+   dove si accettano solo http/https — un `javascript:` in `href` verrebbe
+   eseguito al click.
+2. Niente commenti `//` qui dentro: `_layouts/compress.html` collassa le
+   newline e si mangerebbe il resto della riga (stessa trappola di
+   interactions.html e giscus.html).
+3. Costruire il DOM invece di concatenare stringhe serve anche contro jemoji,
+   che gira sull'HTML finito e ri-parsa tutto il documento appena trova un
+   `:shortcode:` — dentro una stringa JS quello rompe la pagina. Qui non ci sono
+   stringhe HTML, quindi non c'e' niente da rompere.
+
+Senza JS la sezione resta nascosta: un contenitore vuoto con un titolo e' peggio
+di nessuna sezione.
+{%- endcomment -%}
+{%- if site.webmentions.domain and site.webmentions.domain != "" -%}
+<section class="webmentions" aria-labelledby="webmentions-title" hidden>
+    <h2 class="webmentions-title" id="webmentions-title">Reazioni dal web</h2>
+    <div class="webmention-facepile" hidden>
+        <p class="webmention-count"></p>
+        <ul class="webmention-faces"></ul>
+    </div>
+    <ul class="webmention-replies" hidden></ul>
+</section>
+<script>
+(function () {
+  var section = document.querySelector('.webmentions');
+  if (!section || !window.fetch) return;
+
+  var target = {{ page.url | absolute_url | jsonify }};
+  var api = 'https://webmention.io/api/mentions.jf2?per-page=100&target=' + encodeURIComponent(target);
+
+  /* Un href che arriva da fuori puo' essere `javascript:`: si accettano solo i
+     due schemi di rete, e tutto il resto diventa nessun link. */
+  function safeUrl(value) {
+    if (typeof value !== 'string') return null;
+    try {
+      var u = new URL(value, location.href);
+      return (u.protocol === 'http:' || u.protocol === 'https:') ? u.href : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function authorOf(entry) {
+    var a = entry && entry.author ? entry.author : {};
+    return {
+      name: typeof a.name === 'string' && a.name ? a.name : 'Anonimo',
+      photo: safeUrl(a.photo),
+      url: safeUrl(a.url)
+    };
+  }
+
+  function faceFor(entry) {
+    var who = authorOf(entry);
+    var li = document.createElement('li');
+    li.className = 'webmention-face';
+
+    var holder = who.url ? document.createElement('a') : document.createElement('span');
+    if (who.url) {
+      holder.href = who.url;
+      holder.rel = 'nofollow ugc noopener';
+    }
+    holder.title = who.name;
+
+    if (who.photo) {
+      var img = document.createElement('img');
+      img.src = who.photo;
+      img.alt = who.name;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.width = 40;
+      img.height = 40;
+      img.referrerPolicy = 'no-referrer';
+      holder.appendChild(img);
+    } else {
+      var initial = document.createElement('span');
+      initial.className = 'webmention-initial';
+      initial.setAttribute('aria-hidden', 'true');
+      initial.textContent = who.name.slice(0, 1).toUpperCase();
+      holder.appendChild(initial);
+      var sr = document.createElement('span');
+      sr.className = 'sr-only';
+      sr.textContent = who.name;
+      holder.appendChild(sr);
+    }
+
+    li.appendChild(holder);
+    return li;
+  }
+
+  function replyFor(entry) {
+    var who = authorOf(entry);
+    var li = document.createElement('li');
+    li.className = 'webmention-reply';
+
+    var head = document.createElement('p');
+    head.className = 'webmention-reply-head';
+
+    var nameEl;
+    if (who.url) {
+      nameEl = document.createElement('a');
+      nameEl.href = who.url;
+      nameEl.rel = 'nofollow ugc noopener';
+    } else {
+      nameEl = document.createElement('span');
+    }
+    nameEl.className = 'webmention-reply-author';
+    nameEl.textContent = who.name;
+    head.appendChild(nameEl);
+
+    var permalink = safeUrl(entry.url);
+    var published = typeof entry.published === 'string' ? entry.published : null;
+    if (published) {
+      var when = new Date(published);
+      if (!isNaN(when)) {
+        head.appendChild(document.createTextNode(' · '));
+        var time = document.createElement('time');
+        time.dateTime = published;
+        time.textContent = when.toLocaleDateString();
+        if (permalink) {
+          var a = document.createElement('a');
+          a.href = permalink;
+          a.rel = 'nofollow ugc noopener';
+          a.appendChild(time);
+          head.appendChild(a);
+        } else {
+          head.appendChild(time);
+        }
+      }
+    }
+    li.appendChild(head);
+
+    /* `content.text` e non `content.html`: il secondo e' markup scritto da
+       sconosciuti e finirebbe nella pagina cosi' com'e'. */
+    var text = entry.content && typeof entry.content.text === 'string' ? entry.content.text.trim() : '';
+    if (text) {
+      if (text.length > 500) text = text.slice(0, 500) + '…';
+      var body = document.createElement('p');
+      body.className = 'webmention-reply-text';
+      body.textContent = text;
+      li.appendChild(body);
+    }
+    return li;
+  }
+
+  fetch(api)
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function (data) {
+      var items = data && Array.isArray(data.children) ? data.children : [];
+      if (!items.length) return;
+
+      var faces = [];
+      var replies = [];
+      items.forEach(function (entry) {
+        var kind = entry['wm-property'];
+        if (kind === 'like-of' || kind === 'repost-of' || kind === 'bookmark-of') {
+          faces.push(entry);
+        } else if (kind === 'in-reply-to' || kind === 'mention-of') {
+          replies.push(entry);
+        }
+      });
+      if (!faces.length && !replies.length) return;
+
+      if (faces.length) {
+        var pile = section.querySelector('.webmention-facepile');
+        var list = pile.querySelector('.webmention-faces');
+        faces.forEach(function (entry) { list.appendChild(faceFor(entry)); });
+        pile.querySelector('.webmention-count').textContent =
+          faces.length === 1 ? '1 like o repost' : faces.length + ' like e repost';
+        pile.hidden = false;
+      }
+
+      if (replies.length) {
+        var replyList = section.querySelector('.webmention-replies');
+        replies.forEach(function (entry) { replyList.appendChild(replyFor(entry)); });
+        replyList.hidden = false;
+      }
+
+      section.hidden = false;
+    })
+    .catch(function () { /* webmention.io giu' o offline: la sezione resta nascosta */ });
+})();
+</script>
+{%- endif -%}

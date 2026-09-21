@@ -112,6 +112,7 @@ jekyll-seo-tag usa per `og:locale`); senza, resta il default di prima.
     contraddittorio e Google puo' ignorarli entrambi e scegliersi da se' l'URL da
     indicizzare. Ne resta uno solo, quello del plugin.
     {%- endcomment -%}
+    {% include webmention-links.html %}
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}{{ "/feed.xml" }}" />
     {%- comment -%}
     I progetti hanno un feed separato (#160): /feed.xml e' solo il blog, perche'

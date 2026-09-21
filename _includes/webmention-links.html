@@ -1,0 +1,16 @@
+{%- comment -%}
+I due <link> che dichiarano dove mandare una webmention (#133). Vanno nel
+<head> di OGNI pagina, non solo dei post: un mittente li cerca sulla pagina che
+sta linkando, qualunque essa sia.
+
+`rel="pingback"` accanto a `rel="webmention"`: e' il ponte di webmention.io per
+i mittenti che parlano ancora il protocollo vecchio. Non e' un doppione.
+
+Non emette nulla finche' `webmentions.domain` e' vuoto in _config.yml —
+dichiarare un endpoint per un dominio non registrato manderebbe i mittenti su
+un 404, che e' peggio del non dichiarare niente.
+{%- endcomment -%}
+{%- if site.webmentions.domain and site.webmentions.domain != "" -%}
+    <link rel="webmention" href="https://webmention.io/{{ site.webmentions.domain }}/webmention" />
+    <link rel="pingback" href="https://webmention.io/{{ site.webmentions.domain }}/xmlrpc" />
+{%- endif -%}
