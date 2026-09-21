@@ -1,31 +1,28 @@
 ---
-title: "KafkaJS WS library"
+title: "KafkaJS-WS"
 layout: post
 date: 2022-11-07 16:00
-tag: 
-- site
-- javascript
-- html
-- web
+updated: 2026-08-31
+tag:
 - typescript
-- javascript-library
+- kafka
+- kafkajs
+- kafkajs-client
 image: ""
 headerImage: false
 projects: true
-hidden: false # don't count this post in blog pagination
-description: "KafkaJS WS npm library"
+hidden: true
+description: "A modern Apache Kafka client for node.js"
 category: project
 author: allan
+externalLink: https://github.com/Allan-Nava/KafkaJS-WS
+github: Allan-Nava/KafkaJS-WS
 ---
 
+A modern Apache Kafka client for node.js
 
-<div class="side-by-side">
-    <div class="toleft">
-        <figcaption class="caption">KafkaJS WS</figcaption>
-    </div>
+- **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
+- **Linguaggio**: TypeScript
+- **Ultimo push**: 2026-08-31
 
-    <div class="toright">
-        <p></p>
-        <p><a href="https://github.com/Allan-Nava/KafkaJS-WS" target="_blank">https://github.com/Allan-Nava/KafkaJS-WS</a></p>
-    </div>
-</div>
+[Repo su GitHub →](https://github.com/Allan-Nava/KafkaJS-WS)

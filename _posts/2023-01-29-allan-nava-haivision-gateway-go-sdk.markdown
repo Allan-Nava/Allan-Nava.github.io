@@ -1,32 +1,29 @@
 ---
-title: "Haivision Engine Go SDK "
+title: "Haivision-go-sdk"
 layout: post
 date: 2023-01-29 11:00
-tag: 
+updated: 2026-09-07
+tag:
+- go
+- go
 - golang
-- ffmpeg
-- sdk
-- haivision
-- video
-- streaming
+- golang-library
 image: ""
 headerImage: false
 projects: true
-hidden: false 
+hidden: true
 description: "Haivision Go SDK Rest API"
 category: project
 author: allan
+externalLink: https://github.com/Allan-Nava/Haivision-go-sdk
+github: Allan-Nava/Haivision-go-sdk
 ---
 
-<div class="side-by-side">
-    <div class="toleft">
-        <figcaption class="caption">Haivision Go SDK Rest API
-        .</figcaption>
+Haivision Go SDK Rest API
 
-    </div>
+- **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
+- **Linguaggio**: Go
+- **Stars**: 4
+- **Ultimo push**: 2026-09-07
 
-    <div class="toright">
-        <p></p>
-        <p><a href="https://github.com/Allan-Nava/Haivision-go-sdk" target="_blank">https://github.com/Allan-Nava/Haivision-go-sdk</a></p>
-    </div>
-</div>
+[Repo su GitHub →](https://github.com/Allan-Nava/Haivision-go-sdk)

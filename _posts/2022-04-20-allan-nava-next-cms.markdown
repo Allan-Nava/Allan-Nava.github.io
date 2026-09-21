@@ -1,33 +1,29 @@
 ---
-title: "Next CMS"
+title: "NextCMS"
 layout: post
 date: 2022-04-20 11:00
-tag: 
-- site
-- javascript
-- html
-- web
-- nextcms
+updated: 2026-09-14
+tag:
+- typescript
 - cms
-- nextjs
+- cms-framework
+- fullstack
 image: ""
 headerImage: false
 projects: true
-hidden: false # don't count this post in blog pagination
-description: "Next CMS"
+hidden: true
+description: "NextCMS | Page builder"
 category: project
 author: allan
+externalLink: https://github.com/Allan-Nava/NextCMS
+github: Allan-Nava/NextCMS
 ---
 
+NextCMS  | Page builder
 
-<div class="side-by-side">
-    <div class="toleft">
-        <!-- <img class="image" src="https://static.supertennix.it/staticfiles/img/logo.svg" alt="Logo Next CMS"> -->
-        <figcaption class="caption">Next CMS</figcaption>
-    </div>
+- **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
+- **Linguaggio**: TypeScript
+- **Stars**: 4
+- **Ultimo push**: 2026-09-14
 
-    <div class="toright">
-        <p></p>
-        <p><a href="https://github.com/Allan-Nava/NextCMS" target="_blank">https://github.com/Allan-Nava/NextCMS</a></p>
-    </div>
-</div>
+[Repo su GitHub →](https://github.com/Allan-Nava/NextCMS)

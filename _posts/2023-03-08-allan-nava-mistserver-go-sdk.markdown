@@ -1,31 +1,29 @@
 ---
-title: "MistServer Go SDk"
+title: "MistServer-go-sdk"
 layout: post
 date: 2023-03-08 10:00
-tag: 
+updated: 2026-09-03
+tag:
+- go
+- go
 - golang
-- mistserver
-- ffmpeg
-- streaming
-- broadcast
+- golang-library
 image: ""
 headerImage: false
 projects: true
-hidden: false 
-description: "MistServer Go SDK"
+hidden: true
+description: "MistServer Go SDK Rest API"
 category: project
 author: allan
+externalLink: https://github.com/Allan-Nava/MistServer-go-sdk
+github: Allan-Nava/MistServer-go-sdk
 ---
 
+MistServer Go SDK Rest API
 
-<div class="side-by-side">
-    <div class="toleft">
-        <figcaption class="caption">MistServer Go SDk</figcaption>
-    </div>
+- **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
+- **Linguaggio**: Go
+- **Stars**: 4
+- **Ultimo push**: 2026-09-03
 
-    <div class="toright">
-        <p></p>
-        <p><a href="https://github.com/Allan-Nava/MistServer-go-sdk" target="_blank">https://github.com/Allan-Nava/MistServer-go-sdk</a></p>
-    </div>
-</div>
-
+[Repo su GitHub →](https://github.com/Allan-Nava/MistServer-go-sdk)
