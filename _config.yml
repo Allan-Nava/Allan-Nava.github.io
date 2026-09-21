@@ -130,6 +130,17 @@ giscus:
   category: Announcements
   category-id: "DIC_kwDOCdtpMc4DDkZW"
 #
+# Webmentions (#133): like/repost/risposte da Mastodon e Bluesky raccolti sotto
+# i post. `domain` e' il dominio registrato su https://webmention.io (login con
+# GitHub, poi si aggiungono i due <link> che l'include emette gia' da se').
+# Finche' `domain` e' vuoto l'include non emette NULLA — ne' i <link> nell'head
+# ne' la sezione sotto il post: una pagina che dichiara un endpoint inesistente
+# invita i mittenti a un 404.
+# Il pezzo che NON sta nel repo: su https://brid.gy vanno collegati gli account
+# (Mastodon, Bluesky) perche' inoltrino le interazioni a webmention.io.
+webmentions:
+  domain: ""
+#
 # do you want to show the "read time" of the posts?
 read-time: true
 # do you want to show the "tags" inside the posts?

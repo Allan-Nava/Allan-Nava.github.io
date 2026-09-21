@@ -277,12 +277,20 @@ SOURCES.each do |source|
 
     # No marker for this repo: don't duplicate a hand-written post that already
     # links it, and don't collide with an existing filename slug.
-    if existing_text.include?(repo['html_url'])
+    #
+    # Entrambi i confronti sono su **confine**, non su sottostringa. Con un
+    # `include?` nudo un repo il cui nome e' prefisso di un altro non otteneva
+    # mai un post: `Allan-Nava/Docker-FFmpeg` risultava "already linked" per via
+    # dell'URL di `Docker-FFmpeg-Nvenc` che lo contiene, e "filename match" per
+    # via di `…-docker-ffmpeg-nvenc.markdown`. Il repo non e' mai comparso su
+    # /projects, in silenzio: i due skip si leggono come decisioni volute.
+    linked = existing_text.match?(/#{Regexp.escape(repo['html_url'])}(?![A-Za-z0-9._-])/)
+    if linked
       puts "skip (already linked):   #{full_name}"
       next
     end
     slug = slugify(name)
-    if slug.length >= 5 && existing_names.include?(slug)
+    if slug.length >= 5 && existing_names.match?(/#{Regexp.escape(slug)}\.markdown$/)
       puts "skip (filename match):   #{full_name} — esiste già un post con '#{slug}' nel nome"
       next
     end

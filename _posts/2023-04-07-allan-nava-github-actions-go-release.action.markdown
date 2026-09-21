@@ -1,34 +1,28 @@
 ---
-title: "Go Release Binary GitHub Action V2"
+title: "go-release.action"
 layout: post
 date: 2023-03-31 10:00
-tag: 
+updated: 2026-08-21
+tag:
+- shell
+- actions
 - github
-- hiway media
-- hiway
-- github action
-- go release
-- go build
-- golang
-- go
+- github-actions
 image: ""
 headerImage: false
 projects: true
-hidden: false 
+hidden: true
 description: "Automate publishing Go build artifacts for GitHub releases through GitHub Actions"
 category: project
 author: allan
+externalLink: https://github.com/Allan-Nava/go-release.action
+github: Allan-Nava/go-release.action
 ---
 
+Automate publishing Go build artifacts for GitHub releases through GitHub Actions
 
-<div class="side-by-side">
-    <div class="toleft">
-        <figcaption class="caption">Automate publishing Go build artifacts for GitHub releases through GitHub Actions</figcaption>
-    </div>
+- **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
+- **Linguaggio**: Shell
+- **Ultimo push**: 2026-08-21
 
-    <div class="toright">
-        <p></p>
-        <p><a href="https://github.com/Allan-Nava/go-release.action" target="_blank">https://github.com/Allan-Nava/go-release.action</a></p>
-    </div>
-</div>
-
+[Repo su GitHub →](https://github.com/Allan-Nava/go-release.action)

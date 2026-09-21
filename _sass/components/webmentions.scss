@@ -1,0 +1,122 @@
+// Webmentions sotto il post (#133): facepile dei like/repost e lista delle
+// risposte. Commenti `//` e non `/* */`: il CSS e' inlineato in ogni pagina e i
+// blocchi `/* */` verrebbero emessi.
+//
+// Nessun hex: tutto dai token, che hanno entrambe le versioni di tema. Gli
+// avatar arrivano da istanze altrui e portano ognuno il proprio fondo — stessa
+// situazione delle thumbnail dei progetti — quindi stanno su una tessera
+// `--color-surface` con il proprio bordo, che li stacca dallo sfondo qualunque
+// cosa contengano.
+
+.webmentions {
+	margin: var(--space-8) 0 0;
+	padding: var(--space-5) 0 0;
+	border-top: 1px solid var(--color-border);
+}
+
+.webmentions-title {
+	margin: 0 0 var(--space-4);
+	font-size: var(--text-lg);
+	color: var(--color-fg-strong);
+}
+
+.webmention-count {
+	margin: 0 0 var(--space-3);
+	font-size: var(--text-xs);
+	letter-spacing: var(--tracking-wide);
+	text-transform: uppercase;
+	color: var(--color-fg-muted);
+}
+
+.webmention-faces {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-2);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.webmention-face {
+	margin: 0;
+
+	> a,
+	> span {
+		display: block;
+		width: 40px;
+		height: 40px;
+		border-radius: var(--radius-pill);
+		overflow: hidden;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+	}
+
+	> a {
+		transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+
+		&:hover {
+			border-color: var(--color-accent);
+		}
+	}
+
+	img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+// Chi non ha una foto: l'iniziale al centro della tessera. Il nome per intero
+// resta nel DOM in `.sr-only`, cosi' lo screen reader non legge una lettera.
+.webmention-initial {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	font-size: var(--text-sm);
+	font-weight: 700;
+	color: var(--color-fg-muted);
+}
+
+.webmention-replies {
+	list-style: none;
+	margin: var(--space-5) 0 0;
+	padding: 0;
+}
+
+.webmention-reply {
+	padding: var(--space-3) 0;
+	border-top: 1px solid var(--color-inset-line);
+
+	&:first-child {
+		border-top: 0;
+	}
+}
+
+.webmention-reply-head {
+	margin: 0 0 var(--space-1);
+	font-size: var(--text-xs);
+	color: var(--color-fg-muted);
+}
+
+.webmention-reply-author {
+	font-weight: 600;
+	color: var(--color-fg-strong);
+}
+
+.webmention-reply-text {
+	margin: 0;
+	font-size: var(--text-sm);
+	color: var(--color-fg);
+	// Il testo arriva da fuori e puo' contenere un URL lunghissimo senza spazi:
+	// senza questo sfonda il contenitore in orizzontale.
+	overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.webmention-face > a:hover {
+		transform: translateY(-2px);
+	}
+}

@@ -106,6 +106,20 @@ To check the app is actually installed on a repo — enabling Discussions is not
 
 `_includes/giscus.html` builds the `<script>` tag in JS rather than emitting it statically, because **the widget has to follow the site's two themes**. `data-theme` must be right before the iframe is created, otherwise a light-mode reader gets a dark comment box and then a jump; once the iframe exists the theme can only be changed by `postMessage`, which is what the `MutationObserver` on `data-theme` does. giscus's own `preferred_color_scheme` is not usable here: it follows the OS and would ignore an explicit choice made with the site toggle. The include still renders nothing while `repo-id` or `category-id` are empty.
 
+## Webmentions
+
+Likes, reposts and replies from Mastodon and Bluesky, collected under each post (#133). Three moving parts:
+
+- `_includes/webmention-links.html` — the `rel="webmention"` and `rel="pingback"` links, in the `<head>` of **every** page, not just posts: a sender looks for them on whatever page it is linking to. `pingback` is webmention.io's bridge for senders still speaking the older protocol, not a duplicate.
+- `_includes/webmentions.html` — the section itself: a facepile for likes/reposts and a list for replies, fetched from `webmention.io/api/mentions.jf2` at page load.
+- `_sass/components/webmentions.scss` — the styles, tokens only, so both themes are covered.
+
+**All of it is off while `webmentions.domain` is empty in `_config.yml`** — no `<link>`, no section. A page that advertises an endpoint for an unregistered domain sends every sender to a 404, which is worse than advertising nothing.
+
+The content is written by strangers, so it is treated as hostile input: every string enters the DOM through `textContent` and every element through `createElement` (never `innerHTML`, never string-concatenated HTML), the reply body is read from `content.text` and never `content.html`, and every URL goes through a scheme check — a `javascript:` URL in a profile link would otherwise run on click. Building the DOM instead of concatenating strings also sidesteps jemoji, which re-parses the whole document as soon as it finds a `:shortcode:` and mangles HTML strings sitting inside JS.
+
+Two things have to be done by hand, outside this repo: register the domain on [webmention.io](https://webmention.io) (GitHub login), and connect the Mastodon/Bluesky accounts on [brid.gy](https://brid.gy) so interactions are forwarded. Until both are done, filling in `domain` only publishes an endpoint nobody sends to.
+
 ## Analytics
 
 **On since August 2026**: `analytics-google` is set to `G-X841VQSHB8` in `_config.yml` — GA4 property "Allan Nava github pages - GA4", web data stream `5725926646`. The old Universal Analytics property (`UA-132362885-1`) stopped collecting in July 2023 and is dead.

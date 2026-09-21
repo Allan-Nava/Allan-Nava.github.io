@@ -1,34 +1,29 @@
 ---
-title: "Oven Media Engine Go SDK "
+title: "OvenMediaEngine-go-sdk"
 layout: post
 date: 2023-01-25 17:00
-tag: 
+updated: 2026-08-30
+tag:
+- go
+- go
 - golang
-- ffmpeg
-- sdk
-- oven
-- ovenmediaengine
-- video
-- streaming
+- rtmp
 image: ""
 headerImage: false
 projects: true
-hidden: false 
+hidden: true
 description: "Oven Media Engine Go SDK Rest API"
 category: project
 author: allan
+externalLink: https://github.com/Allan-Nava/OvenMediaEngine-go-sdk
+github: Allan-Nava/OvenMediaEngine-go-sdk
 ---
 
-<div class="side-by-side">
-    <div class="toleft">
-        <figcaption class="caption">Oven Media Engine Go SDK Rest API
-        What is OvenMediaEngine?
-OvenMediaEngine (OME) is a Sub-Second Latency Live Streaming Server with Large-Scale and High-Definition. With OME, you can create platforms/services/systems that transmit high-definition video to hundreds-thousand viewers with sub-second latency and be scalable, depending on the number of concurrent viewers.</figcaption>
+Oven Media Engine Go SDK Rest API
 
-    </div>
+- **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
+- **Linguaggio**: Go
+- **Stars**: 2
+- **Ultimo push**: 2026-08-30
 
-    <div class="toright">
-        <p></p>
-        <p><a href="https://github.com/Allan-Nava/OvenMediaEngine-go-sdk" target="_blank">https://github.com/Allan-Nava/OvenMediaEngine-go-sdk</a></p>
-    </div>
-</div>
+[Repo su GitHub →](https://github.com/Allan-Nava/OvenMediaEngine-go-sdk)

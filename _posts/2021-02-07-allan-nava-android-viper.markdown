@@ -1,30 +1,26 @@
 ---
-title: "Android VIPER - example project"
+title: "AndroidVIPER"
 layout: post
 date: 2021-02-07 13:00
-tag: 
-- github
-- android
-- viper 
-- pattern
+updated: 2026-09-12
+tag:
 - kotlin
-image: ""
+image: "https://koenig-media.raywenderlich.com/uploads/2020/02/viper.png"
 headerImage: false
 projects: true
-hidden: true # don't count this post in blog pagination
-description: "Android VIPER"
+hidden: true
+description: "The word VIPER is an abbreviation for View, Interactor, Presenter, Entity, and Router."
 category: project
 author: allan
+externalLink: https://github.com/Allan-Nava/AndroidVIPER
+github: Allan-Nava/AndroidVIPER
 ---
 
-<div class="side-by-side">
-    <div class="toleft">
-        <img class="image" src="https://koenig-media.raywenderlich.com/uploads/2020/02/viper.png" alt="Logo FLOW FIPER">
-        <figcaption class="caption">Android VIPER</figcaption>
-    </div>
+The word VIPER is an abbreviation for View, Interactor, Presenter, Entity, and Router.
 
-    <div class="toright">
-        <p></p>
-        <p><a href="https://github.com/Allan-Nava/AndroidVIPER" target="_blank">https://github.com/Allan-Nava/AndroidVIPER</a></p>
-    </div>
-</div>
+- **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
+- **Linguaggio**: Kotlin
+- **Stars**: 3
+- **Ultimo push**: 2026-09-12
+
+[Repo su GitHub →](https://github.com/Allan-Nava/AndroidVIPER)
