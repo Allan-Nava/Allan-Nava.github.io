@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: Checkout
         # Needed for checkfleet.yml (the previous curl needed no checkout).
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Install checkfleet
         # Keep the version in sync with the smoke job in jekyll.yml.
         env:
