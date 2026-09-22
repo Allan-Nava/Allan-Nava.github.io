@@ -2,14 +2,16 @@
 #
 # Allan-Nava-owned GitHub Pages project sites under allan-nava.github.io that expose a
 # sitemap.xml (HTTP 200). robots.txt renders one `Sitemap:` line per entry.
-# 25 other Pages site(s) are live but ship no sitemap and are
-# omitted: abrsim, ansible-vars-lens, AWS_SMS_LIBRARY, edgemix, fakeyou.go, go-bytebase, go-cli, Go-DDD-Scaffold, go-gemini, Go-GestPay, go-kaltura, go-release.action, Haivision-go-sdk, haproxy-dataplane-go, hls-lens, hm-react-utils, KafkaJS-WS, ladder-bench, Mailgun-Template-Extension-VSCode, MistServer-go-sdk, nats-lens, NextCMS, nomad-lens, OvenMediaEngine-go-sdk, Vanilla-BLoC-Extension
+# 26 other Pages site(s) are live but ship no sitemap and are
+# omitted: abrsim, ansible-vars-lens, AWS_SMS_LIBRARY, edgemix, fakeyou.go, go-bytebase, go-cli, Go-DDD-Scaffold, go-gemini, Go-GestPay, go-kaltura, go-release.action, Haivision-go-sdk, haproxy-dataplane-go, hls-lens, hm-react-utils, KafkaJS-WS, ladder-bench, Mailgun-Template-Extension-VSCode, MistServer-go-sdk, nats-lens, NextCMS, nomad-lens, OvenMediaEngine-go-sdk, traefik-go-sdk, Vanilla-BLoC-Extension
 - name: checkfleet
   urls: 46
 - name: Docker-FFmpeg-Nvenc
   urls: 1
 - name: galera-doctor
   urls: 8
+- name: hookgate
+  urls: 1
 - name: Hugo-TuttoCampo
   urls: 10
 - name: keycloak-doctor
