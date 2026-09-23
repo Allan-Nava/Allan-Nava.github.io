@@ -2,7 +2,7 @@
 title: "hookgate"
 layout: post
 date: 2026-09-22 07:59
-updated: 2026-09-22
+updated: 2026-09-23
 tag:
 - html
 image: "https://raw.githubusercontent.com/Allan-Nava/hookgate/main/assets/logo.svg"
@@ -20,6 +20,6 @@ Calibrated, sub-second decisions in Claude Code's hooks, answered by TypeSafe's 
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: HTML
-- **Ultimo push**: 2026-09-22
+- **Ultimo push**: 2026-09-23
 
 [Repo su GitHub →](https://github.com/Allan-Nava/hookgate)
