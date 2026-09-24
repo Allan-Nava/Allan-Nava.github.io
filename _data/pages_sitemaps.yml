@@ -24,3 +24,7 @@
   urls: 1
 - name: segcheck
   urls: 1
+- name: transcriptmeter
+  urls: 1
+- name: trimhook
+  urls: 1
