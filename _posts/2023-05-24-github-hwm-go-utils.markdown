@@ -2,7 +2,7 @@
 title: "hwm-go-utils"
 layout: post
 date: 2023-05-24 08:45
-updated: 2024-11-07
+updated: 2026-09-24
 tag:
 - go
 - go
@@ -24,6 +24,6 @@ HiWay Media GoLang Utils
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Go
 - **Stars**: 1
-- **Ultimo push**: 2024-11-07
+- **Ultimo push**: 2026-09-24
 
 [Repo su GitHub →](https://github.com/HiWay-Media/hwm-go-utils)
