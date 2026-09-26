@@ -2,7 +2,7 @@
 title: "gpuledger"
 layout: post
 date: 2026-09-24 07:55
-updated: 2026-09-25
+updated: 2026-09-26
 tag:
 - go
 - golang
@@ -23,6 +23,6 @@ Who holds which GPU on your Nomad cluster, and what it is doing: reservations vs
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Go
-- **Ultimo push**: 2026-09-25
+- **Ultimo push**: 2026-09-26
 
 [Repo su GitHub →](https://github.com/HiWay-Media/gpuledger)
