@@ -2,7 +2,7 @@
 title: "hlsdoctor"
 layout: post
 date: 2026-09-24 08:22
-updated: 2026-09-26
+updated: 2026-09-28
 tag:
 - go
 - cli
@@ -23,6 +23,6 @@ Is the stream actually playable? HLS and RTMP probed like a player, with a verdi
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Go
-- **Ultimo push**: 2026-09-26
+- **Ultimo push**: 2026-09-28
 
 [Repo su GitHub →](https://github.com/HiWay-Media/hlsdoctor)
