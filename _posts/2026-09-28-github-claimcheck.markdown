@@ -8,7 +8,7 @@ tag:
 - agent
 - claude-code
 - hooks
-image: ""
+image: "https://raw.githubusercontent.com/Allan-Nava/claimcheck/main/assets/logo.svg"
 headerImage: false
 projects: true
 hidden: true
