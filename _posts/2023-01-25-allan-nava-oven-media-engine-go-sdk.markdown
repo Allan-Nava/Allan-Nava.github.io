@@ -2,13 +2,13 @@
 title: "OvenMediaEngine-go-sdk"
 layout: post
 date: 2023-01-25 17:00
-updated: 2026-08-30
+updated: 2026-09-29
 tag:
 - go
 - go
 - golang
 - rtmp
-image: ""
+image: "https://raw.githubusercontent.com/Allan-Nava/OvenMediaEngine-go-sdk/main/docs/logo.svg"
 headerImage: false
 projects: true
 hidden: true
@@ -24,6 +24,6 @@ Oven Media Engine Go SDK Rest API
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
 - **Stars**: 2
-- **Ultimo push**: 2026-08-30
+- **Ultimo push**: 2026-09-29
 
 [Repo su GitHub →](https://github.com/Allan-Nava/OvenMediaEngine-go-sdk)
