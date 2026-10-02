@@ -18,7 +18,7 @@ bio: A man who loves videogames and coding
 # ("A man who loves videogames and coding"), che non contiene ne' il nome ne'
 # una sola parola su cosa c'e' dentro: per la query "Allan Nava" non c'era nulla
 # da agganciare. Tenerla sotto i ~155 caratteri, altrimenti Google la tronca.
-description: "Allan Nava — DevOps engineer in Milan building live video infrastructure with Go, Docker and Kubernetes. Open source projects, notes and videos."
+description: "Allan Nava — DevOps engineer in Milan building live video infrastructure with Go, Docker and Nomad. Open source projects, notes and videos."
 baseurl: "" # the subpath of your site, e.g. /blog (CI overrides it with --baseurl)
 url: "https://allan-nava.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 # if it's an external image, update below for true
