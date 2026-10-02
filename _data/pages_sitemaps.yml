@@ -4,8 +4,12 @@
 # sitemap.xml (HTTP 200). robots.txt renders one `Sitemap:` line per entry.
 # 29 other Pages site(s) are live but ship no sitemap and are
 # omitted: abrsim, ansible-vars-lens, AWS_SMS_LIBRARY, claimcheck, edgemix, fakeyou.go, go-bytebase, go-cli, Go-DDD-Scaffold, go-gemini, Go-GestPay, go-kaltura, go-release.action, Haivision-go-sdk, haproxy-dataplane-go, hls-lens, hm-react-utils, KafkaJS-WS, keycaps, ladder-bench, Mailgun-Template-Extension-VSCode, MistServer-go-sdk, nats-lens, NextCMS, nomad-lens, OvenMediaEngine-go-sdk, stalecheck, traefik-go-sdk, Vanilla-BLoC-Extension
+- name: backlogsync
+  urls: 1
 - name: checkfleet
   urls: 46
+- name: disclosegate
+  urls: 1
 - name: Docker-FFmpeg-Nvenc
   urls: 1
 - name: galera-doctor
@@ -24,7 +28,11 @@
   urls: 1
 - name: segcheck
   urls: 1
+- name: skilltrigger
+  urls: 1
 - name: transcriptmeter
   urls: 1
 - name: trimhook
+  urls: 1
+- name: whipbench
   urls: 1
