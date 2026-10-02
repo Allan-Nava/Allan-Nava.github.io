@@ -2,13 +2,13 @@
 title: "keycaps"
 layout: post
 date: 2026-09-28 07:57
-updated: 2026-09-28
+updated: 2026-10-02
 tag:
 - python
 - 3d-printing
 - cherry-mx
 - keycap
-image: ""
+image: "https://raw.githubusercontent.com/Allan-Nava/keycaps/main/photos/first-print.webp"
 headerImage: false
 projects: true
 hidden: true
@@ -23,6 +23,6 @@ Replacement mechanical-keyboard keycaps, parametric in OpenSCAD: every dimension
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Python
-- **Ultimo push**: 2026-09-28
+- **Ultimo push**: 2026-10-02
 
 [Repo su GitHub →](https://github.com/Allan-Nava/keycaps)
