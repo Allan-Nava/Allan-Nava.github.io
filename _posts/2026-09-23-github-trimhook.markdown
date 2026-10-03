@@ -2,7 +2,7 @@
 title: "trimhook"
 layout: post
 date: 2026-09-23 12:54
-updated: 2026-10-02
+updated: 2026-10-03
 tag:
 - javascript
 - claude-code
@@ -23,6 +23,6 @@ Tool output trimmed at the source: a PostToolUse hook for Claude Code and Codex 
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: JavaScript
-- **Ultimo push**: 2026-10-02
+- **Ultimo push**: 2026-10-03
 
 [Repo su GitHub →](https://github.com/Allan-Nava/trimhook)

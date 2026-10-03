@@ -2,7 +2,7 @@
 title: "backlogsync"
 layout: post
 date: 2026-10-01 13:02
-updated: 2026-10-02
+updated: 2026-10-03
 tag:
 - javascript
 - backlog
@@ -23,6 +23,6 @@ BACKLOG.md as the single source of truth: a generated ROADMAP.md, a CI check, an
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: JavaScript
-- **Ultimo push**: 2026-10-02
+- **Ultimo push**: 2026-10-03
 
 [Repo su GitHub →](https://github.com/Allan-Nava/backlogsync)
