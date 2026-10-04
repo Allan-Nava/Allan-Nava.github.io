@@ -2,7 +2,7 @@
 title: "disclosegate"
 layout: post
 date: 2026-10-01 10:50
-updated: 2026-10-03
+updated: 2026-10-04
 tag:
 - javascript
 - cli
@@ -23,6 +23,6 @@ A pre-push guard that stops a push from publishing internal detail — work emai
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: JavaScript
-- **Ultimo push**: 2026-10-03
+- **Ultimo push**: 2026-10-04
 
 [Repo su GitHub →](https://github.com/Allan-Nava/disclosegate)
