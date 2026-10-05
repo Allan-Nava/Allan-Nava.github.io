@@ -2,7 +2,7 @@
 title: "whipbench"
 layout: post
 date: 2026-10-01 13:25
-updated: 2026-10-04
+updated: 2026-10-05
 tag:
 - go
 - benchmark
@@ -23,6 +23,6 @@ Vendor-neutral WebRTC benchmark over WHIP and WHEP: native pion clients, join ti
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
-- **Ultimo push**: 2026-10-04
+- **Ultimo push**: 2026-10-05
 
 [Repo su GitHub →](https://github.com/Allan-Nava/whipbench)
