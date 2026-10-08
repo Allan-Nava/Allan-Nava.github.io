@@ -23,6 +23,7 @@ Which classes of TLS client can still handshake with your endpoint? pqprobe dial
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
+- **Stars**: 1
 - **Ultimo push**: 2026-09-22
 
 [Repo su GitHub →](https://github.com/Allan-Nava/pqprobe)
