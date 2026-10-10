@@ -8,7 +8,7 @@ tag:
 - claude-code
 - cli
 - coding-agents
-image: ""
+image: "https://raw.githubusercontent.com/Allan-Nava/agent-ledger/main/assets/logo.svg"
 headerImage: false
 projects: true
 hidden: true
