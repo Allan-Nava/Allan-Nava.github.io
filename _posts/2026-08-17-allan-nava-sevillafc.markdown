@@ -44,7 +44,7 @@ planning sui picchi da partita e health check continui sull'ingress.
 ## Riconoscimenti
 
 A novembre 2025 Sevilla FC+ ha vinto l'**oro come Best New Platform** ai **SportsPro Media Awards
-2025**: [il post sul premio]({% post_url 2026-10-13-allan-nava-sevillafc-sportspro-award %}).
+2025**: [il post sul premio]({% post_url 2026-10-12-allan-nava-sevillafc-sportspro-award %}).
 
 <div class="side-by-side">
     <div class="toleft">
