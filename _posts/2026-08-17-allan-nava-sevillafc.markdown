@@ -41,6 +41,11 @@ Sto sul lato **infrastruttura e affidabilità**: profilo di traffico giornaliero
 singolo evento live (quanti utenti reali, quali chiamate, dove si accumula la latenza), capacity
 planning sui picchi da partita e health check continui sull'ingress.
 
+## Riconoscimenti
+
+A novembre 2025 Sevilla FC+ ha vinto l'**oro come Best New Platform** ai **SportsPro Media Awards
+2025**: [il post sul premio]({% post_url 2026-10-13-allan-nava-sevillafc-sportspro-award %}).
+
 <div class="side-by-side">
     <div class="toleft">
         <figcaption class="caption">Sevilla FC — sito ufficiale e TV del club</figcaption>
