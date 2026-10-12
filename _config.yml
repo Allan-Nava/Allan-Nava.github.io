@@ -9,16 +9,16 @@ title: Allan Nava
 name: Allan Nava
 # `tagline` e' la seconda meta' del <title> della home ("Allan Nava — ..."):
 # e' la riga che Google mostra come titolo del risultato per la query col nome.
-tagline: "DevOps engineer building live video infrastructure"
+tagline: "Software & DevOps engineer building live video platforms"
 email:
-bio: A man who loves videogames and coding
+bio: Software and DevOps engineer in Milan
 # `description` NON e' decorativa: jekyll-seo-tag la usa come <meta name=description>
 # e og:description su ogni pagina che non ne dichiara una propria, e finisce nello
 # snippet di Google. Lasciandola vuota il sito girava con la sola bio del tema
 # ("A man who loves videogames and coding"), che non contiene ne' il nome ne'
 # una sola parola su cosa c'e' dentro: per la query "Allan Nava" non c'era nulla
 # da agganciare. Tenerla sotto i ~155 caratteri, altrimenti Google la tronca.
-description: "Allan Nava — DevOps engineer in Milan building live video infrastructure with Go, Docker and Nomad. Open source projects, notes and videos."
+description: "Allan Nava — software and DevOps engineer in Milan, building live video platforms with Go, Docker and Nomad. Open source projects, notes and videos."
 baseurl: "" # the subpath of your site, e.g. /blog (CI overrides it with --baseurl)
 url: "https://allan-nava.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 # if it's an external image, update below for true
@@ -57,7 +57,7 @@ dev: allannava
 authors:
   allan:
     name: allan
-    bio: A man who loves videogames and coding 
+    bio: Software and DevOps engineer in Milan 
     external-image: false
     picture: assets/images/profile.jpg
 #

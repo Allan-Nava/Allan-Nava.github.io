@@ -50,7 +50,7 @@ jekyll-seo-tag usa per `og:locale`); senza, resta il default di prima.
     {%- endcomment -%}
     {%- capture page_title -%}
     {%- if page.seo_title -%}{{ page.seo_title }}
-    {%- elsif page.url == "/" -%}{{ site.name }} — {{ site.tagline | default: "DevOps engineer, live video infrastructure" }}
+    {%- elsif page.url == "/" -%}{{ site.name }} — {{ site.tagline | default: "Software & DevOps engineer, live video platforms" }}
     {%- elsif paginator and paginator.page > 1 -%}{{ page.title }} — page {{ paginator.page }} | {{ site.title }}
     {%- elsif page.title -%}{{ page.title }} | {{ site.title }}
     {%- else -%}{{ site.title }}

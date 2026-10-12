@@ -8,7 +8,7 @@ Questo dice **perché**, ed è il documento contro cui misurare una proposta pri
 
 ## 1. Cos'è
 
-Il sito personale di Allan Nava — DevOps engineer a Milano, infrastrutture video live — su
+Il sito personale di Allan Nava — software e DevOps engineer a Milano, servizi e infrastrutture video live — su
 `https://allan-nava.github.io`: Jekyll sul tema [Indigo](https://github.com/sergiokopplin/indigo),
 GitHub Pages, deploy da `master` via GitHub Actions. Un solo `_posts/` contiene tutto (**373 file**:
 209 blog, 164 progetti), e il front matter `category` separa i due tipi.

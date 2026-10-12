@@ -11,6 +11,10 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ## [Non rilasciato]
 
+### Modificato
+
+- **Software e DevOps, non solo DevOps** — tagline, `bio`, `description` del sito e della home, kicker e titolo della home, template delle card social e `/about/` presentano Allan come *software & DevOps engineer*, allineati al profilo LinkedIn e al CV. La home non dice piu' "and write about what breaks": il sito e' un catalogo di progetti, video e post personali, non una raccolta di post su cosa si e' rotto. `/about/` riscritta: dalla lista "Study Interests" a quattro paragrafi coi fatti del CV. Il `jobTitle` dello schema Person resta *DevOps Engineer*, il titolo reale.
+
 ### Corretto
 
 - **Contatori che si contraddicevano** (#155) — ogni pagina rifaceva il conto con filtri suoi; ora `_plugins/site_counts.rb` e' la sorgente unica e i template leggono `site.data.counts`.
