@@ -1,7 +1,7 @@
 ---
 title: "Sevilla FC+: oro come Best New Platform ai SportsPro Media Awards 2025"
 layout: post
-date: 2026-10-12 20:00
+date: 2025-11-20 10:00
 tag:
 - sevillafc
 - hiway media
