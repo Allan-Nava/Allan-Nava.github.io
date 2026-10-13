@@ -1,0 +1,28 @@
+---
+title: "cragcast"
+layout: post
+date: 2026-10-13 10:13
+updated: 2026-10-13
+tag:
+- java
+- climbing
+- java
+- k3s
+image: ""
+headerImage: false
+projects: true
+hidden: true
+description: "Can I climb there tomorrow? Crag conditions for Lombardy from the weather and the wall's aspect. Spring Boot, PostgreSQL, k3s on Oracle Cloud's free tier."
+category: project
+author: allan
+externalLink: https://github.com/Allan-Nava/cragcast
+github: Allan-Nava/cragcast
+---
+
+Can I climb there tomorrow? Crag conditions for Lombardy from the weather and the wall's aspect. Spring Boot, PostgreSQL, k3s on Oracle Cloud's free tier.
+
+- **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
+- **Linguaggio**: Java
+- **Ultimo push**: 2026-10-13
+
+[Repo su GitHub →](https://github.com/Allan-Nava/cragcast)
