@@ -4,7 +4,7 @@ layout: post
 date: 2026-10-13 10:13
 updated: 2026-10-15
 tag:
-- java
+- typescript
 - climbing
 - java
 - k3s
@@ -22,7 +22,7 @@ github: Allan-Nava/cragcast
 Can I climb there tomorrow? Crag conditions for Lombardy from the weather and the wall's aspect. Spring Boot, PostgreSQL, k3s on Oracle Cloud's free tier.
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
-- **Linguaggio**: Java
+- **Linguaggio**: TypeScript
 - **Ultimo push**: 2026-10-15
 
 [Repo su GitHub →](https://github.com/Allan-Nava/cragcast)
