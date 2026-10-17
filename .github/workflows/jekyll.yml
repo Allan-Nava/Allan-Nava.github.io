@@ -76,7 +76,7 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   # Post-deploy smoke test of the live site (config: ../../checkfleet.yml).
   # checks.yml validates the locally built ./_site *before* the deploy, so until
