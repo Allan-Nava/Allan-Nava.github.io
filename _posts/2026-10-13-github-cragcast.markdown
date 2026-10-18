@@ -12,14 +12,14 @@ image: "https://raw.githubusercontent.com/Allan-Nava/cragcast/main/assets/logo.s
 headerImage: false
 projects: true
 hidden: true
-description: "Can I climb there tomorrow? Crag conditions for Lombardy from the weather and the wall's aspect. Spring Boot, PostgreSQL, k3s on Oracle Cloud's free tier."
+description: "Can I climb there tomorrow? Crag conditions for Lombardy from the weather and the wall's aspect. Spring Boot, PostgreSQL"
 category: project
 author: allan
 externalLink: https://github.com/Allan-Nava/cragcast
 github: Allan-Nava/cragcast
 ---
 
-Can I climb there tomorrow? Crag conditions for Lombardy from the weather and the wall's aspect. Spring Boot, PostgreSQL, k3s on Oracle Cloud's free tier.
+Can I climb there tomorrow? Crag conditions for Lombardy from the weather and the wall's aspect. Spring Boot, PostgreSQL
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: TypeScript
