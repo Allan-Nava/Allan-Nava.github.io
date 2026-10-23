@@ -8,7 +8,7 @@ tag:
 - climbing
 - ddd
 - go
-image: ""
+image: "https://raw.githubusercontent.com/Allan-Nava/cragbook/main/assets/logo.svg"
 headerImage: false
 projects: true
 hidden: true
