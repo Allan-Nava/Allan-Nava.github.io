@@ -2,7 +2,7 @@
 title: "cragbook"
 layout: post
 date: 2026-10-22 22:41
-updated: 2026-10-22
+updated: 2026-10-23
 tag:
 - go
 - climbing
@@ -23,6 +23,6 @@ A climbing diary on top of cragcast: Lombardy's crags and routes from OpenStreet
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
-- **Ultimo push**: 2026-10-22
+- **Ultimo push**: 2026-10-23
 
 [Repo su GitHub →](https://github.com/Allan-Nava/cragbook)
