@@ -23,6 +23,7 @@ Is the stream actually playable? HLS and RTMP probed like a player, with a verdi
 
 - **Owner**: [HiWay-Media](https://github.com/HiWay-Media)
 - **Linguaggio**: Go
+- **Stars**: 1
 - **Ultimo push**: 2026-10-02
 
 [Repo su GitHub →](https://github.com/HiWay-Media/hlsdoctor)
