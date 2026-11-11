@@ -17,6 +17,12 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ### Corretto
 
+- **Una riga verde a metà delle card all'hover** — la sottolineatura animata dei link del testo
+  prendeva anche il link delle card (`a.url`): l'esclusione `:not(.item)` mancava il bersaglio,
+  perché `.item` è l'`<article>` e non il link. La riga è disegnata sul fondo del link, alto quanto
+  il contenuto: nelle card con poco testo (es. *Cyprus 2017*), allungate dalla griglia a due
+  colonne fino all'altezza della vicina, tagliava la card a metà. Ora la regola esclude `.url`;
+  le liste hanno già il loro hover sul titolo.
 - **Contatori che si contraddicevano** (#155) — ogni pagina rifaceva il conto con filtri suoi; ora `_plugins/site_counts.rb` e' la sorgente unica e i template leggono `site.data.counts`.
 - **/search era mezzo schermo vuoto** (#156) — stato iniziale con voci indicizzate, argomenti piu' scritti e ultimi post, piu' `/` per il fuoco e `Esc` per svuotare.
 - **/stats: etichette dei tag troncate** (#157) — la colonna era fissa a 8ch.
