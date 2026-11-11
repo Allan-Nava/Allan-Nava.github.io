@@ -559,14 +559,11 @@
 // Micro-interazioni (#109) e tipografia display (#113)
 // ---------------------------------------------------------------------------
 
-// Underline che cresce da sinistra sui link del testo dei post.
-// Esclusi i link delle card e delle liste (`a.url`: blog, progetti, video, archivio, ricerca,
-// tag), che hanno già il loro hover sul titolo. La riga è disegnata sul fondo del link, e nelle
-// card il link è alto quanto il contenuto, non quanto la card: in una card con poco testo, che
-// la griglia a due colonne allunga alla misura della vicina, tagliava la card a metà.
-// `:not(.item)` non bastava: `.item` è l'`<article>`, il link è il figlio `.url`.
-.post-content a:not(.button):not(.item):not(.url),
-.page a:not(.button):not(.item):not(.link):not(.url) {
+// Underline che cresce da sinistra sui link del testo dei post. Vale anche per il link delle
+// card (`a.url`, figlio di `.item`): lì la riga è il filo verde sul fondo della card, che resta
+// in fondo perché il link riempie la card (vedi `> .item > .url` in home-blog-projects.sass).
+.post-content a:not(.button):not(.item),
+.page a:not(.button):not(.item):not(.link) {
 	text-decoration: none;
 	background-image: linear-gradient(var(--color-accent), var(--color-accent));
 	background-repeat: no-repeat;

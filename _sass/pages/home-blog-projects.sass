@@ -24,8 +24,12 @@
 		margin: var(--space-6) 0 0
 		padding: 0
 
+		// Colonna flex perché il link riempia la card: nella griglia a due colonne una card con
+		// poco testo si allunga fino all'altezza della vicina, e il filo verde dell'hover
+		// (disegnato sul fondo del link, motion.scss) finiva a metà card invece che in fondo.
 		> .item
-			display: block
+			display: flex
+			flex-direction: column
 			margin: 0
 			background: var(--color-surface)
 			border: 1px solid var(--color-border)
@@ -46,6 +50,10 @@
 				border-color: var(--color-accent-border)
 
 		> .item > .url
+			flex: 1 1 auto
+			// Gli angoli del link seguono quelli della card (meno il bordo da 1px), così il
+			// filo verde dell'hover non sporge dalla curva in basso.
+			border-radius: calc(var(--radius-lg) - 1px)
 			display: flex
 			align-items: center
 			gap: var(--space-4)
