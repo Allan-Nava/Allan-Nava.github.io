@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # Creates a blog post in _posts/ for every recent video/short published on
-# the YouTube channel, listing them through the YouTube Data API and reading
+# the YouTube channel, listing them from the channel's uploads playlist through
+# the YouTube Data API (1 quota unit per 50 videos) and reading
 # recordingDetails.location to put lat/lng in the front matter, so geolocated
 # videos land on /map by themselves.
 # A video is skipped if its ID is already embedded in any existing post, so
@@ -249,46 +250,79 @@ rescue StandardError
   res.body.to_s[0, 300]
 end
 
+# Il canale si legge dalla playlist dei caricamenti ("UU" + l'id del canale
+# senza "UC"), non da search.list. Tre motivi, misurati il 2026-11-14:
+#   - search.list costa 100 unita' di quota a chiamata, playlistItems.list 1:
+#     con il cron ogni 30 minuti sono 48 unita' al giorno invece di 4.800;
+#   - l'indice della ricerca arriva in ritardo, anche di ore, su un video appena
+#     pubblicato; la playlist dei caricamenti lo contiene subito;
+#   - la ricerca restituisce la descrizione TAGLIATA (~160 caratteri), la
+#     playlist quella intera, che finisce nel corpo del post.
+# La data e' `contentDetails.videoPublishedAt` (quando il video e' diventato
+# pubblico): `snippet.publishedAt` e' quando e' entrato nella playlist, cioe'
+# il caricamento, che per un video programmato e' giorni prima.
+# I video privati o cancellati restano nella playlist senza videoPublishedAt:
+# si saltano. La playlist e' in ordine dal piu' recente, quindi si pagina solo
+# finche' l'ultimo video della pagina e' ancora dentro la finestra.
+def uploads_playlist_id(channel_id)
+  abort "CHANNEL_ID must start with UC, got #{channel_id}" unless channel_id.start_with?('UC')
+  "UU#{channel_id[2..]}"
+end
+
+def videos_from_playlist_page(data)
+  data.fetch('items', []).filter_map do |item|
+    snippet = item.fetch('snippet', {})
+    details = item.fetch('contentDetails', {})
+    next if details['videoPublishedAt'].to_s.empty?
+
+    {
+      video_id: details['videoId'],
+      title: snippet['title'],
+      description: snippet['description'],
+      published_at: details['videoPublishedAt']
+    }
+  end
+end
+
 def get_videos_from_api(channel_id, api_key, max_age_days)
   abort "YOUTUBE_API_KEY is required to fetch videos" if api_key.empty?
 
+  cutoff = Date.today - max_age_days
   videos = []
-  cutoff = (Date.today - max_age_days).to_s
+  page_token = nil
 
-  uri = URI("https://www.googleapis.com/youtube/v3/search")
-  uri.query = URI.encode_www_form(
-    'channelId' => channel_id,
-    'part' => 'snippet',
-    'order' => 'date',
-    'maxResults' => '50',
-    'publishedAfter' => "#{cutoff}T00:00:00Z",
-    'type' => 'video',
-    'key' => api_key
-  )
-
-  res = Net::HTTP.start(uri.host, uri.port, use_ssl: true, open_timeout: 15, read_timeout: 30) do |http|
-    http.get(uri.request_uri)
-  end
-
-  unless res.is_a?(Net::HTTPSuccess)
-    abort "YouTube API error: HTTP #{res.code} — #{api_error_details(res)}"
-  end
-
-  data = JSON.parse(res.body)
-  items = data.fetch('items', [])
-
-  items.each do |item|
-    video_id = item['id']['videoId']
-    snippet = item['snippet']
-    videos << {
-      video_id: video_id,
-      title: snippet['title'],
-      description: snippet['description'],
-      published_at: snippet['publishedAt']
+  loop do
+    uri = URI("https://www.googleapis.com/youtube/v3/playlistItems")
+    params = {
+      'playlistId' => uploads_playlist_id(channel_id),
+      'part' => 'snippet,contentDetails',
+      'maxResults' => '50',
+      'key' => api_key
     }
+    params['pageToken'] = page_token if page_token
+    uri.query = URI.encode_www_form(params)
+
+    res = Net::HTTP.start(uri.host, uri.port, use_ssl: true, open_timeout: 15, read_timeout: 30) do |http|
+      http.get(uri.request_uri)
+    end
+
+    unless res.is_a?(Net::HTTPSuccess)
+      abort "YouTube API error: HTTP #{res.code} — #{api_error_details(res)}"
+    end
+
+    data = JSON.parse(res.body)
+    page = videos_from_playlist_page(data)
+    videos.concat(page)
+
+    page_token = data['nextPageToken']
+    oldest = page.map { |v| DateTime.parse(v[:published_at]).to_date }.min
+    break if page_token.nil? || oldest.nil? || oldest < cutoff
   end
 
-  videos
+  # L'ultima pagina letta puo' contenere video piu' vecchi della finestra:
+  # si tolgono qui, cosi' il log non elenca decine di "older than" a ogni giro.
+  videos.select { |v| DateTime.parse(v[:published_at]).to_date >= cutoff }
+        .sort_by { |v| v[:published_at] }.reverse
 end
 
 abort "YOUTUBE_API_KEY is required" if YOUTUBE_API_KEY.empty?

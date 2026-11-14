@@ -11,8 +11,14 @@ name: YouTube Sync
 
 on:
   schedule:
-    # Every 3 hours; a new video becomes a post within that window.
-    - cron: '17 */3 * * *'
+    # Every 30 minutes, at :11 and :41. GitHub drops scheduled runs when it is
+    # busy (in November 2026 only about 3 of the 8 daily runs of the old
+    # every-3-hours cron actually started, so a new video could wait half a
+    # day): asking more often shortens the worst case. A run costs about
+    # 4 quota units (the uploads playlist, 1 unit; the location backfill, 1 per
+    # 50 videos), so 48 runs a day use ~200 of the 10,000 daily units.
+    # Off the top of the hour on purpose: that is when GitHub is busiest.
+    - cron: '11,41 * * * *'
   workflow_dispatch:
     inputs:
       max_age_days:
