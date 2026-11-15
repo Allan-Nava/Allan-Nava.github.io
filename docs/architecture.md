@@ -22,7 +22,7 @@ about.md          ─┘
 
 ## Design system
 
-Every colour, space, radius, duration and type step lives in **`_sass/base/tokens.scss`** as CSS custom properties on `:root`. The historical Sass variables (`$accent`, `$alpha`, …) still exist in `_sass/base/variables.sass` but are now thin aliases (`$accent: var(--color-accent)`) so the old partials keep working with a single source of truth. Practical consequences:
+Every colour, space, radius, duration and type step is a CSS custom property on `:root`, and the values come from **[nava-ui](https://github.com/Allan-Nava/nava-ui)**, the UI kit extracted from this site. `_sass/vendor/_nava-tokens.scss` is the kit's `dist/tokens.site.scss` of a pinned release: the kit's tokens already in this site's dialect — `--color-*` names, the 10px rem, and three mixins, `palette-dark`, `palette-light` and `scale`. `scripts/sync_nava_ui.sh vX.Y.Z` replaces the copy with another release, and `checks.yml` runs `scripts/sync_nava_ui.sh --check`, which fails if the copy is not byte for byte the file of the tag named in its first line. **So a colour is changed in the kit** — where its contrast pairs and screenshots are checked — released, and pinned here. `_sass/base/tokens.scss` keeps only what belongs to the site: the tokens no kit component uses (the 17 `--syn-*` syntax colours and `--color-inset-line-strong`, in `site-palette-dark`/`site-palette-light`) and the order the palettes are applied in. The switch, on 2026-11-15, was compiled before and after: every declaration came out with the same value; the kit only added its own new tokens (`--color-danger`, `--color-info`, `--color-warning`, `--color-success`, `--color-border-control`). The kit's `nv-aliases` mixin (its `--nv-*` names pointing at these) is not included yet: it is ~80 declarations on every page, needed only once the site uses the kit's components. The historical Sass variables (`$accent`, `$alpha`, …) still exist in `_sass/base/variables.sass` but are now thin aliases (`$accent: var(--color-accent)`) so the old partials keep working with a single source of truth. Practical consequences:
 
 - **Re-theming means redefining tokens**, not editing every partial — that is exactly how the light theme below is built.
 - Don't hard-code hex values in components — add or reuse a token.
@@ -46,7 +46,7 @@ Every colour, space, radius, duration and type step lives in **`_sass/base/token
 
 The site ships **two themes**. Dark is the default and the site's identity; light is a redefinition of the same token names, which is the payoff of putting the palette in custom properties in the first place.
 
-`tokens.scss` declares two Sass mixins — `palette-dark` and `palette-light` — holding only the values that change with the theme: colours, `color-scheme`, shadows, the syntax-highlighting `--syn-*` set, and `--icon-sun`/`--icon-moon`. Everything theme-independent (spaces, radii, motion, type, layout) stays in `:root` and is declared once.
+Two pairs of Sass mixins hold the values that change with the theme: `palette-dark`/`palette-light` from the kit (colours, `color-scheme`, shadows, `--icon-sun`/`--icon-moon`), and `site-palette-dark`/`site-palette-light` in `tokens.scss` (the `--syn-*` set and `--color-inset-line-strong`). Everything theme-independent (spaces, radii, motion, type, layout) is the kit's `scale` mixin, included once in `:root`.
 
 They are applied in this order, and **the order is what makes it correct** — not specificity, since `:root:not([data-theme="dark"])` and `:root[data-theme="light"]` weigh the same:
 
@@ -56,7 +56,7 @@ They are applied in this order, and **the order is what makes it correct** — n
 
 Rules when touching the palette:
 
-- **Add every new colour to both mixins.** A token defined in only one theme silently stops changing with the theme, which is precisely how `strong` and `code` became invisible during v2.3. `scripts/check_contrast.rb` fails on this.
+- **Add every new colour to both mixins.** A token defined in only one theme silently stops changing with the theme, which is precisely how `strong` and `code` became invisible during v2.3. `scripts/check_contrast.rb` fails on this. A colour the kit's components could use belongs in the kit; only a site-only one is added here, to both `site-palette-*` mixins.
 - **Overlays are not symmetric.** Dark lightens with white (`rgba(255,255,255,…)`), light darkens with black — hence the separate `--color-overlay-soft`, `--color-hover-overlay`, `--color-inset-line`, `--color-glass` tokens instead of raw rgba in components. Shadows follow the same rule: the dark theme's 45–60 % blacks read as smudges on a light background.
 - **A mid-tone accent cannot serve both roles on light.** `--color-accent` is used both as text (26 places) and as a background with `--color-on-accent` on top (9 places). On a light background both readings improve as the green gets darker, so the light accent is a much deeper `#086830` rather than the dark theme's `#10cf53`.
 - Two colours are deliberately *not* themed: the card placeholder monogram (white on its own gradient) and the play triangle over a video thumbnail. Both sit on their own surface, not on the page background.
@@ -67,7 +67,7 @@ Mechanics of the toggle:
 - The button lives in `_includes/nav.html` and ships `hidden`; `_includes/interactions.html` reveals it, writes its `aria-label`, persists the choice, and collapses the two `theme-color` metas (which can't follow `data-theme`, only `prefers-color-scheme`) into a single one. **Without JavaScript there is no button at all** — the theme still follows `prefers-color-scheme`, so a dead control would be worse than none.
 - Which icon shows is driven by the `--icon-sun`/`--icon-moon` tokens rather than by repeating the three-state selector logic in `nav.sass`.
 
-Verify with **`ruby scripts/check_contrast.rb`** (stdlib only, no bundle): it parses the mixins straight out of `tokens.scss` — so it cannot drift from the real CSS — and checks 52 pairs across both themes against a 6:1 floor (`MIN=` to override). Lighthouse only ever audits the theme the page loads with, so this script is the only check that covers both.
+Verify with **`ruby scripts/check_contrast.rb`** (stdlib only, no bundle): it parses the mixins straight out of the kit's copy and `tokens.scss`, merging the two mixins of each theme — so it cannot drift from the real CSS — and checks 52 pairs across both themes against a 6:1 floor (`MIN=` to override). Lighthouse only ever audits the theme the page loads with, so this script is the only check that covers both.
 
 ## Responsive images
 

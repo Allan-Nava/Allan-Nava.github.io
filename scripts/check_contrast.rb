@@ -1,9 +1,13 @@
 #!/usr/bin/env ruby
 # Verifica il contrasto WCAG delle coppie di colore della palette, su TUTTI i
-# temi definiti in _sass/base/tokens.scss (#137).
+# temi (#137).
 #
-# I valori non sono duplicati qui: vengono letti dai mixin `palette-dark` e
-# `palette-light` del file, così se qualcuno cambia un token il controllo segue.
+# I valori non sono duplicati qui: vengono letti dai mixin. I token del kit
+# (`palette-dark`, `palette-light`) stanno in _sass/vendor/_nava-tokens.scss,
+# copia fissata di nava-ui; quelli solo del sito (`site-palette-dark`,
+# `site-palette-light`) in _sass/base/tokens.scss. I due file si leggono insieme e
+# i mixin dello stesso tema si fondono, così se qualcuno cambia un token il
+# controllo segue.
 # Il tema scuro è il default e il chiaro una sua ridefinizione: un colore
 # aggiunto a un solo mixin è il modo tipico di rendere qualcosa invisibile
 # nell'altro tema, e questo script lo intercetta (vedi "token solo in ...").
@@ -14,7 +18,10 @@
 # Stdlib only, così gira senza bundle install.
 
 ROOT = File.expand_path('..', __dir__)
-TOKENS = File.join(ROOT, '_sass', 'base', 'tokens.scss')
+TOKENS = [
+  File.join(ROOT, '_sass', 'vendor', '_nava-tokens.scss'),
+  File.join(ROOT, '_sass', 'base', 'tokens.scss')
+].freeze
 MIN = Float(ENV.fetch('MIN', '6.0'))
 
 # --- lettura dei mixin -------------------------------------------------------
@@ -27,11 +34,11 @@ def parse_palettes(path)
   src = src.gsub(%r{/\*.*?\*/}m, '').gsub(%r{//[^\n]*}, '')
 
   palettes = {}
-  src.scan(/@mixin\s+palette-(\w+)\s*\{(.*?)\n\}/m) do |name, body|
+  src.scan(/@mixin\s+(?:site-)?palette-(\w+)\s*\{(.*?)\n\}/m) do |name, body|
     tokens = {}
     # Ancorata a inizio riga: una dichiarazione vera sta sempre su una riga sua.
     body.scan(/^\s*(--[\w-]+):\s*([^;]+);/) { |k, v| tokens[k] = v.strip }
-    palettes[name] = tokens
+    (palettes[name] ||= {}).merge!(tokens)
   end
   palettes
 end
@@ -104,8 +111,10 @@ PAIRS = [
   ['syn-ins / code-bg',            '--syn-ins',            '--color-code-bg']
 ].freeze
 
-palettes = parse_palettes(TOKENS)
-abort "Nessun @mixin palette-* trovato in #{TOKENS}" if palettes.empty?
+palettes = TOKENS.each_with_object({}) do |path, all|
+  parse_palettes(path).each { |theme, tokens| (all[theme] ||= {}).merge!(tokens) }
+end
+abort "Nessun @mixin palette-* trovato in #{TOKENS.join(', ')}" if palettes.empty?
 
 errors = []
 checked = 0

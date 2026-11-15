@@ -1,0 +1,227 @@
+// GENERATED from nava-ui v0.3.0 (css/tokens.css) by scripts/export-site.mjs.
+// Do not edit: change the kit and export again. https://github.com/Allan-Nava/nava-ui
+//
+// The kit's tokens in the dialect of allan-nava.github.io: the site's names, its 10 px rem,
+// and mixins, because the site applies each palette in three places (dark by default, light
+// from the system unless dark was chosen, the explicit choice last). The site keeps its own
+// tokens (syntax highlighting, --color-inset-line-strong) in its own mixins.
+
+@mixin palette-dark {
+	color-scheme: dark;
+	--color-bg: #050505;
+	--color-surface: #101215;
+	--color-surface-hover: #171a1f;
+	--color-border: rgba(255, 255, 255, 0.09);
+	--color-border-strong: rgba(255, 255, 255, 0.18);
+	--color-border-control: #6e737b;
+	--color-row-hover: rgba(255, 255, 255, 0.035);
+	--color-fg: #eae4e4;
+	--color-fg-strong: #ffffff;
+	--color-fg-muted: #a9a9b0;
+	--color-accent: #10cf53;
+	--color-accent-hover: #01ff5a;
+	--color-accent-soft: rgba(16, 207, 83, 0.12);
+	--color-accent-border: rgba(16, 207, 83, 0.35);
+	--color-accent-text: #7be8a6;
+	--color-on-accent: #04170c;
+	--color-danger: #ff8a80;
+	--color-danger-soft: rgba(248, 81, 73, 0.14);
+	--color-danger-border: rgba(248, 81, 73, 0.45);
+	--color-info: #79c0ff;
+	--color-info-soft: rgba(56, 139, 253, 0.14);
+	--color-info-border: rgba(56, 139, 253, 0.45);
+	--color-warning: #f2c14e;
+	--color-warning-soft: rgba(210, 153, 34, 0.14);
+	--color-warning-border: rgba(210, 153, 34, 0.45);
+	--color-glass: rgba(12, 13, 15, 0.72);
+	--color-glass-strong: rgba(12, 13, 15, 0.82);
+	--color-overlay-soft: rgba(255, 255, 255, 0.03);
+	--color-hover-overlay: rgba(255, 255, 255, 0.06);
+	--color-inset-line: rgba(255, 255, 255, 0.04);
+	--color-thumb-bg: #0b0d10;
+	--color-thumb-veil: rgba(5, 6, 8, 0.22);
+	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+	--shadow-md: 0 10px 30px rgba(0, 0, 0, 0.45);
+	--shadow-nav: 0 10px 30px rgba(0, 0, 0, 0.6);
+	--color-code-bg: #0f1216;
+	--color-code-fg: #e6edf3;
+	--color-code-border: rgba(255, 255, 255, 0.1);
+	--icon-sun: block;
+	--icon-moon: none;
+}
+
+@mixin palette-light {
+	color-scheme: light;
+	--color-bg: #f6f7f8;
+	--color-surface: #ffffff;
+	--color-surface-hover: #eef1f3;
+	--color-border: rgba(0, 0, 0, 0.11);
+	--color-border-strong: rgba(0, 0, 0, 0.22);
+	--color-border-control: #7d848e;
+	--color-row-hover: rgba(0, 0, 0, 0.03);
+	--color-fg: #1a1e23;
+	--color-fg-strong: #05070a;
+	--color-fg-muted: #515a65;
+	--color-accent: #086830;
+	--color-accent-hover: #085e2c;
+	--color-accent-soft: rgba(8, 104, 48, 0.1);
+	--color-accent-border: rgba(8, 104, 48, 0.3);
+	--color-accent-text: #075527;
+	--color-on-accent: #ffffff;
+	--color-danger: #a3121a;
+	--color-danger-soft: rgba(163, 18, 26, 0.08);
+	--color-danger-border: rgba(163, 18, 26, 0.35);
+	--color-info: #0b4fa2;
+	--color-info-soft: rgba(11, 79, 162, 0.08);
+	--color-info-border: rgba(11, 79, 162, 0.35);
+	--color-warning: #7a4a00;
+	--color-warning-soft: rgba(154, 103, 0, 0.1);
+	--color-warning-border: rgba(154, 103, 0, 0.4);
+	--color-glass: rgba(255, 255, 255, 0.78);
+	--color-glass-strong: rgba(255, 255, 255, 0.88);
+	--color-overlay-soft: rgba(0, 0, 0, 0.035);
+	--color-hover-overlay: rgba(0, 0, 0, 0.055);
+	--color-inset-line: rgba(0, 0, 0, 0.04);
+	--color-thumb-bg: #eef1f4;
+	--color-thumb-veil: rgba(255, 255, 255, 0);
+	--shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.08);
+	--shadow-md: 0 10px 30px rgba(16, 24, 40, 0.12);
+	--shadow-nav: 0 10px 30px rgba(16, 24, 40, 0.16);
+	--color-code-bg: #f2f4f6;
+	--color-code-fg: #1f2429;
+	--color-code-border: rgba(0, 0, 0, 0.1);
+	--icon-sun: none;
+	--icon-moon: block;
+}
+
+@mixin scale {
+	--color-success: var(--color-accent);
+	--color-success-soft: var(--color-accent-soft);
+	--color-success-border: var(--color-accent-border);
+	--color-success-text: var(--color-accent-text);
+	--space-1: 0.4rem;
+	--space-2: 0.8rem;
+	--space-3: 1.2rem;
+	--space-4: 1.6rem;
+	--space-5: 2.4rem;
+	--space-6: 3.2rem;
+	--space-7: 4.8rem;
+	--space-8: 6.4rem;
+	--space-9: 9.6rem;
+	--radius-sm: 4px;
+	--radius-md: 8px;
+	--radius-lg: 14px;
+	--radius-pill: 999px;
+	--dur-fast: 120ms;
+	--dur: 200ms;
+	--dur-slow: 360ms;
+	--ease: cubic-bezier(0.4, 0, 0.2, 1);
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--font-sans: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	--font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+	--text-xs: 1.2rem;
+	--text-sm: 1.4rem;
+	--text-base: clamp(1.6rem, 0.25vw + 1.55rem, 1.75rem);
+	--text-lg: clamp(1.8rem, 0.4vw + 1.7rem, 2rem);
+	--text-xl: clamp(2rem, 0.8vw + 1.8rem, 2.4rem);
+	--text-2xl: clamp(2.4rem, 1.2vw + 2.1rem, 3rem);
+	--text-3xl: clamp(2.8rem, 2.2vw + 2.2rem, 3.8rem);
+	--text-4xl: clamp(3.4rem, 3.4vw + 2.5rem, 5rem);
+	--leading-tight: 1.15;
+	--leading-snug: 1.35;
+	--leading: 1.7;
+	--tracking-tight: -0.02em;
+	--tracking-wide: 0.08em;
+	--measure: 68ch;
+	--width-normal: 640px;
+	--width-large: 880px;
+	--width-listing: 1120px;
+	--nav-height: 68px;
+}
+
+// The kit's names, pointing at the site's: the kit's components read --nv-*, so with this
+// on :root they take the site's values, theme included, without a second copy.
+@mixin nv-aliases {
+	--nv-bg: var(--color-bg);
+	--nv-surface: var(--color-surface);
+	--nv-surface-hover: var(--color-surface-hover);
+	--nv-border: var(--color-border);
+	--nv-border-strong: var(--color-border-strong);
+	--nv-border-control: var(--color-border-control);
+	--nv-row-hover: var(--color-row-hover);
+	--nv-fg: var(--color-fg);
+	--nv-fg-strong: var(--color-fg-strong);
+	--nv-fg-muted: var(--color-fg-muted);
+	--nv-accent: var(--color-accent);
+	--nv-accent-hover: var(--color-accent-hover);
+	--nv-accent-soft: var(--color-accent-soft);
+	--nv-accent-border: var(--color-accent-border);
+	--nv-accent-text: var(--color-accent-text);
+	--nv-on-accent: var(--color-on-accent);
+	--nv-danger: var(--color-danger);
+	--nv-danger-soft: var(--color-danger-soft);
+	--nv-danger-border: var(--color-danger-border);
+	--nv-info: var(--color-info);
+	--nv-info-soft: var(--color-info-soft);
+	--nv-info-border: var(--color-info-border);
+	--nv-warning: var(--color-warning);
+	--nv-warning-soft: var(--color-warning-soft);
+	--nv-warning-border: var(--color-warning-border);
+	--nv-glass: var(--color-glass);
+	--nv-glass-strong: var(--color-glass-strong);
+	--nv-overlay-soft: var(--color-overlay-soft);
+	--nv-hover-overlay: var(--color-hover-overlay);
+	--nv-inset-line: var(--color-inset-line);
+	--nv-thumb-bg: var(--color-thumb-bg);
+	--nv-thumb-veil: var(--color-thumb-veil);
+	--nv-shadow-sm: var(--shadow-sm);
+	--nv-shadow-md: var(--shadow-md);
+	--nv-shadow-nav: var(--shadow-nav);
+	--nv-code-bg: var(--color-code-bg);
+	--nv-code-fg: var(--color-code-fg);
+	--nv-code-border: var(--color-code-border);
+	--nv-icon-sun: var(--icon-sun);
+	--nv-icon-moon: var(--icon-moon);
+	--nv-success: var(--color-success);
+	--nv-success-soft: var(--color-success-soft);
+	--nv-success-border: var(--color-success-border);
+	--nv-success-text: var(--color-success-text);
+	--nv-space-1: var(--space-1);
+	--nv-space-2: var(--space-2);
+	--nv-space-3: var(--space-3);
+	--nv-space-4: var(--space-4);
+	--nv-space-5: var(--space-5);
+	--nv-space-6: var(--space-6);
+	--nv-space-7: var(--space-7);
+	--nv-space-8: var(--space-8);
+	--nv-space-9: var(--space-9);
+	--nv-radius-sm: var(--radius-sm);
+	--nv-radius-md: var(--radius-md);
+	--nv-radius-lg: var(--radius-lg);
+	--nv-radius-pill: var(--radius-pill);
+	--nv-dur-fast: var(--dur-fast);
+	--nv-dur: var(--dur);
+	--nv-dur-slow: var(--dur-slow);
+	--nv-ease: var(--ease);
+	--nv-ease-out: var(--ease-out);
+	--nv-font-sans: var(--font-sans);
+	--nv-font-mono: var(--font-mono);
+	--nv-text-xs: var(--text-xs);
+	--nv-text-sm: var(--text-sm);
+	--nv-text-base: var(--text-base);
+	--nv-text-lg: var(--text-lg);
+	--nv-text-xl: var(--text-xl);
+	--nv-text-2xl: var(--text-2xl);
+	--nv-text-3xl: var(--text-3xl);
+	--nv-text-4xl: var(--text-4xl);
+	--nv-leading-tight: var(--leading-tight);
+	--nv-leading-snug: var(--leading-snug);
+	--nv-leading: var(--leading);
+	--nv-tracking-tight: var(--tracking-tight);
+	--nv-tracking-wide: var(--tracking-wide);
+	--nv-measure: var(--measure);
+	--nv-width-normal: var(--width-normal);
+	--nv-width-large: var(--width-large);
+	--nv-width-wide: var(--width-listing);
+	--nv-nav-height: var(--nav-height);
+}

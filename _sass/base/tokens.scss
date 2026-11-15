@@ -1,84 +1,37 @@
-// Design token — unica fonte di verità per colori, spazi, raggi, motion e tipografia.
-// Importato per primo da _includes/style.scss: tutto il resto (comprese le Sass
-// variables in base/variables.sass) punta qui.
+// Design token del sito.
 //
-// NB: `html` è a 62.5% → 1rem = 10px in questo codebase. Le scale di spazi e
-// tipografia seguono quella base (es. --space-4: 1.6rem = 16px).
+// I token VERI stanno in nava-ui (https://github.com/Allan-Nava/nava-ui), il kit estratto da
+// questo sito: _sass/vendor/_nava-tokens.scss e' il suo `dist/tokens.site.scss` di una versione
+// fissata, gia' nel dialetto di qui (nomi --color-*, 1rem = 10px perche' `html` e' a 62.5%,
+// mixin palette-dark / palette-light / scale). Si aggiorna con `scripts/sync_nava_ui.sh <tag>`,
+// e checks.yml fallisce se la copia viene modificata a mano: un colore si cambia nel kit
+// (con i suoi controlli di contrasto e gli screenshot), si rilascia, e qui si cambia il tag.
 //
-// DUE TEMI (#137). Lo scuro resta il default e l'identità del sito; il chiaro è
-// una ridefinizione degli stessi nomi, che è esattamente il motivo per cui in
-// v2.3 la palette è finita nelle custom properties.
+// Qui restano solo:
+//   1. i token che il kit non ha perche' nessun suo componente li usa: i colori
+//      dell'evidenziazione del codice (`--syn-*`, letti da base/syntax.sass) e
+//      `--color-inset-line-strong`, nei mixin site-palette-dark / site-palette-light;
+//   2. l'ordine in cui le palette si applicano, che e' del sito.
 //
-// Ordine di applicazione (conta, ed è sorgente — non specificità: i selettori
+// DUE TEMI (#137). Lo scuro resta il default e l'identita' del sito; il chiaro e' una
+// ridefinizione degli stessi nomi.
+//
+// Ordine di applicazione (conta, ed e' sorgente — non specificita': i selettori
 // `:root:not([data-theme="dark"])` e `:root[data-theme="light"]` pesano uguale):
 //   1. :root                                    → scuro, il default
 //   2. @media (prefers-color-scheme: light)     → chiaro, se il sistema lo chiede
 //      su :root:not([data-theme="dark"]), così una scelta esplicita "dark" vince
 //   3. :root[data-theme="…"]                    → la scelta dell'utente vince su tutto
 //
-// Chi aggiunge un colore lo aggiunge in ENTRAMBI i mixin: un token definito solo
-// in `palette-dark` non cambia nel tema chiaro e prima o poi diventa invisibile.
-// Tutte le coppie sono verificate ≥ 6:1 su entrambi i temi (44 coppie).
-//
+// Un token del sito aggiunto qui va in ENTRAMBI i mixin site-palette-*: uno che sta in un
+// solo tema smette di seguirlo. `ruby scripts/check_contrast.rb` legge i due file insieme.
+// `nv-aliases` (i nomi --nv-* del kit) NON e' incluso: costa ~80 dichiarazioni in ogni
+// pagina e serve solo quando il sito usa i componenti del kit (NV-37 del kit).
 
-@mixin palette-dark {
-	color-scheme: dark;
+@import "vendor/nava-tokens";
 
-	// --- superfici -------------------------------------------------------
-	--color-bg: #050505;
-	--color-surface: #101215;
-	--color-surface-hover: #171a1f;
-	--color-border: rgba(255, 255, 255, 0.09);
-	--color-border-strong: rgba(255, 255, 255, 0.18);
-	--color-row-hover: rgba(255, 255, 255, 0.035);
-
-	// --- testo (contrasto verificato su --color-bg) -----------------------
-	--color-fg: #eae4e4; // 16.2:1
-	--color-fg-strong: #ffffff; // 20.4:1
-	--color-fg-muted: #a9a9b0; // 8.7:1 — sostituisce il vecchio #aaa
-
-	// --- accento ---------------------------------------------------------
-	--color-accent: #10cf53; // 9.8:1 su --color-bg
-	--color-accent-hover: #01ff5a;
-	--color-accent-soft: rgba(16, 207, 83, 0.12);
-	--color-accent-border: rgba(16, 207, 83, 0.35);
-	--color-accent-text: #7be8a6; // 11.7:1 sul chip accent-soft
-	--color-on-accent: #04170c; // 8.9:1 su --color-accent
-
-	// --- velature e vetro ------------------------------------------------
-	// Sul tema scuro si schiarisce con il bianco; sul chiaro si scurisce col
-	// nero. Sono token separati proprio perché il verso si inverte.
-	--color-glass: rgba(12, 13, 15, 0.72);
-	--color-glass-strong: rgba(12, 13, 15, 0.82);
-	--color-overlay-soft: rgba(255, 255, 255, 0.03);
-	--color-hover-overlay: rgba(255, 255, 255, 0.06);
-	--color-inset-line: rgba(255, 255, 255, 0.04);
+@mixin site-palette-dark {
 	--color-inset-line-strong: rgba(255, 255, 255, 0.06);
-
-	// --- tessera delle thumbnail dei progetti (#151) ----------------------
-	// Le immagini dei progetti arrivano dai README dei repo e portano ognuna
-	// il proprio fondo: loghi su bianco, screenshot scuri, PNG trasparenti.
-	// Non si normalizzano le immagini, si normalizza il contenitore: fondo
-	// nostro sotto, e un velo sopra che toglie il bagliore ai fondi bianchi
-	// senza toccare i file. Sullo scuro serve, sul chiaro no.
-	--color-thumb-bg: #0b0d10;
-	--color-thumb-veil: rgba(5, 6, 8, 0.22);
-
-	// --- elevazione ------------------------------------------------------
-	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-	--shadow-md: 0 10px 30px rgba(0, 0, 0, 0.45);
-	--shadow-nav: 0 10px 30px rgba(0, 0, 0, 0.6);
-
-	// --- codice ----------------------------------------------------------
-	--color-code-bg: #0f1216;
-	--color-code-fg: #e6edf3;
-	--color-code-border: rgba(255, 255, 255, 0.1);
-
-	// --- icona del toggle ------------------------------------------------
-	// Il bottone mostra il tema verso cui si commuta. Tenendo la scelta nei
-	// token, la logica a tre stati sta in un posto solo.
-	--icon-sun: block;
-	--icon-moon: none;
 
 	// --- syntax highlighting (Rouge) — usati da base/syntax.sass ---------
 	--syn-comment: #8b949e; // 6.1:1
@@ -100,66 +53,8 @@
 	--syn-ins-bg: rgba(46, 160, 67, 0.15);
 }
 
-@mixin palette-light {
-	color-scheme: light;
-
-	// --- superfici -------------------------------------------------------
-	// Qui il verso è invertito rispetto allo scuro: il fondo è appena grigio e
-	// le card sono bianche, così restano staccate senza alzare i bordi.
-	--color-bg: #f6f7f8;
-	--color-surface: #ffffff;
-	--color-surface-hover: #eef1f3;
-	--color-border: rgba(0, 0, 0, 0.11);
-	--color-border-strong: rgba(0, 0, 0, 0.22);
-	--color-row-hover: rgba(0, 0, 0, 0.03);
-
-	// --- testo (contrasto verificato su --color-bg) -----------------------
-	--color-fg: #1a1e23; // 15.6:1
-	--color-fg-strong: #05070a; // 18.8:1
-	--color-fg-muted: #515a65; // 6.5:1 — e 6.2:1 su --color-surface-hover
-
-	// --- accento ---------------------------------------------------------
-	// Stessa tinta (hsl 145) molto più scura: --color-accent fa sia da testo
-	// (26 usi) sia da sfondo con --color-on-accent sopra (9 usi), e un verde
-	// medio non regge nessuno dei due lati su fondo chiaro. Scurendolo salgono
-	// entrambi: 6.5:1 come testo, 6.9:1 col bianco sopra.
-	--color-accent: #086830;
-	--color-accent-hover: #085e2c;
-	--color-accent-soft: rgba(8, 104, 48, 0.1);
-	--color-accent-border: rgba(8, 104, 48, 0.3);
-	--color-accent-text: #075527; // 7.0:1 sul chip accent-soft
-	--color-on-accent: #ffffff; // 6.9:1 su --color-accent
-
-	// --- velature e vetro ------------------------------------------------
-	--color-glass: rgba(255, 255, 255, 0.78);
-	--color-glass-strong: rgba(255, 255, 255, 0.88);
-	--color-overlay-soft: rgba(0, 0, 0, 0.035);
-	--color-hover-overlay: rgba(0, 0, 0, 0.055);
-	--color-inset-line: rgba(0, 0, 0, 0.04);
+@mixin site-palette-light {
 	--color-inset-line-strong: rgba(0, 0, 0, 0.06);
-
-	// --- tessera delle thumbnail dei progetti (#151) ----------------------
-	// Qui un logo su bianco sta gia' bene: il velo e' a zero, la tessera serve
-	// solo a dare un bordo a cio' che e' trasparente.
-	--color-thumb-bg: #eef1f4;
-	--color-thumb-veil: rgba(255, 255, 255, 0);
-
-	// --- elevazione ------------------------------------------------------
-	// Nere al 45-60% le ombre del tema scuro diventano macchie su fondo chiaro.
-	--shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.08);
-	--shadow-md: 0 10px 30px rgba(16, 24, 40, 0.12);
-	--shadow-nav: 0 10px 30px rgba(16, 24, 40, 0.16);
-
-	// --- codice ----------------------------------------------------------
-	--color-code-bg: #f2f4f6;
-	--color-code-fg: #1f2429;
-	--color-code-border: rgba(0, 0, 0, 0.1);
-
-	// --- icona del toggle ------------------------------------------------
-	// Il bottone mostra il tema verso cui si commuta. Tenendo la scelta nei
-	// token, la logica a tre stati sta in un posto solo.
-	--icon-sun: none;
-	--icon-moon: block;
 
 	// --- syntax highlighting (Rouge) -------------------------------------
 	// Ogni tinta scurita fino a ≥ 6:1 su --color-code-bg: la palette scura di
@@ -185,65 +80,8 @@
 
 :root {
 	@include palette-dark;
-
-	// --- spazi -----------------------------------------------------------
-	--space-1: 0.4rem;
-	--space-2: 0.8rem;
-	--space-3: 1.2rem;
-	--space-4: 1.6rem;
-	--space-5: 2.4rem;
-	--space-6: 3.2rem;
-	--space-7: 4.8rem;
-	--space-8: 6.4rem;
-	--space-9: 9.6rem;
-
-	// --- raggi -----------------------------------------------------------
-	--radius-sm: 4px;
-	--radius-md: 8px;
-	--radius-lg: 14px;
-	--radius-pill: 999px;
-
-	// NB: --shadow-* stanno nei mixin di palette, non qui: cambiano col tema.
-
-	// --- motion (rispettato prefers-reduced-motion in components/polish) ---
-	--dur-fast: 120ms;
-	--dur: 200ms;
-	--dur-slow: 360ms;
-	--ease: cubic-bezier(0.4, 0, 0.2, 1);
-	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-
-	// --- tipografia ------------------------------------------------------
-	--font-sans: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
-		"Helvetica Neue", Helvetica, Arial, sans-serif;
-	--font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
-		"Liberation Mono", monospace;
-
-	--text-xs: 1.2rem;
-	--text-sm: 1.4rem;
-	--text-base: clamp(1.6rem, 0.25vw + 1.55rem, 1.75rem);
-	--text-lg: clamp(1.8rem, 0.4vw + 1.7rem, 2rem);
-	--text-xl: clamp(2rem, 0.8vw + 1.8rem, 2.4rem);
-	--text-2xl: clamp(2.4rem, 1.2vw + 2.1rem, 3rem);
-	--text-3xl: clamp(2.8rem, 2.2vw + 2.2rem, 3.8rem);
-	--text-4xl: clamp(3.4rem, 3.4vw + 2.5rem, 5rem);
-
-	--leading-tight: 1.15;
-	--leading-snug: 1.35;
-	--leading: 1.7;
-	--tracking-tight: -0.02em;
-	--tracking-wide: 0.08em;
-
-	// --- layout ----------------------------------------------------------
-	--measure: 68ch; // misura di riga dei post
-	--width-normal: 640px;
-	--width-large: 880px;
-	// Misura dei listing (home, blog, projects, videos): lì non si legge un
-	// testo continuo ma si scorre una griglia, quindi la regola dei 68ch non
-	// si applica e restare a 640px lascia vuoto mezzo schermo.
-	--width-listing: 1120px;
-	// Altezza occupata dall'isola flottante (pillola + stacco dal bordo):
-	// serve a `scroll-margin-top`, così un'ancora non finisce sotto la nav.
-	--nav-height: 68px;
+	@include site-palette-dark;
+	@include scale;
 }
 
 // Tema chiaro (#137).
@@ -251,10 +89,10 @@
 // `:not([data-theme="dark"])` è la parte che conta: senza, un utente con il
 // sistema in chiaro che sceglie esplicitamente lo scuro si ritroverebbe il
 // chiaro comunque, perché questa regola arriva dopo :root.
-//
 @media (prefers-color-scheme: light) {
 	:root:not([data-theme="dark"]) {
 		@include palette-light;
+		@include site-palette-light;
 	}
 }
 
@@ -262,8 +100,10 @@
 // in coda al file, quindi anche a parità di specificità con la media query.
 :root[data-theme="light"] {
 	@include palette-light;
+	@include site-palette-light;
 }
 
 :root[data-theme="dark"] {
 	@include palette-dark;
+	@include site-palette-dark;
 }
