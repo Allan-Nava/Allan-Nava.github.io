@@ -81,6 +81,7 @@ Notes:
 - **Read time** and **related posts** blocks are controlled globally by `read-time` and `related` in `_config.yml`, not per post.
 - **Reuse existing tags.** Two spellings of the same topic (`iOS` and `ios`, `open source` and `open-source`) are different tags to Jekyll but share one slug, so they split the archive in two. `validate_posts.rb` warns about collisions; `scripts/consolidate_tags.rb` merges them.
 - Emoji shortcodes (e.g. `:smile:`) work everywhere thanks to the `jemoji` plugin.
+- Skills live in `_data/skills.yml`. Every item says where it was used — `work` (in production today), `earlier` (in production in a past role), `projects` (own open-source projects) — and the page will show it, so an item never claims more than it is. A fact that changes there changes in About and in the CV too.
 - Workout PRs shown on `/fitness` live in `_data/workouts.yml` — add a record (date, kg, optional post URL) whenever a PR falls.
 
 ## Standalone pages

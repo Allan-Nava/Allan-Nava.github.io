@@ -1,0 +1,164 @@
+# Skills — the curated stack shown to recruiters and engineers.
+#
+# Replaces the "What I work with" tag cloud as the place that says what I can
+# do: tags count posts, this says where each thing was actually used.
+#
+# Rule: only true facts. Every item says WHERE it was used, and the page shows
+# it, so nothing reads bigger than it is:
+#   where: work      used at work today (HiWay Media, in production)
+#   where: earlier   used in production in a past role or period
+#   where: projects  my own open-source projects, not production
+#
+# Fields per item:
+#   name     what it is, as people search for it
+#   where    work | earlier | projects (above)
+#   detail   one line: what I did with it, concrete
+#   repo     optional, a public repo under github.com/Allan-Nava that shows it
+#
+# The order inside a group is the order on the page: strongest first.
+# A change of fact (a tool used in production, a project dropped) goes here,
+# in About, and in the CV in the same change.
+
+legend:
+  work: "At work, in production"
+  earlier: "In production, in an earlier role"
+  projects: "In my own projects"
+
+groups:
+  - id: languages
+    title: Languages
+    items:
+      - name: Go
+        where: work
+        detail: Microservices designed with domain-driven design, and the tooling around Nomad and the encoders
+        repo: checkfleet
+      - name: Java
+        where: work
+        detail: Keycloak identity providers on its SPIs — Sign in with Apple, Druid
+        repo: apple-identity-provider-keycloak
+      - name: Kotlin
+        where: earlier
+        detail: The platform's Android, Android TV and Fire TV apps, until 2023
+      - name: Swift
+        where: earlier
+        detail: The platform's iOS and tvOS apps, until 2023
+      - name: Python
+        where: earlier
+        detail: Django and FastAPI services at IES Italia; today scripts and tooling
+      - name: PHP
+        where: earlier
+        detail: Backends at IES Italia
+      - name: TypeScript
+        where: projects
+        detail: A VS Code extension for Nomad operations
+        repo: nomad-lens
+      - name: React
+        where: earlier
+        detail: Frontends at IES Italia, alongside AngularJS
+
+  - id: infrastructure
+    title: Infrastructure and delivery
+    items:
+      - name: Nomad
+        where: work
+        detail: The scheduler of our platforms on three data centres; upgrades without downtime through a canary node
+        repo: nomad-lens
+      - name: Consul
+        where: work
+        detail: Service discovery and configuration across the three data centres
+      - name: Traefik
+        where: work
+        detail: Ingress for the services scheduled by Nomad
+      - name: HAProxy
+        where: work
+        detail: Load balancing, used every day
+      - name: Docker
+        where: work
+        detail: Every service in containers, including legacy apps migrated from virtual machines
+      - name: Ansible
+        where: work
+        detail: Provisioning of the servers of the three data centres
+      - name: Terraform and Terragrunt
+        where: work
+        detail: Automated creation of AWS accounts and CloudFront distributions
+      - name: AWS
+        where: work
+        detail: CloudFront, and account creation with Terraform; the platforms themselves run on our own data centres
+      - name: TeamCity
+        where: work
+        detail: Automated releases from build to Nomad
+      - name: Linux
+        where: work
+        detail: The servers behind every platform, day to day
+      - name: Kubernetes (k3s)
+        where: projects
+        detail: Manifests for cragcast; the concepts carry over from Nomad
+        repo: cragcast
+
+  - id: data
+    title: Data, messaging and identity
+    items:
+      - name: Keycloak
+        where: work
+        detail: Multi-tenant, in high availability, with identity providers I wrote
+        repo: keycloak-doctor
+      - name: NATS JetStream
+        where: work
+        detail: Events between Go services, with acknowledgements and idempotent consumers
+      - name: MariaDB (Galera)
+        where: work
+        detail: Clustered in high availability
+      - name: PostgreSQL (Patroni)
+        where: work
+        detail: In high availability with Patroni; also the database of cragcast
+        repo: cragcast
+      - name: KeyDB
+        where: work
+        detail: A stale-while-revalidate cache in front of a match-day hot path
+      - name: Change data capture (Canal)
+        where: work
+        detail: From the MySQL binlog to search indexing in Typesense and notifications through Listmonk
+
+  - id: reliability
+    title: Reliability and observability
+    items:
+      - name: Prometheus and Grafana
+        where: work
+        detail: Metrics and dashboards for every platform
+      - name: Health checks
+        where: work
+        detail: The health-check platform we run, released as open source
+        repo: checkfleet
+      - name: k6 load testing
+        where: work
+        detail: Match-day traffic simulated before every event, so capacity problems show up in testing
+      - name: Incident response
+        where: work
+        detail: I run the response during a production incident and write the post-mortem
+
+  - id: video
+    title: Live video
+    items:
+      - name: OTT and live streaming
+        where: work
+        detail: Broadcasting, distribution and OTT platforms for sports, music and entertainment
+      - name: HLS and DASH analysis
+        where: projects
+        detail: What the segments actually contain, beyond what the manifest claims
+        repo: segcheck
+      - name: Low-latency HLS
+        where: projects
+        detail: How a live origin answers a low-latency player
+        repo: latencyprobe
+
+  - id: ai
+    title: AI-assisted development
+    items:
+      - name: Claude Code
+        where: work
+        detail: Every day, with a phase-gated workflow and every change reviewed before it ships
+        repo: qrspi
+      - name: Coding-agent tooling
+        where: projects
+        detail: Plugins and tools for coding agents, from task cost to phase gates
+        repo: agent-ledger

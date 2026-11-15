@@ -226,6 +226,7 @@ Verified with a Node harness that loads the built `sw.js` into a sandbox with mo
 | `fitness.html` | `/fitness` — workout PR tables + SVG charts from `_data/workouts.yml` (toggle: `fitness`). |
 | `gear.md` | `/gear` — equipment list (toggle: `gear`). |
 | `_data/workouts.yml` | Data source for `/fitness`. |
+| `_data/skills.yml` | The curated stack: groups of skills, each with **where** it was used (`work`, `earlier`, `projects`), one line of detail and an optional public repo. Not rendered yet: it is the data for the skills section planned for the home and About. |
 | `blog/index.html` | Blog listing; lives in its own folder to support Jekyll pagination if re-enabled. |
 | `projects.html` | Projects listing; filters `site.posts` on `projects: true`, honours `externalLink` and `star`. |
 | `tags.html` | Tag cloud + per-tag post lists, anchored by slugified tag name. |
