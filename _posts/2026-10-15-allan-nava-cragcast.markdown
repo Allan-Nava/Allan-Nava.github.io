@@ -9,7 +9,7 @@ tag:
 - react
 - github-actions
 - openstreetmap
-image: ""
+image: "https://raw.githubusercontent.com/Allan-Nava/cragcast/main/assets/social-preview.png"
 headerImage: false
 description: "Come cragcast decide se una falesia lombarda è asciutta domani — meteo, pioggia dei giorni prima ed esposizione della parete — e come gira ogni ora senza un server, con GitHub Pages e servizi gratuiti."
 category: blog
