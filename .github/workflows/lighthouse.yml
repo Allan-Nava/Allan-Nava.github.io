@@ -61,6 +61,7 @@ jobs:
             http://localhost:8080/map/
             http://localhost:8080/fitness/
             http://localhost:8080/gear/
+            http://localhost:8080/stack/
           configPath: ./lighthouserc.json
           uploadArtifacts: true
           temporaryPublicStorage: true

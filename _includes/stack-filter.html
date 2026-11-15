@@ -1,0 +1,56 @@
+{%- comment -%}
+Filter of /stack/ by where a skill was used. Same pattern as
+projects-filter.html: the chips are served `hidden` and shown only here, so
+without JavaScript there is no control that would not work. A group with no
+skill left is hidden too, so no empty heading stays on the page.
+Comments in this script are block comments only: compress.html joins the
+lines, and a line comment would swallow the rest of the script.
+{%- endcomment -%}
+<script>
+(function () {
+  var bar = document.querySelector('[data-stack-filter]');
+  var list = document.querySelector('[data-stack-list]');
+  if (!bar || !list) return;
+
+  var rows = Array.prototype.slice.call(list.querySelectorAll('.stack-row'));
+  var groups = Array.prototype.slice.call(list.querySelectorAll('[data-stack-group]'));
+  var chips = Array.prototype.slice.call(bar.querySelectorAll('.filter-chip'));
+  var status = bar.querySelector('.filter-status');
+  bar.hidden = false;
+
+  function label(n) {
+    return n + (n === 1 ? ' skill' : ' skills');
+  }
+
+  function apply(filter) {
+    var shown = 0;
+    rows.forEach(function (row) {
+      var match = filter === '*' || row.getAttribute('data-where') === filter;
+      row.hidden = !match;
+      if (match) {
+        shown++;
+        row.classList.remove('is-filtered-in');
+        void row.offsetWidth;
+        row.classList.add('is-filtered-in');
+      }
+    });
+    groups.forEach(function (group) {
+      group.hidden = !group.querySelector('.stack-row:not([hidden])');
+    });
+    chips.forEach(function (chip) {
+      var active = chip.getAttribute('data-filter') === filter;
+      chip.classList.toggle('is-active', active);
+      chip.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    status.textContent = label(shown);
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      apply(chip.getAttribute('data-filter'));
+    });
+  });
+
+  status.textContent = label(rows.length);
+})();
+</script>

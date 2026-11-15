@@ -110,16 +110,34 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
     </div>
 </section>
 
-{% if site.data.project_tags and site.data.project_tags.size > 0 %}
-    <section class="home-section">
+{%- comment -%}
+What I work with: the curated stack from _data/skills.yml, one tile per group,
+each skill marked by where it was used. The full list, with details and repos,
+is /stack/. The group ids place the tiles in the bento grid (stack.scss); a new
+group falls back to auto placement.
+{%- endcomment -%}
+{% if site.data.skills %}
+    <section class="home-section home-stack">
         <div class="section-head">
             <h2 class="section-title">What I work with</h2>
-            <a class="section-link" href="{{ site.url }}/tags/">All {{ site.data.counts.all_tags }} tags <span aria-hidden="true">→</span></a>
+            <a class="section-link" href="{{ site.url }}/stack/">Full stack <span aria-hidden="true">→</span></a>
         </div>
 
-        <div class="topic-chips">
-            {% for t in site.data.project_tags %}
-                <a class="topic-chip" href="{{ site.url }}/tags/#{{ t.slug }}">{{ t.name }} <span class="count">{{ t.count }}</span></a>
+        {% include stack-legend.html %}
+
+        <div class="stack-grid">
+            {% for g in site.data.skills.groups %}
+                <article class="stack-tile stack-tile--{{ g.id }}">
+                    <h3 class="stack-tile-title">
+                        <a href="{{ site.url }}/stack/#{{ g.id }}">{{ g.title }}</a>
+                        <span class="stack-count">{{ g.items.size }}<span class="sr-only"> skills</span></span>
+                    </h3>
+                    <ul class="stack-chips">
+                        {% for s in g.items %}
+                            <li class="stack-chip is-{{ s.where }}"><span class="stack-mark" aria-hidden="true"></span>{{ s.name }}<span class="sr-only">, {{ site.data.skills.legend[s.where] | downcase }}</span></li>
+                        {% endfor %}
+                    </ul>
+                </article>
             {% endfor %}
         </div>
     </section>

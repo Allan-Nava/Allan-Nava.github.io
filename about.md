@@ -13,4 +13,4 @@ On the software side I write Go microservices designed with domain-driven design
 
 Live video has no maintenance window, so most of my work happens before the event: k6 load tests that simulate match-day traffic, so capacity problems show up in testing and not during a live match; Go tooling around Nomad and the encoders; a health-check platform, released as [checkfleet](https://github.com/Allan-Nava/checkfleet). When an incident does happen in production, I run the response and write the post-mortem.
 
-The [projects](/projects/) page catalogues what I build and run, most of it open source on [GitHub](https://github.com/Allan-Nava). Outside work: climbing, snowboarding, workouts, travel and videogames — some of it is in the [videos](/videos/).
+The [stack](/stack/) page lists what I work with and where I used each one: at work, in an earlier role or in my own projects. The [projects](/projects/) page catalogues what I build and run, most of it open source on [GitHub](https://github.com/Allan-Nava). Outside work: climbing, snowboarding, workouts, travel and videogames — some of it is in the [videos](/videos/).

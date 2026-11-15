@@ -137,6 +137,7 @@ Milestone `v3.0` creata su GitHub con le quattro issue qui sotto. Sono le uniche
 ## ✅ Fatte
 
 - [x] **Mappa delle escursioni** — `/map` con Leaflet; post con `lat`/`lng` → marker (15 post geolocalizzati al lancio).
+- [x] **Stack** — `/stack/` e la griglia "What I work with" in home, da `_data/skills.yml`: ogni competenza dice dove è stata usata (al lavoro, in un ruolo precedente, nei progetti), con il segno che cambia forma e non solo colore; filtro per "dove" senza dipendenze.
 - [x] **Fitness tracker** — `/fitness` con tabelle e grafici SVG dei PR, dati in `_data/workouts.yml`.
 - [x] **Strava sync** — `strava-sync.yml` + `scripts/sync_strava.rb` (in attesa dei secret, vedi v2.2).
 - [x] **Pagina gear** — `/gear` (voci placeholder da compilare).

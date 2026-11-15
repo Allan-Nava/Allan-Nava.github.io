@@ -50,6 +50,8 @@ checks:
         expect_body: "<title>Tags | Allan Nava</title>"
       - url: https://allan-nava.github.io/gear/
         expect_body: "<title>Gear | Allan Nava</title>"
+      - url: https://allan-nava.github.io/stack/
+        expect_body: "<title>Stack | Allan Nava</title>"
 
       # map.html and fitness.html set `permalink: /map/` and `/fitness/`, so the
       # served URLs are not the filenames. Pinned here so a dropped permalink

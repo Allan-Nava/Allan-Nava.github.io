@@ -1,0 +1,6 @@
+{%- comment -%} The three kinds of "where", in the order of the data file. {%- endcomment -%}
+<ul class="stack-legend" aria-label="Legend">
+    {% for entry in site.data.skills.legend %}
+        <li class="stack-chip is-{{ entry[0] }}"><span class="stack-mark" aria-hidden="true"></span>{{ entry[1] }}</li>
+    {% endfor %}
+</ul>

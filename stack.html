@@ -1,0 +1,83 @@
+---
+layout: page
+title: Stack
+description: "What Allan Nava works with, and where each skill was used: in production at work, in an earlier role, or in his own open-source projects."
+subtitle: "What I work with, and where I used it: at work, in an earlier role, or in my own projects."
+permalink: /stack/
+wide: true
+---
+
+{%- comment -%}
+The full stack, from _data/skills.yml. Every skill says where it was used, so
+nothing reads bigger than it is. The filter is in _includes/stack-filter.html:
+without JavaScript the chips stay hidden and the whole list is shown.
+{%- endcomment -%}
+
+{% assign n_all = 0 %}{% assign n_work = 0 %}{% assign n_earlier = 0 %}{% assign n_projects = 0 %}
+{% for g in site.data.skills.groups %}{% for s in g.items %}
+    {% assign n_all = n_all | plus: 1 %}
+    {% if s.where == "work" %}{% assign n_work = n_work | plus: 1 %}{% endif %}
+    {% if s.where == "earlier" %}{% assign n_earlier = n_earlier | plus: 1 %}{% endif %}
+    {% if s.where == "projects" %}{% assign n_projects = n_projects | plus: 1 %}{% endif %}
+{% endfor %}{% endfor %}
+
+<dl class="hero-stats stack-stats">
+    <div class="stat">
+        <dt class="stat-label">At work</dt>
+        <dd class="stat-value" data-count="{{ n_work }}">{{ n_work }}</dd>
+    </div>
+    <div class="stat">
+        <dt class="stat-label">Earlier roles</dt>
+        <dd class="stat-value" data-count="{{ n_earlier }}">{{ n_earlier }}</dd>
+    </div>
+    <div class="stat">
+        <dt class="stat-label">Own projects</dt>
+        <dd class="stat-value" data-count="{{ n_projects }}">{{ n_projects }}</dd>
+    </div>
+</dl>
+
+<div class="filters" data-stack-filter hidden>
+    <div class="filter-chips" role="group" aria-label="Filter by where it was used">
+        <button type="button" class="filter-chip is-active" data-filter="*" aria-pressed="true">All <span class="count">{{ n_all }}</span></button>
+        <button type="button" class="filter-chip" data-filter="work" aria-pressed="false">At work <span class="count">{{ n_work }}</span></button>
+        <button type="button" class="filter-chip" data-filter="earlier" aria-pressed="false">Earlier roles <span class="count">{{ n_earlier }}</span></button>
+        <button type="button" class="filter-chip" data-filter="projects" aria-pressed="false">Own projects <span class="count">{{ n_projects }}</span></button>
+    </div>
+    <p class="filter-status" role="status" aria-live="polite"></p>
+</div>
+
+<div class="stack-list" data-stack-list>
+    {% for g in site.data.skills.groups %}
+        <section class="stack-group" id="{{ g.id }}" data-stack-group>
+            <div class="section-head">
+                <h2 class="section-title">{{ g.title }}</h2>
+                <span class="stack-count">{{ g.items.size }}<span class="sr-only"> skills</span></span>
+            </div>
+            <ul class="stack-rows">
+                {% for s in g.items %}
+                    <li class="stack-row" data-where="{{ s.where }}">
+                        <div class="stack-row-head">
+                            <h3 class="stack-name">{{ s.name }}</h3>
+                            <span class="stack-chip is-{{ s.where }}"><span class="stack-mark" aria-hidden="true"></span>{{ site.data.skills.legend[s.where] }}</span>
+                        </div>
+                        <p class="stack-detail">{{ s.detail }}</p>
+                        {% if s.repo %}
+                            <a class="stack-repo" href="https://github.com/Allan-Nava/{{ s.repo }}" rel="noopener">{{ s.repo }} <span aria-hidden="true">↗</span><span class="sr-only"> on GitHub</span></a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    {% endfor %}
+</div>
+
+<section class="home-cta">
+    <h2 class="cta-title">The rest of the story</h2>
+    <p class="cta-text">How these fit together on live video platforms, and what I build in my spare time.</p>
+    <div class="cta-actions">
+        <a class="button button-primary" href="{{ site.url }}/about/">About me</a>
+        <a class="button" href="{{ site.url }}/projects/">All projects</a>
+    </div>
+</section>
+
+{% include stack-filter.html %}
