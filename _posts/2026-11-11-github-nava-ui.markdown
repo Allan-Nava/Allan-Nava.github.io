@@ -2,13 +2,13 @@
 title: "nava-ui"
 layout: post
 date: 2026-11-11 13:03
-updated: 2026-11-14
+updated: 2026-11-15
 tag:
 - css
 - css
 - dark-theme
 - design-system
-image: ""
+image: "https://raw.githubusercontent.com/Allan-Nava/nava-ui/main/assets/logo.svg"
 headerImage: false
 projects: true
 hidden: true
@@ -23,6 +23,6 @@ A small, dark-first UI kit in plain CSS: the design tokens and components of all
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: CSS
-- **Ultimo push**: 2026-11-14
+- **Ultimo push**: 2026-11-15
 
 [Repo su GitHub →](https://github.com/Allan-Nava/nava-ui)
