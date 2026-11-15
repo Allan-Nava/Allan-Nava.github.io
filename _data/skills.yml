@@ -112,9 +112,9 @@ groups:
         where: work
         detail: In high availability with Patroni; also the database of cragcast
         repo: cragcast
-      - name: KeyDB
+      - name: Redis and KeyDB
         where: work
-        detail: A stale-while-revalidate cache in front of a match-day hot path
+        detail: Caches in production; on KeyDB, a stale-while-revalidate cache in front of a match-day hot path
       - name: Change data capture (Canal)
         where: work
         detail: From the MySQL binlog to search indexing in Typesense and notifications through Listmonk
