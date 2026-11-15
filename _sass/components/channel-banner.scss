@@ -1,0 +1,167 @@
+// Intestazione di /videos/ (_includes/channel-banner.html): il banner del canale YouTube
+// con i colori dei token. Le creste sono il colore del testo mescolato allo sfondo, così
+// restano velature appena visibili in tutti e due i temi.
+
+.channel-banner {
+	position: relative;
+	overflow: hidden;
+	isolation: isolate;
+	display: grid;
+	place-items: center;
+	min-height: clamp(30rem, 42vw, 46rem);
+	margin: 0 0 var(--space-6);
+	padding: 4.8rem 1.6rem 9.6rem;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-lg);
+	background: var(--color-bg);
+	text-align: center;
+
+	// Griglia sottile, sfumata ai bordi come nel banner.
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: -2;
+		background-image:
+			linear-gradient(var(--color-inset-line) 1px, transparent 1px),
+			linear-gradient(90deg, var(--color-inset-line) 1px, transparent 1px);
+		background-size: 3.2rem 3.2rem;
+		mask-image: radial-gradient(ellipse 60% 55% at 50% 40%, #000 30%, transparent 80%);
+	}
+
+	// Il bagliore verde dietro il titolo.
+	&::after {
+		content: "";
+		position: absolute;
+		left: 50%;
+		top: 18%;
+		z-index: -2;
+		width: min(90%, 80rem);
+		aspect-ratio: 3 / 2;
+		transform: translateX(-50%);
+		border-radius: 50%;
+		background: radial-gradient(circle, var(--color-accent-soft) 0%, transparent 62%);
+	}
+}
+
+.cb-ridges {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: -1;
+	width: 100%;
+	height: 70%;
+
+	.cb-far { fill: color-mix(in srgb, var(--color-fg) 4%, var(--color-bg)); }
+	.cb-mid { fill: color-mix(in srgb, var(--color-fg) 6%, var(--color-bg)); }
+	.cb-near { fill: color-mix(in srgb, var(--color-fg) 2.5%, var(--color-bg)); }
+	.cb-line {
+		fill: none;
+		stroke: var(--color-accent);
+		stroke-width: 3;
+		stroke-linejoin: round;
+		opacity: 0.6;
+		vector-effect: non-scaling-stroke;
+	}
+}
+
+.cb-text { max-width: 100rem; }
+
+// Su telefono la catena intera sta in pochi pixel di larghezza e le cime si fanno aguzze:
+// più bassa e con più spazio sotto il testo, così non ci passa dietro.
+@media (max-width: 560px) {
+	.channel-banner { padding-bottom: 12rem; }
+	.cb-ridges { height: 38%; }
+}
+
+.cb-kicker {
+	margin: 0 0 1.2rem;
+	font-family: var(--font-mono);
+	font-size: 1.3rem;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--color-accent-text);
+
+	&::before {
+		content: "";
+		display: inline-block;
+		width: 0.8rem;
+		height: 0.8rem;
+		margin: 0 1rem 0.2rem 0;
+		border-radius: 0.2rem;
+		background: var(--color-accent);
+		vertical-align: middle;
+	}
+
+	span { margin: 0 0.6rem; color: var(--color-fg-muted); }
+	a { color: inherit; }
+}
+
+// L'<h1> della pagina: il selettore ha il peso che serve a battere `.page h1`.
+.channel-banner .cb-title {
+	margin: 0;
+	font-size: clamp(3.2rem, 6.4vw, 6.4rem);
+	font-weight: 800;
+	line-height: 1.04;
+	letter-spacing: -0.035em;
+	color: var(--color-fg-strong);
+
+	em { font-style: normal; color: var(--color-accent); }
+}
+
+.cb-subjects {
+	margin: 1.4rem 0 0;
+	font-size: clamp(1.6rem, 2vw, 2rem);
+	font-weight: 500;
+	color: var(--color-fg);
+
+	i { margin: 0 1rem; font-style: normal; color: var(--color-accent); }
+}
+
+.cb-stats {
+	margin: 2rem 0 0;
+	font-size: 1.4rem;
+	color: var(--color-fg-muted);
+
+	strong { color: var(--color-fg-strong); font-variant-numeric: tabular-nums; }
+	span { margin: 0 0.4rem; }
+	a { color: inherit; }
+}
+
+// Movimento: la cresta verde si disegna all'apertura, le catene scorrono con lo scroll a
+// velocità diverse (la lontana resta indietro), il bagliore respira. Senza supporto o con
+// reduced-motion il banner è già completo e fermo.
+@media (prefers-reduced-motion: no-preference) {
+	.cb-ridges .cb-line {
+		stroke-dasharray: 1;
+		stroke-dashoffset: 1;
+		animation: cb-draw 2.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+	}
+
+	.channel-banner::after { animation: cb-breathe 6s ease-in-out infinite alternate; }
+
+	@supports (animation-timeline: view()) {
+		.cb-ridges path {
+			animation-timeline: view();
+			animation-range: exit;
+			animation-fill-mode: both;
+			animation-timing-function: linear;
+		}
+		.cb-ridges .cb-far { animation-name: cb-drift-far; }
+		.cb-ridges .cb-mid { animation-name: cb-drift-mid; }
+		.cb-ridges .cb-near { animation-name: cb-drift-near; }
+		// La cresta verde deve fare due cose: disegnarsi (tempo) e seguire la sua catena
+		// (scroll). `animation` è una sola proprietà, quindi stanno nella stessa lista.
+		.cb-ridges .cb-line {
+			animation: cb-draw 2.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards, cb-drift-mid linear both;
+			animation-timeline: auto, view();
+			animation-range: normal, exit;
+		}
+	}
+}
+
+@keyframes cb-draw { to { stroke-dashoffset: 0; } }
+@keyframes cb-breathe { from { opacity: 0.7; } to { opacity: 1; } }
+@keyframes cb-drift-far { to { transform: translateY(160px); } }
+@keyframes cb-drift-mid { to { transform: translateY(90px); } }
+@keyframes cb-drift-near { to { transform: translateY(30px); } }

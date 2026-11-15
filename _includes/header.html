@@ -18,8 +18,9 @@ reader senza titolo di primo livello (#150). Ora il titolo lo mette questo
 include per tutte, e c'è un posto solo dove cambiarlo.
 
 `custom_header: true` è la via d'uscita per chi ha un'intestazione irriducibile:
-la usa solo la 404, che sopra al titolo mostra il numerone e il cui `<h1>` non è
-il `title:` della pagina.
+la usano la 404, che sopra al titolo mostra il numerone e il cui `<h1>` non è
+il `title:` della pagina, e /videos, che apre col banner del canale
+(_includes/channel-banner.html).
 
 ATTENZIONE ai post: `_layouts/post.html` dichiara `layout: page`, quindi passa
 di qui anche lui — ma il titolo dell'articolo lo mette già `post.html` nella sua

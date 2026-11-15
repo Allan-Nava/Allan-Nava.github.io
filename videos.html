@@ -5,6 +5,7 @@ wide: true
 permalink: /videos/
 description: "Every video post from the YouTube channel, newest first."
 subtitle: "Everything from the YouTube channel, newest first."
+custom_header: true
 ---
 
 {%- comment -%}
@@ -18,6 +19,8 @@ si vedeva il riempimento sfocato che YouTube mette ai lati del frame, cioè due
 pannelli su metà della griglia. La griglia è mista di proposito: un 9:16 in un
 box 16:9 è una fettina orizzontale di un video verticale, che non dice niente.
 {%- endcomment -%}
+
+{% include channel-banner.html %}
 
 {% assign videoPosts = site.posts | where_exp: "p", "p.content contains 'lite-youtube'" %}
 
