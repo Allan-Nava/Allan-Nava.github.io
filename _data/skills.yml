@@ -15,7 +15,10 @@
 #   detail   one line: what I did with it, concrete
 #   repo     optional, a public repo under github.com/Allan-Nava that shows it
 #
-# The order inside a group is the order on the page: strongest first.
+# Per group, `tile` is optional: the size of its tile in the home grid, as nava-ui's
+# nv-tile modifiers (feature, w3, w4, w6, h2). Without it a tile takes a third of the row.
+#
+# The order of the groups and inside a group is the order on the page: strongest first.
 # A change of fact (a tool used in production, a project dropped) goes here,
 # in About, and in the CV in the same change.
 
@@ -25,39 +28,9 @@ legend:
   projects: "In my own projects"
 
 groups:
-  - id: languages
-    title: Languages
-    items:
-      - name: Go
-        where: work
-        detail: Microservices designed with domain-driven design, and the tooling around Nomad and the encoders
-        repo: checkfleet
-      - name: Java
-        where: work
-        detail: Keycloak identity providers on its SPIs — Sign in with Apple, Druid
-        repo: apple-identity-provider-keycloak
-      - name: Kotlin
-        where: earlier
-        detail: The platform's Android, Android TV and Fire TV apps, until 2023
-      - name: Swift
-        where: earlier
-        detail: The platform's iOS and tvOS apps, until 2023
-      - name: Python
-        where: earlier
-        detail: Django and FastAPI services at IES Italia; today scripts and tooling
-      - name: PHP
-        where: earlier
-        detail: Backends at IES Italia
-      - name: TypeScript
-        where: projects
-        detail: A VS Code extension for Nomad operations
-        repo: nomad-lens
-      - name: React
-        where: earlier
-        detail: Frontends at IES Italia, alongside AngularJS
-
   - id: infrastructure
     title: Infrastructure and delivery
+    tile: [feature, w3, h2]
     items:
       - name: Nomad
         where: work
@@ -95,8 +68,41 @@ groups:
         detail: Manifests for cragcast; the concepts carry over from Nomad
         repo: cragcast
 
+  - id: languages
+    title: Languages
+    tile: [w3]
+    items:
+      - name: Go
+        where: work
+        detail: Microservices designed with domain-driven design, and the tooling around Nomad and the encoders
+        repo: checkfleet
+      - name: Java
+        where: work
+        detail: Keycloak identity providers on its SPIs — Sign in with Apple, Druid
+        repo: apple-identity-provider-keycloak
+      - name: Kotlin
+        where: earlier
+        detail: The platform's Android, Android TV and Fire TV apps, until 2023
+      - name: Swift
+        where: earlier
+        detail: The platform's iOS and tvOS apps, until 2023
+      - name: Python
+        where: earlier
+        detail: Django and FastAPI services at IES Italia; today scripts and tooling
+      - name: PHP
+        where: earlier
+        detail: Backends at IES Italia
+      - name: TypeScript
+        where: projects
+        detail: A VS Code extension for Nomad operations
+        repo: nomad-lens
+      - name: React
+        where: earlier
+        detail: Frontends at IES Italia, alongside AngularJS
+
   - id: data
     title: Data, messaging and identity
+    tile: [w3]
     items:
       - name: Keycloak
         where: work

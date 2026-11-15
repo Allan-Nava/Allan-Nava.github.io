@@ -90,8 +90,7 @@
 		.blog > .list > .item,
 		.projects > .list > .item,
 		.home-section .list > .item,
-		.stack-grid > .stack-tile,
-		.stack-rows > .stack-row {
+		.nv-bento > .nv-tile {
 			animation: card-in linear both;
 			animation-timeline: view();
 			animation-range: entry 0% entry 65%;

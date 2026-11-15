@@ -1,0 +1,112 @@
+// GENERATED from nava-ui v0.4.0 (css/components.css, "Bento") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-bento {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-auto-flow: row dense;
+  gap: var(--nv-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nv-tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nv-space-3);
+  min-width: 0;
+  margin: 0;
+  padding: var(--nv-space-5);
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-lg);
+  box-shadow: inset 0 1px 0 var(--nv-inset-line);
+}
+
+.nv-tile--feature {
+  background: linear-gradient(155deg, var(--nv-accent-soft), transparent 60%), var(--nv-surface);
+  border-color: var(--nv-accent-border);
+}
+
+.nv-tile__title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--nv-space-3);
+  margin: 0;
+  font-size: var(--nv-text-base);
+  font-weight: 650;
+  letter-spacing: var(--nv-tracking-tight);
+  line-height: var(--nv-leading-snug);
+  color: var(--nv-fg-strong);
+}
+
+.nv-tile__title > a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-tile__title > a:hover {
+  color: var(--nv-accent);
+}
+
+.nv-tile__count {
+  font-size: var(--nv-text-xs);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--nv-fg-muted);
+}
+
+.nv-tile__text {
+  margin: 0;
+  font-size: var(--nv-text-sm);
+  line-height: 1.55;
+  color: var(--nv-fg-muted);
+}
+
+@media (max-width: 560px) {
+  .nv-tile {
+    padding: var(--nv-space-4);
+  }
+}
+
+@media (min-width: 561px) {
+  .nv-bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nv-tile--w3,
+  .nv-tile--w4,
+  .nv-tile--w6 {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 860px) {
+  .nv-bento {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .nv-tile {
+    grid-column: span 2;
+  }
+
+  .nv-tile--w3 {
+    grid-column: span 3;
+  }
+
+  .nv-tile--w4 {
+    grid-column: span 4;
+  }
+
+  .nv-tile--w6 {
+    grid-column: span 6;
+  }
+
+  .nv-tile--h2 {
+    grid-row: span 2;
+  }
+}

@@ -1,0 +1,69 @@
+// GENERATED from nava-ui v0.4.0 (css/components.css, "Marks, pills and legends") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-mark {
+  flex: 0 0 auto;
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  box-sizing: border-box;
+  border: 1.5px solid currentColor;
+  border-radius: var(--nv-radius-pill);
+}
+
+.nv-mark--dot {
+  border-width: 0.25em;
+}
+
+.nv-mark--diamond {
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: 1px;
+  transform: rotate(45deg);
+}
+
+.nv-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 4px 11px;
+  font-size: var(--nv-text-sm);
+  line-height: 1.35;
+  white-space: nowrap;
+  color: var(--nv-fg);
+  background: transparent;
+  border: 1px solid var(--nv-border-strong);
+  border-radius: var(--nv-radius-pill);
+}
+
+.nv-pill--accent {
+  color: var(--nv-accent-text);
+  background: var(--nv-accent-soft);
+  border-color: var(--nv-accent-border);
+}
+
+.nv-pill--dashed {
+  border-style: dashed;
+}
+
+.nv-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nv-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nv-pills > li {
+  margin: 0;
+}
+
+.nv-pills--legend {
+  margin-bottom: var(--nv-space-4);
+}
+
+.nv-pills--legend .nv-pill {
+  font-size: var(--nv-text-xs);
+}

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Il sito legge i design token da nava-ui (https://github.com/Allan-Nava/nava-ui), il kit
-# estratto da questo sito: la copia sta in _sass/vendor/_nava-tokens.scss ed e' il file
+# estratto da questo sito: la copia dei token sta in _sass/vendor/_nava-tokens.scss ed e' il file
 # `dist/tokens.site.scss` di una versione fissata del kit, cioe' i token gia' nel dialetto
 # del sito (nomi --color-*, rem da 10px, mixin palette-dark / palette-light / scale).
 #
@@ -15,7 +15,12 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 TARGET="_sass/vendor/_nava-tokens.scss"
+# I componenti del kit usati dal sito: uno per sezione di css/components.css del kit, gia'
+# col rem da 10px e senza commenti (dist/site/_nava-<sezione>.scss). Aggiungerne uno = una
+# parola qui, poi `scripts/sync_nava_ui.sh <tag>` e l'@import in _includes/style.scss.
+PARTS="bento marks-pills-and-legends"
 url() { echo "https://raw.githubusercontent.com/Allan-Nava/nava-ui/$1/dist/tokens.site.scss"; }
+part_url() { echo "https://raw.githubusercontent.com/Allan-Nava/nava-ui/$1/dist/site/_nava-$2.scss"; }
 
 case "${1:-}" in
   --check)
@@ -31,10 +36,23 @@ case "${1:-}" in
       exit 1
     fi
     echo "ok: $TARGET = nava-ui $tag"
+    for part in $PARTS; do
+      file="_sass/vendor/_nava-$part.scss"
+      curl -fsSL "$(part_url "$tag" "$part")" -o "$tmp"
+      if ! diff -u "$tmp" "$file"; then
+        echo "::error::$file non e' il file di nava-ui $tag: i componenti si cambiano nel kit, poi scripts/sync_nava_ui.sh <tag>"
+        exit 1
+      fi
+      echo "ok: $file = nava-ui $tag"
+    done
     ;;
   v[0-9]*)
     curl -fsSL "$(url "$1")" -o "$TARGET"
     head -1 "$TARGET"
+    for part in $PARTS; do
+      curl -fsSL "$(part_url "$1" "$part")" -o "_sass/vendor/_nava-$part.scss"
+      echo "_sass/vendor/_nava-$part.scss"
+    done
     echo "aggiornato $TARGET a nava-ui $1"
     ;;
   *)

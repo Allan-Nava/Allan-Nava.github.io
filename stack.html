@@ -8,8 +8,8 @@ wide: true
 ---
 
 {%- comment -%}
-The full stack, from _data/skills.yml. Every skill says where it was used, so
-nothing reads bigger than it is. The filter is in _includes/stack-filter.html:
+The full stack, from _data/skills.yml, built with nava-ui's bento grid and pills. Every
+skill says where it was used, so nothing reads bigger than it is. The filter is in _includes/stack-filter.html:
 without JavaScript the chips stay hidden and the whole list is shown.
 {%- endcomment -%}
 
@@ -48,25 +48,23 @@ without JavaScript the chips stay hidden and the whole list is shown.
 
 <div class="stack-list" data-stack-list>
     {% for g in site.data.skills.groups %}
-        <section class="stack-group" id="{{ g.id }}" data-stack-group>
+        <section class="home-section stack-group" id="{{ g.id }}" data-stack-group>
             <div class="section-head">
-                <h2 class="section-title">{{ g.title }}</h2>
-                <span class="stack-count">{{ g.items.size }}<span class="sr-only"> skills</span></span>
+                <h2 class="section-title">{{ g.title }} <span class="nv-tile__count">{{ g.items.size }}<span class="sr-only"> skills</span></span></h2>
             </div>
-            <ul class="stack-rows">
+            <div class="nv-bento">
                 {% for s in g.items %}
-                    <li class="stack-row" data-where="{{ s.where }}">
-                        <div class="stack-row-head">
-                            <h3 class="stack-name">{{ s.name }}</h3>
-                            <span class="stack-chip is-{{ s.where }}"><span class="stack-mark" aria-hidden="true"></span>{{ site.data.skills.legend[s.where] }}</span>
-                        </div>
-                        <p class="stack-detail">{{ s.detail }}</p>
+                    <article class="nv-tile nv-tile--w3" data-where="{{ s.where }}">
+                        <h3 class="nv-tile__title">{{ s.name }}</h3>
+                        {% assign where_label = site.data.skills.legend[s.where] %}
+                        <div class="nv-pills">{% include stack-pill.html where=s.where label=where_label %}</div>
+                        <p class="nv-tile__text">{{ s.detail }}</p>
                         {% if s.repo %}
-                            <a class="stack-repo" href="https://github.com/Allan-Nava/{{ s.repo }}" rel="noopener">{{ s.repo }} <span aria-hidden="true">↗</span><span class="sr-only"> on GitHub</span></a>
+                            <p class="nv-tile__text"><a href="https://github.com/Allan-Nava/{{ s.repo }}" rel="noopener">{{ s.repo }} <span aria-hidden="true">↗</span><span class="sr-only"> on GitHub</span></a></p>
                         {% endif %}
-                    </li>
+                    </article>
                 {% endfor %}
-            </ul>
+            </div>
         </section>
     {% endfor %}
 </div>
@@ -74,7 +72,7 @@ without JavaScript the chips stay hidden and the whole list is shown.
 <section class="home-cta">
     <h2 class="cta-title">The rest of the story</h2>
     <p class="cta-text">How these fit together on live video platforms, and what I build in my spare time.</p>
-    <div class="cta-actions">
+    <div class="hero-actions">
         <a class="button button-primary" href="{{ site.url }}/about/">About me</a>
         <a class="button" href="{{ site.url }}/projects/">All projects</a>
     </div>

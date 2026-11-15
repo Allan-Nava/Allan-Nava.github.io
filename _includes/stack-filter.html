@@ -12,7 +12,7 @@ lines, and a line comment would swallow the rest of the script.
   var list = document.querySelector('[data-stack-list]');
   if (!bar || !list) return;
 
-  var rows = Array.prototype.slice.call(list.querySelectorAll('.stack-row'));
+  var rows = Array.prototype.slice.call(list.querySelectorAll('[data-where]'));
   var groups = Array.prototype.slice.call(list.querySelectorAll('[data-stack-group]'));
   var chips = Array.prototype.slice.call(bar.querySelectorAll('.filter-chip'));
   var status = bar.querySelector('.filter-status');
@@ -35,7 +35,7 @@ lines, and a line comment would swallow the rest of the script.
       }
     });
     groups.forEach(function (group) {
-      group.hidden = !group.querySelector('.stack-row:not([hidden])');
+      group.hidden = !group.querySelector('[data-where]:not([hidden])');
     });
     chips.forEach(function (chip) {
       var active = chip.getAttribute('data-filter') === filter;

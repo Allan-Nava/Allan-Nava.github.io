@@ -25,8 +25,9 @@
 //
 // Un token del sito aggiunto qui va in ENTRAMBI i mixin site-palette-*: uno che sta in un
 // solo tema smette di seguirlo. `ruby scripts/check_contrast.rb` legge i due file insieme.
-// `nv-aliases` (i nomi --nv-* del kit) NON e' incluso: costa ~80 dichiarazioni in ogni
-// pagina e serve solo quando il sito usa i componenti del kit (NV-37 del kit).
+// `nv-aliases` mette su :root i nomi --nv-* del kit, puntati su quelli del sito: li leggono i
+// componenti del kit importati in _includes/style.scss (oggi la griglia e le pillole di
+// "What I work with" e /stack/). Costa ~80 dichiarazioni, una volta sola, su :root.
 
 @import "vendor/nava-tokens";
 
@@ -82,6 +83,7 @@
 	@include palette-dark;
 	@include site-palette-dark;
 	@include scale;
+	@include nv-aliases;
 }
 
 // Tema chiaro (#137).

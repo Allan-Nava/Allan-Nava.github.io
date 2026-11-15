@@ -1,0 +1,12 @@
+{%- comment -%}
+One pill of nava-ui (vendored in _sass/vendor/_nava-marks-pills-and-legends.scss) for a kind
+of "where": the mark changes shape and the pill its border, so the kind is never told by
+colour alone. Parameters: where (work, earlier, projects), label, and sr — words for screen
+readers after the label, left out when the label already says the kind.
+{%- endcomment -%}
+{%- case include.where -%}
+{%- when "work" -%}{%- assign pill_class = "nv-pill nv-pill--accent" -%}{%- assign mark_class = "nv-mark nv-mark--dot" -%}
+{%- when "projects" -%}{%- assign pill_class = "nv-pill nv-pill--dashed" -%}{%- assign mark_class = "nv-mark nv-mark--diamond" -%}
+{%- else -%}{%- assign pill_class = "nv-pill" -%}{%- assign mark_class = "nv-mark" -%}
+{%- endcase -%}
+<span class="{{ pill_class }}"><span class="{{ mark_class }}" aria-hidden="true"></span>{{ include.label }}{% if include.sr %}<span class="sr-only">, {{ include.sr }}</span>{% endif %}</span>

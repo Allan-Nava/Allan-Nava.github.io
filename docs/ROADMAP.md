@@ -137,6 +137,7 @@ Milestone `v3.0` creata su GitHub con le quattro issue qui sotto. Sono le uniche
 ## ✅ Fatte
 
 - [x] **Mappa delle escursioni** — `/map` con Leaflet; post con `lat`/`lng` → marker (15 post geolocalizzati al lancio).
+- [x] **Stack con i componenti di nava-ui** — "What I work with" e `/stack/` usano la griglia `nv-bento` e le pillole `nv-pill` del kit (v0.4.0, copiate da `scripts/sync_nava_ui.sh`); `_sass/components/stack.scss` cancellato.
 - [x] **Token da nava-ui** — `_sass/vendor/_nava-tokens.scss` è il `dist/tokens.site.scss` di un rilascio fissato del kit (v0.3.0), aggiornato con `scripts/sync_nava_ui.sh <tag>` e controllato in `checks.yml`; `tokens.scss` tiene solo i token del sito e l'ordine dei temi. Compilato prima e dopo: nessun valore cambiato.
 - [x] **Stack** — `/stack/` e la griglia "What I work with" in home, da `_data/skills.yml`: ogni competenza dice dove è stata usata (al lavoro, in un ruolo precedente, nei progetti), con il segno che cambia forma e non solo colore; filtro per "dove" senza dipendenze.
 - [x] **Fitness tracker** — `/fitness` con tabelle e grafici SVG dei PR, dati in `_data/workouts.yml`.

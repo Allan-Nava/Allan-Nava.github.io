@@ -1,6 +1,10 @@
-{%- comment -%} The three kinds of "where", in the order of the data file. {%- endcomment -%}
-<ul class="stack-legend" aria-label="Legend">
+{%- comment -%}
+The three kinds of "where", in the order of the data file. Include parameters take plain
+variable names only (no `[]` lookups), hence the assigns.
+{%- endcomment -%}
+<ul class="nv-pills nv-pills--legend" aria-label="Legend">
     {% for entry in site.data.skills.legend %}
-        <li class="stack-chip is-{{ entry[0] }}"><span class="stack-mark" aria-hidden="true"></span>{{ entry[1] }}</li>
+        {% assign kind = entry[0] %}{% assign kind_label = entry[1] %}
+        <li>{% include stack-pill.html where=kind label=kind_label %}</li>
     {% endfor %}
 </ul>

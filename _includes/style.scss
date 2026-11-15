@@ -50,7 +50,10 @@
 @import "components/social-links";
 @import "components/spoiler";
 @import "components/webmentions";
-@import "components/stack";
+// Componenti di nava-ui (copie fissate, scripts/sync_nava_ui.sh): solo quelli usati,
+// perche' il CSS sta dentro ogni pagina.
+@import "vendor/nava-bento";
+@import "vendor/nava-marks-pills-and-legends";
 // motion prima di polish: il blocco `prefers-reduced-motion` di polish deve
 // restare l'ultima parola sulle animazioni.
 @import "components/motion";

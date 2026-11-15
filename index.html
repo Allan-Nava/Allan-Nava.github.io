@@ -111,10 +111,10 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
 </section>
 
 {%- comment -%}
-What I work with: the curated stack from _data/skills.yml, one tile per group,
-each skill marked by where it was used. The full list, with details and repos,
-is /stack/. The group ids place the tiles in the bento grid (stack.scss); a new
-group falls back to auto placement.
+What I work with: the curated stack from _data/skills.yml, one tile per group, each skill
+marked by where it was used. Built with nava-ui's bento grid and pills (the partials in
+_sass/vendor/, synced by scripts/sync_nava_ui.sh). A group's `tile` in the data file sets the
+size of its tile; the full list, with details and repos, is /stack/.
 {%- endcomment -%}
 {% if site.data.skills %}
     <section class="home-section home-stack">
@@ -125,16 +125,17 @@ group falls back to auto placement.
 
         {% include stack-legend.html %}
 
-        <div class="stack-grid">
+        <div class="nv-bento">
             {% for g in site.data.skills.groups %}
-                <article class="stack-tile stack-tile--{{ g.id }}">
-                    <h3 class="stack-tile-title">
+                <article class="nv-tile{% for m in g.tile %} nv-tile--{{ m }}{% endfor %}">
+                    <h3 class="nv-tile__title">
                         <a href="{{ site.url }}/stack/#{{ g.id }}">{{ g.title }}</a>
-                        <span class="stack-count">{{ g.items.size }}<span class="sr-only"> skills</span></span>
+                        <span class="nv-tile__count">{{ g.items.size }}<span class="sr-only"> skills</span></span>
                     </h3>
-                    <ul class="stack-chips">
+                    <ul class="nv-pills">
                         {% for s in g.items %}
-                            <li class="stack-chip is-{{ s.where }}"><span class="stack-mark" aria-hidden="true"></span>{{ s.name }}<span class="sr-only">, {{ site.data.skills.legend[s.where] | downcase }}</span></li>
+                            {% assign where_words = site.data.skills.legend[s.where] | downcase %}
+                            <li>{% include stack-pill.html where=s.where label=s.name sr=where_words %}</li>
                         {% endfor %}
                     </ul>
                 </article>
