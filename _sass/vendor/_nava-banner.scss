@@ -1,0 +1,229 @@
+// GENERATED from nava-ui v0.5.0 (css/components.css, "Banner") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-banner {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-height: clamp(30rem, 42vw, 46rem);
+  overflow: hidden;
+  padding: var(--nv-space-7) var(--nv-space-4) var(--nv-space-9);
+  background: var(--nv-bg);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-lg);
+  text-align: center;
+}
+
+.nv-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(var(--nv-inset-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--nv-inset-line) 1px, transparent 1px);
+  background-size: var(--nv-space-6) var(--nv-space-6);
+  -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 40%, #000 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse 60% 55% at 50% 40%, #000 30%, transparent 80%);
+}
+
+.nv-banner::after {
+  content: "";
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  z-index: -2;
+  width: min(90%, 80rem);
+  aspect-ratio: 3 / 2;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--nv-accent-soft) 0%, transparent 62%);
+}
+
+.nv-banner__ridges {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 70%;
+}
+
+.nv-banner__far {
+  fill: color-mix(in srgb, var(--nv-fg) 4%, var(--nv-bg));
+}
+
+.nv-banner__mid {
+  fill: color-mix(in srgb, var(--nv-fg) 6%, var(--nv-bg));
+}
+
+.nv-banner__near {
+  fill: color-mix(in srgb, var(--nv-fg) 2.5%, var(--nv-bg));
+}
+
+.nv-banner__line {
+  fill: none;
+  stroke: var(--nv-accent);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  opacity: 0.6;
+  vector-effect: non-scaling-stroke;
+}
+
+.nv-banner__body {
+  min-width: 0;
+  max-width: 100rem;
+}
+
+.nv-banner__kicker {
+  margin: 0 0 var(--nv-space-3);
+  font-family: var(--nv-font-mono);
+  font-size: var(--nv-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--nv-accent-text);
+}
+
+.nv-banner__kicker::before {
+  content: "";
+  display: inline-block;
+  width: var(--nv-space-2);
+  height: var(--nv-space-2);
+  margin: 0 var(--nv-space-2) 0.2rem 0;
+  border-radius: 2px;
+  background: var(--nv-accent);
+  vertical-align: middle;
+}
+
+.nv-banner__kicker a,
+.nv-banner__meta a {
+  color: inherit;
+}
+
+.nv-banner__title {
+  margin: 0;
+  font-size: clamp(3.2rem, 6.4vw, 6.4rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  color: var(--nv-fg-strong);
+}
+
+.nv-banner__title em {
+  font-style: normal;
+  color: var(--nv-accent);
+}
+
+.nv-banner__lede {
+  margin: var(--nv-space-3) 0 0;
+  font-size: var(--nv-text-lg);
+  font-weight: 500;
+  color: var(--nv-fg);
+}
+
+.nv-banner__lede .nv-banner__sep {
+  margin: 0 var(--nv-space-1);
+  color: var(--nv-accent);
+}
+
+.nv-banner__meta {
+  margin: var(--nv-space-4) 0 0;
+  font-size: var(--nv-text-sm);
+  color: var(--nv-fg);
+}
+
+.nv-banner__meta strong {
+  font-variant-numeric: tabular-nums;
+  color: var(--nv-fg-strong);
+}
+
+.nv-banner__sep {
+  margin: 0 var(--nv-space-1);
+  color: var(--nv-fg-muted);
+}
+
+@media (max-width: 560px) {
+  .nv-banner {
+    padding-bottom: 12rem;
+  }
+
+  .nv-banner__ridges {
+    height: 38%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nv-banner__line {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: nv-banner-draw 2.4s var(--nv-ease) 0.2s forwards;
+  }
+
+  .nv-banner::after {
+    animation: nv-banner-breathe 6s ease-in-out infinite alternate;
+  }
+
+  @supports (animation-timeline: view()) {
+    .nv-banner__ridges path {
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: view();
+      animation-range: exit;
+    }
+
+    .nv-banner__far {
+      animation-name: nv-banner-drift-far;
+    }
+
+    .nv-banner__mid {
+      animation-name: nv-banner-drift-mid;
+    }
+
+    .nv-banner__near {
+      animation-name: nv-banner-drift-near;
+    }
+
+    
+    .nv-banner__ridges .nv-banner__line {
+      animation: nv-banner-draw 2.4s var(--nv-ease) 0.2s forwards, nv-banner-drift-mid linear both;
+      animation-timeline: auto, view();
+      animation-range: normal, exit;
+    }
+  }
+}
+
+@keyframes nv-banner-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes nv-banner-breathe {
+  from {
+    opacity: 0.7;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes nv-banner-drift-far {
+  to {
+    transform: translateY(160px);
+  }
+}
+
+@keyframes nv-banner-drift-mid {
+  to {
+    transform: translateY(90px);
+  }
+}
+
+@keyframes nv-banner-drift-near {
+  to {
+    transform: translateY(30px);
+  }
+}

@@ -13,6 +13,7 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ### Modificato
 
+- **Il banner di /videos/ viene da nava-ui** — il banner del canale (`_includes/channel-banner.html`) usa il componente `nv-banner` del kit, rilasciato in nava-ui **v0.5.0**: il suo partial arriva in `_sass/vendor/_nava-banner.scss` da `scripts/sync_nava_ui.sh`, che ora lo elenca fra i componenti, e `_sass/components/channel-banner.scss` (167 righe) non c'e' piu'. Restano nel sito solo lo spazio sotto il banner (`page.sass`). Token, bento e marks risincronizzati alla stessa versione; `sync_nava_ui.sh --check` passa.
 - **Software e DevOps, non solo DevOps** — tagline, `bio`, `description` del sito e della home, kicker e titolo della home, template delle card social e `/about/` presentano Allan come *software & DevOps engineer*, allineati al profilo LinkedIn e al CV. La home non dice piu' "and write about what breaks": il sito e' un catalogo di progetti, video e post personali, non una raccolta di post su cosa si e' rotto. `/about/` riscritta: dalla lista "Study Interests" a quattro paragrafi coi fatti del CV. Il `jobTitle` dello schema Person resta *DevOps Engineer*, il titolo reale.
 
 ### Corretto
