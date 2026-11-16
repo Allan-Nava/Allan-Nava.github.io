@@ -2,7 +2,7 @@
 title: "stalecheck"
 layout: post
 date: 2026-09-28 12:49
-updated: 2026-09-29
+updated: 2026-11-16
 tag:
 - javascript
 - ci
@@ -23,6 +23,6 @@ Verifies that what the documentation says is still true: dead links, renamed fil
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: JavaScript
-- **Ultimo push**: 2026-09-29
+- **Ultimo push**: 2026-11-16
 
 [Repo su GitHub →](https://github.com/Allan-Nava/stalecheck)

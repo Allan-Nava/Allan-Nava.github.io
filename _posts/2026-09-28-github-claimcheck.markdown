@@ -2,7 +2,7 @@
 title: "claimcheck"
 layout: post
 date: 2026-09-28 09:39
-updated: 2026-09-29
+updated: 2026-11-16
 tag:
 - javascript
 - agent
@@ -23,6 +23,6 @@ A Stop hook for Claude Code that blocks a claim of completion the session's own 
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: JavaScript
-- **Ultimo push**: 2026-09-29
+- **Ultimo push**: 2026-11-16
 
 [Repo su GitHub →](https://github.com/Allan-Nava/claimcheck)
