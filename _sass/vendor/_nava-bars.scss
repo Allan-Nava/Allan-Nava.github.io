@@ -1,0 +1,53 @@
+// GENERATED from nava-ui v0.5.0 (css/components.css, "Bars") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-bars {
+  display: grid;
+  grid-template-columns: minmax(5ch, max-content) minmax(0, 1fr) minmax(4ch, max-content);
+  gap: var(--nv-space-2) var(--nv-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nv-bar {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  align-items: center;
+  margin: 0;
+  font-size: var(--nv-text-sm);
+}
+
+.nv-bar__label {
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--nv-fg-muted);
+}
+
+a.nv-bar__label:hover {
+  color: var(--nv-accent);
+}
+
+.nv-bar__track {
+  height: 10px;
+  overflow: hidden;
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-pill);
+}
+
+.nv-bar__fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--nv-accent-border), var(--nv-accent));
+  border-radius: inherit;
+}
+
+.nv-bar__value {
+  font-size: var(--nv-text-xs);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--nv-fg-muted);
+}
