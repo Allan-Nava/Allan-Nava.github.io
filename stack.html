@@ -9,17 +9,30 @@ wide: true
 
 {%- comment -%}
 The full stack, from _data/skills.yml, built with nava-ui's bento grid and pills. Every
-skill says where it was used, so nothing reads bigger than it is. The filter is in _includes/stack-filter.html:
+skill says where it was used, so nothing reads bigger than it is. _data/skills_repos.yml,
+generated hourly by scripts/sync_skills.rb from the public GitHub repositories, adds two
+things: under a skill, the other repos that show it ("Also in …"), and in a group, the skills
+skills.yml does not have yet, each with its repos. A generated skill whose name is already in
+skills.yml is never shown twice. The filter is in _includes/stack-filter.html:
 without JavaScript the chips stay hidden and the whole list is shown.
 {%- endcomment -%}
 
 {% assign n_all = 0 %}{% assign n_work = 0 %}{% assign n_earlier = 0 %}{% assign n_projects = 0 %}
-{% for g in site.data.skills.groups %}{% for s in g.items %}
-    {% assign n_all = n_all | plus: 1 %}
-    {% if s.where == "work" %}{% assign n_work = n_work | plus: 1 %}{% endif %}
-    {% if s.where == "earlier" %}{% assign n_earlier = n_earlier | plus: 1 %}{% endif %}
-    {% if s.where == "projects" %}{% assign n_projects = n_projects | plus: 1 %}{% endif %}
-{% endfor %}{% endfor %}
+{% for g in site.data.skills.groups %}
+    {% capture names %}|{% for s in g.items %}{{ s.name }}|{% endfor %}{% endcapture %}
+    {% for s in g.items %}
+        {% assign n_all = n_all | plus: 1 %}
+        {% if s.where == "work" %}{% assign n_work = n_work | plus: 1 %}{% endif %}
+        {% if s.where == "earlier" %}{% assign n_earlier = n_earlier | plus: 1 %}{% endif %}
+        {% if s.where == "projects" %}{% assign n_projects = n_projects | plus: 1 %}{% endif %}
+    {% endfor %}
+    {% for s in site.data.skills_repos.groups[g.id] %}
+        {% capture key %}|{{ s.name }}|{% endcapture %}
+        {% if names contains key %}{% continue %}{% endif %}
+        {% assign n_all = n_all | plus: 1 %}
+        {% if s.where == "work" %}{% assign n_work = n_work | plus: 1 %}{% else %}{% assign n_projects = n_projects | plus: 1 %}{% endif %}
+    {% endfor %}
+{% endfor %}
 
 <dl class="hero-stats stack-stats">
     <div class="stat">
@@ -48,9 +61,15 @@ without JavaScript the chips stay hidden and the whole list is shown.
 
 <div class="stack-list" data-stack-list>
     {% for g in site.data.skills.groups %}
+        {% capture names %}|{% for s in g.items %}{{ s.name }}|{% endfor %}{% endcapture %}
+        {% assign n_group = g.items.size %}
+        {% for s in site.data.skills_repos.groups[g.id] %}
+            {% capture key %}|{{ s.name }}|{% endcapture %}
+            {% unless names contains key %}{% assign n_group = n_group | plus: 1 %}{% endunless %}
+        {% endfor %}
         <section class="home-section stack-group" id="{{ g.id }}" data-stack-group>
             <div class="section-head">
-                <h2 class="section-title">{{ g.title }} <span class="nv-tile__count">{{ g.items.size }}<span class="sr-only"> skills</span></span></h2>
+                <h2 class="section-title">{{ g.title }} <span class="nv-tile__count">{{ n_group }}<span class="sr-only"> skills</span></span></h2>
             </div>
             <div class="nv-bento">
                 {% for s in g.items %}
@@ -62,6 +81,18 @@ without JavaScript the chips stay hidden and the whole list is shown.
                         {% if s.repo %}
                             <p class="nv-tile__text"><a href="https://github.com/Allan-Nava/{{ s.repo }}" rel="noopener">{{ s.repo }} <span aria-hidden="true">↗</span><span class="sr-only"> on GitHub</span></a></p>
                         {% endif %}
+                        {% assign found = site.data.skills_repos.skills[s.name] %}
+                        {% if found %}{% include stack-repos.html repos=found.repos lead="Also in" skip=s.repo %}{% endif %}
+                    </article>
+                {% endfor %}
+                {% for s in site.data.skills_repos.groups[g.id] %}
+                    {% capture key %}|{{ s.name }}|{% endcapture %}
+                    {% if names contains key %}{% continue %}{% endif %}
+                    <article class="nv-tile nv-tile--w3" data-where="{{ s.where }}">
+                        <h3 class="nv-tile__title">{{ s.name }}</h3>
+                        {% assign where_label = site.data.skills.legend[s.where] %}
+                        <div class="nv-pills">{% include stack-pill.html where=s.where label=where_label %}</div>
+                        {% include stack-repos.html repos=s.repos lead="In my public repositories:" %}
                     </article>
                 {% endfor %}
             </div>

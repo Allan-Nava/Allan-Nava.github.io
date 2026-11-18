@@ -18,6 +18,11 @@
 # Per group, `tile` is optional: the size of its tile in the home grid, as nava-ui's
 # nv-tile modifiers (feature, w3, w4, w6, h2). Without it a tile takes a third of the row.
 #
+# Skills that the public GitHub repos show are added by scripts/sync_skills.rb into
+# _data/skills_repos.yml (never into this file), through _data/skills_map.yml: the pages list a
+# skill's repos under it and add the skills this file lacks. Writing one of those here, with
+# the same name, replaces the generated tile with this one.
+#
 # The order of the groups and inside a group is the order on the page: strongest first.
 # A change of fact (a tool used in production, a project dropped) goes here,
 # in About, and in the CV in the same change.

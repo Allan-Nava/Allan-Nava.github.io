@@ -34,18 +34,26 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
       - name: Validate generated posts
         run: ruby scripts/validate_posts.rb
+      # The same repos, read for the skills they show (_data/skills_map.yml) into
+      # _data/skills_repos.yml: /stack/ and the home grid list them, and add a skill that
+      # _data/skills.yml does not have yet. Its output names the languages and topics
+      # still unmapped.
+      - name: Skills from GitHub repos
+        run: ruby scripts/sync_skills.rb | tee -a "$GITHUB_STEP_SUMMARY"
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - name: Commit and push new posts
         id: commit
         run: |
-          if [ -z "$(git status --porcelain _posts)" ]; then
-            echo "No new posts."
+          if [ -z "$(git status --porcelain _posts _data/skills_repos.yml)" ]; then
+            echo "No new posts and no skill change."
             echo "pushed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add _posts
-          git commit -m "Sync project posts from GitHub (new + updated)"
+          git add _posts _data/skills_repos.yml
+          git commit -m "Sync project posts and skills from GitHub"
           git push
           echo "pushed=true" >> "$GITHUB_OUTPUT"
       - name: Trigger deploy

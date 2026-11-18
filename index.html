@@ -127,13 +127,25 @@ size of its tile; the full list, with details and repos, is /stack/.
 
         <div class="nv-bento">
             {% for g in site.data.skills.groups %}
+                {% capture names %}|{% for s in g.items %}{{ s.name }}|{% endfor %}{% endcapture %}
+                {% assign n_group = g.items.size %}
+                {% for s in site.data.skills_repos.groups[g.id] %}
+                    {% capture key %}|{{ s.name }}|{% endcapture %}
+                    {% unless names contains key %}{% assign n_group = n_group | plus: 1 %}{% endunless %}
+                {% endfor %}
                 <article class="nv-tile{% for m in g.tile %} nv-tile--{{ m }}{% endfor %}">
                     <h3 class="nv-tile__title">
                         <a href="{{ site.url }}/stack/#{{ g.id }}">{{ g.title }}</a>
-                        <span class="nv-tile__count">{{ g.items.size }}<span class="sr-only"> skills</span></span>
+                        <span class="nv-tile__count">{{ n_group }}<span class="sr-only"> skills</span></span>
                     </h3>
                     <ul class="nv-pills">
                         {% for s in g.items %}
+                            {% assign where_words = site.data.skills.legend[s.where] | downcase %}
+                            <li>{% include stack-pill.html where=s.where label=s.name sr=where_words %}</li>
+                        {% endfor %}
+                        {% for s in site.data.skills_repos.groups[g.id] %}
+                            {% capture key %}|{{ s.name }}|{% endcapture %}
+                            {% if names contains key %}{% continue %}{% endif %}
                             {% assign where_words = site.data.skills.legend[s.where] | downcase %}
                             <li>{% include stack-pill.html where=s.where label=s.name sr=where_words %}</li>
                         {% endfor %}

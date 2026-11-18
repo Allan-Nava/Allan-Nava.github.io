@@ -1,0 +1,102 @@
+# GitHub → skills: how scripts/sync_skills.rb reads a public repository.
+#
+# A repo counts for a skill through its primary language (GitHub's own detection) or one of
+# its topics. The skill name is either a name already in _data/skills.yml — then the repo is
+# listed under it on /stack/ ("Also in …") — or a new one, which the script adds to `group` as
+# a skill of its own, "In my own projects" (or "At work" when every repo using it is the
+# hiway-media organisation's). Nothing here ever changes _data/skills.yml.
+#
+# Unmapped languages and topics are listed in the run's output: add a line here when one
+# deserves a skill, or put it under `ignore`.
+
+languages:
+  Go: { skill: Go, group: languages }
+  Java: { skill: Java, group: languages }
+  Python: { skill: Python, group: languages }
+  Shell: { skill: Bash, group: languages }
+  Kotlin: { skill: Kotlin, group: languages }
+  Swift: { skill: Swift, group: languages }
+  PHP: { skill: PHP, group: languages }
+  Dart: { skill: Flutter, group: languages }
+  TypeScript: { skill: TypeScript, group: languages }
+  JavaScript: { skill: JavaScript, group: languages }
+  Rust: { skill: Rust, group: languages }
+  Dockerfile: { skill: Docker, group: infrastructure }
+  HCL: { skill: Terraform and Terragrunt, group: infrastructure }
+
+topics:
+  nomad: { skill: Nomad, group: infrastructure }
+  consul: { skill: Consul, group: infrastructure }
+  traefik: { skill: Traefik, group: infrastructure }
+  haproxy: { skill: HAProxy, group: infrastructure }
+  docker: { skill: Docker, group: infrastructure }
+  ansible: { skill: Ansible, group: infrastructure }
+  terraform: { skill: Terraform and Terragrunt, group: infrastructure }
+  kubernetes: { skill: Kubernetes (k3s), group: infrastructure }
+  k3s: { skill: Kubernetes (k3s), group: infrastructure }
+  github-actions: { skill: GitHub Actions, group: infrastructure }
+  postgresql: { skill: PostgreSQL (Patroni), group: data }
+  nats: { skill: NATS JetStream, group: data }
+  kafka: { skill: Kafka, group: data }
+  redis: { skill: Redis and KeyDB, group: data }
+  prometheus: { skill: Prometheus and Grafana, group: reliability }
+  grafana: { skill: Prometheus and Grafana, group: reliability }
+  hls: { skill: HLS and DASH analysis, group: video }
+  dash: { skill: HLS and DASH analysis, group: video }
+  ffmpeg: { skill: OTT and live streaming, group: video }
+  srt: { skill: OTT and live streaming, group: video }
+  rtmp: { skill: OTT and live streaming, group: video }
+  video-streaming: { skill: OTT and live streaming, group: video }
+  streaming: { skill: OTT and live streaming, group: video }
+  ott: { skill: OTT and live streaming, group: video }
+  claude-code: { skill: Coding-agent tooling, group: ai }
+  vscode: { skill: VS Code extensions, group: languages }
+  visual-studio-code: { skill: VS Code extensions, group: languages }
+  vscode-extension: { skill: VS Code extensions, group: languages }
+  flutter: { skill: Flutter, group: languages }
+  keycloak: { skill: Keycloak, group: security }
+  tls: { skill: TLS, group: security }
+  video: { skill: OTT and live streaming, group: video }
+  streaming-video: { skill: OTT and live streaming, group: video }
+  media: { skill: OTT and live streaming, group: video }
+  abr: { skill: Encoding ladders, group: video }
+  haivision: { skill: Haivision Go SDK, group: video }
+  android: { skill: Kotlin, group: languages }
+  viper: { skill: Swift, group: languages }
+  ansible-playbook: { skill: Ansible, group: infrastructure }
+  python3: { skill: Python, group: languages }
+  typescript: { skill: TypeScript, group: languages }
+  nodejs: { skill: JavaScript, group: languages }
+  monitoring: { skill: Health checks, group: reliability }
+  observability: { skill: Health checks, group: reliability }
+  llm: { skill: Coding-agent tooling, group: ai }
+  prompt-caching: { skill: Coding-agent tooling, group: ai }
+  token-efficiency: { skill: Coding-agent tooling, group: ai }
+  context-engineering: { skill: Coding-agent tooling, group: ai }
+
+# Languages and topics that say nothing about a skill: never reported as unmapped.
+ignore:
+  - HTML
+  - CSS
+  - SCSS
+  - Roff
+  - Jinja
+  - Markdown
+  - Makefile
+  - golang
+  - go
+  - cli
+  - library
+  - golang-library
+  - go-library
+  - sdk
+  - framework
+  - sdk-go
+  - sdk-golang
+  - golang-package
+  - devops
+  - sre
+  - hooks
+  - websocket
+  - climbing
+  - hiway

@@ -1,0 +1,17 @@
+{%- comment -%}
+The public repositories that show a skill, from _data/skills_repos.yml (scripts/sync_skills.rb):
+the first five, newest push first, as links, then "and N more". Parameters: repos (the list),
+lead (the words before it), skip (a repo name already linked on the tile, left out).
+Prints nothing when no repo is left.
+{%- endcomment -%}
+{%- assign total = 0 -%}
+{%- for r in include.repos -%}{%- unless r.name == include.skip -%}{%- assign total = total | plus: 1 -%}{%- endunless -%}{%- endfor -%}
+{%- if total > 0 -%}
+{%- assign shown = 0 -%}
+<p class="nv-tile__text">{{ include.lead }} {% for r in include.repos -%}
+{%- if r.name == include.skip -%}{%- continue -%}{%- endif -%}
+{%- if shown < 5 -%}{%- if shown > 0 -%}, {% endif -%}<a href="{{ r.url }}" rel="noopener">{{ r.name }}</a>{%- assign shown = shown | plus: 1 -%}{%- endif -%}
+{%- endfor -%}
+{%- assign more = total | minus: shown -%}{%- if more > 0 %} and {{ more }} more{% endif -%}
+</p>
+{%- endif -%}

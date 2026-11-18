@@ -82,6 +82,7 @@ Notes:
 - **Reuse existing tags.** Two spellings of the same topic (`iOS` and `ios`, `open source` and `open-source`) are different tags to Jekyll but share one slug, so they split the archive in two. `validate_posts.rb` warns about collisions; `scripts/consolidate_tags.rb` merges them.
 - Emoji shortcodes (e.g. `:smile:`) work everywhere thanks to the `jemoji` plugin.
 - Skills live in `_data/skills.yml`. Every item says where it was used — `work` (in production today), `earlier` (in production in a past role), `projects` (own open-source projects) — and the page will show it, so an item never claims more than it is. A fact that changes there changes in About and in the CV too.
+- Skills from GitHub are generated, not written: `scripts/sync_skills.rb` (hourly, in `github-sync.yml`) maps each public repo's language and topics through `_data/skills_map.yml` into `_data/skills_repos.yml` — never edit that file. A new repo adds its repos under the matching skill, or a new skill ("In my public repositories: …") when the name is not in `skills.yml`. To give a generated skill a real detail, write it into `skills.yml` with the same name: from then on only the hand-written one shows. To make a topic count, tag the repo on GitHub and map the topic.
 - Workout PRs shown on `/fitness` live in `_data/workouts.yml` — add a record (date, kg, optional post URL) whenever a PR falls.
 
 ## Standalone pages
