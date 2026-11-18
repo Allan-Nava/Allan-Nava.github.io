@@ -48,6 +48,9 @@ groups:
       - name: Docker
         where: work
         detail: Every service in containers, including legacy apps migrated from virtual machines
+      - name: Proxmox
+        where: work
+        detail: The virtualization under the three data centres, managed with Ansible and Terraform
       - name: Ansible
         where: work
         detail: Provisioning of the servers of the three data centres
@@ -60,9 +63,16 @@ groups:
       - name: TeamCity
         where: work
         detail: Automated releases from build to Nomad
+      - name: GitLab CI
+        where: work
+        detail: CI/CD pipelines next to TeamCity; checkfleet's findings open GitLab issues
+        repo: checkfleet
       - name: Linux
         where: work
         detail: The servers behind every platform, day to day
+      - name: GitHub Actions
+        where: earlier
+        detail: CI/CD for the Go microservices until 2022; today the CI and releases of every open-source repo of mine
       - name: Kubernetes (k3s)
         where: projects
         detail: Manifests for cragcast; the concepts carry over from Nomad
@@ -80,15 +90,18 @@ groups:
         where: work
         detail: Keycloak identity providers on its SPIs — Sign in with Apple, Druid
         repo: apple-identity-provider-keycloak
+      - name: Python
+        where: work
+        detail: Scripts and tooling today, at work and in my own projects; Django and FastAPI services at IES Italia
+      - name: Bash
+        where: work
+        detail: Scripts on the servers and in the delivery pipelines
       - name: Kotlin
         where: earlier
-        detail: The platform's Android, Android TV and Fire TV apps, until 2023
+        detail: The platform's Android, Android TV and Fire TV apps, with Jetpack Compose, until 2023
       - name: Swift
         where: earlier
         detail: The platform's iOS and tvOS apps, until 2023
-      - name: Python
-        where: earlier
-        detail: Django and FastAPI services at IES Italia; today scripts and tooling
       - name: PHP
         where: earlier
         detail: Backends at IES Italia
@@ -99,24 +112,24 @@ groups:
       - name: React
         where: earlier
         detail: Frontends at IES Italia, alongside AngularJS
+      - name: Flutter
+        where: earlier
+        detail: Cross-platform mobile apps at IES Italia, alongside Cordova and Ionic
 
   - id: data
-    title: Data, messaging and identity
+    title: Data and messaging
     tile: [w3]
     items:
-      - name: Keycloak
-        where: work
-        detail: Multi-tenant, in high availability, with identity providers I wrote
-        repo: keycloak-doctor
       - name: NATS JetStream
         where: work
         detail: Events between Go services, with acknowledgements and idempotent consumers
-      - name: MariaDB (Galera)
+      - name: MariaDB Galera and ProxySQL
         where: work
-        detail: Clustered in high availability
+        detail: Clustered in high availability behind ProxySQL; galera-doctor audits a cluster from its own wsrep state
+        repo: galera-doctor
       - name: PostgreSQL (Patroni)
         where: work
-        detail: In high availability with Patroni; also the database of cragcast
+        detail: In high availability with Patroni on etcd; also the database of cragcast
         repo: cragcast
       - name: Redis and KeyDB
         where: work
@@ -141,6 +154,12 @@ groups:
       - name: Incident response
         where: work
         detail: I run the response during a production incident and write the post-mortem
+      - name: Zero-downtime upgrades
+        where: work
+        detail: MariaDB Galera, PostgreSQL, KeyDB and NATS JetStream upgraded with preflight checks, a canary node, then the rest
+      - name: Runbooks and ChatOps
+        where: work
+        detail: Runbooks versioned in Git and published with MkDocs; operations from Slack
 
   - id: video
     title: Live video
@@ -148,6 +167,10 @@ groups:
       - name: OTT and live streaming
         where: work
         detail: Broadcasting, distribution and OTT platforms for sports, music and entertainment
+      - name: Haivision Go SDK
+        where: work
+        detail: A Go client for the Haivision REST API, written for our encoder tooling and published
+        repo: Haivision-go-sdk
       - name: HLS and DASH analysis
         where: projects
         detail: What the segments actually contain, beyond what the manifest claims
@@ -156,6 +179,10 @@ groups:
         where: projects
         detail: How a live origin answers a low-latency player
         repo: latencyprobe
+      - name: Encoding ladders
+        where: projects
+        detail: An ABR ladder measured with VMAF, rung by rung, instead of inherited
+        repo: ladder-bench
 
   - id: ai
     title: AI-assisted development
@@ -168,3 +195,23 @@ groups:
         where: projects
         detail: Plugins and tools for coding agents, from task cost to phase gates
         repo: agent-ledger
+
+  - id: security
+    title: Identity and security
+    tile: [w6]
+    items:
+      - name: Keycloak
+        where: work
+        detail: Multi-tenant, in high availability, with identity providers I wrote
+        repo: keycloak-doctor
+      - name: OIDC, OAuth 2.0 and JWT
+        where: work
+        detail: The token flows of our multi-tenant Keycloak and of the identity providers I wrote
+      - name: TLS
+        where: projects
+        detail: Which classes of TLS client can still handshake with an endpoint, post-quantum included
+        repo: pqprobe
+      - name: Leak prevention
+        where: projects
+        detail: A pre-push guard that stops internal detail from reaching a public repository
+        repo: disclosegate
