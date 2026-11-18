@@ -13,11 +13,13 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ### Modificato
 
+- **/about/ riscritta per chi la apre per primo** — al posto di cinque paragrafi: foto, nome, ruolo e i link a progetti, LinkedIn e GitHub (da `social.links`); una riga di sintesi con cinque pill; una frase su dove e da quando (la storia completa resta sul CV e su LinkedIn, non duplicata qui); il premio di Sevilla FC+ in un riquadro, detto com'e' — al team, di cui Allan fa parte; poi cosa fa e il tempo libero. Componenti di nava-ui **v0.9.0** (`nv-profile`, `nv-award`), importati da `sync_nava_ui.sh`; il kit e' passato da v0.5.0 a v0.9.0 senza cambiare un valore dei token. Tolta da `page.sass` la regola `.about img` del 2019 (larghezza al 50%), che avrebbe schiacciato la foto.
 - **Il banner di /videos/ viene da nava-ui** — il banner del canale (`_includes/channel-banner.html`) usa il componente `nv-banner` del kit, rilasciato in nava-ui **v0.5.0**: il suo partial arriva in `_sass/vendor/_nava-banner.scss` da `scripts/sync_nava_ui.sh`, che ora lo elenca fra i componenti, e `_sass/components/channel-banner.scss` (167 righe) non c'e' piu'. Restano nel sito solo lo spazio sotto il banner (`page.sass`). Token, bento e marks risincronizzati alla stessa versione; `sync_nava_ui.sh --check` passa.
 - **Software e DevOps, non solo DevOps** — tagline, `bio`, `description` del sito e della home, kicker e titolo della home, template delle card social e `/about/` presentano Allan come *software & DevOps engineer*, allineati al profilo LinkedIn e al CV. La home non dice piu' "and write about what breaks": il sito e' un catalogo di progetti, video e post personali, non una raccolta di post su cosa si e' rotto. `/about/` riscritta: dalla lista "Study Interests" a quattro paragrafi coi fatti del CV. Il `jobTitle` dello schema Person resta *DevOps Engineer*, il titolo reale.
 
 ### Corretto
 
+- **`go` e `golang`, un tag solo** — /projects mostrava due filtri per lo stesso linguaggio (`go` 51, `golang` 19): la sincronizzazione da GitHub mette il linguaggio del repo (`go`) piu' i primi tre topic, e molti repo hanno il topic `golang`. Lo slug e' diverso, quindi il controllo di #148 non li vedeva. Ora `_data/tag_aliases.yml` dichiara gli alias (`golang: go`): `sync_github.rb` li risolve e toglie i doppioni, `validate_posts.rb` avvisa se un post ne usa uno, e i 19 post con `golang` hanno `go` (una volta sola anche dove c'erano entrambi).
 - **Il filo verde dell'hover a metà card** — sulle card l'hover disegna un filo verde sul fondo
   del link, ma il link era alto quanto il contenuto e non quanto la card: nelle card con poco testo
   (es. *Cyprus Travel Vlog*), che la griglia a due colonne allunga fino all'altezza della vicina, il

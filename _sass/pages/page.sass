@@ -13,14 +13,25 @@
 		margin-bottom: var(--space-3)
 		scroll-margin-top: calc(var(--nav-height) + var(--space-4))
 
-.about
-	img
-		width: 50%
-		margin: var(--space-5) auto
-		display: block
-		border-radius: var(--radius-lg)
-
 // Il banner di /videos/ (nv-banner del kit, _includes/channel-banner.html): solo lo spazio
 // sotto, il resto è del componente.
 .channel-banner
 	margin-bottom: var(--space-6)
+
+// /about/ (about.md): nv-profile, nv-pill e nv-award sono del kit; qui solo il
+// ritmo fra le sezioni e la riga delle pill.
+.about-lead
+	font-size: var(--text-lg)
+	line-height: 1.55
+
+.about-focus
+	display: flex
+	flex-wrap: wrap
+	gap: var(--space-2)
+	margin: var(--space-4) 0 var(--space-7)
+
+.about-section
+	margin-top: var(--space-8)
+
+	> h2
+		margin-bottom: var(--space-4)

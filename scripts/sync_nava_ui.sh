@@ -18,7 +18,7 @@ TARGET="_sass/vendor/_nava-tokens.scss"
 # I componenti del kit usati dal sito: uno per sezione di css/components.css del kit, gia'
 # col rem da 10px e senza commenti (dist/site/_nava-<sezione>.scss). Aggiungerne uno = una
 # parola qui, poi `scripts/sync_nava_ui.sh <tag>` e l'@import in _includes/style.scss.
-PARTS="bento marks-pills-and-legends banner bars"
+PARTS="bento marks-pills-and-legends banner bars profile award"
 url() { echo "https://raw.githubusercontent.com/Allan-Nava/nava-ui/$1/dist/tokens.site.scss"; }
 part_url() { echo "https://raw.githubusercontent.com/Allan-Nava/nava-ui/$1/dist/site/_nava-$2.scss"; }
 

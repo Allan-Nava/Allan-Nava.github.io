@@ -1,0 +1,59 @@
+// GENERATED from nava-ui v0.9.0 (css/components.css, "Profile") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-profile {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--nv-space-6);
+  margin: var(--nv-space-8) 0 var(--nv-space-7);
+}
+
+.nv-profile__photo {
+  display: block;
+  width: 12.8rem;
+  height: 12.8rem;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--nv-surface);
+  box-shadow: 0 0 0 4px var(--nv-bg), 0 0 0 5px var(--nv-accent-border);
+}
+
+.nv-profile__name {
+  margin: 0;
+  font-size: clamp(3.2rem, 5vw, var(--nv-text-4xl));
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--nv-fg-strong);
+}
+
+.nv-profile__role {
+  margin: var(--nv-space-2) 0 0;
+  font-size: var(--nv-text-lg);
+  line-height: var(--nv-leading-snug);
+  color: var(--nv-fg-muted);
+  text-wrap: balance;
+}
+
+.nv-profile__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nv-space-3);
+  margin-top: var(--nv-space-5);
+}
+
+@media (max-width: 560px) {
+  .nv-profile {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: var(--nv-space-4);
+    margin: var(--nv-space-7) 0 var(--nv-space-6);
+    text-align: center;
+  }
+
+  .nv-profile__actions {
+    justify-content: center;
+  }
+}

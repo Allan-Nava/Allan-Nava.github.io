@@ -1,0 +1,63 @@
+// GENERATED from nava-ui v0.9.0 (css/components.css, "Award") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-award {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: var(--nv-space-5);
+  margin: var(--nv-space-6) 0;
+  padding: var(--nv-space-6);
+  background:
+    linear-gradient(135deg, var(--nv-accent-soft), transparent 70%),
+    var(--nv-surface);
+  border: 1px solid var(--nv-accent-border);
+  border-radius: var(--nv-radius-lg);
+}
+
+.nv-award__mark {
+  display: block;
+  width: 4.8rem;
+  height: 4.8rem;
+  color: var(--nv-accent);
+}
+
+.nv-award__kicker {
+  margin: 0 0 var(--nv-space-2);
+  font-size: var(--nv-text-xs);
+  font-weight: 600;
+  letter-spacing: var(--nv-tracking-wide);
+  text-transform: uppercase;
+  color: var(--nv-accent-text);
+}
+
+.nv-award__title {
+  margin: 0;
+  font-size: var(--nv-text-xl);
+  font-weight: 800;
+  line-height: var(--nv-leading-tight);
+  letter-spacing: -0.02em;
+  color: var(--nv-fg-strong);
+}
+
+.nv-award__text {
+  margin: var(--nv-space-2) 0 0;
+  line-height: var(--nv-leading);
+  color: var(--nv-fg-muted);
+}
+
+.nv-award__link {
+  display: inline-block;
+  margin-top: var(--nv-space-3);
+  font-weight: 600;
+  color: var(--nv-accent-text);
+}
+
+@media (max-width: 560px) {
+  .nv-award {
+    grid-template-columns: 1fr;
+    gap: var(--nv-space-4);
+    padding: var(--nv-space-5);
+  }
+}
