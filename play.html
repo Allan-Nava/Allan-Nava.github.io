@@ -1,0 +1,32 @@
+---
+layout: page
+title: Ridge run
+description: "A small one-button game on the ridges of the YouTube channel banner: jump the rocks and pines, mind the choughs, beat your best distance."
+permalink: /play/
+custom_header: true
+---
+
+{%- comment -%}
+/play/: un gioco a un tasto sulle creste del banner del canale (stile endless runner, come il
+dinosauro offline di Chrome ma a tema montagna). Tutto in assets/js/ridge-run.js, un file
+statico: niente Liquid e niente jemoji dentro lo script, e nessuna pagina lo carica tranne
+questa. Il blocco del gioco nasce `hidden` e lo script lo mostra: senza JavaScript resta
+solo il testo. Stili in _sass/pages/content-pages.scss (sezione "Ridge run").
+{%- endcomment -%}
+<header class="page-header">
+    <h1 class="title">Ridge run</h1>
+    <p class="subtitle">Up the trail on the ridges of the channel banner. Jump the rocks and pines; the choughs fly low or high, so go over the low ones and stay down for the high ones.</p>
+</header>
+
+<section class="ridge-run" data-ridge-run hidden>
+    <p class="ridge-run__score">
+        <span>Distance <strong data-distance>0 m</strong></span>
+        <span>Best <strong data-best>0 m</strong></span>
+    </p>
+    <canvas class="ridge-run__canvas" tabindex="0" role="img" aria-label="Ridge run: a hiker runs along a mountain trail. Press Space, the up arrow or tap to jump; hold for a higher jump."></canvas>
+    <p class="ridge-run__status" data-status role="status" aria-live="polite"></p>
+    <p class="ridge-run__keys"><kbd>Space</kbd> / <kbd>↑</kbd> / tap: jump, hold for higher · <kbd>↓</kbd>: drop faster · <kbd>Esc</kbd>: pause. Your best distance stays in this browser.</p>
+</section>
+<noscript><p>The game needs JavaScript.</p></noscript>
+
+<script src="{{ site.url }}/assets/js/ridge-run.js" defer></script>

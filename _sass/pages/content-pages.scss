@@ -525,3 +525,56 @@
 	color: var(--color-accent-soft);
 	-webkit-text-stroke: 1px var(--color-accent-border);
 }
+
+/* --- Ridge run (/play/, play.html) ------------------------------------------ */
+
+// Il gioco disegna su canvas con i token letti da JS; qui solo la cornice e il testo intorno.
+.ridge-run {
+	margin-top: var(--space-6);
+
+	&[hidden] {
+		display: none;
+	}
+}
+
+.ridge-run__score {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 0 var(--space-2);
+	font-variant-numeric: tabular-nums;
+	color: var(--color-fg-muted);
+
+	strong {
+		color: var(--color-fg-strong);
+	}
+}
+
+.ridge-run__canvas {
+	display: block;
+	width: 100%;
+	height: clamp(220px, 34vw, 300px);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-lg);
+	touch-action: manipulation;
+	user-select: none;
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: transparent;
+	cursor: pointer;
+
+	&:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 3px;
+	}
+}
+
+.ridge-run__status {
+	min-height: 1.5em;
+	margin: var(--space-2) 0 0;
+	color: var(--color-accent-text);
+}
+
+.ridge-run__keys {
+	margin: var(--space-2) 0 0;
+	font-size: var(--text-sm);
+	color: var(--color-fg-muted);
+}

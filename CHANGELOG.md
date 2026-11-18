@@ -11,6 +11,10 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ## [Non rilasciato]
 
+### Aggiunto
+
+- **/play/: Ridge run, un gioco a un tasto** — un escursionista corre sulle creste del banner del canale (le stesse di `_includes/channel-banner.html`, in parallasse, ripetute specchiate cosi' non si vede la giunta): si saltano sassi e pini, e i gracchi volano bassi (si saltano) o alti (si passa sotto). Spazio, freccia su o tocco per saltare, tenendo premuto si salta piu' in alto; il record resta nel browser (`localStorage`, il gioco va anche se e' bloccato). Colori letti dai token del sito a ogni cambio di tema. Tutto in `assets/js/ridge-run.js`, file statico caricato solo da `play.html` (niente Liquid ne' jemoji dentro lo script); senza JavaScript la pagina mostra solo il testo. Linkato dal footer (toggle `play` in `_config.yml`) e dalla 404.
+
 ### Modificato
 
 - **/about/ riscritta per chi la apre per primo** — al posto di cinque paragrafi: foto, nome, ruolo e i link a progetti, LinkedIn e GitHub (da `social.links`); una riga di sintesi con cinque pill; una frase su dove e da quando (la storia completa resta sul CV e su LinkedIn, non duplicata qui); il premio di Sevilla FC+ in un riquadro, detto com'e' — al team, di cui Allan fa parte; poi cosa fa e il tempo libero. Componenti di nava-ui **v0.9.0** (`nv-profile`, `nv-award`), importati da `sync_nava_ui.sh`; il kit e' passato da v0.5.0 a v0.9.0 senza cambiare un valore dei token. Tolta da `page.sass` la regola `.about img` del 2019 (larghezza al 50%), che avrebbe schiacciato la foto.
