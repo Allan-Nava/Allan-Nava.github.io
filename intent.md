@@ -119,8 +119,6 @@ Le uniche voci di codice ancora aperte (milestone `v3.0` e code di v2.x):
 - **Consolidamento dei tag duplicati** (#148) — cinque gruppi di varianti che frammentano gli archivi.
 - **Riempire `/gear`** (climbing, snowboard, dev setup) — non deducibile dal repo, e inventarlo sarebbe
   peggio del vuoto: per questo la pagina è ancora fuori dalla nav.
-- **In attesa di credenziali o account**: secret Strava (#130), newsletter RSS-to-email (#132),
-  webmentions (#133).
 
 Il resto è manutenzione: i sync girano, i gate tengono, e il sito si aggiorna anche quando nessuno
 scrive.
