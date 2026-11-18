@@ -6,7 +6,6 @@ updated: 2026-10-05
 tag:
 - go
 - benchmark
-- golang
 - load-testing
 image: "https://raw.githubusercontent.com/Allan-Nava/whipbench/main/assets/logo.svg"
 headerImage: false

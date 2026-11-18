@@ -3,7 +3,7 @@ title: "Go Helper Library"
 layout: post
 date: 2023-03-07 17:00
 tag: 
-- golang
+- go
 - helper
 - library
 - utility

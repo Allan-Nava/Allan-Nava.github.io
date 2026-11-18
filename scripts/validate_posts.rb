@@ -188,6 +188,15 @@ tag_usage.keys.group_by { |t| t.downcase.gsub(/[^a-z0-9]+/, '-').gsub(/\A-|-\z/,
               'run scripts/consolidate_tags.rb'
 end
 
+# Alias di un tag canonico (_data/tag_aliases.yml): slug diverso, stesso argomento.
+aliases = YAML.safe_load(File.read(File.join(__dir__, '..', '_data', 'tag_aliases.yml'))) || {}
+aliases.each do |alias_tag, canonical|
+  next unless tag_usage.key?(alias_tag)
+
+  warnings << "tag: #{alias_tag.inspect} (#{tag_usage[alias_tag].size}) is an alias of #{canonical.inspect} " \
+              "(_data/tag_aliases.yml) - use #{canonical.inspect}"
+end
+
 puts "Checked #{posts.size} posts."
 warnings.each { |w| puts "WARN  #{w}" }
 errors.each { |e| puts "ERROR #{e}" }

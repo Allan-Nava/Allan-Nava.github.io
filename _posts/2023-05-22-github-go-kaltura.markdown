@@ -6,7 +6,6 @@ updated: 2026-07-18
 tag:
 - go
 - go-kaltura
-- golang
 - golang-library
 image: ""
 headerImage: false

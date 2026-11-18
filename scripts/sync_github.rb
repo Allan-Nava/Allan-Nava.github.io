@@ -40,6 +40,8 @@ SOURCES = config.fetch('sources', [])
 REQUIRE_DESCRIPTION = config.fetch('require_description', true)
 MIN_STARS = config.fetch('min_stars', 0).to_i
 EXCLUDE = config.fetch('exclude', []).map(&:downcase)
+# Topic che sono un altro nome di un tag gia' in uso (golang -> go): _data/tag_aliases.yml.
+TAG_ALIASES = YAML.safe_load(File.read(File.join(ROOT, '_data', 'tag_aliases.yml'))) || {}
 
 def get_json(url)
   uri = URI(url)
@@ -178,7 +180,11 @@ def build_post(repo, date_str, image = nil)
   description = repo['description'].to_s.strip
   stars = repo['stargazers_count'].to_i
   pushed = repo['pushed_at'] ? DateTime.parse(repo['pushed_at']).strftime('%Y-%m-%d') : nil
-  tags = [repo['language']].compact.map(&:downcase) + repo.fetch('topics', []).first(3)
+  # Il linguaggio, poi i primi tre topic distinti da lui, con gli alias risolti: un repo Go col
+  # topic `golang` ha `go` una volta sola, non `go` e `golang` come due archivi separati.
+  language = [repo['language']].compact.map(&:downcase)
+  topics = repo.fetch('topics', []).map { |t| TAG_ALIASES.fetch(t, t) }
+  tags = language + (topics.uniq - language).first(3)
   tags = ['github'] if tags.empty?
 
   front = []

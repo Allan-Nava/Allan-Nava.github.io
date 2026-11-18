@@ -6,7 +6,6 @@ updated: 2026-10-10
 tag:
 - go
 - cdn
-- golang
 - hls
 image: "https://raw.githubusercontent.com/Allan-Nava/latencyprobe/main/docs/assets/logo.svg"
 headerImage: false

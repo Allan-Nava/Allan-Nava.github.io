@@ -3,7 +3,7 @@ title: "Go FFmpeg Library"
 layout: post
 date: 2023-01-23 17:00
 tag: 
-- golang
+- go
 - ffmpeg
 - nvidia
 - ffmpeg-nvenc

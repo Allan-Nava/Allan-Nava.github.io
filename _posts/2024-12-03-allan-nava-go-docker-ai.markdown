@@ -3,12 +3,11 @@ title: "Go Docker AI"
 layout: post
 date: 2024-12-03 17:00
 tag: 
-- golang
+- go
 - helper
 - utility
 - ai
 - dockerfile
-- go
 image: ""
 headerImage: false
 projects: true

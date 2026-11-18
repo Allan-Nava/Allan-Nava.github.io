@@ -5,7 +5,7 @@ date: 2023-02-07 13:45
 updated: 2026-06-20
 tag:
 - css
-- golang
+- go
 - hiway
 - hugo
 image: ""

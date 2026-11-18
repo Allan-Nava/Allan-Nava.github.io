@@ -1,0 +1,5 @@
+# Tag che sono un altro nome dello stesso argomento: chiave = alias, valore = tag canonico.
+# Diversi da quelli di #148 (stesso slug, scrittura diversa): qui lo slug cambia, quindi il
+# controllo sugli slug non li vede. Letto da scripts/sync_github.rb (i topic dei repo GitHub
+# passano di qui) e da scripts/validate_posts.rb (un post con un alias e' un warning).
+golang: go

@@ -5,7 +5,6 @@ date: 2026-09-24 07:55
 updated: 2026-09-28
 tag:
 - go
-- golang
 - gpu
 - hashicorp
 image: "https://raw.githubusercontent.com/hiway-media/gpuledger/main/assets/logo.svg"

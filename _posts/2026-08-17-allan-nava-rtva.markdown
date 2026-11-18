@@ -8,7 +8,7 @@ tag:
 - ott
 - streaming
 - nextjs
-- golang
+- go
 - hiway media
 - hiway
 - rtva

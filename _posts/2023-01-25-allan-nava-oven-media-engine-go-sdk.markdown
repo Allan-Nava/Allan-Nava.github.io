@@ -5,8 +5,6 @@ date: 2023-01-25 17:00
 updated: 2026-09-29
 tag:
 - go
-- go
-- golang
 - rtmp
 image: "https://raw.githubusercontent.com/Allan-Nava/OvenMediaEngine-go-sdk/main/docs/logo.svg"
 headerImage: false
