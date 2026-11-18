@@ -105,16 +105,20 @@ groups:
       - name: PHP
         where: earlier
         detail: Backends at IES Italia
-      - name: TypeScript
-        where: projects
-        detail: A VS Code extension for Nomad operations
-        repo: nomad-lens
       - name: React
         where: earlier
         detail: Frontends at IES Italia, alongside AngularJS
       - name: Flutter
         where: earlier
         detail: Cross-platform mobile apps at IES Italia, alongside Cordova and Ionic
+      - name: TypeScript
+        where: projects
+        detail: VS Code extensions for the tools I operate — Nomad, NATS, HLS manifests, Ansible variables; NextCMS on Next.js and Prisma
+        repo: nomad-lens
+      - name: VS Code extensions
+        where: projects
+        detail: nats-lens is a NATS client in the editor, on the contexts of the nats CLI; hls-lens reads HLS manifests; ansible-vars-lens shows each variable's value per host
+        repo: nats-lens
 
   - id: data
     title: Data and messaging
@@ -160,6 +164,10 @@ groups:
       - name: Runbooks and ChatOps
         where: work
         detail: Runbooks versioned in Git and published with MkDocs; operations from Slack
+      - name: Grafana plugins
+        where: projects
+        detail: A Grafana data source that updates dashboards in real time over WebSocket
+        repo: grafana-websocket-plugin
 
   - id: video
     title: Live video
