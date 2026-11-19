@@ -1,0 +1,62 @@
+// GENERATED from nava-ui v0.10.0 (css/components.css, "Code block with a copy button") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-code {
+  position: relative;
+  margin: 0 0 var(--nv-space-5);
+}
+
+.nv-code > pre {
+  margin: 0;
+}
+
+.nv-code__copy {
+  position: absolute;
+  top: var(--nv-space-2);
+  right: var(--nv-space-2);
+  padding: 4px 10px;
+  font-family: inherit;
+  font-size: var(--nv-text-xs);
+  letter-spacing: 0.03em;
+  color: var(--nv-fg-muted);
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-pill);
+  cursor: pointer;
+  transition: opacity var(--nv-dur) var(--nv-ease), color var(--nv-dur) var(--nv-ease),
+    border-color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-code__copy:focus-visible {
+  color: var(--nv-fg-strong);
+  border-color: var(--nv-border-strong);
+}
+
+.nv-code__copy.is-done {
+  color: var(--nv-on-accent);
+  background: var(--nv-accent);
+  border-color: var(--nv-accent);
+}
+
+@media (hover: hover) {
+  .nv-code__copy {
+    opacity: 0;
+  }
+
+  .nv-code:hover .nv-code__copy,
+  .nv-code__copy:focus-visible,
+  .nv-code__copy.is-done {
+    opacity: 1;
+  }
+
+  .nv-code__copy:hover {
+    color: var(--nv-fg-strong);
+    border-color: var(--nv-border-strong);
+  }
+
+  .nv-code__copy.is-done:hover {
+    color: var(--nv-on-accent);
+    border-color: var(--nv-accent);
+  }
+}

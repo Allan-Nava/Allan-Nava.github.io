@@ -455,47 +455,8 @@
 }
 
 /* --- copia codice ---------------------------------------------------------- */
-
-.post-content .has-copy {
-	position: relative;
-}
-
-.copy-code {
-	position: absolute;
-	top: var(--space-2);
-	right: var(--space-2);
-	padding: 4px 10px;
-	font-family: inherit;
-	font-size: var(--text-xs);
-	letter-spacing: 0.03em;
-	color: var(--color-fg-muted);
-	background: var(--color-surface);
-	border: 1px solid var(--color-border);
-	border-radius: var(--radius-pill);
-	cursor: pointer;
-	opacity: 0;
-	transition: opacity var(--dur) var(--ease), color var(--dur) var(--ease),
-		border-color var(--dur) var(--ease);
-
-	&:hover,
-	&:focus-visible {
-		color: var(--color-fg-strong);
-		border-color: var(--color-border-strong);
-	}
-
-	&.is-done {
-		color: var(--color-on-accent);
-		background: var(--color-accent);
-		border-color: var(--color-accent);
-	}
-}
-
-/* Il bottone compare al passaggio del mouse sul blocco, ma resta sempre
-   raggiungibile da tastiera. */
-.has-copy:hover .copy-code,
-.copy-code:focus-visible {
-	opacity: 1;
-}
+/* Il bottone è il componente del kit (nv-code, _sass/vendor/_nava-code-block-with-a-copy-button.scss,
+   nava-ui v0.10.0): qui solo il nome, lo scrive _includes/interactions.html. */
 
 /* --- commenti -------------------------------------------------------------- */
 

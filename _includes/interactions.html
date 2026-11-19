@@ -84,31 +84,56 @@ Tutto è progressive enhancement: senza JS il sito resta quello della v2.0.0.
      --w0…--w3, che i keyframes usano per stringere la finestra sulla parola
      visibile. Senza JS resta il fallback in `ch` del CSS. */
   /* 5. Bottone "copia" sui blocchi di codice --------------------------------- */
-  /* Aggiunto dal JS e non dal template: senza Clipboard API (o senza JS) non
-     compare un bottone che non copierebbe niente. */
+  /* Il markup e lo stile sono quelli del kit (nv-code, nava-ui v0.10.0): il
+     blocco Rouge diventa .nv-code e riceve il bottone .nv-code__copy, visibile
+     all'hover e al focus da tastiera, sempre sui touch screen. Il testo del
+     bottone dice cosa e' successo; uno status nascosto lo dice ai lettori di
+     schermo. Aggiunto dal JS e non dal template: senza Clipboard API (o senza
+     JS) non compare un bottone che non copierebbe niente. Se la copia viene
+     rifiutata, il codice resta selezionato per Ctrl+C. */
   if (navigator.clipboard) {
     document.querySelectorAll('.post-content div.highlight, .post-content figure.highlight').forEach(function (block) {
       var pre = block.querySelector('pre');
-      if (!pre) return;
+      if (!pre || block.classList.contains('nv-code')) return;
 
       var btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = 'copy-code';
+      btn.className = 'nv-code__copy';
       btn.textContent = 'Copy';
-      btn.setAttribute('aria-label', 'Copy code to clipboard');
+
+      var status = document.createElement('span');
+      status.className = 'sr-only';
+      status.setAttribute('role', 'status');
+
+      var timer = null;
+      function show(text, done, said) {
+        clearTimeout(timer);
+        btn.textContent = text;
+        btn.classList.toggle('is-done', done);
+        status.textContent = said;
+        timer = setTimeout(function () {
+          btn.textContent = 'Copy';
+          btn.classList.remove('is-done');
+          status.textContent = '';
+        }, 1600);
+      }
 
       btn.addEventListener('click', function () {
         navigator.clipboard.writeText(pre.innerText).then(function () {
-          btn.textContent = 'Copied';
-          btn.classList.add('is-done');
-          setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('is-done'); }, 1600);
+          show('Copied', true, 'Copied to the clipboard');
         }, function () {
-          btn.textContent = 'Press Ctrl+C';
+          var range = document.createRange();
+          range.selectNodeContents(pre);
+          var selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          show('Press Ctrl+C', false, 'Could not copy: the code is selected, press Ctrl+C');
         });
       });
 
-      block.classList.add('has-copy');
+      block.classList.add('nv-code');
       block.appendChild(btn);
+      block.appendChild(status);
     });
   }
 
