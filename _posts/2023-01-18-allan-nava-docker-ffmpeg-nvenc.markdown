@@ -2,7 +2,7 @@
 title: "Docker-FFmpeg-Nvenc"
 layout: post
 date: 2023-01-18 16:00
-updated: 2026-09-21
+updated: 2026-11-19
 tag:
 - python
 - docker
@@ -23,7 +23,7 @@ Base Docker image with ffmpeg nvenc
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Python
-- **Stars**: 7
-- **Ultimo push**: 2026-09-21
+- **Stars**: 6
+- **Ultimo push**: 2026-11-19
 
 [Repo su GitHub →](https://github.com/Allan-Nava/Docker-FFmpeg-Nvenc)

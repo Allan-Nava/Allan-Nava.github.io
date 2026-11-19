@@ -69,7 +69,7 @@ skills:
     repos:
     - name: qrspi
       url: https://github.com/Allan-Nava/qrspi
-      pushed: '2026-11-16'
+      pushed: '2026-11-19'
     - name: claimcheck
       url: https://github.com/Allan-Nava/claimcheck
       pushed: '2026-11-16'
@@ -103,7 +103,7 @@ skills:
     repos:
     - name: Docker-FFmpeg-Nvenc
       url: https://github.com/Allan-Nava/Docker-FFmpeg-Nvenc
-      pushed: '2026-09-21'
+      pushed: '2026-11-19'
     - name: apple-identity-provider-keycloak
       url: https://github.com/Allan-Nava/apple-identity-provider-keycloak
       pushed: '2026-09-19'
@@ -176,12 +176,12 @@ skills:
     curated: true
     where: projects
     repos:
+    - name: Docker-FFmpeg-Nvenc
+      url: https://github.com/Allan-Nava/Docker-FFmpeg-Nvenc
+      pushed: '2026-11-19'
     - name: backlogsync
       url: https://github.com/Allan-Nava/backlogsync
       pushed: '2026-10-03'
-    - name: Docker-FFmpeg-Nvenc
-      url: https://github.com/Allan-Nava/Docker-FFmpeg-Nvenc
-      pushed: '2026-09-21'
     - name: go-release.action
       url: https://github.com/Allan-Nava/go-release.action
       pushed: '2026-08-21'
@@ -424,11 +424,11 @@ skills:
     curated: false
     where: projects
     repos: &1
-    - name: stalecheck
-      url: https://github.com/Allan-Nava/stalecheck
-      pushed: '2026-11-16'
     - name: qrspi
       url: https://github.com/Allan-Nava/qrspi
+      pushed: '2026-11-19'
+    - name: stalecheck
+      url: https://github.com/Allan-Nava/stalecheck
       pushed: '2026-11-16'
     - name: claimcheck
       url: https://github.com/Allan-Nava/claimcheck
@@ -534,6 +534,9 @@ skills:
     curated: true
     where: projects
     repos:
+    - name: Docker-FFmpeg-Nvenc
+      url: https://github.com/Allan-Nava/Docker-FFmpeg-Nvenc
+      pushed: '2026-11-19'
     - name: segcheck
       url: https://github.com/Allan-Nava/segcheck
       pushed: '2026-10-10'
@@ -552,9 +555,6 @@ skills:
     - name: MistServer-go-sdk
       url: https://github.com/Allan-Nava/MistServer-go-sdk
       pushed: '2026-09-29'
-    - name: Docker-FFmpeg-Nvenc
-      url: https://github.com/Allan-Nava/Docker-FFmpeg-Nvenc
-      pushed: '2026-09-21'
     - name: ffmpeg-static-binaries
       url: https://github.com/Allan-Nava/ffmpeg-static-binaries
       pushed: '2026-09-20'
@@ -620,12 +620,12 @@ skills:
     curated: true
     where: projects
     repos:
+    - name: Docker-FFmpeg-Nvenc
+      url: https://github.com/Allan-Nava/Docker-FFmpeg-Nvenc
+      pushed: '2026-11-19'
     - name: keycaps
       url: https://github.com/Allan-Nava/keycaps
       pushed: '2026-10-02'
-    - name: Docker-FFmpeg-Nvenc
-      url: https://github.com/Allan-Nava/Docker-FFmpeg-Nvenc
-      pushed: '2026-09-21'
     - name: nomad-events-to-slack
       url: https://github.com/Allan-Nava/nomad-events-to-slack
       pushed: '2026-09-03'
@@ -750,7 +750,7 @@ groups:
   languages:
   - name: JavaScript
     where: projects
-    detail: 'In my public repositories: stalecheck, qrspi, claimcheck and 8 more'
+    detail: 'In my public repositories: qrspi, stalecheck, claimcheck and 8 more'
     repos: *1
   - name: Rust
     where: projects

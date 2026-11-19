@@ -2,7 +2,7 @@
 title: "qrspi"
 layout: post
 date: 2026-08-21 15:11
-updated: 2026-11-16
+updated: 2026-11-19
 tag:
 - javascript
 - agents
@@ -24,6 +24,6 @@ Questions → Research → Spec → Plan → Implement: a phase-gated Claude Cod
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: JavaScript
 - **Stars**: 2
-- **Ultimo push**: 2026-11-16
+- **Ultimo push**: 2026-11-19
 
 [Repo su GitHub →](https://github.com/Allan-Nava/qrspi)
