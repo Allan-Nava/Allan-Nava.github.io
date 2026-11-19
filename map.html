@@ -3,6 +3,7 @@ layout: page
 title: Map
 description: "Places Allan Nava has written about, plotted on a map: trips, climbs and rides tied to the posts."
 permalink: /map/
+wide: true
 ---
 
 {%- comment -%}
@@ -17,7 +18,7 @@ raccogliere piu' post). Servono all'intro e alla lista sotto la mappa.
 {%- endfor -%}
 {%- assign places = keys | uniq | size -%}
 
-<p>The hikes, climbs and trips written up on the blog: <strong>{{ geo.size }} posts in {{ places }} places</strong>. A marker with a number holds that many posts; the full list is under the map. Add <code>lat</code>/<code>lng</code> to a post's front matter to put it on the map.</p>
+<p class="map-intro">The hikes, climbs and trips written up on the blog: <strong>{{ geo.size }} posts in {{ places }} places</strong>. A number is how many posts a marker holds; a ringed one gathers nearby places, and a click zooms in. The full list is under the map. Add <code>lat</code>/<code>lng</code> to a post's front matter to put it on the map.</p>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
@@ -37,8 +38,9 @@ Leaflet: il CSS del sito e' nel <head> e a parita' di specificita' perderebbe.
   posto della goccia blu di Leaflet, e il numero dei post se sono piu' d'uno.
 {%- endcomment -%}
 <style>
+.map-intro { max-width: 70ch; }
 .map-frame {
-    height: clamp(360px, 65vh, 560px);
+    height: clamp(380px, 72vh, 680px);
     margin: var(--space-5) 0;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
@@ -78,6 +80,10 @@ Leaflet: il CSS del sito e' nel <head> e a parita' di specificita' perderebbe.
 .map-frame .leaflet-control-attribution {
     background: var(--color-surface);
     color: var(--color-fg-muted);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    padding: 0 6px;
+    border-top-left-radius: var(--radius-sm);
 }
 .map-frame .leaflet-control-attribution a { color: var(--color-accent); }
 
@@ -94,16 +100,53 @@ Leaflet: il CSS del sito e' nel <head> e a parita' di specificita' perderebbe.
     font-weight: 700;
     line-height: 1;
 }
+.map-marker--cluster {
+    box-shadow: 0 0 0 5px var(--color-accent-soft), 0 1px 4px rgba(0, 0, 0, 0.45);
+    font-size: 1.3rem;
+}
 .map-marker:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
 }
 
 .map-list > summary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 6px 14px;
+    list-style: none;
     cursor: pointer;
-    color: var(--color-fg-muted);
+    font-size: var(--text-sm);
+    color: var(--color-fg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
-.map-list h3 { margin-top: var(--space-5); }
+.map-list > summary::-webkit-details-marker { display: none; }
+.map-list > summary::before {
+    content: "";
+    width: 0.45em;
+    height: 0.45em;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(-45deg);
+    transition: transform var(--dur) var(--ease);
+}
+.map-list[open] > summary::before { transform: rotate(45deg); }
+@media (hover: hover) {
+    .map-list > summary:hover {
+        color: var(--color-fg-strong);
+        border-color: var(--color-border-strong);
+    }
+}
+.map-years {
+    columns: 3 280px;
+    column-gap: var(--space-6);
+    margin-top: var(--space-4);
+}
+.map-year { break-inside: avoid; margin-bottom: var(--space-4); }
+.map-year h3 { margin: 0 0 var(--space-2); font-size: var(--text-lg); }
 .map-list ul { margin: 0; padding-left: 0; list-style: none; }
 .map-list li { margin: var(--space-2) 0; }
 .map-list time {
@@ -129,20 +172,23 @@ nota sopra lo <script> qui sotto.
 {%- endcomment -%}
 <details class="map-list">
     <summary>All {{ geo.size }} posts on the map, by year</summary>
+    <div class="map-years">
     {%- assign year = "" -%}
     {%- for post in geo -%}
       {%- assign this_year = post.date | date: "%Y" -%}
       {%- if this_year != year -%}
-        {%- unless forloop.first %}</ul>{% endunless %}
+        {%- unless forloop.first %}</ul></section>{% endunless %}
+    <section class="map-year">
     <h3>{{ this_year }}</h3>
     <ul>
         {%- assign year = this_year -%}
       {%- endif %}
         <li><a href="{{ post.url | relative_url }}">{{ post.title | strip_emoji_shortcodes | escape | replace: ":", "&#58;" }}</a><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%d %b" }}</time></li>
       {%- if forloop.last %}
-    </ul>
+    </ul></section>
       {%- endif -%}
     {%- endfor %}
+    </div>
 </details>
 
 {%- comment -%}
@@ -226,41 +272,100 @@ Di qui le contromisure:
         }
 
         /* Il marker: un punto nell'accento, piu' grande e col numero quando
-           raccoglie piu' post. L'elemento si passa al divIcon gia' costruito. */
-        function pin(count) {
-            var size = count > 1 ? 28 : 18;
+           raccoglie piu' post; con l'alone quando raccoglie piu' luoghi.
+           L'elemento si passa al divIcon gia' costruito, mai una stringa. */
+        function icon(posts, cluster) {
+            var size = posts === 1 ? 18 : posts < 10 ? 26 : posts < 100 ? 32 : 38;
             var el = document.createElement('span');
-            if (count > 1) el.textContent = String(count);
+            if (posts > 1) el.textContent = String(posts);
             return L.divIcon({
                 html: el,
-                className: 'map-marker',
+                className: 'map-marker' + (cluster ? ' map-marker--cluster' : ''),
                 iconSize: [size, size],
                 iconAnchor: [size / 2, size / 2],
                 popupAnchor: [0, -size / 2]
             });
         }
 
-        var bounds = [];
-        order.forEach(function (key) {
-            var list = groups[key];
+        function popup(list) {
             var box = document.createElement('div');
-
             if (list.length > 1) {
                 var count = document.createElement('strong');
                 count.textContent = list.length + ' posts here';
                 box.appendChild(count);
             }
-
             list.forEach(function (s) { box.appendChild(entry(s)); });
+            return box;
+        }
 
-            var label = list.length > 1 ? list.length + ' posts, latest: ' + list[0].title : list[0].title;
-            var marker = L.marker([list[0].lat, list[0].lng], { icon: pin(list.length), title: label, riseOnHover: true })
-                .addTo(map)
-                .bindPopup(box, { maxHeight: 220 });
-            var el = marker.getElement();
-            if (el) el.setAttribute('aria-label', label);
-            bounds.push([list[0].lat, list[0].lng]);
-        });
-        map.fitBounds(bounds, { padding: [30, 30], maxZoom: 10 });
+        /* Raggruppamento per vicinanza, ricalcolato a ogni zoom: i luoghi a
+           meno di NEAR pixel l'uno dall'altro diventano un marker solo, col
+           totale dei post. Attorno a Milano decine di luoghi stanno in pochi
+           chilometri e alla vista d'insieme erano una macchia di cerchi
+           sovrapposti. Un clic (o Invio) su un gruppo zooma sui suoi luoghi,
+           che a quello zoom si separano. Avidi, dal luogo con piu' post. */
+        var NEAR = 40;
+        var layer = L.layerGroup().addTo(map);
+        var places = order.map(function (key) {
+            var list = groups[key];
+            return { list: list, latlng: L.latLng(list[0].lat, list[0].lng) };
+        }).sort(function (a, b) { return b.list.length - a.list.length; });
+
+        function draw() {
+            layer.clearLayers();
+            var zoom = map.getZoom();
+            var clusters = [];
+            places.forEach(function (place) {
+                var pt = map.project(place.latlng, zoom);
+                for (var i = 0; i < clusters.length; i++) {
+                    if (clusters[i].pt.distanceTo(pt) < NEAR) {
+                        clusters[i].places.push(place);
+                        return;
+                    }
+                }
+                clusters.push({ pt: pt, places: [place] });
+            });
+
+            clusters.forEach(function (c) {
+                var first = c.places[0];
+                var posts = c.places.reduce(function (n, p) { return n + p.list.length; }, 0);
+                var label, marker;
+                if (c.places.length === 1 || zoom >= map.getMaxZoom()) {
+                    var all = [];
+                    c.places.forEach(function (p) { all = all.concat(p.list); });
+                    label = posts > 1 ? posts + ' posts, latest: ' + all[0].title : all[0].title;
+                    marker = L.marker(first.latlng, { icon: icon(posts, false), title: label, riseOnHover: true })
+                        .bindPopup(popup(all), { maxHeight: 240 });
+                } else {
+                    var area = L.latLngBounds(c.places.map(function (p) { return p.latlng; }));
+                    label = posts + ' posts in ' + c.places.length + ' places nearby: zoom in';
+                    marker = L.marker(area.getCenter(), { icon: icon(posts, true), title: label, riseOnHover: true, zIndexOffset: 1000 })
+                        .on('click', function (e) {
+                            /* Dopo lo zoom i marker si ridisegnano e quello col
+                               focus sparisce: da tastiera il focus va alla mappa. */
+                            if (e.viaKeyboard) map.getContainer().focus();
+                            map.fitBounds(area, { padding: [60, 60] });
+                        });
+                }
+                marker.addTo(layer);
+                var el = marker.getElement();
+                if (el) {
+                    el.setAttribute('aria-label', label);
+                    /* Leaflet 1.9 rende il marker focalizzabile (role=button)
+                       ma non gli collega i tasti: Invio e Spazio fanno il clic. */
+                    el.addEventListener('keydown', (function (m) {
+                        return function (e) {
+                            if (e.key !== 'Enter' && e.key !== ' ') return;
+                            e.preventDefault();
+                            m.fire('click', { viaKeyboard: true, latlng: m.getLatLng() });
+                        };
+                    })(marker));
+                }
+            });
+        }
+
+        map.on('zoomend', draw);
+        map.fitBounds(L.latLngBounds(places.map(function (p) { return p.latlng; })), { padding: [30, 30], maxZoom: 10 });
+        draw();
     })();
 </script>
