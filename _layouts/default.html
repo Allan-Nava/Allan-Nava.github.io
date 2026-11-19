@@ -121,10 +121,13 @@ jekyll-seo-tag usa per `og:locale`); senza, resta il default di prima.
     {%- endcomment -%}
     {% if page.projects_feed %}<link rel="alternate" type="application/rss+xml" title="{{ site.title }} — Projects" href="{{ site.url }}/projects/feed.xml" />{% endif %}
 
-    <style>
-    {% capture scss_sheet %}{% include style.scss %}{% endcapture %}
-    {{ scss_sheet | scssify }}
-    </style>
+    {%- comment -%}
+    Il CSS e' un file con l'hash del contenuto nel nome (#181), compilato una volta per
+    build da _plugins/site_css.rb: prima era inline qui, 106 KB in ogni pagina e mai in
+    cache. Resta nel <head>, quindi l'ordine rispetto ai fogli caricati piu' avanti
+    (Leaflet su /map) e' lo stesso di prima.
+    {%- endcomment -%}
+    <link rel="stylesheet" href="{{ site.css_path | relative_url }}">
 
 </head>
 <body>

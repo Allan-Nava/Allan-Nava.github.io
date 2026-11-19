@@ -168,6 +168,11 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
 #
+# Sass compresso: il foglio e' un file (_plugins/site_css.rb, #181) e cosi' perde spazi e
+# commenti `/* */` (restano solo i `/*! */`).
+sass:
+  style: compressed
+
 # Keep internal docs and repo housekeeping files out of the published site.
 # Note: in Jekyll 3 setting `exclude` replaces the defaults, so Gemfile/vendor
 # and friends are listed explicitly.

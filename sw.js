@@ -11,7 +11,7 @@ permalink: /sw.js
  * PRINCIPIO: la freschezza viene dalla rete, non dall'invalidazione della cache.
  * L'HTML è sempre network-first, quindi un post aggiornato si vede al primo
  * caricamento online. In cache finisce solo ciò che è di fatto immutabile
- * (font, icone) o rigenerabile senza danni (immagini, stale-while-revalidate).
+ * (CSS col suo hash nel nome, font, icone) o rigenerabile senza danni (immagini, stale-while-revalidate).
  * Per questo il nome della cache NON è versionato per build: il cron
  * ricostruisce il sito ogni giorno e un nome versionato svuoterebbe la cache
  * offline di tutti, ogni giorno, senza motivo.
@@ -34,6 +34,7 @@ var OFFLINE_URL = '/offline/';
    precaricare le 335 pagine sarebbe decine di MB nella cache del visitatore. */
 var PRECACHE = [
   OFFLINE_URL,
+  '{{ site.css_path }}',
   '/assets/fonts/inter-latin-wght-normal.woff2',
   '/assets/images/pwa/icon-192.png'
 ];
@@ -140,7 +141,10 @@ self.addEventListener('fetch', function (event) {
     return;
   }
 
-  if (url.pathname.indexOf('/assets/fonts/') === 0 ||
+  /* Il CSS ha l'hash del contenuto nel nome (_plugins/site_css.rb, #181): sotto
+     lo stesso nome non cambia mai, come font e icone. */
+  if (url.pathname.indexOf('/assets/css/') === 0 ||
+      url.pathname.indexOf('/assets/fonts/') === 0 ||
       url.pathname.indexOf('/assets/images/pwa/') === 0 ||
       url.pathname.indexOf('/assets/images/favicon/') === 0) {
     event.respondWith(cacheFirst(request));
