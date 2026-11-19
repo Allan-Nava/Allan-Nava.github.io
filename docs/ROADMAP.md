@@ -125,6 +125,14 @@ boilerplate.
   `scripts/strip_boilerplate_descriptions.rb` (**118 post**, i 220 scritti a mano non toccati), e
   `validate_posts.rb` non segnala più come difetto una description vuota sui post video generati.
 
+## v2.8 — Peso e kit
+
+Quinto giro, dopo v2.7. Le voci vengono da misure sul sito pubblicato (2026-11-19) e dallo stato del repo. Milestone `v2.8` su GitHub.
+
+- [ ] **CSS non più inline in ogni pagina** (#181) — `/about/` pesa 148 KB di HTML, **106 KB dei quali sono CSS** (circa 10 KB di commenti `/* */`), ripetuti in ogni pagina e mai in cache. Foglio servito come file con cache-busting, nel set cache-first del service worker; Lighthouse prima/dopo, prima visita e visita ripetuta.
+- [ ] **nava-ui v0.10.0** (#182) — il sito è sulla v0.9.0. Sync dei token, poi il copy button del kit (`nv-code`, con stato annunciato agli screen reader e visibile su touch) al posto di `.copy-code`, e il modulo motion del kit dove il sito usa i suoi componenti (`nv-bento`), senza mai due `animation` sullo stesso elemento.
+- [ ] **Milestone e roadmap allineate** (#183) — v2.1, v2.5, v2.6, v3.0 (e v2.7) aperte su GitHub con zero issue aperte; #148 chiusa ma non spuntata qui sotto. Chiudere ciò che è finito, aprire un'issue per ciò che resta.
+
 ## v3.0 — Big rocks
 
 Milestone `v3.0` creata su GitHub con le quattro issue qui sotto. Sono le uniche voci di **codice** ancora aperte nel backlog: tutto ciò che resta in v2.1/v2.2 aspetta credenziali o account esterni (vedi sopra). Nota: queste issue sono state create a mano, non da `bootstrap-milestone.yml` — quel workflow copre solo le voci v2.x che ha generato.
