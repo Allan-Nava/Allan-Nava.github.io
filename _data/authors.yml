@@ -1,0 +1,11 @@
+# Gli autori per jekyll-seo-tag, che li cerca SOLO qui (non in `authors:` di _config.yml):
+# senza questo file il front matter `author: allan` usciva tale e quale, e tutti i post
+# avevano <meta name="author" content="allan"> e nel JSON-LD BlogPosting
+# "author": {"name": "allan"} — nessun segnale che i post fossero di Allan Nava.
+# `url` lega l'autore al sito, dove /about/ e la home hanno il JSON-LD Person completo.
+# Il box autore sotto i post legge invece `authors:` di _config.yml: i due nomi vanno
+# tenuti uguali.
+allan:
+  name: Allan Nava
+  url: https://allan-nava.github.io/about/
+  twitter: allan__nava

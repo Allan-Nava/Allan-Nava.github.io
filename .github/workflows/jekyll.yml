@@ -24,6 +24,11 @@ on:
     - cron: '0 10 * * *'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      indexnow_all:
+        description: "IndexNow: submit every URL of the sitemap, not only the new and changed ones"
+        type: boolean
+        default: false
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -57,11 +62,28 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+      - name: Save the live sitemap (IndexNow)
+        # Before the build, what Pages serves now: the indexnow job compares it with
+        # the new one and submits only what changed. A failure here costs nothing.
+        run: curl -fsSL https://allan-nava.github.io/sitemap.xml -o "$RUNNER_TEMP/old-sitemap.xml" || true
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+      - name: URLs for IndexNow
+        run: |
+          if [ "${{ inputs.indexnow_all }}" = "true" ]; then
+            ruby scripts/indexnow.rb all _site/sitemap.xml > "$RUNNER_TEMP/indexnow-urls.txt"
+          else
+            ruby scripts/indexnow.rb diff "$RUNNER_TEMP/old-sitemap.xml" _site/sitemap.xml > "$RUNNER_TEMP/indexnow-urls.txt"
+          fi
+      - name: Keep the IndexNow list
+        uses: actions/upload-artifact@v4
+        with:
+          name: indexnow-urls
+          path: ${{ runner.temp }}/indexnow-urls.txt
+          retention-days: 3
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v4
@@ -77,6 +99,25 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # IndexNow (scripts/indexnow.rb): tells Bing — and so DuckDuckGo, which uses its
+  # index — Yandex and the other engines of the protocol which URLs are new or
+  # changed, right after they are live. Google is not part of IndexNow: for Google
+  # the sitemap stays the way. Not a gate: a failed submission never touches the site.
+  indexnow:
+    runs-on: ubuntu-latest
+    needs: deploy
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Get the list
+        uses: actions/download-artifact@v4
+        with:
+          name: indexnow-urls
+      - name: Submit
+        run: ruby scripts/indexnow.rb submit indexnow-urls.txt
 
   # Post-deploy smoke test of the live site (config: ../../checkfleet.yml).
   # checks.yml validates the locally built ./_site *before* the deploy, so until
