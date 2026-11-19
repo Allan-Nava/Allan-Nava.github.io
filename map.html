@@ -5,18 +5,57 @@ description: "Places Allan Nava has written about, plotted on a map: trips, clim
 permalink: /map/
 ---
 
-<p>The hikes, climbs and trips written up on the blog: every marker is a place, and a marker can hold more than one post. Add <code>lat</code>/<code>lng</code> to a post's front matter to put it on the map.</p>
+{%- comment -%}
+Conteggi a build time: i post con lat/lng e i punti distinti (un punto puo'
+raccogliere piu' post). Servono all'intro e alla lista sotto la mappa.
+{%- endcomment -%}
+{%- assign geo = site.posts | where_exp: "p", "p.lat" | where_exp: "p", "p.lng" -%}
+{%- assign keys = "" | split: "" -%}
+{%- for p in geo -%}
+  {%- assign key = p.lat | append: "," | append: p.lng -%}
+  {%- assign keys = keys | push: key -%}
+{%- endfor -%}
+{%- assign places = keys | uniq | size -%}
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+<p>The hikes, climbs and trips written up on the blog: <strong>{{ geo.size }} posts in {{ places }} places</strong>. A marker with a number holds that many posts; the full list is under the map. Add <code>lat</code>/<code>lng</code> to a post's front matter to put it on the map.</p>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
 {%- comment -%}
-Il popup di Leaflet arriva bianco dalla sua CSS, mentre il testo eredita il
-colore del tema: sul tema scuro il titolo del gruppo era bianco su bianco,
-cioe' invisibile. Questo blocco sta QUI e non in _sass/ perche' deve venire
-dopo il <link> di Leaflet, che il layout carica nel body: la CSS del sito e'
-inlineata nel <head> e a parita' di specificita' perderebbe.
+Questo blocco sta QUI e non in _sass/ perche' deve venire dopo il <link> di
+Leaflet: il CSS del sito e' nel <head> e a parita' di specificita' perderebbe.
+
+- Popup e controlli prendono i colori del tema: dalla CSS di Leaflet arrivano
+  bianchi, e sul tema scuro il titolo del gruppo era bianco su bianco.
+- Le tile di OpenStreetMap sono disegnate solo chiare. Sul tema scuro (il
+  default) si invertono con un filtro sul solo pannello delle tile, quindi
+  marker e popup restano ai loro colori. Il filtro segue lo stesso ordine dei
+  temi del sito: scuro di default, chiaro con prefers-color-scheme senza una
+  scelta esplicita, poi data-theme. E' CSS puro, quindi il toggle del tema
+  cambia anche la mappa, senza JS.
+- I marker sono divIcon con le classi .map-marker: l'accento del sito al
+  posto della goccia blu di Leaflet, e il numero dei post se sono piu' d'uno.
 {%- endcomment -%}
 <style>
+.map-frame {
+    height: clamp(360px, 65vh, 560px);
+    margin: var(--space-5) 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+.map-frame.leaflet-container {
+    background: var(--color-surface);
+    font: inherit;
+}
+.map-frame .leaflet-tile-pane {
+    filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.88) saturate(0.55);
+}
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .map-frame .leaflet-tile-pane { filter: none; }
+}
+:root[data-theme="light"] .map-frame .leaflet-tile-pane { filter: none; }
+
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
     background: var(--color-surface);
@@ -28,9 +67,83 @@ inlineata nel <head> e a parita' di specificita' perderebbe.
 .leaflet-popup-content small { color: var(--color-fg-muted); }
 .leaflet-popup-content > div + div { margin-top: 0.5em; }
 .leaflet-container a.leaflet-popup-close-button { color: var(--color-fg-muted); }
+
+.map-frame .leaflet-bar a {
+    background: var(--color-surface);
+    color: var(--color-fg);
+    border-bottom-color: var(--color-border);
+}
+.map-frame .leaflet-bar a:hover { background: var(--color-surface-hover); }
+.map-frame .leaflet-bar { border-color: var(--color-border); }
+.map-frame .leaflet-control-attribution {
+    background: var(--color-surface);
+    color: var(--color-fg-muted);
+}
+.map-frame .leaflet-control-attribution a { color: var(--color-accent); }
+
+.map-marker {
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    border: 2px solid var(--color-bg);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+.map-marker:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+.map-list > summary {
+    cursor: pointer;
+    color: var(--color-fg-muted);
+}
+.map-list h3 { margin-top: var(--space-5); }
+.map-list ul { margin: 0; padding-left: 0; list-style: none; }
+.map-list li { margin: var(--space-2) 0; }
+.map-list time {
+    margin-left: var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--color-fg-muted);
+    font-variant-numeric: tabular-nums;
+}
 </style>
-<div id="trip-map" style="width: 100%; height: 480px; border-radius: 6px; margin: 1.5em 0;"></div>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+<div id="trip-map" class="map-frame" role="region" aria-label="Map of the places in the posts"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+{%- comment -%}
+La stessa informazione della mappa, come lista: per chi usa la tastiera o un
+lettore di schermo (i marker non dicono dove sono), senza JavaScript, e per i
+motori di ricerca. Per anno, dal piu' recente.
+
+I due punti dei titoli escono come `&#58;`: in pagina restano `:`, ma lo
+shortcode di jemoji (`:video_camera:`) non combacia piu'. Un solo match in
+pagina e jemoji ri-parserebbe tutto il documento, script compresi: vedi la
+nota sopra lo <script> qui sotto.
+{%- endcomment -%}
+<details class="map-list">
+    <summary>All {{ geo.size }} posts on the map, by year</summary>
+    {%- assign year = "" -%}
+    {%- for post in geo -%}
+      {%- assign this_year = post.date | date: "%Y" -%}
+      {%- if this_year != year -%}
+        {%- unless forloop.first %}</ul>{% endunless %}
+    <h3>{{ this_year }}</h3>
+    <ul>
+        {%- assign year = this_year -%}
+      {%- endif %}
+        <li><a href="{{ post.url | relative_url }}">{{ post.title | strip_emoji_shortcodes | escape | replace: ":", "&#58;" }}</a><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%d %b" }}</time></li>
+      {%- if forloop.last %}
+    </ul>
+      {%- endif -%}
+    {%- endfor %}
+</details>
 
 {%- comment -%}
 ATTENZIONE, due trappole di `jemoji` che hanno già rotto questa pagina.
@@ -47,32 +160,32 @@ tipo `:video_camera:` — e 10 post ce l'hanno nel titolo — succedono due cose
    e ne riscrive gli attributi — `'<a href="' + s.url + '">'` diventava
    `'<a href="'%20+%20s.url%20+%20'">'`.
 
-Di qui le due contromisure qui sotto:
+Di qui le contromisure:
 
-- i due punti dei titoli escono come `\u003a`, che in JS vale `:` ma non fa
-  scattare il pattern di jemoji: senza match, il documento non viene nemmeno
+- dai titoli si tolgono gli shortcode (`strip_emoji_shortcodes`,
+  _plugins/text_filters.rb), e i due punti rimasti escono come `\u003a` qui e
+  come `&#58;` nella lista sopra: senza match, il documento non viene nemmeno
   ri-parsato, e cade anche il problema 2;
-- il popup si costruisce con il DOM invece che concatenando HTML, così non
-  restano stringhe che Nokogiri possa scambiare per tag.
+- popup e marker si costruiscono con il DOM invece che concatenando HTML (il
+  divIcon riceve un elemento, non una stringa), così non restano stringhe che
+  Nokogiri possa scambiare per tag.
 {%- endcomment -%}
 <script>
     var spots = [
-    {% for post in site.posts %}
-        {% if post.lat and post.lng %}
+    {% for post in geo %}
         {
-            title: {{ post.title | jsonify | replace: ":", "\u003a" }},
+            title: {{ post.title | strip_emoji_shortcodes | jsonify | replace: ":", "\u003a" }},
             url: {{ post.url | prepend: site.url | jsonify }},
             date: {{ post.date | date: "%d %b %Y" | jsonify }},
             lat: {{ post.lat }},
             lng: {{ post.lng }}
         },
-        {% endif %}
     {% endfor %}
     ];
 
     (function () {
         var host = document.getElementById('trip-map');
-        if (!host) return;
+        if (!host || !window.L) return;
 
         if (!spots.length) {
             var empty = document.createElement('p');
@@ -112,6 +225,21 @@ Di qui le due contromisure qui sotto:
             return wrap;
         }
 
+        /* Il marker: un punto nell'accento, piu' grande e col numero quando
+           raccoglie piu' post. L'elemento si passa al divIcon gia' costruito. */
+        function pin(count) {
+            var size = count > 1 ? 28 : 18;
+            var el = document.createElement('span');
+            if (count > 1) el.textContent = String(count);
+            return L.divIcon({
+                html: el,
+                className: 'map-marker',
+                iconSize: [size, size],
+                iconAnchor: [size / 2, size / 2],
+                popupAnchor: [0, -size / 2]
+            });
+        }
+
         var bounds = [];
         order.forEach(function (key) {
             var list = groups[key];
@@ -125,8 +253,12 @@ Di qui le due contromisure qui sotto:
 
             list.forEach(function (s) { box.appendChild(entry(s)); });
 
-            L.marker([list[0].lat, list[0].lng]).addTo(map)
+            var label = list.length > 1 ? list.length + ' posts, latest: ' + list[0].title : list[0].title;
+            var marker = L.marker([list[0].lat, list[0].lng], { icon: pin(list.length), title: label, riseOnHover: true })
+                .addTo(map)
                 .bindPopup(box, { maxHeight: 220 });
+            var el = marker.getElement();
+            if (el) el.setAttribute('aria-label', label);
             bounds.push([list[0].lat, list[0].lng]);
         });
         map.fitBounds(bounds, { padding: [30, 30], maxZoom: 10 });
