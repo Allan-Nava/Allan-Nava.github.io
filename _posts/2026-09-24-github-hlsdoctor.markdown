@@ -6,8 +6,8 @@ updated: 2026-10-02
 tag:
 - go
 - cli
-- go
 - hls
+- monitoring
 image: "https://raw.githubusercontent.com/hiway-media/hlsdoctor/main/assets/logo.svg"
 headerImage: false
 projects: true

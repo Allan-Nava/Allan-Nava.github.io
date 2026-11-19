@@ -2,12 +2,12 @@
 title: "cragcast"
 layout: post
 date: 2026-10-13 10:13
-updated: 2026-11-18
+updated: 2026-11-19
 tag:
 - java
 - climbing
-- java
 - k3s
+- kubernetes
 image: "https://raw.githubusercontent.com/Allan-Nava/cragcast/main/assets/logo.svg"
 headerImage: false
 projects: true
@@ -23,6 +23,6 @@ Can I climb there tomorrow? Crag conditions for Lombardy from the weather and th
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Java
-- **Ultimo push**: 2026-11-18
+- **Ultimo push**: 2026-11-19
 
 [Repo su GitHub →](https://github.com/Allan-Nava/cragcast)

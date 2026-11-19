@@ -7,7 +7,7 @@ tag:
 - go
 - climbing
 - ddd
-- go
+- google-wire
 image: "https://raw.githubusercontent.com/Allan-Nava/cragbook/main/assets/logo.svg"
 headerImage: false
 projects: true

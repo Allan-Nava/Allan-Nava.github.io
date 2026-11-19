@@ -6,6 +6,8 @@ updated: 2023-10-11
 tag:
 - go
 - go-sdk
+- instagram
+- instagram-api
 image: ""
 headerImage: false
 projects: true

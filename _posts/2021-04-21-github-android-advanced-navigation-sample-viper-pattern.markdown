@@ -7,7 +7,7 @@ tag:
 - kotlin
 - android
 - android-application
-- kotlin
+- navigation
 image: ""
 headerImage: false
 projects: true

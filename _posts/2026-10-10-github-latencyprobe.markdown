@@ -7,6 +7,7 @@ tag:
 - go
 - cdn
 - hls
+- live-streaming
 image: "https://raw.githubusercontent.com/Allan-Nava/latencyprobe/main/docs/assets/logo.svg"
 headerImage: false
 projects: true

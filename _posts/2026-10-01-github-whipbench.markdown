@@ -7,6 +7,7 @@ tag:
 - go
 - benchmark
 - load-testing
+- pion
 image: "https://raw.githubusercontent.com/Allan-Nava/whipbench/main/assets/logo.svg"
 headerImage: false
 projects: true

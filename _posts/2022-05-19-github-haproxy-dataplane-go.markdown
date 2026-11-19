@@ -7,6 +7,7 @@ tag:
 - go
 - api
 - framework
+- golang-library
 image: ""
 headerImage: false
 projects: true

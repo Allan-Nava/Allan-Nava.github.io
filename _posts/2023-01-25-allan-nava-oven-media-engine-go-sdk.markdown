@@ -6,6 +6,8 @@ updated: 2026-09-29
 tag:
 - go
 - rtmp
+- rtmp-server
+- rtmp-stream
 image: "https://raw.githubusercontent.com/Allan-Nava/OvenMediaEngine-go-sdk/main/docs/logo.svg"
 headerImage: false
 projects: true

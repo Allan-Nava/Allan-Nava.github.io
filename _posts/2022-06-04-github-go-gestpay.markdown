@@ -6,6 +6,7 @@ updated: 2026-08-20
 tag:
 - go
 - soap
+- soap-api
 image: ""
 headerImage: false
 projects: true

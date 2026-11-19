@@ -6,6 +6,8 @@ updated: 2026-09-29
 tag:
 - go
 - go-sdk
+- traefik
+- traefik-sdk
 image: ""
 headerImage: false
 projects: true

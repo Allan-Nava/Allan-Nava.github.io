@@ -7,6 +7,7 @@ tag:
 - go
 - gpu
 - hashicorp
+- nomad
 image: "https://raw.githubusercontent.com/hiway-media/gpuledger/main/assets/logo.svg"
 headerImage: false
 projects: true

@@ -7,6 +7,7 @@ tag:
 - go
 - go-kaltura
 - golang-library
+- kaltura
 image: ""
 headerImage: false
 projects: true
