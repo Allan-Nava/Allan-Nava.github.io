@@ -137,7 +137,7 @@ Quinto giro, dopo v2.7. Le voci vengono da misure sul sito pubblicato (2026-11-1
 
 Sesto giro, dopo v2.8. Milestone `v2.9` su GitHub.
 
-- [ ] **Dipendenze di build** (#184) — 51 alert di Dependabot su `Gemfile.lock`, quasi tutti `rack` 1.6 e `sinatra` 1.4 portati da `jekyll-admin`: girano solo in build e in `jekyll serve`, ma nascondono gli alert veri.
+- [ ] **Dipendenze di build** (#184) — 51 alert di Dependabot su `Gemfile.lock`, quasi tutti `rack` 1.6 e `sinatra` 1.4 portati da `jekyll-admin`: girano solo in build e in `jekyll serve`, ma nascondono gli alert veri. Fatto il primo passo: `jekyll-admin` nel gruppo `:development` e `BUNDLE_WITHOUT: development` nei quattro workflow, quindi la CI non lo installa piu'. Resta da vedere quali alert restano aperti, visto che le gem sono ancora nel `Gemfile.lock`.
 - [x] **Description per i post video** (#185) — `_plugins/video_descriptions.rb` compone a build time la description dei 134 video che non l'avevano (ricadevano tutti su `site.description`): titolo, autore, data di pubblicazione, verticale o no. Le card dei listing la saltano (`description_generated`), la usano meta, JSON-LD, feed e ricerca. I tag non entrano: su questi post sono solo `youtube`/`short`/`video`.
 - [ ] **Nav su telefono** (#186) — a 390px "About" esce "Abou", su tutte le pagine.
 - [ ] **`/blog/` sopra la soglia Lighthouse** (#187) — performance 79, LCP ~5.7 s, ~1.9 MB di immagini.

@@ -24,7 +24,7 @@ bundle exec jekyll serve
 ```
 
 - Site: <http://localhost:4000>
-- Admin UI: <http://localhost:4000/admin> — provided by the `jekyll-admin` gem; lets you create and edit posts, pages, and config from the browser.
+- Admin UI: <http://localhost:4000/admin> — provided by the `jekyll-admin` gem; lets you create and edit posts, pages, and config from the browser. The gem is in the `:development` group of the `Gemfile`: a plain `bundle install` installs it, the workflows do not (`BUNDLE_WITHOUT: development`).
 
 The server rebuilds automatically on file changes. Changes to `_config.yml` require a restart.
 

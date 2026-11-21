@@ -283,7 +283,7 @@ Declared in `_config.yml` and provided by the `github-pages` gem (all whiteliste
 
 - `jekyll-paginate` — paginates `/blog` (`paginate: 10`); see "Pagination" below.
 
-`jekyll-admin` (local-only) adds the `/admin` UI when serving locally; it plays no role in production builds.
+`jekyll-admin` (local-only) adds the `/admin` UI when serving locally; it plays no role in production builds. It sits in the `:development` group of the `Gemfile` and every workflow sets `BUNDLE_WITHOUT: development`, so CI never installs it, nor the `rack` 1.6 and `sinatra` 1.4 it pulls in (#184).
 
 ## Feeds
 

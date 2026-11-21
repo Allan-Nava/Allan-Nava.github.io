@@ -41,6 +41,11 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+# jekyll-admin sta nel gruppo :development del Gemfile: serve solo a `jekyll serve` in locale
+# (#184). Senza questa riga bundler-cache lo installerebbe comunque.
+env:
+  BUNDLE_WITHOUT: development
+
 jobs:
   # Build job
   build:
