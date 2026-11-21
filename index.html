@@ -83,7 +83,7 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
 
                     <span class="body">
                         <h3 class="title">{{ post.title }}{% if post.externalLink %}<span class="ext" aria-hidden="true">↗</span>{% endif %}</h3>
-                        {% if post.description and post.description != "" %}
+                        {% if post.description and post.description != "" and post.description_generated != true %}
                             <span class="excerpt">{{ post.description | strip_html | truncate: 130 }}</span>
                         {% endif %}
                         <span class="meta">

@@ -41,7 +41,7 @@ in CSS, zero richieste di rete (_plugins/card_placeholder.rb).
         <span class="body">
             <h2 class="title">{{ post.title }}</h2>
 
-            {% if post.description and post.description != "" %}
+            {% if post.description and post.description != "" and post.description_generated != true %}
                 <span class="excerpt">{{ post.description | strip_html | truncate: 130 }}</span>
             {% endif %}
 

@@ -43,7 +43,7 @@ senza JavaScript i chip non compaiono e la lista resta completa e navigabile.
                     <span class="body">
                         <h2 class="title">{{ post.title }}{% if post.externalLink %}<span class="ext" aria-hidden="true">↗</span>{% endif %}</h2>
 
-                        {% if post.description and post.description != "" %}
+                        {% if post.description and post.description != "" and post.description_generated != true %}
                             <span class="excerpt">{{ post.description | strip_html | truncate: 130 }}</span>
                         {% endif %}
 

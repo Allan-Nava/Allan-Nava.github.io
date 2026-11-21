@@ -133,6 +133,16 @@ Quinto giro, dopo v2.7. Le voci vengono da misure sul sito pubblicato (2026-11-1
 - [x] **nava-ui v0.10.0** (#182) — `scripts/sync_nava_ui.sh v0.10.0`: nei token cambia solo la riga della versione (nessun valore, quindi contrasto invariato). Il bottone "Copy" dei blocchi di codice è ora il componente del kit, `code-block-with-a-copy-button` aggiunto a `PARTS`: `interactions.html` dà la classe `nv-code` al blocco Rouge e aggiunge `nv-code__copy` più uno status nascosto che annuncia la copia ai lettori di schermo; il bottone resta visibile sui touch screen (prima era a `opacity: 0` senza hover, cioè introvabile) e, se la copia viene rifiutata, seleziona il codice. Via `.copy-code` e `.has-copy`. Effetto collaterale voluto: i blocchi `div.highlight` prendono lo stesso margine sotto di `figure.highlight`. **Il modulo motion del kit non è stato adottato**: il kit non lo esporta come partial per il sito, e l'unica regola che coincide (il reveal di `.nv-bento > .nv-tile`) è già in `motion.scss`, da cui il kit l'ha presa.
 - [ ] **Milestone e roadmap allineate** (#183) — v2.1, v2.5, v2.6, v3.0 (e v2.7) aperte su GitHub con zero issue aperte; #148 chiusa ma non spuntata qui sotto. Chiudere ciò che è finito, aprire un'issue per ciò che resta.
 
+## v2.9 — Ricerca e manutenzione
+
+Sesto giro, dopo v2.8. Milestone `v2.9` su GitHub.
+
+- [ ] **Dipendenze di build** (#184) — 51 alert di Dependabot su `Gemfile.lock`, quasi tutti `rack` 1.6 e `sinatra` 1.4 portati da `jekyll-admin`: girano solo in build e in `jekyll serve`, ma nascondono gli alert veri.
+- [x] **Description per i post video** (#185) — `_plugins/video_descriptions.rb` compone a build time la description dei 134 video che non l'avevano (ricadevano tutti su `site.description`): titolo, autore, data di pubblicazione, verticale o no. Le card dei listing la saltano (`description_generated`), la usano meta, JSON-LD, feed e ricerca. I tag non entrano: su questi post sono solo `youtube`/`short`/`video`.
+- [ ] **Nav su telefono** (#186) — a 390px "About" esce "Abou", su tutte le pagine.
+- [ ] **`/blog/` sopra la soglia Lighthouse** (#187) — performance 79, LCP ~5.7 s, ~1.9 MB di immagini.
+- [ ] **Date delle pagine nella sitemap** (#188) — solo i post hanno `<lastmod>`, quindi IndexNow non segnala una pagina cambiata.
+
 ## v3.0 — Big rocks
 
 Milestone `v3.0` creata su GitHub con le quattro issue qui sotto. Sono le uniche voci di **codice** ancora aperte nel backlog: tutto ciò che resta in v2.1/v2.2 aspetta credenziali o account esterni (vedi sopra). Nota: queste issue sono state create a mano, non da `bootstrap-milestone.yml` — quel workflow copre solo le voci v2.x che ha generato.
