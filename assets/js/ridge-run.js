@@ -9,6 +9,12 @@
  *   then mirrored, so the range never shows a seam.
  * - The best distance stays in localStorage; when storage is blocked the game works without it.
  * - The file is static (no front matter), so neither Liquid nor jemoji touch it.
+ * - Difficulty grows in two stages. Up to MAX_SPEED (about 54 s, 2,600 m) the speed rises
+ *   quickly and new obstacles join: choughs from 250 m, rock piles from 600 m. After that it
+ *   keeps rising, slower, up to TOP_SPEED (about 160 s); from 1,500 m a low chough can come
+ *   with a high one right behind it (jump, land, stay down), and from 2,000 m the gaps
+ *   tighten, down to 90% at 5,000 m. Every gap stays longer than a tapped jump (about
+ *   0.55 s in the air), so a run can always be survived.
  */
 (function () {
   'use strict';
@@ -30,6 +36,7 @@
   var JUMP_V = 720;
   var START_SPEED = 330;
   var MAX_SPEED = 820;
+  var TOP_SPEED = 980;
 
   var W = 0, H = 0, groundY = 0, dpr = 1;
   var colors = {};
@@ -135,20 +142,39 @@
     raf = requestAnimationFrame(frame);
   }
 
-  function spawn() {
-    var kinds = ['rock', 'rock', 'pine'];
-    if (distance > 250) kinds.push('bird-low', 'bird-high');
-    if (distance > 600) kinds.push('rocks');
-    var kind = kinds[Math.floor(Math.random() * kinds.length)];
-    var o = { kind: kind, x: W + 20, flap: Math.random() * 6 };
+  function obstacle(kind, x) {
+    var o = { kind: kind, x: x, flap: Math.random() * 6 };
     if (kind === 'rock') { o.w = 22 + Math.random() * 16; o.h = 16 + Math.random() * 12; o.y = groundY - o.h; }
     else if (kind === 'rocks') { o.w = 58; o.h = 24; o.y = groundY - o.h; }
     else if (kind === 'pine') { o.w = 24; o.h = 40 + Math.random() * 14; o.y = groundY - o.h; }
     else if (kind === 'bird-low') { o.w = 26; o.h = 14; o.y = groundY - 30; }
     else { o.w = 26; o.h = 14; o.y = groundY - 76; }
     obstacles.push(o);
-    var minGap = speed * 0.62 + 170;
-    nextGap = minGap + Math.random() * minGap * 0.9;
+    return o;
+  }
+
+  function spawn() {
+    var kinds = ['rock', 'rock', 'pine'];
+    if (distance > 250) kinds.push('bird-low', 'bird-high');
+    if (distance > 600) kinds.push('rocks');
+    if (distance > 1500) kinds.push('bird-pair');
+    var kind = kinds[Math.floor(Math.random() * kinds.length)];
+    var extra = 0;
+    if (kind === 'bird-pair') {
+      /* A low chough, then a high one 0.85 s behind it (birds fly 1.12 times the ground
+         speed): jump the first, land, and stay down for the second. A held jump peaks
+         higher than the high chough, so the landing has to come first. */
+      extra = speed * 1.12 * 0.85;
+      obstacle('bird-low', W + 20);
+      obstacle('bird-high', W + 20 + extra);
+    } else {
+      obstacle(kind, W + 20);
+    }
+    /* From 2,000 m the gaps tighten, down to 90% at 5,000 m. At TOP_SPEED the shortest
+       gap is still about 0.7 s, longer than a tapped jump. */
+    var tighten = distance > 2000 ? Math.max(0.9, 1 - (distance - 2000) / 30000) : 1;
+    var minGap = (speed * 0.62 + 170) * tighten;
+    nextGap = extra + minGap + Math.random() * minGap * 0.9;
   }
 
   function hit(o) {
@@ -161,7 +187,9 @@
 
   function update(dt) {
     t += dt;
-    speed = Math.min(MAX_SPEED, START_SPEED + t * 9);
+    /* Fast ramp up to MAX_SPEED, then a slow one (1.5 px/s per second) up to TOP_SPEED. */
+    var ramp = START_SPEED + t * 9;
+    speed = ramp <= MAX_SPEED ? ramp : Math.min(TOP_SPEED, MAX_SPEED + (ramp - MAX_SPEED) / 6);
     var dx = speed * dt;
     distance += dx / PX_PER_M;
     far += dx * 0.08;
