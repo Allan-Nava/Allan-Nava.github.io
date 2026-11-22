@@ -409,7 +409,7 @@ skills:
     repos:
     - name: cragcast
       url: https://github.com/Allan-Nava/cragcast
-      pushed: '2026-11-21'
+      pushed: '2026-11-22'
     - name: keycloak-fitp-enricher
       url: https://github.com/HiWay-Media/keycloak-fitp-enricher
       pushed: '2026-09-13'
@@ -509,7 +509,7 @@ skills:
     repos:
     - name: cragcast
       url: https://github.com/Allan-Nava/cragcast
-      pushed: '2026-11-21'
+      pushed: '2026-11-22'
   NATS JetStream:
     group: data
     curated: true
@@ -594,7 +594,7 @@ skills:
     repos:
     - name: cragcast
       url: https://github.com/Allan-Nava/cragcast
-      pushed: '2026-11-21'
+      pushed: '2026-11-22'
     - name: cragbook
       url: https://github.com/Allan-Nava/cragbook
       pushed: '2026-10-28'
