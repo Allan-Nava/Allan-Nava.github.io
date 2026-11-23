@@ -2,7 +2,7 @@
 title: "nava-ui"
 layout: post
 date: 2026-11-11 13:03
-updated: 2026-11-19
+updated: 2026-11-23
 tag:
 - css
 - dark-theme
@@ -23,6 +23,6 @@ A small, dark-first UI kit in plain CSS: the design tokens and components of all
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: CSS
-- **Ultimo push**: 2026-11-19
+- **Ultimo push**: 2026-11-23
 
 [Repo su GitHub →](https://github.com/Allan-Nava/nava-ui)

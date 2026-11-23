@@ -22,7 +22,7 @@ skills:
     repos:
     - name: kong-gateway
       url: https://github.com/HiWay-Media/kong-gateway
-      pushed: '2026-11-16'
+      pushed: '2026-11-23'
     - name: diskwarden
       url: https://github.com/Allan-Nava/diskwarden
       pushed: '2026-10-06'
@@ -193,6 +193,9 @@ skills:
     curated: true
     where: projects
     repos:
+    - name: streamprobe-operator
+      url: https://github.com/Allan-Nava/streamprobe-operator
+      pushed: '2026-11-23'
     - name: Go-DDD-Scaffold
       url: https://github.com/Allan-Nava/Go-DDD-Scaffold
       pushed: '2026-11-06'
@@ -390,6 +393,9 @@ skills:
     curated: true
     where: projects
     repos:
+    - name: streamprobe-operator
+      url: https://github.com/Allan-Nava/streamprobe-operator
+      pushed: '2026-11-23'
     - name: segcheck
       url: https://github.com/Allan-Nava/segcheck
       pushed: '2026-10-10'
@@ -407,6 +413,9 @@ skills:
     curated: true
     where: projects
     repos:
+    - name: keycloak-identity-provider-druid
+      url: https://github.com/HiWay-Media/keycloak-identity-provider-druid
+      pushed: '2026-11-23'
     - name: cragcast
       url: https://github.com/Allan-Nava/cragcast
       pushed: '2026-11-22'
@@ -416,9 +425,6 @@ skills:
     - name: SOLID-Principles
       url: https://github.com/Allan-Nava/SOLID-Principles
       pushed: '2026-08-29'
-    - name: keycloak-identity-provider-druid
-      url: https://github.com/HiWay-Media/keycloak-identity-provider-druid
-      pushed: '2026-08-06'
   JavaScript:
     group: languages
     curated: false
@@ -475,7 +481,7 @@ skills:
     repos:
     - name: kong-gateway
       url: https://github.com/HiWay-Media/kong-gateway
-      pushed: '2026-11-16'
+      pushed: '2026-11-23'
     - name: keycloak-fitp-enricher
       url: https://github.com/HiWay-Media/keycloak-fitp-enricher
       pushed: '2026-09-13'
@@ -507,6 +513,9 @@ skills:
     curated: true
     where: projects
     repos:
+    - name: streamprobe-operator
+      url: https://github.com/Allan-Nava/streamprobe-operator
+      pushed: '2026-11-23'
     - name: cragcast
       url: https://github.com/Allan-Nava/cragcast
       pushed: '2026-11-22'
@@ -606,6 +615,9 @@ skills:
     curated: true
     where: projects
     repos:
+    - name: streamprobe-operator
+      url: https://github.com/Allan-Nava/streamprobe-operator
+      pushed: '2026-11-23'
     - name: checkfleet
       url: https://github.com/Allan-Nava/checkfleet
       pushed: '2026-10-21'
