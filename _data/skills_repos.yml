@@ -176,12 +176,12 @@ skills:
     curated: true
     where: projects
     repos:
+    - name: backlogsync
+      url: https://github.com/Allan-Nava/backlogsync
+      pushed: '2026-11-24'
     - name: Docker-FFmpeg-Nvenc
       url: https://github.com/Allan-Nava/Docker-FFmpeg-Nvenc
       pushed: '2026-11-19'
-    - name: backlogsync
-      url: https://github.com/Allan-Nava/backlogsync
-      pushed: '2026-10-03'
     - name: go-release.action
       url: https://github.com/Allan-Nava/go-release.action
       pushed: '2026-08-21'
@@ -195,7 +195,7 @@ skills:
     repos:
     - name: streamprobe-operator
       url: https://github.com/Allan-Nava/streamprobe-operator
-      pushed: '2026-11-23'
+      pushed: '2026-11-24'
     - name: Go-DDD-Scaffold
       url: https://github.com/Allan-Nava/Go-DDD-Scaffold
       pushed: '2026-11-06'
@@ -395,7 +395,7 @@ skills:
     repos:
     - name: streamprobe-operator
       url: https://github.com/Allan-Nava/streamprobe-operator
-      pushed: '2026-11-23'
+      pushed: '2026-11-24'
     - name: segcheck
       url: https://github.com/Allan-Nava/segcheck
       pushed: '2026-10-10'
@@ -413,12 +413,12 @@ skills:
     curated: true
     where: projects
     repos:
+    - name: cragcast
+      url: https://github.com/Allan-Nava/cragcast
+      pushed: '2026-11-24'
     - name: keycloak-identity-provider-druid
       url: https://github.com/HiWay-Media/keycloak-identity-provider-druid
       pushed: '2026-11-23'
-    - name: cragcast
-      url: https://github.com/Allan-Nava/cragcast
-      pushed: '2026-11-22'
     - name: keycloak-fitp-enricher
       url: https://github.com/HiWay-Media/keycloak-fitp-enricher
       pushed: '2026-09-13'
@@ -430,6 +430,9 @@ skills:
     curated: false
     where: projects
     repos: &1
+    - name: backlogsync
+      url: https://github.com/Allan-Nava/backlogsync
+      pushed: '2026-11-24'
     - name: qrspi
       url: https://github.com/Allan-Nava/qrspi
       pushed: '2026-11-19'
@@ -456,9 +459,6 @@ skills:
       pushed: '2026-10-03'
     - name: skilltrigger
       url: https://github.com/Allan-Nava/skilltrigger
-      pushed: '2026-10-03'
-    - name: backlogsync
-      url: https://github.com/Allan-Nava/backlogsync
       pushed: '2026-10-03'
     - name: github-activity-file
       url: https://github.com/Allan-Nava/github-activity-file
@@ -515,10 +515,10 @@ skills:
     repos:
     - name: streamprobe-operator
       url: https://github.com/Allan-Nava/streamprobe-operator
-      pushed: '2026-11-23'
+      pushed: '2026-11-24'
     - name: cragcast
       url: https://github.com/Allan-Nava/cragcast
-      pushed: '2026-11-22'
+      pushed: '2026-11-24'
   NATS JetStream:
     group: data
     curated: true
@@ -603,7 +603,7 @@ skills:
     repos:
     - name: cragcast
       url: https://github.com/Allan-Nava/cragcast
-      pushed: '2026-11-22'
+      pushed: '2026-11-24'
     - name: cragbook
       url: https://github.com/Allan-Nava/cragbook
       pushed: '2026-10-28'
@@ -617,7 +617,7 @@ skills:
     repos:
     - name: streamprobe-operator
       url: https://github.com/Allan-Nava/streamprobe-operator
-      pushed: '2026-11-23'
+      pushed: '2026-11-24'
     - name: checkfleet
       url: https://github.com/Allan-Nava/checkfleet
       pushed: '2026-10-21'
@@ -762,7 +762,7 @@ groups:
   languages:
   - name: JavaScript
     where: projects
-    detail: 'In my public repositories: qrspi, stalecheck, claimcheck and 8 more'
+    detail: 'In my public repositories: backlogsync, qrspi, stalecheck and 8 more'
     repos: *1
   - name: Rust
     where: projects
