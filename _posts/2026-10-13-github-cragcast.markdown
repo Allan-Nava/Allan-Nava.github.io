@@ -23,6 +23,7 @@ Can I climb there tomorrow? Crag conditions for Lombardy from the weather and th
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Java
+- **Stars**: 1
 - **Ultimo push**: 2026-11-24
 
 [Repo su GitHub →](https://github.com/Allan-Nava/cragcast)
