@@ -35,7 +35,7 @@
 - name: skilltrigger
   urls: 1
 - name: streamprobe-operator
-  urls: 3
+  urls: 5
 - name: transcriptmeter
   urls: 1
 - name: trimhook
