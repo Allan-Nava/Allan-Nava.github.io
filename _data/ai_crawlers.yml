@@ -1,0 +1,19 @@
+# The AI crawlers robots.txt names one by one (#190). All allowed today; the point of naming
+# them is that the choice is written down, and changing it is one line here.
+#
+# kind: search   fetches a page when someone asks, to answer and cite it with a link
+#       training collects pages to train a model
+# A crawler obeys only the most specific group that names it and ignores "User-agent: *",
+# so every group here carries its own rule. allow: false writes "Disallow: /" for it.
+#
+# Names as each company documents them (checked 2026-11-25). A new one goes here, then the
+# next build serves it.
+- {name: OAI-SearchBot,    company: OpenAI,     kind: search,   allow: true}
+- {name: ChatGPT-User,     company: OpenAI,     kind: search,   allow: true}
+- {name: Claude-SearchBot, company: Anthropic,  kind: search,   allow: true}
+- {name: Claude-User,      company: Anthropic,  kind: search,   allow: true}
+- {name: PerplexityBot,    company: Perplexity, kind: search,   allow: true}
+- {name: GPTBot,           company: OpenAI,     kind: training, allow: true}
+- {name: ClaudeBot,        company: Anthropic,  kind: training, allow: true}
+- {name: Google-Extended,  company: Google,     kind: training, allow: true}
+- {name: CCBot,            company: Common Crawl, kind: training, allow: true}

@@ -22,6 +22,17 @@
 User-agent: *
 Disallow:
 
+# AI crawlers, by name (#190), from _data/ai_crawlers.yml. "search" ones fetch a page to
+# answer a question and cite it with a link; "training" ones collect pages for a model. All
+# allowed; to keep a kind out, set allow: false there. Each group has its own rule because a
+# crawler named here ignores the "*" group above.
+{%- for c in site.data.ai_crawlers %}
+
+# {{ c.company }}, {{ c.kind }}
+User-agent: {{ c.name }}
+{% if c.allow %}Allow: /{% else %}Disallow: /{% endif %}
+{%- endfor %}
+
 # Portfolio and blog (this repo).
 Sitemap: {{ site.url }}/sitemap.xml
 {%- for s in site.data.pages_sitemaps %}

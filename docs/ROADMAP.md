@@ -149,7 +149,7 @@ Sesto giro, dopo v2.8. Milestone `v2.9` su GitHub.
 Settimo giro. Cosa legge un assistente AI o un motore di ricerca quando gli chiedono di Allan Nava, piu' gli avvisi lasciati dal controllo SEO in CI. Milestone `v2.10` su GitHub.
 
 - [ ] **Una pagina About citabile** (#189) — frasi complete e fattuali in apertura di `/about/` (ruolo, citta', domini, progetti), allineate a CV e LinkedIn, e il JSON-LD `Person` con `jobTitle` e `knowsAbout`: e' il testo che un assistente riprende.
-- [ ] **I crawler AI in `robots.txt`** (#190) — gruppi espliciti, consentiti, che separano ricerca e risposta (`OAI-SearchBot`, `ChatGPT-User`, `Claude-SearchBot`, `Claude-User`, `PerplexityBot`) da addestramento (`GPTBot`, `ClaudeBot`, `Google-Extended`, `CCBot`), nel template di `sync_robots_sitemaps.rb`.
+- [x] **I crawler AI in `robots.txt`** (#190) — gruppi espliciti, consentiti, che separano ricerca e risposta (`OAI-SearchBot`, `ChatGPT-User`, `Claude-SearchBot`, `Claude-User`, `PerplexityBot`) da addestramento (`GPTBot`, `ClaudeBot`, `Google-Extended`, `CCBot`), nel template di `sync_robots_sitemaps.rb`.
 - [ ] **`/llms.txt`** (#191) — generato a ogni build: chi e' Allan Nava, le sezioni e le pagine principali con una riga ciascuna. Una proposta, non uno standard: costa poco e non fa danni.
 - [ ] **Una versione Markdown di ogni post** (#192) — il sorgente accanto all'HTML, linkato con `rel="alternate" type="text/markdown"`; misurare il tempo di build.
 - [ ] **Avvisi del controllo SEO azzerati, poi errori** (#193) — 18 titoli oltre i 70 caratteri e 41 description sotto i 50 (2026-11-25); poi `seo_audit.rb` li fa fallire.

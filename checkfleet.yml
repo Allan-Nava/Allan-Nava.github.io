@@ -81,6 +81,10 @@ checks:
         expect_body: "User-agent: *"
       - url: https://allan-nava.github.io/robots.txt
         expect_body: "Sitemap: https://allan-nava.github.io/sitemap.xml"
+      # I crawler AI nominati (#190), da _data/ai_crawlers.yml: se il loop sparisse, il file
+      # tornerebbe a dire solo "*" senza che nessuno se ne accorga.
+      - url: https://allan-nava.github.io/robots.txt
+        expect_body: "User-agent: OAI-SearchBot"
 
       # A URL that must NOT exist: 404.html has to be served with a real 404,
       # not a 200. Pages returning 200 for unknown paths is a classic
