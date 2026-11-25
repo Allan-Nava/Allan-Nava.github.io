@@ -15,6 +15,8 @@ author: allan
 externalLink: true
 lat: 45.539
 lng: 9.19
+lang: it
+locale: it_IT
 ---
 
 Begins to take shape 🏡🚿

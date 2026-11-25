@@ -16,5 +16,7 @@ author: allan
 lat: 45.5162562
 lng: 9.2225565
 externalLink: true
+lang: it
+locale: it_IT
 ---
 <lite-youtube videoid="D8nc6oXrpz8" data-short playlabel="Working through this 6a circuit — every move a lesson. 🔥🧗‍♂️ #climbingjourney #climbingcommunity"></lite-youtube>

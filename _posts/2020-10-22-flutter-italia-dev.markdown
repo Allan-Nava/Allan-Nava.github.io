@@ -15,6 +15,8 @@ hidden: false # don't count this post in blog pagination
 description: "Flutter Italia Developers <br> La community italiana dedicata a Flutter 📃"
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 

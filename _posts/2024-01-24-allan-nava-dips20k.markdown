@@ -13,6 +13,8 @@ description: "Video di una serie di dip zavorrati con 20 kg in palestra."
 category: blog
 author: allan
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 <div>

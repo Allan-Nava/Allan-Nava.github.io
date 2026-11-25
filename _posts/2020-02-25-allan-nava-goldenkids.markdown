@@ -16,6 +16,8 @@ hidden: true # don't count this post in blog pagination
 description: "Il premio più ambito dai giovani calciatori si unisce a Tascout e invade l’Italia. Carica i tuoi video migliori, fatti votare dalla community e diventa il nuovo Golden Kid 2020."
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 

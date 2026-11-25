@@ -15,6 +15,8 @@ hidden: true # don't count this post in blog pagination
 description: "Se hai dai 7 ai 17 anni, crea il tuo profilo da calciatore e condividi la tua crescita con altri futuri campioni!"
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 <div>

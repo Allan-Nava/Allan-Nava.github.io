@@ -13,6 +13,8 @@ description: "Foto di una partita di padel dell'8 ottobre 2023 al circolo Murat4
 category: blog
 author: allan
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 ## Padel Murat4ll 8 October 2023 🎾  

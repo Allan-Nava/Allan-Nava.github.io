@@ -16,6 +16,8 @@ hidden: true # don't count this post in blog pagination
 description: "Annuncio del primo evento Flutter Italia Espresso con tre talk su Flutter, il pattern Redux e gli NFC ring."
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 <div class="side-by-side">

@@ -16,6 +16,8 @@ hidden: false
 description: "SCARICA E REGISTRATI SULLA NUOVA APP UFFICIALE! 📱  Entra nel mondo Lazio e accedi a tutti i contenuti esclusivi!"
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 

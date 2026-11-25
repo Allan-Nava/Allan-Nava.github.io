@@ -14,6 +14,8 @@ hidden: true # don't count this post in blog pagination
 description: "ElevenSports Android TV in playstore"
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 <div class="side-by-side">

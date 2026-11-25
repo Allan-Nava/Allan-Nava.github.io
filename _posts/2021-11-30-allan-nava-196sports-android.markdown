@@ -16,6 +16,8 @@ hidden: true # don't count this post in blog pagination
 description: "196Sports - L’app ufficiale per guardare la Lega Pro - Serie C da ovunque nel mondo. "
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 <div class="side-by-side">

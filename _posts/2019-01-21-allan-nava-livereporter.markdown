@@ -16,6 +16,8 @@ description: "Is the easiest way to broadcast your event live.
 Cloud streaming service includes playback on any device, DVR, analytics, ad insertion, CDN &amp; support."
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 <div>

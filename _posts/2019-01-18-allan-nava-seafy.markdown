@@ -13,6 +13,8 @@ hidden: true # don't count this post in blog pagination
 description: "Dalla partenza all'arrivo, Seafy rende più piacevole il tuo tempo a bordo offrendoti: connessione, intrattenimento, informazione, shopping e tanto altro."
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 <div class="side-by-side">
     <div class="toleft">

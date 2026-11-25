@@ -19,6 +19,8 @@ hidden: true # don't count this post in blog pagination
 description: "Streamway Plus: piattaforma OTT con dirette, on demand e area utenti, distribuita su più datacenter dietro CDN."
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 **Streamway Plus** è la piattaforma OTT del gruppo: dirette, catalogo on demand e area utenti

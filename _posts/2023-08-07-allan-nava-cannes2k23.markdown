@@ -13,6 +13,8 @@ author: allan
 lat: 43.552
 lng: 7.017
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 La plus belle des ruses du diable est de vous persuader qu'il n'existe pas. 🇫🇷

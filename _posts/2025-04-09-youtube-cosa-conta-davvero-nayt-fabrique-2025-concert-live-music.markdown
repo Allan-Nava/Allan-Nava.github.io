@@ -13,6 +13,8 @@ category: blog
 author: allan
 lat: 45.442
 lng: 9.246
+lang: it
+locale: it_IT
 ---
 
 ## Cosa conta davvero - Nayt 🔹Fabrique 2025 concert live music

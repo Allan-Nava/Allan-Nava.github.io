@@ -17,6 +17,8 @@ Porta la palestra a casa tua!
 Crea allenamenti interattivi con JustFit"
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 

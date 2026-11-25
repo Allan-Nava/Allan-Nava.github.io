@@ -13,6 +13,8 @@ hidden: true # don't count this post in blog pagination
 description: "Eleven Sports è un provider internazionale dedicato alla trasmissione di eventi sportivi nazionali e internazionali."
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 <div class="side-by-side">

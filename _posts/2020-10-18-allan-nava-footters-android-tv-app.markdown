@@ -18,6 +18,8 @@ hidden: true # don't count this post in blog pagination
 description: "Footters TV "
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 

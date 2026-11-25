@@ -30,6 +30,7 @@ require 'json'
 require 'yaml'
 require 'date'
 require 'uri'
+require_relative 'lib/post_language'
 
 ROOT = File.expand_path('..', __dir__)
 DRY_RUN = !ENV['DRY_RUN'].to_s.empty?
@@ -209,7 +210,9 @@ def build_post(repo, date_str, image = nil)
   body << "- **Stars**: #{stars}" if stars.positive?
   body << "- **Ultimo push**: #{pushed}" if pushed
 
-  <<~POST
+  # #194: `lang: it` when the description is Italian, decided on the whole post like
+  # set_post_language.rb decided the existing ones, so a refresh does not drop it.
+  PostLanguage.with_lang(<<~POST)
     ---
     #{front.join("\n")}
     ---

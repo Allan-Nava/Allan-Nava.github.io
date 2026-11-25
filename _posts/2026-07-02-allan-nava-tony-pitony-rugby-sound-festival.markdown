@@ -14,6 +14,8 @@ description: "Video dei concerti di TonyPitony al Rugby Sound Festival."
 category: blog
 author: allan
 externalLink: true
+lang: it
+locale: it_IT
 ---
 ## TonyPitony Rugby Sound Festival
 

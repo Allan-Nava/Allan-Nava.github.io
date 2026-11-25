@@ -17,6 +17,8 @@ author: allan
 lat: 46.155
 lng: 10.15
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 ## Aprica 2024 🏂❄️

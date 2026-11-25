@@ -27,6 +27,8 @@ require 'rexml/document'
 require 'date'
 require 'uri'
 require 'json'
+require 'yaml'
+require_relative 'lib/post_language'
 
 ROOT = File.expand_path('..', __dir__)
 CHANNEL_ID = ENV.fetch('CHANNEL_ID', 'UC1qqsojpiyZB9-u8O02IVVQ')
@@ -380,7 +382,8 @@ videos.each do |video|
                      ''
                    end
 
-  post = <<~POST
+  # #194: `lang: it` when the title and description are Italian (scripts/lib/post_language.rb).
+  post = PostLanguage.with_lang(<<~POST)
     ---
     title: "#{yaml_safe(title, 120)}"
     layout: post

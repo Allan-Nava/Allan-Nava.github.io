@@ -16,6 +16,8 @@ hidden: true # don't count this post in blog pagination
 description: "Proteggi la rete e la navigazione della tua famiglia. La tua casa e i dispositivi connessi ad internet oggi sono al sicuro grazie ad IVO. IVO è un dispositivo che permette di monitorare la rete domestica, gestire il tempo e i contenuti che la tua famiglia trascorre in internet, tutto attraverso un’app."
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 

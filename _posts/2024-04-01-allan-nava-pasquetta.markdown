@@ -14,6 +14,8 @@ description: "Foto della gita di Pasquetta 2024."
 category: blog
 author: allan
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 <div>

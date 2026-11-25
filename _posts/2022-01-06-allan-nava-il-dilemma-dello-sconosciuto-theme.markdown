@@ -10,6 +10,8 @@ description: "Allan Nava - Il dilemma dello sconosciuto."
 category: blog
 author: allan
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 <blockquote class="twitter-tweet" data-theme="dark"><p lang="it" dir="ltr">Il dilemma dello sconosciuto. <a href="https://t.co/CV40affHx8">pic.twitter.com/CV40affHx8</a></p>&mdash; Allan Nava (@allan__nava) <a href="https://twitter.com/allan__nava/status/1479025697947631619?ref_src=twsrc%5Etfw">January 6, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

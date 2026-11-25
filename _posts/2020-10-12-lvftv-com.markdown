@@ -17,6 +17,8 @@ hidden: true # don't count this post in blog pagination
 description: "LVF TV - Streaming volley femminile Serie A1 e Serie A2"
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 <div class="side-by-side">

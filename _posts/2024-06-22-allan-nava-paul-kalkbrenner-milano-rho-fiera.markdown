@@ -15,6 +15,8 @@ author: allan
 lat: 45.5179727
 lng: 9.0856454
 externalLink: true
+lang: it
+locale: it_IT
 ---
 <lite-youtube videoid="b7_5cr83AQY" data-short playlabel="YouTube video player"></lite-youtube>
 

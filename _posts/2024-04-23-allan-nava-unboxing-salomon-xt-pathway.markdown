@@ -12,6 +12,8 @@ description: "Foto e video dell'unboxing delle scarpe da trekking Salomon XT Pat
 category: blog
 author: allan
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 <div>

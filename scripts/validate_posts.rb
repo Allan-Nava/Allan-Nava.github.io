@@ -7,6 +7,7 @@
 require 'yaml'
 require 'date'
 require 'time'
+require_relative 'lib/post_language'
 
 ROOT = File.expand_path('..', __dir__)
 CATEGORIES = %w[blog project].freeze
@@ -156,6 +157,17 @@ posts.each do |path|
     if squash.call(heading) == squash.call(fm['title'])
       warnings << "#{name}: body starts with the title again — the header already prints it as the <h1>"
     end
+  end
+
+  # #194: <html lang> comes from `lang` (default en). The words of the post say which
+  # language it is in (scripts/lib/post_language.rb); a post that disagrees says the wrong
+  # one to search engines and screen readers. Silent when the text is too short to tell.
+  detected = PostLanguage.of_post(fm, body)
+  declared = fm['lang'].to_s.empty? ? 'en' : fm['lang'].to_s[0, 2]
+  if detected && detected != declared
+    fix = detected == 'it' ? 'add `lang: it` and `locale: it_IT`' : 'remove `lang: it`'
+    warnings << "#{name}: the text is in #{detected == 'it' ? 'Italian' : 'English'} but the page declares " \
+                "lang #{declared} — #{fix}"
   end
 
   # Body checks on the raw text.

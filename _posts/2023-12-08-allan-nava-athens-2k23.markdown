@@ -16,6 +16,8 @@ author: allan
 lat: 37.976
 lng: 23.727
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 Le luci della città ✨🇬🇷

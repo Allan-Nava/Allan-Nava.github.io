@@ -15,6 +15,8 @@ author: allan
 externalLink: true
 lat: 46.041
 lng: 9.302
+lang: it
+locale: it_IT
 ---
 
 ## Bellano Music Festival 🎶 🎸 

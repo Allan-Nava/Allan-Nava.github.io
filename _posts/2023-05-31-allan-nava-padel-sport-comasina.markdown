@@ -15,6 +15,8 @@ author: allan
 externalLink: true
 lat: 45.526
 lng: 9.163
+lang: it
+locale: it_IT
 ---
 
 <div>

@@ -15,6 +15,8 @@ author: allan
 lat: 46.056
 lng: 9.553
 externalLink: true
+lang: it
+locale: it_IT
 ---
 ## Gerola Alta 🏋🏽
 

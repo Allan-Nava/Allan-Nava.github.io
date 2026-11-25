@@ -14,6 +14,8 @@ description: "Video di una sessione di arrampicata su placca a Milano."
 category: blog
 author: allan
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 <lite-youtube videoid="w7O_L4glUwI" data-short playlabel="Slab Mode ON 🟡🧠 Focus &amp; Control"></lite-youtube>

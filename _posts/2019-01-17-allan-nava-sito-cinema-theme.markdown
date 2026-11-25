@@ -14,6 +14,8 @@ hidden: true # don't count this post in blog pagination
 description: "Sito cinema - Schegge di vetro"
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 <div class="side-by-side">

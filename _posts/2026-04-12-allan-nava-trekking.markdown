@@ -12,6 +12,8 @@ description: "Foto e video di un trekking al Monte Marone."
 category: blog
 author: allan
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 <div>

@@ -14,6 +14,8 @@ hidden: true # don't count this post in blog pagination
 description: "LVFTV Firstick app 📃"
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 

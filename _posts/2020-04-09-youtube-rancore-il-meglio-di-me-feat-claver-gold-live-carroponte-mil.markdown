@@ -12,6 +12,8 @@ category: blog
 author: allan
 lat: 45.535
 lng: 9.244
+lang: it
+locale: it_IT
 ---
 
 <lite-youtube videoid="XqObRyzACVQ" playlabel="Rancore - Il meglio di me feat Claver Gold Live 🔹 Carroponte Milano"></lite-youtube>

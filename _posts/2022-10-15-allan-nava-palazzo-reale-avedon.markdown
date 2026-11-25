@@ -16,6 +16,8 @@ author: allan
 externalLink: true
 lat: 45.463
 lng: 9.191
+lang: it
+locale: it_IT
 ---
 
 ## Palazzo Reale Milano - Richard Avedon  ✨  

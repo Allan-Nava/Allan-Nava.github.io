@@ -14,6 +14,8 @@ description: "Foto di una partita di padel al circolo Murat4All."
 category: blog
 author: allan
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 <div>

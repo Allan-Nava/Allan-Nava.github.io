@@ -19,6 +19,8 @@ hidden: true # don't count this post in blog pagination
 description: "Il portale della TV pubblica andorrana: diretta dei canali, on demand e informazione, per il pubblico di Andorra, Spagna e Francia."
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 Portale della **televisione pubblica di Andorra** (Ràdio i Televisió d'Andorra): diretta dei

@@ -13,6 +13,8 @@ description: "Foto di un tramonto a Milano durante un giro in scooter Sym."
 category: blog
 author: allan
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 <div>

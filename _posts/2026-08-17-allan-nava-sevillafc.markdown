@@ -19,6 +19,8 @@ hidden: true # don't count this post in blog pagination
 description: "Sito ufficiale e TV del Sevilla FC: news, dirette e on demand per i tifosi del club andaluso, su piattaforma multi-region."
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 Sito ufficiale e piattaforma video del **Sevilla FC**, il club di Siviglia: news e contenuti

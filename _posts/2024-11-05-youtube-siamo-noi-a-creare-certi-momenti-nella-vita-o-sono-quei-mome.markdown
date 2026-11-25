@@ -11,6 +11,8 @@ thumb: "https://i.ytimg.com/vi/dPJnDkd84qM/oardefault.jpg"
 description: ""
 category: blog
 author: allan
+lang: it
+locale: it_IT
 ---
 
 ## Siamo noi a creare certi momenti nella vita o sono quei momenti a creare noi? sea chill

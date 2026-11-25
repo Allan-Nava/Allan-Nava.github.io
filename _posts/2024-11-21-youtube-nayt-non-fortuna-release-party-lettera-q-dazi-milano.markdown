@@ -13,6 +13,8 @@ category: blog
 author: allan
 lat: 45.464
 lng: 9.19
+lang: it
+locale: it_IT
 ---
 
 <lite-youtube videoid="DdW07xwYLkA" data-short playlabel="Nayt - Non è fortuna 🔹 Release Party Lettera Q 🔹 Dazi Milano"></lite-youtube>

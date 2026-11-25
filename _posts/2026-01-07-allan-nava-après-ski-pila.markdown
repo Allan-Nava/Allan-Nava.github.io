@@ -16,6 +16,8 @@ author: allan
 lat: 45.69
 lng: 7.305
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 <lite-youtube videoid="QLryDUjf94k" data-short playlabel="Pila aprés ski 🏂🍹"></lite-youtube>

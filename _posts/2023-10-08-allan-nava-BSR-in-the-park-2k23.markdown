@@ -16,6 +16,8 @@ description: "Foto e video della giornata BSR in the park al Parco Sempione di M
 category: blog
 author: allan
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 <div>

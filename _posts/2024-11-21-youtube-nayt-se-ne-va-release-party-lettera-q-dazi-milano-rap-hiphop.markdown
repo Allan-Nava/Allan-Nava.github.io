@@ -13,6 +13,8 @@ category: blog
 author: allan
 lat: 45.464
 lng: 9.19
+lang: it
+locale: it_IT
 ---
 
 ## Nayt - Se ne va 🔹 Release Party Lettera Q ~ Dazi Milano rap hiphop

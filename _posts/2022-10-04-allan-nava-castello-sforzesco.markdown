@@ -13,6 +13,8 @@ author: allan
 externalLink: true
 lat: 45.47
 lng: 9.179
+lang: it
+locale: it_IT
 ---
 
 ## Castello Sforzesco Milano 2022 ✨

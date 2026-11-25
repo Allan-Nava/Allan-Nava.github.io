@@ -14,6 +14,8 @@ description: "Video e foto dalla seconda giornata del Nameless Festival 2023."
 category: blog
 author: allan
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 ## Nameless 2023 | 2nd day 🎶 🎸 

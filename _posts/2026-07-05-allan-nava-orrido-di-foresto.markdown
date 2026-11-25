@@ -16,6 +16,8 @@ author: allan
 lat: 45.133
 lng: 7.089
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 <lite-youtube videoid="OhbUGISQ6mc" data-short playlabel="Orrido di foresto"></lite-youtube>

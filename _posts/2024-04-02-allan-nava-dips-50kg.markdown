@@ -15,6 +15,8 @@ description: "Video di un allenamento di dips da 50kg in calisthenics."
 category: blog
 author: allan
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 <lite-youtube videoid="imHrCNI7CuU" data-short playlabel="YouTube video player"></lite-youtube>

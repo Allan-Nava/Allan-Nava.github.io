@@ -12,6 +12,8 @@ description: "Foto di una sessione di arrampicata con la corda."
 category: blog
 author: allan
 externalLink: true
+lang: it
+locale: it_IT
 ---
 
 <div>

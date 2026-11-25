@@ -18,6 +18,8 @@ author: allan
 externalLink: true
 lat: 45.497
 lng: 9.116
+lang: it
+locale: it_IT
 ---
 
 ## Travis Scott - Milano Ippodromo 🎸 

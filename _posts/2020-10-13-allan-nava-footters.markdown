@@ -16,6 +16,8 @@ hidden: true # don't count this post in blog pagination
 description: "El fútbol auténtico en directo y a la carta - Footters"
 category: project
 author: allan
+lang: it
+locale: it_IT
 ---
 
 <div class="side-by-side">

@@ -14,6 +14,8 @@ author: allan
 externalLink: true
 lat: 45.485
 lng: 9.204
+lang: it
+locale: it_IT
 ---
 
 ## Ostello Bello 2024 

@@ -122,6 +122,8 @@ activities.each do |act|
     description: "#{label} su Strava: #{km} km, #{dplus} m D+, #{moving} in movimento."
     category: blog
     author: allan
+    lang: it
+    locale: it_IT
     ---
 
     | | |
