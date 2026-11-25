@@ -28,7 +28,8 @@ urls = sitemap.scan(%r{<loc>(.*?)</loc>}m).flatten.map(&:strip)
 abort 'seo_audit: no URL in sitemap.xml' if urls.empty?
 
 def file_for(url)
-  path = url.delete_prefix(SITE_URL)
+  # The sitemap percent-encodes (apr%C3%A8s-ski); the file on disk has the character.
+  path = CGI.unescape(url.delete_prefix(SITE_URL).gsub('+', '%2B'))
   path = '/index.html' if path.empty? || path == '/'
   path += 'index.html' if path.end_with?('/')
   File.join(SITE, path)

@@ -28,15 +28,17 @@ module SiteSEO
       author = (site.data['authors'] || {}).dig('allan', 'name') || site.config['title']
       posts = site.posts.docs
 
-      # 1. duplicate titles
+      # 1. duplicate titles: the date, and the time too when two share the day
       dated = 0
       posts.group_by { |p| p.data['title'].to_s.strip }.each_value do |group|
         next if group.size < 2
 
+        same_day = group.map { |p| p.date.strftime('%F') }.tally
         group.each do |p|
           next if p.data['seo_title']
 
-          p.data['seo_title'] = "#{p.data['title']} (#{p.date.strftime('%-d %b %Y')}) | #{site.config['title']}"
+          when_ = same_day[p.date.strftime('%F')] > 1 ? p.date.strftime('%-d %b %Y, %H:%M') : p.date.strftime('%-d %b %Y')
+          p.data['seo_title'] = "#{p.data['title']} (#{when_}) | #{site.config['title']}"
           dated += 1
         end
       end
@@ -58,6 +60,22 @@ module SiteSEO
         enriched += 1
       end
 
+      # 2b. a description shared by several posts (two projects from one repository family,
+      # two videos of one holiday) is led by each post's own title.
+      shared = 0
+      posts.group_by { |p| p.data['description'].to_s.strip }.each do |desc, group|
+        next if desc.empty? || group.size < 2
+
+        group.each do |p|
+          title = p.data['title'].to_s.gsub(SHORTCODE, '').strip
+          next if desc.start_with?(title)
+
+          p.data['card_description'] ||= desc unless p.data['description_generated']
+          p.data['description'] = "#{title} — #{desc}"
+          shared += 1
+        end
+      end
+
       # 4. the video of a video post
       videos = 0
       posts.each do |p|
@@ -68,19 +86,23 @@ module SiteSEO
         videos += 1
       end
 
-      Jekyll.logger.info 'SEO:', "#{dated} titles dated, #{enriched} project descriptions, #{videos} videos"
+      Jekyll.logger.info 'SEO:', "#{dated} titles dated, #{enriched} project descriptions, #{shared} shared descriptions led by their title, #{videos} videos"
     end
   end
 end
 
 # 3. paginated blog pages: "… Page 7 of 23." The base is kept in `description_base`, so a
 # second render of the same page does not append twice.
-Jekyll::Hooks.register :pages, :pre_render do |page, _payload|
+# The payload's "page" is a copy of the data made before this hook runs, and it is what
+# jekyll-seo-tag reads: both are set.
+Jekyll::Hooks.register :pages, :pre_render do |page, payload|
   pager = page.respond_to?(:pager) ? page.pager : nil
   next unless pager && pager.page.to_i > 1
 
   base = (page.data['description_base'] ||= page.data['description'].to_s.strip)
   next if base.empty?
 
-  page.data['description'] = "#{base.sub(/[.\s]+\z/, '')}. Page #{pager.page} of #{pager.total_pages}."
+  description = "#{base.sub(/[.\s]+\z/, '')}. Page #{pager.page} of #{pager.total_pages}."
+  page.data['description'] = description
+  payload['page']['description'] = description if payload['page'].respond_to?(:[]=)
 end
