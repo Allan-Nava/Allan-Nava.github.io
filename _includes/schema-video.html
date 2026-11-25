@@ -1,0 +1,15 @@
+{%- comment -%}
+VideoObject JSON-LD for a post that embeds a YouTube video (page.video_id, set by
+_plugins/seo.rb): what Google needs to show the post in its video results. The values are
+jsonify'd, then every ":" becomes "\u003a" — valid JSON, and jemoji never sees a
+`:shortcode:` in the script (CLAUDE.md, "jemoji entra anche negli script"). The post's own
+BlogPosting stays as jekyll-seo-tag writes it.
+{%- endcomment -%}
+{%- if page.video_id -%}
+{%- assign video_name = page.title | strip_emoji_shortcodes -%}
+{%- assign video_thumb = page.thumb | default: page.image | default: "https://i.ytimg.com/vi/" | append: page.video_id | append: "/hqdefault.jpg" -%}
+{%- assign video_desc = page.description | default: site.description | strip_html -%}
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "VideoObject", "name": {{ video_name | jsonify | replace: ":", "\u003a" }}, "description": {{ video_desc | jsonify | replace: ":", "\u003a" }}, "thumbnailUrl": {{ video_thumb | jsonify | replace: ":", "\u003a" }}, "uploadDate": {{ page.date | date_to_xmlschema | jsonify | replace: ":", "\u003a" }}, "embedUrl": {{ "https://www.youtube.com/embed/" | append: page.video_id | jsonify | replace: ":", "\u003a" }}, "contentUrl": {{ "https://www.youtube.com/watch?v=" | append: page.video_id | jsonify | replace: ":", "\u003a" }}, "url": {{ page.url | absolute_url | jsonify | replace: ":", "\u003a" }}, "author": {"@type": "Person", "name": "Allan Nava", "url": "https\u003a//allan-nava.github.io/about/"}}
+</script>
+{%- endif -%}

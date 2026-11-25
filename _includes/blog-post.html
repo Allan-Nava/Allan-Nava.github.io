@@ -41,8 +41,13 @@ in CSS, zero richieste di rete (_plugins/card_placeholder.rb).
         <span class="body">
             <h2 class="title">{{ post.title }}</h2>
 
-            {% if post.description and post.description != "" and post.description_generated != true %}
-                <span class="excerpt">{{ post.description | strip_html | truncate: 130 }}</span>
+            {%- comment -%} Il testo della card: la description originale di un progetto se _plugins/seo.rb l'ha arricchita
+            (card_description), altrimenti la description, saltata se generata (video_descriptions.rb). {%- endcomment -%}
+            {%- assign card_text = "" -%}
+            {%- if post.card_description -%}{%- assign card_text = post.card_description -%}
+            {%- elsif post.description and post.description != "" and post.description_generated != true -%}{%- assign card_text = post.description -%}{%- endif -%}
+            {% if card_text != "" %}
+                <span class="excerpt">{{ card_text | strip_html | truncate: 130 }}</span>
             {% endif %}
 
             <span class="meta">

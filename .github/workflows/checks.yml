@@ -54,6 +54,11 @@ jobs:
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
+      # Ogni pagina della sitemap: title, description, canonical, og:image, un solo <h1>,
+      # JSON-LD valido (errori: il job fallisce); duplicati e lunghezze (avvisi, nel
+      # riepilogo del job). scripts/seo_audit.rb, solo stdlib.
+      - name: SEO audit of the built site
+        run: ruby scripts/seo_audit.rb _site
       - name: Check internal links and images (html-proofer)
         # Nomi dei flag della 4.x: la 3.x usava --url-ignore / --empty-alt-ignore
         # e --assume-extension senza valore. Tenere allineato il Rakefile.

@@ -141,6 +141,7 @@ Sesto giro, dopo v2.8. Milestone `v2.9` su GitHub.
 - [x] **Description per i post video** (#185) — `_plugins/video_descriptions.rb` compone a build time la description dei 134 video che non l'avevano (ricadevano tutti su `site.description`): titolo, autore, data di pubblicazione, verticale o no. Le card dei listing la saltano (`description_generated`), la usano meta, JSON-LD, feed e ricerca. I tag non entrano: su questi post sono solo `youtube`/`short`/`video`.
 - [ ] **Nav su telefono** (#186) — a 390px "About" esce "Abou", su tutte le pagine.
 - [ ] **`/blog/` sopra la soglia Lighthouse** (#187) — performance 79, LCP ~5.7 s, ~1.9 MB di immagini.
+- [x] **SEO: correzioni dal crawl e controllo in CI** — crawl delle 440 pagine della sitemap (2026-11-25): basi pulite, tre difetti di qualita' corretti a build time da `_plugins/seo.rb` (13 titoli duplicati datati, 76 description di progetto arricchite, "Page N of M" nelle 23 pagine di `/blog/`), `VideoObject` JSON-LD sui post video, e `scripts/seo_audit.rb` in `checks.yml` che blocca una pagina senza title/description/canonical/og:image/h1 o con JSON-LD rotto.
 - [ ] **Date delle pagine nella sitemap** (#188) — solo i post hanno `<lastmod>`, quindi IndexNow non segnala una pagina cambiata.
 
 ## v3.0 — Big rocks

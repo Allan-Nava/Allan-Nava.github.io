@@ -83,8 +83,13 @@ Il testo dell'apertura si modifica qui: è l'unico punto in cui vive.
 
                     <span class="body">
                         <h3 class="title">{{ post.title }}{% if post.externalLink %}<span class="ext" aria-hidden="true">↗</span>{% endif %}</h3>
-                        {% if post.description and post.description != "" and post.description_generated != true %}
-                            <span class="excerpt">{{ post.description | strip_html | truncate: 130 }}</span>
+                        {%- comment -%} Il testo della card: la description originale di un progetto se _plugins/seo.rb l'ha arricchita
+                        (card_description), altrimenti la description, saltata se generata (video_descriptions.rb). {%- endcomment -%}
+                        {%- assign card_text = "" -%}
+                        {%- if post.card_description -%}{%- assign card_text = post.card_description -%}
+                        {%- elsif post.description and post.description != "" and post.description_generated != true -%}{%- assign card_text = post.description -%}{%- endif -%}
+                        {% if card_text != "" %}
+                            <span class="excerpt">{{ card_text | strip_html | truncate: 130 }}</span>
                         {% endif %}
                         <span class="meta">
                             <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date: "%b %d, %Y" }}</time>
