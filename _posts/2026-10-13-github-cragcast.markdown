@@ -2,7 +2,7 @@
 title: "cragcast"
 layout: post
 date: 2026-10-13 10:13
-updated: 2026-11-24
+updated: 2026-11-25
 tag:
 - java
 - climbing
@@ -24,6 +24,6 @@ Can I climb there tomorrow? Crag conditions for Lombardy from the weather and th
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Java
 - **Stars**: 1
-- **Ultimo push**: 2026-11-24
+- **Ultimo push**: 2026-11-25
 
 [Repo su GitHub →](https://github.com/Allan-Nava/cragcast)
