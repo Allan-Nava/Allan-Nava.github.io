@@ -11,18 +11,41 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ## [Non rilasciato]
 
+## [2.6.0] — 2026-11-25
+
+Tre mesi di lavoro dalla 2.5.0, chiusi con la milestone v2.8 della roadmap: il CSS come file in
+cache, i componenti di nava-ui al posto delle copie del sito (stack, banner, profilo, premio,
+bottone Copy), il gioco su /play/, e un sito che si fa leggere da motori e assistenti AI
+(controllo SEO in CI, `llms.txt`, crawler AI nominati, lingua per post, About citabile). Una
+**minor**: pagine e feature di build nuove, il tema non cambia forma.
+
 ### Aggiunto
 
+- **`/llms.txt`** (#191) — indice del sito per i modelli linguistici, nel formato proposto da llmstxt.org: chi e' Allan Nava, poi About, Projects, Blog, Videos e Optional, una riga per pagina dalla `description` del front matter. Template Liquid rigenerato a ogni build, fuori dalla cache del service worker, asserito da `checkfleet.yml`.
+- **Crawler AI per nome in `robots.txt`** (#190) — da `_data/ai_crawlers.yml`: quelli di ricerca e citazione (`OAI-SearchBot`, `ChatGPT-User`, `Claude-SearchBot`, `Claude-User`, `PerplexityBot`) e quelli di addestramento (`GPTBot`, `ClaudeBot`, `Google-Extended`, `CCBot`), tutti consentiti, ognuno col suo gruppo e la sua regola.
+- **Controllo SEO in CI** — `scripts/seo_audit.rb` in `checks.yml` sul sito compilato: fallisce su una pagina della sitemap senza title, description, canonical uguale al suo URL, og:image, un solo `<h1>`, con JSON-LD non valido, con un titolo oltre 70 caratteri o una description sotto i 50 (#193). 440 pagine, 0 errori.
+- **`VideoObject` sui post video** — JSON-LD da `_includes/schema-video.html`, con l'id YouTube che `_plugins/seo.rb` legge dalla facade: e' quello che chiedono i risultati video di Google.
+- **IndexNow dopo ogni deploy** — `scripts/indexnow.rb` manda a Bing e DuckDuckGo gli URL cambiati; i post sono firmati Allan Nava (`_data/authors.yml`) per jekyll-seo-tag.
+- **Description per i post video** (#185) — `_plugins/video_descriptions.rb` la compone a build time per i 134 video che non l'avevano.
+- **La lingua giusta sui post** (#194) — `scripts/lib/post_language.rb` riconosce italiano e inglese contando le parole comuni; `set_post_language.rb` ha messo `lang: it` e `locale: it_IT` su 87 post, i sync di YouTube e GitHub decidono allo stesso modo sui post nuovi, `validate_posts.rb` avvisa quando lingua e testo non tornano.
 - **/play/: Ridge run, un gioco a un tasto** — un escursionista corre sulle creste del banner del canale (le stesse di `_includes/channel-banner.html`, in parallasse, ripetute specchiate cosi' non si vede la giunta): si saltano sassi e pini, e i gracchi volano bassi (si saltano) o alti (si passa sotto). Spazio, freccia su o tocco per saltare, tenendo premuto si salta piu' in alto; il record resta nel browser (`localStorage`, il gioco va anche se e' bloccato). Colori letti dai token del sito a ogni cambio di tema. Tutto in `assets/js/ridge-run.js`, file statico caricato solo da `play.html` (niente Liquid ne' jemoji dentro lo script); senza JavaScript la pagina mostra solo il testo. Linkato dal footer (toggle `play` in `_config.yml`) e dalla 404.
 
 ### Modificato
 
+- **Il CSS e' un file in cache** (#181) — `_plugins/site_css.rb` compila lo stile una volta per build in `assets/css/main-<hash>.css`, invece di metterlo inline in ogni pagina: HTML di `/about/` 148 → 43 KB, build di `checks.yml` 106 → 26 s, foglio di 16 KB gzip scaricato una volta e servito cache-first dal service worker.
+- **nava-ui v0.10.0** (#182) — il bottone "Copy" dei blocchi di codice e' `nv-code` del kit: annuncia la copia ai lettori di schermo, resta visibile sui touch screen, se la copia viene rifiutata seleziona il codice.
+- **/map ridisegnata** — tile che seguono il tema, marker raggruppati col numero dei post, navigazione da tastiera, layout largo e una lista accessibile dei luoghi.
+- **/about/ citabile** (#189) — apre con un paragrafo in terza persona (ruolo, citta', anni, azienda, domini), la frase che motori e assistenti riprendono; nuova sezione Open source con i progetti principali; `knowsAbout` del JSON-LD allineato.
+- **Titoli e description per i motori** (#193 e il crawl del 2026-11-25) — `_plugins/seo.rb`, a build time e senza toccare i post: la data nel `<title>` dei 13 post con titolo duplicato, una frase al posto della description di una parola sui progetti, "Page N of M" sulle pagine del blog, titoli dei video senza emoji e hashtag entro 70 caratteri, description corte allungate con cosa, di chi, quando e tag. Le card dei listing mostrano il testo originale.
+- **Ridge run piu' difficile col tempo** — dopo i 54 secondi la velocita' continua a salire, arrivano coppie di gracchi e i varchi si stringono.
+- **jekyll-admin solo in sviluppo** (#184, primo passo) — nel gruppo `:development` del Gemfile, che i workflow non installano.
 - **/about/ riscritta per chi la apre per primo** — al posto di cinque paragrafi: foto, nome, ruolo e i link a progetti, LinkedIn e GitHub (da `social.links`); una riga di sintesi con cinque pill; una frase su dove e da quando (la storia completa resta sul CV e su LinkedIn, non duplicata qui); il premio di Sevilla FC+ in un riquadro, detto com'e' — al team, di cui Allan fa parte; poi cosa fa e il tempo libero. Componenti di nava-ui **v0.9.0** (`nv-profile`, `nv-award`), importati da `sync_nava_ui.sh`; il kit e' passato da v0.5.0 a v0.9.0 senza cambiare un valore dei token. Tolta da `page.sass` la regola `.about img` del 2019 (larghezza al 50%), che avrebbe schiacciato la foto.
 - **Il banner di /videos/ viene da nava-ui** — il banner del canale (`_includes/channel-banner.html`) usa il componente `nv-banner` del kit, rilasciato in nava-ui **v0.5.0**: il suo partial arriva in `_sass/vendor/_nava-banner.scss` da `scripts/sync_nava_ui.sh`, che ora lo elenca fra i componenti, e `_sass/components/channel-banner.scss` (167 righe) non c'e' piu'. Restano nel sito solo lo spazio sotto il banner (`page.sass`). Token, bento e marks risincronizzati alla stessa versione; `sync_nava_ui.sh --check` passa.
 - **Software e DevOps, non solo DevOps** — tagline, `bio`, `description` del sito e della home, kicker e titolo della home, template delle card social e `/about/` presentano Allan come *software & DevOps engineer*, allineati al profilo LinkedIn e al CV. La home non dice piu' "and write about what breaks": il sito e' un catalogo di progetti, video e post personali, non una raccolta di post su cosa si e' rotto. `/about/` riscritta: dalla lista "Study Interests" a quattro paragrafi coi fatti del CV. Il `jobTitle` dello schema Person resta *DevOps Engineer*, il titolo reale.
 
 ### Corretto
 
+- **Il menu su telefono tagliava l'ultimo link** (#186) — a 360 e 390px "About" usciva dall'isola: link e icone stretti sotto i 560px, misurati in Chromium a 360, 390 e 430px in tutti e due i temi.
 - **`go` e `golang`, un tag solo** — /projects mostrava due filtri per lo stesso linguaggio (`go` 51, `golang` 19): la sincronizzazione da GitHub mette il linguaggio del repo (`go`) piu' i primi tre topic, e molti repo hanno il topic `golang`. Lo slug e' diverso, quindi il controllo di #148 non li vedeva. Ora `_data/tag_aliases.yml` dichiara gli alias (`golang: go`): `sync_github.rb` li risolve e toglie i doppioni, `validate_posts.rb` avvisa se un post ne usa uno, e i 19 post con `golang` hanno `go` (una volta sola anche dove c'erano entrambi).
 - **Il filo verde dell'hover a metà card** — sulle card l'hover disegna un filo verde sul fondo
   del link, ma il link era alto quanto il contenuto e non quanto la card: nelle card con poco testo
@@ -336,7 +359,8 @@ Prima automazione di build e deploy del sito.
 
 Prima versione pubblica del sito sul tema Indigo.
 
-[Non rilasciato]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.5.0...HEAD
+[Non rilasciato]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.6.0...HEAD
+[2.6.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/Allan-Nava/Allan-Nava.github.io/compare/v2.2.0...v2.3.0
