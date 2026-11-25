@@ -10,8 +10,11 @@
 #   - esattamente un <h1>
 #   - un <script type="application/ld+json"> che non e' JSON valido (BlogPosting, Person,
 #     VideoObject: un JSON rotto e' un dato strutturato che Google scarta in silenzio)
-# Avvisa, senza fallire, per la qualita': titoli e description duplicati fra pagine, titoli
-# oltre 70 caratteri, description sotto i 50. Il riepilogo va anche in $GITHUB_STEP_SUMMARY.
+#   - un <title> oltre 70 caratteri (troncato nei risultati) o una description sotto i 50
+#     (#193: _plugins/seo.rb accorcia i titoli dei video e allunga le description corte, quindi
+#     una pagina che sfora e' un caso che le sue regole non coprono)
+# Avvisa, senza fallire, sui titoli e le description duplicati fra pagine. Il riepilogo va
+# anche in $GITHUB_STEP_SUMMARY.
 #
 # Nato dal crawl del sito live del 2026-11-25 (_plugins/seo.rb ha corretto cio' che aveva
 # trovato): serve a non far tornare i duplicati, e a fermare un template che li perde.
@@ -22,6 +25,8 @@ require 'json'
 
 SITE = ARGV[0] || '_site'
 SITE_URL = 'https://allan-nava.github.io'
+TITLE_MAX = 70 # the same limits as SiteSEO::TITLE_MAX and DESCRIPTION_MIN in _plugins/seo.rb
+DESC_MIN = 50
 
 sitemap = File.read(File.join(SITE, 'sitemap.xml'))
 urls = sitemap.scan(%r{<loc>(.*?)</loc>}m).flatten.map(&:strip)
@@ -63,6 +68,8 @@ urls.each do |url|
   errors << "#{url}: canonical #{page[:canonical].inspect}, not the page's URL" if page[:canonical] != url
   errors << "#{url}: no og:image" if page[:og_image].to_s.empty?
   errors << "#{url}: #{page[:h1]} <h1>, want 1" if page[:h1] != 1
+  errors << "#{url}: title of #{page[:title].length} characters, over #{TITLE_MAX}: #{page[:title].inspect}" if page[:title].to_s.length > TITLE_MAX
+  errors << "#{url}: description of #{page[:desc].length} characters, under #{DESC_MIN}: #{page[:desc].inspect}" if page[:desc].to_s.length.between?(1, DESC_MIN - 1)
   html.scan(%r{<script type="application/ld\+json">(.*?)</script>}m).flatten.each do |json|
     JSON.parse(json)
   rescue JSON::ParserError => e
@@ -79,10 +86,6 @@ warnings = []
                 group.map { |p| p[:url].delete_prefix(SITE_URL) }.first(4).join(', ')
   end
 end
-long = pages.count { |p| p[:title].to_s.length > 70 }
-short = pages.count { |p| p[:desc].to_s.length.between?(1, 49) }
-warnings << "#{long} titles over 70 characters" if long.positive?
-warnings << "#{short} descriptions under 50 characters" if short.positive?
 
 errors.each { |e| puts "error: #{e}" }
 warnings.each { |w| puts "warning: #{w}" }

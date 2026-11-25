@@ -1,5 +1,6 @@
 ---
 title: "Sevilla FC+: oro come Best New Platform ai SportsPro Media Awards 2025"
+seo_title: "Sevilla FC+, oro ai SportsPro Media Awards 2025 | Allan Nava"
 layout: post
 date: 2025-11-20 10:00
 tag:

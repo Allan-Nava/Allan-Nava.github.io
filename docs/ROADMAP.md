@@ -152,7 +152,7 @@ Settimo giro. Cosa legge un assistente AI o un motore di ricerca quando gli chie
 - [x] **I crawler AI in `robots.txt`** (#190) — gruppi espliciti, consentiti, che separano ricerca e risposta (`OAI-SearchBot`, `ChatGPT-User`, `Claude-SearchBot`, `Claude-User`, `PerplexityBot`) da addestramento (`GPTBot`, `ClaudeBot`, `Google-Extended`, `CCBot`), nel template di `sync_robots_sitemaps.rb`.
 - [ ] **`/llms.txt`** (#191) — generato a ogni build: chi e' Allan Nava, le sezioni e le pagine principali con una riga ciascuna. Una proposta, non uno standard: costa poco e non fa danni.
 - [ ] **Una versione Markdown di ogni post** (#192) — il sorgente accanto all'HTML, linkato con `rel="alternate" type="text/markdown"`; misurare il tempo di build.
-- [ ] **Avvisi del controllo SEO azzerati, poi errori** (#193) — 18 titoli oltre i 70 caratteri e 41 description sotto i 50 (2026-11-25); poi `seo_audit.rb` li fa fallire.
+- [x] **Avvisi del controllo SEO azzerati, poi errori** (#193) — 18 titoli oltre i 70 caratteri e 41 description sotto i 50 (2026-11-25); poi `seo_audit.rb` li fa fallire.
 - [ ] **La lingua giusta sui post in italiano** (#194) — 436 pagine su 440 dichiarano `en`; uno script one-shot con `DRY_RUN=1` mette `lang: it` dove il corpo e' italiano, e `validate_posts.rb` avvisa quando non torna.
 
 ## v3.0 — Big rocks

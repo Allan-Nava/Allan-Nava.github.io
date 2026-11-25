@@ -11,8 +11,12 @@
 #   3. The blog's 23 paginated pages all had the same description. Page N of M says so.
 #   4. Video posts: the YouTube id of the first facade goes in `video_id`, for the VideoObject
 #      JSON-LD of _includes/schema-video.html (Google's video results need it).
+#   5. Titles over 70 characters (18, nearly all videos: emoji, hashtags) get a `seo_title`
+#      without them, cut to fit. The visible heading keeps the full title.
+#   6. Descriptions still under 50 characters (38: a blog post's one line, a project without a
+#      repository) say what the post is, whose, when, and its tags. Both from #193.
 #
-# A Generator for 1, 2 and 4 (it runs after video_descriptions.rb and youtube_thumbnails.rb,
+# A Generator for 1, 2, 4, 5 and 6 (it runs after video_descriptions.rb and youtube_thumbnails.rb,
 # both :low), a pre_render hook for 3 (the paginated pages exist only after pagination).
 
 module SiteSEO
@@ -86,8 +90,70 @@ module SiteSEO
         videos += 1
       end
 
-      Jekyll.logger.info 'SEO:', "#{dated} titles dated, #{enriched} project descriptions, #{shared} shared descriptions led by their title, #{videos} videos"
+      # 5. titles too long for a search result: the video titles, with emoji and hashtags
+      suffix = " | #{site.config['title']}"
+      trimmed = 0
+      posts.each do |p|
+        title = p.data['title'].to_s.strip
+        next if p.data['seo_title'] || (title + suffix).length <= SiteSEO::TITLE_MAX
+
+        p.data['seo_title'] = SiteSEO.search_title(title, suffix) + suffix
+        trimmed += 1
+      end
+
+      # 6. descriptions still under 50 characters (a blog post's one line, a project without
+      # a repository): what it is, whose, when, and its tags.
+      lengthened = 0
+      posts.each do |p|
+        desc = p.data['description'].to_s.strip
+        next if desc.empty? || desc.length >= SiteSEO::DESCRIPTION_MIN
+
+        title = SiteSEO.plain(p.data['title'])
+        lead = SiteSEO.plain(desc.sub(/\AAllan Nava\s*[-–:]?\s*/i, '')).sub(/[.\s]+\z/, '')
+        lead = title if lead.empty? || title.downcase.include?(lead.downcase)
+        lead = lead[0].upcase + lead[1..]
+        kind = p.data['category'] == 'project' ? 'a project' : 'a post'
+        tags = Array(p.data['tags']).map(&:to_s).reject(&:empty?).first(4)
+        p.data['card_description'] ||= desc unless p.data['description_generated']
+        p.data['description'] = "#{lead}: #{kind} by #{author}, #{p.date.strftime('%B %Y')}" +
+                                (tags.empty? ? '' : " (#{tags.join(', ')})") + '.'
+        lengthened += 1
+      end
+
+      Jekyll.logger.info 'SEO:', "#{dated} titles dated, #{enriched} project descriptions, #{shared} shared descriptions led by their title, #{videos} videos, #{trimmed} titles trimmed, #{lengthened} descriptions lengthened"
     end
+  end
+
+  # The audit's limits (scripts/seo_audit.rb fails on a page past them).
+  TITLE_MAX = 70
+  DESCRIPTION_MIN = 50
+
+  # Emoji and other symbols: the category So (pictographs, 🔹, ♦), Sk (skin tones), Cf (the
+  # zero-width joiner), and the emoji variation selector.
+  SYMBOL = /[\p{So}\p{Sk}\p{Cf}\u{FE0F}]/.freeze
+  HASHTAG = /(?<![\w&])#[\p{L}\p{N}_]+/.freeze
+
+  # The title without shortcodes, emoji, or the separators made of them.
+  def self.plain(text)
+    text.to_s.gsub(SHORTCODE, ' ').gsub(SYMBOL, ' ').gsub(/\s+/, ' ').strip.sub(/\A[\s·-]+/, '').sub(/[\s·-]+\z/, '')
+  end
+
+  # "Nayt - Se ne va 🔹 Release Party Lettera Q ~ Dazi Milano #rap #hiphop" becomes
+  # "Nayt - Se ne va · Release Party Lettera Q · Dazi Milano": hashtags go, a run of emoji
+  # (or a ~) between words becomes " · ". Still too long, whole segments go from the end,
+  # and then words, with an ellipsis. The visible heading keeps the full title.
+  def self.search_title(title, suffix)
+    room = TITLE_MAX - suffix.length
+    t = title.gsub(HASHTAG, ' ').gsub(SHORTCODE, ' ').gsub(SYMBOL, "\0").tr('~', "\0")
+    t = t.gsub(/[\s\0]*\0[\s\0]*/, ' · ').gsub(/\s+/, ' ').sub(/\A[\s·-]+/, '').sub(/[\s·-]+\z/, '')
+    parts = t.split(' · ')
+    parts.pop while parts.size > 1 && parts.join(' · ').length > room
+    t = parts.join(' · ')
+    return t if t.length <= room
+
+    cut = t[0, room - 1]
+    cut = cut[0, cut.rindex(' ')] if cut.include?(' ')
+    "#{cut.sub(/[\s·,:;.-]+\z/, '')}…"
   end
 end
 
