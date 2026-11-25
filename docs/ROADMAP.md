@@ -4,7 +4,7 @@ Il backlog del sito, organizzato in milestone versionate: la versione è assegna
 
 **Regola di allineamento (#183)**: una voce si spunta nello stesso commit che chiude la sua issue (`Closes #N`), e la milestone si chiude quando si spunta la sua ultima voce, con l'intestazione che diventa `✅ (milestone chiusa)`. Una voce non spuntata ha sempre un'issue aperta, anche se il lavoro e' manuale; una milestone aperta ha sempre almeno un'issue aperta. Una voce lasciata cadere si spunta barrata, con il motivo.
 
-## v2.0 — Performance & Navigazione ✅ (quasi completa)
+## v2.0 — Performance & Navigazione ✅
 
 Urgente dopo il backfill YouTube: 218 file in `_posts/` (172 blog + 46 progetti). Implementata e validata con `rake test` su Ruby 3.0.7.
 
@@ -13,7 +13,7 @@ Urgente dopo il backfill YouTube: 218 file in `_posts/` (172 blog + 46 progetti)
 - [x] **Lazy loading immagini** — plugin build-time `_plugins/lazy_images.rb` (`loading="lazy"` + decoding async su tutte le img di contenuto; salta gli hero LCP `title-image`/`selfie`).
 - [x] **Thumbnail nei post auto-generati da YouTube** — `sync_youtube.rb`/`backfill_youtube.rb` impostano `image:` = `https://i.ytimg.com/vi/<id>/hqdefault.jpg` (listing + og:image).
 - [x] **Badge di stato nel README** — badge Deploy / Checks / Uptime.
-- [ ] **Disinstallare Renovate** (#195, in v2.9) — *manuale* (Settings → Integrations, poi chiudere le sue PR #72, #73, #74; le issue #25 e #43 sono gia' chiuse): l'app duplica Dependabot. Non automatizzabile da repo.
+- [x] **Disinstallare Renovate** (#195, in v2.9) — *manuale* (Settings → Integrations, poi chiudere le sue PR #72, #73, #74; le issue #25 e #43 sono gia' chiuse): l'app duplica Dependabot. Non automatizzabile da repo.
 
 ## v2.1 — Contenuti & Engagement ✅ (milestone chiusa)
 
@@ -135,7 +135,7 @@ Quinto giro, dopo v2.7. Le voci vengono da misure sul sito pubblicato (2026-11-1
 - [x] **nava-ui v0.10.0** (#182) — `scripts/sync_nava_ui.sh v0.10.0`: nei token cambia solo la riga della versione (nessun valore, quindi contrasto invariato). Il bottone "Copy" dei blocchi di codice è ora il componente del kit, `code-block-with-a-copy-button` aggiunto a `PARTS`: `interactions.html` dà la classe `nv-code` al blocco Rouge e aggiunge `nv-code__copy` più uno status nascosto che annuncia la copia ai lettori di schermo; il bottone resta visibile sui touch screen (prima era a `opacity: 0` senza hover, cioè introvabile) e, se la copia viene rifiutata, seleziona il codice. Via `.copy-code` e `.has-copy`. Effetto collaterale voluto: i blocchi `div.highlight` prendono lo stesso margine sotto di `figure.highlight`. **Il modulo motion del kit non è stato adottato**: il kit non lo esporta come partial per il sito, e l'unica regola che coincide (il reveal di `.nv-bento > .nv-tile`) è già in `motion.scss`, da cui il kit l'ha presa. **Verificato a mano (2026-11-25)**, in Chromium su un post live con un blocco Rouge iniettato (nessun post del sito ha oggi un blocco di codice): col mouse compare all'hover e copia il testo esatto, dice "Copied" e lo status annuncia "Copied to the clipboard"; da tastiera si raggiunge col Tab ed e' visibile col focus; a 390px su touch e' sempre visibile, il tap copia, nessuno scroll orizzontale.
 - [x] **Milestone e roadmap allineate** (#183) — v2.1, v2.5, v2.6, v3.0 (e v2.7) aperte su GitHub con zero issue aperte; #148 chiusa ma non spuntata qui sotto. Chiudere ciò che è finito, aprire un'issue per ciò che resta.
 
-## v2.9 — Ricerca e manutenzione
+## v2.9 — Ricerca e manutenzione ✅ (milestone chiusa)
 
 Sesto giro, dopo v2.8. Milestone `v2.9` su GitHub.
 
@@ -146,7 +146,7 @@ Sesto giro, dopo v2.8. Milestone `v2.9` su GitHub.
 - [x] **SEO: correzioni dal crawl e controllo in CI** — crawl delle 440 pagine della sitemap (2026-11-25): basi pulite, tre difetti di qualita' corretti a build time da `_plugins/seo.rb` (13 titoli duplicati datati, 76 description di progetto arricchite, "Page N of M" nelle 23 pagine di `/blog/`), `VideoObject` JSON-LD sui post video, e `scripts/seo_audit.rb` in `checks.yml` che blocca una pagina senza title/description/canonical/og:image/h1 o con JSON-LD rotto.
 - [x] **Date delle pagine nella sitemap** (#188) — solo i post hanno `<lastmod>`, quindi IndexNow non segnala una pagina cambiata. **Fatto**: `_plugins/page_lastmod.rb` da' a ogni pagina il `last_modified_at` dell'ultimo commit che ha toccato il suo file (un solo `git log`, 0.35 s), che jekyll-sitemap scrive come `<lastmod>`; su un clone superficiale non mette niente, e `jekyll.yml` fa il checkout con `fetch-depth: 0`. Il primo deploy segnala a IndexNow tutte le pagine una volta (passano da nessun `<lastmod>` a uno).
 
-- [ ] **Disinstallare Renovate** (#195) — l'app apre ancora PR sulle actions che Dependabot copre gia' (#72, #73, #74). Manuale: Settings → Integrations; la voce di v2.0 rimanda qui.
+- [x] **Disinstallare Renovate** (#195) — l'app apre ancora PR sulle actions che Dependabot copre gia' (#72, #73, #74). Manuale: Settings → Integrations; la voce di v2.0 rimanda qui. **Fatto (2026-11-25)**: `renovate.json` con `"enabled": false` alla radice, che Renovate legge e per cui smette di lavorare sul repo; chiuse le sue PR #72, #73, #74. Gli aggiornamenti delle actions e del bundle restano a Dependabot (`.github/dependabot.yml`). L'app resta installata sull'account finche' non la si toglie da Settings → Integrations, ma qui non fa piu' niente.
 
 ## v2.10 — Leggibile da persone e macchine ✅ (milestone chiusa)
 
