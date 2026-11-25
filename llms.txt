@@ -1,0 +1,74 @@
+---
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+{%- comment -%}
+/llms.txt (#191): an index of the site for language models and the assistants that read it,
+in the format proposed at llmstxt.org (a proposal, not a standard: cheap and harmless).
+An H1, a one-paragraph summary in a blockquote, then sections of links, one line each.
+
+Generated at every build from site data (front matter descriptions, the latest posts), so it
+never goes stale: a new main page goes in the `pages` list below. Titles go through
+`strip_emoji_shortcodes`, because jemoji only renders HTML and a .txt would keep ":computer:".
+Videos are the posts synced from the YouTube channel (their slug starts with youtube-); the
+Blog section is the other blog posts, notes with an embedded video included. Never cached by sw.js (NEVER_CACHE), like sitemap.xml.
+{%- endcomment -%}
+{%- assign me = site.social.name | default: site.title -%}
+{%- assign projects = site.posts | where: "category", "project" | where_exp: "p", "p.github" -%}
+{%- assign blog = site.posts | where: "category", "blog" -%}
+{%- assign videos = blog | where_exp: "p", "p.url contains '/youtube-'" -%}
+# {{ me }}
+
+> {{ site.description | strip_newlines }}
+
+{{ me }} is a software and DevOps engineer based in Milan, Italy. This site ({{ site.url }}) holds his open-source projects, notes on DevOps, live video streaming, Go and infrastructure, and videos from his YouTube channel. Posts are in English or Italian. Profiles: {% for l in site.social.links %}{{ l }}{% unless forloop.last %}, {% endunless %}{% endfor %}.
+
+## About
+{% assign pages = "/about/,/stack/,/gear/" | split: "," -%}
+{%- for url in pages -%}
+{%- assign pg = site.pages | where: "url", url | first -%}
+{%- if pg %}
+- [{{ pg.title }}]({{ site.url }}{{ pg.url }}): {{ pg.description | strip_newlines }}
+{%- endif -%}
+{%- endfor %}
+
+## Projects
+
+{% assign pg = site.pages | where: "url", "/projects/" | first -%}
+- [All projects]({{ site.url }}/projects/): {{ pg.description | strip_newlines }}
+{%- for p in projects limit: 12 %}
+- [{{ p.title | strip_emoji_shortcodes | strip }}]({{ site.url }}{{ p.url }}): {{ p.description | strip_newlines }}
+{%- endfor %}
+
+## Blog
+
+{% assign pg = site.pages | where: "url", "/blog/" | first -%}
+- [Blog]({{ site.url }}/blog/): {{ pg.description | strip_newlines }}
+{%- assign shown = 0 -%}
+{%- for p in blog -%}
+{%- if shown >= 12 %}{% break %}{% endif -%}
+{%- unless p.url contains '/youtube-' %}
+- [{{ p.title | strip_emoji_shortcodes | strip }}]({{ site.url }}{{ p.url }}): {{ p.description | strip_newlines }}
+{%- assign shown = shown | plus: 1 -%}
+{%- endunless -%}
+{%- endfor %}
+
+## Videos
+
+{% assign pg = site.pages | where: "url", "/videos/" | first -%}
+- [All videos]({{ site.url }}/videos/): {{ pg.description | strip_newlines }}
+{%- for p in videos limit: 6 %}
+- [{{ p.title | strip_emoji_shortcodes | strip }}]({{ site.url }}{{ p.url }}): {{ p.description | strip_newlines }}
+{%- endfor %}
+
+## Optional
+{% assign pages = "/archive/,/tags/,/map/,/fitness/,/stats/,/search/" | split: "," -%}
+{%- for url in pages -%}
+{%- assign pg = site.pages | where: "url", url | first -%}
+{%- if pg %}
+- [{{ pg.title }}]({{ site.url }}{{ pg.url }}): {{ pg.description | strip_newlines }}
+{%- endif -%}
+{%- endfor %}
+- [Feed]({{ site.url }}/feed.xml): Atom feed of the blog.
+- [Sitemap]({{ site.url }}/sitemap.xml): every page.

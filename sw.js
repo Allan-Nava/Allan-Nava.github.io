@@ -41,7 +41,7 @@ var PRECACHE = [
 
 /* Rigenerati a ogni build: dalla cache servirebbero risultati di ricerca e feed
    vecchi, che è peggio di un errore di rete. */
-var NEVER_CACHE = ['/search.json', '/feed.xml', '/sitemap.xml', '/robots.txt'];
+var NEVER_CACHE = ['/search.json', '/feed.xml', '/sitemap.xml', '/robots.txt', '/llms.txt'];
 
 self.addEventListener('install', function (event) {
   event.waitUntil(

@@ -85,6 +85,10 @@ checks:
       # tornerebbe a dire solo "*" senza che nessuno se ne accorga.
       - url: https://allan-nava.github.io/robots.txt
         expect_body: "User-agent: OAI-SearchBot"
+      # /llms.txt (#191), template Liquid come robots.txt: se il front matter sparisse
+      # arriverebbe il Liquid grezzo invece del titolo.
+      - url: https://allan-nava.github.io/llms.txt
+        expect_body: "# Allan Nava"
 
       # A URL that must NOT exist: 404.html has to be served with a real 404,
       # not a 200. Pages returning 200 for unknown paths is a classic
