@@ -15,7 +15,7 @@ Documentation for [allan-nava.github.io](https://allan-nava.github.io) — a per
 
 ```bash
 bundle install               # install dependencies
-bundle exec jekyll serve     # dev server → http://localhost:4000 (admin UI at /admin)
+bundle exec jekyll serve     # dev server → http://localhost:4000
 bundle exec jekyll build     # production build into _site/
 rake test                    # build + validate HTML and links
 ```

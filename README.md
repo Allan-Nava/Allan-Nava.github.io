@@ -11,7 +11,7 @@ My portfolio and blog — live at [allan-nava.github.io](https://allan-nava.gith
 
 ```bash
 bundle install
-bundle exec jekyll serve     # http://localhost:4000 — admin UI at /admin
+bundle exec jekyll serve     # http://localhost:4000
 ```
 
 ## Documentation

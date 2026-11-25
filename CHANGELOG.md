@@ -11,6 +11,15 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ## [Non rilasciato]
 
+### Aggiunto
+
+- **`<lastmod>` per le pagine nella sitemap** (#188) — `_plugins/page_lastmod.rb` la prende dall'ultimo commit che ha toccato il file della pagina; cosi' IndexNow segnala anche una pagina cambiata, non solo i post. Il deploy scarica la storia completa (`fetch-depth: 0`).
+
+### Modificato
+
+- **/blog/ da 2 MB a mezzo** (#187) — le card dei video verticali usano una copia WebP da 270px dell'anteprima (`scripts/cache_short_thumbs.rb`, `_plugins/short_thumbs.rb`) invece dell'originale di YouTube a 1080x1920; le prime quattro card non sono piu' lazy. Immagini 1.74 MB → 229 KB.
+- **Via jekyll-admin** (#184) — l'interfaccia /admin non la usava nessuno e portava 40 dei 51 alert di Dependabot; aggiornati `activesupport`, `addressable` e `nokogiri`. Resta `rubyzip`, bloccato da `github-pages`.
+
 ## [2.6.0] — 2026-11-25
 
 Tre mesi di lavoro dalla 2.5.0, chiusi con la milestone v2.8 della roadmap: il CSS come file in

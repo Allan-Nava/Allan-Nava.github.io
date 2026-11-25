@@ -20,16 +20,30 @@ Thumbnail se il post ha `image:` (anche
 generata da _plugins/youtube_thumbnails.rb per i post video); altrimenti un
 placeholder generativo — monogramma su gradiente scelto dal titolo, disegnato
 in CSS, zero richieste di rete (_plugins/card_placeholder.rb).
+
+#187: i verticali usano `thumb_small`, la copia WebP da 270px che
+scripts/cache_short_thumbs.rb salva in assets/images/thumbs/ (_plugins/short_thumbs.rb la
+assegna se il file c'e'): l'oardefault e' 1080x1920, fino a 500 KB, per un riquadro di
+~100px, e una pagina di Short scaricava 1.65 MB di anteprime (ora 229 KB, misurato). Le
+prime quattro card del ciclo stanno sopra la piega su un telefono (412x823) e l'LCP e' una di
+loro: niente lazy loading, e la prima con `fetchpriority="high"`; le altre restano lazy.
 {%- endcomment -%}
+{%- if forloop.index and forloop.index <= 4 -%}
+    {%- capture thumb_loading %}loading="eager"{% if forloop.first %} fetchpriority="high"{% endif %}{% endcapture -%}
+{%- else -%}
+    {%- assign thumb_loading = 'loading="lazy"' -%}
+{%- endif -%}
 <article class="item{% if post.star %} star{% endif %}" data-tags="{% for t in post.tag %}{{ t | slugify }} {% endfor %}">
     <a class="url" href="{{ site.url }}{{ post.url }}">
         {% if post.image and post.image != "" %}
             {%- assign thumb_src = post.thumb | default: post.image -%}
             <span class="thumb{% if post.image contains 'ytimg.com' %} thumb-video{% endif %}{% if post.thumb %} thumb-short{% endif %}">
-                {%- if post.thumb -%}
-                <img class="thumb-img" src="{{ thumb_src }}" alt="" loading="lazy" decoding="async" width="1080" height="1920">
+                {%- if post.thumb_small -%}
+                <img class="thumb-img" src="{{ site.url }}{{ post.thumb_small }}" alt="" {{ thumb_loading }} decoding="async" width="270" height="480">
+                {%- elsif post.thumb -%}
+                <img class="thumb-img" src="{{ thumb_src }}" alt="" {{ thumb_loading }} decoding="async" width="1080" height="1920">
                 {%- else -%}
-                <img class="thumb-img" src="{{ thumb_src }}" alt="" loading="lazy" decoding="async" width="480" height="270">
+                <img class="thumb-img" src="{{ thumb_src }}" alt="" {{ thumb_loading }} decoding="async" width="480" height="270">
                 {%- endif -%}
             </span>
         {% else %}

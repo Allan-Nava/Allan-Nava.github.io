@@ -41,11 +41,6 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
-# jekyll-admin sta nel gruppo :development del Gemfile: serve solo a `jekyll serve` in locale
-# (#184). Senza questa riga bundler-cache lo installerebbe comunque.
-env:
-  BUNDLE_WITHOUT: development
-
 jobs:
   # Build job
   build:
@@ -53,6 +48,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # The whole history: _plugins/page_lastmod.rb dates the pages in sitemap.xml from
+          # their last commit (#188), and a shallow clone would date them all today.
+          fetch-depth: 0
       - name: Setup Ruby
         # Pinned to the last release verified to provide Ruby 3.0 on this
         # runner; newer releases made the "Setup Ruby" step fail (run 28809149211).

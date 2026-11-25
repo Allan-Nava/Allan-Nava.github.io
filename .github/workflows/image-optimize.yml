@@ -67,6 +67,9 @@ jobs:
 
       - name: Generate missing per-post OG cards
         run: ruby scripts/generate_og_cards.rb
+      - name: Small copies of the vertical video thumbnails
+        # 270px WebP of each Short's 1080x1920 oardefault.jpg, for the listing cards (#187).
+        run: ruby scripts/cache_short_thumbs.rb
 
       - name: Commit and push new variants
         id: commit

@@ -55,8 +55,8 @@ Altri flag: `star: true` (evidenzia in listing), `hidden: true` (esclude dal blo
 ## Comandi
 
 ```bash
-bundle install                 # dipendenze (github-pages, html-proofer, jekyll-admin)
-bundle exec jekyll serve       # dev server http://localhost:4000 (admin UI su /admin)
+bundle install                 # dipendenze (github-pages, html-proofer, rake)
+bundle exec jekyll serve       # dev server http://localhost:4000
 bundle exec jekyll build       # build in _site/
 rake test                      # build + html-proofer (4xx link/immagini rotte)
 ruby scripts/validate_posts.rb # validazione veloce dei post — no bundle
