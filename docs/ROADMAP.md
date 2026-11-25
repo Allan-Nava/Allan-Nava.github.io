@@ -139,7 +139,7 @@ Sesto giro, dopo v2.8. Milestone `v2.9` su GitHub.
 
 - [ ] **Dipendenze di build** (#184) — 51 alert di Dependabot su `Gemfile.lock`, quasi tutti `rack` 1.6 e `sinatra` 1.4 portati da `jekyll-admin`: girano solo in build e in `jekyll serve`, ma nascondono gli alert veri. Fatto il primo passo: `jekyll-admin` nel gruppo `:development` e `BUNDLE_WITHOUT: development` nei quattro workflow, quindi la CI non lo installa piu'. Resta da vedere quali alert restano aperti, visto che le gem sono ancora nel `Gemfile.lock`.
 - [x] **Description per i post video** (#185) — `_plugins/video_descriptions.rb` compone a build time la description dei 134 video che non l'avevano (ricadevano tutti su `site.description`): titolo, autore, data di pubblicazione, verticale o no. Le card dei listing la saltano (`description_generated`), la usano meta, JSON-LD, feed e ricerca. I tag non entrano: su questi post sono solo `youtube`/`short`/`video`.
-- [ ] **Nav su telefono** (#186) — a 390px "About" esce "Abou", su tutte le pagine.
+- [x] **Nav su telefono** (#186) — a 390px "About" esce "Abou", su tutte le pagine.
 - [ ] **`/blog/` sopra la soglia Lighthouse** (#187) — performance 79, LCP ~5.7 s, ~1.9 MB di immagini.
 - [x] **SEO: correzioni dal crawl e controllo in CI** — crawl delle 440 pagine della sitemap (2026-11-25): basi pulite, tre difetti di qualita' corretti a build time da `_plugins/seo.rb` (13 titoli duplicati datati, 76 description di progetto arricchite, "Page N of M" nelle 23 pagine di `/blog/`), `VideoObject` JSON-LD sui post video, e `scripts/seo_audit.rb` in `checks.yml` che blocca una pagina senza title/description/canonical/og:image/h1 o con JSON-LD rotto.
 - [ ] **Date delle pagine nella sitemap** (#188) — solo i post hanno `<lastmod>`, quindi IndexNow non segnala una pagina cambiata.
@@ -148,7 +148,7 @@ Sesto giro, dopo v2.8. Milestone `v2.9` su GitHub.
 
 Settimo giro. Cosa legge un assistente AI o un motore di ricerca quando gli chiedono di Allan Nava, piu' gli avvisi lasciati dal controllo SEO in CI. Milestone `v2.10` su GitHub.
 
-- [ ] **Una pagina About citabile** (#189) — frasi complete e fattuali in apertura di `/about/` (ruolo, citta', domini, progetti), allineate a CV e LinkedIn, e il JSON-LD `Person` con `jobTitle` e `knowsAbout`: e' il testo che un assistente riprende.
+- [x] **Una pagina About citabile** (#189) — frasi complete e fattuali in apertura di `/about/` (ruolo, citta', domini, progetti), allineate a CV e LinkedIn, e il JSON-LD `Person` con `jobTitle` e `knowsAbout`: e' il testo che un assistente riprende.
 - [x] **I crawler AI in `robots.txt`** (#190) — gruppi espliciti, consentiti, che separano ricerca e risposta (`OAI-SearchBot`, `ChatGPT-User`, `Claude-SearchBot`, `Claude-User`, `PerplexityBot`) da addestramento (`GPTBot`, `ClaudeBot`, `Google-Extended`, `CCBot`), nel template di `sync_robots_sitemaps.rb`.
 - [x] **`/llms.txt`** (#191) — generato a ogni build: chi e' Allan Nava, le sezioni e le pagine principali con una riga ciascuna. Una proposta, non uno standard: costa poco e non fa danni.
 - [ ] **Una versione Markdown di ogni post** (#192) — il sorgente accanto all'HTML, linkato con `rel="alternate" type="text/markdown"`; misurare il tempo di build.

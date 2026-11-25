@@ -172,10 +172,15 @@
 		> .theme-icon-moon
 			display: var(--icon-moon)
 
+	// Sotto i 560px (#186): avatar senza nome, e link e icone stretti abbastanza da
+	// stare tutti nell'isola fino a 360px, misurati in Chromium a 360/390/430 in tutti
+	// e due i temi. Prima a 390px "About" usciva tagliato ("Abou"): i quattro link
+	// chiedevano 253px su 238. Se un giorno si aggiunge un link, rimisurare: la riga
+	// scorre ancora, ma un link tagliato a meta' non si capisce che scorre.
 	@media #{$mobile}
 		> .site-nav-inner
 			width: 94vw
-			gap: var(--space-1)
+			gap: 2px
 
 		.brand
 			padding-left: 2px
@@ -187,4 +192,9 @@
 			padding-left: var(--space-1)
 
 		> .site-nav-inner .links > .item > .link
-			padding: 7px 11px
+			padding: 7px 7px
+			font-size: 13px
+
+		.nav-icon,
+		.theme-toggle
+			margin-left: 0
