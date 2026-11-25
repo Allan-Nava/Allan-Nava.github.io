@@ -144,6 +144,17 @@ Sesto giro, dopo v2.8. Milestone `v2.9` su GitHub.
 - [x] **SEO: correzioni dal crawl e controllo in CI** — crawl delle 440 pagine della sitemap (2026-11-25): basi pulite, tre difetti di qualita' corretti a build time da `_plugins/seo.rb` (13 titoli duplicati datati, 76 description di progetto arricchite, "Page N of M" nelle 23 pagine di `/blog/`), `VideoObject` JSON-LD sui post video, e `scripts/seo_audit.rb` in `checks.yml` che blocca una pagina senza title/description/canonical/og:image/h1 o con JSON-LD rotto.
 - [ ] **Date delle pagine nella sitemap** (#188) — solo i post hanno `<lastmod>`, quindi IndexNow non segnala una pagina cambiata.
 
+## v2.10 — Leggibile da persone e macchine
+
+Settimo giro. Cosa legge un assistente AI o un motore di ricerca quando gli chiedono di Allan Nava, piu' gli avvisi lasciati dal controllo SEO in CI. Milestone `v2.10` su GitHub.
+
+- [ ] **Una pagina About citabile** (#189) — frasi complete e fattuali in apertura di `/about/` (ruolo, citta', domini, progetti), allineate a CV e LinkedIn, e il JSON-LD `Person` con `jobTitle` e `knowsAbout`: e' il testo che un assistente riprende.
+- [ ] **I crawler AI in `robots.txt`** (#190) — gruppi espliciti, consentiti, che separano ricerca e risposta (`OAI-SearchBot`, `ChatGPT-User`, `Claude-SearchBot`, `Claude-User`, `PerplexityBot`) da addestramento (`GPTBot`, `ClaudeBot`, `Google-Extended`, `CCBot`), nel template di `sync_robots_sitemaps.rb`.
+- [ ] **`/llms.txt`** (#191) — generato a ogni build: chi e' Allan Nava, le sezioni e le pagine principali con una riga ciascuna. Una proposta, non uno standard: costa poco e non fa danni.
+- [ ] **Una versione Markdown di ogni post** (#192) — il sorgente accanto all'HTML, linkato con `rel="alternate" type="text/markdown"`; misurare il tempo di build.
+- [ ] **Avvisi del controllo SEO azzerati, poi errori** (#193) — 18 titoli oltre i 70 caratteri e 41 description sotto i 50 (2026-11-25); poi `seo_audit.rb` li fa fallire.
+- [ ] **La lingua giusta sui post in italiano** (#194) — 436 pagine su 440 dichiarano `en`; uno script one-shot con `DRY_RUN=1` mette `lang: it` dove il corpo e' italiano, e `validate_posts.rb` avvisa quando non torna.
+
 ## v3.0 — Big rocks
 
 Milestone `v3.0` creata su GitHub con le quattro issue qui sotto. Sono le uniche voci di **codice** ancora aperte nel backlog: tutto ciò che resta in v2.1/v2.2 aspetta credenziali o account esterni (vedi sopra). Nota: queste issue sono state create a mano, non da `bootstrap-milestone.yml` — quel workflow copre solo le voci v2.x che ha generato.
