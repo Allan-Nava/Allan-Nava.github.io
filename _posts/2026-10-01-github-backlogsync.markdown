@@ -23,7 +23,6 @@ BACKLOG.md as the single source of truth: a generated ROADMAP.md, a CI check, an
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: JavaScript
-- **Stars**: 1
 - **Ultimo push**: 2026-11-24
 
 [Repo su GitHub →](https://github.com/Allan-Nava/backlogsync)

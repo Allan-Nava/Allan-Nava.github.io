@@ -2,7 +2,7 @@
 title: "streamprobe-operator"
 layout: post
 date: 2026-11-23 10:16
-updated: 2026-11-24
+updated: 2026-11-25
 tag:
 - go
 - controller-runtime
@@ -23,7 +23,6 @@ A Kubernetes operator that watches live HLS streams: is the playlist moving, and
 
 - **Owner**: [Allan-Nava](https://github.com/Allan-Nava)
 - **Linguaggio**: Go
-- **Stars**: 1
-- **Ultimo push**: 2026-11-24
+- **Ultimo push**: 2026-11-25
 
 [Repo su GitHub →](https://github.com/Allan-Nava/streamprobe-operator)
