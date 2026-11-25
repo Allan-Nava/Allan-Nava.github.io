@@ -13,6 +13,7 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ### Aggiunto
 
+- **Un gemello Markdown per ogni post** (#192) — `/blog/…/post.md` accanto all'HTML, scritto da `_plugins/markdown_twins.rb` dopo il build: il testo del post senza navigazione, footer e script, per gli strumenti AI che lo cercano. Linkato dalla pagina (`<link rel="alternate" type="text/markdown">`) e da `/llms.txt`.
 - **`<lastmod>` per le pagine nella sitemap** (#188) — `_plugins/page_lastmod.rb` la prende dall'ultimo commit che ha toccato il file della pagina; cosi' IndexNow segnala anche una pagina cambiata, non solo i post. Il deploy scarica la storia completa (`fetch-depth: 0`).
 
 ### Modificato

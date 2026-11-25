@@ -12,7 +12,8 @@ Generated at every build from site data (front matter descriptions, the latest p
 never goes stale: a new main page goes in the `pages` list below. Titles go through
 `strip_emoji_shortcodes`, because jemoji only renders HTML and a .txt would keep ":computer:".
 Videos are the posts synced from the YouTube channel (their slug starts with youtube-); the
-Blog section is the other blog posts, notes with an embedded video included. Never cached by sw.js (NEVER_CACHE), like sitemap.xml.
+Blog section is the other blog posts, notes with an embedded video included. Post links point at their Markdown twins (#192, _plugins/markdown_twins.rb), the plain
+text an assistant wants. Never cached by sw.js (NEVER_CACHE), like sitemap.xml.
 {%- endcomment -%}
 {%- assign me = site.social.name | default: site.title -%}
 {%- assign projects = site.posts | where: "category", "project" | where_exp: "p", "p.github" -%}
@@ -38,7 +39,7 @@ Blog section is the other blog posts, notes with an embedded video included. Nev
 {% assign pg = site.pages | where: "url", "/projects/" | first -%}
 - [All projects]({{ site.url }}/projects/): {{ pg.description | strip_newlines }}
 {%- for p in projects limit: 12 %}
-- [{{ p.title | strip_emoji_shortcodes | strip }}]({{ site.url }}{{ p.url }}): {{ p.description | strip_newlines }}
+- [{{ p.title | strip_emoji_shortcodes | strip }}]({{ site.url }}{{ p.url | replace: '.html', '.md' }}): {{ p.description | strip_newlines }}
 {%- endfor %}
 
 ## Blog
@@ -49,7 +50,7 @@ Blog section is the other blog posts, notes with an embedded video included. Nev
 {%- for p in blog -%}
 {%- if shown >= 12 %}{% break %}{% endif -%}
 {%- unless p.url contains '/youtube-' %}
-- [{{ p.title | strip_emoji_shortcodes | strip }}]({{ site.url }}{{ p.url }}): {{ p.description | strip_newlines }}
+- [{{ p.title | strip_emoji_shortcodes | strip }}]({{ site.url }}{{ p.url | replace: '.html', '.md' }}): {{ p.description | strip_newlines }}
 {%- assign shown = shown | plus: 1 -%}
 {%- endunless -%}
 {%- endfor %}
@@ -59,7 +60,7 @@ Blog section is the other blog posts, notes with an embedded video included. Nev
 {% assign pg = site.pages | where: "url", "/videos/" | first -%}
 - [All videos]({{ site.url }}/videos/): {{ pg.description | strip_newlines }}
 {%- for p in videos limit: 6 %}
-- [{{ p.title | strip_emoji_shortcodes | strip }}]({{ site.url }}{{ p.url }}): {{ p.description | strip_newlines }}
+- [{{ p.title | strip_emoji_shortcodes | strip }}]({{ site.url }}{{ p.url | replace: '.html', '.md' }}): {{ p.description | strip_newlines }}
 {%- endfor %}
 
 ## Optional

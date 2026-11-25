@@ -119,6 +119,8 @@ jekyll-seo-tag usa per `og:locale`); senza, resta il default di prima.
     `hidden: true` li teneva fuori dal listing ma non dal feed. Il link lo
     dichiara la sola pagina che li elenca, con `projects_feed: true`.
     {%- endcomment -%}
+    {%- comment -%} #192: the post's Markdown twin, written by _plugins/markdown_twins.rb {%- endcomment -%}
+    {% if page.collection == "posts" and page.url contains ".html" %}<link rel="alternate" type="text/markdown" title="{{ page.title | strip_emoji_shortcodes | escape }} (Markdown)" href="{{ site.url }}{{ page.url | replace: ".html", ".md" }}" />{% endif %}
     {% if page.projects_feed %}<link rel="alternate" type="application/rss+xml" title="{{ site.title }} — Projects" href="{{ site.url }}/projects/feed.xml" />{% endif %}
 
     {%- comment -%}
