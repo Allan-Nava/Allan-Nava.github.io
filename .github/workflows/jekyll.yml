@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           # The whole history: _plugins/page_lastmod.rb dates the pages in sitemap.xml from
           # their last commit (#188), and a shallow clone would date them all today.
@@ -65,7 +65,7 @@ jobs:
         run: ruby scripts/validate_posts.rb
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Save the live sitemap (IndexNow)
         # Before the build, what Pages serves now: the indexnow job compares it with
         # the new one and submits only what changed. A failure here costs nothing.
@@ -90,7 +90,7 @@ jobs:
           retention-days: 3
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
 
   # Deployment job
   deploy:
@@ -102,7 +102,7 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   # IndexNow (scripts/indexnow.rb): tells Bing — and so DuckDuckGo, which uses its
   # index — Yandex and the other engines of the protocol which URLs are new or
@@ -115,7 +115,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Get the list
         uses: actions/download-artifact@v4
         with:
@@ -137,7 +137,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Install checkfleet
         # Pinned release tarball — no Go toolchain needed, reproducible run.
         # Bump deliberately, like the ruby/setup-ruby pin above.

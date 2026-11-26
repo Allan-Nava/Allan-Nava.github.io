@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Rebuild pages_sitemaps.yml from live GitHub Pages sitemaps
         run: ruby scripts/sync_robots_sitemaps.rb
         env:
