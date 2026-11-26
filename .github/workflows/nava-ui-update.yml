@@ -1,0 +1,110 @@
+# nava-ui update: when the kit has a release newer than the one the site pins (first line of
+# _sass/vendor/_nava-tokens.scss), sync it and open a pull request.
+#
+# A pull request and not a push: the kit's tokens are the site's colours, and a new release can
+# change them, so a person looks at the diff first. The job runs scripts/sync_nava_ui.sh <tag>
+# (tokens and the components in PARTS) and scripts/check_contrast.rb (52 pairs, both themes,
+# 6:1): a release that breaks the contrast fails here and opens a failure issue instead of a PR.
+#
+# A pull request opened with GITHUB_TOKEN does not trigger other workflows, so checks.yml is
+# dispatched on the branch: its run shows on the branch, not as a check of the PR.
+# One branch per release (nava-ui/vX.Y.Z): a run that finds the PR already open does nothing.
+name: nava-ui update
+
+on:
+  schedule:
+    - cron: '37 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nava-ui-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Pinned and latest release
+        id: v
+        run: |
+          pinned="$(head -1 _sass/vendor/_nava-tokens.scss | grep -o 'nava-ui v[0-9][0-9.]*' | sed 's/nava-ui //')"
+          latest="$(gh api repos/Allan-Nava/nava-ui/releases/latest --jq .tag_name)"
+          echo "pinned=$pinned" >> "$GITHUB_OUTPUT"
+          echo "latest=$latest" >> "$GITHUB_OUTPUT"
+          echo "branch=nava-ui/$latest" >> "$GITHUB_OUTPUT"
+          if [ -z "$pinned" ] || [ -z "$latest" ]; then
+            echo "::error::could not read the pinned ($pinned) or the latest ($latest) version"
+            exit 1
+          fi
+          newest="$(printf '%s\n%s\n' "${pinned#v}" "${latest#v}" | sort -V | tail -1)"
+          if [ "$pinned" = "$latest" ] || [ "$newest" != "${latest#v}" ]; then
+            echo "::notice::The site is on $pinned, the latest nava-ui release: nothing to do."
+            echo "todo=false" >> "$GITHUB_OUTPUT"
+          elif [ -n "$(gh pr list --head "nava-ui/$latest" --state open --json number --jq '.[].number')" ]; then
+            echo "::notice::A pull request for nava-ui $latest is already open."
+            echo "todo=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "todo=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Sync the kit
+        if: steps.v.outputs.todo == 'true'
+        run: bash scripts/sync_nava_ui.sh "${{ steps.v.outputs.latest }}"
+      - name: Contrast on both themes
+        if: steps.v.outputs.todo == 'true'
+        run: ruby scripts/check_contrast.rb | tee "$RUNNER_TEMP/contrast.txt"
+      - name: Open the pull request
+        if: steps.v.outputs.todo == 'true'
+        env:
+          PINNED: ${{ steps.v.outputs.pinned }}
+          LATEST: ${{ steps.v.outputs.latest }}
+          BRANCH: ${{ steps.v.outputs.branch }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git add _sass/vendor
+          git commit -m "nava-ui $LATEST (from $PINNED)"
+          git push --force origin "$BRANCH"
+          values="$(git diff HEAD~1 -- _sass/vendor | grep -E '^[-+][^-+]' | grep -vc 'GENERATED from nava-ui' || true)"
+          {
+            echo "nava-ui **$PINNED → $LATEST**, synced by \`scripts/sync_nava_ui.sh $LATEST\`."
+            echo
+            echo "Release notes: https://github.com/Allan-Nava/nava-ui/releases/tag/$LATEST"
+            echo
+            if [ "$values" = "0" ]; then
+              echo "Only the version line changes in \`_sass/vendor/\`: no token or component value is different."
+            else
+              echo "**$values lines change** in \`_sass/vendor/\` besides the version line: look at the colours before merging."
+            fi
+            echo
+            echo "Contrast (\`ruby scripts/check_contrast.rb\`):"
+            echo
+            echo '```'
+            tail -3 "$RUNNER_TEMP/contrast.txt"
+            echo '```'
+            echo
+            echo "Checks run on the branch (a pull request opened by GITHUB_TOKEN does not start them):"
+            echo "https://github.com/${{ github.repository }}/actions/workflows/checks.yml?query=branch%3A$(printf %s "$BRANCH" | sed 's#/#%2F#g')"
+            echo
+            echo "If a new component of the kit should replace a copy of the site, that is a separate change: add it to \`PARTS\`."
+          } > "$RUNNER_TEMP/body.md"
+          gh pr create --base master --head "$BRANCH" --title "nava-ui $LATEST" --body-file "$RUNNER_TEMP/body.md"
+          gh workflow run checks.yml --ref "$BRANCH"
+
+  report-failure:
+    needs: [update]
+    if: failure()
+    uses: ./.github/workflows/failure-issue.yml
+    permissions:
+      issues: write

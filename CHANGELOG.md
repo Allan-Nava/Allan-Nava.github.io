@@ -13,11 +13,13 @@ nuove pagine, workflow o feature di build, **patch** = fix e ritocchi. Le milest
 
 ### Aggiunto
 
+- **nava-ui si aggiorna da solo, con una PR** — `nava-ui-update.yml` ogni lunedi' confronta la versione fissata con l'ultima release del kit e, se e' nuova, sincronizza, controlla il contrasto e apre la PR. Il sito e' passato a nava-ui **v0.11.0** (nessun valore cambiato nei file che importa).
 - **Un gemello Markdown per ogni post** (#192) — `/blog/…/post.md` accanto all'HTML, scritto da `_plugins/markdown_twins.rb` dopo il build: il testo del post senza navigazione, footer e script, per gli strumenti AI che lo cercano. Linkato dalla pagina (`<link rel="alternate" type="text/markdown">`) e da `/llms.txt`.
 - **`<lastmod>` per le pagine nella sitemap** (#188) — `_plugins/page_lastmod.rb` la prende dall'ultimo commit che ha toccato il file della pagina; cosi' IndexNow segnala anche una pagina cambiata, non solo i post. Il deploy scarica la storia completa (`fetch-depth: 0`).
 
 ### Modificato
 
+- **Actions alla versione Node 24** — `checkout` v7, `configure-pages` v6, `deploy-pages` v5, `upload-pages-artifact` v5 in tutti i workflow; Renovate spento con `renovate.json`, gli aggiornamenti li fa Dependabot.
 - **/blog/ da 2 MB a mezzo** (#187) — le card dei video verticali usano una copia WebP da 270px dell'anteprima (`scripts/cache_short_thumbs.rb`, `_plugins/short_thumbs.rb`) invece dell'originale di YouTube a 1080x1920; le prime quattro card non sono piu' lazy. Immagini 1.74 MB → 229 KB.
 - **Via jekyll-admin** (#184) — l'interfaccia /admin non la usava nessuno e portava 40 dei 51 alert di Dependabot; aggiornati `activesupport`, `addressable` e `nokogiri`. Resta `rubyzip`, bloccato da `github-pages`.
 

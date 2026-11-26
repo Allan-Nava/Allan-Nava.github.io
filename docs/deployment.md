@@ -105,6 +105,10 @@ Daily (`0 4 * * *`), keeps the per-project `Sitemap:` lines in `robots.txt` in s
 
 Only the owner's own Pages sites belong here: `robots.txt` is read per-host, and repos owned by a different account/org (e.g. the `hiway-media` org, which does appear in `github_sync.yml` for project *posts*) publish to a different host — hence a single `owner`, not the multi-source list of the projects sync. Repos with a custom domain serve their Pages elsewhere, so the on-host probe 404s and they drop out naturally; no special-casing. As of the last sync, `checkfleet` and `Hugo-TuttoCampo` were the only two Pages sites shipping a sitemap (the rest render a README through a theme). The data file is rewritten only when the live set changes, so an idle run is a no-op → the commit step (`git status --porcelain _data/pages_sitemaps.yml`) skips and nothing deploys. Same pipeline as the other syncs: bot commit + explicit deploy dispatch.
 
+### `nava-ui-update.yml` — nava-ui update
+
+Weekly (`37 6 * * 1`) and on dispatch. Compares the nava-ui version the site pins (first line of `_sass/vendor/_nava-tokens.scss`) with the kit's latest release; when the release is newer it runs `scripts/sync_nava_ui.sh <tag>` and `ruby scripts/check_contrast.rb`, pushes the branch `nava-ui/<tag>` and opens a pull request that says whether any value changed besides the version line, with the contrast result and a link to the release notes. A pull request, not a push: the kit's tokens are the site's colours. A release that breaks the contrast fails the run (failure issue) instead of opening a PR; a PR already open for that release makes the run a no-op. Since a PR opened with `GITHUB_TOKEN` does not start other workflows, the job dispatches `checks.yml` on the branch: its result is in the Actions tab, not on the PR. Adopting a new component of the kit is still a hand change (`PARTS` in the script).
+
 ### `uptime.yml` — Uptime Monitor
 
 Every 10 minutes, runs [checkfleet](https://github.com/Allan-Nava/checkfleet) against the live site with the same target list as the post-deploy smoke job (`checkfleet.yml`), failing the run on any BAD/ERROR finding. A failing run in the Actions tab means the site is down **or** one of the checked pages broke on its own — an expired permalink, a broken feed, `404.html` starting to answer `200`.
@@ -140,7 +144,7 @@ Si attiva sul push di un tag `v*` (e a mano con `workflow_dispatch`, passando un
 
 ### `failure-issue.yml` — Report workflow failure
 
-Workflow **riusabile** (`workflow_call`): apre una issue etichettata `ci-failure` con il link al run fallito, o commenta quella già aperta per lo stesso workflow. È agganciato con `if: failure()` ai workflow schedulati (`youtube-sync`, `github-sync`, `robots-sync`, `strava-sync`, `uptime`), che girano di notte e senza nessuno che li guardi.
+Workflow **riusabile** (`workflow_call`): apre una issue etichettata `ci-failure` con il link al run fallito, o commenta quella già aperta per lo stesso workflow. È agganciato con `if: failure()` ai workflow schedulati (`youtube-sync`, `github-sync`, `robots-sync`, `strava-sync`, `uptime`, `nava-ui-update`), che girano di notte e senza nessuno che li guardi.
 
 ### `link-check.yml` — Link check
 
