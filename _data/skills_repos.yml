@@ -195,7 +195,7 @@ skills:
     repos:
     - name: streamprobe-operator
       url: https://github.com/Allan-Nava/streamprobe-operator
-      pushed: '2026-11-25'
+      pushed: '2026-11-26'
     - name: Go-DDD-Scaffold
       url: https://github.com/Allan-Nava/Go-DDD-Scaffold
       pushed: '2026-11-06'
@@ -395,7 +395,7 @@ skills:
     repos:
     - name: streamprobe-operator
       url: https://github.com/Allan-Nava/streamprobe-operator
-      pushed: '2026-11-25'
+      pushed: '2026-11-26'
     - name: segcheck
       url: https://github.com/Allan-Nava/segcheck
       pushed: '2026-10-10'
@@ -513,12 +513,12 @@ skills:
     curated: true
     where: projects
     repos:
+    - name: streamprobe-operator
+      url: https://github.com/Allan-Nava/streamprobe-operator
+      pushed: '2026-11-26'
     - name: cragcast
       url: https://github.com/Allan-Nava/cragcast
       pushed: '2026-11-26'
-    - name: streamprobe-operator
-      url: https://github.com/Allan-Nava/streamprobe-operator
-      pushed: '2026-11-25'
   NATS JetStream:
     group: data
     curated: true
@@ -617,7 +617,7 @@ skills:
     repos:
     - name: streamprobe-operator
       url: https://github.com/Allan-Nava/streamprobe-operator
-      pushed: '2026-11-25'
+      pushed: '2026-11-26'
     - name: checkfleet
       url: https://github.com/Allan-Nava/checkfleet
       pushed: '2026-10-21'
