@@ -193,15 +193,15 @@ skills:
     curated: true
     where: projects
     repos:
+    - name: pqprobe
+      url: https://github.com/Allan-Nava/pqprobe
+      pushed: '2026-11-27'
     - name: streamprobe-operator
       url: https://github.com/Allan-Nava/streamprobe-operator
       pushed: '2026-11-26'
     - name: Go-DDD-Scaffold
       url: https://github.com/Allan-Nava/Go-DDD-Scaffold
       pushed: '2026-11-06'
-    - name: pqprobe
-      url: https://github.com/Allan-Nava/pqprobe
-      pushed: '2026-11-01'
     - name: cragbook
       url: https://github.com/Allan-Nava/cragbook
       pushed: '2026-10-28'
@@ -375,7 +375,7 @@ skills:
     repos:
     - name: pqprobe
       url: https://github.com/Allan-Nava/pqprobe
-      pushed: '2026-11-01'
+      pushed: '2026-11-27'
     - name: checkfleet
       url: https://github.com/Allan-Nava/checkfleet
       pushed: '2026-10-21'
@@ -415,7 +415,7 @@ skills:
     repos:
     - name: cragcast
       url: https://github.com/Allan-Nava/cragcast
-      pushed: '2026-11-26'
+      pushed: '2026-11-27'
     - name: keycloak-identity-provider-druid
       url: https://github.com/HiWay-Media/keycloak-identity-provider-druid
       pushed: '2026-11-23'
@@ -513,11 +513,11 @@ skills:
     curated: true
     where: projects
     repos:
-    - name: streamprobe-operator
-      url: https://github.com/Allan-Nava/streamprobe-operator
-      pushed: '2026-11-26'
     - name: cragcast
       url: https://github.com/Allan-Nava/cragcast
+      pushed: '2026-11-27'
+    - name: streamprobe-operator
+      url: https://github.com/Allan-Nava/streamprobe-operator
       pushed: '2026-11-26'
   NATS JetStream:
     group: data
@@ -603,7 +603,7 @@ skills:
     repos:
     - name: cragcast
       url: https://github.com/Allan-Nava/cragcast
-      pushed: '2026-11-26'
+      pushed: '2026-11-27'
     - name: cragbook
       url: https://github.com/Allan-Nava/cragbook
       pushed: '2026-10-28'
@@ -688,7 +688,7 @@ skills:
     repos:
     - name: pqprobe
       url: https://github.com/Allan-Nava/pqprobe
-      pushed: '2026-11-01'
+      pushed: '2026-11-27'
   Traefik:
     group: infrastructure
     curated: true
